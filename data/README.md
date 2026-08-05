@@ -3,7 +3,7 @@
 
 - **Purpose:** Short, easy-to-scan descriptions of the test cases in this repository. Each test case is a Markdown file under `data/Test_Cases/` grouped by theme.
 
-![Test Cases Image](https://raw.githubusercontent.com/GaganaMD/world-model-suite/refs/heads/Ani/img/test_cases.png?token=GHSAT0AAAAAADMU4DPQ4PDZ6RDALPK3FGIS2TTGE5A)
+![Test Cases Image](https://github.com/GaganaMD/world-model-suite/blob/Ani/img/test_cases.png)
 
 **Folder structure**
 
