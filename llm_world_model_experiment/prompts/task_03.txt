@@ -1,0 +1,10 @@
+Create a self-contained Python grid-world environment for this scenario.
+Grid size: 5 columns by 1 rows. Coordinates are (x, y), origin top-left.
+Start: (0, 0)
+Goal: (4, 0)
+Obstacles: [(2, 0)]
+Allowed actions: N=(0,-1), S=(0,1), E=(1,0), W=(-1,0).
+Invalid moves outside the grid or into obstacles should leave the agent in place.
+Question: Where will the agent end after these actions?
+Probe action sequence: EEEE
+Expose a GridWorld class with reset(), step(action), run(actions), is_goal(), reachable(), shortest_path().

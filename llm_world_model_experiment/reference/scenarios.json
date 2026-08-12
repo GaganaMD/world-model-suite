@@ -1,0 +1,369 @@
+[
+  {
+    "id": "task_01",
+    "width": 3,
+    "height": 3,
+    "start": [
+      0,
+      0
+    ],
+    "goal": [
+      2,
+      2
+    ],
+    "obstacles": [],
+    "actions": [
+      "E",
+      "E",
+      "S",
+      "S"
+    ],
+    "question": "Can the agent reach the goal?"
+  },
+  {
+    "id": "task_02",
+    "width": 4,
+    "height": 3,
+    "start": [
+      0,
+      1
+    ],
+    "goal": [
+      3,
+      1
+    ],
+    "obstacles": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "actions": [
+      "E",
+      "E",
+      "N",
+      "E",
+      "E"
+    ],
+    "question": "What is the shortest path?"
+  },
+  {
+    "id": "task_03",
+    "width": 5,
+    "height": 1,
+    "start": [
+      0,
+      0
+    ],
+    "goal": [
+      4,
+      0
+    ],
+    "obstacles": [
+      [
+        2,
+        0
+      ]
+    ],
+    "actions": [
+      "E",
+      "E",
+      "E",
+      "E"
+    ],
+    "question": "Where will the agent end after these actions?"
+  },
+  {
+    "id": "task_04",
+    "width": 3,
+    "height": 4,
+    "start": [
+      1,
+      3
+    ],
+    "goal": [
+      1,
+      0
+    ],
+    "obstacles": [
+      [
+        1,
+        2
+      ]
+    ],
+    "actions": [
+      "N",
+      "N",
+      "W",
+      "N",
+      "E"
+    ],
+    "question": "Can the agent reach the goal?"
+  },
+  {
+    "id": "task_05",
+    "width": 4,
+    "height": 4,
+    "start": [
+      0,
+      0
+    ],
+    "goal": [
+      3,
+      3
+    ],
+    "obstacles": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "actions": [
+      "E",
+      "E",
+      "S",
+      "S",
+      "S",
+      "E"
+    ],
+    "question": "What is the shortest path?"
+  },
+  {
+    "id": "task_06",
+    "width": 2,
+    "height": 2,
+    "start": [
+      0,
+      0
+    ],
+    "goal": [
+      1,
+      1
+    ],
+    "obstacles": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "actions": [
+      "E",
+      "S"
+    ],
+    "question": "Can the agent reach the goal?"
+  },
+  {
+    "id": "task_07",
+    "width": 5,
+    "height": 5,
+    "start": [
+      2,
+      2
+    ],
+    "goal": [
+      4,
+      4
+    ],
+    "obstacles": [
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "actions": [
+      "E",
+      "E",
+      "S",
+      "S"
+    ],
+    "question": "Where will the agent end after these actions?"
+  },
+  {
+    "id": "task_08",
+    "width": 4,
+    "height": 2,
+    "start": [
+      3,
+      0
+    ],
+    "goal": [
+      0,
+      1
+    ],
+    "obstacles": [
+      [
+        2,
+        0
+      ]
+    ],
+    "actions": [
+      "W",
+      "W",
+      "W",
+      "S",
+      "S",
+      "W"
+    ],
+    "question": "Can the agent reach the goal?"
+  },
+  {
+    "id": "task_09",
+    "width": 6,
+    "height": 3,
+    "start": [
+      0,
+      2
+    ],
+    "goal": [
+      5,
+      0
+    ],
+    "obstacles": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ]
+    ],
+    "actions": [
+      "E",
+      "E",
+      "E",
+      "E",
+      "N",
+      "N",
+      "E",
+      "E"
+    ],
+    "question": "What is the shortest path?"
+  },
+  {
+    "id": "task_10",
+    "width": 3,
+    "height": 3,
+    "start": [
+      1,
+      1
+    ],
+    "goal": [
+      1,
+      1
+    ],
+    "obstacles": [],
+    "actions": [],
+    "question": "Can the agent reach the goal?"
+  },
+  {
+    "id": "task_11",
+    "width": 4,
+    "height": 4,
+    "start": [
+      3,
+      3
+    ],
+    "goal": [
+      0,
+      0
+    ],
+    "obstacles": [
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "actions": [
+      "W",
+      "W",
+      "N",
+      "N",
+      "W",
+      "W"
+    ],
+    "question": "Where will the agent end after these actions?"
+  },
+  {
+    "id": "task_12",
+    "width": 5,
+    "height": 4,
+    "start": [
+      0,
+      0
+    ],
+    "goal": [
+      4,
+      0
+    ],
+    "obstacles": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "actions": [
+      "E",
+      "S",
+      "S",
+      "E",
+      "E",
+      "N",
+      "N",
+      "E"
+    ],
+    "question": "Can the agent reach the goal?"
+  }
+]
