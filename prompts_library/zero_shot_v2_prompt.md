@@ -9,23 +9,28 @@ listed. Deriving them from ordinary world knowledge is the task.
 Model the kind of situation, not one instance of it. The same model must fit any layout,
 any size, any number of items, any starting point.
 
+Work through it in this order:
+
+1. **Players** — everyone the situation has acting.
+2. **Acts** — every act the situation attributes to a player, under the situation's own verb.
+3. **Conditions** — for each act, what must hold for it to be available, and what it changes.
+4. **Ending** — what the situation says brings the interaction to a close.
+5. **States** — the conditions from step 3, together with the ending from step 4.
+
+Then:
+
 - A state is a **condition**: what is true now that changes what can happen next.
 - A state is never one particular arrangement of the world.
-- Nothing may name or imply a size, count, coordinate, compass direction, distance or named
-  location — not in an id, not in a `desc`, not in an action name.
-- Describe what the actor faces: on a dirty spot or not, holding an item or not, something
-  left to do or nothing.
-- Each distinct act the situation names is one action, under the situation's own verb.
+- Describe what the actor faces, never where anything is or how much of it is left.
+- An act counts whether the situation names it as a main verb, as a participle, or only in
+  passing.
 - Do not merge acts the situation names separately. Do not split one act into stages it
   does not name.
-- Where an act needs a particular condition, that condition is one of your states.
-- Acts that differ only in an outcome you cannot judge — which of two open bins, which of
-  two clear routes — are one action.
-- No two of a player's actions in a state may lead to the same distribution over next states.
+- Where the situation gives no basis to tell two acts apart, they are one action.
 - A state may hold a single action. Never invent an act, and never add a `wait`, to pad a
   state out.
 - Add a state only if the future looks different from it. Otherwise merge it into a neighbour.
-- Let the situation fix how many states, actions and players there are.
+- Let the situation fix how many players, states and actions there are.
 - Put the choices where players meet and constrain each other. Prefer a consequential choice
   over a state that merely narrates.
 - Conditions, actions and probabilities must be ones a person who knows this kind of
@@ -37,8 +42,8 @@ Three top-level keys: `players`, `initial`, `states`. Every list holds objects w
 fields. Nothing is positional. Nothing is abbreviated.
 
 Angle brackets mark placeholders. `<p>` is a probability the situation determines, not a
-fixed value. Every list below is shown at one arity as an example; use as many entries as
-the situation calls for.
+fixed value. Every list below is shown at one arity; use as many entries as the situation
+calls for.
 
 ```
 {
@@ -89,8 +94,10 @@ the situation calls for.
 
 **`initial`** — where play starts, as a distribution over states.
 
-- Several entries when the situation does not settle the opening.
-- One entry with `"p": 1.0` when it does.
+- Play starts where the interaction can still happen.
+- Where the situation describes work to be done, play starts with that work still undone.
+- Several entries only where the situation genuinely leaves the opening open.
+- One entry with `"p": 1.0` otherwise.
 
 **`states`** — every state, terminal and non-terminal.
 
@@ -123,23 +130,27 @@ player across that state's `actions`. A player absent from `turn` is inactive th
 
 - Return one JSON object, valid and parseable as-is. No markdown, no code fences, no
   commentary, no keys beyond those defined above.
-- No sizes, counts, coordinates, compass directions, distances or named locations anywhere.
-- No judgement in a name. Names say what is done or what holds, never how well it went:
-  `place_in_matching_bin`, not `place_correctly`; `dirt_remains`, not `job_unfinished`.
+- No sizes, counts, coordinates, compass directions, distances or named locations anywhere —
+  ids, `desc`s and action names included.
+- No judgement in a name. Names say what is done or what holds, never how well it went.
+  Never call an outcome correct, successful, failed or unfinished.
 - Player ids, state ids and action names are short, lowercase and snake_case. Ids are unique
   within their list. Action names are spelled identically everywhere. Never two names for
   one action.
 - Every `desc` is one short sentence.
 - `by` matches `turn` exactly.
-- `actions` holds exactly one entry per combination of the movers' available actions — the
-  full Cartesian product. Nothing missing, nothing repeated. Two movers with 2 and 3 actions
-  give 6 entries. A single mover with 1 action gives 1 entry.
+- `actions` holds one entry per combination of the movers' available actions — the full
+  Cartesian product, nothing missing and nothing repeated. The number of entries is the
+  product of the movers' action counts.
+- No two of a player's actions in a state lead to the same distribution over next states.
 - Probabilities are plain decimals greater than 0. They sum to exactly 1 within each `next`
-  and within `initial`. A state appears at most once in one distribution. Split odds the
-  situation did not give evenly.
+  and within `initial`. A state appears at most once in one distribution.
+- Split odds the situation did not give evenly. Where an even split does not land on two
+  decimals, make the shares as equal as two decimals allow and put the larger ones first.
 - Terminal states carry `"terminal": true` and no `turn` or `actions`.
 - Non-terminal states carry `"terminal": false`, a non-empty `turn` and a non-empty `actions`.
 - Every id used in `initial` and in `next` is a declared state.
+- No terminal state appears in `initial`.
 - Every state is reachable from `initial`. From every state, some path reaches a terminal
   state. Self-loops are fine as long as some action leads out.
 - Perfect information. Every acting player sees the current state.
