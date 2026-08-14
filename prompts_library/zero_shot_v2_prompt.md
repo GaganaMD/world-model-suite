@@ -36,6 +36,10 @@ any size, any number of items, any starting point.
 Three top-level keys: `players`, `initial`, `states`. Every list holds objects with named
 fields. Nothing is positional. Nothing is abbreviated.
 
+Angle brackets mark placeholders. `<p>` is a probability the situation determines, not a
+fixed value. Every list below is shown at one arity as an example; use as many entries as
+the situation calls for.
+
 ```
 {
   "players": [
@@ -43,8 +47,8 @@ fields. Nothing is positional. Nothing is abbreviated.
   ],
 
   "initial": [
-    { "state": "<state_id>", "p": 0.5 },
-    { "state": "<state_id>", "p": 0.5 }
+    { "state": "<state_id>", "p": <p> },
+    { "state": "<state_id>", "p": <p> }
   ],
 
   "states": [
@@ -60,8 +64,8 @@ fields. Nothing is positional. Nothing is abbreviated.
         },
         {
           "by": { "<player_id>": "<action_name>", "<player_id>": "<action_name>" },
-          "next": [ { "state": "<state_id>", "p": 0.5 },
-                    { "state": "<state_id>", "p": 0.5 } ]
+          "next": [ { "state": "<state_id>", "p": <p> },
+                    { "state": "<state_id>", "p": <p> } ]
         }
       ]
     },
