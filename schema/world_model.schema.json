@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GaganaMD/world-model-suite/schema/world_model.schema.json",
+  "title": "World Model (stochastic game) — canonical test-case schema",
+  "description": "The transition_probabilities/rewards shape used by the test-case bank. Structural (tier-1) contract only; cross-referential game rules (probabilities sum to 1, joint-action completeness, reachability, reward alignment) are enforced by eval/check.py tier 2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["players", "initial_state", "states", "actions", "transition_probabilities"],
+  "properties": {
+    "players": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "description": {"type": "string"}
+        }
+      }
+    },
+    "initial_state": {"type": "string", "minLength": 1},
+    "states": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["description", "terminal"],
+        "properties": {
+          "description": {"type": "string"},
+          "terminal": {"type": "boolean"},
+          "reward": {
+            "type": "object",
+            "additionalProperties": {"type": "number"},
+            "minProperties": 1
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "transition_probabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"type": "number"}
+        }
+      }
+    },
+    "rewards": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "minProperties": 1
+        }
+      }
+    }
+  }
+}
