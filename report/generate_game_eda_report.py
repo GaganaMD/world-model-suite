@@ -6,6 +6,7 @@ import json
 import re
 from pathlib import Path
 import sys
+import textwrap
 from typing import Any
 
 import matplotlib.pyplot as plt
@@ -21,6 +22,7 @@ GAME_CASES = ROOT / "data" / "Test_Cases" / "03_game"
 OUTPUT = ROOT / "report"
 GRAPHS = OUTPUT / "game_posg_eda_graphs"
 CASE_PATTERN = re.compile(r"game_G_(\d+)_.*\.md$")
+TITLE_PATTERN = re.compile(r"^#{0,6}\s*Game Situation G\.\d+:\s*(.+)$", re.MULTILINE)
 
 
 def load_schema(path: Path) -> dict[str, Any]:
@@ -42,6 +44,14 @@ def case_id(path: Path) -> str:
     return f"G{int(match.group(1))}"
 
 
+def case_title(path: Path) -> str:
+    """Read the human-facing game name from the case heading."""
+    match = TITLE_PATTERN.search(path.read_text(encoding="utf-8"))
+    if not match:
+        raise ValueError(f"{path} has no game-situation title.")
+    return match.group(1).strip()
+
+
 def configure_style() -> None:
     plt.rcParams.update(
         {
@@ -58,9 +68,9 @@ def configure_style() -> None:
     )
 
 
-def save_state_graph(case: str, analysis: WorldModelEDA) -> None:
+def save_state_graph(case: str, title: str, schema: dict[str, Any], analysis: WorldModelEDA) -> None:
     graph = analysis.build_state_graph()
-    figure, axis = plt.subplots(figsize=(7, 4.8), constrained_layout=True)
+    figure, axis = plt.subplots(figsize=(8.5, 5.6), constrained_layout=True)
     initial = analysis.initial_state
     terminals = sorted(analysis.terminal_states, key=repr)
     positions = {initial: (0, 1)} if initial in graph else {}
@@ -72,8 +82,24 @@ def save_state_graph(case: str, analysis: WorldModelEDA) -> None:
         "#2563eb" if state == initial else "#f97316" if state in analysis.terminal_states else "#64748b"
         for state in graph
     ]
-    nx.draw_networkx_nodes(graph, positions, node_color=colors, node_size=1800, ax=axis)
-    nx.draw_networkx_labels(graph, positions, font_color="white", font_weight="bold", ax=axis)
+    labels = {}
+    for state in graph:
+        description = textwrap.shorten(
+            schema["states"][state].get("description", ""),
+            width=38,
+            placeholder="...",
+        )
+        labels[state] = f"{state}\n" + "\n".join(textwrap.wrap(description, width=17))
+    nx.draw_networkx_nodes(graph, positions, node_color=colors, node_size=4200, ax=axis)
+    nx.draw_networkx_labels(
+        graph,
+        positions,
+        labels=labels,
+        font_color="white",
+        font_weight="bold",
+        font_size=6.5,
+        ax=axis,
+    )
     nx.draw_networkx_edges(
         graph,
         positions,
@@ -84,18 +110,21 @@ def save_state_graph(case: str, analysis: WorldModelEDA) -> None:
         ax=axis,
     )
     edge_labels = {
-        (source, target): f"{len(data['actions'])} action{'s' if len(data['actions']) != 1 else ''}\n"
-        f"p={data['probability']:.3g}"
+        (source, target): (
+            f"{len(data['actions'])} joint actions"
+            if len(data["actions"]) != 1
+            else f"1 joint action\np={data['probability']:.3g}"
+        )
         for source, target, data in graph.edges(data=True)
     }
     nx.draw_networkx_edge_labels(
         graph, positions, edge_labels=edge_labels, font_size=8, rotate=False, ax=axis
     )
-    axis.set_title(f"{case} state-transition structure", loc="left", pad=12)
+    axis.set_title(f"{case} — {title}", loc="left", pad=12)
     axis.text(
         0,
         -0.16,
-        "Blue: initial state    Orange: terminal state    Edge label: joint-action count and probability mass",
+        "Blue: initial state    Orange: terminal state    Edge labels show the action count or a single-action probability",
         transform=axis.transAxes,
         fontsize=8,
         color="#475569",
@@ -141,12 +170,13 @@ def render_report(records: list[dict[str, Any]]) -> str:
         transitions = record["transitions"]
         graph = record["graph"]
         rows.append(
-            f"| {record['case']} | {states['state_count']} | {states['terminal_state_count']} | "
+            f"| {record['case']} — {record['title']} | {states['state_count']} | {states['terminal_state_count']} | "
             f"{record['actions']['joint_action_count']} | {states['mean_branching_factor']:.2f} | "
             f"{transitions['stochastic_transition_fraction']:.0%} | "
             f"{transitions['mean_transition_entropy']:.3f} | {states['maximum_trajectory_depth']} | "
             f"{graph['strongly_connected_component_count']} | {graph['average_shortest_path_length']:.2f} |"
         )
+    case_reference = "\n".join(render_case_reference(record) for record in records)
     return """# Game POSG World-Model EDA
 
 ## Experiment
@@ -161,9 +191,9 @@ declared schema, the experiment builds a directed state graph and a state-action
 graph, then calculates action branching, transition stochasticity and entropy, terminal
 distance, and graph connectivity.
 
-## Results
+## Cross-case results
 
-| Case | States | Terminal | Joint actions | Avg. branch | Stochastic | Avg. entropy (bits) | Max depth | SCCs | Avg. path |
+| Case and game | States | Terminal | Joint actions | Avg. branch | Stochastic | Avg. entropy (bits) | Max depth | SCCs | Avg. path |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 """ + "\n".join(rows) + """
 
@@ -188,6 +218,14 @@ distance, and graph connectivity.
   histories when the supplied schema uses a common outcome state. Use the state-action graph
   and reward metadata alongside this report for strategic interpretation.
 
+## Case reference
+
+This section links the metrics to the actual declared model. `Initial` identifies the reset
+state; `terminal` identifies a state with no further decision in the schema. The terminal
+distance is the shortest number of transitions from that state to any terminal state.
+
+""" + case_reference + """
+
 ## Graph artifacts
 
 The files below use an initial-state/terminal-state color system and aggregate parallel
@@ -198,7 +236,7 @@ the EDA object.
 | Case | State-transition graph |
 | --- | --- |
 """ + "\n".join(
-    f"| {record['case']} | ![{record['case']} graph](game_posg_eda_graphs/{record['case'].lower()}_state_graph.png) |"
+    f"| {record['case']} — {record['title']} | ![{record['case']} graph](game_posg_eda_graphs/{record['case'].lower()}_state_graph.png) |"
     for record in records
 ) + """
 
@@ -215,15 +253,90 @@ and overwrites this report. The analysis implementation is in `world_model_eda\\
 """
 
 
+def render_case_reference(record: dict[str, Any]) -> str:
+    """Render a human-readable schema inventory for one game."""
+    schema = record["schema"]
+    terminal_distances = record["terminal"]["distance_to_terminal"]
+    state_rows = []
+    for state, metadata in schema["states"].items():
+        role = []
+        if state == schema["initial_state"]:
+            role.append("initial")
+        if metadata.get("terminal", False):
+            role.append("terminal")
+        elif not role:
+            role.append("decision")
+        state_rows.append(
+            f"| `{state}` | {', '.join(role)} | {metadata.get('description', 'No description supplied.')} | "
+            f"{terminal_distances[state]} |"
+        )
+
+    action_lines = []
+    for state, players in schema.get("actions", {}).items():
+        player_actions = "; ".join(
+            f"`{player}`: {', '.join(f'`{action}`' for action in actions)}"
+            for player, actions in players.items()
+        )
+        joint_count = record["states"]["branching_factor_by_state"].get(state, 0)
+        action_lines.append(
+            f"- **`{state}`:** {player_actions}. This creates **{joint_count} joint action"
+            f"{'s' if joint_count != 1 else ''}**."
+        )
+
+    reward_placement = (
+        "outcome states (reward-on-arrival)"
+        if any("reward" in state for state in schema["states"].values())
+        else "state-action pairs"
+    )
+    transition_summary = transition_description(record)
+    players = ", ".join(
+        f"`{player['id']}`" + (f" ({player['description']})" if player.get("description") else "")
+        for player in schema["players"]
+    )
+    return f"""### {record['case']} — {record['title']}
+
+**Players:** {players}.
+**Transition character:** {transition_summary}.
+**Reward placement:** {reward_placement}.
+**Structural reading:** {record['states']['state_count']} states, {record['actions']['joint_action_count']}
+declared joint actions, {record['actions']['outcome_compression']:.3f} outcome compression, and
+{record['graph']['strongly_connected_component_count']} strongly connected components.
+
+| State | Role | Declared meaning | Shortest terminal distance |
+| --- | --- | --- | ---: |
+{chr(10).join(state_rows)}
+
+**Available actions**
+{chr(10).join(action_lines)}
+
+"""
+
+
+def transition_description(record: dict[str, Any]) -> str:
+    """Summarize the deterministic/stochastic profile in plain language."""
+    fraction = record["transitions"]["stochastic_transition_fraction"]
+    entropy = record["transitions"]["mean_transition_entropy"]
+    if fraction == 0:
+        return "deterministic for every declared state-action pair"
+    if fraction == 1:
+        return f"stochastic for every declared state-action pair (mean entropy {entropy:.3f} bits)"
+    return f"mixed: {fraction:.0%} of declared state-action pairs are stochastic (mean entropy {entropy:.3f} bits)"
+
+
 def main() -> None:
     configure_style()
     GRAPHS.mkdir(parents=True, exist_ok=True)
     records = []
     for path in sorted(GAME_CASES.glob("game_G_*.md"), key=lambda item: int(CASE_PATTERN.match(item.name).group(1))):
         analysis = WorldModelEDA.from_dict(load_schema(path))
-        record = {"case": case_id(path), **analysis.summary()}
+        record = {
+            "case": case_id(path),
+            "title": case_title(path),
+            "schema": load_schema(path),
+            **analysis.summary(),
+        }
         records.append(record)
-        save_state_graph(record["case"], analysis)
+        save_state_graph(record["case"], record["title"], record["schema"], analysis)
     save_comparison(records)
     (OUTPUT / "game_posg_eda_report.md").write_text(render_report(records), encoding="utf-8")
 
