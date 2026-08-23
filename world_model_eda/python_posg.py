@@ -60,6 +60,13 @@ def _initial_distribution(initial: Any) -> Dict[Hashable, float]:
     ):
         distribution = {state: float(probability) for state, probability in initial.items()}
     else:
+        try:
+            hash(initial)
+        except TypeError as error:
+            raise ValueError(
+                "initial_state is not hashable: expected a string/tuple-like state identifier, "
+                f"got {type(initial).__name__}."
+            ) from error
         distribution = {initial: 1.0}
     _validate_distribution(distribution, "initial_state()")
     return distribution

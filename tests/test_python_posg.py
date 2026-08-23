@@ -145,6 +145,33 @@ class PythonPOSGTests(unittest.TestCase):
         self.assertFalse(validation["passed"])
         self.assertIn("Initial state", "\n".join(validation["errors"]))
 
+    def test_unhashable_initial_state_has_actionable_diagnostic(self) -> None:
+        class UnhashableInitialPOSG(AbstractPOSG):
+            players = ["player_1", "player_2"]
+
+            def initial_state(self):
+                return {}
+
+            def legal_actions(self, state, player):
+                return ["act"]
+
+            def transition(self, state, joint_action):
+                return {"end": 1.0}
+
+            def observation(self, state, joint_action, next_state, player):
+                return "observation"
+
+            def reward(self, state, joint_action, next_state, player):
+                return 0.0
+
+            def is_terminal(self, state):
+                return False
+
+        validation = validate_posg(UnhashableInitialPOSG)
+
+        self.assertFalse(validation["passed"])
+        self.assertIn("initial_state is not hashable", "\n".join(validation["errors"]))
+
     def test_all_reference_game_cases_roll_out(self) -> None:
         rows = batch_posg_cases(load_reference_game_cases("data/Test_Cases/03_game"))
 

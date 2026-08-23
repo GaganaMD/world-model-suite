@@ -25,20 +25,29 @@ from .python_posg import (
 GenerationFunction = Callable[[str, str], str]
 
 
-PROMPT_TEMPLATE = """You are writing inside a Python module where AbstractPOSG ALREADY EXISTS.
-Convert the following natural-language SITUATION into executable Python.
+PROMPT_TEMPLATE = """Write executable Python inside a module where AbstractPOSG already exists.
+Define only `class GeneratedPOSG(AbstractPOSG)`; do not import or redefine AbstractPOSG.
 
-Define exactly one class: class GeneratedPOSG(AbstractPOSG). Never import, define, or redeclare
-AbstractPOSG, ABC, or a base class. Implement these exact methods: @property players;
-initial_state(self); legal_actions(self, state, player); transition(self, state, joint_action);
-observation(self, state, joint_action, next_state, player); reward(self, state, joint_action,
-next_state, player); and is_terminal(self, state).
+Every state identifier must be hashable. Prefer strings or tuples. Never use dictionaries, lists,
+sets, numpy arrays, or another mutable container as initial states or transition keys.
+`initial_state()` must return one concrete hashable state, for example `"s0"`, not `{{}}`.
+`transition()` must return `Dict[hashable_state, float]` with finite non-negative probabilities
+that sum to 1.0. `joint_action` is a dictionary keyed by explicit player IDs.
 
-players must be a non-empty list of unique player-ID strings. joint_action is always a dictionary
-keyed by player IDs. transition must return a non-empty dictionary of hashable next states to
-finite, non-negative probabilities summing exactly to 1. Do not sample randomness. Do not use
-undefined variables. For a one-step game, use an initial state and explicit terminal outcome
-states; do not use action names as states. Return only executable Python with no Markdown fences.
+Use this interface shape, filling in situation-specific logic only:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {{"terminal": 1.0}}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Implement every method with actual situation-specific behavior. legal_actions returns a list of
+valid action identifiers; is_terminal returns bool; observation returns a valid observation; and
+reward returns a number. Output only Python code, without Markdown fences.
 
 SITUATION:
 {game_description}"""
@@ -290,3 +299,13 @@ def results_table(records: Sequence[Mapping[str, Any]]) -> list[Dict[str, Any]]:
         }
         for record in records
     ]
+
+
+def save_results_table(records: Sequence[Mapping[str, Any]], path: str | Path) -> Path:
+    """Persist a compact serializable experiment summary without runtime objects."""
+    destination = Path(path)
+    destination.write_text(
+        json.dumps(results_table(records), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return destination

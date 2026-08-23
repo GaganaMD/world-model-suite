@@ -4,7 +4,8 @@ import unittest
 from pathlib import Path
 
 from tests.test_python_posg import RPS_SOURCE
-from world_model_eda import ExperimentConfig, ExperimentRunner, results_table
+from world_model_eda import ExperimentConfig, ExperimentRunner, results_table, save_results_table
+from world_model_eda.experiment_runner import PROMPT_TEMPLATE
 
 
 class ExperimentRunnerTests(unittest.TestCase):
@@ -67,6 +68,15 @@ class ExperimentRunnerTests(unittest.TestCase):
 
         self.assertEqual(table[0]["case"], "G1")
         self.assertNotIn("artifact_dir", table[0])
+        with tempfile.TemporaryDirectory() as directory:
+            path = save_results_table([result], Path(directory) / "summary.json")
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8"))[0]["case"], "G1")
+
+    def test_prompt_template_formats_with_skeleton(self) -> None:
+        prompt = PROMPT_TEMPLATE.format(game_description="A small situation.")
+
+        self.assertIn('return {"terminal": 1.0}', prompt)
+        self.assertIn('not `{}`', prompt)
 
 
 if __name__ == "__main__":
