@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G1\\sample_002",
+  "case": "G1",
+  "eda_seconds": null,
+  "error_message": "IndexError: Replacement index 0 out of range for positional args tuple",
+  "execution_seconds": null,
+  "failure_type": "other",
+  "generation_seconds": null,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 18.20154571533203,
+  "rollout_seconds": null,
+  "sample": 2,
+  "status": "failed",
+  "timestamp": "2026-08-23T14:02:56.867911+00:00",
+  "total_seconds": 1.3412740000057966,
+  "validation_seconds": null
+}

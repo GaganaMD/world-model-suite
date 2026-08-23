@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G9\\sample_001",
+  "case": "G9",
+  "eda_seconds": null,
+  "error_message": "POSG setup failed: TypeError: unhashable type: 'dict'",
+  "execution_seconds": 0.0034516999730840325,
+  "failure_type": "unhashable_state",
+  "generation_seconds": 8.4093542000046,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.15969562530517578,
+  "rollout_seconds": 6.799993570894003e-05,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-23T13:52:26.745633+00:00",
+  "total_seconds": 8.412925699958578,
+  "validation_seconds": 3.600027412176132e-06
+}
