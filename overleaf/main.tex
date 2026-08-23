@@ -1,0 +1,203 @@
+\documentclass{article}
+
+\usepackage{neurips_2026}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\title{Grounding Safe-by-Design AI: Can LLMs Construct Formal Situational World Models?}
+
+\author{%
+  David S.~Hippocampus \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Safe-by-design AI arguments require explicit models of the situations in which
+agents act, but manually constructing stochastic-game models does not scale.
+We investigate whether large language models (LLMs) can turn natural-language
+situation descriptions into executable Python world models. In the current
+Python track, an LLM generates a simple \texttt{AbstractPOSG} implementation;
+the implementation is validated, exhaustively rolled out into an explicit
+state--action--transition model, exported as canonical JSON, and analyzed as a
+graph. We distinguish interface and rollout validity from semantic correctness.
+Reference fixtures for nine game cases validate the infrastructure, while
+preliminary Qwen experiments on Rock--Paper--Scissors show that structurally
+valid generated models can still assign incorrect rewards and player-specific
+observations. These are preliminary results, not a benchmark or a general
+model comparison.
+\end{abstract}
+
+\section{Introduction}
+
+Formal situational world models are useful when safety-relevant questions
+depend on who can act, what actions are available, and what consequences may
+follow. The project motivation is to determine whether LLMs can construct such
+models from ordinary-language situation descriptions, rather than requiring
+each model to be hand-authored. The presentation that motivated this work
+emphasized eventual analyses of agent and human options; the current paper does
+not claim to measure power or empowerment. Instead, it reports the implemented
+pipeline for constructing and inspecting executable situational models.
+
+Our current question is deliberately narrower: after an LLM generates a Python
+world model, can we validate, roll out, and characterize the resulting model
+without asking the LLM to provide a second declarative representation? The
+Python track answers this operational question by treating the generated Python
+program as the world model and deriving an explicit representation from its
+transition interface.
+
+\section{Related Work}
+
+% TODO: Add a literature review and citations covering stochastic games,
+% partially observable models, LLM program generation, and world-model
+% evaluation before submission.
+This working draft does not yet include a completed literature review. The
+present contribution is therefore methodological and empirical in scope: a
+small executable-model pipeline and preliminary observations from its use.
+
+\section{Proposed Method}
+
+\subsection{Preliminaries}
+
+We use a lightweight, stateless \texttt{AbstractPOSG} interface. A generated
+model exposes explicit player identifiers, legal actions, an initial state,
+transition distributions, observations, rewards, and terminal-state detection.
+Joint actions are dictionaries keyed by player identifiers. States must be
+hashable so that the reachable model can be enumerated. The abstraction is
+intentionally compact enough for an LLM to implement while retaining the
+dynamics needed for multi-agent analysis.
+
+The generated Python object is the world model. A PettingZoo
+\texttt{ParallelEnv} adapter is retained as an execution-compatibility layer
+for multiplayer environments, but it is not the world-model representation
+used for the analyses below.
+
+\subsection{World-Model Generation and Rollout}
+
+Given a natural-language situation, a local Ollama/Qwen setup generates a
+\texttt{GeneratedPOSG(AbstractPOSG)} class. The generation prompt requires
+executable Python, explicit players and joint actions, hashable state
+identifiers, and valid finite transition probabilities. It does not guarantee
+semantic correctness.
+
+Generated code is executed before rollout. The pipeline records failures such
+as execution errors, unhashable initial states, malformed actions or
+transitions, invalid probabilities, and invalid terminal structure; it does
+not silently repair generated code. For a valid finite model, exhaustive
+rollout explores reachable non-terminal states up to configurable state and
+depth limits. At each state it enumerates legal joint actions, records
+successor distributions, and retains observations and rewards. The result is
+an explicit reachable world model containing players, initial distribution,
+states, terminal states, action sets, joint actions, transitions, probabilities,
+observations, and rewards.
+
+Canonical JSON is exported \emph{after} this rollout. Thus, in the Python
+track, JSON is algorithmically derived from the executable Python model rather
+than generated by the LLM.
+
+\subsection{Evaluation and Structural Analysis}
+
+The explicit rollout supports two graph representations: a directed
+state-transition graph and a state--action--transition graph that preserves
+joint-action labels and transition probabilities. We use graph quantities such
+as reachable and terminal state counts, edge counts, branching, deterministic
+and stochastic transition fractions, transition entropy, depth, strongly
+connected components, centrality, efficiency, and action influence as
+exploratory data analysis (EDA). They are structural descriptors of generated
+world-model graphs, not established measures of LLM world-model quality.
+
+The project test cases provide natural-language inputs, expected outputs where
+the setting is sufficiently closed, and include/must-not judging criteria.
+They cover toy, game, situational, and cultural-norm settings. For the Python
+track, executable G1--G9 reference-schema fixtures are control cases: they
+exercise rollout, canonical export, graphs, and EDA, but are not LLM-generated
+results.
+
+\section{Results and Discussion}
+
+\subsection{Infrastructure Controls}
+
+The G1--G9 executable reference fixtures successfully exercise the current
+Python rollout and EDA pipeline. They include deterministic and stochastic,
+simultaneous and multi-step examples. These controls establish that the
+infrastructure can enumerate the declared finite schemas; they do not measure
+LLM performance and are not combined with the results below.
+
+\subsection{Preliminary Qwen Experiments}
+
+The experiment runner records generation, execution, validation, rollout,
+graph-construction, EDA, and total time, together with optional Python-level
+memory allocation and generated artifacts. In an initial Qwen pilot, generation
+time dominated the small-case runtime, but the first G1 and G9 generations
+failed validation. Their generated source and failure records were retained.
+
+After a prompt revision that included a minimal valid interface skeleton and
+explicit hashable-state guidance, Qwen G1 samples 003--008 completed the
+structural pipeline. Each had four reachable states, three terminal states,
+nine joint actions, deterministic one-step transitions, and three collapsed
+state-transition edges. This structural similarity does not establish
+semantic correctness.
+
+\subsection{G1 Semantic Inspection}
+
+We added a small, explicit semantic oracle for the single-round
+Rock--Paper--Scissors case. It checks the two expected players, action sets,
+simultaneous coverage of all nine joint actions, deterministic transition
+partitioning, conventional zero-sum rewards, three terminal outcome states,
+and lightweight consistency of player-specific observations. Each check returns
+\textsc{pass}, \textsc{fail}, or \textsc{unknown}. The optional semantic score
+is only the fraction of applicable checks that pass; it is not a validated
+research metric.
+
+For all six successful Qwen G1 samples, structural validity and transition
+partitioning passed, while reward and observation checks failed. In particular,
+the generated models could partition actions into win/lose/draw outcomes while
+assigning both players a loss reward in a losing outcome or reporting that the
+wrong player won. This is a preliminary observation from six samples of one
+model and one game, but it demonstrates why structural validity, rollout
+validity, semantic correctness, and graph EDA must remain separate.
+
+One additional Qwen G9 generation was attempted after the prompt revision. It
+failed during transition execution because allocation strings such as
+\texttt{"0+3"} were compared directly with integers. This is recorded as a
+generated-Python failure mode, not as a conclusion about Qwen or the wider
+test set.
+
+\subsection{Limitations}
+
+The current number of real LLM experiments is small and Qwen-focused. The G1
+semantic oracle is a concrete correctness mechanism for one closed game, not a
+general semantic evaluator. Reference fixtures are infrastructure controls,
+not LLM results. Exhaustive rollout is bounded by configured state and depth
+limits, and structural graph similarity does not guarantee correct rewards,
+observations, or dynamics. % TODO: Add multi-model comparison after GLM/Kimi experiments.
+
+\section{Conclusion}
+
+The current Python track provides an executable route from a natural-language
+situation to a generated POSG, explicit rolled-out world model, canonical JSON
+export, graph representations, and exploratory structural analysis. Preliminary
+Qwen results show that this pipeline can produce structurally valid small
+world models while still exposing semantic errors that graph structure alone
+does not reveal. The next step is controlled expansion to additional cases and
+models, paired with carefully scoped semantic checks rather than conflating
+structural validity with correctness.
+
+\section{References}
+
+% TODO: Add references when the related-work section is completed.
+
+\end{document}
