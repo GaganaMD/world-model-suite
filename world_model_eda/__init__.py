@@ -19,10 +19,13 @@ from .python_posg import (
     validate_posg,
 )
 from .reference_games import SchemaPOSG, load_game_schema, load_reference_game_cases
+from .experiment_runner import ExperimentConfig, ExperimentRunner, OllamaPOSGBackend, results_table
 
 __all__ = [
     "AbstractPOSG",
     "WorldModelEDA",
+    "ExperimentConfig",
+    "ExperimentRunner",
     "action_influence",
     "batch_posg_cases",
     "build_state_action_graph",
@@ -33,10 +36,12 @@ __all__ = [
     "export_rollout_json",
     "load_game_schema",
     "load_reference_game_cases",
+    "OllamaPOSGBackend",
     "player_action_statistics",
     "plot_cross_case_eda",
     "rollout_world_model",
     "run_posg_experiment",
+    "results_table",
     "SchemaPOSG",
     "summarize_rollout",
     "validate_posg",
