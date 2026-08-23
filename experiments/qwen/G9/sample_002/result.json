@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G9\\sample_002",
+  "case": "G9",
+  "eda_seconds": null,
+  "error_message": "Transition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'\nTransition failed: TypeError: '>' not supported between instances of 'str' and 'int'",
+  "execution_seconds": 0.00668059999588877,
+  "failure_type": "invalid_transition",
+  "generation_seconds": 25.3326764999656,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 18.50449275970459,
+  "rollout_seconds": 0.0021648999536409974,
+  "sample": 2,
+  "status": "failed",
+  "timestamp": "2026-08-23T14:15:14.457645+00:00",
+  "total_seconds": 25.34163279994391,
+  "validation_seconds": 1.3399985618889332e-05
+}

@@ -26,6 +26,7 @@ from .experiment_runner import (
     results_table,
     save_results_table,
 )
+from .semantic_oracle import evaluate_g1_artifact, evaluate_g1_posg, evaluate_g1_rollout, evaluate_g1_source
 
 __all__ = [
     "AbstractPOSG",
@@ -40,6 +41,10 @@ __all__ = [
     "classify_failure",
     "execute_generated_posg",
     "export_rollout_json",
+    "evaluate_g1_artifact",
+    "evaluate_g1_posg",
+    "evaluate_g1_rollout",
+    "evaluate_g1_source",
     "load_game_schema",
     "load_reference_game_cases",
     "OllamaPOSGBackend",
