@@ -53,6 +53,36 @@ class WorldModelEDA:
             self.states.update((transition.state, transition.next_state))
 
     @classmethod
+    def from_rollout(cls, rollout: Mapping[str, Any]) -> "WorldModelEDA":
+        """Build EDA input from :func:`rollout_world_model` output."""
+        states = rollout["states"]
+        transitions = [
+            Transition(
+                record["state"],
+                tuple(record["joint_action"].items()),
+                outcome["next_state"],
+                outcome["probability"],
+            )
+            for record in rollout["transitions"]
+            for outcome in record["outcomes"]
+        ]
+        actions_by_state = {
+            state: [
+                tuple(zip(actions, choices))
+                for choices in product(*(actions[player] for player in actions))
+            ]
+            for state, actions in rollout["actions"].items()
+        }
+        initial_states = list(rollout.get("initial_distribution", {}))
+        return cls(
+            states,
+            [state for state, data in states.items() if data.get("terminal", False)],
+            transitions,
+            actions_by_state,
+            initial_states[0] if initial_states else None,
+        )
+
+    @classmethod
     def from_dict(cls, model: Mapping[str, Any]) -> "WorldModelEDA":
         """Build an analysis from the declarative game-case JSON schema."""
         state_metadata = model["states"]
@@ -317,8 +347,15 @@ class WorldModelEDA:
         undirected = graph.to_undirected()
         communities = list(nx.community.greedy_modularity_communities(undirected)) if graph.number_of_edges() else []
         return {
+            "edge_count": graph.number_of_edges(),
             "density": nx.density(graph),
+            "average_in_degree": self._mean([degree for _, degree in graph.in_degree()]),
+            "average_out_degree": self._mean([degree for _, degree in graph.out_degree()]),
+            "maximum_out_degree": max((degree for _, degree in graph.out_degree()), default=0),
             "strongly_connected_component_count": len(components),
+            "largest_strongly_connected_component_size": max(
+                (len(component) for component in components), default=0
+            ),
             "strongly_connected_components": [sorted(component, key=repr) for component in components],
             "weakly_connected_component_count": nx.number_weakly_connected_components(graph),
             "average_shortest_path_length": self._average_reachable_path_length(graph),
@@ -387,6 +424,31 @@ class WorldModelEDA:
         ax = ax or plt.subplots()[1]
         ax.hist([item.probability for item in self.transitions], bins=10)
         ax.set(xlabel="Transition probability", ylabel="Outcome count", title="Transition-probability distribution")
+        return ax
+
+    def plot_transition_entropy_distribution(self, ax: Any = None) -> Any:
+        """Plot uncertainty over each reachable state-action pair."""
+        import matplotlib.pyplot as plt
+
+        ax = ax or plt.subplots()[1]
+        ax.hist(list(self.entropy_analysis().values()), bins=10)
+        ax.set(xlabel="Transition entropy (bits)", ylabel="State-action pairs", title="Transition entropy")
+        return ax
+
+    def plot_degree_distribution(self, ax: Any = None) -> Any:
+        """Plot in-degree and out-degree distributions for the state graph."""
+        import matplotlib.pyplot as plt
+
+        graph = self.build_state_graph()
+        ax = ax or plt.subplots()[1]
+        ax.hist(
+            [[degree for _, degree in graph.in_degree()], [degree for _, degree in graph.out_degree()]],
+            label=["In-degree", "Out-degree"],
+            bins=range(max((degree for _, degree in graph.degree()), default=0) + 2),
+            align="left",
+        )
+        ax.legend()
+        ax.set(xlabel="Degree", ylabel="State count", title="Degree distribution")
         return ax
 
     def summary(self) -> Dict[str, Any]:
