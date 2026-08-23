@@ -1,6 +1,17 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
-from world_model_eda import AbstractPOSG, run_posg_experiment, validate_posg
+from world_model_eda import (
+    AbstractPOSG,
+    batch_posg_cases,
+    canonical_rollout_json,
+    export_rollout_json,
+    load_reference_game_cases,
+    run_posg_experiment,
+    validate_posg,
+)
 
 
 RPS_SOURCE = '''
@@ -49,6 +60,21 @@ class PythonPOSGTests(unittest.TestCase):
             result["eda_summary"]["transitions"]["deterministic_transition_fraction"], 1.0
         )
         self.assertEqual(result["state_graph"].number_of_edges(), 3)
+        canonical = canonical_rollout_json(result["rollout"])
+        self.assertEqual(canonical, canonical_rollout_json(result["rollout"]))
+        exported = json.loads(canonical)
+        self.assertEqual(len(exported["states"]), 4)
+        self.assertEqual(len(exported["transitions"]), 9)
+        self.assertEqual(len(result["action_influence"]["player_1"]), 9)
+        self.assertTrue(
+            all(
+                item["total_variation_distance"] == 1.0
+                for item in result["action_influence"]["player_1"]
+            )
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            destination = export_rollout_json(result["rollout"], Path(directory) / "g1.json")
+            self.assertEqual(destination.read_text(encoding="utf-8"), canonical)
 
     def test_undefined_generated_variable_is_a_validation_failure(self) -> None:
         broken = RPS_SOURCE.replace(
@@ -118,6 +144,17 @@ class PythonPOSGTests(unittest.TestCase):
 
         self.assertFalse(validation["passed"])
         self.assertIn("Initial state", "\n".join(validation["errors"]))
+
+    def test_all_reference_game_cases_roll_out(self) -> None:
+        rows = batch_posg_cases(load_reference_game_cases("data/Test_Cases/03_game"))
+
+        self.assertEqual([row["case"] for row in rows], [f"G{number}" for number in range(1, 10)])
+        self.assertTrue(all(row["status"] == "success" for row in rows))
+        g1 = rows[0]
+        self.assertEqual(
+            (g1["states"], g1["terminal_states"], g1["avg_branching"], g1["edges"]),
+            (4, 3, 2.25, 3),
+        )
 
 
 if __name__ == "__main__":

@@ -5,8 +5,10 @@ from __future__ import annotations
 import abc
 import ast
 import itertools
+import json
 import math
 from collections import defaultdict, deque
+from pathlib import Path
 from typing import Any, Dict, Hashable, Iterable, List, Mapping, Optional
 
 import networkx as nx
@@ -83,6 +85,187 @@ def _validate_distribution(distribution: Any, context: str) -> None:
 
 def _state_key(state: Hashable) -> str:
     return repr(state)
+
+
+def summarize_rollout(rollout: Mapping[str, Any]) -> Dict[str, Any]:
+    """Return a compact, inspection-friendly structural world-model summary."""
+    state_actions = len(rollout["transitions"])
+    stochastic = sum(len(record["outcomes"]) > 1 for record in rollout["transitions"])
+    return {
+        "players": list(rollout["players"]),
+        "initial_state_count": len(rollout["initial_distribution"]),
+        "reachable_state_count": len(rollout["states"]),
+        "terminal_state_count": len(rollout["terminal_states"]),
+        "non_terminal_state_count": len(rollout["states"]) - len(rollout["terminal_states"]),
+        "joint_action_count": state_actions,
+        "transition_outcome_count": sum(len(record["outcomes"]) for record in rollout["transitions"]),
+        "stochastic_state_action_count": stochastic,
+        "truncated": rollout["truncated"],
+        "errors": list(rollout["errors"]),
+        "warnings": list(rollout["warnings"]),
+    }
+
+
+def canonical_rollout_json(rollout: Mapping[str, Any], *, indent: int = 2) -> str:
+    """Serialize a rolled-out Python world model deterministically as canonical JSON."""
+    ordered_states = sorted(rollout["states"], key=_state_key)
+    state_ids = {state: f"state_{index:04d}" for index, state in enumerate(ordered_states)}
+
+    def action_key(actions: Mapping[str, str]) -> tuple[tuple[str, str], ...]:
+        return tuple(sorted(actions.items()))
+
+    document = {
+        "players": list(rollout["players"]),
+        "initial_distribution": [
+            {"state": state_ids[state], "probability": probability}
+            for state, probability in sorted(
+                rollout["initial_distribution"].items(), key=lambda item: state_ids[item[0]]
+            )
+        ],
+        "states": [
+            {
+                "id": state_ids[state],
+                "representation": _state_key(state),
+                "terminal": rollout["states"][state]["terminal"],
+                "depth": rollout["states"][state]["depth"],
+                "actions": rollout["actions"].get(state, {}),
+            }
+            for state in ordered_states
+        ],
+        "transitions": [
+            {
+                "state": state_ids[record["state"]],
+                "joint_action": record["joint_action"],
+                "outcomes": [
+                    {
+                        "next_state": state_ids[outcome["next_state"]],
+                        "probability": outcome["probability"],
+                        "observations": outcome["observations"],
+                        "rewards": outcome["rewards"],
+                    }
+                    for outcome in sorted(
+                        record["outcomes"], key=lambda outcome: state_ids[outcome["next_state"]]
+                    )
+                ],
+            }
+            for record in sorted(
+                rollout["transitions"],
+                key=lambda record: (state_ids[record["state"]], action_key(record["joint_action"])),
+            )
+        ],
+        "truncated": rollout["truncated"],
+        "warnings": sorted(rollout["warnings"]),
+        "errors": sorted(rollout["errors"]),
+    }
+    return json.dumps(document, indent=indent, sort_keys=True, ensure_ascii=True) + "\n"
+
+
+def export_rollout_json(rollout: Mapping[str, Any], path: str | Path) -> Path:
+    """Write :func:`canonical_rollout_json` to ``path``."""
+    destination = Path(path)
+    destination.write_text(canonical_rollout_json(rollout), encoding="utf-8")
+    return destination
+
+
+def classify_failure(result: Mapping[str, Any]) -> Dict[str, str]:
+    """Classify an experiment failure for cross-model failure analysis."""
+    message = "\n".join(result.get("errors", []))
+    categories = (
+        ("invalid_python", ("SyntaxError",)),
+        ("interface_failure", ("AbstractPOSG", "GeneratedPOSG", "redefine")),
+        ("invalid_actions", ("legal_actions", "action")),
+        ("invalid_probability", ("probability", "sum to")),
+        ("unhashable_state", ("unhashable",)),
+        ("observation_failure", ("observation",)),
+        ("reward_failure", ("reward",)),
+        ("invalid_terminal_structure", ("terminal",)),
+        ("rollout_limit", ("max_states", "max_depth")),
+        ("invalid_transition", ("Transition", "transition")),
+    )
+    category = next(
+        (name for name, indicators in categories if any(indicator in message for indicator in indicators)),
+        "other",
+    )
+    return {"failure_type": category, "error_message": message}
+
+
+def batch_posg_cases(
+    cases: Mapping[str, AbstractPOSG],
+    *,
+    model_name: str = "reference",
+    max_states: int = 1_000,
+    max_depth: int = 20,
+) -> List[Dict[str, Any]]:
+    """Roll out a named collection of Python POSGs into cross-case EDA rows."""
+    from .eda import WorldModelEDA
+
+    rows = []
+    for case, posg in cases.items():
+        validation = validate_posg(posg, max_states=max_states, max_depth=max_depth)
+        row: Dict[str, Any] = {"case": case, "model": model_name, "status": "success"}
+        if not validation["passed"]:
+            row.update({"status": "failure", **classify_failure(validation)})
+            rows.append(row)
+            continue
+        eda = WorldModelEDA.from_rollout(validation["rollout"])
+        summary = eda.summary()
+        centrality = eda.centrality_analysis()
+        degrees = [degree for _, degree in eda.build_state_graph().degree()]
+        row.update(
+            {
+                "states": summary["states"]["state_count"],
+                "terminal_states": summary["states"]["terminal_state_count"],
+                "edges": summary["graph"]["edge_count"],
+                "avg_branching": summary["states"]["mean_branching_factor"],
+                "max_branching": summary["states"]["maximum_branching_factor"],
+                "deterministic_fraction": summary["transitions"]["deterministic_transition_fraction"],
+                "stochastic_fraction": summary["transitions"]["stochastic_transition_fraction"],
+                "avg_entropy": summary["transitions"]["mean_transition_entropy"],
+                "max_entropy": summary["transitions"]["maximum_transition_entropy"],
+                "density": summary["graph"]["density"],
+                "scc_count": summary["graph"]["strongly_connected_component_count"],
+                "largest_scc": summary["graph"]["largest_strongly_connected_component_size"],
+                "max_depth": summary["states"]["maximum_trajectory_depth"],
+                "avg_terminal_distance": summary["states"]["average_depth_to_terminal"],
+                "avg_degree": sum(degrees) / len(degrees) if degrees else None,
+                "max_degree": max(degrees, default=None),
+                "avg_betweenness": (
+                    sum(centrality["betweenness"].values()) / len(centrality["betweenness"])
+                    if centrality["betweenness"]
+                    else None
+                ),
+                "warnings": validation["warnings"],
+                "rollout": validation["rollout"],
+                "eda_summary": summary,
+            }
+        )
+        rows.append(row)
+    return rows
+
+
+def plot_cross_case_eda(rows: Iterable[Mapping[str, Any]]) -> Any:
+    """Plot six compact cross-case structural descriptors for successful runs."""
+    import matplotlib.pyplot as plt
+
+    successful = [row for row in rows if row["status"] == "success"]
+    cases = [row["case"] for row in successful]
+    metrics = [
+        ("states", "Reachable states"),
+        ("edges", "State-graph edges"),
+        ("avg_branching", "Average joint-action branching"),
+        ("avg_entropy", "Mean transition entropy (bits)"),
+        ("max_depth", "Maximum trajectory depth"),
+        ("scc_count", "Strongly connected components"),
+    ]
+    figure, axes = plt.subplots(2, 3, figsize=(14, 7), constrained_layout=True)
+    for axis, (key, title) in zip(axes.flat, metrics):
+        values = [row[key] if row[key] is not None else float("nan") for row in successful]
+        axis.bar(cases, values, color="#457b9d")
+        axis.set_title(title)
+        axis.spines[["top", "right"]].set_visible(False)
+        axis.grid(axis="y", alpha=0.2)
+        axis.set_axisbelow(True)
+    return figure
 
 
 def rollout_world_model(
@@ -362,6 +545,8 @@ def run_posg_experiment(
         "eda_summary": eda.summary(),
         "player_action_statistics": player_action_statistics(rollout),
         "action_influence": action_influence(rollout),
+        "world_model_summary": summarize_rollout(rollout),
+        "canonical_world_model_json": canonical_rollout_json(rollout),
     }
 
 
