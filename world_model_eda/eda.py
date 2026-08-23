@@ -60,26 +60,40 @@ class WorldModelEDA:
         terminal_states = [
             state for state, metadata in state_metadata.items() if metadata.get("terminal", False)
         ]
-        players = [player["id"] if isinstance(player, Mapping) else player for player in model["players"]]
         actions_by_state: Dict[Hashable, list[tuple[tuple[str, str], ...]]] = {}
         transitions: list[Transition] = []
 
         for state, action_sets in model.get("actions", {}).items():
+            active_players = tuple(action_sets)
             joint_actions = [
-                tuple(zip(players, choices))
-                for choices in product(*(action_sets.get(player, []) for player in players))
+                tuple(zip(active_players, choices))
+                for choices in product(*(action_sets[player] for player in active_players))
             ]
             actions_by_state[state] = joint_actions
 
         for state, action_outcomes in model.get("transition_probabilities", {}).items():
+            state_actions = model.get("actions", {}).get(state, {})
+            active_players = tuple(state_actions)
+            encoded_actions = {
+                "+".join(action for _, action in joint_action): joint_action
+                for joint_action in actions_by_state.get(state, [])
+            }
             for encoded_action, outcomes in action_outcomes.items():
-                action_values = encoded_action.split("+")
-                if len(action_values) != len(players):
+                actions = encoded_actions.get(encoded_action)
+                if actions is None:
+                    action_values = encoded_action.split("+")
+                    if len(action_values) == len(active_players):
+                        actions = tuple(zip(active_players, action_values))
+                    else:
+                        raise ValueError(
+                            f"Joint action {encoded_action!r} in {state!r} cannot be decoded "
+                            f"from the declared active-player action sets."
+                        )
+                if len(actions) != len(active_players):
                     raise ValueError(
-                        f"Joint action {encoded_action!r} in {state!r} has {len(action_values)} "
-                        f"actions for {len(players)} players."
+                        f"Joint action {encoded_action!r} in {state!r} has {len(actions)} "
+                        f"actions for {len(active_players)} active players."
                     )
-                actions = tuple(zip(players, action_values))
                 for next_state, probability in outcomes.items():
                     transitions.append(
                         Transition(state, actions, next_state, float(probability))
@@ -210,6 +224,7 @@ class WorldModelEDA:
         graph = self.build_state_graph()
         branch_counts = [len(self.actions_by_state.get(state, [])) for state in self.states]
         depths = self._terminal_distances(graph)
+        longest_depths = self._longest_terminal_depths(graph)
         finite_depths = [depth for depth in depths.values() if depth is not None]
         return {
             "state_count": len(self.states),
@@ -222,6 +237,10 @@ class WorldModelEDA:
             "reachable_state_count": len(self.states),
             "maximum_depth_to_terminal": max(finite_depths, default=None),
             "average_depth_to_terminal": self._mean(finite_depths),
+            "maximum_trajectory_depth": (
+                None if any(depth is None for depth in longest_depths.values())
+                else max(longest_depths.values(), default=None)
+            ),
             "branching_factor_by_state": dict(zip(self.states, branch_counts)),
             "mean_branching_factor": self._mean(branch_counts),
             "maximum_branching_factor": max(branch_counts, default=0),
@@ -399,6 +418,30 @@ class WorldModelEDA:
             distances[state] = depth
             queue.extend((predecessor, depth + 1) for predecessor in reverse.neighbors(state))
         return {state: distances.get(state) for state in self.states}
+
+    def _longest_terminal_depths(self, graph: nx.DiGraph) -> Dict[Hashable, Optional[int]]:
+        """Return longest terminal path length, or ``None`` where cycles make it unbounded."""
+        cyclic_states = {
+            state
+            for component in nx.strongly_connected_components(graph)
+            if len(component) > 1 or any(graph.has_edge(state, state) for state in component)
+            for state in component
+        }
+        unbounded = {
+            state
+            for cyclic_state in cyclic_states
+            for state in nx.ancestors(graph, cyclic_state) | {cyclic_state}
+        }
+        acyclic_graph = graph.subgraph(set(graph) - unbounded)
+        depths: Dict[Hashable, Optional[int]] = {state: None for state in graph}
+        for terminal in self.terminal_states - unbounded:
+            depths[terminal] = 0
+        for state in reversed(list(nx.topological_sort(acyclic_graph))):
+            successors = [depths[successor] for successor in acyclic_graph.successors(state)]
+            finite_successors = [depth for depth in successors if depth is not None]
+            if finite_successors:
+                depths[state] = 1 + max(finite_successors)
+        return depths
 
     @staticmethod
     def _average_reachable_path_length(graph: nx.DiGraph) -> Optional[float]:

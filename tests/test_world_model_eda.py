@@ -54,6 +54,30 @@ class WorldModelEDATests(unittest.TestCase):
         self.assertEqual(analysis.transition_statistics()["average_transition_branching"], 1.0)
         self.assertEqual(analysis.extract_transitions()[0]["probability"], 1.0)
 
+    def test_multi_step_depth_and_delimited_actions(self) -> None:
+        analysis = WorldModelEDA.from_dict(
+            {
+                "players": [{"id": "p1"}, {"id": "p2"}],
+                "initial_state": "start",
+                "states": {
+                    "start": {},
+                    "middle": {},
+                    "end": {"terminal": True},
+                },
+                "actions": {
+                    "start": {"p1": ["0+3"], "p2": ["0+3"]},
+                    "middle": {"nature": ["finish"]},
+                },
+                "transition_probabilities": {
+                    "start": {"0+3+0+3": {"middle": 1.0}},
+                    "middle": {"finish": {"end": 1.0}},
+                },
+            }
+        )
+
+        self.assertEqual(analysis.extract_transitions()[0]["actions"], {"p1": "0+3", "p2": "0+3"})
+        self.assertEqual(analysis.state_statistics()["maximum_trajectory_depth"], 2)
+
 
 if __name__ == "__main__":
     unittest.main()
