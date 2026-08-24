@@ -1,5 +1,5 @@
 """
-gm_convert_v2.py: Lane 2 adapter 
+gm_convert.py: Lane 2 adapter 
 =======================================================
 Converts a world model in the team's current schema (prompts_library/zero_shot_v2_prompt.md,
 validated by json_generation/mechanical_checks.py) into the format expected by
