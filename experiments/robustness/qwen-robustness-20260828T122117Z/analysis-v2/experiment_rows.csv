@@ -1,0 +1,363 @@
+artifact_dir,average_in_degree,average_out_degree,average_path_length,avg_branching,avg_entropy,case,deterministic_fraction,eda_seconds,edges,error_message,execution_seconds,execution_status,experiment_id,failure_type,generation_seconds,generation_status,global_efficiency,graph_available,graph_density,graph_edges,graph_nodes,graph_seconds,graph_status,max_betweenness,max_depth,mean_betweenness,model,model_identifier,peak_memory_mb,prompt_variant,reachable_states,rollout_seconds,rollout_status,sample,scc_count,semantic_observation_status,semantic_reward_status,semantic_score,semantic_validity,status,stochastic_fraction,structural_validation_status,terminal_states,timestamp,total_seconds,validation_seconds,validation_status,world_model_available
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G1\sample_001,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.00779019994661212,success,qwen-robustness-20260828T122117Z,invalid_transition,19.182957699988037,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,18.398168563842773,P0,,0.0016754998359829187,failed,1,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:21:17.023385+00:00,19.192572900094092,8.999835699796677e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G1\sample_002,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.00461359997279942,success,qwen-robustness-20260828T122117Z,invalid_transition,16.703972100047395,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2195568084716797,P0,,0.0011090000625699759,failed,2,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:21:36.252042+00:00,16.709829800063744,3.899913281202316e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G1\sample_003,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.005929500097408891,success,qwen-robustness-20260828T122117Z,invalid_transition,16.916098600020632,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21905231475830078,P0,,0.0007733998354524374,failed,3,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:21:52.965567+00:00,16.9228996001184,3.400025889277458e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G1\sample_004,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.003687799908220768,success,qwen-robustness-20260828T122117Z,invalid_transition,16.222501400159672,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21825218200683594,P0,,0.0006213998422026634,failed,4,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:22:09.891345+00:00,16.226894299965352,2.800021320581436e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G1\sample_005,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.003963999915868044,success,qwen-robustness-20260828T122117Z,invalid_transition,18.133385800058022,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21828842163085938,P0,,0.000649500172585249,failed,5,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:22:26.121769+00:00,18.138076500035822,2.500135451555252e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G2\sample_001,,,,,,G2,,,,"State (0, 0), player 'player_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'player_2': legal_actions must return a non-empty list of string actions.",0.004194800043478608,success,qwen-robustness-20260828T122117Z,invalid_actions,26.123820399865508,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21518611907958984,P0,,0.00013970001600682735,failed,1,,,,,,failed,,failed,,2026-08-28T12:22:44.264149+00:00,26.12821409991011,3.600027412176132e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G2\sample_002,,,,,,G2,,,,"State (0, 0), player 'player_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'player_2': legal_actions must return a non-empty list of string actions.",0.004073400050401688,success,qwen-robustness-20260828T122117Z,invalid_actions,25.919625299982727,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21423816680908203,P0,,0.00018440000712871552,failed,2,,,,,,failed,,failed,,2026-08-28T12:23:10.395783+00:00,25.923998799873516,5.3799943998456e-05,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G2\sample_003,,,,,,G2,,,,"State (0, 0), player 'player_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'player_2': legal_actions must return a non-empty list of string actions.",0.004766700090840459,success,qwen-robustness-20260828T122117Z,invalid_actions,26.886823100037873,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21300983428955078,P0,,0.00016029994003474712,failed,3,,,,,,failed,,failed,,2026-08-28T12:23:36.323704+00:00,26.891815199982375,2.800021320581436e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G2\sample_004,,,,,,G2,,,,"State (0, 0), player 'player_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'player_2': legal_actions must return a non-empty list of string actions.",0.00458829989656806,success,qwen-robustness-20260828T122117Z,invalid_actions,28.05832440010272,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21291828155517578,P0,,0.00021309987641870975,failed,4,,,,,,failed,,failed,,2026-08-28T12:24:03.219900+00:00,28.063238200033084,4.500150680541992e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G2\sample_005,,,,,,G2,,,,"State (0, 0), player 'player_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'player_2': legal_actions must return a non-empty list of string actions.",0.0052866998594254255,success,qwen-robustness-20260828T122117Z,invalid_actions,29.431213699979708,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2129497528076172,P0,,0.00017859996296465397,failed,5,,,,,,failed,,failed,,2026-08-28T12:24:31.288054+00:00,29.436736299889162,2.400018274784088e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G3\sample_001,,,,,,G3,,,,"Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined",0.003365900134667754,success,qwen-robustness-20260828T122117Z,invalid_transition,15.025320499902591,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1695079803466797,P0,,0.0003895999398082495,failed,1,,,,,,failed,,failed,,2026-08-28T12:25:00.733607+00:00,15.02917640004307,4.300149157643318e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G3\sample_002,,,,,,G3,,,,"Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined",0.006366500165313482,success,qwen-robustness-20260828T122117Z,invalid_transition,14.735443100100383,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.16977691650390625,P0,,0.0009898000862449408,failed,2,,,,,,failed,,failed,,2026-08-28T12:25:15.767720+00:00,14.7430201000534,7.2999391704797745e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G3\sample_003,,,,,,G3,,,,"Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined",0.004814299987629056,success,qwen-robustness-20260828T122117Z,invalid_transition,13.741489500040188,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1689434051513672,P0,,0.0004023001529276371,failed,3,,,,,,failed,,failed,,2026-08-28T12:25:30.515095+00:00,13.746808900032192,6.6999346017837524e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G3\sample_004,,,,,,G3,,,,"Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined",0.0049269001465290785,success,qwen-robustness-20260828T122117Z,invalid_transition,13.46411669999361,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.16888904571533203,P0,,0.00037359981797635555,failed,4,,,,,,failed,,failed,,2026-08-28T12:25:44.265902+00:00,13.469521900173277,3.8000289350748062e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G3\sample_005,,,,,,G3,,,,"Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined
+Transition failed: NameError: name 'random' is not defined",0.002965399995446205,success,qwen-robustness-20260828T122117Z,invalid_transition,13.808943199925125,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.16876697540283203,P0,,0.000341000035405159,failed,5,,,,,,failed,,failed,,2026-08-28T12:25:57.741782+00:00,13.812340500066057,1.90013088285923e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G4\sample_001,,,,,,G4,,,,"Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",0.003344300203025341,success,qwen-robustness-20260828T122117Z,invalid_actions,15.83824500022456,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.15913677215576172,P0,,0.003607699880376458,failed,1,,,,,,failed,,failed,,2026-08-28T12:26:11.558188+00:00,15.845276900101453,3.4999102354049683e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G4\sample_002,,,,,,G4,,,,"Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",0.003624900011345744,success,qwen-robustness-20260828T122117Z,invalid_actions,13.55255139991641,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1590442657470703,P0,,0.0033566998317837715,failed,2,,,,,,failed,,failed,,2026-08-28T12:26:27.407034+00:00,13.559638699982315,1.559988595545292e-05,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G4\sample_003,,,,,,G4,,,,"Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",0.0029192001093178988,success,qwen-robustness-20260828T122117Z,invalid_actions,13.133481299970299,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1593647003173828,P0,,0.002573499921709299,failed,3,,,,,,failed,,failed,,2026-08-28T12:26:40.970080+00:00,13.139032499864697,2.300133928656578e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G4\sample_004,,,,,,G4,,,,"Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",0.0031024999916553497,success,qwen-robustness-20260828T122117Z,invalid_actions,14.445093599846587,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.15876197814941406,P0,,0.0029707998037338257,failed,4,,,,,,failed,,failed,,2026-08-28T12:26:54.111871+00:00,14.451247999910265,3.90014611184597e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G4\sample_005,,,,,,G4,,,,"Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined
+Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined
+Outcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",0.0029771998524665833,success,qwen-robustness-20260828T122117Z,invalid_actions,13.547996799927205,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.15860271453857422,P0,,0.002988299820572138,failed,5,,,,,,failed,,failed,,2026-08-28T12:27:08.567052+00:00,13.554037700174376,2.00001522898674e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G5\sample_001,,,,,,G5,,,,"Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",0.002542699920013547,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,10.99553079996258,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1582956314086914,P0,,7.229996845126152e-05,failed,1,,,,,,failed,,failed,,2026-08-28T12:27:22.125103+00:00,10.99824530002661,2.400018274784088e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G5\sample_002,,,,,,G5,,,,"Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",0.0027038000989705324,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,10.31863380013965,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.15796756744384766,P0,,7.71998893469572e-05,failed,2,,,,,,failed,,failed,,2026-08-28T12:27:33.127059+00:00,10.321479600155726,2.400018274784088e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G5\sample_003,,,,,,G5,,,,"Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",0.0026240998413413763,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,10.70544739998877,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1577930450439453,P0,,8.209981024265289e-05,failed,3,,,,,,failed,,failed,,2026-08-28T12:27:43.453694+00:00,10.708225199952722,2.200016751885414e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G5\sample_004,,,,,,G5,,,,"Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",0.0023604000452905893,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,11.334363200003281,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1583099365234375,P0,,8.650007657706738e-05,failed,4,,,,,,failed,,failed,,2026-08-28T12:27:54.166722+00:00,11.336895799962804,2.299901098012924e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G5\sample_005,,,,,,G5,,,,"Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",0.004802900133654475,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,11.487620200030506,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.15827083587646484,P0,,0.00017899996601045132,failed,5,,,,,,failed,,failed,,2026-08-28T12:28:05.508602+00:00,11.492750300094485,1.1600088328123093e-05,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G6\sample_001,4.444444444444445,4.444444444444445,1.0,2.2222222222222223,1.0,G6,0.0,,40,"TypeError: Consider using a tuple, with a priority value that can be compared.",0.004125300096347928,success,qwen-robustness-20260828T122117Z,execution_error,23.073903899872676,success,0.5,False,0.5555555555555556,40,9,0.001534799812361598,success,0.0,,0.0,qwen_p0,qwen2.5-coder:latest,0.26352977752685547,P0,9,0.0030942000448703766,success,1,6,,,,,failed,1.0,success,4,2026-08-28T12:28:17.004416+00:00,23.100152200087905,2.200016751885414e-06,success,True
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G6\sample_002,,,,,,G6,,,,"State 's4', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's4', player 'player_2': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_2': legal_actions must return a non-empty list of string actions.",0.005309599917382002,success,qwen-robustness-20260828T122117Z,invalid_actions,26.381103500025347,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.25608348846435547,P0,,0.0008835000917315483,failed,2,,,,,,failed,,failed,,2026-08-28T12:28:40.112895+00:00,26.387383199995384,2.7997884899377823e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G6\sample_003,,,,,,G6,,,,"State 's4', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's4', player 'player_2': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_2': legal_actions must return a non-empty list of string actions.",0.013439599890261889,success,qwen-robustness-20260828T122117Z,invalid_actions,24.66989569994621,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.25605010986328125,P0,,0.0015716999769210815,failed,3,,,,,,failed,,failed,,2026-08-28T12:29:06.503809+00:00,24.684996099909768,6.700167432427406e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G6\sample_004,,,,,,G6,,,,"State 's4', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's4', player 'player_2': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_2': legal_actions must return a non-empty list of string actions.",0.0037824998144060373,success,qwen-robustness-20260828T122117Z,invalid_actions,25.226209700107574,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2544670104980469,P0,,0.0006127001252025366,failed,4,,,,,,failed,,failed,,2026-08-28T12:29:31.191972+00:00,25.230657099979,2.100132405757904e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G6\sample_005,,,,,,G6,,,,"State 's4', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's4', player 'player_2': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's5', player 'player_2': legal_actions must return a non-empty list of string actions.",0.004198399838060141,success,qwen-robustness-20260828T122117Z,invalid_actions,26.410968400072306,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.25580692291259766,P0,,0.0007947999984025955,failed,5,,,,,,failed,,failed,,2026-08-28T12:29:56.426694+00:00,26.416034699883312,4.200031980872154e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G7\sample_001,,,,,,G7,,,,"Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.",0.007751000113785267,success,qwen-robustness-20260828T122117Z,invalid_transition,30.557139999931678,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.25295543670654297,P0,,0.0006131001282483339,failed,1,,,,,,failed,,failed,,2026-08-28T12:30:22.846911+00:00,30.565603700000793,4.899920895695686e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G7\sample_002,,,,,,G7,,,,"Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.",0.0048500001430511475,success,qwen-robustness-20260828T122117Z,invalid_transition,29.570510799996555,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2609672546386719,P0,,0.00046099978499114513,failed,2,,,,,,failed,,failed,,2026-08-28T12:30:53.417847+00:00,29.575914199929684,4.200031980872154e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G7\sample_003,,,,,,G7,,,,"Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.",0.004646100103855133,success,qwen-robustness-20260828T122117Z,invalid_transition,26.687438799999654,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.25272083282470703,P0,,0.0005912999622523785,failed,3,,,,,,failed,,failed,,2026-08-28T12:31:22.997127+00:00,26.69277730002068,7.899943739175797e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G7\sample_004,,,,,,G7,,,,"Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.",0.003922800067812204,success,qwen-robustness-20260828T122117Z,invalid_transition,27.75206850003451,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.26096630096435547,P0,,0.0006302001420408487,failed,4,,,,,,failed,,failed,,2026-08-28T12:31:49.694036+00:00,27.75672629987821,2.300133928656578e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G7\sample_005,,,,,,G7,,,,"Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'stay_silent', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'stay_silent'}) must return a non-empty dictionary of state probabilities.
+Transition failed: ValueError: transition(('stay_silent', 'stay_silent'), {'player_1': 'testify', 'player_2': 'testify'}) must return a non-empty dictionary of state probabilities.",0.004991200054064393,success,qwen-robustness-20260828T122117Z,invalid_transition,27.613445800030604,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2528257369995117,P0,,0.0008981998544186354,failed,5,,,,,,failed,,failed,,2026-08-28T12:32:17.454941+00:00,27.619481400121003,2.499902620911598e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G8\sample_001,,,,,,G8,,,,State 'terminal': is_terminal failed: is_terminal() must return bool.,0.0035988001618534327,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,17.57409799983725,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.18059349060058594,P0,,0.000602399930357933,failed,1,,,,,,failed,,failed,,2026-08-28T12:32:45.081337+00:00,17.578402899904177,3.600027412176132e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G8\sample_002,,,,,,G8,,,,State 'terminal': is_terminal failed: is_terminal() must return bool.,0.006411400157958269,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,19.007403600029647,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.18061065673828125,P0,,0.0008510001935064793,failed,2,,,,,,failed,,failed,,2026-08-28T12:33:02.666827+00:00,19.014826100086793,6.800051778554916e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G8\sample_003,,,,,,G8,,,,State 'terminal': is_terminal failed: is_terminal() must return bool.,0.0030496998224407434,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,17.935982099967077,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.18083953857421875,P0,,0.0005642001051455736,failed,3,,,,,,failed,,failed,,2026-08-28T12:33:21.686860+00:00,17.939740900183097,3.899913281202316e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G8\sample_004,,,,,,G8,,,,State 'terminal': is_terminal failed: is_terminal() must return bool.,0.004181200172752142,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,17.49542840011418,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1808919906616211,P0,,0.0006357000675052404,failed,4,,,,,,failed,,failed,,2026-08-28T12:33:39.630398+00:00,17.500317099969834,2.9001384973526e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G8\sample_005,,,,,,G8,,,,State 'terminal': is_terminal failed: is_terminal() must return bool.,0.003378999885171652,success,qwen-robustness-20260828T122117Z,invalid_terminal_structure,18.856232499936596,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.1808919906616211,P0,,0.0004928999114781618,failed,5,,,,,,failed,,failed,,2026-08-28T12:33:57.136800+00:00,18.860179800074548,2.00001522898674e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G9\sample_001,,,,,,G9,,,,"State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.004783999873325229,success,qwen-robustness-20260828T122117Z,invalid_actions,22.313074099831283,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.21233558654785156,P0,,0.0001770998351275921,failed,1,,,,,,failed,,failed,,2026-08-28T12:34:16.001504+00:00,22.31809030007571,2.100132405757904e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G9\sample_002,,,,,,G9,,,,"State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.005011499859392643,success,qwen-robustness-20260828T122117Z,invalid_actions,24.137985200155526,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.22321224212646484,P0,,0.00015629990957677364,failed,2,,,,,,failed,,failed,,2026-08-28T12:34:38.324044+00:00,24.143220799975097,7.800059393048286e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G9\sample_003,,,,,,G9,,,,"State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.004995099967345595,success,qwen-robustness-20260828T122117Z,invalid_actions,23.108206399949268,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.2233562469482422,P0,,0.00019040005281567574,failed,3,,,,,,failed,,failed,,2026-08-28T12:35:02.472338+00:00,23.113463799934834,2.499902620911598e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G9\sample_004,,,,,,G9,,,,"State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.0045785000547766685,success,qwen-robustness-20260828T122117Z,invalid_actions,22.09723240020685,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.22347068786621094,P0,,0.00016410020180046558,failed,4,,,,,,failed,,failed,,2026-08-28T12:35:25.591016+00:00,22.102039500139654,4.100147634744644e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p0\G9\sample_005,,,,,,G9,,,,"State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.005083800060674548,success,qwen-robustness-20260828T122117Z,invalid_actions,22.307807100005448,success,,False,,,,,not_run,,,,qwen_p0,qwen2.5-coder:latest,0.22321224212646484,P0,,0.00021440000273287296,failed,5,,,,,,failed,,failed,,2026-08-28T12:35:47.697871+00:00,22.313168899854645,3.0999071896076202e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G1\sample_001,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.006731100147590041,success,qwen-robustness-20260828T122117Z,invalid_transition,20.67076519993134,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2182149887084961,P1,,0.0011267999652773142,failed,1,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:36:10.014751+00:00,20.678725000005215,3.700144588947296e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G1\sample_002,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.0060310999397188425,success,qwen-robustness-20260828T122117Z,invalid_transition,24.03675719979219,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.22391414642333984,P1,,0.0007386999204754829,failed,2,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:36:30.698285+00:00,24.043637600028887,3.899913281202316e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G1\sample_003,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.004457700066268444,success,qwen-robustness-20260828T122117Z,invalid_transition,20.150830999948084,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.22380924224853516,P1,,0.0006883000023663044,failed,3,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:36:54.745338+00:00,20.156062900088727,1.8998980522155762e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G1\sample_004,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.004502600058913231,success,qwen-robustness-20260828T122117Z,invalid_transition,21.00440809992142,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.22365474700927734,P1,,0.0006591000128537416,failed,4,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:37:14.904804+00:00,21.009646899998188,2.299901098012924e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G1\sample_005,,,,,,G1,,,,"Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined
+Transition failed: NameError: name 'player' is not defined",0.00450420007109642,success,qwen-robustness-20260828T122117Z,invalid_transition,19.56385329994373,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.22377681732177734,P1,,0.000727799953892827,failed,5,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:37:35.916636+00:00,19.56918689981103,2.200016751885414e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G9\sample_001,,,,,,G9,,,,"State ('0-3', '0-3'), player 'commander_1': legal_actions tuple indices must be integers or slices, not str
+State ('0-3', '0-3'), player 'commander_2': legal_actions tuple indices must be integers or slices, not str",0.007091799983754754,success,qwen-robustness-20260828T122117Z,invalid_actions,22.47116469987668,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2697324752807617,P1,,0.0001354000996798277,failed,1,,,,,,failed,,failed,,2026-08-28T12:37:55.491044+00:00,22.47845339984633,2.09989957511425e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G9\sample_002,,,,,,G9,,,,"State ('0-3', '0-3'), player 'commander_1': legal_actions tuple indices must be integers or slices, not str
+State ('0-3', '0-3'), player 'commander_2': legal_actions tuple indices must be integers or slices, not str",0.006121000042185187,success,qwen-robustness-20260828T122117Z,invalid_actions,23.224976300029084,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2831745147705078,P1,,0.000219699926674366,failed,2,,,,,,failed,,failed,,2026-08-28T12:38:17.973597+00:00,23.231397199910134,4.200031980872154e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G9\sample_003,,,,,,G9,,,,"State ('0-3', '0-3'), player 'commander_1': legal_actions tuple indices must be integers or slices, not str
+State ('0-3', '0-3'), player 'commander_2': legal_actions tuple indices must be integers or slices, not str",0.0063241999596357346,success,qwen-robustness-20260828T122117Z,invalid_actions,27.791521499864757,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2830686569213867,P1,,0.00016469997353851795,failed,3,,,,,,failed,,failed,,2026-08-28T12:38:41.208031+00:00,27.798102699918672,3.600027412176132e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G9\sample_004,,,,,,G9,,,,"State ('0-3', '0-3'), player 'commander_1': legal_actions tuple indices must be integers or slices, not str
+State ('0-3', '0-3'), player 'commander_2': legal_actions tuple indices must be integers or slices, not str",0.005136199994012713,success,qwen-robustness-20260828T122117Z,invalid_actions,23.397727000061423,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2831735610961914,P1,,0.00012450013309717178,failed,4,,,,,,failed,,failed,,2026-08-28T12:39:09.011172+00:00,23.403065900085494,2.6999041438102722e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p1\G9\sample_005,,,,,,G9,,,,"State ('0-3', '0-3'), player 'commander_1': legal_actions tuple indices must be integers or slices, not str
+State ('0-3', '0-3'), player 'commander_2': legal_actions tuple indices must be integers or slices, not str",0.008480199845507741,success,qwen-robustness-20260828T122117Z,invalid_actions,25.232955400133505,success,,False,,,,,not_run,,,,qwen_p1,qwen2.5-coder:latest,0.2831745147705078,P1,,0.0006807001773267984,failed,5,,,,,,failed,,failed,,2026-08-28T12:39:32.418389+00:00,25.242212999844924,5.699926987290382e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G1\sample_001,,,,,,G1,,,,"Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action",0.006602599984034896,success,qwen-robustness-20260828T122117Z,invalid_actions,22.718032999895513,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2258014678955078,P2,,0.001588999992236495,failed,1,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:39:57.667293+00:00,22.72686169994995,6.299931555986404e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G1\sample_002,,,,,,G1,,,,"Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action",0.007225199835374951,success,qwen-robustness-20260828T122117Z,invalid_actions,20.63250770000741,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.22547149658203125,P2,,0.001397599931806326,failed,2,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:40:20.402547+00:00,20.64121949998662,5.200039595365524e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G1\sample_003,,,,,,G1,,,,"Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action",0.006186899961903691,success,qwen-robustness-20260828T122117Z,invalid_actions,21.61273239995353,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.22547149658203125,P2,,0.0008708999957889318,failed,3,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:40:41.047925+00:00,21.619879700010642,5.400041118264198e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G1\sample_004,,,,,,G1,,,,"Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action",0.006765100173652172,success,qwen-robustness-20260828T122117Z,invalid_actions,23.655023399973288,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.22547149658203125,P2,,0.0011366000398993492,failed,4,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:41:02.671020+00:00,23.663040099898353,3.1997915357351303e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G1\sample_005,,,,,,G1,,,,"Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action",0.004930000053718686,success,qwen-robustness-20260828T122117Z,invalid_actions,22.190636500017717,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2254648208618164,P2,,0.0013502000365406275,failed,5,,,,,NOT_EVALUATED,failed,,failed,,2026-08-28T12:41:26.339392+00:00,22.197010700125247,4.599802196025848e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G9\sample_001,,,,,,G9,,,,"State ('s0', 0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State ('s0', 0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.006004399852827191,success,qwen-robustness-20260828T122117Z,invalid_actions,31.209194299997762,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.28513050079345703,P2,,0.0001542000100016594,failed,1,,,,,,failed,,failed,,2026-08-28T12:41:48.541576+00:00,31.215420100139454,2.299901098012924e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G9\sample_002,,,,,,G9,,,,"State ('s0', 0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State ('s0', 0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.005719400011003017,success,qwen-robustness-20260828T122117Z,invalid_actions,33.832154700066894,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2946023941040039,P2,,0.00016289995983242989,failed,2,,,,,,failed,,failed,,2026-08-28T12:42:19.762106+00:00,33.83809360000305,3.00002284348011e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G9\sample_003,,,,,,G9,,,,"State ('s0', 0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State ('s0', 0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.006248000077903271,success,qwen-robustness-20260828T122117Z,invalid_actions,30.51734589994885,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2945108413696289,P2,,0.0001656000968068838,failed,3,,,,,,failed,,failed,,2026-08-28T12:42:53.603629+00:00,30.52382400003262,2.800021320581436e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G9\sample_004,,,,,,G9,,,,"State ('s0', 0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State ('s0', 0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.007421599933877587,success,qwen-robustness-20260828T122117Z,invalid_actions,29.465691099874675,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2945566177368164,P2,,0.00018789991736412048,failed,4,,,,,,failed,,failed,,2026-08-28T12:43:24.130157+00:00,29.473366499878466,2.200016751885414e-06,success,False
+experiments\robustness\qwen-robustness-20260828T122117Z\qwen_p2\G9\sample_005,,,,,,G9,,,,"State ('s0', 0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.
+State ('s0', 0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",0.006988599896430969,success,qwen-robustness-20260828T122117Z,invalid_actions,32.16476369998418,success,,False,,,,,not_run,,,,qwen_p2,qwen2.5-coder:latest,0.2945728302001953,P2,,0.0001751999370753765,failed,5,,,,,,failed,,failed,,2026-08-28T12:43:53.607689+00:00,32.1719995001331,2.400018274784088e-06,success,False

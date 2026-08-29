@@ -1,0 +1,355 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "rock",
+          "paper",
+          "scissors"
+        ],
+        "player_2": [
+          "rock",
+          "paper",
+          "scissors"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'s0'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'terminal_draw'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'terminal_lose'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'terminal_win'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played paper"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played paper"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played paper"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        },
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played paper"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played paper"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "Player 1 played paper, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played paper"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played rock"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played rock"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played rock"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played rock"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played rock"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        },
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "Player 1 played rock, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played rock"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played scissors"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        },
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played paper",
+            "player_2": "Player 2 played paper, Player 1 played scissors"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played scissors"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played rock",
+            "player_2": "Player 2 played rock, Player 1 played scissors"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played scissors"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 1 played scissors, Player 2 played scissors",
+            "player_2": "Player 2 played scissors, Player 1 played scissors"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

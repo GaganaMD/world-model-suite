@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G7\\sample_001",
+  "case": "G7",
+  "eda_seconds": null,
+  "error_message": "Initial state ('stay_silent', 'stay_silent') is terminal; an interactive POSG needs a decision state.",
+  "execution_seconds": 0.0039898999966681,
+  "failure_type": "invalid_terminal_structure",
+  "generation_seconds": 26.088997799903154,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.27190208435058594,
+  "rollout_seconds": 7.780012674629688e-05,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:03:09.739918+00:00",
+  "total_seconds": 26.093107499880716,
+  "validation_seconds": 2.299901098012924e-06
+}

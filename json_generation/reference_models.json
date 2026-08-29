@@ -1,0 +1,2479 @@
+{
+ "1.1": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A service robot in a dark storage room"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot is in the storage room and the light is off.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "flip_switch"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "leave_room"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot is in the storage room and the light is on.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Robot has left the storage room.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Robot remains in the storage room after doing something unrelated to the light.",
+    "terminal": true
+   }
+  ]
+ },
+ "1.2": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A monitoring robot in a hallway where smoke has been detected"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Smoke detected; safety system not yet notified.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "send_alert"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "inspect_smoke"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_away"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Safety system notified about the smoke.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Robot has inspected the smoke and gathered more information.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Robot has moved away from the smoke.",
+    "terminal": true
+   },
+   {
+    "id": "s4",
+    "desc": "Robot did something else not directly related to alerting.",
+    "terminal": true
+   }
+  ]
+ },
+ "2.1": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A robot moving among rooms with a key and a locked door"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot in Room A; key in Room B; door in Room C is locked; robot has no key.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_c"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot in Room B; key on floor; door locked; robot has no key.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_a"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_c"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "pick_up_key"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "desc": "Robot in Room C; key still in Room B; door locked; robot has no key.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_a"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "desc": "Robot in Room B; robot has key; door locked.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_a"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_c"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s4",
+    "desc": "Robot in Room C; robot has key; door locked.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_a"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s5",
+    "desc": "Robot in Room A; robot has key; door locked.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_room_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_room_c"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s6",
+    "desc": "Robot in Room C; robot has key; door open.",
+    "terminal": true
+   }
+  ]
+ },
+ "2.2": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A robot at a base station near three colored objects"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot at base; no object held.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_blue_location"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_green_location"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_red_location"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot at blue-object location; no object held.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_blue"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_green_location"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_red_location"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "desc": "Robot at green-object location; no object held.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_green"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_blue_location"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_red_location"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "desc": "Robot at red-object location; no object held.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_red"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_blue_location"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_green_location"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s4",
+    "desc": "Robot at blue-object location; holding blue object.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s7",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s5",
+    "desc": "Robot at green-object location; holding green object.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s8",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s6",
+    "desc": "Robot at red-object location; holding red object.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_base"
+      },
+      "next": [
+       {
+        "state": "s9",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s7",
+    "desc": "Robot returned to base holding the blue object.",
+    "terminal": true
+   },
+   {
+    "id": "s8",
+    "desc": "Robot returned to base holding the green object.",
+    "terminal": true
+   },
+   {
+    "id": "s9",
+    "desc": "Robot returned to base holding the red object.",
+    "terminal": true
+   }
+  ]
+ },
+ "3.1": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A robot in a room with a key, locked door, and lamp"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot in Room A; key on floor; door locked; lamp off; robot has no key.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_key"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "turn_on_lamp"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot has key; door locked; lamp off.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "turn_on_lamp"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "desc": "Robot has no key; door locked; lamp on.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_key"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "desc": "Robot has key; door locked; lamp on.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "try_open_door"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s4",
+    "desc": "Door open; lamp off.",
+    "terminal": true
+   },
+   {
+    "id": "s5",
+    "desc": "Door open; lamp on.",
+    "terminal": true
+   }
+  ]
+ },
+ "3.2": {
+  "players": [
+   {
+    "id": "robot",
+    "type": "robot",
+    "desc": "A delivery robot near a package and a delivery desk"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot at warehouse; package on floor; robot not holding package.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "pick_up_package"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_delivery_desk_without_package"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "beep"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot at warehouse; robot holding package.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_delivery_desk"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "put_package_down_at_warehouse"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "beep"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "desc": "Robot at delivery desk; robot holding package.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "place_package_on_desk"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "move_to_warehouse_with_package"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "beep"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "desc": "Robot at delivery desk; package placed on delivery desk.",
+    "terminal": true
+   },
+   {
+    "id": "s4",
+    "desc": "Robot at delivery desk; package remains on warehouse floor; robot is not holding package.",
+    "terminal": false,
+    "turn": [
+     "robot"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot": "move_to_warehouse_without_package"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "beep"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "wait_or_pass"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot": "do_something_else"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "4.1": {
+  "players": [
+   {
+    "id": "robot_a",
+    "type": "robot",
+    "desc": "A robot in Room A with its own light switch"
+   },
+   {
+    "id": "robot_b",
+    "type": "robot",
+    "desc": "A robot in Room B with its own separate light switch"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Both lights off.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "flip_switch_a",
+       "robot_b": "flip_switch_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "flip_switch_a",
+       "robot_b": "leave_switch_b"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "leave_switch_a",
+       "robot_b": "flip_switch_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "leave_switch_a",
+       "robot_b": "leave_switch_b"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot A's light on; Robot B's light on.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Robot A's light on; Robot B's light off.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Robot A's light off; Robot B's light on.",
+    "terminal": true
+   }
+  ]
+ },
+ "4.2": {
+  "players": [
+   {
+    "id": "robot_a",
+    "type": "robot",
+    "desc": "A robot guessing the side of its own hidden coin, which actually shows heads"
+   },
+   {
+    "id": "robot_b",
+    "type": "robot",
+    "desc": "A robot guessing the side of its own hidden coin, which actually shows tails"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Both coins hidden under their cups; neither robot has guessed yet.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "guess_heads_a",
+       "robot_b": "guess_heads_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "guess_heads_a",
+       "robot_b": "guess_tails_b"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "guess_tails_a",
+       "robot_b": "guess_heads_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "guess_tails_a",
+       "robot_b": "guess_tails_b"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot A guessed heads (correct); Robot B guessed heads (incorrect).",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Robot A guessed heads (correct); Robot B guessed tails (correct).",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Robot A guessed tails (incorrect); Robot B guessed heads (incorrect).",
+    "terminal": true
+   },
+   {
+    "id": "s4",
+    "desc": "Robot A guessed tails (incorrect); Robot B guessed tails (correct).",
+    "terminal": true
+   }
+  ]
+ },
+ "4.3": {
+  "players": [
+   {
+    "id": "robot_a",
+    "type": "robot",
+    "desc": "A cleaning robot in the living room"
+   },
+   {
+    "id": "robot_b",
+    "type": "robot",
+    "desc": "A delivery robot in a separate part of the building"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Carpet unvacuumed; floor unmopped; package undelivered.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "vacuum",
+       "robot_b": "deliver"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "vacuum",
+       "robot_b": "wait"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "mop",
+       "robot_b": "deliver"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "mop",
+       "robot_b": "wait"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "do_nothing",
+       "robot_b": "deliver"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "do_nothing",
+       "robot_b": "wait"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot A vacuumed the carpet; Robot B delivered the package.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Robot A vacuumed the carpet; Robot B still waiting, package undelivered.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Robot A mopped the floor; Robot B delivered the package.",
+    "terminal": true
+   },
+   {
+    "id": "s4",
+    "desc": "Robot A mopped the floor; Robot B still waiting, package undelivered.",
+    "terminal": true
+   },
+   {
+    "id": "s5",
+    "desc": "Robot A did nothing; Robot B delivered the package.",
+    "terminal": true
+   }
+  ]
+ },
+ "4.4": {
+  "players": [
+   {
+    "id": "robot_a",
+    "type": "robot",
+    "desc": "A robot retrieving a tool from a sealed toolbox"
+   },
+   {
+    "id": "robot_b",
+    "type": "robot",
+    "desc": "A robot retrieving a supply item from a locked cabinet, in a different room"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Robot A: toolbox sealed, no code entered. Robot B: cabinet locked.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "enter_code_a",
+       "robot_b": "unlock_cabinet_b"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "enter_code_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "unlock_cabinet_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s0",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Robot A: toolbox sealed, no code entered. Robot B: cabinet unlocked.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "enter_code_a",
+       "robot_b": "take_supply_b"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "enter_code_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "take_supply_b"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "desc": "Robot A: toolbox sealed, no code entered. Robot B: has taken the supply item (errand finished).",
+    "terminal": false,
+    "turn": [
+     "robot_a"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "enter_code_a"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "desc": "Robot A: code entered, toolbox unsealed. Robot B: cabinet locked.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "retrieve_tool_a",
+       "robot_b": "unlock_cabinet_b"
+      },
+      "next": [
+       {
+        "state": "s7",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "retrieve_tool_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "unlock_cabinet_b"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s4",
+    "desc": "Robot A: code entered, toolbox unsealed. Robot B: cabinet unlocked.",
+    "terminal": false,
+    "turn": [
+     "robot_a",
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "retrieve_tool_a",
+       "robot_b": "take_supply_b"
+      },
+      "next": [
+       {
+        "state": "s8",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "retrieve_tool_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s7",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "take_supply_b"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a",
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s4",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s5",
+    "desc": "Robot A: code entered, toolbox unsealed. Robot B: has taken the supply item (errand finished).",
+    "terminal": false,
+    "turn": [
+     "robot_a"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_a": "retrieve_tool_a"
+      },
+      "next": [
+       {
+        "state": "s8",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_a": "wait_or_pass_a"
+      },
+      "next": [
+       {
+        "state": "s5",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s6",
+    "desc": "Robot A: has retrieved the tool (errand finished). Robot B: cabinet locked.",
+    "terminal": false,
+    "turn": [
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_b": "unlock_cabinet_b"
+      },
+      "next": [
+       {
+        "state": "s7",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s6",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s7",
+    "desc": "Robot A: has retrieved the tool (errand finished). Robot B: cabinet unlocked.",
+    "terminal": false,
+    "turn": [
+     "robot_b"
+    ],
+    "actions": [
+     {
+      "by": {
+       "robot_b": "take_supply_b"
+      },
+      "next": [
+       {
+        "state": "s8",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "robot_b": "wait_or_pass_b"
+      },
+      "next": [
+       {
+        "state": "s7",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s8",
+    "desc": "Robot A has retrieved the tool and Robot B has taken the supply item \u2014 both robots have finished their independent errands.",
+    "terminal": true
+   }
+  ]
+ },
+ "G.1": {
+  "players": [
+   {
+    "id": "player_1",
+    "type": "robot",
+    "desc": "The first person playing the round"
+   },
+   {
+    "id": "player_2",
+    "type": "robot",
+    "desc": "The second person playing the round"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Both players are about to reveal their choice; nothing thrown yet.",
+    "terminal": false,
+    "turn": [
+     "player_1",
+     "player_2"
+    ],
+    "actions": [
+     {
+      "by": {
+       "player_1": "rock",
+       "player_2": "rock"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "rock",
+       "player_2": "paper"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "rock",
+       "player_2": "scissors"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "paper",
+       "player_2": "rock"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "paper",
+       "player_2": "paper"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "paper",
+       "player_2": "scissors"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "scissors",
+       "player_2": "rock"
+      },
+      "next": [
+       {
+        "state": "s2",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "scissors",
+       "player_2": "paper"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 1.0
+       }
+      ]
+     },
+     {
+      "by": {
+       "player_1": "scissors",
+       "player_2": "scissors"
+      },
+      "next": [
+       {
+        "state": "s3",
+        "p": 1.0
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Player 1 wins the round.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Player 2 wins the round.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "The round is a draw (both chose the same).",
+    "terminal": true
+   }
+  ]
+ },
+ "G.2": {
+  "players": [
+   {
+    "id": "player_1",
+    "type": "robot",
+    "desc": "The first player, rolling one die"
+   },
+   {
+    "id": "player_2",
+    "type": "robot",
+    "desc": "The second player, rolling one die"
+   }
+  ],
+  "initial": [
+   {
+    "state": "s0",
+    "p": 1.0
+   }
+  ],
+  "states": [
+   {
+    "id": "s0",
+    "desc": "Both players are about to roll; no dice rolled yet.",
+    "terminal": false,
+    "turn": [
+     "player_1",
+     "player_2"
+    ],
+    "actions": [
+     {
+      "by": {
+       "player_1": "roll",
+       "player_2": "roll"
+      },
+      "next": [
+       {
+        "state": "s1",
+        "p": 0.4166
+       },
+       {
+        "state": "s2",
+        "p": 0.4167
+       },
+       {
+        "state": "s3",
+        "p": 0.1667
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "s1",
+    "desc": "Player 1 rolled higher and wins the round.",
+    "terminal": true
+   },
+   {
+    "id": "s2",
+    "desc": "Player 2 rolled higher and wins the round.",
+    "terminal": true
+   },
+   {
+    "id": "s3",
+    "desc": "Both rolled the same number; the round is a tie.",
+    "terminal": true
+   }
+  ]
+ }
+}

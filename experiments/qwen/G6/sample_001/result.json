@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G6\\sample_001",
+  "case": "G6",
+  "eda_seconds": null,
+  "error_message": "TypeError: Consider using a tuple, with a priority value that can be compared.",
+  "execution_seconds": 0.0032204000744968653,
+  "failure_type": "other",
+  "generation_seconds": 21.09872499993071,
+  "graph_seconds": 0.0010857998859137297,
+  "model": "qwen",
+  "peak_memory_mb": 0.26593875885009766,
+  "rollout_seconds": 0.0032297999132424593,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:02:48.621121+00:00",
+  "total_seconds": 21.117553000105545,
+  "validation_seconds": 3.0999071896076202e-06
+}

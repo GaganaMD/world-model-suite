@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G5\\sample_001",
+  "case": "G5",
+  "eda_seconds": null,
+  "error_message": "Initial state ('H', 'H') is terminal; an interactive POSG needs a decision state.",
+  "execution_seconds": 0.0021542999893426895,
+  "failure_type": "invalid_terminal_structure",
+  "generation_seconds": 9.879152400186285,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.15904617309570312,
+  "rollout_seconds": 5.979998968541622e-05,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:02:38.737095+00:00",
+  "total_seconds": 9.88140910002403,
+  "validation_seconds": 1.8998980522155762e-06
+}

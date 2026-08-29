@@ -1,0 +1,124 @@
+artifact_dir,average_in_degree,average_out_degree,average_path_length,avg_branching,avg_branching_difference,avg_entropy,avg_entropy_difference,case,deterministic_fraction,deterministic_fraction_difference,eda_seconds,edges,edges_difference,error_message,execution_seconds,execution_status,experiment_id,failure_type,generation_seconds,generation_seed,generation_status,global_efficiency,graph_available,graph_density,graph_edges,graph_nodes,graph_seconds,graph_status,max_betweenness,max_branching,max_depth,max_entropy,mean_betweenness,model,model_identifier,peak_memory_mb,prompt_variant,reachable_states,reachable_states_difference,reference_avg_branching,reference_avg_entropy,reference_deterministic_fraction,reference_edges,reference_reachable_states,reference_stochastic_fraction,reference_terminal_states,rollout_seconds,rollout_status,sample,scc_count,semantic_observation_status,semantic_reward_status,semantic_score,semantic_validity,status,stochastic_fraction,stochastic_fraction_difference,structural_validation_status,terminal_states,terminal_states_difference,timestamp,total_seconds,validation_seconds,validation_status,world_model_available
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P0\qwen\G1\sample_001,,,,,,,,G1,,,,,,"Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'",0.005529000191017985,success,qwen-g1-prompt-sensitivity-20260828T155425Z,invalid_actions,28.986001200042665,42,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,18.426480293273926,P0,,,,,,,,,,0.002033199882134795,failed,1,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:54:25.462916+00:00,28.993656400125474,4.00003045797348e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P0\qwen\G1\sample_002,,,,,,,,G1,,,,,,"Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'",0.0041149999015033245,success,qwen-g1-prompt-sensitivity-20260828T155425Z,invalid_actions,20.169994599884376,43,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.24689197540283203,P0,,,,,,,,,,0.0015167000237852335,failed,2,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:54:54.474716+00:00,20.17569929989986,2.00001522898674e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P0\qwen\G1\sample_003,,,,,,,,G1,,,,,,"Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'",0.007739200023934245,success,qwen-g1-prompt-sensitivity-20260828T155425Z,invalid_actions,20.755154099781066,44,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.2470855712890625,P0,,,,,,,,,,0.0018037999980151653,failed,3,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:55:14.655297+00:00,20.764804699923843,3.600027412176132e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P0\qwen\G1\sample_004,,,,,,,,G1,,,,,,"Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'",0.008589599980041385,success,qwen-g1-prompt-sensitivity-20260828T155425Z,invalid_actions,22.290205399971455,45,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.24632740020751953,P0,,,,,,,,,,0.0017803998198360205,failed,4,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:55:35.422967+00:00,22.30070779984817,1.3499986380338669e-05,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P0\qwen\G1\sample_005,,,,,,,,G1,,,,,,"Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'
+Transition failed: ValueError: Invalid joint action
+Transition failed: ValueError: Invalid joint action
+Outcome 'terminal', player 'player_1': KeyError: 'other'
+Outcome 'terminal', player 'player_2': KeyError: 'other'",0.00459429994225502,success,qwen-g1-prompt-sensitivity-20260828T155425Z,invalid_actions,23.98158730007708,46,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.24631595611572266,P0,,,,,,,,,,0.0014802999794483185,failed,5,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:55:57.729270+00:00,23.987780399853364,2.200016751885414e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P1\qwen\G1\sample_001,1.0,1.0,1.0,2.25,0.0,0.9208605994871285,0.9208605994871285,G1,0.0,-1.0,0.011652000015601516,4,1,,0.003446199931204319,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,17.233886500122026,42,success,0.25,True,0.3333333333333333,4,4,0.00042699999175965786,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.21987152099609375,P1,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0011891999747604132,success,1,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:56:21.721656+00:00,17.250652299961075,1.6998965293169022e-06,success,True
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P1\qwen\G1\sample_002,,,,,,,,G1,,,,,,"Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.",0.005949899787083268,success,qwen-g1-prompt-sensitivity-20260828T155425Z,reward_failure,14.791650800034404,43,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.20766544342041016,P1,,,,,,,,,,0.0024174998980015516,failed,2,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:56:40.094103+00:00,14.800099400104955,4.90015372633934e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P1\qwen\G1\sample_003,,,,,,,,G1,,,,,,"Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.",0.006152799818664789,success,qwen-g1-prompt-sensitivity-20260828T155425Z,reward_failure,15.204796900041401,44,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.20016860961914062,P1,,,,,,,,,,0.002211200073361397,failed,3,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:56:54.897726+00:00,15.213253299938515,7.800059393048286e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P1\qwen\G1\sample_004,,,,,,,,G1,,,,,,"Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.",0.003881599986925721,success,qwen-g1-prompt-sensitivity-20260828T155425Z,reward_failure,14.980481199920177,45,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.20040416717529297,P1,,,,,,,,,,0.0015549000818282366,failed,4,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:57:10.114950+00:00,14.985995800001547,1.8998980522155762e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P1\qwen\G1\sample_005,,,,,,,,G1,,,,,,"Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 's0', player 'player_2': TypeError: reward() must return a finite number.",0.004844199866056442,success,qwen-g1-prompt-sensitivity-20260828T155425Z,reward_failure,14.193224099930376,46,success,,False,,,,,not_run,,,,,,qwen,qwen2.5-coder:latest,0.20034217834472656,P1,,,,,,,,,,0.002202400006353855,failed,5,,,,,NOT_EVALUATED,failed,,,failed,,,2026-08-28T15:57:25.103636+00:00,14.200359900016338,2.499902620911598e-06,success,False
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P2\qwen\G1\sample_001,1.0,1.0,1.0,2.25,0.0,0.8146187299249081,0.8146187299249081,G1,0.0,-1.0,0.007394300075247884,4,1,,0.01241580001078546,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,20.732460599858314,42,success,0.25,True,0.3333333333333333,4,4,0.0008612999226897955,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.2188730239868164,P2,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0021384998690336943,success,1,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:57:39.310018+00:00,20.75542449997738,5.0900038331747055e-05,success,True
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P2\qwen\G1\sample_002,1.0,1.0,1.0,2.25,0.0,1.0,1.0,G1,0.0,-1.0,0.0034614999312907457,4,1,,0.005024499958381057,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,26.952479700092226,43,success,0.25,True,0.3333333333333333,4,4,0.0005157000850886106,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.28971385955810547,P2,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0013454998843371868,success,2,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:58:00.294184+00:00,26.962875499855727,2.299901098012924e-06,success,True
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P2\qwen\G1\sample_003,1.0,1.0,1.0,2.25,0.0,1.0,1.0,G1,0.0,-1.0,0.00293629989027977,4,1,,0.006161599885672331,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,29.00896340003237,44,success,0.25,True,0.3333333333333333,4,4,0.0005505001172423363,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.2775917053222656,P2,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0013215001672506332,success,3,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:58:27.453670+00:00,29.0199794000946,6.3998159021139145e-06,success,True
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P2\qwen\G1\sample_004,1.0,1.0,1.0,2.25,0.0,1.0,1.0,G1,0.0,-1.0,0.0034668000880628824,4,1,,0.00458860001526773,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,25.36971120000817,45,success,0.25,True,0.3333333333333333,4,4,0.0004741000011563301,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.2777833938598633,P2,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0012767999432981014,success,4,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:58:56.651837+00:00,25.379567200085148,1.8998980522155762e-06,success,True
+experiments\prompt_sensitivity\qwen-g1-prompt-sensitivity-20260828T155425Z\P2\qwen\G1\sample_005,1.0,1.0,1.0,2.25,0.0,1.0,1.0,G1,0.0,-1.0,0.0030714001040905714,4,1,,0.0045149000361561775,success,qwen-g1-prompt-sensitivity-20260828T155425Z,,27.799617300042883,46,success,0.25,True,0.3333333333333333,4,4,0.00038090022280812263,success,0.0,9,1,1.0,0.0,qwen,qwen2.5-coder:latest,0.2901601791381836,P2,4,0,2.25,0.0,1.0,3,4,0.0,3,0.0010076002217829227,success,5,4,UNKNOWN,FAIL,0.7142857142857143,FAIL,success,1.0,1.0,success,3,0,2026-08-28T15:59:22.202701+00:00,27.808635200140998,2.09989957511425e-06,success,True
