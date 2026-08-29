@@ -24,14 +24,39 @@
     "passed": true
   },
   "lane2": {
-    "combined_score": 0.0,
-    "coverage": 0.0,
+    "combined_score": 1.0,
+    "coverage": 1.0,
     "details": {
+      "backend": "feature_multiset_fallback",
+      "candidate_features": {
+        "initial_support": 1,
+        "nonterminal_states": 1,
+        "players": 2,
+        "profiles_per_state:0": 4,
+        "profiles_per_state:4": 1,
+        "terminal_states": 4,
+        "transition_edges": 4,
+        "transition_support:1": 4,
+        "turn_arity:0": 4,
+        "turn_arity:2": 1
+      },
+      "dependency_error": "Lane 2 requires the external game_matching repository. Clone https://github.com/mensch72/game_matching.git and add it to PYTHONPATH.",
       "ground_truth_identifier_coercions": [],
-      "reason": "ground_truth_path was not provided",
-      "skipped": true
+      "reference_features": {
+        "initial_support": 1,
+        "nonterminal_states": 1,
+        "players": 2,
+        "profiles_per_state:0": 4,
+        "profiles_per_state:4": 1,
+        "terminal_states": 4,
+        "transition_edges": 4,
+        "transition_support:1": 4,
+        "turn_arity:0": 4,
+        "turn_arity:2": 1
+      },
+      "warning": "game_matching is unavailable; scores are name-insensitive feature overlap, not optimal graph matching."
     },
-    "precision": 0.0
+    "precision": 1.0
   },
   "lane3": {
     "checklist_passed": true,
@@ -52,11 +77,12 @@
       "human_review_required": false,
       "maximum_action_count_disparity": 0,
       "note": "Flags are diagnostic only; statistical/counterfactual evidence is required before calling a disparity bias.",
-      "stakeholder_coverage": null
+      "stakeholder_coverage": 0.0
     }
   },
   "overall_passed": true,
   "saved_artifacts": [
-    "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\openrouter_game_study\\run_1\\05_evaluation\\gpt_5_6_sol_G7_s01_r0\\candidate_graph.pth"
+    "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\openrouter_game_study\\run_1\\05_evaluation\\gpt_5_6_sol_G7_s01_r0\\candidate_graph.pth",
+    "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\openrouter_game_study\\run_1\\05_evaluation\\gpt_5_6_sol_G7_s01_r0\\ground_truth_graph.pth"
   ]
 }
