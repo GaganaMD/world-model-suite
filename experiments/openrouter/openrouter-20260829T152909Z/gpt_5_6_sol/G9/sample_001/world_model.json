@@ -1,0 +1,487 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "deploy_0_3",
+          "deploy_1_2",
+          "deploy_2_1",
+          "deploy_3_0"
+        ],
+        "player_2": [
+          "deploy_0_3",
+          "deploy_1_2",
+          "deploy_2_1",
+          "deploy_3_0"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'s0'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "('terminal', 'deploy_0_3', 'deploy_0_3', 'tie', 'tie', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "('terminal', 'deploy_0_3', 'deploy_1_2', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "('terminal', 'deploy_0_3', 'deploy_2_1', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "('terminal', 'deploy_0_3', 'deploy_3_0', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0005",
+      "representation": "('terminal', 'deploy_1_2', 'deploy_0_3', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0006",
+      "representation": "('terminal', 'deploy_1_2', 'deploy_1_2', 'tie', 'tie', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0007",
+      "representation": "('terminal', 'deploy_1_2', 'deploy_2_1', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0008",
+      "representation": "('terminal', 'deploy_1_2', 'deploy_3_0', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0009",
+      "representation": "('terminal', 'deploy_2_1', 'deploy_0_3', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0010",
+      "representation": "('terminal', 'deploy_2_1', 'deploy_1_2', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0011",
+      "representation": "('terminal', 'deploy_2_1', 'deploy_2_1', 'tie', 'tie', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0012",
+      "representation": "('terminal', 'deploy_2_1', 'deploy_3_0', 'player_2', 'player_1', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0013",
+      "representation": "('terminal', 'deploy_3_0', 'deploy_0_3', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0014",
+      "representation": "('terminal', 'deploy_3_0', 'deploy_1_2', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0015",
+      "representation": "('terminal', 'deploy_3_0', 'deploy_2_1', 'player_1', 'player_2', 'draw')",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0016",
+      "representation": "('terminal', 'deploy_3_0', 'deploy_3_0', 'tie', 'tie', 'draw')",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "deploy_0_3",
+        "player_2": "deploy_0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "own=deploy_0_3;opponent=deploy_0_3;battlefield_1=tie;battlefield_2=tie;overall=draw",
+            "player_2": "own=deploy_0_3;opponent=deploy_0_3;battlefield_1=tie;battlefield_2=tie;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_0_3",
+        "player_2": "deploy_1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "own=deploy_0_3;opponent=deploy_1_2;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_1_2;opponent=deploy_0_3;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_0_3",
+        "player_2": "deploy_2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "own=deploy_0_3;opponent=deploy_2_1;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_2_1;opponent=deploy_0_3;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_0_3",
+        "player_2": "deploy_3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "own=deploy_0_3;opponent=deploy_3_0;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_3_0;opponent=deploy_0_3;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_1_2",
+        "player_2": "deploy_0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "player_1": "own=deploy_1_2;opponent=deploy_0_3;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_0_3;opponent=deploy_1_2;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_1_2",
+        "player_2": "deploy_1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "own=deploy_1_2;opponent=deploy_1_2;battlefield_1=tie;battlefield_2=tie;overall=draw",
+            "player_2": "own=deploy_1_2;opponent=deploy_1_2;battlefield_1=tie;battlefield_2=tie;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_1_2",
+        "player_2": "deploy_2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0007",
+          "observations": {
+            "player_1": "own=deploy_1_2;opponent=deploy_2_1;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_2_1;opponent=deploy_1_2;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_1_2",
+        "player_2": "deploy_3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0008",
+          "observations": {
+            "player_1": "own=deploy_1_2;opponent=deploy_3_0;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_3_0;opponent=deploy_1_2;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_2_1",
+        "player_2": "deploy_0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0009",
+          "observations": {
+            "player_1": "own=deploy_2_1;opponent=deploy_0_3;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_0_3;opponent=deploy_2_1;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_2_1",
+        "player_2": "deploy_1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0010",
+          "observations": {
+            "player_1": "own=deploy_2_1;opponent=deploy_1_2;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_1_2;opponent=deploy_2_1;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_2_1",
+        "player_2": "deploy_2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0011",
+          "observations": {
+            "player_1": "own=deploy_2_1;opponent=deploy_2_1;battlefield_1=tie;battlefield_2=tie;overall=draw",
+            "player_2": "own=deploy_2_1;opponent=deploy_2_1;battlefield_1=tie;battlefield_2=tie;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_2_1",
+        "player_2": "deploy_3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0012",
+          "observations": {
+            "player_1": "own=deploy_2_1;opponent=deploy_3_0;battlefield_1=player_2;battlefield_2=player_1;overall=draw",
+            "player_2": "own=deploy_3_0;opponent=deploy_2_1;battlefield_1=player_2;battlefield_2=player_1;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_3_0",
+        "player_2": "deploy_0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0013",
+          "observations": {
+            "player_1": "own=deploy_3_0;opponent=deploy_0_3;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_0_3;opponent=deploy_3_0;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_3_0",
+        "player_2": "deploy_1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0014",
+          "observations": {
+            "player_1": "own=deploy_3_0;opponent=deploy_1_2;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_1_2;opponent=deploy_3_0;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_3_0",
+        "player_2": "deploy_2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0015",
+          "observations": {
+            "player_1": "own=deploy_3_0;opponent=deploy_2_1;battlefield_1=player_1;battlefield_2=player_2;overall=draw",
+            "player_2": "own=deploy_2_1;opponent=deploy_3_0;battlefield_1=player_1;battlefield_2=player_2;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "deploy_3_0",
+        "player_2": "deploy_3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0016",
+          "observations": {
+            "player_1": "own=deploy_3_0;opponent=deploy_3_0;battlefield_1=tie;battlefield_2=tie;overall=draw",
+            "player_2": "own=deploy_3_0;opponent=deploy_3_0;battlefield_1=tie;battlefield_2=tie;overall=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

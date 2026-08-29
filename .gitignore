@@ -217,5 +217,11 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Local outputs from the modular POSG evaluation pipeline
+evaluation_results/
+
+# Failed local connectivity probe; the completed benchmark run remains tracked.
+experiments/openrouter/openrouter-20260829T150535Z/
+
 
 e.py

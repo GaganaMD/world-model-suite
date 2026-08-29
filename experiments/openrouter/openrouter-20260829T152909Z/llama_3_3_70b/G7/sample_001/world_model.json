@@ -1,0 +1,147 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0004"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'heavy_sentence'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'light_sentence'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'player_1_free'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'player_2_free'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stay_silent",
+          "testify"
+        ],
+        "player_2": [
+          "stay_silent",
+          "testify"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0004",
+      "representation": "'s0'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "stay_silent",
+        "player_2": "stay_silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "both_stay_silent",
+            "player_2": "both_stay_silent"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "stay_silent",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "player_2_testify",
+            "player_2": "player_2_testify"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -3.0,
+            "player_2": 3.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "stay_silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "player_1_testify",
+            "player_2": "player_1_testify"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.0,
+            "player_2": -3.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "both_testify",
+            "player_2": "both_testify"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -2.0,
+            "player_2": -2.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}
