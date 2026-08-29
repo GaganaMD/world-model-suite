@@ -1,0 +1,123 @@
+SYSTEM:
+You generate a finite executable POSG world model.
+Return ONLY Python source defining exactly `class GeneratedPOSG(AbstractPOSG)`.
+Do not use Markdown fences, imports, file/network access, eval, exec, or redefine AbstractPOSG.
+
+The implementation MUST satisfy this exact interface:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Hard contract (checked exhaustively):
+- Every player ID, state ID, action ID, and observation MUST be a string on EVERY branch.
+- Use one uniform state representation: strings only. Never return tuple/list/dict state IDs.
+- players is a non-empty list[str] with unique IDs.
+- initial_state() returns one non-terminal string state (not a distribution).
+- legal_actions() returns a non-empty list[str] for every player in every reachable non-terminal state.
+- joint_action is a dict keyed by the exact IDs in players. Read it only by those string keys.
+- transition() returns a non-empty dict[str, float] for every reachable joint action; probabilities
+  are finite, non-negative, at most 1, and sum to exactly 1.0.
+- observation() returns str for every player/outcome. Encode multiple fields as one f-string;
+  NEVER return a tuple, list, dict, or set.
+- reward() returns a finite int/float (not bool); is_terminal() returns bool.
+- All seven methods and the players @property must be present with exactly the signatures above.
+- Keep the reachable model finite and small (prefer <= 100 states and <= 10 decision steps).
+- Implement the supplied game's strategic choices, chance, information, rewards, and terminal outcomes.
+Before answering, silently verify every return path against this contract.
+
+USER:
+Create a situation-specific GeneratedPOSG for this game case.
+
+GAME CASE:
+Two bidders each submit a single sealed bid for an item. The higher bid wins the item; ties are broken by a coin flip. Each bidder privately values the item at either low or high, but their value is unknown to the other.
+
+
+Your previous implementation failed mechanical validation.
+Return a COMPLETE replacement class, not a patch and not an explanation.
+Do not repeat the previous implementation unchanged. Trace the exact reachable
+state/next_state branch named by each error. Every method must return on every
+reachable control-flow path: add an unconditional final string fallback to
+observation(), a finite numeric fallback such as 0.0 to reward(), a non-empty
+list[str] fallback to legal_actions() for non-terminal states, and a valid
+dict[str, float] fallback to transition() wherever a conditional chain could
+otherwise fall through and implicitly return None.
+
+VALIDATION ERRORS:
+SyntaxError: invalid syntax. Perhaps you forgot a comma? (<unknown>, line 28)
+
+PREVIOUS CODE:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["low_bid", "medium_bid", "high_bid"]
+        if state == "terminal":
+            return ["noop"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            bid1 = joint_action["player_1"]
+            bid2 = joint_action["player_2"]
+            bid_values = {
+                "low_bid": 1.0,
+                "medium_bid": 2.0,
+                "high_bid": 3.0
+            }
+            v1 = bid_values[bid1]
+            v2 = bid_values[bid2]
+            if v1 > v2:
+                return {"outcome_p1_high": 寿0.5, "outcome_p1_high_alt": 0.5}
+            elif v2 > v1:
+                return {"outcome_p2_high": 0.5, "outcome_p2_high_alt": 0.5}
+            else:
+                return {"tie_p1_wins": 0.5, "tie_p2_wins": 0.5}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            if next_state.startswith("outcome_p1"):
+                return "winner_player_1"
+            elif next_state.startswith("outcome_p2"):
+                return "winner_player_2"
+            else:
+                return "tie"
+        return "game_over"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "s0":
+            return 0.0
+        bid_values = {
+            "low_bid": 1.0,
+            "medium_bid": 2.0,
+            "high_bid": 3.0
+        }
+        value_p1 = 3.0
+        value_p2 = 3.0
+        bid1 = bid_values[joint_action["player_1"]]
+        bid2 = bid_values[joint_action["player_2"]]
+        if player == "player_1":
+            if next_state.startswith("outcome_p1"):
+                return value_p1 - bid1
+            else:
+                return 0.0
+        else:
+            if next_state.startswith("outcome_p2"):
+                return value_p2 - bid2
+            else:
+                return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal" or state.startswith("outcome") or state.startswith("tie")

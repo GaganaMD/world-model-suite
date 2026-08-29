@@ -1,0 +1,8 @@
+{
+  "errors": [
+    "SyntaxError: unterminated string literal (detected at line 1) (<unknown>, line 1)"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}

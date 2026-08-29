@@ -1,0 +1,520 @@
+{
+  "run_id": "failed-followup-20260830",
+  "expected_cells": 10,
+  "first_pass_passed": 4,
+  "final_passed": 10,
+  "final_failed": 0,
+  "attempt_count": 21,
+  "records": [
+    {
+      "tag": "gpt_5_6_sol_G6_s01_r5",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 5,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 25,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788033223-kulhSZgjxBAqxZeA8lPq",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 767,
+          "completion_tokens": 602,
+          "total_tokens": 1369,
+          "cost": 0.007554,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.007554,
+            "upstream_inference_prompt_cost": 0.001534,
+            "upstream_inference_completions_cost": 0.00602
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.318,
+        "attempt": 1
+      },
+      "total_seconds": 10.959,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G6_s01_r5\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G6_s01_r5\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G2_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 37,
+      "transitions_checked": 1,
+      "provider_meta": {
+        "request_id": "gen-1788033234-s5J6J4aPcryb0U1oFy79",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 535,
+          "completion_tokens": 653,
+          "total_tokens": 1188,
+          "cost": 0.00044496,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 16,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00044496,
+            "upstream_inference_prompt_cost": 0.0001054,
+            "upstream_inference_completions_cost": 0.00033956
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 13.861,
+        "attempt": 1
+      },
+      "total_seconds": 14.704,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G2_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G3_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788033248-8uwF7wbuAd9EZSATqoUb",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 549,
+          "completion_tokens": 443,
+          "total_tokens": 992,
+          "cost": 0.00033856,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 16,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00033856,
+            "upstream_inference_prompt_cost": 0.0001082,
+            "upstream_inference_completions_cost": 0.00023036
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 14.965,
+        "attempt": 1
+      },
+      "total_seconds": 15.825,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G3_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G5_s01_r1",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 4,
+      "transitions_checked": 6,
+      "provider_meta": {
+        "request_id": "gen-1788033269-CFujNgFxyLBufKUfQx27",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "DeepInfra",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1149,
+          "completion_tokens": 411,
+          "total_tokens": 1560,
+          "cost": 0.00024642,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00024642,
+            "upstream_inference_prompt_cost": 0.0001149,
+            "upstream_inference_completions_cost": 0.00013152
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 27.593,
+        "attempt": 1
+      },
+      "total_seconds": 28.671,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G5_s01_r1\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G5_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G8_s01_r1",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 7,
+      "provider_meta": {
+        "request_id": "gen-1788033318-CqeeN1KdSPcRt9oxunlM",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1432,
+          "completion_tokens": 724,
+          "total_tokens": 2156,
+          "cost": 0.00060528,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 576,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00060528,
+            "upstream_inference_prompt_cost": 0.0002288,
+            "upstream_inference_completions_cost": 0.00037648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 15.442,
+        "attempt": 1
+      },
+      "total_seconds": 16.222,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G8_s01_r1\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G8_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G3_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 9,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788033334-dGXl897MU4JVQn9ms4GL",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Novita",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 561,
+          "completion_tokens": 615,
+          "total_tokens": 1176,
+          "cost": 0.00208062,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00208062,
+            "upstream_inference_prompt_cost": 0.00023562,
+            "upstream_inference_completions_cost": 0.001845
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 12.892,
+        "attempt": 1
+      },
+      "total_seconds": 13.672,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G3_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G1_s01_r1",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788033349-mlorhWjvSROxaACT8Lay",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "CoreWeave",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 673,
+          "completion_tokens": 482,
+          "total_tokens": 1155,
+          "cost": 0.00022245,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00022245,
+            "upstream_inference_prompt_cost": 8.749e-05,
+            "upstream_inference_completions_cost": 0.00013496
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 2.296,
+        "attempt": 1
+      },
+      "total_seconds": 3.039,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G1_s01_r1\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G1_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G3_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 4,
+      "transitions_checked": 6,
+      "provider_meta": {
+        "request_id": "gen-1788033353-XXmointtAz5KBHQuFNc0",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Mancer 2",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 534,
+          "completion_tokens": 772,
+          "total_tokens": 1306,
+          "cost": 0.0004725,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0004725,
+            "upstream_inference_prompt_cost": 8.781079285397903e-05,
+            "upstream_inference_completions_cost": 0.00038468920714602095
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 4.854,
+        "attempt": 1
+      },
+      "total_seconds": 5.572,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G3_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G6_s01_r1",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 7,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788033379-SRZr0HjTwv0rLCkW09D0",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Morph",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1328,
+          "completion_tokens": 629,
+          "total_tokens": 1957,
+          "cost": 0.000306002,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.000306002,
+            "upstream_inference_prompt_cost": 0.00013114,
+            "upstream_inference_completions_cost": 0.000174862
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 9.409,
+        "attempt": 1
+      },
+      "total_seconds": 10.158,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G6_s01_r1\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G6_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G9_s01_r2",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 2,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 4,
+      "transitions_checked": 48,
+      "provider_meta": {
+        "request_id": "gen-1788033426-Y1RjLP4i4ACyAV9IQIJG",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Sail Research",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 2194,
+          "completion_tokens": 633,
+          "total_tokens": 2827,
+          "cost": 0.00023351,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 512,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00023351,
+            "upstream_inference_prompt_cost": 0.00011957,
+            "upstream_inference_completions_cost": 0.00011394
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 10.491,
+        "attempt": 1
+      },
+      "total_seconds": 11.227,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G9_s01_r2\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G9_s01_r2\\world_model_graph.pth"
+      ]
+    }
+  ]
+}

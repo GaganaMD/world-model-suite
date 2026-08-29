@@ -1,0 +1,11 @@
+model,model_id,case,sample,repair_round,status,failed_stage,states_checked,transitions_checked,total_seconds
+gpt_5_6_sol,openai/gpt-5.6-sol,G6,1,5,passed,,25,4,10.959
+llama_3_3_70b,meta-llama/llama-3.3-70b-instruct,G2,1,0,passed,,37,1,14.704
+llama_3_3_70b,meta-llama/llama-3.3-70b-instruct,G3,1,0,passed,,3,4,15.825
+llama_3_3_70b,meta-llama/llama-3.3-70b-instruct,G5,1,1,passed,,4,6,28.671
+llama_3_3_70b,meta-llama/llama-3.3-70b-instruct,G8,1,1,passed,,5,7,16.222
+qwen_3_8_27b,qwen/qwen3.8-27b,G3,1,0,passed,,9,4,13.672
+deepseek_v4_flash,deepseek/deepseek-v4-flash-0731,G1,1,1,passed,,2,9,3.039
+deepseek_v4_flash,deepseek/deepseek-v4-flash-0731,G3,1,0,passed,,4,6,5.572
+deepseek_v4_flash,deepseek/deepseek-v4-flash-0731,G6,1,1,passed,,7,9,10.158
+deepseek_v4_flash,deepseek/deepseek-v4-flash-0731,G9,1,2,passed,,4,48,11.227

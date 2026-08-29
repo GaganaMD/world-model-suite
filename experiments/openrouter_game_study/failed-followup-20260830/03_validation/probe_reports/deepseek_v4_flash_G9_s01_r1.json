@@ -1,0 +1,8 @@
+{
+  "errors": [
+    "SyntaxError: unmatched ']' (<unknown>, line 12)"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}

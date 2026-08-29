@@ -1,0 +1,144 @@
+SYSTEM:
+You generate a finite executable POSG world model.
+Return ONLY Python source defining exactly `class GeneratedPOSG(AbstractPOSG)`.
+Do not use Markdown fences, imports, file/network access, eval, exec, or redefine AbstractPOSG.
+
+The implementation MUST satisfy this exact interface:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Hard contract (checked exhaustively):
+- Every player ID, state ID, action ID, and observation MUST be a string on EVERY branch.
+- Use one uniform state representation: strings only. Never return tuple/list/dict state IDs.
+- players is a non-empty list[str] with unique IDs.
+- initial_state() returns one non-terminal string state (not a distribution).
+- legal_actions() returns a non-empty list[str] for every player in every reachable non-terminal state.
+- joint_action is a dict keyed by the exact IDs in players. Read it only by those string keys.
+- transition() returns a non-empty dict[str, float] for every reachable joint action; probabilities
+  are finite, non-negative, at most 1, and sum to exactly 1.0.
+- observation() returns str for every player/outcome. Encode multiple fields as one f-string;
+  NEVER return a tuple, list, dict, or set.
+- reward() returns a finite int/float (not bool); is_terminal() returns bool.
+- All seven methods and the players @property must be present with exactly the signatures above.
+- Keep the reachable model finite and small (prefer <= 100 states and <= 10 decision steps).
+- Implement the supplied game's strategic choices, chance, information, rewards, and terminal outcomes.
+Before answering, silently verify every return path against this contract.
+
+USER:
+Create a situation-specific GeneratedPOSG for this game case.
+
+GAME CASE:
+Two commanders each have three soldiers to deploy across two battlefields simultaneously. Each commander allocates all three soldiers between the two battlefields (any split: 0–3 and 3–0, 1–2 and 2–1). The commander who sends more soldiers to a battlefield wins it. The commander who wins more battlefields wins the overall engagement; if each wins one battlefield, it is a draw.
+
+
+Your previous implementation failed mechanical validation.
+Return a COMPLETE replacement class, not a patch and not an explanation.
+Do not repeat the previous implementation unchanged. Trace the exact reachable
+state/next_state branch named by each error. Every method must return on every
+reachable control-flow path: add an unconditional final string fallback to
+observation(), a finite numeric fallback such as 0.0 to reward(), a non-empty
+list[str] fallback to legal_actions() for non-terminal states, and a valid
+dict[str, float] fallback to transition() wherever a conditional chain could
+otherwise fall through and implicitly return None.
+
+VALIDATION ERRORS:
+SyntaxError: unmatched ']' (<unknown>, line 12)
+
+PREVIOUS CODE:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "terminal":
+            return ["noop"]
+        if state in ["s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15", "s16", "s17", "s18", "s19", "s20", "s21", "s22", "s23", "s24", "s25", "s26", "s27", "s28", "s29", "s30", "s31", "s32", "s33", "s34", "s35", "s36", "s37", "s38", "s39", "s40", "s41", "s42", "s43", "s44", "s45", "s46", "s47", "s48", "s49", "s50", "s51", "s52", "s53", "s54", "s55", "s56", "s57", "s58", "s59", "s60", "s61", "s62", "s63", "s64", "s65", "s66", "s67", "s68", "s69", "s70", "s71", "s72", "s73", "s74", "s75", "s76", "s77", "s78", "s79", "s80", "s81", "s82", "s83", "s84", "s85", "s86", "s87", "s88", "s89", "s90", "s91", "s92", "s93", "s94", "s95", "s96", "s97", "s98", "s99", "s100", "s101", "s102", "s103", "s104", "s105", "s106", "s107", "s108", "s109", "s110", "s111", "s112", "s113", "s114", "s115", "s116", "s117", "s118", "s119", "s120", "s121", "s122", "s123", "s124", "s125", "s126", "s127", "s128", "s129", "s130", "s131", "s132", "s133", "s134", "s135", "s136", "s137", "s138", "s139", "s140", "s141", "s142", "s143", "s144", "s145", "s146", "s147", "s148", "s149", "s150", "s151", "s152", "s153", "s154", "s155", "s156", "s157", "s158", "s159", "s160", "s161", "s162", "s163", "s164", "s165", "s166", "s167", "s168", "s169", "s170", "s171", "s172", "s173", "s174", "s175", "s176", "s177", "s178", "s179", "s180", "s181", "s182", "s183", "s184", "s185", "s186", "s187", "s188", "s189", "s190", "s191", "s192", "s193", "s194", "s195", "s196", "s197", "s198", "s199", "s200"]]:
+            return ["0", "1", "2", "3"]
+        return ["0", "1", "2", "3"]
+
+    def transition(self, state, joint_action):
+        if state == "terminal":
+            return {"terminal": 1.0}
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return {"terminal": 1.0}
+        if state == "s0":
+            return {"s1": 1.0}
+        if state.startswith("s"):
+            try:
+                idx = int(state[1:])
+            except ValueError:
+                return {"terminal": 1.0}
+            if idx >= 200:
+                return {"terminal": 1.0}
+            if idx < 200:
+                return {"s" + str(idx + 1): 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return "obs_terminal"
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return "obs_error"
+        if state == "s0":
+            return "obs_start"
+        if state.startswith("s"):
+            try:
+                idx = int(state[1:])
+            except ValueError:
+                return "obs_error"
+            if idx >= 200:
+                return "obs_terminal"
+            if idx < 200:
+                return "obs_" + str(idx)
+        return "obs_fallback"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return 0.0
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return 0.0
+        if state == "s0":
+            return 0.0
+        if state.startswith("s"):
+            try:
+                idx = int(state[1:])
+            except ValueError:
+                return 0.0
+            if idx >= 200:
+                return 0.0
+            if idx < 200:
+                return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        if state == "terminal":
+            return True
+        if state.startswith("s"):
+            try:
+                idx = int(state[1:])
+            except ValueError:
+                return True
+            if idx >= 200:
+                return True
+            return False
+        return True
