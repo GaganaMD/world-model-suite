@@ -1,0 +1,57 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["heads", "tails"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            return {"terminal_heads": 0.5, "terminal_tails": 0.5}
+        return {"terminal_heads": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        p1 = joint_action.get("player_1", "heads")
+        p2 = joint_action.get("player_2", "tails")
+        coin = "heads" if next_state == "terminal_heads" else "tails"
+        return f"state={state};p1={p1};p2={p2};coin={coin};next={next_state}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "s0":
+            return 0.0
+        p1 = joint_action.get("player_1", "heads")
+        p2 = joint_action.get("player_2", "tails")
+        coin = "heads" if next_state == "terminal_heads" else "tails"
+        
+        # Determine who matches the coin
+        p1_matches = (p1 == coin)
+        p2_matches = (p2 == coin)
+        
+        # Reward logic:
+        # If both match or neither matches -> draw (0 for both)
+        # If only one matches -> that player wins (+1), other loses (-1)
+        
+        if p1_matches and not p2_matches:
+            if player == "player_1":
+                return 1.0
+            else:
+                return -1.0
+        elif p2_matches and not p1_matches:
+            if player == "player_1":
+                return -1.0
+            else:
+                return 1.0
+        else:
+            # Draw case: both match or neither matches
+            return 0.0
+
+    def is_terminal(self, state):
+        return state in ["terminal_heads", "terminal_tails"]
+```

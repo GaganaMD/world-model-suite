@@ -1,0 +1,90 @@
+class GeneratedPOSG(AbstractPOSG):
+    """
+    Sealed-bid first-price auction with private binary values.
+
+    Timeline:
+      s0                     -> chance draws (v1, v2) in {L,H}^2, uniform (4 outcomes)
+      "bid|v1|v2"            -> both bidders simultaneously choose a bid in {0,1,2,3}
+      "done|v1|v2|b1|b2|w"   -> terminal, w in {1,2} is the winner (coin flip on ties)
+
+    Values: L = 2, H = 4. Bids are integers 0..3.
+    Payoff to winner = value - bid; loser gets 0.
+    """
+
+    VALUES = {"L": 2.0, "H": 4.0}
+    BIDS = ["0", "1", "2", "3"]
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["wait"]
+        if state.startswith("bid|"):
+            return list(self.BIDS)
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            return {
+                "bid|L|L": 0.25,
+                "bid|L|H": 0.25,
+                "bid|H|L": 0.25,
+                "bid|H|H": 0.25,
+            }
+        if state.startswith("bid|"):
+            parts = state.split("|")
+            v1, v2 = parts[1], parts[2]
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 not in self.BIDS:
+                a1 = "0"
+            if a2 not in self.BIDS:
+                a2 = "0"
+            b1, b2 = int(a1), int(a2)
+            if b1 > b2:
+                return {"done|" + v1 + "|" + v2 + "|" + a1 + "|" + a2 + "|1": 1.0}
+            if b2 > b1:
+                return {"done|" + v1 + "|" + v2 + "|" + a1 + "|" + a2 + "|2": 1.0}
+            return {
+                "done|" + v1 + "|" + v2 + "|" + a1 + "|" + a2 + "|1": 0.5,
+                "done|" + v1 + "|" + v2 + "|" + a1 + "|" + a2 + "|2": 0.5,
+            }
+        return {state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            parts = next_state.split("|")
+            v1, v2 = parts[1], parts[2]
+            own = v1 if player == "player_1" else v2
+            return f"phase=value;you={own}"
+        if state.startswith("bid|"):
+            parts = next_state.split("|")
+            v1, v2, b1, b2, w = parts[1], parts[2], parts[3], parts[4], parts[5]
+            own_v = v1 if player == "player_1" else v2
+            own_b = b1 if player == "player_1" else b2
+            opp_b = b2 if player == "player_1" else b1
+            won = "yes" if ((player == "player_1" and w == "1") or (player == "player_2" and w == "2")) else "no"
+            return f"phase=result;you={own_v};yourbid={own_b};oppbid={opp_b};won={won}"
+        return f"phase=end;player={player}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if not state.startswith("bid|"):
+            return 0.0
+        parts = next_state.split("|")
+        v1, v2, b1, b2, w = parts[1], parts[2], parts[3], parts[4], parts[5]
+        if player == "player_1":
+            if w != "1":
+                return 0.0
+            return float(self.VALUES[v1] - int(b1))
+        else:
+            if w != "2":
+                return 0.0
+            return float(self.VALUES[v2] - int(b2))
+
+    def is_terminal(self, state):
+        return state.startswith("done|")

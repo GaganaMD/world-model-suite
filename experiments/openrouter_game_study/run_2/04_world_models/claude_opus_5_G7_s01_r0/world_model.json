@@ -1,0 +1,322 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0002"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "silent",
+          "testify"
+        ],
+        "player_2": [
+          "silent",
+          "testify"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'interrogate_strong'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "silent",
+          "testify"
+        ],
+        "player_2": [
+          "silent",
+          "testify"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'interrogate_weak'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "wait"
+        ],
+        "player_2": [
+          "wait"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0002",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0003",
+      "representation": "'terminal_strong_SS'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0004",
+      "representation": "'terminal_strong_ST'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0005",
+      "representation": "'terminal_strong_TS'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0006",
+      "representation": "'terminal_strong_TT'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0007",
+      "representation": "'terminal_weak_SS'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0008",
+      "representation": "'terminal_weak_ST'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0009",
+      "representation": "'terminal_weak_TS'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0010",
+      "representation": "'terminal_weak_TT'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "phase=verdict;evidence=strong;my_choice=silent;other_choice=silent;state=terminal_strong_SS",
+            "player_2": "phase=verdict;evidence=strong;my_choice=silent;other_choice=silent;state=terminal_strong_SS"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -3.0,
+            "player_2": -3.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "phase=verdict;evidence=strong;my_choice=silent;other_choice=testify;state=terminal_strong_ST",
+            "player_2": "phase=verdict;evidence=strong;my_choice=testify;other_choice=silent;state=terminal_strong_ST"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -12.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "player_1": "phase=verdict;evidence=strong;my_choice=testify;other_choice=silent;state=terminal_strong_TS",
+            "player_2": "phase=verdict;evidence=strong;my_choice=silent;other_choice=testify;state=terminal_strong_TS"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": -12.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "phase=verdict;evidence=strong;my_choice=testify;other_choice=testify;state=terminal_strong_TT",
+            "player_2": "phase=verdict;evidence=strong;my_choice=testify;other_choice=testify;state=terminal_strong_TT"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -8.0,
+            "player_2": -8.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0007",
+          "observations": {
+            "player_1": "phase=verdict;evidence=weak;my_choice=silent;other_choice=silent;state=terminal_weak_SS",
+            "player_2": "phase=verdict;evidence=weak;my_choice=silent;other_choice=silent;state=terminal_weak_SS"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0008",
+          "observations": {
+            "player_1": "phase=verdict;evidence=weak;my_choice=silent;other_choice=testify;state=terminal_weak_ST",
+            "player_2": "phase=verdict;evidence=weak;my_choice=testify;other_choice=silent;state=terminal_weak_ST"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -10.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0009",
+          "observations": {
+            "player_1": "phase=verdict;evidence=weak;my_choice=testify;other_choice=silent;state=terminal_weak_TS",
+            "player_2": "phase=verdict;evidence=weak;my_choice=silent;other_choice=testify;state=terminal_weak_TS"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -10.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0010",
+          "observations": {
+            "player_1": "phase=verdict;evidence=weak;my_choice=testify;other_choice=testify;state=terminal_weak_TT",
+            "player_2": "phase=verdict;evidence=weak;my_choice=testify;other_choice=testify;state=terminal_weak_TT"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -6.0,
+            "player_2": -6.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "wait",
+        "player_2": "wait"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "phase=interrogation;hint=prosecutor_hints_strong_case;room=isolated;player=player_1",
+            "player_2": "phase=interrogation;hint=prosecutor_hints_strong_case;room=isolated;player=player_2"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "phase=interrogation;hint=prosecutor_hints_weak_case;room=isolated;player=player_1",
+            "player_2": "phase=interrogation;hint=prosecutor_hints_weak_case;room=isolated;player=player_2"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

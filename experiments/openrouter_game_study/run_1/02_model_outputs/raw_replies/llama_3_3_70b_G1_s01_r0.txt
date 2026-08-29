@@ -1,0 +1,37 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["rock", "paper", "scissors"]
+        elif state in ["win", "lose", "tie"]: 
+            return []
+    def transition(self, state, joint_action): 
+        if state == "start":
+            player1_action = joint_action["player_1"]
+            player2_action = joint_action["player_2"]
+            if (player1_action == "rock" and player2_action == "scissors") or \
+               (player1_action == "scissors" and player2_action == "paper") or \
+               (player1_action == "paper" and player2_action == "rock"):
+                return {"win": 1.0}
+            elif player1_action == player2_action:
+                return {"tie": 1.0}
+            else:
+                return {"lose": 1.0}
+        else:
+            return {}
+    def observation(self, state, joint_action, next_state, player): 
+        if player == "player_1":
+            return f"player_1 {joint_action['player_1']}, player_2 {joint_action['player_2']}, result {next_state}"
+        else:
+            return f"player_1 {joint_action['player_1']}, player_2 {joint_action['player_2']}, result {next_state}"
+    def reward(self, state, joint_action, next_state, player): 
+        if next_state == "win":
+            return 1.0
+        elif next_state == "lose":
+            return -1.0
+        else:
+            return 0.0
+    def is_terminal(self, state): 
+        return state in ["win", "lose", "tie"]

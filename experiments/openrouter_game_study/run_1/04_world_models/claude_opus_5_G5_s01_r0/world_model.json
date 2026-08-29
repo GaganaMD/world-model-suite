@@ -1,0 +1,147 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "heads",
+          "tails"
+        ],
+        "player_2": [
+          "heads",
+          "tails"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'place'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'terminal_differ_heads_tails'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'terminal_differ_tails_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'terminal_match_heads_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "'terminal_match_tails_tails'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "heads",
+        "player_2": "heads"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "reveal|me=heads|p1=heads|p2=heads|result=match|winner=player_1",
+            "player_2": "reveal|me=heads|p1=heads|p2=heads|result=match|winner=player_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "heads",
+        "player_2": "tails"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "reveal|me=heads|p1=heads|p2=tails|result=differ|winner=player_2",
+            "player_2": "reveal|me=tails|p1=heads|p2=tails|result=differ|winner=player_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "tails",
+        "player_2": "heads"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "reveal|me=tails|p1=tails|p2=heads|result=differ|winner=player_2",
+            "player_2": "reveal|me=heads|p1=tails|p2=heads|result=differ|winner=player_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "tails",
+        "player_2": "tails"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "reveal|me=tails|p1=tails|p2=tails|result=match|winner=player_1",
+            "player_2": "reveal|me=tails|p1=tails|p2=tails|result=match|winner=player_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

@@ -1,0 +1,20 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["heads", "tails"]
+    def transition(self, state, joint_action): 
+        if state == "s0":
+            return {s1: 0.5, "s2": 0.5}
+        elif state == "s1":
+            if joint_action["player_1"] == "heads" and joint_action[player_2] == "heads":
+                return {"draw": 1.0}
+            elif joint_action["player_1"] == "heads" and joint_action["player_2"] == "tails":
+                return {"player_1_wins": 1.0}
+            elif joint_action["player_1"] == "tails" and joint_action["player_2"] == "heads":
+                return {"player_2_wins": 1.0}
+            else:
+                return {"draw": 1.0}
+        elif state == "s2":
+            if joint_action["player_1"] == "tails" and joint_action["player_2"] == "tails":
+                return

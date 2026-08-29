@@ -1,0 +1,51 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["suspect_1", "suspect_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["testify", "silent"]
+        elif state in ["both_testify", "both_silent", "suspect_1_testify", "suspect_2_testify"]:
+            return []
+    def transition(self, state, joint_action): 
+        if state == "start":
+            if joint_action["suspect_1"] == "testify" and joint_action["suspect_2"] == "testify":
+                return {"both_testify": 1.0}
+            elif joint_action["suspect_1"] == "testify" and joint_action["suspect_2"] == "silent":
+                return {"suspect_1_testify": 1.0}
+            elif joint_action["suspect_1"] == "silent" and joint_action["suspect_2"] == "testify":
+                return {"suspect_2_testify": 1.0}
+            else:
+                return {"both_silent": 1.0}
+        else:
+            return {state: 1.0}
+    def observation(self, state, joint_action, next_state, player): 
+        if next_state == "both_testify":
+            return f"both_testify_{player}"
+        elif next_state == "both_silent":
+            return f"both_silent_{player}"
+        elif next_state == "suspect_1_testify":
+            return f"suspect_1_testify_{player}"
+        elif next_state == "suspect_2_testify":
+            return f"suspect_2_testify_{player}"
+        else:
+            return f"start_{player}"
+    def reward(self, state, joint_action, next_state, player): 
+        if next_state == "both_testify":
+            return -5.0
+        elif next_state == "both_silent":
+            return -1.0
+        elif next_state == "suspect_1_testify":
+            if player == "suspect_1":
+                return 0.0
+            else:
+                return -10.0
+        elif next_state == "suspect_2_testify":
+            if player == "suspect_2":
+                return 0.0
+            else:
+                return -10.0
+        else:
+            return 0.0
+    def is_terminal(self, state): 
+        return state!= "start"

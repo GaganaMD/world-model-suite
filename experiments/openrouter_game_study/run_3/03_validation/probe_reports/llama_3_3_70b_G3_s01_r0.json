@@ -1,0 +1,25 @@
+{
+  "errors": [
+    "Outcome 's1', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's1', player 'player_2': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_1': TypeError: observation() must return str.",
+    "Outcome 's2', player 'player_2': TypeError: observation() must return str."
+  ],
+  "stage": "rollout",
+  "states_checked": 6,
+  "status": "failed",
+  "transitions_checked": 12,
+  "warnings": []
+}

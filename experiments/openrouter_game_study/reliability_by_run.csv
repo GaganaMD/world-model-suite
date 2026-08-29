@@ -1,0 +1,4 @@
+run,first_pass_passed,first_pass_total,first_pass_rate_pct,final_passed,final_total,final_rate_pct,attempt_count,json_artifacts,pth_artifacts
+run_1,43,45,95.56,45,45,100.0,47,45,45
+run_2,41,45,91.11,45,45,100.0,50,45,45
+run_3,40,45,88.89,45,45,100.0,68,45,45

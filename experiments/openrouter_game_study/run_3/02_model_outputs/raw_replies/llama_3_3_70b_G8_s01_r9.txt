@@ -1,0 +1,56 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["hunter_1", "hunter_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["hunt_stag", "hunt_hare"]
+        elif state == "both_hunt_stag": 
+            return ["eat_stag"]
+        elif state == "one_hunts_stag": 
+            return ["go_home"]
+        elif state == "both_hunt_hare": 
+            return ["eat_hare"]
+        else: 
+            return ["wait"]
+    def transition(self, state, joint_action): 
+        if state == "start" and joint_action["hunter_1"] == "hunt_stag" and joint_action["hunter_2"] == "hunt_stag": 
+            return {"both_hunt_stag": 1.0}
+        elif state == "start" and (joint_action["hunter_1"] == "hunt_stag" or joint_action["hunter_2"] == "hunt_stag"): 
+            return {"one_hunts_stag": 1.0}
+        elif state == "start" and joint_action["hunter_1"] == "hunt_hare" and joint_action["hunter_2"] == "hunt_hare": 
+            return {"both_hunt_hare": 1.0}
+        elif state == "both_hunt_stag" and joint_action["hunter_1"] == "eat_stag" and joint_action["hunter_2"] == "eat_stag": 
+            return {"terminal": 1.0}
+        elif state == "one_hunts_stag": 
+            return {"terminal": 1.0}
+        elif state == "both_hunt_hare": 
+            return {"terminal": 1.0}
+        else: 
+            return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): 
+        if state == "start" and next_state == "both_hunt_stag": 
+            return f"both hunters are hunting a stag"
+        elif state == "start" and next_state == "one_hunts_stag": 
+            return f"one hunter is hunting a stag"
+        elif state == "start" and next_state == "both_hunt_hare": 
+            return f"both hunters are hunting a hare"
+        elif state == "both_hunt_stag" and next_state == "terminal": 
+            return f"both hunters eat the stag"
+        elif state == "one_hunts_stag" and next_state == "terminal": 
+            return f"one hunter goes home empty-handed"
+        elif state == "both_hunt_hare" and next_state == "terminal": 
+            return f"both hunters eat a hare"
+        else: 
+            return "game over"
+    def reward(self, state, joint_action, next_state, player): 
+        if state == "both_hunt_stag" and next_state == "terminal": 
+            return 10.0
+        elif state == "one_hunts_stag" and next_state == "terminal": 
+            return 0.0
+        elif state == "both_hunt_hare" and next_state == "terminal": 
+            return 5.0
+        else: 
+            return 0.0
+    def is_terminal(self, state): 
+        return state == "terminal"

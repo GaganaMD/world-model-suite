@@ -1,0 +1,56 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["roll"]
+        return ["outcome"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            return {f"s1_{d1}_{d2}": 1.0 / 36.0 for d1 in range(1, 7) for d2 in range(1, 7)}
+        if state.startswith("s1_"):
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            return "unknown"
+        if state.startswith("s1_"):
+            parts = state.split("_")
+            d1 = int(parts[1])
+            d2 = int(parts[2])
+            if player == "player_1":
+                return f"die={d1}"
+            else:
+                return f"die={d2}"
+        return "terminal"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state.startswith("s1_"):
+            parts = state.split("_")
+            d1 = int(parts[1])
+            d2 = int(parts[2])
+            if player == "player_1":
+                if d1 > d2:
+                    return 1.0
+                elif d1 < d2:
+                    return -1.0
+                else:
+                    return 0.0
+            else:
+                if d2 > d1:
+                    return 1.0
+                elif d2 < d1:
+                    return -1.0
+                else:
+                    return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

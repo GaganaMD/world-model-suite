@@ -1,0 +1,40 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        return ["allocate_0_3", "allocate_1_2", "allocate_2_1", "allocate_3_0"]
+
+    def transition(self, state, joint_action):
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        own = joint_action[player]
+        opponent = "player_2" if player == "player_1" else "player_1"
+        other = joint_action[opponent]
+        return f"own_{own}_opponent_{other}"
+
+    def reward(self, state, joint_action, next_state, player):
+        allocations = {
+            "allocate_0_3": (0, 3),
+            "allocate_1_2": (1, 2),
+            "allocate_2_1": (2, 1),
+            "allocate_3_0": (3, 0),
+        }
+        own = allocations[joint_action[player]]
+        opponent = "player_2" if player == "player_1" else "player_1"
+        other = allocations[joint_action[opponent]]
+        wins = int(own[0] > other[0]) + int(own[1] > other[1])
+        losses = int(own[0] < other[0]) + int(own[1] < other[1])
+        if wins > losses:
+            return 1.0
+        if losses > wins:
+            return -1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

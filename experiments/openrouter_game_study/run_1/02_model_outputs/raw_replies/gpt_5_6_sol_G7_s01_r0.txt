@@ -1,0 +1,50 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        return ["silent", "testify"]
+
+    def transition(self, state, joint_action):
+        action_1 = joint_action["player_1"]
+        action_2 = joint_action["player_2"]
+        if action_1 == "silent" and action_2 == "silent":
+            return {"terminal_both_silent": 1.0}
+        if action_1 == "testify" and action_2 == "testify":
+            return {"terminal_both_testify": 1.0}
+        if action_1 == "testify" and action_2 == "silent":
+            return {"terminal_player_1_testifies": 1.0}
+        return {"terminal_player_2_testifies": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if next_state == "terminal_both_silent":
+            return "light_sentence"
+        if next_state == "terminal_both_testify":
+            return "heavy_sentence"
+        if next_state == "terminal_player_1_testifies":
+            if player == "player_1":
+                return "go_free"
+            return "maximum_sentence"
+        if player == "player_2":
+            return "go_free"
+        return "maximum_sentence"
+
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "terminal_both_silent":
+            return -1.0
+        if next_state == "terminal_both_testify":
+            return -3.0
+        if next_state == "terminal_player_1_testifies":
+            if player == "player_1":
+                return 0.0
+            return -5.0
+        if player == "player_2":
+            return 0.0
+        return -5.0
+
+    def is_terminal(self, state):
+        return state == "terminal_both_silent" or state == "terminal_both_testify" or state == "terminal_player_1_testifies" or state == "terminal_player_2_testifies"

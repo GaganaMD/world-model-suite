@@ -1,0 +1,77 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["draw"]
+        if state.startswith("bid_"):
+            return ["bid_low", "bid_high"]
+        return ["action"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            joint_action["player_1"]
+            joint_action["player_2"]
+            return {
+                "bid_LL": 0.25,
+                "bid_LH": 0.25,
+                "bid_HL": 0.25,
+                "bid_HH": 0.25
+            }
+        if state.startswith("bid_"):
+            bid_1 = joint_action["player_1"]
+            bid_2 = joint_action["player_2"]
+            values = state[4:]
+            if bid_1 == bid_2:
+                return {
+                    f"terminal_{values}_{bid_1}_{bid_2}_P1": 0.5,
+                    f"terminal_{values}_{bid_1}_{bid_2}_P2": 0.5
+                }
+            winner = "P1" if bid_1 == "bid_high" else "P2"
+            return {f"terminal_{values}_{bid_1}_{bid_2}_{winner}": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0" and next_state.startswith("bid_"):
+            values = next_state[4:]
+            value = values[0] if player == "player_1" else values[1]
+            return f"private_value_{'low' if value == 'L' else 'high'}"
+        if next_state.startswith("terminal_"):
+            parts = next_state.split("_")
+            winner = parts[-1]
+            own_result = "win" if (
+                (player == "player_1" and winner == "P1") or
+                (player == "player_2" and winner == "P2")
+            ) else "lose"
+            return f"auction_result_{own_result}"
+        return "observation"
+
+    def reward(self, state, joint_action, next_state, player):
+        if not next_state.startswith("terminal_"):
+            return 0.0
+        parts = next_state.split("_")
+        if len(parts) < 7:
+            return 0.0
+        values = parts[1]
+        bid_1 = parts[2] + "_" + parts[3]
+        bid_2 = parts[4] + "_" + parts[5]
+        winner = parts[6]
+        player_won = (
+            (player == "player_1" and winner == "P1") or
+            (player == "player_2" and winner == "P2")
+        )
+        if not player_won:
+            return 0.0
+        value_code = values[0] if player == "player_1" else values[1]
+        value = 2.0 if value_code == "H" else 1.0
+        winning_bid = bid_1 if winner == "P1" else bid_2
+        price = 2.0 if winning_bid == "bid_high" else 1.0
+        return value - price
+
+    def is_terminal(self, state):
+        return state == "terminal" or state.startswith("terminal_")

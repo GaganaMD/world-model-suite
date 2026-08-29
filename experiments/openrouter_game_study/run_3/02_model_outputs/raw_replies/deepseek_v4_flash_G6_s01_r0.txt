@@ -1,0 +1,115 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if self.is_terminal(state):
+            return []
+        if state == "s0":
+            return ["bid_low", "bid_high"]
+        if state == "s1":
+            return ["bid_low", "bid_high"]
+        if state == "s2":
+            return ["bid_low", "bid_high"]
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            if joint_action["player_1"] == "bid_low" and joint_action["player_2"] == "bid_low":
+                return {"s1":  cover0.5, "s2": 0.5}
+            if joint_action["player_1"] == "bid_low" and joint_action["player_2"] == "bid_high":
+                return {"s1": 0.5, "s2": 0.5}
+            if joint_action["player_1"] == "bid_high" and joint_action["player_2"] == "bid_low":
+                return {"s1": 0.5, "s2": 0.5}
+            if joint_action["player_1"] == "bid_high" and joint_action["player_2"] == "bid_high":
+                return {"s1": 0.5, "s2": 0.5}
+        if state == "s1":
+            return {"terminal": 1.0}
+        if state == "s2":
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            if player == "player_1":
+                if joint_action["player_1"] == "bid_low":
+                    return "p1_bid_low_value_low"
+                else:
+                    return "p1_bid_high_value_high"
+            else:
+                if joint_action["player_2"] == "bid_low":
+                    return "p2_bid_low_value_low"
+                else:
+                    return "p2_bid_high_value_high"
+        if state == "s1":
+            if next_state == "terminal":
+                if joint_action["player_1"] == joint_action["player_2"]:
+                    winner = "player_1" if joint_action["player_1"] == "bid_low" and player == "player_1" else "tie"
+                else:
+                    winner = "player_1" if joint_action["player_1"] > joint_action["player_2"] else "player_2"
+                return f"outcome_winner_{winner}_state_s1"
+        if state == "s2":
+            if next_state == "terminal":
+                if joint_action["player_1"] == joint_action["player_2"]:
+                    winner = "player_1" if joint_action["player_1"] == "bid_low" and player == "player_1" else "tie"
+                else:
+                    winner = "player_1" if joint_action["player_1"] > joint_action["player_2"] else "player_2"
+                return f"outcome_winner_{winner}_state_s2"
+        return "default"
+
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "terminal":
+            if state == "s1":
+                if joint_action["player_1"] > joint_action["player_2"]:
+                    if player == "player_1":
+                        return 10.0 - 3.0
+                    else:
+                        return 0.0
+                elif joint_action["player_1"] < joint_action["player_2"]:
+                    if player == "player_2":
+                        return 10.0 - 3.0
+                    else:
+                        return 0.0
+                else:
+                    if joint_action["player_1"] == "bid_low":
+                        if player == "player_1":
+                            return (10.0 - 1.0) / 2.0
+                        else:
+                            return (10.0 - 1.0) / 2.0
+                    else:
+                        if player == "player_1":
+                            return (10.0 - 3.0) / 2.0
+                        else:
+                            return (10.0 - 3.0) / 2.0
+            if state == "s2":
+                if joint_action["player_1"] > joint_action["player_2"]:
+                    if player == "player_1":
+                        return 5.0 - 3.0
+                    else:
+                        return 0.0
+                elif joint_action["player_1"] < joint_action["player_2"]:
+                    if player == "player_2":
+                        return 5.0 - 3.0
+                    else:
+                        return 0.0
+                else:
+                    if joint_action["player_1"] == "bid_low":
+                        if player == "player_1":
+                            return (5.0 - 1.0) / 2.0
+                        else:
+                            return (5.0 - 1.0) / 2.0
+                    else:
+                        if player == "player_1":
+                            return (5.0 - 3.0) / 2.0
+                        else:
+                            return (5.0 - 3.0) / 2.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"
+```

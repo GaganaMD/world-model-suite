@@ -1,0 +1,254 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.25,
+      "joint_action_count": 4,
+      "outcome_compression": 0.75,
+      "unique_action_count": 2,
+      "unique_actions_by_player": {
+        "player_1": [
+          "heads",
+          "tails"
+        ],
+        "player_2": [
+          "heads",
+          "tails"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.75,
+      "average_out_degree": 0.75,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.25,
+      "edge_count": 3,
+      "global_efficiency": 0.25,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 3,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 4,
+      "strongly_connected_components": [
+        [
+          "draw"
+        ],
+        [
+          "player_1_wins"
+        ],
+        [
+          "player_2_wins"
+        ],
+        [
+          "start"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.25,
+      "branching_factor_by_state": {
+        "draw": 0,
+        "player_1_wins": 0,
+        "player_2_wins": 0,
+        "start": 4
+      },
+      "maximum_branching_factor": 4,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 1.0,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 4,
+      "self_loop_count": 0,
+      "state_count": 4,
+      "terminal_state_count": 3,
+      "terminal_to_non_terminal_ratio": 3.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "draw": 0,
+        "player_1_wins": 0,
+        "player_2_wins": 0,
+        "start": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 4,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 3
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "start",
+        "draw"
+      ],
+      [
+        "start",
+        "player_1_wins"
+      ],
+      [
+        "start",
+        "player_2_wins"
+      ]
+    ],
+    "nodes": [
+      "start",
+      "draw",
+      "player_1_wins",
+      "player_2_wins"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 4,
+  "status": "passed",
+  "transitions_checked": 4,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0003"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0000",
+        "representation": "'draw'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'player_1_wins'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'player_2_wins'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "heads",
+            "tails"
+          ],
+          "player_2": [
+            "heads",
+            "tails"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0003",
+        "representation": "'start'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "draw_heads_heads",
+              "player_2": "draw_heads_heads"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "player_1_wins_heads_tails",
+              "player_2": "player_1_wins_heads_tails"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "player_1_wins_tails_heads",
+              "player_2": "player_1_wins_tails_heads"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "player_2_wins_tails_tails",
+              "player_2": "player_2_wins_tails_tails"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'s0'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'s_hare_hare'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'s_hare_stag'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'s_stag_hare'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "'s_stag_stag'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "obs_hare_hare_to_s_hare_hare",
+            "player_2": "obs_hare_hare_to_s_hare_hare"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "obs_hare_stag_to_s_hare_stag",
+            "player_2": "obs_hare_stag_to_s_hare_stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_stag_hare_to_s_stag_hare",
+            "player_2": "obs_stag_hare_to_s_stag_hare"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "obs_stag_stag_to_s_stag_stag",
+            "player_2": "obs_stag_stag_to_s_stag_stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 2.0,
+            "player_2": 2.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

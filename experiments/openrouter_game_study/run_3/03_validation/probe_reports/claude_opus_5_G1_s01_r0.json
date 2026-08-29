@@ -1,0 +1,465 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 9,
+      "outcome_compression": 1.0,
+      "unique_action_count": 3,
+      "unique_actions_by_player": {
+        "player_1": [
+          "paper",
+          "rock",
+          "scissors"
+        ],
+        "player_2": [
+          "paper",
+          "rock",
+          "scissors"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.9,
+      "average_out_degree": 0.9,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.1,
+      "edge_count": 9,
+      "global_efficiency": 0.1,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 9,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 10,
+      "strongly_connected_components": [
+        [
+          "end|paper|paper"
+        ],
+        [
+          "end|rock|scissors"
+        ],
+        [
+          "end|rock|rock"
+        ],
+        [
+          "end|scissors|scissors"
+        ],
+        [
+          "end|scissors|rock"
+        ],
+        [
+          "end|scissors|paper"
+        ],
+        [
+          "end|rock|paper"
+        ],
+        [
+          "end|paper|rock"
+        ],
+        [
+          "end|paper|scissors"
+        ],
+        [
+          "start"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.1,
+      "branching_factor_by_state": {
+        "end|paper|paper": 0,
+        "end|paper|rock": 0,
+        "end|paper|scissors": 0,
+        "end|rock|paper": 0,
+        "end|rock|rock": 0,
+        "end|rock|scissors": 0,
+        "end|scissors|paper": 0,
+        "end|scissors|rock": 0,
+        "end|scissors|scissors": 0,
+        "start": 9
+      },
+      "maximum_branching_factor": 9,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 0.9,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 10,
+      "self_loop_count": 0,
+      "state_count": 10,
+      "terminal_state_count": 9,
+      "terminal_to_non_terminal_ratio": 9.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "end|paper|paper": 0,
+        "end|paper|rock": 0,
+        "end|paper|scissors": 0,
+        "end|rock|paper": 0,
+        "end|rock|rock": 0,
+        "end|rock|scissors": 0,
+        "end|scissors|paper": 0,
+        "end|scissors|rock": 0,
+        "end|scissors|scissors": 0,
+        "start": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 9,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 9
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "start",
+        "end|rock|rock"
+      ],
+      [
+        "start",
+        "end|rock|paper"
+      ],
+      [
+        "start",
+        "end|rock|scissors"
+      ],
+      [
+        "start",
+        "end|paper|rock"
+      ],
+      [
+        "start",
+        "end|paper|paper"
+      ],
+      [
+        "start",
+        "end|paper|scissors"
+      ],
+      [
+        "start",
+        "end|scissors|rock"
+      ],
+      [
+        "start",
+        "end|scissors|paper"
+      ],
+      [
+        "start",
+        "end|scissors|scissors"
+      ]
+    ],
+    "nodes": [
+      "start",
+      "end|rock|rock",
+      "end|rock|paper",
+      "end|rock|scissors",
+      "end|paper|rock",
+      "end|paper|paper",
+      "end|paper|scissors",
+      "end|scissors|rock",
+      "end|scissors|paper",
+      "end|scissors|scissors"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 10,
+  "status": "passed",
+  "transitions_checked": 9,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0009"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0000",
+        "representation": "'end|paper|paper'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'end|paper|rock'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'end|paper|scissors'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'end|rock|paper'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'end|rock|rock'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0005",
+        "representation": "'end|rock|scissors'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0006",
+        "representation": "'end|scissors|paper'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0007",
+        "representation": "'end|scissors|rock'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0008",
+        "representation": "'end|scissors|scissors'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "rock",
+            "paper",
+            "scissors"
+          ],
+          "player_2": [
+            "rock",
+            "paper",
+            "scissors"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0009",
+        "representation": "'start'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "mine=paper;theirs=paper;result=draw",
+              "player_2": "mine=paper;theirs=paper;result=draw"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "mine=paper;theirs=rock;result=win",
+              "player_2": "mine=rock;theirs=paper;result=loss"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "mine=paper;theirs=scissors;result=loss",
+              "player_2": "mine=scissors;theirs=paper;result=win"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "mine=rock;theirs=paper;result=loss",
+              "player_2": "mine=paper;theirs=rock;result=win"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "mine=rock;theirs=rock;result=draw",
+              "player_2": "mine=rock;theirs=rock;result=draw"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "mine=rock;theirs=scissors;result=win",
+              "player_2": "mine=scissors;theirs=rock;result=loss"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "mine=scissors;theirs=paper;result=win",
+              "player_2": "mine=paper;theirs=scissors;result=loss"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "mine=scissors;theirs=rock;result=loss",
+              "player_2": "mine=rock;theirs=scissors;result=win"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "mine=scissors;theirs=scissors;result=draw",
+              "player_2": "mine=scissors;theirs=scissors;result=draw"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

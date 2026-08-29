@@ -1,0 +1,91 @@
+class GeneratedPOSG(AbstractPOSG):
+    """Soccer penalty shootout: 3 rounds of simultaneous left/center/right choices.
+
+    State encoding (strings only):
+      "r{round}|{kicker_goals}|{keeper_saves}"   -> decision state, round in {1,2,3}
+      "terminal|{kicker_goals}|{keeper_saves}"   -> terminal state
+    """
+
+    ZONES = ["left", "center", "right"]
+    ROUNDS = 3
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "r1|0|0"
+
+    def _parse(self, state):
+        parts = state.split("|")
+        return parts[0], int(parts[1]), int(parts[2])
+
+    def legal_actions(self, state, player):
+        if self.is_terminal(state):
+            return ["none"]
+        if player == "player_1":
+            return ["shoot_left", "shoot_center", "shoot_right"]
+        return ["dive_left", "stay_center", "dive_right"]
+
+    def _zone_of(self, action):
+        for z in self.ZONES:
+            if action.endswith(z):
+                return z
+        return "center"
+
+    def transition(self, state, joint_action):
+        if self.is_terminal(state):
+            return {state: 1.0}
+        tag, goals, saves = self._parse(state)
+        rnd = int(tag[1:])
+        kz = self._zone_of(joint_action["player_1"])
+        gz = self._zone_of(joint_action["player_2"])
+
+        if kz == gz:
+            # Keeper in the right zone: save is very likely, small chance of fumble goal.
+            outcomes = [(goals, saves + 1, 0.9), (goals + 1, saves, 0.1)]
+        else:
+            # Keeper wrong zone: goal almost certain, tiny chance of a miss.
+            outcomes = [(goals + 1, saves, 0.95), (goals, saves + 1, 0.05)]
+
+        result = {}
+        for g, s, p in outcomes:
+            if rnd >= self.ROUNDS:
+                nxt = "terminal|" + str(g) + "|" + str(s)
+            else:
+                nxt = "r" + str(rnd + 1) + "|" + str(g) + "|" + str(s)
+            result[nxt] = result.get(nxt, 0.0) + p
+
+        # Normalize to sum exactly 1.0
+        total = sum(result.values())
+        keys = list(result.keys())
+        acc = 0.0
+        for k in keys[:-1]:
+            result[k] = result[k] / total
+            acc += result[k]
+        result[keys[-1]] = 1.0 - acc
+        return result
+
+    def observation(self, state, joint_action, next_state, player):
+        if self.is_terminal(state):
+            return "game_over"
+        tag, goals, saves = self._parse(state)
+        ntag, ngoals, nsaves = self._parse(next_state)
+        outcome = "goal" if ngoals > goals else "save"
+        kz = self._zone_of(joint_action["player_1"])
+        gz = self._zone_of(joint_action["player_2"])
+        phase = "end" if ntag == "terminal" else ntag
+        return f"round={tag};shot={kz};dive={gz};result={outcome};score={ngoals}-{nsaves};next={phase};me={player}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if self.is_terminal(state):
+            return 0.0
+        _, goals, _ = self._parse(state)
+        _, ngoals, _ = self._parse(next_state)
+        scored = ngoals > goals
+        if player == "player_1":
+            return 1.0 if scored else -1.0
+        return -1.0 if scored else 1.0
+
+    def is_terminal(self, state):
+        return state.startswith("terminal")

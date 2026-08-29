@@ -1,0 +1,2006 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 37,
+      "outcome_compression": 1.0,
+      "unique_action_count": 4,
+      "unique_actions_by_player": {
+        "player_1": [
+          "action",
+          "bid_0",
+          "bid_1",
+          "bid_2"
+        ],
+        "player_2": [
+          "action",
+          "bid_0",
+          "bid_1",
+          "bid_2"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.9811320754716981,
+      "average_out_degree": 0.9811320754716981,
+      "average_shortest_path_length": 1.48,
+      "community_count": 4,
+      "density": 0.018867924528301886,
+      "edge_count": 52,
+      "global_efficiency": 0.027576197387518143,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 12,
+      "modularity": 0.6911982248520712,
+      "strongly_connected_component_count": 53,
+      "strongly_connected_components": [
+        [
+          "terminal|v_LL|bid_2|bid_2|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_1|bid_1|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_0|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LL|bid_0|bid_0|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_0|bid_1|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_0|bid_2|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_1|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LL|bid_1|bid_1|player_1"
+        ],
+        [
+          "terminal|v_LL|bid_1|bid_1|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_1|bid_2|player_2"
+        ],
+        [
+          "terminal|v_LL|bid_2|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LL|bid_2|bid_1|player_1"
+        ],
+        [
+          "terminal|v_LL|bid_2|bid_2|player_2"
+        ],
+        [
+          "v_LL"
+        ],
+        [
+          "terminal|v_LH|bid_0|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_0|bid_0|player_2"
+        ],
+        [
+          "terminal|v_LH|bid_0|bid_1|player_2"
+        ],
+        [
+          "terminal|v_LH|bid_0|bid_2|player_2"
+        ],
+        [
+          "terminal|v_LH|bid_1|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_1|bid_1|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_1|bid_1|player_2"
+        ],
+        [
+          "terminal|v_LH|bid_1|bid_2|player_2"
+        ],
+        [
+          "terminal|v_LH|bid_2|bid_0|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_2|bid_1|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_2|bid_2|player_1"
+        ],
+        [
+          "terminal|v_LH|bid_2|bid_2|player_2"
+        ],
+        [
+          "v_LH"
+        ],
+        [
+          "terminal|v_HL|bid_0|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_0|bid_0|player_2"
+        ],
+        [
+          "terminal|v_HL|bid_0|bid_1|player_2"
+        ],
+        [
+          "terminal|v_HL|bid_0|bid_2|player_2"
+        ],
+        [
+          "terminal|v_HL|bid_1|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_1|bid_1|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_1|bid_2|player_2"
+        ],
+        [
+          "terminal|v_HL|bid_2|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_2|bid_1|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_2|bid_2|player_1"
+        ],
+        [
+          "terminal|v_HL|bid_2|bid_2|player_2"
+        ],
+        [
+          "v_HL"
+        ],
+        [
+          "terminal|v_HH|bid_0|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_0|bid_0|player_2"
+        ],
+        [
+          "terminal|v_HH|bid_0|bid_1|player_2"
+        ],
+        [
+          "terminal|v_HH|bid_0|bid_2|player_2"
+        ],
+        [
+          "terminal|v_HH|bid_1|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_1|bid_1|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_1|bid_1|player_2"
+        ],
+        [
+          "terminal|v_HH|bid_1|bid_2|player_2"
+        ],
+        [
+          "terminal|v_HH|bid_2|bid_0|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_2|bid_1|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_2|bid_2|player_1"
+        ],
+        [
+          "terminal|v_HH|bid_2|bid_2|player_2"
+        ],
+        [
+          "v_HH"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.11320754716981132,
+      "branching_factor_by_state": {
+        "s0": 1,
+        "terminal|v_HH|bid_0|bid_0|player_1": 0,
+        "terminal|v_HH|bid_0|bid_0|player_2": 0,
+        "terminal|v_HH|bid_0|bid_1|player_2": 0,
+        "terminal|v_HH|bid_0|bid_2|player_2": 0,
+        "terminal|v_HH|bid_1|bid_0|player_1": 0,
+        "terminal|v_HH|bid_1|bid_1|player_1": 0,
+        "terminal|v_HH|bid_1|bid_1|player_2": 0,
+        "terminal|v_HH|bid_1|bid_2|player_2": 0,
+        "terminal|v_HH|bid_2|bid_0|player_1": 0,
+        "terminal|v_HH|bid_2|bid_1|player_1": 0,
+        "terminal|v_HH|bid_2|bid_2|player_1": 0,
+        "terminal|v_HH|bid_2|bid_2|player_2": 0,
+        "terminal|v_HL|bid_0|bid_0|player_1": 0,
+        "terminal|v_HL|bid_0|bid_0|player_2": 0,
+        "terminal|v_HL|bid_0|bid_1|player_2": 0,
+        "terminal|v_HL|bid_0|bid_2|player_2": 0,
+        "terminal|v_HL|bid_1|bid_0|player_1": 0,
+        "terminal|v_HL|bid_1|bid_1|player_1": 0,
+        "terminal|v_HL|bid_1|bid_1|player_2": 0,
+        "terminal|v_HL|bid_1|bid_2|player_2": 0,
+        "terminal|v_HL|bid_2|bid_0|player_1": 0,
+        "terminal|v_HL|bid_2|bid_1|player_1": 0,
+        "terminal|v_HL|bid_2|bid_2|player_1": 0,
+        "terminal|v_HL|bid_2|bid_2|player_2": 0,
+        "terminal|v_LH|bid_0|bid_0|player_1": 0,
+        "terminal|v_LH|bid_0|bid_0|player_2": 0,
+        "terminal|v_LH|bid_0|bid_1|player_2": 0,
+        "terminal|v_LH|bid_0|bid_2|player_2": 0,
+        "terminal|v_LH|bid_1|bid_0|player_1": 0,
+        "terminal|v_LH|bid_1|bid_1|player_1": 0,
+        "terminal|v_LH|bid_1|bid_1|player_2": 0,
+        "terminal|v_LH|bid_1|bid_2|player_2": 0,
+        "terminal|v_LH|bid_2|bid_0|player_1": 0,
+        "terminal|v_LH|bid_2|bid_1|player_1": 0,
+        "terminal|v_LH|bid_2|bid_2|player_1": 0,
+        "terminal|v_LH|bid_2|bid_2|player_2": 0,
+        "terminal|v_LL|bid_0|bid_0|player_1": 0,
+        "terminal|v_LL|bid_0|bid_0|player_2": 0,
+        "terminal|v_LL|bid_0|bid_1|player_2": 0,
+        "terminal|v_LL|bid_0|bid_2|player_2": 0,
+        "terminal|v_LL|bid_1|bid_0|player_1": 0,
+        "terminal|v_LL|bid_1|bid_1|player_1": 0,
+        "terminal|v_LL|bid_1|bid_1|player_2": 0,
+        "terminal|v_LL|bid_1|bid_2|player_2": 0,
+        "terminal|v_LL|bid_2|bid_0|player_1": 0,
+        "terminal|v_LL|bid_2|bid_1|player_1": 0,
+        "terminal|v_LL|bid_2|bid_2|player_1": 0,
+        "terminal|v_LL|bid_2|bid_2|player_2": 0,
+        "v_HH": 9,
+        "v_HL": 9,
+        "v_LH": 9,
+        "v_LL": 9
+      },
+      "maximum_branching_factor": 9,
+      "maximum_depth_to_terminal": 2,
+      "maximum_trajectory_depth": 2,
+      "mean_branching_factor": 0.6981132075471698,
+      "non_terminal_state_count": 5,
+      "reachable_state_count": 53,
+      "self_loop_count": 0,
+      "state_count": 53,
+      "terminal_state_count": 48,
+      "terminal_to_non_terminal_ratio": 9.6
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "s0": 2,
+        "terminal|v_HH|bid_0|bid_0|player_1": 0,
+        "terminal|v_HH|bid_0|bid_0|player_2": 0,
+        "terminal|v_HH|bid_0|bid_1|player_2": 0,
+        "terminal|v_HH|bid_0|bid_2|player_2": 0,
+        "terminal|v_HH|bid_1|bid_0|player_1": 0,
+        "terminal|v_HH|bid_1|bid_1|player_1": 0,
+        "terminal|v_HH|bid_1|bid_1|player_2": 0,
+        "terminal|v_HH|bid_1|bid_2|player_2": 0,
+        "terminal|v_HH|bid_2|bid_0|player_1": 0,
+        "terminal|v_HH|bid_2|bid_1|player_1": 0,
+        "terminal|v_HH|bid_2|bid_2|player_1": 0,
+        "terminal|v_HH|bid_2|bid_2|player_2": 0,
+        "terminal|v_HL|bid_0|bid_0|player_1": 0,
+        "terminal|v_HL|bid_0|bid_0|player_2": 0,
+        "terminal|v_HL|bid_0|bid_1|player_2": 0,
+        "terminal|v_HL|bid_0|bid_2|player_2": 0,
+        "terminal|v_HL|bid_1|bid_0|player_1": 0,
+        "terminal|v_HL|bid_1|bid_1|player_1": 0,
+        "terminal|v_HL|bid_1|bid_1|player_2": 0,
+        "terminal|v_HL|bid_1|bid_2|player_2": 0,
+        "terminal|v_HL|bid_2|bid_0|player_1": 0,
+        "terminal|v_HL|bid_2|bid_1|player_1": 0,
+        "terminal|v_HL|bid_2|bid_2|player_1": 0,
+        "terminal|v_HL|bid_2|bid_2|player_2": 0,
+        "terminal|v_LH|bid_0|bid_0|player_1": 0,
+        "terminal|v_LH|bid_0|bid_0|player_2": 0,
+        "terminal|v_LH|bid_0|bid_1|player_2": 0,
+        "terminal|v_LH|bid_0|bid_2|player_2": 0,
+        "terminal|v_LH|bid_1|bid_0|player_1": 0,
+        "terminal|v_LH|bid_1|bid_1|player_1": 0,
+        "terminal|v_LH|bid_1|bid_1|player_2": 0,
+        "terminal|v_LH|bid_1|bid_2|player_2": 0,
+        "terminal|v_LH|bid_2|bid_0|player_1": 0,
+        "terminal|v_LH|bid_2|bid_1|player_1": 0,
+        "terminal|v_LH|bid_2|bid_2|player_1": 0,
+        "terminal|v_LH|bid_2|bid_2|player_2": 0,
+        "terminal|v_LL|bid_0|bid_0|player_1": 0,
+        "terminal|v_LL|bid_0|bid_0|player_2": 0,
+        "terminal|v_LL|bid_0|bid_1|player_2": 0,
+        "terminal|v_LL|bid_0|bid_2|player_2": 0,
+        "terminal|v_LL|bid_1|bid_0|player_1": 0,
+        "terminal|v_LL|bid_1|bid_1|player_1": 0,
+        "terminal|v_LL|bid_1|bid_1|player_2": 0,
+        "terminal|v_LL|bid_1|bid_2|player_2": 0,
+        "terminal|v_LL|bid_2|bid_0|player_1": 0,
+        "terminal|v_LL|bid_2|bid_1|player_1": 0,
+        "terminal|v_LL|bid_2|bid_2|player_1": 0,
+        "terminal|v_LL|bid_2|bid_2|player_2": 0,
+        "v_HH": 1,
+        "v_HL": 1,
+        "v_LH": 1,
+        "v_LL": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.4054054054054055,
+      "deterministic_transition_fraction": 0.6486486486486487,
+      "maximum_transition_branching": 4,
+      "maximum_transition_entropy": 2.0,
+      "mean_transition_entropy": 0.3783783783783784,
+      "state_action_pair_count": 37,
+      "stochastic_transition_fraction": 0.35135135135135137,
+      "unique_successor_state_count": 52
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "v_LL"
+      ],
+      [
+        "s0",
+        "v_LH"
+      ],
+      [
+        "s0",
+        "v_HL"
+      ],
+      [
+        "s0",
+        "v_HH"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_0|bid_0|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_0|bid_0|player_2"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_0|bid_1|player_2"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_0|bid_2|player_2"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_1|bid_0|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_1|bid_1|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_1|bid_1|player_2"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_1|bid_2|player_2"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_2|bid_0|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_2|bid_1|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_2|bid_2|player_1"
+      ],
+      [
+        "v_LL",
+        "terminal|v_LL|bid_2|bid_2|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_0|bid_0|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_0|bid_0|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_0|bid_1|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_0|bid_2|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_1|bid_0|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_1|bid_1|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_1|bid_1|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_1|bid_2|player_2"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_2|bid_0|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_2|bid_1|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_2|bid_2|player_1"
+      ],
+      [
+        "v_LH",
+        "terminal|v_LH|bid_2|bid_2|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_0|bid_0|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_0|bid_0|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_0|bid_1|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_0|bid_2|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_1|bid_0|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_1|bid_1|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_1|bid_1|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_1|bid_2|player_2"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_2|bid_0|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_2|bid_1|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_2|bid_2|player_1"
+      ],
+      [
+        "v_HL",
+        "terminal|v_HL|bid_2|bid_2|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_0|bid_0|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_0|bid_0|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_0|bid_1|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_0|bid_2|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_1|bid_0|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_1|bid_1|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_1|bid_1|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_1|bid_2|player_2"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_2|bid_0|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_2|bid_1|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_2|bid_2|player_1"
+      ],
+      [
+        "v_HH",
+        "terminal|v_HH|bid_2|bid_2|player_2"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "v_LL",
+      "v_LH",
+      "v_HL",
+      "v_HH",
+      "terminal|v_LL|bid_0|bid_0|player_1",
+      "terminal|v_LL|bid_0|bid_0|player_2",
+      "terminal|v_LL|bid_0|bid_1|player_2",
+      "terminal|v_LL|bid_0|bid_2|player_2",
+      "terminal|v_LL|bid_1|bid_0|player_1",
+      "terminal|v_LL|bid_1|bid_1|player_1",
+      "terminal|v_LL|bid_1|bid_1|player_2",
+      "terminal|v_LL|bid_1|bid_2|player_2",
+      "terminal|v_LL|bid_2|bid_0|player_1",
+      "terminal|v_LL|bid_2|bid_1|player_1",
+      "terminal|v_LL|bid_2|bid_2|player_1",
+      "terminal|v_LL|bid_2|bid_2|player_2",
+      "terminal|v_LH|bid_0|bid_0|player_1",
+      "terminal|v_LH|bid_0|bid_0|player_2",
+      "terminal|v_LH|bid_0|bid_1|player_2",
+      "terminal|v_LH|bid_0|bid_2|player_2",
+      "terminal|v_LH|bid_1|bid_0|player_1",
+      "terminal|v_LH|bid_1|bid_1|player_1",
+      "terminal|v_LH|bid_1|bid_1|player_2",
+      "terminal|v_LH|bid_1|bid_2|player_2",
+      "terminal|v_LH|bid_2|bid_0|player_1",
+      "terminal|v_LH|bid_2|bid_1|player_1",
+      "terminal|v_LH|bid_2|bid_2|player_1",
+      "terminal|v_LH|bid_2|bid_2|player_2",
+      "terminal|v_HL|bid_0|bid_0|player_1",
+      "terminal|v_HL|bid_0|bid_0|player_2",
+      "terminal|v_HL|bid_0|bid_1|player_2",
+      "terminal|v_HL|bid_0|bid_2|player_2",
+      "terminal|v_HL|bid_1|bid_0|player_1",
+      "terminal|v_HL|bid_1|bid_1|player_1",
+      "terminal|v_HL|bid_1|bid_1|player_2",
+      "terminal|v_HL|bid_1|bid_2|player_2",
+      "terminal|v_HL|bid_2|bid_0|player_1",
+      "terminal|v_HL|bid_2|bid_1|player_1",
+      "terminal|v_HL|bid_2|bid_2|player_1",
+      "terminal|v_HL|bid_2|bid_2|player_2",
+      "terminal|v_HH|bid_0|bid_0|player_1",
+      "terminal|v_HH|bid_0|bid_0|player_2",
+      "terminal|v_HH|bid_0|bid_1|player_2",
+      "terminal|v_HH|bid_0|bid_2|player_2",
+      "terminal|v_HH|bid_1|bid_0|player_1",
+      "terminal|v_HH|bid_1|bid_1|player_1",
+      "terminal|v_HH|bid_1|bid_1|player_2",
+      "terminal|v_HH|bid_1|bid_2|player_2",
+      "terminal|v_HH|bid_2|bid_0|player_1",
+      "terminal|v_HH|bid_2|bid_1|player_1",
+      "terminal|v_HH|bid_2|bid_2|player_1",
+      "terminal|v_HH|bid_2|bid_2|player_2"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 53,
+  "status": "passed",
+  "transitions_checked": 37,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "action"
+          ],
+          "player_2": [
+            "action"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'s0'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0001",
+        "representation": "'terminal|v_HH|bid_0|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0002",
+        "representation": "'terminal|v_HH|bid_0|bid_0|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0003",
+        "representation": "'terminal|v_HH|bid_0|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0004",
+        "representation": "'terminal|v_HH|bid_0|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0005",
+        "representation": "'terminal|v_HH|bid_1|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0006",
+        "representation": "'terminal|v_HH|bid_1|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0007",
+        "representation": "'terminal|v_HH|bid_1|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0008",
+        "representation": "'terminal|v_HH|bid_1|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0009",
+        "representation": "'terminal|v_HH|bid_2|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0010",
+        "representation": "'terminal|v_HH|bid_2|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0011",
+        "representation": "'terminal|v_HH|bid_2|bid_2|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0012",
+        "representation": "'terminal|v_HH|bid_2|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0013",
+        "representation": "'terminal|v_HL|bid_0|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0014",
+        "representation": "'terminal|v_HL|bid_0|bid_0|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0015",
+        "representation": "'terminal|v_HL|bid_0|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0016",
+        "representation": "'terminal|v_HL|bid_0|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0017",
+        "representation": "'terminal|v_HL|bid_1|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0018",
+        "representation": "'terminal|v_HL|bid_1|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0019",
+        "representation": "'terminal|v_HL|bid_1|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0020",
+        "representation": "'terminal|v_HL|bid_1|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0021",
+        "representation": "'terminal|v_HL|bid_2|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0022",
+        "representation": "'terminal|v_HL|bid_2|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0023",
+        "representation": "'terminal|v_HL|bid_2|bid_2|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0024",
+        "representation": "'terminal|v_HL|bid_2|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0025",
+        "representation": "'terminal|v_LH|bid_0|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0026",
+        "representation": "'terminal|v_LH|bid_0|bid_0|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0027",
+        "representation": "'terminal|v_LH|bid_0|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0028",
+        "representation": "'terminal|v_LH|bid_0|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0029",
+        "representation": "'terminal|v_LH|bid_1|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0030",
+        "representation": "'terminal|v_LH|bid_1|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0031",
+        "representation": "'terminal|v_LH|bid_1|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0032",
+        "representation": "'terminal|v_LH|bid_1|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0033",
+        "representation": "'terminal|v_LH|bid_2|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0034",
+        "representation": "'terminal|v_LH|bid_2|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0035",
+        "representation": "'terminal|v_LH|bid_2|bid_2|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0036",
+        "representation": "'terminal|v_LH|bid_2|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0037",
+        "representation": "'terminal|v_LL|bid_0|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0038",
+        "representation": "'terminal|v_LL|bid_0|bid_0|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0039",
+        "representation": "'terminal|v_LL|bid_0|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0040",
+        "representation": "'terminal|v_LL|bid_0|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0041",
+        "representation": "'terminal|v_LL|bid_1|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0042",
+        "representation": "'terminal|v_LL|bid_1|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0043",
+        "representation": "'terminal|v_LL|bid_1|bid_1|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0044",
+        "representation": "'terminal|v_LL|bid_1|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0045",
+        "representation": "'terminal|v_LL|bid_2|bid_0|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0046",
+        "representation": "'terminal|v_LL|bid_2|bid_1|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0047",
+        "representation": "'terminal|v_LL|bid_2|bid_2|player_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0048",
+        "representation": "'terminal|v_LL|bid_2|bid_2|player_2'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0049",
+        "representation": "'v_HH'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0050",
+        "representation": "'v_HL'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0051",
+        "representation": "'v_LH'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0052",
+        "representation": "'v_LL'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "action",
+          "player_2": "action"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0049",
+            "observations": {
+              "player_1": "private_value_high",
+              "player_2": "private_value_high"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0050",
+            "observations": {
+              "player_1": "private_value_high",
+              "player_2": "private_value_low"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0051",
+            "observations": {
+              "player_1": "private_value_low",
+              "player_2": "private_value_high"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0052",
+            "observations": {
+              "player_1": "private_value_low",
+              "player_2": "private_value_low"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 2.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 2.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0010",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0011",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0012",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0049"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0013",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 2.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0014",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0015",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0016",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0017",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0018",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0019",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0020",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0021",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0022",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0023",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0024",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0050"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0025",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0026",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 2.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0027",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0028",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0029",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0030",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0031",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0032",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0033",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0034",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0035",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0036",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0051"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0037",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0038",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0039",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0040",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0041",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0042",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0043",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0044",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0045",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0046",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0047",
+            "observations": {
+              "player_1": "auction_end_win_winner_player_1",
+              "player_2": "auction_end_lose_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0048",
+            "observations": {
+              "player_1": "auction_end_lose_winner_player_2",
+              "player_2": "auction_end_win_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0052"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

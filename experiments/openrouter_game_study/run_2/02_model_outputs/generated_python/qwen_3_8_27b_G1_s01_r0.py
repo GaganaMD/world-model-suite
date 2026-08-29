@@ -1,0 +1,50 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["rock", "paper", "scissors"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            p1_action = joint_action.get("player_1", "unknown")
+            p2_action = joint_action.get("player_2", "unknown")
+            if player == "player_1":
+                return f"my_action={p1_action};opponent_action={p2_action}"
+            else:
+                return f"my_action={p2_action};opponent_action={p1_action}"
+        return "terminal"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "s0":
+            return 0.0
+        p1_action = joint_action.get("player_1", "rock")
+        p2_action = joint_action.get("player_2", "rock")
+        if p1_action == p2_action:
+            return 0.0
+        if (p1_action == "rock" and p2_action == "scissors") or \
+           (p1_action == "paper" and p2_action == "rock") or \
+           (p1_action == "scissors" and p2_action == "paper"):
+            if player == "player_1":
+                return 1.0
+            else:
+                return -1.0
+        else:
+            if player == "player_1":
+                return -1.0
+            else:
+                return 1.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

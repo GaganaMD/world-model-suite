@@ -1,0 +1,51 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+    
+    def initial_state(self):
+        return "s0"
+    
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["silent", "testify"]
+        # Terminal state has no actions, but contract requires non-empty for reachable non-terminal states only.
+        # Since terminal is not reachable as non-terminal, we return a dummy to satisfy type if called.
+        return ["silent"]  # Should not be called in practice.
+    
+    def transition(self, state, joint_action):
+        if state == "s0":
+            # Both choose actions; always go to terminal.
+            return {"terminal": 1.0}
+        # If somehow called on terminal, stay terminal.
+        return {"terminal": 1.0}
+    
+    def observation(self, state, joint_action, next_state, player):
+        # No private information; both observe the same state and actions.
+        # Encode as a single string with state and both actions.
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            return f"state=s0, a1={a1}, a2={a2}"
+        # Terminal observation
+        return "terminal"
+    
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            # Payoffs: both silent -> light (1 each), both testify -> heavy (-1 each),
+            # one testifies, other silent -> testifier goes free (2), silent gets max (-2)
+            if a1 == "silent" and a2 == "silent":
+                return 1.0
+            elif a1 == "testify" and a2 == "testify":
+                return -1.0
+            elif a1 == "testify" and a2 == "silent":
+                return 2.0 if player == "player_1" else -2.0
+            elif a1 == "silent" and a2 == "testify":
+                return -2.0 if player == "player_1" else 2.0
+        # Terminal state reward is 0
+        return 0.0
+    
+    def is_terminal(self, state):
+        return state == "terminal"

@@ -1,0 +1,129 @@
+SYSTEM:
+You generate a finite executable POSG world model.
+Return ONLY Python source defining exactly `class GeneratedPOSG(AbstractPOSG)`.
+Do not use Markdown fences, imports, file/network access, eval, exec, or redefine AbstractPOSG.
+
+The implementation MUST satisfy this exact interface:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Hard contract (checked exhaustively):
+- Every player ID, state ID, action ID, and observation MUST be a string on EVERY branch.
+- Use one uniform state representation: strings only. Never return tuple/list/dict state IDs.
+- players is a non-empty list[str] with unique IDs.
+- initial_state() returns one non-terminal string state (not a distribution).
+- legal_actions() returns a non-empty list[str] for every player in every reachable non-terminal state.
+- joint_action is a dict keyed by the exact IDs in players. Read it only by those string keys.
+- transition() returns a non-empty dict[str, float] for every reachable joint action; probabilities
+  are finite, non-negative, at most 1, and sum to exactly 1.0.
+- observation() returns str for every player/outcome. Encode multiple fields as one f-string;
+  NEVER return a tuple, list, dict, or set.
+- reward() returns a finite int/float (not bool); is_terminal() returns bool.
+- All seven methods and the players @property must be present with exactly the signatures above.
+- Keep the reachable model finite and small (prefer <= 100 states and <= 10 decision steps).
+- Implement the supplied game's strategic choices, chance, information, rewards, and terminal outcomes.
+Before answering, silently verify every return path against this contract.
+
+USER:
+Create a situation-specific GeneratedPOSG for this game case.
+
+GAME CASE:
+Two players each call heads or tails before a single fair coin is flipped. The player whose call matches the result wins; if both match or neither matches, the round is a draw.
+
+
+Your previous implementation failed mechanical validation.
+Return a COMPLETE replacement class, not a patch and not an explanation.
+
+VALIDATION ERRORS:
+State 's1_heads', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's1_heads', player 'player_2': legal_actions must return a non-empty list of string actions.
+State 's1_tails', player 'player_1': legal_actions must return a non-empty list of string actions.
+State 's1_tails', player 'player_2': legal_actions must return a non-empty list of string actions.
+
+PREVIOUS CODE:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["heads", "tails"]
+        # terminal state has no actions
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            # joint_action is dict with keys "player_1", "player_2"
+            p1 = joint_action["player_1"]
+            p2 = joint_action["player_2"]
+            # coin flip: heads or tails with equal probability
+            return {
+                "s1_heads": 0.5,
+                "s1_tails": 0.5
+            }
+        # terminal states have no transitions
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            # before the coin flip, players observe nothing (or their own action? but we keep simple)
+            # we return a string indicating the state and player
+            return f"state_{state}_player_{player}"
+        # after the flip, next_state encodes the coin result
+        if next_state == "s1_heads":
+            return f"coin_heads_player_{player}"
+        elif next_state == "s1_tails":
+            return f"coin_tails_player_{player}"
+        # terminal
+        return "terminal_obs"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            # no reward until after the flip
+            return 0.0
+        # after the flip, determine outcome
+        # need to know the actions chosen in s0, but we don't have them here.
+        # We'll encode the outcome in the next_state and use a deterministic reward based on player and coin.
+        # But we need to know the actions. Since we don't have them, we'll compute from the joint_action? 
+        # However, reward is called with state, joint_action, next_state, player.
+        # In s0, joint_action contains the choices. In s1_* states, joint_action is not used.
+        # We'll handle by checking if state is s0: return 0.
+        # For s1_* states, we need to know the actions. But we don't have them.
+        # To satisfy the contract, we can compute reward based on next_state and player only, but that would be incorrect.
+        # Instead, we can design the reward to be given only at the transition from s0 to s1_*.
+        # So we'll compute reward in the transition from s0.
+        # But the interface requires reward(state, joint_action, next_state, player).
+        # We'll compute based on the joint_action and next_state.
+        if state == "s0":
+            p1 = joint_action["player_1"]
+            p2 = joint_action["player_2"]
+            coin = "heads" if next_state == "s1_heads" else "tails"
+            # Determine winner
+            if p1 == coin and p2 == coin:
+                # both match -> draw
+                return 0.0
+            elif p1 == coin and p2 != coin:
+                # p1 wins
+                return 1.0 if player == "player_1" else -1.0
+            elif p1 != coin and p2 == coin:
+                # p2 wins
+                return -1.0 if player == "player_1" else 1.0
+            else:
+                # neither matches -> draw
+                return 0.0
+        # terminal states have no reward
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

@@ -1,0 +1,100 @@
+SYSTEM:
+You generate a finite executable POSG world model.
+Return ONLY Python source defining exactly `class GeneratedPOSG(AbstractPOSG)`.
+Do not use Markdown fences, imports, file/network access, eval, exec, or redefine AbstractPOSG.
+
+The implementation MUST satisfy this exact interface:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Hard contract (checked exhaustively):
+- Every player ID, state ID, action ID, and observation MUST be a string on EVERY branch.
+- Use one uniform state representation: strings only. Never return tuple/list/dict state IDs.
+- players is a non-empty list[str] with unique IDs.
+- initial_state() returns one non-terminal string state (not a distribution).
+- legal_actions() returns a non-empty list[str] for every player in every reachable non-terminal state.
+- joint_action is a dict keyed by the exact IDs in players. Read it only by those string keys.
+- transition() returns a non-empty dict[str, float] for every reachable joint action; probabilities
+  are finite, non-negative, at most 1, and sum to exactly 1.0.
+- observation() returns str for every player/outcome. Encode multiple fields as one f-string;
+  NEVER return a tuple, list, dict, or set.
+- reward() returns a finite int/float (not bool); is_terminal() returns bool.
+- All seven methods and the players @property must be present with exactly the signatures above.
+- Keep the reachable model finite and small (prefer <= 100 states and <= 10 decision steps).
+- Implement the supplied game's strategic choices, chance, information, rewards, and terminal outcomes.
+Before answering, silently verify every return path against this contract.
+
+USER:
+Create a situation-specific GeneratedPOSG for this game case.
+
+GAME CASE:
+Two hunters can each choose to hunt a stag together or hunt a hare alone. Catching a stag requires both hunters to cooperate; a lone hunter cannot bring down a stag. A hare can always be caught alone and feeds one person. A stag feeds both hunters well if they both pursue it, but yields nothing to either if only one shows up.
+
+
+Your previous implementation failed mechanical validation.
+Return a COMPLETE replacement class, not a patch and not an explanation.
+
+VALIDATION ERRORS:
+Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.
+Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str.
+Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.
+Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str.
+Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.
+Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str.
+
+PREVIOUS CODE:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["hunter_1", "hunter_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["hunt_stag", "hunt_hare"]
+        elif state == "both_hunt_stag": 
+            return ["eat_stag"]
+        elif state == "one_hunts_stag": 
+            return ["go_home"]
+        elif state == "one_hunts_hare": 
+            return ["eat_hare"]
+    def transition(self, state, joint_action): 
+        if state == "start" and joint_action["hunter_1"] == "hunt_stag" and joint_action["hunter_2"] == "hunt_stag": 
+            return {"both_hunt_stag": 1.0}
+        elif state == "start" and (joint_action["hunter_1"] == "hunt_stag" and joint_action["hunter_2"] == "hunt_hare" or 
+                                   joint_action["hunter_1"] == "hunt_hare" and joint_action["hunter_2"] == "hunt_stag"): 
+            return {"one_hunts_stag": 1.0}
+        elif state == "start" and joint_action["hunter_1"] == "hunt_hare" and joint_action["hunter_2"] == "hunt_hare": 
+            return {"one_hunts_hare": 1.0}
+        elif state == "both_hunt_stag": 
+            return {"terminal": 1.0}
+        elif state == "one_hunts_stag": 
+            return {"terminal": 1.0}
+        elif state == "one_hunts_hare": 
+            return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): 
+        if next_state == "both_hunt_stag": 
+            return f"both_hunters_caught_stag"
+        elif next_state == "one_hunts_stag": 
+            return f"one_hunter_wasted_effort"
+        elif next_state == "one_hunts_hare": 
+            return f"one_hunter_caught_hare"
+    def reward(self, state, joint_action, next_state, player): 
+        if next_state == "both_hunt_stag": 
+            return 2.0
+        elif next_state == "one_hunts_stag": 
+            return 0.0
+        elif next_state == "one_hunts_hare": 
+            if player == "hunter_1" and joint_action["hunter_1"] == "hunt_hare": 
+                return 1.0
+            elif player == "hunter_2" and joint_action["hunter_2"] == "hunt_hare": 
+                return 1.0
+            else: 
+                return 0.0
+    def is_terminal(self, state): 
+        return state == "terminal"

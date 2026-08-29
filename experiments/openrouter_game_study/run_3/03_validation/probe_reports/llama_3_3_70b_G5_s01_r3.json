@@ -1,0 +1,13 @@
+{
+  "errors": [
+    "Outcome 'terminal', player 'player_1': TypeError: reward() must return a finite number.",
+    "Outcome 'terminal', player 'player_2': TypeError: reward() must return a finite number.",
+    "Outcome 'terminal', player 'player_1': TypeError: reward() must return a finite number.",
+    "Outcome 'terminal', player 'player_2': TypeError: reward() must return a finite number."
+  ],
+  "stage": "rollout",
+  "states_checked": 4,
+  "status": "failed",
+  "transitions_checked": 6,
+  "warnings": []
+}

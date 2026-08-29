@@ -1,0 +1,1168 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 1,
+      "outcome_compression": 1.0,
+      "unique_action_count": 1,
+      "unique_actions_by_player": {
+        "player_1": [
+          "roll"
+        ],
+        "player_2": [
+          "roll"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.972972972972973,
+      "average_out_degree": 0.972972972972973,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.02702702702702703,
+      "edge_count": 36,
+      "global_efficiency": 0.02702702702702703,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 36,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 37,
+      "strongly_connected_components": [
+        [
+          "terminal_4_6"
+        ],
+        [
+          "terminal_6_3"
+        ],
+        [
+          "terminal_6_2"
+        ],
+        [
+          "terminal_3_5"
+        ],
+        [
+          "terminal_2_6"
+        ],
+        [
+          "terminal_5_5"
+        ],
+        [
+          "terminal_3_4"
+        ],
+        [
+          "terminal_1_3"
+        ],
+        [
+          "terminal_5_6"
+        ],
+        [
+          "terminal_3_2"
+        ],
+        [
+          "terminal_5_1"
+        ],
+        [
+          "terminal_1_1"
+        ],
+        [
+          "terminal_2_4"
+        ],
+        [
+          "terminal_5_3"
+        ],
+        [
+          "terminal_2_1"
+        ],
+        [
+          "terminal_1_2"
+        ],
+        [
+          "terminal_1_4"
+        ],
+        [
+          "terminal_1_5"
+        ],
+        [
+          "terminal_1_6"
+        ],
+        [
+          "terminal_2_2"
+        ],
+        [
+          "terminal_2_3"
+        ],
+        [
+          "terminal_2_5"
+        ],
+        [
+          "terminal_3_1"
+        ],
+        [
+          "terminal_3_3"
+        ],
+        [
+          "terminal_3_6"
+        ],
+        [
+          "terminal_4_1"
+        ],
+        [
+          "terminal_4_2"
+        ],
+        [
+          "terminal_4_3"
+        ],
+        [
+          "terminal_4_4"
+        ],
+        [
+          "terminal_4_5"
+        ],
+        [
+          "terminal_5_2"
+        ],
+        [
+          "terminal_5_4"
+        ],
+        [
+          "terminal_6_1"
+        ],
+        [
+          "terminal_6_4"
+        ],
+        [
+          "terminal_6_5"
+        ],
+        [
+          "terminal_6_6"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.02702702702702703,
+      "branching_factor_by_state": {
+        "s0": 1,
+        "terminal_1_1": 0,
+        "terminal_1_2": 0,
+        "terminal_1_3": 0,
+        "terminal_1_4": 0,
+        "terminal_1_5": 0,
+        "terminal_1_6": 0,
+        "terminal_2_1": 0,
+        "terminal_2_2": 0,
+        "terminal_2_3": 0,
+        "terminal_2_4": 0,
+        "terminal_2_5": 0,
+        "terminal_2_6": 0,
+        "terminal_3_1": 0,
+        "terminal_3_2": 0,
+        "terminal_3_3": 0,
+        "terminal_3_4": 0,
+        "terminal_3_5": 0,
+        "terminal_3_6": 0,
+        "terminal_4_1": 0,
+        "terminal_4_2": 0,
+        "terminal_4_3": 0,
+        "terminal_4_4": 0,
+        "terminal_4_5": 0,
+        "terminal_4_6": 0,
+        "terminal_5_1": 0,
+        "terminal_5_2": 0,
+        "terminal_5_3": 0,
+        "terminal_5_4": 0,
+        "terminal_5_5": 0,
+        "terminal_5_6": 0,
+        "terminal_6_1": 0,
+        "terminal_6_2": 0,
+        "terminal_6_3": 0,
+        "terminal_6_4": 0,
+        "terminal_6_5": 0,
+        "terminal_6_6": 0
+      },
+      "maximum_branching_factor": 1,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 0.02702702702702703,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 37,
+      "self_loop_count": 0,
+      "state_count": 37,
+      "terminal_state_count": 36,
+      "terminal_to_non_terminal_ratio": 36.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "s0": 1,
+        "terminal_1_1": 0,
+        "terminal_1_2": 0,
+        "terminal_1_3": 0,
+        "terminal_1_4": 0,
+        "terminal_1_5": 0,
+        "terminal_1_6": 0,
+        "terminal_2_1": 0,
+        "terminal_2_2": 0,
+        "terminal_2_3": 0,
+        "terminal_2_4": 0,
+        "terminal_2_5": 0,
+        "terminal_2_6": 0,
+        "terminal_3_1": 0,
+        "terminal_3_2": 0,
+        "terminal_3_3": 0,
+        "terminal_3_4": 0,
+        "terminal_3_5": 0,
+        "terminal_3_6": 0,
+        "terminal_4_1": 0,
+        "terminal_4_2": 0,
+        "terminal_4_3": 0,
+        "terminal_4_4": 0,
+        "terminal_4_5": 0,
+        "terminal_4_6": 0,
+        "terminal_5_1": 0,
+        "terminal_5_2": 0,
+        "terminal_5_3": 0,
+        "terminal_5_4": 0,
+        "terminal_5_5": 0,
+        "terminal_5_6": 0,
+        "terminal_6_1": 0,
+        "terminal_6_2": 0,
+        "terminal_6_3": 0,
+        "terminal_6_4": 0,
+        "terminal_6_5": 0,
+        "terminal_6_6": 0
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 36.0,
+      "deterministic_transition_fraction": 0.0,
+      "maximum_transition_branching": 36,
+      "maximum_transition_entropy": 5.1699250014423095,
+      "mean_transition_entropy": 5.1699250014423095,
+      "state_action_pair_count": 1,
+      "stochastic_transition_fraction": 1.0,
+      "unique_successor_state_count": 36
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "terminal_1_1"
+      ],
+      [
+        "s0",
+        "terminal_1_2"
+      ],
+      [
+        "s0",
+        "terminal_1_3"
+      ],
+      [
+        "s0",
+        "terminal_1_4"
+      ],
+      [
+        "s0",
+        "terminal_1_5"
+      ],
+      [
+        "s0",
+        "terminal_1_6"
+      ],
+      [
+        "s0",
+        "terminal_2_1"
+      ],
+      [
+        "s0",
+        "terminal_2_2"
+      ],
+      [
+        "s0",
+        "terminal_2_3"
+      ],
+      [
+        "s0",
+        "terminal_2_4"
+      ],
+      [
+        "s0",
+        "terminal_2_5"
+      ],
+      [
+        "s0",
+        "terminal_2_6"
+      ],
+      [
+        "s0",
+        "terminal_3_1"
+      ],
+      [
+        "s0",
+        "terminal_3_2"
+      ],
+      [
+        "s0",
+        "terminal_3_3"
+      ],
+      [
+        "s0",
+        "terminal_3_4"
+      ],
+      [
+        "s0",
+        "terminal_3_5"
+      ],
+      [
+        "s0",
+        "terminal_3_6"
+      ],
+      [
+        "s0",
+        "terminal_4_1"
+      ],
+      [
+        "s0",
+        "terminal_4_2"
+      ],
+      [
+        "s0",
+        "terminal_4_3"
+      ],
+      [
+        "s0",
+        "terminal_4_4"
+      ],
+      [
+        "s0",
+        "terminal_4_5"
+      ],
+      [
+        "s0",
+        "terminal_4_6"
+      ],
+      [
+        "s0",
+        "terminal_5_1"
+      ],
+      [
+        "s0",
+        "terminal_5_2"
+      ],
+      [
+        "s0",
+        "terminal_5_3"
+      ],
+      [
+        "s0",
+        "terminal_5_4"
+      ],
+      [
+        "s0",
+        "terminal_5_5"
+      ],
+      [
+        "s0",
+        "terminal_5_6"
+      ],
+      [
+        "s0",
+        "terminal_6_1"
+      ],
+      [
+        "s0",
+        "terminal_6_2"
+      ],
+      [
+        "s0",
+        "terminal_6_3"
+      ],
+      [
+        "s0",
+        "terminal_6_4"
+      ],
+      [
+        "s0",
+        "terminal_6_5"
+      ],
+      [
+        "s0",
+        "terminal_6_6"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "terminal_1_1",
+      "terminal_1_2",
+      "terminal_1_3",
+      "terminal_1_4",
+      "terminal_1_5",
+      "terminal_1_6",
+      "terminal_2_1",
+      "terminal_2_2",
+      "terminal_2_3",
+      "terminal_2_4",
+      "terminal_2_5",
+      "terminal_2_6",
+      "terminal_3_1",
+      "terminal_3_2",
+      "terminal_3_3",
+      "terminal_3_4",
+      "terminal_3_5",
+      "terminal_3_6",
+      "terminal_4_1",
+      "terminal_4_2",
+      "terminal_4_3",
+      "terminal_4_4",
+      "terminal_4_5",
+      "terminal_4_6",
+      "terminal_5_1",
+      "terminal_5_2",
+      "terminal_5_3",
+      "terminal_5_4",
+      "terminal_5_5",
+      "terminal_5_6",
+      "terminal_6_1",
+      "terminal_6_2",
+      "terminal_6_3",
+      "terminal_6_4",
+      "terminal_6_5",
+      "terminal_6_6"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 37,
+  "status": "passed",
+  "transitions_checked": 1,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "roll"
+          ],
+          "player_2": [
+            "roll"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'s0'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'terminal_1_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'terminal_1_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'terminal_1_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'terminal_1_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0005",
+        "representation": "'terminal_1_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0006",
+        "representation": "'terminal_1_6'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0007",
+        "representation": "'terminal_2_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0008",
+        "representation": "'terminal_2_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0009",
+        "representation": "'terminal_2_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0010",
+        "representation": "'terminal_2_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0011",
+        "representation": "'terminal_2_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0012",
+        "representation": "'terminal_2_6'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0013",
+        "representation": "'terminal_3_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0014",
+        "representation": "'terminal_3_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0015",
+        "representation": "'terminal_3_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0016",
+        "representation": "'terminal_3_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0017",
+        "representation": "'terminal_3_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0018",
+        "representation": "'terminal_3_6'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0019",
+        "representation": "'terminal_4_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0020",
+        "representation": "'terminal_4_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0021",
+        "representation": "'terminal_4_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0022",
+        "representation": "'terminal_4_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0023",
+        "representation": "'terminal_4_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0024",
+        "representation": "'terminal_4_6'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0025",
+        "representation": "'terminal_5_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0026",
+        "representation": "'terminal_5_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0027",
+        "representation": "'terminal_5_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0028",
+        "representation": "'terminal_5_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0029",
+        "representation": "'terminal_5_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0030",
+        "representation": "'terminal_5_6'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0031",
+        "representation": "'terminal_6_1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0032",
+        "representation": "'terminal_6_2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0033",
+        "representation": "'terminal_6_3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0034",
+        "representation": "'terminal_6_4'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0035",
+        "representation": "'terminal_6_5'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0036",
+        "representation": "'terminal_6_6'",
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "roll",
+          "player_2": "roll"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_1_tie",
+              "player_2": "player_1_rolled_1_player_2_rolled_1_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_2_player_2_wins",
+              "player_2": "player_1_rolled_1_player_2_rolled_2_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_3_player_2_wins",
+              "player_2": "player_1_rolled_1_player_2_rolled_3_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_4_player_2_wins",
+              "player_2": "player_1_rolled_1_player_2_rolled_4_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_5_player_2_wins",
+              "player_2": "player_1_rolled_1_player_2_rolled_5_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "player_1_rolled_1_player_2_rolled_6_player_2_wins",
+              "player_2": "player_1_rolled_1_player_2_rolled_6_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_1_player_1_wins",
+              "player_2": "player_1_rolled_2_player_2_rolled_1_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_2_tie",
+              "player_2": "player_1_rolled_2_player_2_rolled_2_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_3_player_2_wins",
+              "player_2": "player_1_rolled_2_player_2_rolled_3_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0010",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_4_player_2_wins",
+              "player_2": "player_1_rolled_2_player_2_rolled_4_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0011",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_5_player_2_wins",
+              "player_2": "player_1_rolled_2_player_2_rolled_5_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0012",
+            "observations": {
+              "player_1": "player_1_rolled_2_player_2_rolled_6_player_2_wins",
+              "player_2": "player_1_rolled_2_player_2_rolled_6_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0013",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_1_player_1_wins",
+              "player_2": "player_1_rolled_3_player_2_rolled_1_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0014",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_2_player_1_wins",
+              "player_2": "player_1_rolled_3_player_2_rolled_2_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0015",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_3_tie",
+              "player_2": "player_1_rolled_3_player_2_rolled_3_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0016",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_4_player_2_wins",
+              "player_2": "player_1_rolled_3_player_2_rolled_4_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0017",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_5_player_2_wins",
+              "player_2": "player_1_rolled_3_player_2_rolled_5_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0018",
+            "observations": {
+              "player_1": "player_1_rolled_3_player_2_rolled_6_player_2_wins",
+              "player_2": "player_1_rolled_3_player_2_rolled_6_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0019",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_1_player_1_wins",
+              "player_2": "player_1_rolled_4_player_2_rolled_1_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0020",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_2_player_1_wins",
+              "player_2": "player_1_rolled_4_player_2_rolled_2_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0021",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_3_player_1_wins",
+              "player_2": "player_1_rolled_4_player_2_rolled_3_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0022",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_4_tie",
+              "player_2": "player_1_rolled_4_player_2_rolled_4_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0023",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_5_player_2_wins",
+              "player_2": "player_1_rolled_4_player_2_rolled_5_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0024",
+            "observations": {
+              "player_1": "player_1_rolled_4_player_2_rolled_6_player_2_wins",
+              "player_2": "player_1_rolled_4_player_2_rolled_6_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0025",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_1_player_1_wins",
+              "player_2": "player_1_rolled_5_player_2_rolled_1_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0026",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_2_player_1_wins",
+              "player_2": "player_1_rolled_5_player_2_rolled_2_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0027",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_3_player_1_wins",
+              "player_2": "player_1_rolled_5_player_2_rolled_3_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0028",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_4_player_1_wins",
+              "player_2": "player_1_rolled_5_player_2_rolled_4_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0029",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_5_tie",
+              "player_2": "player_1_rolled_5_player_2_rolled_5_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0030",
+            "observations": {
+              "player_1": "player_1_rolled_5_player_2_rolled_6_player_2_wins",
+              "player_2": "player_1_rolled_5_player_2_rolled_6_player_2_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0031",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_1_player_1_wins",
+              "player_2": "player_1_rolled_6_player_2_rolled_1_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0032",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_2_player_1_wins",
+              "player_2": "player_1_rolled_6_player_2_rolled_2_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0033",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_3_player_1_wins",
+              "player_2": "player_1_rolled_6_player_2_rolled_3_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0034",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_4_player_1_wins",
+              "player_2": "player_1_rolled_6_player_2_rolled_4_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0035",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_5_player_1_wins",
+              "player_2": "player_1_rolled_6_player_2_rolled_5_player_1_wins"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0036",
+            "observations": {
+              "player_1": "player_1_rolled_6_player_2_rolled_6_tie",
+              "player_2": "player_1_rolled_6_player_2_rolled_6_tie"
+            },
+            "probability": 0.027777777777777776,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

@@ -1,0 +1,53 @@
+ ```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["kicker", "goalkeeper"]
+
+    def initial_state(self):
+        return "penalty"
+
+    def legal_actions(self, state, player):
+        if state == "penalty":
+            if player == "kicker":
+                return ["left", "center", "right"]
+            elif player == "goalkeeper":
+                return ["left", "center", "right"]
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "penalty":
+            # Deterministic outcome: goal or no_goal
+            kick = joint_action["kicker"]
+            dive = joint_action["goalkeeper"]
+            if kick == dive:
+                return {"no_goal": 1.0}
+            else:
+                return {"goal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        # Both players observe the outcome and the actions taken
+        kick = joint_action["kicker"]
+        dive = joint_action["goalkeeper"]
+        return f"state:{state}, kick:{kick}, dive:{dive}, next:{next_state}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "penalty":
+            if next_state == "goal":
+                # Kicker gets +1, goalkeeper gets -1
+                if player == "kicker":
+                    return 1.0
+                else:
+                    return -1.0
+            else:  # no_goal
+                # Kicker gets -1, goalkeeper gets +1
+                if player == "kicker":
+                    return -1.0
+                else:
+                    return 1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state in ["goal", "no_goal", "terminal"]
+```

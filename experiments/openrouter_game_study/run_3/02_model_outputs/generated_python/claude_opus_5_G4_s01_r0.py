@@ -1,0 +1,45 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["kicker", "keeper"]
+
+    def initial_state(self):
+        return "kick"
+
+    def legal_actions(self, state, player):
+        if state == "kick":
+            if player == "kicker":
+                return ["shoot_left", "shoot_center", "shoot_right"]
+            else:
+                return ["dive_left", "stay_center", "dive_right"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state != "kick":
+            return {"terminal": 1.0}
+        k = joint_action["kicker"]
+        g = joint_action["keeper"]
+        zone_k = k.split("_")[1]
+        zone_g = g.split("_")[1]
+        if zone_k == zone_g:
+            return {"saved_" + zone_k: 1.0}
+        return {"goal_" + zone_k: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state != "kick":
+            return "end"
+        k = joint_action["kicker"]
+        g = joint_action["keeper"]
+        outcome = "save" if next_state.startswith("saved_") else "goal"
+        return f"me={joint_action[player]};kick={k};keeper={g};result={outcome}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "kick":
+            return 0.0
+        scored = next_state.startswith("goal_")
+        if player == "kicker":
+            return 1.0 if scored else -1.0
+        return -1.0 if scored else 1.0
+
+    def is_terminal(self, state):
+        return state.startswith("goal_") or state.startswith("saved_") or state == "terminal"

@@ -1,0 +1,15 @@
+{
+  "errors": [
+    "Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.",
+    "Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str.",
+    "Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.",
+    "Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str.",
+    "Outcome 'terminal', player 'hunter_1': TypeError: observation() must return str.",
+    "Outcome 'terminal', player 'hunter_2': TypeError: observation() must return str."
+  ],
+  "stage": "rollout",
+  "states_checked": 5,
+  "status": "failed",
+  "transitions_checked": 7,
+  "warnings": []
+}
