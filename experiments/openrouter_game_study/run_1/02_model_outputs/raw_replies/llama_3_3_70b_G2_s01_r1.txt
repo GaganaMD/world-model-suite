@@ -1,0 +1,44 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["roll"]
+        elif state in ["win", "lose", "tie"]: 
+            return ["reset"]
+    def transition(self, state, joint_action): 
+        if state == "start" and joint_action["player_1"] == "roll" and joint_action["player_2"] == "roll":
+            roll1 = 4
+            roll2 = 3
+            if roll1 > roll2: 
+                return {"win": 1.0}
+            elif roll1 < roll2: 
+                return {"lose": 1.0}
+            else: 
+                return {"tie": 1.0}
+        elif state in ["win", "lose", "tie"] and joint_action["player_1"] == "reset" and joint_action["player_2"] == "reset":
+            return {"start": 1.0}
+    def observation(self, state, joint_action, next_state, player): 
+        if state == "start" and joint_action["player_1"] == "roll" and joint_action["player_2"] == "roll":
+            roll1 = 4
+            roll2 = 3
+            if player == "player_1": 
+                return f"you rolled {roll1}, opponent rolled {roll2}"
+            else: 
+                return f"you rolled {roll2}, opponent rolled {roll1}"
+        elif state in ["win", "lose", "tie"] and joint_action["player_1"] == "reset" and joint_action["player_2"] == "reset":
+            return "game reset"
+    def reward(self, state, joint_action, next_state, player): 
+        if next_state == "win" and player == "player_1": 
+            return 1.0
+        elif next_state == "lose" and player == "player_2": 
+            return 1.0
+        elif next_state == "win" and player == "player_2": 
+            return -1.0
+        elif next_state == "lose" and player == "player_1": 
+            return -1.0
+        else: 
+            return 0.0
+    def is_terminal(self, state): 
+        return state in ["win", "lose", "tie"]

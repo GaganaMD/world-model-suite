@@ -1,0 +1,285 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.75,
+      "joint_action_count": 4,
+      "outcome_compression": 0.25,
+      "unique_action_count": 2,
+      "unique_actions_by_player": {
+        "player_1": [
+          "heads",
+          "tails"
+        ],
+        "player_2": [
+          "heads",
+          "tails"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.6666666666666666,
+      "average_out_degree": 0.6666666666666666,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.3333333333333333,
+      "edge_count": 2,
+      "global_efficiency": 0.3333333333333333,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 2,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 3,
+      "strongly_connected_components": [
+        [
+          "T"
+        ],
+        [
+          "H"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.3333333333333333,
+      "branching_factor_by_state": {
+        "H": 0,
+        "T": 0,
+        "s0": 4
+      },
+      "maximum_branching_factor": 4,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 1.3333333333333333,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 3,
+      "self_loop_count": 0,
+      "state_count": 3,
+      "terminal_state_count": 2,
+      "terminal_to_non_terminal_ratio": 2.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "H": 0,
+        "T": 0,
+        "s0": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 2.0,
+      "deterministic_transition_fraction": 0.0,
+      "maximum_transition_branching": 2,
+      "maximum_transition_entropy": 1.0,
+      "mean_transition_entropy": 1.0,
+      "state_action_pair_count": 4,
+      "stochastic_transition_fraction": 1.0,
+      "unique_successor_state_count": 2
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "H"
+      ],
+      [
+        "s0",
+        "T"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "H",
+      "T"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 3,
+  "status": "passed",
+  "transitions_checked": 4,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0002"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0000",
+        "representation": "'H'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'T'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "heads",
+            "tails"
+          ],
+          "player_2": [
+            "heads",
+            "tails"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0002",
+        "representation": "'s0'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "own=heads, coin=H",
+              "player_2": "own=heads, coin=H"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "own=heads, coin=T",
+              "player_2": "own=heads, coin=T"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0002"
+      },
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "own=heads, coin=H",
+              "player_2": "own=tails, coin=H"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "own=heads, coin=T",
+              "player_2": "own=tails, coin=T"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0002"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "own=tails, coin=H",
+              "player_2": "own=heads, coin=H"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "own=tails, coin=T",
+              "player_2": "own=heads, coin=T"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0002"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "own=tails, coin=H",
+              "player_2": "own=tails, coin=H"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "own=tails, coin=T",
+              "player_2": "own=tails, coin=T"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0002"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

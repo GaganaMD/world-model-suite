@@ -1,0 +1,223 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "heads",
+          "tails"
+        ],
+        "player_2": [
+          "heads",
+          "tails"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'call'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'terminal_heads_heads_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'terminal_heads_heads_tails'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'terminal_heads_tails_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "'terminal_heads_tails_tails'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0005",
+      "representation": "'terminal_tails_heads_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0006",
+      "representation": "'terminal_tails_heads_tails'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0007",
+      "representation": "'terminal_tails_tails_heads'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0008",
+      "representation": "'terminal_tails_tails_tails'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "heads",
+        "player_2": "heads"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "coin=heads;my_call=heads;opp_call=heads",
+            "player_2": "coin=heads;my_call=heads;opp_call=heads"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "coin=tails;my_call=heads;opp_call=heads",
+            "player_2": "coin=tails;my_call=heads;opp_call=heads"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "heads",
+        "player_2": "tails"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "coin=heads;my_call=heads;opp_call=tails",
+            "player_2": "coin=heads;my_call=tails;opp_call=heads"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        },
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "coin=tails;my_call=heads;opp_call=tails",
+            "player_2": "coin=tails;my_call=tails;opp_call=heads"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "tails",
+        "player_2": "heads"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "player_1": "coin=heads;my_call=tails;opp_call=heads",
+            "player_2": "coin=heads;my_call=heads;opp_call=tails"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        },
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "coin=tails;my_call=tails;opp_call=heads",
+            "player_2": "coin=tails;my_call=heads;opp_call=tails"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "tails",
+        "player_2": "tails"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0007",
+          "observations": {
+            "player_1": "coin=heads;my_call=tails;opp_call=tails",
+            "player_2": "coin=heads;my_call=tails;opp_call=tails"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0008",
+          "observations": {
+            "player_1": "coin=tails;my_call=tails;opp_call=tails",
+            "player_2": "coin=tails;my_call=tails;opp_call=tails"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

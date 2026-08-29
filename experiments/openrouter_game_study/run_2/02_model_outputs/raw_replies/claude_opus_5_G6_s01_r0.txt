@@ -1,0 +1,92 @@
+class GeneratedPOSG(AbstractPOSG):
+    """Sealed-bid first-price auction with private binary valuations.
+
+    State encoding (strings only):
+      "chance"                      - initial state, nature draws types
+      "bid|<v1>|<v2>"               - types drawn (v1,v2 in {L,H}), bidders bid simultaneously
+      "tie|<v1>|<v2>|<b1>|<b2>"     - equal bids, coin flip pending
+      "end|<v1>|<v2>|<b1>|<b2>|<w>" - terminal; w in {1,2}
+    """
+
+    VALUES = {"L": 3, "H": 6}
+    BIDS = {"0": 0, "2": 2, "4": 4, "5": 5}
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "chance"
+
+    def legal_actions(self, state, player):
+        if state == "chance":
+            return ["wait"]
+        parts = state.split("|")
+        if parts[0] == "bid":
+            return ["bid_0", "bid_2", "bid_4", "bid_5"]
+        if parts[0] == "tie":
+            return ["wait"]
+        return ["wait"]
+
+    def transition(self, state, joint_action):
+        if state == "chance":
+            return {
+                "bid|L|L": 0.25,
+                "bid|L|H": 0.25,
+                "bid|H|L": 0.25,
+                "bid|H|H": 0.25,
+            }
+        parts = state.split("|")
+        if parts[0] == "bid":
+            v1, v2 = parts[1], parts[2]
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            b1 = a1[4:] if a1.startswith("bid_") else "0"
+            b2 = a2[4:] if a2.startswith("bid_") else "0"
+            if b1 not in self.BIDS:
+                b1 = "0"
+            if b2 not in self.BIDS:
+                b2 = "0"
+            n1 = self.BIDS[b1]
+            n2 = self.BIDS[b2]
+            if n1 > n2:
+                return {"end|" + v1 + "|" + v2 + "|" + b1 + "|" + b2 + "|1": 1.0}
+            if n2 > n1:
+                return {"end|" + v1 + "|" + v2 + "|" + b1 + "|" + b2 + "|2": 1.0}
+            return {"tie|" + v1 + "|" + v2 + "|" + b1 + "|" + b2: 1.0}
+        if parts[0] == "tie":
+            base = "end|" + parts[1] + "|" + parts[2] + "|" + parts[3] + "|" + parts[4]
+            return {base + "|1": 0.5, base + "|2": 0.5}
+        return {state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        nparts = next_state.split("|")
+        if nparts[0] == "bid":
+            own = nparts[1] if player == "player_1" else nparts[2]
+            return f"phase=bid;my_value={own}"
+        if nparts[0] == "tie":
+            own = nparts[1] if player == "player_1" else nparts[2]
+            return f"phase=tie;my_value={own};b1={nparts[3]};b2={nparts[4]}"
+        if nparts[0] == "end":
+            own = nparts[1] if player == "player_1" else nparts[2]
+            me = "1" if player == "player_1" else "2"
+            won = "yes" if nparts[5] == me else "no"
+            return f"phase=end;my_value={own};b1={nparts[3]};b2={nparts[4]};won={won}"
+        return "phase=unknown"
+
+    def reward(self, state, joint_action, next_state, player):
+        nparts = next_state.split("|")
+        if nparts[0] != "end":
+            return 0.0
+        v1, v2, b1, b2, w = nparts[1], nparts[2], nparts[3], nparts[4], nparts[5]
+        if player == "player_1":
+            if w != "1":
+                return 0.0
+            return float(self.VALUES[v1] - self.BIDS[b1])
+        else:
+            if w != "2":
+                return 0.0
+            return float(self.VALUES[v2] - self.BIDS[b2])
+
+    def is_terminal(self, state):
+        return state.startswith("end|")

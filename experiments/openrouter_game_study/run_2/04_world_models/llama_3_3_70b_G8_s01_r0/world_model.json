@@ -1,0 +1,231 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0003"
+    }
+  ],
+  "players": [
+    "hunter_1",
+    "hunter_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "hunter_1": [
+          "eat_stag"
+        ],
+        "hunter_2": [
+          "eat_stag"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'both_hunt_stag'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "hunter_1": [
+          "eat_hare"
+        ],
+        "hunter_2": [
+          "eat_hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'one_hunts_hare'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "hunter_1": [
+          "go_home"
+        ],
+        "hunter_2": [
+          "go_home"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'one_hunts_stag'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "hunter_1": [
+          "hunt_stag",
+          "hunt_hare"
+        ],
+        "hunter_2": [
+          "hunt_stag",
+          "hunt_hare"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0003",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0004",
+      "representation": "'terminal'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "hunter_1": "eat_stag",
+        "hunter_2": "eat_stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "hunter_1": "terminal_hunter_1",
+            "hunter_2": "terminal_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 0.0,
+            "hunter_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "eat_hare",
+        "hunter_2": "eat_hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "hunter_1": "terminal_hunter_1",
+            "hunter_2": "terminal_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 0.0,
+            "hunter_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "go_home",
+        "hunter_2": "go_home"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "hunter_1": "terminal_hunter_1",
+            "hunter_2": "terminal_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 0.0,
+            "hunter_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "hunt_hare",
+        "hunter_2": "hunt_hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "hunter_1": "one_hunts_hare_hunter_1",
+            "hunter_2": "one_hunts_hare_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 1.0,
+            "hunter_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "hunt_hare",
+        "hunter_2": "hunt_stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "hunter_1": "one_hunts_stag_hunter_1",
+            "hunter_2": "one_hunts_stag_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 0.0,
+            "hunter_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "hunt_stag",
+        "hunter_2": "hunt_hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "hunter_1": "one_hunts_stag_hunter_1",
+            "hunter_2": "one_hunts_stag_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 0.0,
+            "hunter_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "hunter_1": "hunt_stag",
+        "hunter_2": "hunt_stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "hunter_1": "both_hunt_stag_hunter_1",
+            "hunter_2": "both_hunt_stag_hunter_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "hunter_1": 2.0,
+            "hunter_2": 2.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

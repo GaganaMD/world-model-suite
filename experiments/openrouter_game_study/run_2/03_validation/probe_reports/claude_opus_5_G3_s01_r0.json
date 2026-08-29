@@ -1,0 +1,387 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 4,
+      "outcome_compression": 1.0,
+      "unique_action_count": 2,
+      "unique_actions_by_player": {
+        "player_1": [
+          "heads",
+          "tails"
+        ],
+        "player_2": [
+          "heads",
+          "tails"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.8888888888888888,
+      "average_out_degree": 0.8888888888888888,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.1111111111111111,
+      "edge_count": 8,
+      "global_efficiency": 0.1111111111111111,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 8,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 9,
+      "strongly_connected_components": [
+        [
+          "terminal_heads_heads_heads"
+        ],
+        [
+          "terminal_heads_heads_tails"
+        ],
+        [
+          "terminal_heads_tails_heads"
+        ],
+        [
+          "terminal_heads_tails_tails"
+        ],
+        [
+          "terminal_tails_heads_heads"
+        ],
+        [
+          "terminal_tails_heads_tails"
+        ],
+        [
+          "terminal_tails_tails_heads"
+        ],
+        [
+          "terminal_tails_tails_tails"
+        ],
+        [
+          "call"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.1111111111111111,
+      "branching_factor_by_state": {
+        "call": 4,
+        "terminal_heads_heads_heads": 0,
+        "terminal_heads_heads_tails": 0,
+        "terminal_heads_tails_heads": 0,
+        "terminal_heads_tails_tails": 0,
+        "terminal_tails_heads_heads": 0,
+        "terminal_tails_heads_tails": 0,
+        "terminal_tails_tails_heads": 0,
+        "terminal_tails_tails_tails": 0
+      },
+      "maximum_branching_factor": 4,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 0.4444444444444444,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 9,
+      "self_loop_count": 0,
+      "state_count": 9,
+      "terminal_state_count": 8,
+      "terminal_to_non_terminal_ratio": 8.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "call": 1,
+        "terminal_heads_heads_heads": 0,
+        "terminal_heads_heads_tails": 0,
+        "terminal_heads_tails_heads": 0,
+        "terminal_heads_tails_tails": 0,
+        "terminal_tails_heads_heads": 0,
+        "terminal_tails_heads_tails": 0,
+        "terminal_tails_tails_heads": 0,
+        "terminal_tails_tails_tails": 0
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 2.0,
+      "deterministic_transition_fraction": 0.0,
+      "maximum_transition_branching": 2,
+      "maximum_transition_entropy": 1.0,
+      "mean_transition_entropy": 1.0,
+      "state_action_pair_count": 4,
+      "stochastic_transition_fraction": 1.0,
+      "unique_successor_state_count": 8
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "call",
+        "terminal_heads_heads_heads"
+      ],
+      [
+        "call",
+        "terminal_heads_heads_tails"
+      ],
+      [
+        "call",
+        "terminal_heads_tails_heads"
+      ],
+      [
+        "call",
+        "terminal_heads_tails_tails"
+      ],
+      [
+        "call",
+        "terminal_tails_heads_heads"
+      ],
+      [
+        "call",
+        "terminal_tails_heads_tails"
+      ],
+      [
+        "call",
+        "terminal_tails_tails_heads"
+      ],
+      [
+        "call",
+        "terminal_tails_tails_tails"
+      ]
+    ],
+    "nodes": [
+      "call",
+      "terminal_heads_heads_heads",
+      "terminal_heads_heads_tails",
+      "terminal_heads_tails_heads",
+      "terminal_heads_tails_tails",
+      "terminal_tails_heads_heads",
+      "terminal_tails_heads_tails",
+      "terminal_tails_tails_heads",
+      "terminal_tails_tails_tails"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 9,
+  "status": "passed",
+  "transitions_checked": 4,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "heads",
+            "tails"
+          ],
+          "player_2": [
+            "heads",
+            "tails"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'call'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'terminal_heads_heads_heads'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'terminal_heads_heads_tails'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'terminal_heads_tails_heads'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'terminal_heads_tails_tails'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0005",
+        "representation": "'terminal_tails_heads_heads'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0006",
+        "representation": "'terminal_tails_heads_tails'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0007",
+        "representation": "'terminal_tails_tails_heads'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0008",
+        "representation": "'terminal_tails_tails_tails'",
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "coin=heads;my_call=heads;opp_call=heads",
+              "player_2": "coin=heads;my_call=heads;opp_call=heads"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "coin=tails;my_call=heads;opp_call=heads",
+              "player_2": "coin=tails;my_call=heads;opp_call=heads"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "heads",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "coin=heads;my_call=heads;opp_call=tails",
+              "player_2": "coin=heads;my_call=tails;opp_call=heads"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          },
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "coin=tails;my_call=heads;opp_call=tails",
+              "player_2": "coin=tails;my_call=tails;opp_call=heads"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "heads"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "coin=heads;my_call=tails;opp_call=heads",
+              "player_2": "coin=heads;my_call=heads;opp_call=tails"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          },
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "coin=tails;my_call=tails;opp_call=heads",
+              "player_2": "coin=tails;my_call=heads;opp_call=tails"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "tails",
+          "player_2": "tails"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "coin=heads;my_call=tails;opp_call=tails",
+              "player_2": "coin=heads;my_call=tails;opp_call=tails"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "coin=tails;my_call=tails;opp_call=tails",
+              "player_2": "coin=tails;my_call=tails;opp_call=tails"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

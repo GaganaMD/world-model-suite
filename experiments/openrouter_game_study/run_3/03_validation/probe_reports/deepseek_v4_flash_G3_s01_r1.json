@@ -1,0 +1,8 @@
+{
+  "errors": [
+    "SyntaxError: invalid non-printable character U+200B (<unknown>, line 23)"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}

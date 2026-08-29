@@ -1,0 +1,25 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+
+    def initial_state(self): return "s0"
+
+    def legal_actions(self, state, player): return ["low", "high"]
+
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        bid = joint_action.get(player, "")
+        return f"bid={bid}"
+
+    def reward(self, state, joint_action, next_state, player):
+        bid = joint_action.get(player, "")
+        opp = joint_action.get("player_2" if player == "player_1" else "player_1", "")
+        if bid == opp:
+            return 0.0
+        if bid == "high":
+            return 1.0 if opp == "low" else -1.0
+        else:
+            return -1.0 if opp == "high" else 1.0
+
+    def is_terminal(self, state): return state == "terminal"

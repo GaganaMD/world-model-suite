@@ -1,0 +1,321 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0004"
+    }
+  ],
+  "players": [
+    "bidder_1",
+    "bidder_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "bidder_1": [
+          "reveal"
+        ],
+        "bidder_2": [
+          "reveal"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'bid_high_high'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "bidder_1": [
+          "reveal"
+        ],
+        "bidder_2": [
+          "reveal"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'bid_high_low'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "bidder_1": [
+          "reveal"
+        ],
+        "bidder_2": [
+          "reveal"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'bid_low_high'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "bidder_1": [
+          "reveal"
+        ],
+        "bidder_2": [
+          "reveal"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'bid_low_low'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "bidder_1": [
+          "low",
+          "high"
+        ],
+        "bidder_2": [
+          "low",
+          "high"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0004",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0005",
+      "representation": "'win_bidder_1'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0006",
+      "representation": "'win_bidder_2'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "bidder_1": "reveal",
+        "bidder_2": "reveal"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 5.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 5.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "reveal",
+        "bidder_2": "reveal"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 5.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 5.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "reveal",
+        "bidder_2": "reveal"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 5.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 5.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "reveal",
+        "bidder_2": "reveal"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 5.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "bidder_1": "bidder_1_bid_reveal",
+            "bidder_2": "bidder_2_bid_reveal"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 5.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "high",
+        "bidder_2": "high"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "bidder_1": "bidder_1_start",
+            "bidder_2": "bidder_2_start"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "high",
+        "bidder_2": "low"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "bidder_1": "bidder_1_start",
+            "bidder_2": "bidder_2_start"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "low",
+        "bidder_2": "high"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "bidder_1": "bidder_1_start",
+            "bidder_2": "bidder_2_start"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "low",
+        "bidder_2": "low"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "bidder_1": "bidder_1_start",
+            "bidder_2": "bidder_2_start"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

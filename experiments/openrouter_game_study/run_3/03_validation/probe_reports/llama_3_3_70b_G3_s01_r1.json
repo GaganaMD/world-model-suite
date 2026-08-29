@@ -1,0 +1,10 @@
+{
+  "errors": [
+    "GeneratedPOSG is missing observation()",
+    "GeneratedPOSG is missing reward()",
+    "GeneratedPOSG is missing is_terminal()"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}

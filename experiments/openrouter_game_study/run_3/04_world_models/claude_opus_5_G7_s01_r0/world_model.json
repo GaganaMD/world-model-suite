@@ -1,0 +1,1073 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0002"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "silent",
+          "testify"
+        ],
+        "player_2": [
+          "silent",
+          "testify"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'interrogation_strong'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "silent",
+          "testify"
+        ],
+        "player_2": [
+          "silent",
+          "testify"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'interrogation_weak'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "wait"
+        ],
+        "player_2": [
+          "wait"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0002",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 3,
+      "id": "state_0003",
+      "representation": "'terminal'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0004",
+      "representation": "'verdict_strong_silent_silent'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0005",
+      "representation": "'verdict_strong_silent_testify'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0006",
+      "representation": "'verdict_strong_testify_silent'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0007",
+      "representation": "'verdict_strong_testify_testify'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0008",
+      "representation": "'verdict_weak_silent_silent'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0009",
+      "representation": "'verdict_weak_silent_testify'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0010",
+      "representation": "'verdict_weak_testify_silent'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "accept",
+          "protest"
+        ],
+        "player_2": [
+          "accept",
+          "protest"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0011",
+      "representation": "'verdict_weak_testify_testify'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "obs_verdict_evidence_strong_mine_silent_partner_silent_years_3",
+            "player_2": "obs_verdict_evidence_strong_mine_silent_partner_silent_years_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -3.0,
+            "player_2": -3.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "player_1": "obs_verdict_evidence_strong_mine_silent_partner_testify_years_12",
+            "player_2": "obs_verdict_evidence_strong_mine_testify_partner_silent_years_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -12.0,
+            "player_2": -0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "obs_verdict_evidence_strong_mine_testify_partner_silent_years_0",
+            "player_2": "obs_verdict_evidence_strong_mine_silent_partner_testify_years_12"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.0,
+            "player_2": -12.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0007",
+          "observations": {
+            "player_1": "obs_verdict_evidence_strong_mine_testify_partner_testify_years_5",
+            "player_2": "obs_verdict_evidence_strong_mine_testify_partner_testify_years_5"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -5.0,
+            "player_2": -5.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0008",
+          "observations": {
+            "player_1": "obs_verdict_evidence_weak_mine_silent_partner_silent_years_1",
+            "player_2": "obs_verdict_evidence_weak_mine_silent_partner_silent_years_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "silent",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0009",
+          "observations": {
+            "player_1": "obs_verdict_evidence_weak_mine_silent_partner_testify_years_10",
+            "player_2": "obs_verdict_evidence_weak_mine_testify_partner_silent_years_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -10.0,
+            "player_2": -0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "silent"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0010",
+          "observations": {
+            "player_1": "obs_verdict_evidence_weak_mine_testify_partner_silent_years_0",
+            "player_2": "obs_verdict_evidence_weak_mine_silent_partner_testify_years_10"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.0,
+            "player_2": -10.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "testify",
+        "player_2": "testify"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0011",
+          "observations": {
+            "player_1": "obs_verdict_evidence_weak_mine_testify_partner_testify_years_5",
+            "player_2": "obs_verdict_evidence_weak_mine_testify_partner_testify_years_5"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -5.0,
+            "player_2": -5.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "wait",
+        "player_2": "wait"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "obs_held_alone_no_contact",
+            "player_2": "obs_held_alone_no_contact"
+          },
+          "probability": 0.4,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "obs_held_alone_no_contact",
+            "player_2": "obs_held_alone_no_contact"
+          },
+          "probability": 0.6,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0006"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0006"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0006"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0006"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0007"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0007"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0007"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_strong_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_strong_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0007"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0008"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0008"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0008"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0008"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_silent_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0010"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0010"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0010"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_silent_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0010"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0011"
+    },
+    {
+      "joint_action": {
+        "player_1": "accept",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_accept",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0011"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "accept"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_accept"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0011"
+    },
+    {
+      "joint_action": {
+        "player_1": "protest",
+        "player_2": "protest"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "obs_case_closed_evidence_weak_mine_testify_response_protest",
+            "player_2": "obs_case_closed_evidence_weak_mine_testify_response_protest"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -0.5,
+            "player_2": -0.5
+          }
+        }
+      ],
+      "state": "state_0011"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

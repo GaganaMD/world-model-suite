@@ -1,0 +1,55 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "terminal":
+            return []
+        # Both players choose heads or tails
+        return ["heads", "tails"]
+
+    def transition(self, state, joint_action):
+        # Determine outcome based on joint action
+        p1_action = joint_action["player_1"]
+        p2_action = joint_action["player_2"]
+        
+        if p1_action == p2_action:
+            next_state = "terminal_same"
+        else:
+            next_state = "terminal_diff"
+        
+        return {next_state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        # Each player observes their own action and the other's action (since they reveal simultaneously)
+        p1_action = joint_action["player_1"]
+        p2_action = joint_action["player_2"]
+        
+        if player == "player_1":
+            return f"my_choice={p1_action},other_choice={p2_action}"
+        else:
+            return f"my_choice={p2_action},other_choice={p1_action}"
+
+    def reward(self, state, joint_action, next_state, player):
+        p1_action = joint_action["player_1"]
+        p2_action = joint_action["player_2"]
+        
+        if p1_action == p2_action:
+            # Player 1 keeps both coins (+1), Player 2 loses both (-1)
+            if player == "player_1":
+                return 1.0
+            else:
+                return -1.0
+        else:
+            # Player 2 keeps both coins (+1), Player 1 loses both (-1)
+            if player == "player_1":
+                return -1.0
+            else:
+                return 1.0
+
+    def is_terminal(self, state):
+        return state in ("terminal_same", "terminal_diff")

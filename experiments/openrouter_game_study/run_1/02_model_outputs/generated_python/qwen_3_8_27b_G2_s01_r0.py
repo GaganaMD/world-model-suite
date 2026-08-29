@@ -1,0 +1,70 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        # Each player chooses a die face 1-6 (simulating the roll)
+        if state == "s0":
+            return [str(i) for i in range(1, 7)]
+        else:
+            # Should not be reached in non-terminal states other than s0
+            return ["noop"]
+
+    def transition(self, state, joint_action):
+        # The game is deterministic given the actions (die rolls)
+        # State encodes the outcome of the round
+        p1_roll = int(joint_action["player_1"])
+        p2_roll = int(joint_action["player_2"])
+        
+        if p1_roll > p2_roll:
+            next_state = f"win_p1_{p1_roll}_{p2_roll}"
+        elif p2_roll > p1_roll:
+            next_state = f"win_p2_{p1_roll}_{p2_roll}"
+        else:
+            next_state = f"tie_{p1_roll}_{p2_roll}"
+            
+        return {next_state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        # In this simple model, each player observes their own roll and the outcome
+        # But typically in such games, they might only know their own roll until revealed.
+        # However, the prompt says "Whoever rolls the higher number wins", implying a standard comparison.
+        # Let's assume full observability of the result for simplicity, or just their own roll.
+        # Standard POSG often has partial observability. Let's say each player sees their own roll.
+        # If we want to make it more interesting, maybe they don't see the other's roll immediately?
+        # But the state is terminal after one step. So observation at terminal state can include everything.
+        # Let's provide the player with their own roll and the final winner info.
+        
+        p1_roll = int(joint_action["player_1"])
+        p2_roll = int(joint_action["player_2"])
+        
+        if player == "player_1":
+            return f"my_roll={p1_roll}, opponent_roll={p2_roll}"
+        else:
+            return f"my_roll={p2_roll}, opponent_roll={p1_roll}"
+
+    def reward(self, state, joint_action, next_state, player):
+        p1_roll = int(joint_action["player_1"])
+        p2_roll = int(joint_action["player_2"])
+        
+        if player == "player_1":
+            if p1_roll > p2_roll:
+                return 1.0
+            elif p1_roll < p2_roll:
+                return -1.0
+            else:
+                return 0.0
+        else:
+            if p2_roll > p1_roll:
+                return 1.0
+            elif p2_roll < p1_roll:
+                return -1.0
+            else:
+                return 0.0
+
+    def is_terminal(self, state):
+        return state != "s0"

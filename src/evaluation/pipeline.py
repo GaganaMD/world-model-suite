@@ -20,7 +20,7 @@ ModelInput = str | Path | Mapping[str, Any]
 
 def _load_model(value: ModelInput, name: str) -> dict[str, Any]:
     if isinstance(value, Mapping):
-        return copy.deepcopy(dict(value))
+        return _adapt_canonical_rollout(copy.deepcopy(dict(value)))
     path = Path(value)
     try:
         loaded = json.loads(path.read_text(encoding="utf-8"))
@@ -30,7 +30,41 @@ def _load_model(value: ModelInput, name: str) -> dict[str, Any]:
         raise ValueError(f"{name} is not valid JSON: {path}: {error}") from error
     if not isinstance(loaded, dict):
         raise ValueError(f"{name} must contain a top-level JSON object")
-    return loaded
+    return _adapt_canonical_rollout(loaded)
+
+
+def _adapt_canonical_rollout(model: dict[str, Any]) -> dict[str, Any]:
+    """Convert canonical Python-rollout JSON to the v2 evaluation schema.
+
+    Generated Python POSGs are persisted with ``initial_distribution`` and a
+    separate ``transitions`` table.  The three evaluation lanes consume the
+    equivalent v2 representation with ``initial`` and per-state actions.
+    """
+    if "initial_distribution" not in model or "transitions" not in model:
+        return model
+    from world_model_eda.python_structural_comparison import canonical_to_lane2_model
+
+    converted = canonical_to_lane2_model(model)
+    canonical_states = {
+        str(state.get("id")): state
+        for state in model.get("states", [])
+        if isinstance(state, Mapping) and "id" in state
+    }
+    for player in converted.get("players", []):
+        player.setdefault("desc", f"Game participant {player['id']}")
+    for state in converted.get("states", []):
+        source = canonical_states.get(str(state.get("id")), {})
+        state.setdefault("desc", str(source.get("representation", state.get("id", "state"))))
+        # Canonical rollouts retain explicitly declared zero-mass outcomes for
+        # provenance.  The v2 schema represents only distribution support and
+        # correctly requires every listed successor to have positive mass.
+        for action in state.get("actions", []) or []:
+            action["next"] = [
+                successor
+                for successor in action.get("next", []) or []
+                if float(successor.get("p", 0.0)) > 0.0
+            ]
+    return converted
 
 
 def normalize_identifiers(model: Mapping[str, Any]) -> tuple[dict[str, Any], list[str]]:

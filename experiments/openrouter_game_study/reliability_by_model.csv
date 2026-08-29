@@ -1,0 +1,6 @@
+model,first_pass_passed,trials,first_pass_rate_pct
+claude_opus_5,27,27,100.0
+deepseek_v4_flash,23,27,85.19
+gpt_5_6_sol,26,27,96.3
+llama_3_3_70b,22,27,81.48
+qwen_3_8_27b,26,27,96.3

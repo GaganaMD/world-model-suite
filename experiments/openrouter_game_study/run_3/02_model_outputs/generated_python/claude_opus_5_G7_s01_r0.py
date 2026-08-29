@@ -1,0 +1,127 @@
+class GeneratedPOSG(AbstractPOSG):
+    """Two-suspect interrogation (prisoner's dilemma) with a chance element:
+
+    State layout (all strings):
+      "start"                      - chance node resolving how strong the evidence is
+      "interrogation_weak"         - both suspects choose simultaneously (weak evidence)
+      "interrogation_strong"       - both suspects choose simultaneously (strong evidence)
+      "verdict_<ev>_<a1>_<a2>"     - deal announced; each suspect confirms or protests
+      "terminal"                   - absorbing end state
+
+    Chance: the prosecutor's independent evidence is weak (p=0.6) or strong (p=0.4).
+    Suspects do not observe the evidence strength when choosing; strong evidence adds
+    an extra penalty to a suspect who stayed silent.
+    Information: at the choice node each suspect only sees "held_alone"; the partner's
+    action is revealed only in the verdict observation.
+    Rewards are negative sentence years (utility = -years).
+    """
+
+    CHOICE_STATES = ("interrogation_weak", "interrogation_strong")
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "start"
+
+    # ---------- helpers ----------
+
+    def _parse_verdict(self, state):
+        # "verdict_<ev>_<a1>_<a2>"
+        parts = state.split("_")
+        return parts[1], parts[2], parts[3]
+
+    def _sentence(self, evidence, own, other):
+        # returns years of prison for the player with action `own`
+        if own == "silent" and other == "silent":
+            base = 1.0
+        elif own == "testify" and other == "testify":
+            base = 5.0
+        elif own == "testify" and other == "silent":
+            base = 0.0
+        else:  # own silent, other testify
+            base = 10.0
+        if evidence == "strong" and own == "silent":
+            base += 2.0
+        return base
+
+    # ---------- interface ----------
+
+    def legal_actions(self, state, player):
+        if state == "start":
+            return ["wait"]
+        if state in self.CHOICE_STATES:
+            return ["silent", "testify"]
+        if state.startswith("verdict_"):
+            return ["accept", "protest"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "start":
+            return {"interrogation_weak": 0.6, "interrogation_strong": 0.4}
+
+        if state in self.CHOICE_STATES:
+            evidence = "weak" if state == "interrogation_weak" else "strong"
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 not in ("silent", "testify"):
+                a1 = "silent"
+            if a2 not in ("silent", "testify"):
+                a2 = "silent"
+            return {"verdict_" + evidence + "_" + a1 + "_" + a2: 1.0}
+
+        if state.startswith("verdict_"):
+            return {"terminal": 1.0}
+
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "start":
+            return "obs_held_alone_no_contact"
+
+        if state in self.CHOICE_STATES:
+            own = joint_action[player]
+            if own not in ("silent", "testify"):
+                own = "silent"
+            evidence, a1, a2 = self._parse_verdict(next_state)
+            other = a2 if player == "player_1" else a1
+            years = self._sentence(evidence, own, other)
+            return (f"obs_verdict_evidence_{evidence}_mine_{own}"
+                    f"_partner_{other}_years_{years:.0f}")
+
+        if state.startswith("verdict_"):
+            own = joint_action[player]
+            if own not in ("accept", "protest"):
+                own = "accept"
+            evidence, a1, a2 = self._parse_verdict(state)
+            mine = a1 if player == "player_1" else a2
+            return f"obs_case_closed_evidence_{evidence}_mine_{mine}_response_{own}"
+
+        return "obs_terminal"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state in self.CHOICE_STATES:
+            own = joint_action[player]
+            if own not in ("silent", "testify"):
+                own = "silent"
+            evidence, a1, a2 = self._parse_verdict(next_state)
+            other = a2 if player == "player_1" else a1
+            return -self._sentence(evidence, own, other)
+
+        if state.startswith("verdict_"):
+            own = joint_action[player]
+            # protesting a bad deal costs a little (appeal fees), accepting is free
+            if own == "protest":
+                evidence, a1, a2 = self._parse_verdict(state)
+                mine = a1 if player == "player_1" else a2
+                other = a2 if player == "player_1" else a1
+                years = self._sentence(evidence, mine, other)
+                # protest slightly reduces very long sentences, else pure cost
+                return 1.0 if years >= 10.0 else -0.5
+            return 0.0
+
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

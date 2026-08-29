@@ -1,0 +1,9 @@
+{
+  "errors": [
+    "line 12: imports/context-manager I/O are forbidden",
+    "line 25: imports/context-manager I/O are forbidden"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}

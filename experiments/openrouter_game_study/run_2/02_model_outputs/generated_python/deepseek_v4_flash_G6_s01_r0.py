@@ -1,0 +1,174 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["bid_low", "bid_high"]
+        elif state == "s1":
+            return ["bid_low", "bid_high"]
+        elif state == "s2":
+            return ["bid_low", "bid_high"]
+        elif state == "s3":
+            return ["bid_low", "bid_high"]
+        elif state == "s4":
+            return ["bid_low", "bid_high"]
+        elif state == "s5":
+            return ["bid_low", "bid_high"]
+        elif state == "s6":
+            return ["bid_low", "bid_high"]
+        elif state == "s7":
+            return ["bid_low", "bid_high"]
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            # Nature assigns values: each bidder independently low (30%) or high (70%)
+            return {
+                "s1": 0.09,   # both low
+                "s2": 0.21,   # p1 low, p2 high
+                "s3": 0.21,   # p1 high, p2 low
+                "s4": 0.49    # both high
+            }
+        elif state == "s1":
+            # Both low value
+            return {"s5": 1.0}
+        elif state == "s2":
+            # p1 low, p2 high
+            return {"s6": 1.0}
+        elif state == "s3":
+            # p1 high, p2 low
+            return {"s7": 1.0}
+        elif state == "s4":
+            # Both high value
+            return {"s5": 1.0}
+        elif state == "s5":
+            # Both bid (same value scenario)
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            if b1 == b2:
+                return {"terminal": 1.0}
+            elif b1 == "bid_high":
+                return {"terminal": 1.0}
+            else:
+                return {"terminal": 1.0}
+        elif state == "s6":
+            # p1 low, p2 high
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            return {"terminal": 1.0}
+        elif state == "s7":
+            # p1 high, p2 low
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if player == "player_1":
+            if state == "s0":
+                return "no_value_info"
+            elif state == "s1":
+                return "value_low"
+            elif state == "s2":
+                return "value_low"
+            elif state == "s3":
+                return "value_high"
+            elif state == "s4":
+                return "value_high"
+            elif state == "s5":
+                return "both_low_or_high_bidding"
+            elif state == "s6":
+                return "player1_low_player2_high"
+            elif state == "s7":
+                return "player1_high_player2_low"
+        elif player == "player_2":
+            if state == "s0":
+                return "no_value_info"
+            elif state == "s1":
+                return "value_low"
+            elif state == "s2":
+                return "value_high"
+            elif state == "s3":
+                return "value_low"
+            elif state == "s4":
+                return "value_high"
+            elif state == "s5":
+                return "both_low_or_high_bidding"
+            elif state == "s6":
+                return "player1_low_player2_high"
+            elif state == "s7":
+                return "player1_high_player2_low"
+        return "observation"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s1" or state == "s2" or state == "s3" or state == "s4":
+            return 0.0
+        if state == "s5":
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            if player == "player_1":
+                if b1 == b2:
+                    # tie, coin flip
+                    if b1 == "bid_high":
+                        return 0.0  # expected: 0.5*(value - high_bid) + 0.5*0
+                    else:
+                        return 0.0
+                elif b1 == "bid_high":
+                    return 0.0
+                else:
+                    return 0.0
+            else:
+                if b1 == b2:
+                    return 0.0
+                elif b2 == "bid_high":
+                    return 0.0
+                else:
+                    return 0.0
+        elif state == "s6":
+            # p1 low value, p2 high value
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            if player == "player_1":
+                if b1 == b2:
+                    # tie coin flip
+                    return 0.0
+                elif b1 > b2:
+                    # p1 wins with low value
+                    return 0.0
+                else:
+                    return 0.0
+            else:
+                if b1 == b2:
+                    return 0.0
+                elif b2 > b1:
+                    # p2 wins with high value
+                    return 0.0
+                else:
+                    return 0.0
+        elif state == "s7":
+            # p1 high value, p2 low value
+            b1 = joint_action["player_1"]
+            b2 = joint_action["player_2"]
+            if player == "player_1":
+                if b1 == b2:
+                    return 0.0
+                elif b1 > b2:
+                    return 0.0
+                else:
+                    return 0.0
+            else:
+                if b1 == b2:
+                    return 0.0
+                elif b2 > b1:
+                    return 0.0
+                else:
+                    return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

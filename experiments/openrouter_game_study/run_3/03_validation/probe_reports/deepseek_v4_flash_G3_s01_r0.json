@@ -1,0 +1,25 @@
+{
+  "errors": [
+    "State 's1', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's1', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's2', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's2', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's3', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's3', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's4', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's4', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's5', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's5', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's6', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's6', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's7', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's7', player 'player_2': legal_actions must return a non-empty list of string actions.",
+    "State 's8', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's8', player 'player_2': legal_actions must return a non-empty list of string actions."
+  ],
+  "stage": "rollout",
+  "states_checked": 9,
+  "status": "failed",
+  "transitions_checked": 4,
+  "warnings": []
+}

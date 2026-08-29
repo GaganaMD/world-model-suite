@@ -1,0 +1,107 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if self.is_terminal(state):
+            return []
+        if state == "s0":
+            return ["bid_low", "bid_high"]
+        if state == "s1":
+            return ["bid_low", "bid_high"]
+        if state == "s2":
+            return ["bid_low", "bid_high"]
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            # In the initial state, nature determines each player's private value
+            # We'll use deterministic transitions to states representing value combinations
+            # For simplicity, we'll have states s1 (both low), s2 (p1 low, p2 high), 
+            # s3 (p1 high, p2 low), s4 (both high)
+            # But since we need to keep it small, we'll use a simpler approach:
+            # We'll have states s1 and s2 representing different value scenarios
+            # For this implementation, we'll assume both players have low values in s1
+            # and both have high values in s2
+            return {"s1": 0.5, "s2": 0.5}
+        if state == "s1":
+            # Both players have low values (value = 1)
+            return {"terminal": 1.0}
+        if state == "s2":
+            # Both players have high values (value = 3)
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            # In the initial state, players observe their own private value
+            # We'll encode this in the observation
+            if player == "player_1":
+                if next_state == "s1":
+                    return "p1_value_low"
+                else:
+                    return "p1_value_high"
+            else:
+                if next_state == "s1":
+                    return "p2_value_low"
+                else:
+                    return "p2_value_high"
+        if state == "s1":
+            # Both players have low values
+            return "low_value_state"
+        if state == "s2":
+            # Both players have high values
+            return "high_value_state"
+        return "terminal_observation"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            return 0.0
+        if state == "s1":
+            # Both players have low values (value = 1)
+            bid_p1 = 1.0 if joint_action["player_1"] == "bid_low" else 3.0
+            bid_p2 = 1.0 if joint_action["player_2"] == "bid_low" else 3.0
+            if bid_p1 > bid_p2:
+                if player == "player_1":
+                    return 1.0 - bid_p1
+                else:
+                    return 0.0
+            elif bid_p2 > bid_p1:
+                if player == "player_2":
+                    return 1.0 - bid_p2
+                else:
+                    return 0.0
+            else:
+                # Tie - coin flip
+                if player == "player_1":
+                    return (1.0 - bid_p1) / 2.0
+                else:
+                    return (1.0 - bid_p2) / 2.0
+        if state == "s2":
+            # Both players have high values (value = 3)
+            bid_p1 = 1.0 if joint_action["player_1"] == "bid_low" else 3.0
+            bid_p2 = 1.0 if joint_action["player_2"] == "bid_low" else 3.0
+            if bid_p1 > bid_p2:
+                if player == "player_1":
+                    return 3.0 - bid_p1
+                else:
+                    return 0.0
+            elif bid_p2 > bid_p1:
+                if player == "player_2":
+                    return 3.0 - bid_p2
+                else:
+                    return 0.0
+            else:
+                # Tie - coin flip
+                if player == "player_1":
+                    return (3.0 - bid_p1) / 2.0
+                else:
+                    return (3.0 - bid_p2) / 2.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

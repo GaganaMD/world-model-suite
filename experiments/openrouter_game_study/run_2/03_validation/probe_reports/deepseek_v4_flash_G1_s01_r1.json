@@ -1,0 +1,11 @@
+{
+  "errors": [
+    "State 's1', player 'player_1': legal_actions must return a non-empty list of string actions.",
+    "State 's1', player 'player_2': legal_actions must return a non-empty list of string actions."
+  ],
+  "stage": "rollout",
+  "states_checked": 2,
+  "status": "failed",
+  "transitions_checked": 9,
+  "warnings": []
+}
