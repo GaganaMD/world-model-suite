@@ -1,0 +1,80 @@
+[
+  {
+    "sample": 3,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  },
+  {
+    "sample": 4,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  },
+  {
+    "sample": 5,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  },
+  {
+    "sample": 6,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  },
+  {
+    "sample": 7,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  },
+  {
+    "sample": 8,
+    "structural_validity": "PASS",
+    "semantic_validity": "FAIL",
+    "transition_correct": "PASS",
+    "reward_correct": "FAIL",
+    "observation_correct": "FAIL",
+    "semantic_score": 0.75,
+    "failures": [
+      "rewards: At least one profile has incorrect RPS rewards.",
+      "observations: player_2 observation contradicts outcome for profile ('rock', 'paper')."
+    ]
+  }
+]

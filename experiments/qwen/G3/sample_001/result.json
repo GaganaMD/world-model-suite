@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G3\\sample_001",
+  "case": "G3",
+  "eda_seconds": null,
+  "error_message": "Transition failed: NameError: name 'random' is not defined\nTransition failed: NameError: name 'random' is not defined\nTransition failed: NameError: name 'random' is not defined\nTransition failed: NameError: name 'random' is not defined",
+  "execution_seconds": 0.0031383999157696962,
+  "failure_type": "invalid_transition",
+  "generation_seconds": 11.626205699983984,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.16038131713867188,
+  "rollout_seconds": 0.0003548001404851675,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:02:15.391284+00:00",
+  "total_seconds": 11.629768200218678,
+  "validation_seconds": 3.400025889277458e-06
+}
