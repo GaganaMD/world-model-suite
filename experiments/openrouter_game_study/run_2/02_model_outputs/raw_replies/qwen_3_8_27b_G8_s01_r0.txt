@@ -1,0 +1,60 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["stag", "hare"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 == "stag" and a2 == "stag":
+                return {"terminal_stag": 1.0}
+            elif a1 == "hare" and a2 == "hare":
+                return {"terminal_hare_hare": 1.0}
+            elif a1 == "stag" and a2 == "hare":
+                return {"terminal_stag_hare": 1.0}
+            else:
+                return {"terminal_hare_stag": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if player == "player_1":
+                return f"my_action={a1};other_action={a2};next={next_state}"
+            else:
+                return f"my_action={a2};other_action={a1};next={next_state}"
+        return f"terminal={next_state}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if player == "player_1":
+                if a1 == "stag" and a2 == "stag":
+                    return 10.0
+                elif a1 == "hare":
+                    return 5.0
+                else:
+                    return 0.0
+            else:
+                if a1 == "stag" and a2 == "stag":
+                    return 10.0
+                elif a2 == "hare":
+                    return 5.0
+                else:
+                    return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state != "s0"

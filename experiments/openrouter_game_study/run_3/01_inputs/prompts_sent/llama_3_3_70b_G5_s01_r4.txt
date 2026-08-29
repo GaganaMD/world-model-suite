@@ -1,0 +1,89 @@
+SYSTEM:
+You generate a finite executable POSG world model.
+Return ONLY Python source defining exactly `class GeneratedPOSG(AbstractPOSG)`.
+Do not use Markdown fences, imports, file/network access, eval, exec, or redefine AbstractPOSG.
+
+The implementation MUST satisfy this exact interface:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Hard contract (checked exhaustively):
+- Every player ID, state ID, action ID, and observation MUST be a string on EVERY branch.
+- Use one uniform state representation: strings only. Never return tuple/list/dict state IDs.
+- players is a non-empty list[str] with unique IDs.
+- initial_state() returns one non-terminal string state (not a distribution).
+- legal_actions() returns a non-empty list[str] for every player in every reachable non-terminal state.
+- joint_action is a dict keyed by the exact IDs in players. Read it only by those string keys.
+- transition() returns a non-empty dict[str, float] for every reachable joint action; probabilities
+  are finite, non-negative, at most 1, and sum to exactly 1.0.
+- observation() returns str for every player/outcome. Encode multiple fields as one f-string;
+  NEVER return a tuple, list, dict, or set.
+- reward() returns a finite int/float (not bool); is_terminal() returns bool.
+- All seven methods and the players @property must be present with exactly the signatures above.
+- Keep the reachable model finite and small (prefer <= 100 states and <= 10 decision steps).
+- Implement the supplied game's strategic choices, chance, information, rewards, and terminal outcomes.
+Before answering, silently verify every return path against this contract.
+
+USER:
+Create a situation-specific GeneratedPOSG for this game case.
+
+GAME CASE:
+Two players each secretly place a penny on a table, choosing heads or tails. They reveal simultaneously. If both show the same face, Player 1 keeps both coins; if they differ, Player 2 keeps both.
+
+
+Your previous implementation failed mechanical validation.
+Return a COMPLETE replacement class, not a patch and not an explanation.
+
+VALIDATION ERRORS:
+Outcome 'terminal', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 'terminal', player 'player_2': TypeError: reward() must return a finite number.
+Outcome 'terminal', player 'player_1': TypeError: reward() must return a finite number.
+Outcome 'terminal', player 'player_2': TypeError: reward() must return a finite number.
+
+PREVIOUS CODE:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): 
+        if state == "s0": 
+            return ["heads", "tails"]
+        elif state in ["s1", "s2"]: 
+            return ["done"]
+    def transition(self, state, joint_action): 
+        if state == "s0": 
+            if joint_action["player_1"] == joint_action["player_2"]: 
+                return {"s1": 1.0}
+            else: 
+                return {"s2": 1.0}
+        elif state in ["s1", "s2"]: 
+            return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): 
+        if state == "s0": 
+            return f"player {player} chose {joint_action[player]}"
+        elif state in ["s1", "s2"]: 
+            return f"game over, result: {next_state}"
+    def reward(self, state, joint_action, next_state, player): 
+        if state == "s0": 
+            return 0.0
+        elif state in ["s1", "s2"]: 
+            if next_state == "s1": 
+                if player == "player_1": 
+                    return 2.0
+                else: 
+                    return -2.0
+            elif next_state == "s2": 
+                if player == "player_1": 
+                    return -2.0
+                else: 
+                    return 2.0
+    def is_terminal(self, state): 
+        return state == "terminal"
+

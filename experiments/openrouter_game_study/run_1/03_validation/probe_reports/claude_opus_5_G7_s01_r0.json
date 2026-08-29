@@ -1,0 +1,271 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 4,
+      "outcome_compression": 1.0,
+      "unique_action_count": 2,
+      "unique_actions_by_player": {
+        "suspect_a": [
+          "silent",
+          "testify"
+        ],
+        "suspect_b": [
+          "silent",
+          "testify"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.8,
+      "average_out_degree": 0.8,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.2,
+      "edge_count": 4,
+      "global_efficiency": 0.2,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 4,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 5,
+      "strongly_connected_components": [
+        [
+          "verdict_silent_silent"
+        ],
+        [
+          "verdict_testify_testify"
+        ],
+        [
+          "verdict_silent_testify"
+        ],
+        [
+          "verdict_testify_silent"
+        ],
+        [
+          "interrogation"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.2,
+      "branching_factor_by_state": {
+        "interrogation": 4,
+        "verdict_silent_silent": 0,
+        "verdict_silent_testify": 0,
+        "verdict_testify_silent": 0,
+        "verdict_testify_testify": 0
+      },
+      "maximum_branching_factor": 4,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 0.8,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 5,
+      "self_loop_count": 0,
+      "state_count": 5,
+      "terminal_state_count": 4,
+      "terminal_to_non_terminal_ratio": 4.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "interrogation": 1,
+        "verdict_silent_silent": 0,
+        "verdict_silent_testify": 0,
+        "verdict_testify_silent": 0,
+        "verdict_testify_testify": 0
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 4,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 4
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "interrogation",
+        "verdict_silent_silent"
+      ],
+      [
+        "interrogation",
+        "verdict_silent_testify"
+      ],
+      [
+        "interrogation",
+        "verdict_testify_silent"
+      ],
+      [
+        "interrogation",
+        "verdict_testify_testify"
+      ]
+    ],
+    "nodes": [
+      "interrogation",
+      "verdict_silent_silent",
+      "verdict_silent_testify",
+      "verdict_testify_silent",
+      "verdict_testify_testify"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 5,
+  "status": "passed",
+  "transitions_checked": 4,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "suspect_a",
+      "suspect_b"
+    ],
+    "states": [
+      {
+        "actions": {
+          "suspect_a": [
+            "silent",
+            "testify"
+          ],
+          "suspect_b": [
+            "silent",
+            "testify"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'interrogation'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'verdict_silent_silent'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'verdict_silent_testify'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'verdict_testify_silent'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'verdict_testify_testify'",
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "suspect_a": "silent",
+          "suspect_b": "silent"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "suspect_a": "decided:silent|awaiting_verdict",
+              "suspect_b": "decided:silent|awaiting_verdict"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "suspect_a": -1.0,
+              "suspect_b": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "suspect_a": "silent",
+          "suspect_b": "testify"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "suspect_a": "decided:silent|awaiting_verdict",
+              "suspect_b": "decided:testify|awaiting_verdict"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "suspect_a": -10.0,
+              "suspect_b": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "suspect_a": "testify",
+          "suspect_b": "silent"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "suspect_a": "decided:testify|awaiting_verdict",
+              "suspect_b": "decided:silent|awaiting_verdict"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "suspect_a": 0.0,
+              "suspect_b": -10.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "suspect_a": "testify",
+          "suspect_b": "testify"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "suspect_a": "decided:testify|awaiting_verdict",
+              "suspect_b": "decided:testify|awaiting_verdict"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "suspect_a": -5.0,
+              "suspect_b": -5.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

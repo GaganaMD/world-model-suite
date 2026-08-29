@@ -1,0 +1,240 @@
+[
+  {
+    "case": "C1",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.9167,
+      "avoidance": 1.0,
+      "lane3": 0.9574,
+      "states": 7
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9167,
+      "avoidance": 1.0,
+      "lane3": 0.9574,
+      "states": 7
+    }
+  },
+  {
+    "case": "C2",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 1.0,
+      "avoidance": 1.0,
+      "lane3": 1.0,
+      "states": 6
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 1.0,
+      "avoidance": 1.0,
+      "lane3": 1.0,
+      "states": 6
+    }
+  },
+  {
+    "case": "C3",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.8333,
+      "avoidance": 1.0,
+      "lane3": 0.9129,
+      "states": 7
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9167,
+      "avoidance": 1.0,
+      "lane3": 0.9574,
+      "states": 7
+    }
+  },
+  {
+    "case": "C4",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.8333,
+      "avoidance": 1.0,
+      "lane3": 0.9129,
+      "states": 7
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.8333,
+      "avoidance": 1.0,
+      "lane3": 0.9129,
+      "states": 7
+    }
+  },
+  {
+    "case": "C5",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.9167,
+      "avoidance": 1.0,
+      "lane3": 0.9574,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9167,
+      "avoidance": 1.0,
+      "lane3": 0.9574,
+      "states": 5
+    }
+  },
+  {
+    "case": "C6",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.75,
+      "avoidance": 1.0,
+      "lane3": 0.866,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.75,
+      "avoidance": 1.0,
+      "lane3": 0.866,
+      "states": 5
+    }
+  },
+  {
+    "case": "C7",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.7857,
+      "avoidance": 1.0,
+      "lane3": 0.8864,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.7857,
+      "avoidance": 1.0,
+      "lane3": 0.8864,
+      "states": 5
+    }
+  },
+  {
+    "case": "C8",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.8571,
+      "avoidance": 1.0,
+      "lane3": 0.9258,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.8571,
+      "avoidance": 1.0,
+      "lane3": 0.9258,
+      "states": 5
+    }
+  },
+  {
+    "case": "C9",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.9375,
+      "avoidance": 1.0,
+      "lane3": 0.9682,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9375,
+      "avoidance": 1.0,
+      "lane3": 0.9682,
+      "states": 5
+    }
+  },
+  {
+    "case": "C10",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.7143,
+      "avoidance": 1.0,
+      "lane3": 0.8452,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.7143,
+      "avoidance": 1.0,
+      "lane3": 0.8452,
+      "states": 5
+    }
+  },
+  {
+    "case": "C11",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.9286,
+      "avoidance": 1.0,
+      "lane3": 0.9636,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9286,
+      "avoidance": 1.0,
+      "lane3": 0.9636,
+      "states": 5
+    }
+  },
+  {
+    "case": "C12",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.7857,
+      "avoidance": 1.0,
+      "lane3": 0.8864,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.7857,
+      "avoidance": 1.0,
+      "lane3": 0.8864,
+      "states": 5
+    }
+  },
+  {
+    "case": "C13",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.9375,
+      "avoidance": 1.0,
+      "lane3": 0.9682,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.9375,
+      "avoidance": 1.0,
+      "lane3": 0.9682,
+      "states": 5
+    }
+  },
+  {
+    "case": "C14",
+    "original": {
+      "lane1": "PASS",
+      "coverage": 0.8571,
+      "avoidance": 1.0,
+      "lane3": 0.9258,
+      "states": 5
+    },
+    "without_loc": {
+      "lane1": "PASS",
+      "coverage": 0.8571,
+      "avoidance": 1.0,
+      "lane3": 0.9258,
+      "states": 5
+    }
+  }
+]

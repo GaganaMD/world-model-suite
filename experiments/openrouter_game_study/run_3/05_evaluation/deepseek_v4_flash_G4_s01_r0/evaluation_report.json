@@ -1,0 +1,56 @@
+{
+  "lane1": {
+    "details": {
+      "findings": [],
+      "identifier_coercions": [],
+      "reachable_states": [
+        "state_0000",
+        "state_0001"
+      ],
+      "state_count": 2,
+      "states_with_terminal_path": [
+        "state_0000",
+        "state_0001"
+      ],
+      "warnings": []
+    },
+    "errors": [],
+    "passed": true
+  },
+  "lane2": {
+    "combined_score": 0.0,
+    "coverage": 0.0,
+    "details": {
+      "ground_truth_identifier_coercions": [],
+      "reason": "ground_truth_path was not provided",
+      "skipped": true
+    },
+    "precision": 0.0
+  },
+  "lane3": {
+    "checklist_passed": true,
+    "details": {
+      "action_profile_counts_by_player": {
+        "goalkeeper": 9,
+        "kicker": 9
+      },
+      "bias_check_passed": true,
+      "bias_flags": [],
+      "checklist": {
+        "consequences_represented": true,
+        "nonterminal_actions_present": true,
+        "stakeholders_described": true,
+        "stakeholders_present": true,
+        "states_described": true
+      },
+      "human_review_required": false,
+      "maximum_action_count_disparity": 0,
+      "note": "Flags are diagnostic only; statistical/counterfactual evidence is required before calling a disparity bias.",
+      "stakeholder_coverage": null
+    }
+  },
+  "overall_passed": true,
+  "saved_artifacts": [
+    "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\openrouter_game_study\\run_3\\05_evaluation\\deepseek_v4_flash_G4_s01_r0\\candidate_graph.pth"
+  ]
+}

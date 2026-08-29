@@ -1,0 +1,66 @@
+class GeneratedPOSG(AbstractPOSG):
+    """Single round of rock-paper-scissors between two players.
+
+    States:
+      "start"            - both players simultaneously choose a throw
+      "end|<a1>|<a2>"    - terminal state recording both throws
+    """
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "start"
+
+    def legal_actions(self, state, player):
+        if state == "start":
+            return ["rock", "paper", "scissors"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "start":
+            a1 = joint_action.get("player_1", "rock")
+            a2 = joint_action.get("player_2", "rock")
+            if a1 not in ("rock", "paper", "scissors"):
+                a1 = "rock"
+            if a2 not in ("rock", "paper", "scissors"):
+                a2 = "rock"
+            return {"end|" + a1 + "|" + a2: 1.0}
+        return {state: 1.0}
+
+    def _beats(self, x, y):
+        return (x, y) in (
+            ("rock", "scissors"),
+            ("paper", "rock"),
+            ("scissors", "paper"),
+        )
+
+    def observation(self, state, joint_action, next_state, player):
+        if next_state.startswith("end|"):
+            parts = next_state.split("|")
+            a1, a2 = parts[1], parts[2]
+            mine = a1 if player == "player_1" else a2
+            theirs = a2 if player == "player_1" else a1
+            if mine == theirs:
+                result = "draw"
+            elif self._beats(mine, theirs):
+                result = "win"
+            else:
+                result = "loss"
+            return f"mine={mine};theirs={theirs};result={result}"
+        return f"state={next_state};result=pending"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "start" and next_state.startswith("end|"):
+            parts = next_state.split("|")
+            a1, a2 = parts[1], parts[2]
+            mine = a1 if player == "player_1" else a2
+            theirs = a2 if player == "player_1" else a1
+            if mine == theirs:
+                return 0.0
+            return 1.0 if self._beats(mine, theirs) else -1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state.startswith("end|")

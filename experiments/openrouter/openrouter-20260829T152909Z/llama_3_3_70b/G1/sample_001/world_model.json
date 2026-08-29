@@ -1,0 +1,247 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0002"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'player_1_wins'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'player_2_wins'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "player_1": [
+          "rock",
+          "paper",
+          "scissors"
+        ],
+        "player_2": [
+          "rock",
+          "paper",
+          "scissors"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0002",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'tie'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "It's a tie!",
+            "player_2": "It's a tie!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 wins!",
+            "player_2": "Player 1 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 2 wins!",
+            "player_2": "Player 2 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 2 wins!",
+            "player_2": "Player 2 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "It's a tie!",
+            "player_2": "It's a tie!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 wins!",
+            "player_2": "Player 1 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "Player 1 wins!",
+            "player_2": "Player 1 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "Player 2 wins!",
+            "player_2": "Player 2 wins!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "It's a tie!",
+            "player_2": "It's a tie!"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

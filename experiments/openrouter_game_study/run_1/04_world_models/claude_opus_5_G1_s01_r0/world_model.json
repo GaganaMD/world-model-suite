@@ -1,0 +1,289 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0009"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'done:paper:paper'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'done:paper:rock'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'done:paper:scissors'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'done:rock:paper'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "'done:rock:rock'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0005",
+      "representation": "'done:rock:scissors'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0006",
+      "representation": "'done:scissors:paper'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0007",
+      "representation": "'done:scissors:rock'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0008",
+      "representation": "'done:scissors:scissors'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "player_1": [
+          "rock",
+          "paper",
+          "scissors"
+        ],
+        "player_2": [
+          "rock",
+          "paper",
+          "scissors"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0009",
+      "representation": "'sit'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "phase=reveal;me=paper;them=paper;result=draw",
+            "player_2": "phase=reveal;me=paper;them=paper;result=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "phase=reveal;me=paper;them=rock;result=win",
+            "player_2": "phase=reveal;me=rock;them=paper;result=loss"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "paper",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "phase=reveal;me=paper;them=scissors;result=loss",
+            "player_2": "phase=reveal;me=scissors;them=paper;result=win"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "phase=reveal;me=rock;them=paper;result=loss",
+            "player_2": "phase=reveal;me=paper;them=rock;result=win"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "phase=reveal;me=rock;them=rock;result=draw",
+            "player_2": "phase=reveal;me=rock;them=rock;result=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "rock",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0005",
+          "observations": {
+            "player_1": "phase=reveal;me=rock;them=scissors;result=win",
+            "player_2": "phase=reveal;me=scissors;them=rock;result=loss"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "paper"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "phase=reveal;me=scissors;them=paper;result=win",
+            "player_2": "phase=reveal;me=paper;them=scissors;result=loss"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "rock"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0007",
+          "observations": {
+            "player_1": "phase=reveal;me=scissors;them=rock;result=loss",
+            "player_2": "phase=reveal;me=rock;them=scissors;result=win"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    },
+    {
+      "joint_action": {
+        "player_1": "scissors",
+        "player_2": "scissors"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0008",
+          "observations": {
+            "player_1": "phase=reveal;me=scissors;them=scissors;result=draw",
+            "player_2": "phase=reveal;me=scissors;them=scissors;result=draw"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0009"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

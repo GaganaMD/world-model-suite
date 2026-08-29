@@ -188,6 +188,7 @@ def classify_failure(result: Mapping[str, Any]) -> Dict[str, str]:
         ("invalid_terminal_structure", ("terminal",)),
         ("rollout_limit", ("max_states", "max_depth")),
         ("invalid_transition", ("Transition", "transition")),
+        ("execution_error", ("NameError", "TypeError", "KeyError", "IndexError", "AttributeError")),
     )
     category = next(
         (name for name, indicators in categories if any(indicator in message for indicator in indicators)),

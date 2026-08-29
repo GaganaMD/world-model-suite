@@ -1,0 +1,164 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0003"
+    }
+  ],
+  "players": [
+    "bidder_1",
+    "bidder_2"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'bid_1_high'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'bid_2_high'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'bid_tie'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "bidder_1": [
+          "low",
+          "high"
+        ],
+        "bidder_2": [
+          "low",
+          "high"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0003",
+      "representation": "'start'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "bidder_1": "high",
+        "bidder_2": "high"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "bidder_1": "bidder_1_bids_high",
+            "bidder_2": "bidder_2_bids_high"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "bidder_1": "bidder_1_bids_high",
+            "bidder_2": "bidder_2_bids_high"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "high",
+        "bidder_2": "low"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "bidder_1": "bidder_1_bids_high",
+            "bidder_2": "bidder_2_bids_low"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "low",
+        "bidder_2": "high"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "bidder_1": "bidder_1_bids_low",
+            "bidder_2": "bidder_2_bids_high"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "bidder_1": "low",
+        "bidder_2": "low"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "bidder_1": "bidder_1_bids_low",
+            "bidder_2": "bidder_2_bids_low"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "bidder_1": "bidder_1_bids_low",
+            "bidder_2": "bidder_2_bids_low"
+          },
+          "probability": 0.5,
+          "rewards": {
+            "bidder_1": 0.0,
+            "bidder_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

@@ -1,0 +1,60 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["stag", "hare"]
+        # Terminal states have no legal actions (but contract requires non-empty for reachable non-terminal)
+        # Since terminal states are not reachable for action selection, we return a dummy action.
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 == "stag" and a2 == "stag":
+                return {"s_stag_stag": 1.0}
+            elif a1 == "stag" and a2 == "hare":
+                return {"s_stag_hare": 1.0}
+            elif a1 == "hare" and a2 == "stag":
+                return {"s_hare_stag": 1.0}
+            else:  # both hare
+                return {"s_hare_hare": 1.0}
+        # Terminal states transition to themselves with probability 1
+        return {state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        # In this perfect-information game, each player observes the joint action and resulting state.
+        # Encode as a string with all relevant info.
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            return f"obs_{a1}_{a2}_to_{next_state}"
+        # Terminal observation
+        return f"terminal_{state}"
+
+    def reward(self, state, joint_action, next_state, player):
+        # Payoffs: stag=2 each if both stag, hare=1 for the one who chooses hare, 0 for stag if other chooses hare.
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 == "stag" and a2 == "stag":
+                return 2.0
+            elif a1 == "stag" and a2 == "hare":
+                # player_1 gets 0, player_2 gets 1
+                return 0.0 if player == "player_1" else 1.0
+            elif a1 == "hare" and a2 == "stag":
+                # player_1 gets 1, player_2 gets 0
+                return 1.0 if player == "player_1" else 0.0
+            else:  # both hare
+                return 1.0
+        # Terminal states have zero reward
+        return 0.0
+
+    def is_terminal(self, state):
+        return state.startswith("s_")  # all non-initial states are terminal

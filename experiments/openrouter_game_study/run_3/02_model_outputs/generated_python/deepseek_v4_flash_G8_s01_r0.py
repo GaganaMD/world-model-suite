@@ -1,0 +1,46 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+    
+    def initial_state(self):
+        return "s0"
+    
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["stag", "hare"]
+        return []
+    
+    def transition(self, state, joint_action):
+        if state == "s0":
+            # Both choose stag -> success, otherwise at least one hare
+            if joint_action["player_1"] == "stag" and joint_action["player_2"] == "stag":
+                return {"terminal": 1.0}
+            else:
+                return {"terminal": 1.0}
+        return {}
+    
+    def observation(self, state, joint_action, next_state, player):
+        # Perfect information: both see the joint action
+        return f"state_{state}_p1_{joint_action['player_1']}_p2_{joint_action['player_2']}"
+    
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            if a1 == "stag" and a2 == "stag":
+                # Both get the stag (value 4)
+                return 4
+            elif a1 == "hare" and a2 == "hare":
+                # Both get a hare (value 2)
+                return 2
+            elif a1 == "stag" and a2 == "hare":
+                # Player 1 gets nothing, player 2 gets a hare
+                return 0 if player == "player_1" else 2
+            elif a1 == "hare" and a2 == "stag":
+                # Player 1 gets a hare, player 2 gets nothing
+                return 2 if player == "player_1" else 0
+        return 0
+    
+    def is_terminal(self, state):
+        return state == "terminal"

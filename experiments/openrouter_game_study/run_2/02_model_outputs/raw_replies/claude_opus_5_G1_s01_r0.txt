@@ -1,0 +1,61 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "sit_down"
+
+    def legal_actions(self, state, player):
+        if state == "sit_down":
+            return ["rock", "paper", "scissors"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "sit_down":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            beats = {
+                "rock": "scissors",
+                "paper": "rock",
+                "scissors": "paper",
+            }
+            if a1 == a2:
+                result = "draw"
+            elif beats[a1] == a2:
+                result = "p1"
+            else:
+                result = "p2"
+            return {f"end_{a1}_{a2}_{result}": 1.0}
+        return {"end_rock_rock_draw": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "sit_down":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            own = a1 if player == "player_1" else a2
+            other = a2 if player == "player_1" else a1
+            parts = next_state.split("_")
+            result = parts[3]
+            if result == "draw":
+                outcome = "draw"
+            elif (result == "p1" and player == "player_1") or (result == "p2" and player == "player_2"):
+                outcome = "win"
+            else:
+                outcome = "loss"
+            return f"reveal|me={own}|opp={other}|outcome={outcome}"
+        return f"done|player={player}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "sit_down":
+            return 0.0
+        parts = next_state.split("_")
+        result = parts[3]
+        if result == "draw":
+            return 0.0
+        if result == "p1":
+            return 1.0 if player == "player_1" else -1.0
+        return -1.0 if player == "player_1" else 1.0
+
+    def is_terminal(self, state):
+        return state.startswith("end_")

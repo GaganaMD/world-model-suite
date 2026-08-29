@@ -13,14 +13,27 @@ would hide which way the model went wrong.
 """
 from __future__ import annotations
 import copy
-from gm_convert_v2 import to_game_matching, strip_private
-from game_match import load_game, match
+
+try:
+    from .gm_convert import strip_private, to_game_matching
+except ImportError:
+    # Supports the standalone notebook workflow that adds json_generation to sys.path.
+    from gm_convert import strip_private, to_game_matching
+try:
+    from game_match import load_game, match
+except ImportError:
+    load_game = match = None
 
 DEFAULT_SA_ITERS = 3000
 DEFAULT_HORIZON = 3
 
 
 def _prep(model, horizon, unroll):
+    if load_game is None:
+        raise ImportError(
+            "Lane 2 requires the external game_matching repository. Clone "
+            "https://github.com/mensch72/game_matching.git and add it to PYTHONPATH."
+        )
     g = strip_private(to_game_matching(model, horizon=horizon, unroll=unroll))
     return load_game(g), g
 

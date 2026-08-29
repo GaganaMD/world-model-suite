@@ -1,0 +1,233 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0000"
+    }
+  ],
+  "players": [
+    "kicker",
+    "goalkeeper"
+  ],
+  "states": [
+    {
+      "actions": {
+        "goalkeeper": [
+          "dive_left",
+          "stay_center",
+          "dive_right"
+        ],
+        "kicker": [
+          "shoot_left",
+          "shoot_center",
+          "shoot_right"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0000",
+      "representation": "'s0'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'terminal'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "goalkeeper": "dive_left",
+        "kicker": "shoot_center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_center;dive:dive_left",
+            "kicker": "shot:shoot_center;dive:dive_left"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "dive_left",
+        "kicker": "shoot_left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_left;dive:dive_left",
+            "kicker": "shot:shoot_left;dive:dive_left"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "dive_left",
+        "kicker": "shoot_right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_right;dive:dive_left",
+            "kicker": "shot:shoot_right;dive:dive_left"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "dive_right",
+        "kicker": "shoot_center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_center;dive:dive_right",
+            "kicker": "shot:shoot_center;dive:dive_right"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "dive_right",
+        "kicker": "shoot_left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_left;dive:dive_right",
+            "kicker": "shot:shoot_left;dive:dive_right"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "dive_right",
+        "kicker": "shoot_right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_right;dive:dive_right",
+            "kicker": "shot:shoot_right;dive:dive_right"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "stay_center",
+        "kicker": "shoot_center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_center;dive:stay_center",
+            "kicker": "shot:shoot_center;dive:stay_center"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "stay_center",
+        "kicker": "shoot_left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_left;dive:stay_center",
+            "kicker": "shot:shoot_left;dive:stay_center"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "stay_center",
+        "kicker": "shoot_right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "goalkeeper": "shot:shoot_right;dive:stay_center",
+            "kicker": "shot:shoot_right;dive:stay_center"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

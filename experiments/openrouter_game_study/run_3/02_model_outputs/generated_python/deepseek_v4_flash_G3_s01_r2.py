@@ -1,0 +1,68 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["heads", "tails"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            p1 = joint_action["player_1"]
+            p2 = joint_action["player_2"]
+            if p1 == "heads" and p2 == "heads":
+                return {"s1": 0.5, "s2": 0.5}
+            elif p1 == "heads" and p2 == "tails":
+                return {"s3": 0.5, "s4": 0.5}
+            elif p1 == "tails" and p2 == "heads":
+                return {"s5": 0.5, "s6": 0.5}
+            else:
+                return {"s7": 0.5, "s8": 0.5}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            if next_state in ["s1", "s3", "s5", "s7"]:
+                return "coin_heads"
+            else:
+                return "coin_tails"
+        return "terminal_obs"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            p1 = joint_action["player_1"]
+            p2 = joint_action["player_2"]
+            if next_state in ["s1", "s2"]:
+                if p1 == p2:
+                    return 0.0
+                elif p1 == "heads" and p2 == "tails":
+                    if next_state == "s1":
+                        return 1.0 if player == "player_1" else -1.0
+                    else:
+                        return -1.0 if player == "player_1" else 1.0
+                else:
+                    if next_state == "s1":
+                        return -1.0 if player == "player_1" else 1.0
+                    else:
+                        return 1.0 if player == "player_1" else -1.0
+            elif next_state in ["s3", "s4"]:
+                if next_state == "s3":
+                    return 1.0 if player == "player_1" else -1.0
+                else:
+                    return -1.0 if player == "player_1" else 1.0
+            elif next_state in ["s5", "s6"]:
+                if next_state == "s5":
+                    return -1.0 if player == "player_1" else 1.0
+                else:
+                    return 1.0 if player == "player_1" else -1.0
+            else:
+                return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

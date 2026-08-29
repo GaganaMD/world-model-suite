@@ -1,0 +1,25 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        return ["heads", "tails"]
+
+    def transition(self, state, joint_action):
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        return f"player_1={joint_action['player_1']},player_2={joint_action['player_2']}"
+
+    def reward(self, state, joint_action, next_state, player):
+        same = joint_action["player_1"] == joint_action["player_2"]
+        if player == "player_1":
+            return 1.0 if same else -1.0
+        return -1.0 if same else 1.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

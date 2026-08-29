@@ -1,0 +1,42 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self) -> List[str]:
+        return ["kicker", "goalkeeper"]
+
+    def initial_state(self) -> str:
+        return "penalty"
+
+    def legal_actions(self, state: str, player: str) -> List[str]:
+        if state == "penalty":
+            if player == "kicker":
+                return ["left", "center", "right"]
+            elif player == "goalkeeper":
+                return ["left", "center", "right"]
+        # Terminal state has no legal actions
+        return []
+
+    def transition(self, state: str, joint_action: Dict[str, str]) -> Dict[str, float]:
+        if state != "penalty":
+            return {"terminal": 1.0}
+        # The game always moves to terminal after the simultaneous choice
+        return {"terminal": 1.0}
+
+    def observation(self, state: str, joint_action: Dict[str, str], next_state: str, player: str) -> str:
+        # Both players observe the full joint action (perfect information after the move)
+        return f"kicker_{joint_action['kicker']}_gk_{joint_action['goalkeeper']}"
+
+    def reward(self, state: str, joint_action: Dict[str, str], next_state: str, player: str) -> float:
+        if state != "penalty":
+            return 0.0
+        kick = joint_action["kicker"]
+        gk = joint_action["goalkeeper"]
+        # Goal if kicker's zone differs from goalkeeper's zone
+        if kick != gk:
+            # Kicker gets +1, goalkeeper gets -1
+            return 1.0 if player == "kicker" else -1.0
+        else:
+            # Save: kicker gets -1, goalkeeper gets +1
+            return -1.0 if player == "kicker" else 1.0
+
+    def is_terminal(self, state: str) -> bool:
+        return state == "terminal"

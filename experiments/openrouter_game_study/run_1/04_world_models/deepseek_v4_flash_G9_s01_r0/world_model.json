@@ -1,0 +1,1087 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0002"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ],
+        "player_2": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'draw'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ],
+        "player_2": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'p2_win'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ],
+        "player_2": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0002",
+      "representation": "'s0'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_0_3_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_1_2_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_2_1_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_0_3",
+            "player_2": "p2_played_0_3_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_1_2",
+            "player_2": "p2_played_1_2_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_2_1",
+            "player_2": "p2_played_2_1_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "p1_played_3_0_p2_played_3_0",
+            "player_2": "p2_played_3_0_p1_played_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

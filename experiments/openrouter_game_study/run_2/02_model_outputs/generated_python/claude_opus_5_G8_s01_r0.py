@@ -1,0 +1,73 @@
+class GeneratedPOSG(AbstractPOSG):
+    """
+    Two-round Stag Hunt with noisy signals about the partner's prior behavior.
+
+    State encoding (strings only):
+      "start"                      - round 1 decision node
+      "r2|<a1>|<a2>"               - round 2 decision node, a1/a2 in {stag, hare}
+      "end|<a1>|<a2>"              - terminal node recording round-2 actions
+    Observations encode round number and a (possibly noisy) report of the
+    partner's last action.
+    """
+
+    STAG = "stag"
+    HARE = "hare"
+
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "start"
+
+    def legal_actions(self, state, player):
+        if self.is_terminal(state):
+            return ["noop"]
+        return [self.STAG, self.HARE]
+
+    def _acts(self, joint_action):
+        a1 = joint_action.get("player_1", self.HARE)
+        a2 = joint_action.get("player_2", self.HARE)
+        if a1 not in (self.STAG, self.HARE):
+            a1 = self.HARE
+        if a2 not in (self.STAG, self.HARE):
+            a2 = self.HARE
+        return a1, a2
+
+    def transition(self, state, joint_action):
+        if self.is_terminal(state):
+            return {state: 1.0}
+        a1, a2 = self._acts(joint_action)
+        if state == "start":
+            return {"r2|" + a1 + "|" + a2: 1.0}
+        # round 2 -> terminal
+        return {"end|" + a1 + "|" + a2: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if self.is_terminal(state):
+            return "obs|done|none"
+        a1, a2 = self._acts(joint_action)
+        own = a1 if player == "player_1" else a2
+        other = a2 if player == "player_1" else a1
+        phase = "after_r1" if state == "start" else "after_r2"
+        if state == "start":
+            # noisy report of partner's round-1 action (deterministic label here)
+            report = "partner_seen_" + other
+        else:
+            report = "partner_" + other
+        return f"obs|{phase}|own_{own}|{report}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if self.is_terminal(state):
+            return 0.0
+        a1, a2 = self._acts(joint_action)
+        own = a1 if player == "player_1" else a2
+        both_stag = (a1 == self.STAG and a2 == self.STAG)
+        if both_stag:
+            return 4.0
+        if own == self.HARE:
+            return 1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state.startswith("end|")

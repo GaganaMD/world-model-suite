@@ -1,0 +1,1248 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.8918918918918919,
+      "joint_action_count": 37,
+      "outcome_compression": 0.10810810810810811,
+      "unique_action_count": 4,
+      "unique_actions_by_player": {
+        "player_1": [
+          "bid_0",
+          "bid_1",
+          "bid_2",
+          "deal"
+        ],
+        "player_2": [
+          "bid_0",
+          "bid_1",
+          "bid_2",
+          "deal"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 1.7142857142857142,
+      "average_out_degree": 1.7142857142857142,
+      "average_shortest_path_length": 1.1428571428571428,
+      "community_count": 1,
+      "density": 0.2857142857142857,
+      "edge_count": 12,
+      "global_efficiency": 0.30952380952380953,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 4,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 7,
+      "strongly_connected_components": [
+        [
+          "terminal_p1"
+        ],
+        [
+          "terminal_p2"
+        ],
+        [
+          "v_LL"
+        ],
+        [
+          "v_LH"
+        ],
+        [
+          "v_HL"
+        ],
+        [
+          "v_HH"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.8571428571428571,
+      "branching_factor_by_state": {
+        "s0": 1,
+        "terminal_p1": 0,
+        "terminal_p2": 0,
+        "v_HH": 9,
+        "v_HL": 9,
+        "v_LH": 9,
+        "v_LL": 9
+      },
+      "maximum_branching_factor": 9,
+      "maximum_depth_to_terminal": 2,
+      "maximum_trajectory_depth": 2,
+      "mean_branching_factor": 5.285714285714286,
+      "non_terminal_state_count": 5,
+      "reachable_state_count": 7,
+      "self_loop_count": 0,
+      "state_count": 7,
+      "terminal_state_count": 2,
+      "terminal_to_non_terminal_ratio": 0.4
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "s0": 2,
+        "terminal_p1": 0,
+        "terminal_p2": 0,
+        "v_HH": 1,
+        "v_HL": 1,
+        "v_LH": 1,
+        "v_LL": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.4054054054054055,
+      "deterministic_transition_fraction": 0.6486486486486487,
+      "maximum_transition_branching": 4,
+      "maximum_transition_entropy": 2.0,
+      "mean_transition_entropy": 0.3783783783783784,
+      "state_action_pair_count": 37,
+      "stochastic_transition_fraction": 0.35135135135135137,
+      "unique_successor_state_count": 6
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "v_LL"
+      ],
+      [
+        "s0",
+        "v_LH"
+      ],
+      [
+        "s0",
+        "v_HL"
+      ],
+      [
+        "s0",
+        "v_HH"
+      ],
+      [
+        "v_LL",
+        "terminal_p1"
+      ],
+      [
+        "v_LL",
+        "terminal_p2"
+      ],
+      [
+        "v_LH",
+        "terminal_p1"
+      ],
+      [
+        "v_LH",
+        "terminal_p2"
+      ],
+      [
+        "v_HL",
+        "terminal_p1"
+      ],
+      [
+        "v_HL",
+        "terminal_p2"
+      ],
+      [
+        "v_HH",
+        "terminal_p1"
+      ],
+      [
+        "v_HH",
+        "terminal_p2"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "v_LL",
+      "v_LH",
+      "v_HL",
+      "v_HH",
+      "terminal_p1",
+      "terminal_p2"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 7,
+  "status": "passed",
+  "transitions_checked": 37,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "deal"
+          ],
+          "player_2": [
+            "deal"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'s0'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0001",
+        "representation": "'terminal_p1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 2,
+        "id": "state_0002",
+        "representation": "'terminal_p2'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'v_HH'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'v_HL'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0005",
+        "representation": "'v_LH'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ],
+          "player_2": [
+            "bid_0",
+            "bid_1",
+            "bid_2"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0006",
+        "representation": "'v_LL'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "deal",
+          "player_2": "deal"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "private_value_H",
+              "player_2": "private_value_H"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "private_value_H",
+              "player_2": "private_value_L"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "private_value_L",
+              "player_2": "private_value_H"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "private_value_L",
+              "player_2": "private_value_L"
+            },
+            "probability": 0.25,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 2.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_0_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 2.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_2_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0003"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 2.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_0_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_2_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_0_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 2.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_2_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_0_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_0",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_0_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_1_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_1",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_1_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_0"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_0_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_1"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_1_winner_player_1"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "bid_2",
+          "player_2": "bid_2"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_1",
+              "player_2": "auction_ended_own_bid_2_winner_player_1"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 0.0
+            }
+          },
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "auction_ended_own_bid_2_winner_player_2",
+              "player_2": "auction_ended_own_bid_2_winner_player_2"
+            },
+            "probability": 0.5,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

@@ -52,6 +52,28 @@ reward returns a number. Output only Python code, without Markdown fences.
 SITUATION:
 {game_description}"""
 
+INTERFACE_CONTRACT_REQUIREMENT = """
+
+Interface contract:
+- `transition(state, joint_action)` has no `player` variable. It may read only
+  `joint_action` using the exact IDs returned by `players`; never use placeholder
+  keys such as `"other"`. It must return a valid probability distribution for
+  every combination of actions returned by `legal_actions`.
+- `joint_action` is a dictionary, not a tuple or list: do not compare it to an
+  action tuple and do not index it with `0` or `1`. Read actions only as
+  `joint_action["player_1"]` and `joint_action["player_2"]` when those are the
+  declared IDs. Every `transition` control-flow branch must return a non-empty
+  `{{next_state: probability}}` dictionary.
+- `observation(..., player)` and `reward(..., player)` receive one declared
+  player ID. Use only that ID and exact declared player IDs as dictionary keys.
+- For every non-terminal state, `legal_actions(state, player)` must return a
+  non-empty `list[str]` for every declared player. The initial state must not
+  be terminal. A state is a world configuration, not an action tuple.
+  `is_terminal` must return true only for reached terminal states.
+"""
+
+CORRECTED_PROMPT_TEMPLATE = PROMPT_TEMPLATE + INTERFACE_CONTRACT_REQUIREMENT
+
 
 @dataclass(frozen=True)
 class ExperimentConfig:
@@ -60,6 +82,11 @@ class ExperimentConfig:
     models: Sequence[str]
     cases: Mapping[str, str]
     samples_per_case: int = 1
+    sample_start: int = 1
+    experiment_id: Optional[str] = None
+    prompt_variant: str = "P0"
+    prompt_text: Optional[str] = None
+    model_identifier: Optional[str] = None
     max_states: int = 10_000
     max_depth: int = 20
     seed: int = 42
@@ -72,27 +99,32 @@ class OllamaPOSGBackend:
     """Model-name adapter for the project's existing local Ollama generation path."""
 
     DEFAULT_MODELS = {"qwen": "qwen2.5-coder:latest"}
+    SYSTEM_PROMPT = "Return only a GeneratedPOSG implementation using the provided AbstractPOSG."
 
     def __init__(
-        self, model_aliases: Optional[Mapping[str, str]] = None, seed: int = 42
+        self,
+        model_aliases: Optional[Mapping[str, str]] = None,
+        seed: int = 42,
+        prompt_template: str = PROMPT_TEMPLATE,
     ) -> None:
         self.model_aliases = {**self.DEFAULT_MODELS, **(model_aliases or {})}
         self.seed = seed
+        self.prompt_template = prompt_template
 
     def __call__(self, game_description: str, model: str) -> str:
         import ollama
 
-        resolved_model = self.model_aliases.get(model, model)
+        resolved_model = self.model_identifier(model)
         response = ollama.chat(
             model=resolved_model,
             messages=[
                 {
                     "role": "system",
-                    "content": "Return only a GeneratedPOSG implementation using the provided AbstractPOSG.",
+                    "content": self.SYSTEM_PROMPT,
                 },
                 {
                     "role": "user",
-                    "content": PROMPT_TEMPLATE.format(game_description=game_description),
+                    "content": self.render_prompt(game_description),
                 },
             ],
             options={"temperature": 0.0, "seed": self.seed},
@@ -101,13 +133,25 @@ class OllamaPOSGBackend:
         fenced = re.search(r"```(?:python)?\s*(.*?)\s*```", content, re.DOTALL)
         return fenced.group(1).strip() if fenced else content
 
+    def model_identifier(self, model: str) -> str:
+        """Return the concrete Ollama model requested for an experiment."""
+        return self.model_aliases.get(model, model)
+
+    def render_prompt(self, game_description: str) -> str:
+        """Return the user prompt sent to Ollama."""
+        return self.prompt_template.format(game_description=game_description)
+
+    def artifact_prompt(self, game_description: str) -> str:
+        """Return the complete prompt exchange retained with an experiment."""
+        return f"SYSTEM:\n{self.SYSTEM_PROMPT}\n\nUSER:\n{self.render_prompt(game_description)}\n"
+
 
 class ExperimentRunner:
     """Run generated-Python POSG experiments while preserving partial failures."""
 
     def __init__(self, config: ExperimentConfig, generator: Optional[GenerationFunction] = None) -> None:
-        if config.samples_per_case < 1:
-            raise ValueError("samples_per_case must be at least one.")
+        if config.samples_per_case < 1 or config.sample_start < 1:
+            raise ValueError("samples_per_case and sample_start must be at least one.")
         self.config = config
         self.artifact_root = Path(config.artifact_root)
         self.generator = generator or OllamaPOSGBackend(seed=config.seed)
@@ -121,17 +165,23 @@ class ExperimentRunner:
         total_start = time.perf_counter()
         source: Optional[str] = None
         try:
+            prompt = self._prompt_for(description)
+            if prompt is not None:
+                result["_prompt"] = prompt
             generation_start = time.perf_counter()
             source = self.generator(description, model)
             result["generation_seconds"] = time.perf_counter() - generation_start
+            result["generation_status"] = "success"
             result["_source"] = source
 
             execution_start = time.perf_counter()
             execution = execute_generated_posg(source)
             result["execution_seconds"] = time.perf_counter() - execution_start
             if not execution["success"]:
+                result["execution_status"] = "failed"
                 self._fail(result, execution)
                 return result
+            result["execution_status"] = "success"
 
             # Contract/execution validation is represented by the exhaustive rollout below.
             # This preflight timing isolates the instance's public interface access.
@@ -141,6 +191,7 @@ class ExperimentRunner:
             if not isinstance(players, list) or not players:
                 raise ValueError("players must be a non-empty list.")
             result["validation_seconds"] = time.perf_counter() - validation_start
+            result["validation_status"] = "success"
 
             rollout_start = time.perf_counter()
             rollout = rollout_world_model(
@@ -150,13 +201,20 @@ class ExperimentRunner:
             )
             result["rollout_seconds"] = time.perf_counter() - rollout_start
             if rollout["errors"]:
+                result["rollout_status"] = "failed"
+                result["structural_validation_status"] = "failed"
                 self._fail(result, {"errors": rollout["errors"]})
                 return result
+            result["rollout_status"] = "success"
+            result["structural_validation_status"] = "success"
+            # Preserve the canonical rollout even if a later graph or EDA stage fails.
+            result["_rollout"] = rollout
 
             graph_start = time.perf_counter()
             state_graph = build_state_graph(rollout)
             state_action_graph = build_state_action_graph(rollout)
             result["graph_seconds"] = time.perf_counter() - graph_start
+            result["graph_status"] = "success"
 
             eda_start = time.perf_counter()
             eda = WorldModelEDA.from_rollout(rollout)
@@ -164,12 +222,13 @@ class ExperimentRunner:
             result["eda_seconds"] = time.perf_counter() - eda_start
             result.update(self._metrics(summary))
             result["status"] = "success"
-            result["_rollout"] = rollout
             result["_eda"] = eda
             result["_state_graph"] = state_graph
             result["_state_action_graph"] = state_action_graph
             return result
         except Exception as error:
+            if result["generation_status"] == "not_run":
+                result["generation_status"] = "failed"
             self._fail(result, {"errors": [f"{type(error).__name__}: {error}"]})
             if source is not None:
                 result["_source"] = source
@@ -193,17 +252,30 @@ class ExperimentRunner:
         records = []
         for model in self.config.models:
             for case, description in self.config.cases.items():
-                for sample in range(1, self.config.samples_per_case + 1):
+                for sample in range(
+                    self.config.sample_start,
+                    self.config.sample_start + self.config.samples_per_case,
+                ):
                     records.append(self.run_case(model, case, description, sample))
         return records
 
     def _base_result(self, model: str, case: str, sample: int) -> Dict[str, Any]:
         return {
             "timestamp": datetime.now(timezone.utc).isoformat(),
+            "experiment_id": self.config.experiment_id,
             "model": model,
+            "model_identifier": self.config.model_identifier or self._model_identifier(model),
+            "generation_seed": self.config.seed,
             "case": case,
             "sample": sample,
+            "prompt_variant": self.config.prompt_variant,
             "status": "failed",
+            "generation_status": "not_run",
+            "execution_status": "not_run",
+            "validation_status": "not_run",
+            "structural_validation_status": "not_run",
+            "rollout_status": "not_run",
+            "graph_status": "not_run",
             "generation_seconds": None,
             "execution_seconds": None,
             "validation_seconds": None,
@@ -216,6 +288,19 @@ class ExperimentRunner:
             "error_message": None,
             "artifact_dir": None,
         }
+
+    def _model_identifier(self, model: str) -> str:
+        identifier = getattr(self.generator, "model_identifier", None)
+        return str(identifier(model)) if callable(identifier) else model
+
+    def _prompt_for(self, description: str) -> Optional[str]:
+        if self.config.prompt_text is not None:
+            return self.config.prompt_text.format(game_description=description)
+        artifact_prompt = getattr(self.generator, "artifact_prompt", None)
+        if callable(artifact_prompt):
+            return str(artifact_prompt(description))
+        render_prompt = getattr(self.generator, "render_prompt", None)
+        return str(render_prompt(description)) if callable(render_prompt) else None
 
     @staticmethod
     def _metrics(summary: Mapping[str, Any]) -> Dict[str, Any]:
@@ -251,11 +336,18 @@ class ExperimentRunner:
             / str(result["case"])
             / f"sample_{int(result['sample']):03d}"
         )
+        if directory.exists():
+            raise FileExistsError(
+                f"Refusing to overwrite existing experiment artifact directory: {directory}"
+            )
         directory.mkdir(parents=True, exist_ok=True)
         result["artifact_dir"] = str(directory)
         source = result.get("_source")
         if source:
             (directory / "generated.py").write_text(source, encoding="utf-8")
+        prompt = result.get("_prompt")
+        if prompt is not None:
+            (directory / "prompt.txt").write_text(prompt, encoding="utf-8")
         rollout = result.get("_rollout")
         if rollout:
             (directory / "world_model.json").write_text(

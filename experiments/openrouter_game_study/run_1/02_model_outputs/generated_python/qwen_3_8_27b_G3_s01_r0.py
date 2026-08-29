@@ -1,0 +1,61 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["heads", "tails"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            # Determine outcome based on coin flip (H or T)
+            # If both call same:
+            if a1 == a2:
+                # Both match if coin == a1, both miss if coin != a1
+                # Draw in both cases
+                return {"draw": 1.0}
+            else:
+                # One calls H, one calls T
+                # Coin H: player who called H wins
+                # Coin T: player who called T wins
+                return {"win_p1": 0.5, "win_p2": 0.5}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            # Players observe their own action and the outcome
+            # But in POSG, observation is typically what the player sees
+            # Here, the player knows their own call and the result
+            # Let's encode: "my_call:<call>,result:<result>"
+            my_call = joint_action[player]
+            if next_state == "draw":
+                result = "draw"
+            elif next_state == "win_p1":
+                result = "win" if player == "player_1" else "lose"
+            elif next_state == "win_p2":
+                result = "win" if player == "player_2" else "lose"
+            else:
+                result = "unknown"
+            return f"my_call:{my_call},result:{result}"
+        return "terminal"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "s0":
+            return 0.0
+        if next_state == "draw":
+            return 0.0
+        if next_state == "win_p1":
+            return 1.0 if player == "player_1" else -1.0
+        if next_state == "win_p2":
+            return 1.0 if player == "player_2" else -1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state in ["draw", "win_p1", "win_p2"]

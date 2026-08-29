@@ -1,0 +1,43 @@
+ Here is a finite POSG implementation for a single round of rock-paper-scissors.
+
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "choose"
+
+    def legal_actions(self, state, player):
+        if state == "choose":
+            return ["rock", "paper", "scissors"]
+        return []
+
+    def transition(self, state, joint_action):
+        if state == "choose":
+            return {"terminal": 1.0}
+        return {}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "choose":
+            return f"chose_{joint_action[player]}"
+        return ""
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "choose":
+            return 0.0
+        a1 = joint_action["player_1"]
+        a2 = joint_action["player_2"]
+        if a1 == a2:
+            return 0.0
+        if (a1 == "rock" and a2 == "scissors") or \
+           (a1 == "scissors" and a2 == "paper") or \
+           (a1 == "paper" and a2 == "rock"):
+            return 1.0 if player == "player_1" else -1.0
+        else:
+            return -1.0 if player == "player_1" else 1.0
+
+    def is_terminal(self, state):
+        return state == "terminal"
+```

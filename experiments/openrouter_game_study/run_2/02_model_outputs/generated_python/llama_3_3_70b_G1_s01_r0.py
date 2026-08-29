@@ -1,0 +1,58 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "start"
+    def legal_actions(self, state, player): 
+        if state == "start": 
+            return ["rock", "paper", "scissors"]
+        elif state == "player_1_moved": 
+            return ["rock", "paper", "scissors"]
+        else: 
+            return []
+    def transition(self, state, joint_action): 
+        if state == "start": 
+            return {"player_1_moved": 1.0}
+        elif state == "player_1_moved": 
+            return {"terminal": 1.0}
+        else: 
+            return {}
+    def observation(self, state, joint_action, next_state, player): 
+        if state == "start" and player == "player_1": 
+            return "your turn"
+        elif state == "start" and player == "player_2": 
+            return "opponent's turn"
+        elif state == "player_1_moved" and player == "player_1": 
+            return f"you chose {joint_action['player_1']}"
+        elif state == "player_1_moved" and player == "player_2": 
+            return f"opponent chose {joint_action['player_2']}"
+        elif state == "terminal": 
+            if joint_action["player_1"] == joint_action["player_2"]: 
+                return "tie"
+            elif (joint_action["player_1"] == "rock" and joint_action["player_2"] == "scissors") or \
+                 (joint_action["player_1"] == "paper" and joint_action["player_2"] == "rock") or \
+                 (joint_action["player_1"] == "scissors" and joint_action["player_2"] == "paper"): 
+                return f"player_1 wins with {joint_action['player_1']}"
+            else: 
+                return f"player_2 wins with {joint_action['player_2']}"
+    def reward(self, state, joint_action, next_state, player): 
+        if state == "start": 
+            return 0.0
+        elif state == "player_1_moved": 
+            if joint_action["player_1"] == joint_action["player_2"]: 
+                return 0.0
+            elif (joint_action["player_1"] == "rock" and joint_action["player_2"] == "scissors") or \
+                 (joint_action["player_1"] == "paper" and joint_action["player_2"] == "rock") or \
+                 (joint_action["player_1"] == "scissors" and joint_action["player_2"] == "paper"): 
+                if player == "player_1": 
+                    return 1.0
+                else: 
+                    return -1.0
+            else: 
+                if player == "player_1": 
+                    return -1.0
+                else: 
+                    return 1.0
+        else: 
+            return 0.0
+    def is_terminal(self, state): 
+        return state == "terminal"

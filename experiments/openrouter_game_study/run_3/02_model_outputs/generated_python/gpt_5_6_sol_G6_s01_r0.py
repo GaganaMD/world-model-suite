@@ -1,0 +1,60 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["deal"]
+        if state in ["v_LL", "v_LH", "v_HL", "v_HH"]:
+            return ["bid_0", "bid_1", "bid_2"]
+        return ["action"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            joint_action["player_1"]
+            joint_action["player_2"]
+            return {
+                "v_LL": 0.25,
+                "v_LH": 0.25,
+                "v_HL": 0.25,
+                "v_HH": 0.25
+            }
+        if state in ["v_LL", "v_LH", "v_HL", "v_HH"]:
+            bid_1 = int(joint_action["player_1"][-1])
+            bid_2 = int(joint_action["player_2"][-1])
+            if bid_1 > bid_2:
+                return {"terminal_p1": 1.0}
+            if bid_2 > bid_1:
+                return {"terminal_p2": 1.0}
+            return {"terminal_p1": 0.5, "terminal_p2": 0.5}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0" and next_state in ["v_LL", "v_LH", "v_HL", "v_HH"]:
+            value_code = next_state[2:]
+            value = value_code[0] if player == "player_1" else value_code[1]
+            return f"private_value_{value}"
+        if state in ["v_LL", "v_LH", "v_HL", "v_HH"]:
+            own_bid = joint_action[player]
+            winner = "player_1" if next_state == "terminal_p1" else "player_2"
+            return f"auction_ended_own_{own_bid}_winner_{winner}"
+        return "observation"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state not in ["v_LL", "v_LH", "v_HL", "v_HH"]:
+            return 0.0
+        winner = "player_1" if next_state == "terminal_p1" else "player_2"
+        if player != winner:
+            return 0.0
+        value_code = state[2:]
+        value_letter = value_code[0] if player == "player_1" else value_code[1]
+        value = 1 if value_letter == "L" else 2
+        bid = int(joint_action[player][-1])
+        return float(value - bid)
+
+    def is_terminal(self, state):
+        return state in ["terminal", "terminal_p1", "terminal_p2"]

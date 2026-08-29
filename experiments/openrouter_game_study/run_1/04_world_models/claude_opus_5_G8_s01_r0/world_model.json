@@ -1,0 +1,638 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0005"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'r2|hare|hare|hare'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'r2|hare|stag|hare'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'r2|stag|hare|hare'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'r2|stag|stag|none'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0004",
+      "representation": "'r2|stag|stag|stag'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "player_1": [
+          "stag",
+          "hare"
+        ],
+        "player_2": [
+          "stag",
+          "hare"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0005",
+      "representation": "'start'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0006",
+      "representation": "'terminal'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=stag;joint_stag=no",
+            "player_2": "round=2;own=stag;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=stag;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=stag;joint_stag=stag",
+            "player_2": "round=2;own=stag;partner=stag;joint_stag=stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.2,
+            "player_2": 3.2
+          }
+        }
+      ],
+      "state": "state_0000"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=stag;joint_stag=no",
+            "player_2": "round=2;own=stag;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=stag;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=stag;joint_stag=stag",
+            "player_2": "round=2;own=stag;partner=stag;joint_stag=stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.2,
+            "player_2": 3.2
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=stag;joint_stag=no",
+            "player_2": "round=2;own=stag;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=stag;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=stag;joint_stag=stag",
+            "player_2": "round=2;own=stag;partner=stag;joint_stag=stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.2,
+            "player_2": 3.2
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=stag;joint_stag=no",
+            "player_2": "round=2;own=stag;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=stag;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=stag;joint_stag=stag",
+            "player_2": "round=2;own=stag;partner=stag;joint_stag=stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.2,
+            "player_2": 3.2
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=hare;partner=stag;joint_stag=no",
+            "player_2": "round=2;own=stag;partner=hare;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=hare;joint_stag=no",
+            "player_2": "round=2;own=hare;partner=stag;joint_stag=no"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0006",
+          "observations": {
+            "player_1": "round=2;own=stag;partner=stag;joint_stag=stag",
+            "player_2": "round=2;own=stag;partner=stag;joint_stag=stag"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 3.2,
+            "player_2": 3.2
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "round=1;own=hare;result=hare;partner_signal=unclear",
+            "player_2": "round=1;own=hare;result=hare;partner_signal=unclear"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "hare",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "round=1;own=hare;result=hare;partner_signal=unclear",
+            "player_2": "round=1;own=stag;result=hare;partner_signal=unclear"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "hare"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "round=1;own=stag;result=hare;partner_signal=unclear",
+            "player_2": "round=1;own=hare;result=hare;partner_signal=unclear"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "player_1": "stag",
+        "player_2": "stag"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "player_1": "round=1;own=stag;result=none;partner_signal=unclear",
+            "player_2": "round=1;own=stag;result=none;partner_signal=unclear"
+          },
+          "probability": 0.19999999999999996,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        },
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "player_1": "round=1;own=stag;result=stag;partner_signal=stag",
+            "player_2": "round=1;own=stag;result=stag;partner_signal=stag"
+          },
+          "probability": 0.8,
+          "rewards": {
+            "player_1": 4.0,
+            "player_2": 4.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

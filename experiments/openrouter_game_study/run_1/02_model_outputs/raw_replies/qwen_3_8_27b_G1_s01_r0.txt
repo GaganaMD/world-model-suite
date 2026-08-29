@@ -1,0 +1,54 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "terminal":
+            return []
+        return ["rock", "paper", "scissors"]
+
+    def transition(self, state, joint_action):
+        if state == "terminal":
+            return {"terminal": 1.0}
+        p1 = joint_action["player_1"]
+        p2 = joint_action["player_2"]
+        # Determine outcome: win/lose/tie for player_1
+        if p1 == p2:
+            next_state = "tie"
+        elif (p1 == "rock" and p2 == "scissors") or \
+             (p1 == "paper" and p2 == "rock") or \
+             (p1 == "scissors" and p2 == "paper"):
+            next_state = "win_p1"
+        else:
+            next_state = "win_p2"
+        return {next_state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return "game_over"
+        p1 = joint_action["player_1"]
+        p2 = joint_action["player_2"]
+        if player == "player_1":
+            return f"my_move={p1};opponent_move={p2};outcome={next_state}"
+        else:
+            return f"my_move={p2};opponent_move={p1};outcome={next_state}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return 0.0
+        if next_state == "tie":
+            return 0.0
+        if next_state == "win_p1":
+            return 1.0 if player == "player_1" else -1.0
+        if next_state == "win_p2":
+            return -1.0 if player == "player_1" else 1.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state in ("tie", "win_p1", "win_p2")
+```

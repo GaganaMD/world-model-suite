@@ -1,0 +1,48 @@
+SYSTEM:
+Return only a GeneratedPOSG implementation using the provided AbstractPOSG.
+
+USER:
+Write executable Python inside a module where AbstractPOSG already exists.
+Define only `class GeneratedPOSG(AbstractPOSG)`; do not import or redefine AbstractPOSG.
+
+Every state identifier must be hashable. Prefer strings or tuples. Never use dictionaries, lists,
+sets, numpy arrays, or another mutable container as initial states or transition keys.
+`initial_state()` must return one concrete hashable state, for example `"s0"`, not `{}`.
+`transition()` must return `Dict[hashable_state, float]` with finite non-negative probabilities
+that sum to 1.0. `joint_action` is a dictionary keyed by explicit player IDs.
+
+Use this interface shape, filling in situation-specific logic only:
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["player_1", "player_2"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["action"]
+    def transition(self, state, joint_action): return {"terminal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return "observation"
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state == "terminal"
+
+Implement every method with actual situation-specific behavior. legal_actions returns a list of
+valid action identifiers; is_terminal returns bool; observation returns a valid observation; and
+reward returns a number. Output only Python code, without Markdown fences.
+
+SITUATION:
+Two hunters can each choose to hunt a stag together or hunt a hare alone. Catching a stag requires both hunters to cooperate; a lone hunter cannot bring down a stag. A hare can always be caught alone and feeds one person. A stag feeds both hunters well if they both pursue it, but yields nothing to either if only one shows up.
+
+Interface contract:
+- `transition(state, joint_action)` has no `player` variable. It may read only
+  `joint_action` using the exact IDs returned by `players`; never use placeholder
+  keys such as `"other"`. It must return a valid probability distribution for
+  every combination of actions returned by `legal_actions`.
+- `joint_action` is a dictionary, not a tuple or list: do not compare it to an
+  action tuple and do not index it with `0` or `1`. Read actions only as
+  `joint_action["player_1"]` and `joint_action["player_2"]` when those are the
+  declared IDs. Every `transition` control-flow branch must return a non-empty
+  `{next_state: probability}` dictionary.
+- `observation(..., player)` and `reward(..., player)` receive one declared
+  player ID. Use only that ID and exact declared player IDs as dictionary keys.
+- For every non-terminal state, `legal_actions(state, player)` must return a
+  non-empty `list[str]` for every declared player. The initial state must not
+  be terminal. A state is a world configuration, not an action tuple.
+  `is_terminal` must return true only for reached terminal states.
+

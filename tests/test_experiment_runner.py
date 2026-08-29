@@ -5,7 +5,7 @@ from pathlib import Path
 
 from tests.test_python_posg import RPS_SOURCE
 from world_model_eda import ExperimentConfig, ExperimentRunner, results_table, save_results_table
-from world_model_eda.experiment_runner import PROMPT_TEMPLATE
+from world_model_eda.experiment_runner import CORRECTED_PROMPT_TEMPLATE, PROMPT_TEMPLATE
 
 
 class ExperimentRunnerTests(unittest.TestCase):
@@ -29,6 +29,7 @@ class ExperimentRunnerTests(unittest.TestCase):
             self.assertIsNotNone(result["execution_seconds"])
             self.assertIsNotNone(result["rollout_seconds"])
             self.assertIsNotNone(result["peak_memory_mb"])
+            self.assertEqual(result["generation_seed"], 42)
             self.assertGreaterEqual(result["total_seconds"], result["generation_seconds"])
             artifact_dir = Path(result["artifact_dir"])
             self.assertTrue((artifact_dir / "generated.py").is_file())
@@ -72,11 +73,36 @@ class ExperimentRunnerTests(unittest.TestCase):
             path = save_results_table([result], Path(directory) / "summary.json")
             self.assertEqual(json.loads(path.read_text(encoding="utf-8"))[0]["case"], "G1")
 
+    def test_runner_uses_non_overlapping_sample_ranges(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            config = ExperimentConfig(
+                models=["mock"],
+                cases={"G1": "RPS"},
+                sample_start=4,
+                samples_per_case=2,
+                artifact_root=Path(directory),
+            )
+            records = ExperimentRunner(
+                config, generator=lambda description, model: RPS_SOURCE
+            ).run()
+            self.assertEqual([record["sample"] for record in records], [4, 5])
+            self.assertTrue((Path(directory) / "mock" / "G1" / "sample_004").is_dir())
+            self.assertTrue((Path(directory) / "mock" / "G1" / "sample_005").is_dir())
+
     def test_prompt_template_formats_with_skeleton(self) -> None:
         prompt = PROMPT_TEMPLATE.format(game_description="A small situation.")
 
         self.assertIn('return {"terminal": 1.0}', prompt)
         self.assertIn('not `{}`', prompt)
+
+    def test_corrected_prompt_explains_general_interface_scope(self) -> None:
+        prompt = CORRECTED_PROMPT_TEMPLATE.format(game_description="A generic game.")
+
+        self.assertIn("has no `player` variable", prompt)
+        self.assertIn("never use placeholder", prompt)
+        self.assertIn('keys such as `"other"`', prompt)
+        self.assertIn("dictionary, not a tuple or list", prompt)
+        self.assertNotIn("rock-paper-scissors", prompt.lower())
 
 
 if __name__ == "__main__":

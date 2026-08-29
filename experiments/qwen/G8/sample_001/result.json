@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G8\\sample_001",
+  "case": "G8",
+  "eda_seconds": null,
+  "error_message": "Transition failed: ValueError: too many values to unpack (expected 2)\nTransition failed: ValueError: too many values to unpack (expected 2)\nTransition failed: ValueError: too many values to unpack (expected 2)\nTransition failed: ValueError: too many values to unpack (expected 2)",
+  "execution_seconds": 0.0032661999575793743,
+  "failure_type": "invalid_transition",
+  "generation_seconds": 14.340668899938464,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.16556549072265625,
+  "rollout_seconds": 0.0009085000492632389,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:03:35.837105+00:00",
+  "total_seconds": 14.344913499895483,
+  "validation_seconds": 3.6999117583036423e-06
+}

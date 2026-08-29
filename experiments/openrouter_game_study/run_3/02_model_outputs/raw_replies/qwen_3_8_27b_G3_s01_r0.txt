@@ -1,0 +1,72 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["heads", "tails"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            # Determine the outcome based on the coin flip
+            # If a1 == a2, it's a draw regardless of coin
+            # If a1 != a2, one matches and one doesn't
+            # We need to model the chance of the coin flip.
+            # The state after the action will encode the coin result.
+            # Let's use states: "H", "T" as the next states representing the coin flip result.
+            # The transition is 50/50 to H and T.
+            return {"H": 0.5, "T": 0.5}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        # The player observes their own action and the coin result (next_state)
+        # But wait, in a POSG, observations are typically private.
+        # The problem says "The player whose call matches the result wins".
+        # Usually, in such games, players might not know the other's action or the coin result immediately?
+        # However, the reward is determined by the match.
+        # Let's assume the observation includes the coin result (next_state) and their own action.
+        # Actually, the standard interpretation of "call heads or tails before a single fair coin is flipped"
+        # implies the coin is flipped after both commit.
+        # The observation for the player should allow them to know the outcome.
+        # Let's encode: f"own={joint_action[player]}, coin={next_state}"
+        own_action = joint_action[player]
+        coin_result = next_state
+        return f"own={own_action}, coin={coin_result}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state != "s0":
+            return 0.0
+        
+        a1 = joint_action["player_1"]
+        a2 = joint_action["player_2"]
+        coin = next_state
+        
+        # Determine if this player matches the coin
+        if player == "player_1":
+            my_call = a1
+            other_call = a2
+        else:
+            my_call = a2
+            other_call = a1
+            
+        i_match = (my_call == coin)
+        other_match = (other_call == coin)
+        
+        if i_match and not other_match:
+            return 1.0
+        elif not i_match and other_match:
+            return -1.0
+        else:
+            # Draw: both match or neither matches
+            return 0.0
+
+    def is_terminal(self, state):
+        return state in ["H", "T"]

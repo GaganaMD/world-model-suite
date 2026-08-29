@@ -1,0 +1,81 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["0_3", "1_2", "2_1", "3_0"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            p1_action = joint_action["player_1"]
+            p2_action = joint_action["player_2"]
+            p1_b1 = int(p1_action.split("_")[0])
+            p2_b1 = int(p2_action.split("_")[0])
+            if p1_b1 > p2_b1:
+                p1_wins = 1
+            elif p1_b1 < p2_b1:
+                p1_wins = 0
+            else:
+                p1_wins = 0.5
+            if p1_wins == 1:
+                return {"terminal": 1.0}
+            elif p1_wins == 0:
+                return {"terminal": 1.0}
+            else:
+                return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0":
+            p1_action = joint_action["player_1"]
+            p2_action = joint_action["player_2"]
+            p1_b1 = int(p1_action.split("_")[0])
+            p2_b1 = int(p2_action.split("_")[0])
+            if p1_b1 > p2_b1:
+                p1_wins = 1
+            elif p1_b1 < p2_b1:
+                p1_wins = 0
+            else:
+                p1_wins = 0.5
+            if p1_wins == 1:
+                return "player_1_wins"
+            elif p1_wins == 0:
+                return "player_2_wins"
+            else:
+                return "draw"
+        return "terminal_obs"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0":
+            p1_action = joint_action["player_1"]
+            p2_action = joint_action["player_2"]
+            p1_b1 = int(p1_action.split("_")[0])
+            p2_b1 = int(p2_action.split("_")[0])
+            if p1_b1 > p2_b1:
+                p1_wins = 1
+            elif p1_b1 < p2_b1:
+                p1_wins = 0
+            else:
+                p1_wins = 0.5
+            if p1_wins == 1:
+                if player == "player_1":
+                    return 1.0
+                else:
+                    return -1.0
+            elif p1_wins == 0:
+                if player == "player_1":
+                    return -1.0
+                else:
+                    return 1.0
+            else:
+                return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state == "terminal"

@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen_p0\\G1\\sample_002",
+  "case": "G1",
+  "eda_seconds": null,
+  "error_message": "Outcome 'terminal', player 'player_1': KeyError: 'other'\nOutcome 'terminal', player 'player_2': KeyError: 'other'\nTransition failed: ValueError: Invalid joint action\nOutcome 'terminal', player 'player_1': KeyError: 'other'\nOutcome 'terminal', player 'player_2': KeyError: 'other'\nTransition failed: ValueError: Invalid joint action\nTransition failed: ValueError: Invalid joint action\nOutcome 'terminal', player 'player_1': KeyError: 'other'\nOutcome 'terminal', player 'player_2': KeyError: 'other'",
+  "execution_seconds": 0.0077108999248594046,
+  "failure_type": "invalid_actions",
+  "generation_seconds": 24.793390800012276,
+  "graph_seconds": null,
+  "model": "qwen_p0",
+  "peak_memory_mb": 0.24603271484375,
+  "rollout_seconds": 0.002055299933999777,
+  "sample": 2,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:53:55.421761+00:00",
+  "total_seconds": 24.803214400075376,
+  "validation_seconds": 8.00006091594696e-06
+}

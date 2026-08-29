@@ -1,0 +1,1477 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.8333333333333334,
+      "joint_action_count": 54,
+      "outcome_compression": 0.16666666666666666,
+      "unique_action_count": 6,
+      "unique_actions_by_player": {
+        "player_1": [
+          "shoot_center",
+          "shoot_left",
+          "shoot_right"
+        ],
+        "player_2": [
+          "dive_left",
+          "dive_right",
+          "stay_center"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 1.2,
+      "average_out_degree": 1.2,
+      "average_shortest_path_length": 1.68,
+      "community_count": 3,
+      "density": 0.13333333333333333,
+      "edge_count": 12,
+      "global_efficiency": 0.19814814814814813,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 2,
+      "modularity": 0.26736111111111116,
+      "strongly_connected_component_count": 10,
+      "strongly_connected_components": [
+        [
+          "end|0|3"
+        ],
+        [
+          "end|1|2"
+        ],
+        [
+          "r3|0|2"
+        ],
+        [
+          "end|2|1"
+        ],
+        [
+          "r3|1|1"
+        ],
+        [
+          "r2|0|1"
+        ],
+        [
+          "end|3|0"
+        ],
+        [
+          "r3|2|0"
+        ],
+        [
+          "r2|1|0"
+        ],
+        [
+          "r1|0|0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 1.0,
+      "branching_factor_by_state": {
+        "end|0|3": 0,
+        "end|1|2": 0,
+        "end|2|1": 0,
+        "end|3|0": 0,
+        "r1|0|0": 9,
+        "r2|0|1": 9,
+        "r2|1|0": 9,
+        "r3|0|2": 9,
+        "r3|1|1": 9,
+        "r3|2|0": 9
+      },
+      "maximum_branching_factor": 9,
+      "maximum_depth_to_terminal": 3,
+      "maximum_trajectory_depth": 3,
+      "mean_branching_factor": 5.4,
+      "non_terminal_state_count": 6,
+      "reachable_state_count": 10,
+      "self_loop_count": 0,
+      "state_count": 10,
+      "terminal_state_count": 4,
+      "terminal_to_non_terminal_ratio": 0.6666666666666666
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "end|0|3": 0,
+        "end|1|2": 0,
+        "end|2|1": 0,
+        "end|3|0": 0,
+        "r1|0|0": 3,
+        "r2|0|1": 2,
+        "r2|1|0": 2,
+        "r3|0|2": 1,
+        "r3|1|1": 1,
+        "r3|2|0": 1
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 54,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 9
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "r1|0|0",
+        "r2|0|1"
+      ],
+      [
+        "r1|0|0",
+        "r2|1|0"
+      ],
+      [
+        "r2|0|1",
+        "r3|0|2"
+      ],
+      [
+        "r2|0|1",
+        "r3|1|1"
+      ],
+      [
+        "r2|1|0",
+        "r3|1|1"
+      ],
+      [
+        "r2|1|0",
+        "r3|2|0"
+      ],
+      [
+        "r3|0|2",
+        "end|0|3"
+      ],
+      [
+        "r3|0|2",
+        "end|1|2"
+      ],
+      [
+        "r3|1|1",
+        "end|1|2"
+      ],
+      [
+        "r3|1|1",
+        "end|2|1"
+      ],
+      [
+        "r3|2|0",
+        "end|2|1"
+      ],
+      [
+        "r3|2|0",
+        "end|3|0"
+      ]
+    ],
+    "nodes": [
+      "r1|0|0",
+      "r2|0|1",
+      "r2|1|0",
+      "r3|0|2",
+      "r3|1|1",
+      "r3|2|0",
+      "end|0|3",
+      "end|1|2",
+      "end|2|1",
+      "end|3|0"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 10,
+  "status": "passed",
+  "transitions_checked": 54,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0004"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {},
+        "depth": 3,
+        "id": "state_0000",
+        "representation": "'end|0|3'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 3,
+        "id": "state_0001",
+        "representation": "'end|1|2'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 3,
+        "id": "state_0002",
+        "representation": "'end|2|1'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 3,
+        "id": "state_0003",
+        "representation": "'end|3|0'",
+        "terminal": true
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0004",
+        "representation": "'r1|0|0'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0005",
+        "representation": "'r2|0|1'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 1,
+        "id": "state_0006",
+        "representation": "'r2|1|0'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 2,
+        "id": "state_0007",
+        "representation": "'r3|0|2'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 2,
+        "id": "state_0008",
+        "representation": "'r3|1|1'",
+        "terminal": false
+      },
+      {
+        "actions": {
+          "player_1": [
+            "shoot_left",
+            "shoot_center",
+            "shoot_right"
+          ],
+          "player_2": [
+            "dive_left",
+            "stay_center",
+            "dive_right"
+          ]
+        },
+        "depth": 2,
+        "id": "state_0009",
+        "representation": "'r3|2|0'",
+        "terminal": false
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=center;keeper=left;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=center;keeper=left;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=center;keeper=right;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=center;keeper=right;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "round=1;shot=center;keeper=center;result=save;goals=0;saves=1;next=r2",
+              "player_2": "round=1;shot=center;keeper=center;result=save;goals=0;saves=1;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "round=1;shot=left;keeper=left;result=save;goals=0;saves=1;next=r2",
+              "player_2": "round=1;shot=left;keeper=left;result=save;goals=0;saves=1;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=left;keeper=right;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=left;keeper=right;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=left;keeper=center;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=left;keeper=center;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=right;keeper=left;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=right;keeper=left;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0005",
+            "observations": {
+              "player_1": "round=1;shot=right;keeper=right;result=save;goals=0;saves=1;next=r2",
+              "player_2": "round=1;shot=right;keeper=right;result=save;goals=0;saves=1;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0006",
+            "observations": {
+              "player_1": "round=1;shot=right;keeper=center;result=goal;goals=1;saves=0;next=r2",
+              "player_2": "round=1;shot=right;keeper=center;result=goal;goals=1;saves=0;next=r2"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0004"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=left;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=center;keeper=left;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=right;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=center;keeper=right;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=center;result=save;goals=0;saves=2;next=r3",
+              "player_2": "round=2;shot=center;keeper=center;result=save;goals=0;saves=2;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=left;result=save;goals=0;saves=2;next=r3",
+              "player_2": "round=2;shot=left;keeper=left;result=save;goals=0;saves=2;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=right;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=left;keeper=right;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=center;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=left;keeper=center;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=left;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=right;keeper=left;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0007",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=right;result=save;goals=0;saves=2;next=r3",
+              "player_2": "round=2;shot=right;keeper=right;result=save;goals=0;saves=2;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=center;result=goal;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=right;keeper=center;result=goal;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0005"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=left;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=center;keeper=left;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=right;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=center;keeper=right;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=center;keeper=center;result=save;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=center;keeper=center;result=save;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=left;result=save;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=left;keeper=left;result=save;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=right;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=left;keeper=right;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=left;keeper=center;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=left;keeper=center;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=left;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=right;keeper=left;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0008",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=right;result=save;goals=1;saves=1;next=r3",
+              "player_2": "round=2;shot=right;keeper=right;result=save;goals=1;saves=1;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0009",
+            "observations": {
+              "player_1": "round=2;shot=right;keeper=center;result=goal;goals=2;saves=0;next=r3",
+              "player_2": "round=2;shot=right;keeper=center;result=goal;goals=2;saves=0;next=r3"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0006"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=left;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=center;keeper=left;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=right;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=center;keeper=right;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=center;result=save;goals=0;saves=3;next=end",
+              "player_2": "round=3;shot=center;keeper=center;result=save;goals=0;saves=3;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=left;result=save;goals=0;saves=3;next=end",
+              "player_2": "round=3;shot=left;keeper=left;result=save;goals=0;saves=3;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=right;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=left;keeper=right;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=center;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=left;keeper=center;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=left;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=right;keeper=left;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=right;result=save;goals=0;saves=3;next=end",
+              "player_2": "round=3;shot=right;keeper=right;result=save;goals=0;saves=3;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=center;result=goal;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=right;keeper=center;result=goal;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0007"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=left;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=center;keeper=left;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=right;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=center;keeper=right;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=center;result=save;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=center;keeper=center;result=save;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=left;result=save;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=left;keeper=left;result=save;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=right;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=left;keeper=right;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=center;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=left;keeper=center;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=left;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=right;keeper=left;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=right;result=save;goals=1;saves=2;next=end",
+              "player_2": "round=3;shot=right;keeper=right;result=save;goals=1;saves=2;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=center;result=goal;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=right;keeper=center;result=goal;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0008"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=left;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=center;keeper=left;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=right;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=center;keeper=right;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_center",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=center;keeper=center;result=save;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=center;keeper=center;result=save;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=left;result=save;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=left;keeper=left;result=save;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=right;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=left;keeper=right;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_left",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=left;keeper=center;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=left;keeper=center;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_left"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=left;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=right;keeper=left;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "dive_right"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=right;result=save;goals=2;saves=1;next=end",
+              "player_2": "round=3;shot=right;keeper=right;result=save;goals=2;saves=1;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -0.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      },
+      {
+        "joint_action": {
+          "player_1": "shoot_right",
+          "player_2": "stay_center"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "round=3;shot=right;keeper=center;result=goal;goals=3;saves=0;next=end",
+              "player_2": "round=3;shot=right;keeper=center;result=goal;goals=3;saves=0;next=end"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0009"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

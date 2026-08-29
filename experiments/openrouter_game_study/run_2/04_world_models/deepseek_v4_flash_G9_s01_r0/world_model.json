@@ -1,0 +1,396 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0003"
+    }
+  ],
+  "players": [
+    "player_1",
+    "player_2"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'draw'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'p1_wins'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'p2_wins'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "player_1": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ],
+        "player_2": [
+          "0_3",
+          "1_2",
+          "2_1",
+          "3_0"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0003",
+      "representation": "'s0'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "deployed_0_3",
+            "player_2": "deployed_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_0_3",
+            "player_2": "deployed_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_0_3",
+            "player_2": "deployed_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "0_3",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_0_3",
+            "player_2": "deployed_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_1_2",
+            "player_2": "deployed_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "deployed_1_2",
+            "player_2": "deployed_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_1_2",
+            "player_2": "deployed_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "1_2",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_1_2",
+            "player_2": "deployed_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_2_1",
+            "player_2": "deployed_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_2_1",
+            "player_2": "deployed_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "deployed_2_1",
+            "player_2": "deployed_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "2_1",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "player_1": "deployed_2_1",
+            "player_2": "deployed_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": -1.0,
+            "player_2": 1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "0_3"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_3_0",
+            "player_2": "deployed_0_3"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "1_2"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_3_0",
+            "player_2": "deployed_1_2"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "2_1"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "player_1": "deployed_3_0",
+            "player_2": "deployed_2_1"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 1.0,
+            "player_2": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "player_1": "3_0",
+        "player_2": "3_0"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "player_1": "deployed_3_0",
+            "player_2": "deployed_3_0"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "player_1": 0.0,
+            "player_2": 0.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G9\\sample_003",
+  "case": "G9",
+  "eda_seconds": null,
+  "error_message": "State (0, 0), player 'commander_1': legal_actions must return a non-empty list of string actions.\nState (0, 0), player 'commander_2': legal_actions must return a non-empty list of string actions.",
+  "execution_seconds": 0.005708100041374564,
+  "failure_type": "invalid_actions",
+  "generation_seconds": 20.24613169999793,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.22173595428466797,
+  "rollout_seconds": 0.00027840002439916134,
+  "sample": 3,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:03:50.184778+00:00",
+  "total_seconds": 20.252178499940783,
+  "validation_seconds": 5.700159817934036e-06
+}

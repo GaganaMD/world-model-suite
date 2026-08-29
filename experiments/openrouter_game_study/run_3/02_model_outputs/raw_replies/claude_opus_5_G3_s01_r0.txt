@@ -1,0 +1,49 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "call"
+
+    def legal_actions(self, state, player):
+        if state == "call":
+            return ["heads", "tails"]
+        return ["noop"]
+
+    def transition(self, state, joint_action):
+        if state == "call":
+            a1 = joint_action["player_1"]
+            a2 = joint_action["player_2"]
+            c1 = a1 if a1 in ("heads", "tails") else "heads"
+            c2 = a2 if a2 in ("heads", "tails") else "heads"
+            return {
+                f"end_{c1}_{c2}_heads": 0.5,
+                f"end_{c1}_{c2}_tails": 0.5,
+            }
+        return {"end_heads_heads_heads": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "call" and next_state.startswith("end_"):
+            parts = next_state.split("_")
+            c1, c2, flip = parts[1], parts[2], parts[3]
+            own = c1 if player == "player_1" else c2
+            other = c2 if player == "player_1" else c1
+            return f"flip={flip};mycall={own};othercall={other}"
+        return f"terminal;player={player}"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "call" and next_state.startswith("end_"):
+            parts = next_state.split("_")
+            c1, c2, flip = parts[1], parts[2], parts[3]
+            m1 = (c1 == flip)
+            m2 = (c2 == flip)
+            if m1 and not m2:
+                return 1.0 if player == "player_1" else -1.0
+            if m2 and not m1:
+                return 1.0 if player == "player_2" else -1.0
+            return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state.startswith("end_")

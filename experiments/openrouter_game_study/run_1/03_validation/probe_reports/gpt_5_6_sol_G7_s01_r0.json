@@ -1,0 +1,271 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.0,
+      "joint_action_count": 4,
+      "outcome_compression": 1.0,
+      "unique_action_count": 2,
+      "unique_actions_by_player": {
+        "player_1": [
+          "silent",
+          "testify"
+        ],
+        "player_2": [
+          "silent",
+          "testify"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 0.8,
+      "average_out_degree": 0.8,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 0.2,
+      "edge_count": 4,
+      "global_efficiency": 0.2,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 4,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 5,
+      "strongly_connected_components": [
+        [
+          "terminal_both_silent"
+        ],
+        [
+          "terminal_both_testify"
+        ],
+        [
+          "terminal_player_1_testifies"
+        ],
+        [
+          "terminal_player_2_testifies"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.2,
+      "branching_factor_by_state": {
+        "s0": 4,
+        "terminal_both_silent": 0,
+        "terminal_both_testify": 0,
+        "terminal_player_1_testifies": 0,
+        "terminal_player_2_testifies": 0
+      },
+      "maximum_branching_factor": 4,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": 1,
+      "mean_branching_factor": 0.8,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 5,
+      "self_loop_count": 0,
+      "state_count": 5,
+      "terminal_state_count": 4,
+      "terminal_to_non_terminal_ratio": 4.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "s0": 1,
+        "terminal_both_silent": 0,
+        "terminal_both_testify": 0,
+        "terminal_player_1_testifies": 0,
+        "terminal_player_2_testifies": 0
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 4,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 4
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "terminal_both_silent"
+      ],
+      [
+        "s0",
+        "terminal_player_2_testifies"
+      ],
+      [
+        "s0",
+        "terminal_player_1_testifies"
+      ],
+      [
+        "s0",
+        "terminal_both_testify"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "terminal_both_silent",
+      "terminal_player_2_testifies",
+      "terminal_player_1_testifies",
+      "terminal_both_testify"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 5,
+  "status": "passed",
+  "transitions_checked": 4,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "silent",
+            "testify"
+          ],
+          "player_2": [
+            "silent",
+            "testify"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'s0'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'terminal_both_silent'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0002",
+        "representation": "'terminal_both_testify'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0003",
+        "representation": "'terminal_player_1_testifies'",
+        "terminal": true
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0004",
+        "representation": "'terminal_player_2_testifies'",
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "silent",
+          "player_2": "silent"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "light_sentence",
+              "player_2": "light_sentence"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "silent",
+          "player_2": "testify"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0004",
+            "observations": {
+              "player_1": "maximum_sentence",
+              "player_2": "go_free"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -5.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "testify",
+          "player_2": "silent"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0003",
+            "observations": {
+              "player_1": "go_free",
+              "player_2": "maximum_sentence"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": -5.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "testify",
+          "player_2": "testify"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0002",
+            "observations": {
+              "player_1": "heavy_sentence",
+              "player_2": "heavy_sentence"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -3.0,
+              "player_2": -3.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

@@ -1,0 +1,13 @@
+failure_type,count
+syntax_error,0
+execution_error,0
+invalid_state,0
+unhashable_state,1
+invalid_transition,0
+invalid_probability,0
+invalid_action,0
+nontermination,0
+structural_failure,0
+semantic_reward_failure,1
+semantic_observation_failure,1
+other,0

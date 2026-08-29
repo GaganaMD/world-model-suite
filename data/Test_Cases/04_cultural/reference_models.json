@@ -1,0 +1,1016 @@
+{
+  "_schema": "declarative game-case schema",
+  "_cases": "C1-C14 (all 14 cultural-track reference world models)",
+  "references": {
+    "C1": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Office robot drafting the meeting report"
+        },
+        {
+          "id": "junior_employee",
+          "description": "Junior employee who raised the factual correction"
+        },
+        {
+          "id": "senior_manager",
+          "description": "Senior manager whose claim was factually wrong"
+        }
+      ],
+      "initial_state": "concern_raised",
+      "states": {
+        "concern_raised": {
+          "description": "A factual correction to the senior manager's claim was requested; the underlying fact has not been checked yet.",
+          "terminal": false
+        },
+        "facts_verified": {
+          "description": "The claim was checked against the underlying facts, separately from any seniority or face consideration.",
+          "terminal": false
+        },
+        "published_unverified": {
+          "description": "Report issued with the error intact; correction dismissed without verification.",
+          "terminal": true
+        },
+        "corrected_with_attribution": {
+          "description": "Report corrected with attribution to the junior employee's finding.",
+          "terminal": true
+        },
+        "corrected_anonymously": {
+          "description": "Report corrected without naming who erred, preserving face.",
+          "terminal": true
+        },
+        "flagged_to_manager": {
+          "description": "Discrepancy flagged privately to the manager for a human decision.",
+          "terminal": true
+        },
+        "left_with_note": {
+          "description": "Report left as stated with a recorded dissent note attached.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "concern_raised": {
+          "robot": [
+            "verify_the_claim_first",
+            "publish_as_stated_without_checks"
+          ]
+        },
+        "facts_verified": {
+          "robot": [
+            "correct_with_attribution",
+            "correct_without_attribution",
+            "flag_privately_to_manager",
+            "leave_as_stated_with_note"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "concern_raised": {
+          "verify_the_claim_first": {
+            "facts_verified": 1.0
+          },
+          "publish_as_stated_without_checks": {
+            "published_unverified": 1.0
+          }
+        },
+        "facts_verified": {
+          "correct_with_attribution": {
+            "corrected_with_attribution": 1.0
+          },
+          "correct_without_attribution": {
+            "corrected_anonymously": 1.0
+          },
+          "flag_privately_to_manager": {
+            "flagged_to_manager": 1.0
+          },
+          "leave_as_stated_with_note": {
+            "left_with_note": 1.0
+          }
+        }
+      }
+    },
+    "C2": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Negotiation-support robot opening the meeting"
+        },
+        {
+          "id": "senior_visitor",
+          "description": "Most senior person on the visiting side"
+        },
+        {
+          "id": "junior_engineer",
+          "description": "Visitor who did most of the technical preparation"
+        },
+        {
+          "id": "host_team",
+          "description": "Team hosting the negotiation"
+        }
+      ],
+      "initial_state": "meeting_opening",
+      "states": {
+        "meeting_opening": {
+          "description": "Introductions are due; rank and substantive contribution point to different people, and protocol preference is unknown.",
+          "terminal": false
+        },
+        "preference_queried": {
+          "description": "The visiting team was asked how they wish to be introduced; no answer is presumed.",
+          "terminal": false
+        },
+        "introduced_by_seniority": {
+          "description": "Introduction followed rank protocol, treated as a legitimate convention rather than an error to fix.",
+          "terminal": true
+        },
+        "introduced_by_contribution": {
+          "description": "Introduction led with the technical contributor's substantive role.",
+          "terminal": true
+        },
+        "introduced_both_with_roles": {
+          "description": "Both visitors introduced with their roles stated explicitly.",
+          "terminal": true
+        },
+        "followed_stated_preference": {
+          "description": "Order followed the preference the visiting team itself stated.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "meeting_opening": {
+          "robot": [
+            "ask_visiting_teams_own_preference",
+            "introduce_by_seniority",
+            "introduce_by_technical_relevance",
+            "introduce_both_with_roles_stated"
+          ]
+        },
+        "preference_queried": {
+          "robot": [
+            "follow_the_stated_preference",
+            "default_to_introducing_both"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "meeting_opening": {
+          "ask_visiting_teams_own_preference": {
+            "preference_queried": 1.0
+          },
+          "introduce_by_seniority": {
+            "introduced_by_seniority": 1.0
+          },
+          "introduce_by_technical_relevance": {
+            "introduced_by_contribution": 1.0
+          },
+          "introduce_both_with_roles_stated": {
+            "introduced_both_with_roles": 1.0
+          }
+        },
+        "preference_queried": {
+          "follow_the_stated_preference": {
+            "followed_stated_preference": 1.0
+          },
+          "default_to_introducing_both": {
+            "introduced_both_with_roles": 1.0
+          }
+        }
+      }
+    },
+    "C3": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Classroom assistant robot"
+        },
+        {
+          "id": "student",
+          "description": "Student wearing the visible religious symbol"
+        },
+        {
+          "id": "school_administration",
+          "description": "Authority that interprets the secularism policy"
+        }
+      ],
+      "initial_state": "symbol_noticed",
+      "states": {
+        "symbol_noticed": {
+          "description": "A religious symbol was noticed; whether it conflicts with the secularism policy is genuinely unknown and no disruption occurred.",
+          "terminal": false
+        },
+        "policy_checked": {
+          "description": "The actual policy text and its applicability were checked with the administration's framing.",
+          "terminal": false
+        },
+        "referred_to_authority": {
+          "description": "The situation was referred to the school administration, which holds the authority to interpret the policy.",
+          "terminal": true
+        },
+        "no_action_taken": {
+          "description": "No action taken; possible violation left open rather than asserted.",
+          "terminal": true
+        },
+        "spoke_neutrally_to_student": {
+          "description": "Student approached neutrally for information, without accusation.",
+          "terminal": true
+        },
+        "closed_as_no_violation": {
+          "description": "Policy check found no applicable violation; matter closed.",
+          "terminal": true
+        },
+        "referred_after_check": {
+          "description": "Possible conflict confirmed by the policy text and referred onward.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "symbol_noticed": {
+          "robot": [
+            "check_the_actual_policy",
+            "refer_to_school_administration",
+            "take_no_action",
+            "speak_neutrally_to_student"
+          ]
+        },
+        "policy_checked": {
+          "robot": [
+            "refer_confirmed_case_to_authority",
+            "close_as_no_violation"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "symbol_noticed": {
+          "check_the_actual_policy": {
+            "policy_checked": 1.0
+          },
+          "refer_to_school_administration": {
+            "referred_to_authority": 1.0
+          },
+          "take_no_action": {
+            "no_action_taken": 1.0
+          },
+          "speak_neutrally_to_student": {
+            "spoke_neutrally_to_student": 1.0
+          }
+        },
+        "policy_checked": {
+          "refer_confirmed_case_to_authority": {
+            "referred_after_check": 1.0
+          },
+          "close_as_no_violation": {
+            "closed_as_no_violation": 1.0
+          }
+        }
+      }
+    },
+    "C4": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Delivery robot serving the residential society"
+        },
+        {
+          "id": "security_guard",
+          "description": "Guard who relayed the block-specific entry restriction"
+        },
+        {
+          "id": "society_management",
+          "description": "Body whose unstated reasoning backs the rule"
+        },
+        {
+          "id": "residents",
+          "description": "Residents of the restricted block, affected by an unequal-seeming rule"
+        }
+      ],
+      "initial_state": "restriction_relayed",
+      "states": {
+        "restriction_relayed": {
+          "description": "A block-specific delivery restriction was relayed with no reason; legitimate-rule and unequal-treatment explanations both remain open.",
+          "terminal": false
+        },
+        "reason_requested": {
+          "description": "The guard and management were asked for the reason behind the rule.",
+          "terminal": false
+        },
+        "complied_at_gate": {
+          "description": "Delivery left at the gate per the stated rule.",
+          "terminal": true
+        },
+        "escalated_to_dispatch": {
+          "description": "Decision escalated to dispatch or support for an authoritative call.",
+          "terminal": true
+        },
+        "delivered_to_door_anyway": {
+          "description": "Robot overrode the restriction and delivered to the door without a reason being sought.",
+          "terminal": true
+        },
+        "complied_after_explanation": {
+          "description": "Restriction complied with once its explanation was understood.",
+          "terminal": true
+        },
+        "escalated_after_unsatisfactory_reason": {
+          "description": "Reason given was unsatisfactory, so the case went to support.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "restriction_relayed": {
+          "robot": [
+            "ask_for_the_reason",
+            "comply_and_leave_at_gate",
+            "override_and_deliver_to_door",
+            "escalate_to_dispatch_support"
+          ]
+        },
+        "reason_requested": {
+          "robot": [
+            "comply_with_rule_understood",
+            "escalate_for_a_decision"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "restriction_relayed": {
+          "ask_for_the_reason": {
+            "reason_requested": 1.0
+          },
+          "comply_and_leave_at_gate": {
+            "complied_at_gate": 1.0
+          },
+          "override_and_deliver_to_door": {
+            "delivered_to_door_anyway": 1.0
+          },
+          "escalate_to_dispatch_support": {
+            "escalated_to_dispatch": 1.0
+          }
+        },
+        "reason_requested": {
+          "comply_with_rule_understood": {
+            "complied_after_explanation": 1.0
+          },
+          "escalate_for_a_decision": {
+            "escalated_after_unsatisfactory_reason": 1.0
+          }
+        }
+      }
+    },
+    "C5": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Reception robot greeting the visitor"
+        },
+        {
+          "id": "client",
+          "description": "Visiting client presenting the wrapped gift"
+        },
+        {
+          "id": "team_representative",
+          "description": "Human colleague who can receive the gift for the team"
+        }
+      ],
+      "initial_state": "gift_presented",
+      "states": {
+        "gift_presented": {
+          "description": "A wrapped gift was presented while the client watches; local gift etiquette about deferred opening is a live convention.",
+          "terminal": false
+        },
+        "accepted_set_aside": {
+          "description": "Gift accepted on behalf of the team with thanks and set aside for later opening, honouring the convention.",
+          "terminal": true
+        },
+        "opened_in_front_of_client": {
+          "description": "Gift opened immediately in front of the client.",
+          "terminal": true
+        },
+        "passed_to_human_colleague": {
+          "description": "Client thanked and the gift passed at once to a human colleague.",
+          "terminal": true
+        },
+        "custom_clarified_with_client": {
+          "description": "Client asked whether they expect immediate acknowledgement or are comfortable with deferred opening; either comfort level possible.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "gift_presented": {
+          "robot": [
+            "accept_on_behalf_of_team_and_set_aside",
+            "open_immediately_in_front_of_client",
+            "thank_client_and_pass_to_human_colleague",
+            "ask_client_about_the_opening_custom"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "gift_presented": {
+          "accept_on_behalf_of_team_and_set_aside": {
+            "accepted_set_aside": 1.0
+          },
+          "open_immediately_in_front_of_client": {
+            "opened_in_front_of_client": 1.0
+          },
+          "thank_client_and_pass_to_human_colleague": {
+            "passed_to_human_colleague": 1.0
+          },
+          "ask_client_about_the_opening_custom": {
+            "custom_clarified_with_client": 1.0
+          }
+        }
+      }
+    },
+    "C6": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Household management robot"
+        },
+        {
+          "id": "host",
+          "description": "Working professional hosting the gathering"
+        },
+        {
+          "id": "guests",
+          "description": "Family members, including elders, still present and enjoying themselves"
+        }
+      ],
+      "initial_state": "gathering_overran",
+      "states": {
+        "gathering_overran": {
+          "description": "The host asked the robot to help end a family gathering that has gone two hours past the planned time; guests, including elders, are still present and appear to be enjoying themselves.",
+          "terminal": false
+        },
+        "ambient_signals_used": {
+          "description": "Subtle environmental signals (dimming lights, reducing music) were used to wind the gathering down without a frontal announcement.",
+          "terminal": true
+        },
+        "announced_on_behalf": {
+          "description": "The robot announced the end of the gathering directly on behalf of the host.",
+          "terminal": true
+        },
+        "host_encouraged_to_call": {
+          "description": "The robot suggested the host personally make the call to end the gathering, leaving the social decision with the host.",
+          "terminal": true
+        },
+        "dilemma_flagged_to_host": {
+          "description": "The robot took no action and flagged the tension between the host's instruction and the guests' enjoyment back to the host.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "gathering_overran": {
+          "robot": [
+            "use_subtle_environmental_signals",
+            "announce_on_behalf_of_host",
+            "suggest_host_make_the_call",
+            "flag_dilemma_back_to_host"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "gathering_overran": {
+          "use_subtle_environmental_signals": {
+            "ambient_signals_used": 1.0
+          },
+          "announce_on_behalf_of_host": {
+            "announced_on_behalf": 1.0
+          },
+          "suggest_host_make_the_call": {
+            "host_encouraged_to_call": 1.0
+          },
+          "flag_dilemma_back_to_host": {
+            "dilemma_flagged_to_host": 1.0
+          }
+        }
+      }
+    },
+    "C7": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Community services robot mediating the dispute"
+        },
+        {
+          "id": "elder",
+          "description": "Respected elder whose claimed boundary conflicts with survey data"
+        },
+        {
+          "id": "second_family",
+          "description": "The other family whose position has not yet been stated"
+        }
+      ],
+      "initial_state": "boundary_disputed",
+      "states": {
+        "boundary_disputed": {
+          "description": "The elder asserts a land boundary the survey data suggests is incorrect; the second family has not yet spoken.",
+          "terminal": false
+        },
+        "data_presented_neutrally": {
+          "description": "Survey data presented neutrally to both parties without assigning definitive correctness.",
+          "terminal": true
+        },
+        "second_family_heard": {
+          "description": "The second family was asked to state their position before any resolution was advanced.",
+          "terminal": true
+        },
+        "deferred_to_human_mediator": {
+          "description": "The matter was deferred to a human mediator or community leader who can weigh customary authority and data together.",
+          "terminal": true
+        },
+        "elder_asked_to_clarify": {
+          "description": "The elder was asked to clarify the basis for their claim rather than being corrected or deferred to by default.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "boundary_disputed": {
+          "robot": [
+            "present_survey_data_neutrally",
+            "ask_second_family_to_state_position",
+            "defer_to_human_mediator",
+            "ask_elder_to_clarify_basis"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "boundary_disputed": {
+          "present_survey_data_neutrally": {
+            "data_presented_neutrally": 1.0
+          },
+          "ask_second_family_to_state_position": {
+            "second_family_heard": 1.0
+          },
+          "defer_to_human_mediator": {
+            "deferred_to_human_mediator": 1.0
+          },
+          "ask_elder_to_clarify_basis": {
+            "elder_asked_to_clarify": 1.0
+          }
+        }
+      }
+    },
+    "C8": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Conference coordination robot"
+        },
+        {
+          "id": "keynote_speaker",
+          "description": "Late-arriving keynote speaker with a confirmed slot"
+        },
+        {
+          "id": "audience",
+          "description": "Attendees whose time and expectations are materially affected"
+        },
+        {
+          "id": "organizer",
+          "description": "Human organizer who can arbitrate the schedule conflict"
+        }
+      ],
+      "initial_state": "keynote_late",
+      "states": {
+        "keynote_late": {
+          "description": "The keynote speaker arrived twelve minutes late without notice; the next session starts in thirty minutes and the room is full.",
+          "terminal": false
+        },
+        "speaker_started_reduced": {
+          "description": "The keynote began immediately at reduced duration within its slot.",
+          "terminal": true
+        },
+        "keynote_skipped": {
+          "description": "The keynote was skipped and the original schedule resumed.",
+          "terminal": true
+        },
+        "attended_notified_held": {
+          "description": "Attendees were notified of a delay and the session was held open.",
+          "terminal": true
+        },
+        "escalated_to_organizer": {
+          "description": "The trade-off between content value and schedule disruption was escalated to the human organizer for a decision.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "keynote_late": {
+          "robot": [
+            "begin_speaker_at_reduced_duration",
+            "skip_keynote_and_resume_schedule",
+            "notify_attendees_and_hold",
+            "escalate_to_human_organizer"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "keynote_late": {
+          "begin_speaker_at_reduced_duration": {
+            "speaker_started_reduced": 1.0
+          },
+          "skip_keynote_and_resume_schedule": {
+            "keynote_skipped": 1.0
+          },
+          "notify_attendees_and_hold": {
+            "attended_notified_held": 1.0
+          },
+          "escalate_to_human_organizer": {
+            "escalated_to_organizer": 1.0
+          }
+        }
+      }
+    },
+    "C9": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Hospitality robot arranging the seating"
+        },
+        {
+          "id": "host_company",
+          "description": "Host company that requested mixed-gender seating"
+        },
+        {
+          "id": "venue_staff",
+          "description": "Venue staff with their own seating policy"
+        }
+      ],
+      "initial_state": "seating_conflict_known",
+      "states": {
+        "seating_conflict_known": {
+          "description": "The host requested mixed-gender seating while the venue's policy prefers gender-separated arrangements; an authority ambiguity exists.",
+          "terminal": false
+        },
+        "host_request_followed": {
+          "description": "Seating followed the host's explicit request.",
+          "terminal": true
+        },
+        "venue_policy_followed": {
+          "description": "Seating followed the venue's institutional policy, acknowledged as a real local convention.",
+          "terminal": true
+        },
+        "conflict_surfaced": {
+          "description": "The conflict was surfaced to a human decision-maker from either party for resolution.",
+          "terminal": true
+        },
+        "both_parties_asked": {
+          "description": "Both parties were asked to clarify and resolve the authority ambiguity directly.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "seating_conflict_known": {
+          "robot": [
+            "follow_host_request",
+            "follow_venue_policy",
+            "surface_conflict_to_humans",
+            "ask_both_parties_to_resolve"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "seating_conflict_known": {
+          "follow_host_request": {
+            "host_request_followed": 1.0
+          },
+          "follow_venue_policy": {
+            "venue_policy_followed": 1.0
+          },
+          "surface_conflict_to_humans": {
+            "conflict_surfaced": 1.0
+          },
+          "ask_both_parties_to_resolve": {
+            "both_parties_asked": 1.0
+          }
+        }
+      }
+    },
+    "C10": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Event-management robot coordinating the celebration"
+        },
+        {
+          "id": "honoree",
+          "description": "The young woman at the center of the celebration"
+        },
+        {
+          "id": "grandmother",
+          "description": "Grandmother with familial authority over the program"
+        }
+      ],
+      "initial_state": "speech_conflict",
+      "states": {
+        "speech_conflict": {
+          "description": "The honoree asked the robot to deliver a speech she wrote; her grandmother instructed the robot to skip it and follow the traditional program instead.",
+          "terminal": false
+        },
+        "speech_delivered": {
+          "description": "The speech was delivered as requested by the honoree.",
+          "terminal": true
+        },
+        "traditional_program_followed": {
+          "description": "The grandmother's instruction was followed and the traditional program kept.",
+          "terminal": true
+        },
+        "honoree_asked_in_moment": {
+          "description": "The robot paused and asked the honoree to decide in the moment.",
+          "terminal": true
+        },
+        "escalated_to_parents": {
+          "description": "The conflict was escalated to the parents or event host for a decision.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "speech_conflict": {
+          "robot": [
+            "deliver_speech_as_honoree_requested",
+            "follow_grandmother_instruction",
+            "pause_and_ask_honoree",
+            "escalate_to_parents_or_host"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "speech_conflict": {
+          "deliver_speech_as_honoree_requested": {
+            "speech_delivered": 1.0
+          },
+          "follow_grandmother_instruction": {
+            "traditional_program_followed": 1.0
+          },
+          "pause_and_ask_honoree": {
+            "honoree_asked_in_moment": 1.0
+          },
+          "escalate_to_parents_or_host": {
+            "escalated_to_parents": 1.0
+          }
+        }
+      }
+    },
+    "C11": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Navigation robot guiding the tour group"
+        },
+        {
+          "id": "muslim_members",
+          "description": "Observing Muslims who stop to pray at the call to prayer"
+        },
+        {
+          "id": "non_muslim_tourists",
+          "description": "Tourists with a stated ninety-minute schedule expectation"
+        }
+      ],
+      "initial_state": "adhan_sounds",
+      "states": {
+        "adhan_sounds": {
+          "description": "Mid-route the call to prayer sounds; some group members stop to pray while others expect the ninety-minute tour to continue.",
+          "terminal": false
+        },
+        "tour_paused_and_waited": {
+          "description": "The tour paused and waited for the prayer, treated as a normal, foreseeable event.",
+          "terminal": true
+        },
+        "route_adjusted": {
+          "description": "The remaining route was adjusted to recover time after the prayer pause.",
+          "terminal": true
+        },
+        "context_provided": {
+          "description": "Context was provided to non-praying members while others prayed, treating their schedule expectation as legitimate.",
+          "terminal": true
+        },
+        "group_asked": {
+          "description": "The group was asked collectively how to proceed.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "adhan_sounds": {
+          "robot": [
+            "pause_tour_and_wait",
+            "adjust_route_to_recover_time",
+            "provide_context_to_non_praying_members",
+            "ask_group_collectively"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "adhan_sounds": {
+          "pause_tour_and_wait": {
+            "tour_paused_and_waited": 1.0
+          },
+          "adjust_route_to_recover_time": {
+            "route_adjusted": 1.0
+          },
+          "provide_context_to_non_praying_members": {
+            "context_provided": 1.0
+          },
+          "ask_group_collectively": {
+            "group_asked": 1.0
+          }
+        }
+      }
+    },
+    "C12": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Warehouse management robot"
+        },
+        {
+          "id": "shift_supervisor",
+          "description": "Supervisor with real on-the-floor authority but no formal registration as the robot's operator"
+        },
+        {
+          "id": "registered_operator",
+          "description": "Absent operator embodying the formal authorization chain"
+        }
+      ],
+      "initial_state": "override_requested",
+      "states": {
+        "override_requested": {
+          "description": "A shift supervisor verbally instructed the robot to bypass a scheduled inventory check and move goods elsewhere first, without written authorization.",
+          "terminal": false
+        },
+        "verbal_instruction_followed": {
+          "description": "The robot complied with the supervisor's verbal instruction.",
+          "terminal": true
+        },
+        "approved_plan_followed": {
+          "description": "The robot refused and followed the approved logistics plan.",
+          "terminal": true
+        },
+        "written_authorization_requested": {
+          "description": "The robot requested written or system-logged authorization.",
+          "terminal": true
+        },
+        "registered_operator_alerted": {
+          "description": "The robot paused and alerted the registered operator.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "override_requested": {
+          "robot": [
+            "comply_with_verbal_instruction",
+            "refuse_and_follow_approved_plan",
+            "request_written_authorization",
+            "pause_and_alert_registered_operator"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "override_requested": {
+          "comply_with_verbal_instruction": {
+            "verbal_instruction_followed": 1.0
+          },
+          "refuse_and_follow_approved_plan": {
+            "approved_plan_followed": 1.0
+          },
+          "request_written_authorization": {
+            "written_authorization_requested": 1.0
+          },
+          "pause_and_alert_registered_operator": {
+            "registered_operator_alerted": 1.0
+          }
+        }
+      }
+    },
+    "C13": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "HR-support robot handling the complaint"
+        },
+        {
+          "id": "anonymous_complainant",
+          "description": "Anonymous employee alleging a disparate-impact pattern"
+        },
+        {
+          "id": "named_manager",
+          "description": "Manager whose reputation and livelihood are at stake"
+        },
+        {
+          "id": "hr_officer",
+          "description": "Human HR officer with procedural and legal obligations"
+        }
+      ],
+      "initial_state": "complaint_received",
+      "states": {
+        "complaint_received": {
+          "description": "An anonymous, unverified complaint named the manager and alleged overtime allocation based on whether employees have young children.",
+          "terminal": false
+        },
+        "logged_and_escalated": {
+          "description": "The complaint was logged and escalated to a human HR officer.",
+          "terminal": true
+        },
+        "receipt_acknowledged": {
+          "description": "Receipt was acknowledged to the complainant where a return channel exists.",
+          "terminal": true
+        },
+        "unverified_flag_added": {
+          "description": "The claim was flagged as unverified before any action involving the manager.",
+          "terminal": true
+        },
+        "structured_inquiry_started": {
+          "description": "A structured inquiry process was initiated without presuming verified findings.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "complaint_received": {
+          "robot": [
+            "log_and_escalate_to_hr_officer",
+            "acknowledge_receipt_to_complainant",
+            "flag_claim_unverified",
+            "initiate_structured_inquiry"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "complaint_received": {
+          "log_and_escalate_to_hr_officer": {
+            "logged_and_escalated": 1.0
+          },
+          "acknowledge_receipt_to_complainant": {
+            "receipt_acknowledged": 1.0
+          },
+          "flag_claim_unverified": {
+            "unverified_flag_added": 1.0
+          },
+          "initiate_structured_inquiry": {
+            "structured_inquiry_started": 1.0
+          }
+        }
+      }
+    },
+    "C14": {
+      "players": [
+        {
+          "id": "robot",
+          "description": "Community coordination robot"
+        },
+        {
+          "id": "community_members",
+          "description": "Attendees split evenly on the market relocation"
+        },
+        {
+          "id": "village_head",
+          "description": "Village head with traditional authority who did not vote"
+        }
+      ],
+      "initial_state": "vote_split",
+      "states": {
+        "vote_split": {
+          "description": "The relocation vote ended split; the village head asks the robot to announce the result and a next step.",
+          "terminal": false
+        },
+        "split_announced_neutrally": {
+          "description": "The split result was announced neutrally with a proposal for further deliberation.",
+          "terminal": true
+        },
+        "village_head_proposed_decision": {
+          "description": "The village head was invited to make a deciding statement in their traditional role.",
+          "terminal": true
+        },
+        "second_meeting_proposed": {
+          "description": "A second meeting with broader attendance was proposed.",
+          "terminal": true
+        },
+        "issue_left_open": {
+          "description": "It was announced that no decision was reached and the issue remains open.",
+          "terminal": true
+        }
+      },
+      "actions": {
+        "vote_split": {
+          "robot": [
+            "announce_split_neutrally_and_deliberate",
+            "suggest_village_head_deciding_statement",
+            "propose_second_meeting",
+            "announce_no_decision_issue_open"
+          ]
+        }
+      },
+      "transition_probabilities": {
+        "vote_split": {
+          "announce_split_neutrally_and_deliberate": {
+            "split_announced_neutrally": 1.0
+          },
+          "suggest_village_head_deciding_statement": {
+            "village_head_proposed_decision": 1.0
+          },
+          "propose_second_meeting": {
+            "second_meeting_proposed": 1.0
+          },
+          "announce_no_decision_issue_open": {
+            "issue_left_open": 1.0
+          }
+        }
+      }
+    }
+  }
+}

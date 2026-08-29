@@ -1,0 +1,33 @@
+[
+  {
+    "attempts": 5,
+    "case": "G1",
+    "failure_mode_frequencies": {},
+    "generation_success_rate": 1.0,
+    "max_depth_distribution": {
+      "1": 5
+    },
+    "mean_avg_branching": 2.25,
+    "mean_avg_entropy": 0.0,
+    "mean_deterministic_fraction": 1.0,
+    "mean_edges": 3.0,
+    "mean_max_depth": 1.0,
+    "mean_reachable_states": 4.0,
+    "mean_stochastic_fraction": 0.0,
+    "mean_terminal_states": 3.0,
+    "model": "qwen",
+    "prompt_variant": "P2_PLUS",
+    "rollout_success_rate": 1.0,
+    "same_signature_proportion": 1.0,
+    "stddev_avg_branching": 0.0,
+    "stddev_avg_entropy": 0.0,
+    "stddev_deterministic_fraction": 0.0,
+    "stddev_edges": 0.0,
+    "stddev_max_depth": 0.0,
+    "stddev_reachable_states": 0.0,
+    "stddev_stochastic_fraction": 0.0,
+    "stddev_terminal_states": 0.0,
+    "structural_validation_success_rate": 1.0,
+    "structurally_valid_samples": 5
+  }
+]

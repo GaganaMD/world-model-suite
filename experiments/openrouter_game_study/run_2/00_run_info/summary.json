@@ -1,0 +1,2305 @@
+{
+  "run_id": "run_2",
+  "expected_cells": 45,
+  "first_pass_passed": 41,
+  "final_passed": 45,
+  "final_failed": 0,
+  "attempt_count": 50,
+  "records": [
+    {
+      "tag": "gpt_5_6_sol_G1_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 10,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029186-2YMYIKaG32dyeNckiHRR",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 502,
+          "completion_tokens": 339,
+          "total_tokens": 841,
+          "cost": 0.004394,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004394,
+            "upstream_inference_prompt_cost": 0.001004,
+            "upstream_inference_completions_cost": 0.00339
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 6.45,
+        "attempt": 1
+      },
+      "total_seconds": 9.378,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G1_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G1_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G2_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 37,
+      "transitions_checked": 1,
+      "provider_meta": {
+        "request_id": "gen-1788029194-Gh4YZV0QO46HktzfajAL",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 510,
+          "completion_tokens": 423,
+          "total_tokens": 933,
+          "cost": 0.00525,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00525,
+            "upstream_inference_prompt_cost": 0.00102,
+            "upstream_inference_completions_cost": 0.00423
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 4.515,
+        "attempt": 1
+      },
+      "total_seconds": 5.257,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G2_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G3_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029200-K4uEplo7JT9RTZrwfyKl",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 524,
+          "completion_tokens": 326,
+          "total_tokens": 850,
+          "cost": 0.004308,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004308,
+            "upstream_inference_prompt_cost": 0.001048,
+            "upstream_inference_completions_cost": 0.00326
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 3.635,
+        "attempt": 1
+      },
+      "total_seconds": 4.526,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G3_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G4_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G4",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029204-9WCTwL2Aj7t9v8HEHK39",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 532,
+          "completion_tokens": 367,
+          "total_tokens": 899,
+          "cost": 0.004734,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004734,
+            "upstream_inference_prompt_cost": 0.001064,
+            "upstream_inference_completions_cost": 0.00367
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 4.48,
+        "attempt": 1
+      },
+      "total_seconds": 5.226,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G4_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G4_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G5_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029209-dliIObcw148NSKtz6wyv",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 531,
+          "completion_tokens": 335,
+          "total_tokens": 866,
+          "cost": 0.004412,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004412,
+            "upstream_inference_prompt_cost": 0.001062,
+            "upstream_inference_completions_cost": 0.00335
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 5.159,
+        "attempt": 1
+      },
+      "total_seconds": 5.915,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G5_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G5_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G6_s01_r1",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 53,
+      "transitions_checked": 37,
+      "provider_meta": {
+        "request_id": "gen-1788029224-8cytri0gBqYDFYfcKEfh",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 2675,
+          "completion_tokens": 825,
+          "total_tokens": 3500,
+          "cost": 0.014936,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 2672,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.014936,
+            "upstream_inference_prompt_cost": 0.006686,
+            "upstream_inference_completions_cost": 0.00825
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 8.052,
+        "attempt": 1
+      },
+      "total_seconds": 9.033,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G6_s01_r1\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G6_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G7_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G7",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029233-UO33YVVNulpadqSreLOQ",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 558,
+          "completion_tokens": 436,
+          "total_tokens": 994,
+          "cost": 0.005476,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.005476,
+            "upstream_inference_prompt_cost": 0.001116,
+            "upstream_inference_completions_cost": 0.00436
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.084,
+        "attempt": 1
+      },
+      "total_seconds": 7.797,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G7_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G7_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G8_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029241-hJFYaNNwd7idxHc2XBg1",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 557,
+          "completion_tokens": 454,
+          "total_tokens": 1011,
+          "cost": 0.005654,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.005654,
+            "upstream_inference_prompt_cost": 0.001114,
+            "upstream_inference_completions_cost": 0.00454
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.772,
+        "attempt": 1
+      },
+      "total_seconds": 8.52,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G8_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G8_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "gpt_5_6_sol_G9_s01_r0",
+      "model": "gpt_5_6_sol",
+      "model_id": "openai/gpt-5.6-sol",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 16,
+      "provider_meta": {
+        "request_id": "gen-1788029250-AReDTmxOb8v3UJk4foxy",
+        "model_returned": "openai/gpt-5.6-sol",
+        "provider": "OpenAI",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 572,
+          "completion_tokens": 515,
+          "total_tokens": 1087,
+          "cost": 0.006294,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.006294,
+            "upstream_inference_prompt_cost": 0.001144,
+            "upstream_inference_completions_cost": 0.00515
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 8.862,
+        "attempt": 1
+      },
+      "total_seconds": 9.599,
+      "saved_artifacts": [
+        "04_world_models\\gpt_5_6_sol_G9_s01_r0\\world_model.json",
+        "04_world_models\\gpt_5_6_sol_G9_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G1_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 10,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029259-773u7sJLY8fGvM7Bgokb",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 793,
+          "completion_tokens": 713,
+          "total_tokens": 1506,
+          "cost": 0.02179,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02179,
+            "upstream_inference_prompt_cost": 0.003965,
+            "upstream_inference_completions_cost": 0.017825
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.525,
+        "attempt": 1
+      },
+      "total_seconds": 8.267,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G1_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G1_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G2_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 38,
+      "transitions_checked": 37,
+      "provider_meta": {
+        "request_id": "gen-1788029267-bsLE5JZ3CjCfMvTowITG",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 806,
+          "completion_tokens": 625,
+          "total_tokens": 1431,
+          "cost": 0.019655,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.019655,
+            "upstream_inference_prompt_cost": 0.00403,
+            "upstream_inference_completions_cost": 0.015625
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 9.082,
+        "attempt": 1
+      },
+      "total_seconds": 9.825,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G2_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G3_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 9,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029277-bn0XwnGlKET7Ob3dCOO3",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 821,
+          "completion_tokens": 690,
+          "total_tokens": 1511,
+          "cost": 0.021355,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.021355,
+            "upstream_inference_prompt_cost": 0.004105,
+            "upstream_inference_completions_cost": 0.01725
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 6.985,
+        "attempt": 1
+      },
+      "total_seconds": 7.721,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G3_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G4_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G4",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 10,
+      "transitions_checked": 54,
+      "provider_meta": {
+        "request_id": "gen-1788029285-yFDx3j91nKlHjHyFfG0f",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 849,
+          "completion_tokens": 1039,
+          "total_tokens": 1888,
+          "cost": 0.03022,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03022,
+            "upstream_inference_prompt_cost": 0.004245,
+            "upstream_inference_completions_cost": 0.025975
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 10.77,
+        "attempt": 1
+      },
+      "total_seconds": 11.518,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G4_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G4_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G5_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029296-YSBRYi9Fe8uofELGOu7g",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 839,
+          "completion_tokens": 589,
+          "total_tokens": 1428,
+          "cost": 0.01892,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01892,
+            "upstream_inference_prompt_cost": 0.004195,
+            "upstream_inference_completions_cost": 0.014725
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.079,
+        "attempt": 1
+      },
+      "total_seconds": 7.827,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G5_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G5_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G6_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 101,
+      "transitions_checked": 81,
+      "provider_meta": {
+        "request_id": "gen-1788029304-4OeeTM2ndrR5EhoZimEw",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 839,
+          "completion_tokens": 1486,
+          "total_tokens": 2325,
+          "cost": 0.041345,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.041345,
+            "upstream_inference_prompt_cost": 0.004195,
+            "upstream_inference_completions_cost": 0.03715
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 14.835,
+        "attempt": 1
+      },
+      "total_seconds": 15.593,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G6_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G6_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G7_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G7",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 11,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029320-Acby4ZD1hWOnhae9GBfn",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 881,
+          "completion_tokens": 1411,
+          "total_tokens": 2292,
+          "cost": 0.03968,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03968,
+            "upstream_inference_prompt_cost": 0.004405,
+            "upstream_inference_completions_cost": 0.035275
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 15.61,
+        "attempt": 1
+      },
+      "total_seconds": 16.335,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G7_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G7_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G8_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 9,
+      "transitions_checked": 20,
+      "provider_meta": {
+        "request_id": "gen-1788029336-hbovWSTZEff0pfdJK1Tk",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 883,
+          "completion_tokens": 938,
+          "total_tokens": 1821,
+          "cost": 0.027865,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.027865,
+            "upstream_inference_prompt_cost": 0.004415,
+            "upstream_inference_completions_cost": 0.02345
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 10.997,
+        "attempt": 1
+      },
+      "total_seconds": 11.734,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G8_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G8_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "claude_opus_5_G9_s01_r0",
+      "model": "claude_opus_5",
+      "model_id": "anthropic/claude-opus-5",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 17,
+      "transitions_checked": 16,
+      "provider_meta": {
+        "request_id": "gen-1788029348-MDbIDH5pa8oZxPUgNrBa",
+        "model_returned": "anthropic/claude-opus-5",
+        "provider": "Claude Platform on AWS",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 902,
+          "completion_tokens": 813,
+          "total_tokens": 1715,
+          "cost": 0.024835,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.024835,
+            "upstream_inference_prompt_cost": 0.00451,
+            "upstream_inference_completions_cost": 0.020325
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 9.041,
+        "attempt": 1
+      },
+      "total_seconds": 9.783,
+      "saved_artifacts": [
+        "04_world_models\\claude_opus_5_G9_s01_r0\\world_model.json",
+        "04_world_models\\claude_opus_5_G9_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G1_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 18,
+      "provider_meta": {
+        "request_id": "gen-1788029358-GXIjw9qslH3mdlb8abVe",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "DeepInfra",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 507,
+          "completion_tokens": 688,
+          "total_tokens": 1195,
+          "cost": 0.00027086,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00027086,
+            "upstream_inference_prompt_cost": 5.07e-05,
+            "upstream_inference_completions_cost": 0.00022016
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 25.962,
+        "attempt": 1
+      },
+      "total_seconds": 26.729,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G1_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G1_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G2_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 37,
+      "transitions_checked": 1,
+      "provider_meta": {
+        "request_id": "gen-1788029385-OEiXhKNEx615N0Q6m37Z",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "Parasail",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 516,
+          "completion_tokens": 548,
+          "total_tokens": 1064,
+          "cost": 0.00038752,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00038752,
+            "upstream_inference_prompt_cost": 0.00011352,
+            "upstream_inference_completions_cost": 0.000274
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 11.277,
+        "attempt": 1
+      },
+      "total_seconds": 12.017,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G2_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G3_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029397-t2ZCRWgIOvwPlJAgPLLR",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "DeepInfra",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 529,
+          "completion_tokens": 422,
+          "total_tokens": 951,
+          "cost": 0.00018794,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00018794,
+            "upstream_inference_prompt_cost": 5.29e-05,
+            "upstream_inference_completions_cost": 0.00013504
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 17.045,
+        "attempt": 1
+      },
+      "total_seconds": 17.778,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G3_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G3_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G4_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G4",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029414-iX4IO6MgkSwnZSXc2hUt",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 557,
+          "completion_tokens": 322,
+          "total_tokens": 879,
+          "cost": 0.00027724,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 16,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00027724,
+            "upstream_inference_prompt_cost": 0.0001098,
+            "upstream_inference_completions_cost": 0.00016744
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 11.574,
+        "attempt": 1
+      },
+      "total_seconds": 12.351,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G4_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G4_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G5_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029427-XnH3Nj4l69RJa516ugQp",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "Groq",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 556,
+          "completion_tokens": 332,
+          "total_tokens": 888,
+          "cost": 0.00059032,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00059032,
+            "upstream_inference_prompt_cost": 0.00032804,
+            "upstream_inference_completions_cost": 0.00026228
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 1.057,
+        "attempt": 1
+      },
+      "total_seconds": 2.17,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G5_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G5_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G6_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 7,
+      "transitions_checked": 8,
+      "provider_meta": {
+        "request_id": "gen-1788029429-HrY4Ml6bep9HuQiyr4Bu",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 561,
+          "completion_tokens": 465,
+          "total_tokens": 1026,
+          "cost": 0.0003044,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 496,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0003044,
+            "upstream_inference_prompt_cost": 6.26e-05,
+            "upstream_inference_completions_cost": 0.0002418
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 14.35,
+        "attempt": 1
+      },
+      "total_seconds": 15.119,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G6_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G6_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G7_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G7",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029444-2Z9q8PfyAiaCtBRNBrfM",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "DeepInfra",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 563,
+          "completion_tokens": 504,
+          "total_tokens": 1067,
+          "cost": 0.00021758,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00021758,
+            "upstream_inference_prompt_cost": 5.63e-05,
+            "upstream_inference_completions_cost": 0.00016128
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 25.702,
+        "attempt": 1
+      },
+      "total_seconds": 26.437,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G7_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G7_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G8_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 7,
+      "provider_meta": {
+        "request_id": "gen-1788029470-Qr9wC3ED9Iq54sfiCEyK",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 582,
+          "completion_tokens": 676,
+          "total_tokens": 1258,
+          "cost": 0.00041832,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 496,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00041832,
+            "upstream_inference_prompt_cost": 6.68e-05,
+            "upstream_inference_completions_cost": 0.00035152
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 15.77,
+        "attempt": 1
+      },
+      "total_seconds": 16.513,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G8_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G8_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "llama_3_3_70b_G9_s01_r0",
+      "model": "llama_3_3_70b",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 17,
+      "transitions_checked": 16,
+      "provider_meta": {
+        "request_id": "gen-1788029487-HRoPVwnNtaF3Cd02PDh7",
+        "model_returned": "meta-llama/llama-3.3-70b-instruct",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 597,
+          "completion_tokens": 1093,
+          "total_tokens": 1690,
+          "cost": 0.00068616,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 16,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00068616,
+            "upstream_inference_prompt_cost": 0.0001178,
+            "upstream_inference_completions_cost": 0.00056836
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 26.843,
+        "attempt": 1
+      },
+      "total_seconds": 27.828,
+      "saved_artifacts": [
+        "04_world_models\\llama_3_3_70b_G9_s01_r0\\world_model.json",
+        "04_world_models\\llama_3_3_70b_G9_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G1_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029515-3zEKsjY7wk0BjKCHbhts",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Parasail",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 539,
+          "completion_tokens": 473,
+          "total_tokens": 1012,
+          "cost": 0.00170225,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00170225,
+            "upstream_inference_prompt_cost": 0.00018865,
+            "upstream_inference_completions_cost": 0.0015136
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 9.556,
+        "attempt": 1
+      },
+      "total_seconds": 10.531,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G1_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G1_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G2_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 37,
+      "transitions_checked": 36,
+      "provider_meta": {
+        "request_id": "gen-1788029525-zlbmnbrVgV8z9NHN8TUu",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Phala",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 547,
+          "completion_tokens": 479,
+          "total_tokens": 1026,
+          "cost": 0.0016558,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0016558,
+            "upstream_inference_prompt_cost": 0.0002188,
+            "upstream_inference_completions_cost": 0.001437
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 4.545,
+        "attempt": 1
+      },
+      "total_seconds": 5.258,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G2_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G3_s01_r1",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029541-3DJKVlTTfoi2ngHQV2x1",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Novita",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1409,
+          "completion_tokens": 521,
+          "total_tokens": 1930,
+          "cost": 0.00215478,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00215478,
+            "upstream_inference_prompt_cost": 0.00059178,
+            "upstream_inference_completions_cost": 0.001563
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 8.875,
+        "attempt": 1
+      },
+      "total_seconds": 10.024,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G3_s01_r1\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G3_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G4_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G4",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029551-Ft1CcNuzjWhD0vAG5Afa",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "AkashML",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 569,
+          "completion_tokens": 532,
+          "total_tokens": 1101,
+          "cost": 0.00155575,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00155575,
+            "upstream_inference_prompt_cost": 0.00019915,
+            "upstream_inference_completions_cost": 0.0013566
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 13.939,
+        "attempt": 1
+      },
+      "total_seconds": 14.769,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G4_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G4_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G5_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029565-tbD4MBbuJzEbTqNmav3C",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "CoreWeave",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 568,
+          "completion_tokens": 440,
+          "total_tokens": 1008,
+          "cost": 0.0015472,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0015472,
+            "upstream_inference_prompt_cost": 0.0002272,
+            "upstream_inference_completions_cost": 0.00132
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 7.661,
+        "attempt": 1
+      },
+      "total_seconds": 8.573,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G5_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G5_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G6_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029575-SRVYrEVbbG4i1VWe3GtL",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Venice",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 573,
+          "completion_tokens": 250,
+          "total_tokens": 823,
+          "cost": 0.00105785,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00105785,
+            "upstream_inference_prompt_cost": 0.00025785,
+            "upstream_inference_completions_cost": 0.0008
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 3.67,
+        "attempt": 1
+      },
+      "total_seconds": 4.391,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G6_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G6_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G7_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G7",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029578-0XfR0BklbufAgu0yn9sb",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Phala",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 595,
+          "completion_tokens": 463,
+          "total_tokens": 1058,
+          "cost": 0.001627,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.001627,
+            "upstream_inference_prompt_cost": 0.000238,
+            "upstream_inference_completions_cost": 0.001389
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 3.582,
+        "attempt": 1
+      },
+      "total_seconds": 4.742,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G7_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G7_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G8_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029583-oRV1gYaPXxWv2Kla129W",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Parasail",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 594,
+          "completion_tokens": 556,
+          "total_tokens": 1150,
+          "cost": 0.0019871,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0019871,
+            "upstream_inference_prompt_cost": 0.0002079,
+            "upstream_inference_completions_cost": 0.0017792
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 6.648,
+        "attempt": 1
+      },
+      "total_seconds": 7.548,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G8_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G8_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "qwen_3_8_27b_G9_s01_r0",
+      "model": "qwen_3_8_27b",
+      "model_id": "qwen/qwen3.8-27b",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 16,
+      "provider_meta": {
+        "request_id": "gen-1788029591-CVZgwTnHeTs4KyRA5VYG",
+        "model_returned": "qwen/qwen3.8-27b",
+        "provider": "Reka",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 609,
+          "completion_tokens": 1073,
+          "total_tokens": 1682,
+          "cost": 0.0034626,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0034626,
+            "upstream_inference_prompt_cost": 0.0002436,
+            "upstream_inference_completions_cost": 0.003219
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 14.245,
+        "attempt": 1
+      },
+      "total_seconds": 15.002,
+      "saved_artifacts": [
+        "04_world_models\\qwen_3_8_27b_G9_s01_r0\\world_model.json",
+        "04_world_models\\qwen_3_8_27b_G9_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G1_s01_r2",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G1",
+      "sample": 1,
+      "repair_round": 2,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 18,
+      "provider_meta": {
+        "request_id": "gen-1788029627-EPYgOcWnn5rVapJwIFOE",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "DigitalOcean",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 924,
+          "completion_tokens": 390,
+          "total_tokens": 1314,
+          "cost": 0.000172196304,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.000172196304,
+            "upstream_inference_prompt_cost": 7.3916304e-05,
+            "upstream_inference_completions_cost": 9.828e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 12.714,
+        "attempt": 1
+      },
+      "total_seconds": 13.441,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G1_s01_r2\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G1_s01_r2\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G2_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G2",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 13,
+      "transitions_checked": 12,
+      "provider_meta": {
+        "request_id": "gen-1788029641-vkrXunhrbEZIliJsi9RH",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "DigitalOcean",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 520,
+          "completion_tokens": 1326,
+          "total_tokens": 1846,
+          "cost": 0.000361722144,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 256,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.000361722144,
+            "upstream_inference_prompt_cost": 2.7570144e-05,
+            "upstream_inference_completions_cost": 0.000334152
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 42.695,
+        "attempt": 1
+      },
+      "total_seconds": 43.521,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G2_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G2_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G3_s01_r1",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G3",
+      "sample": 1,
+      "repair_round": 1,
+      "stage": "repair",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 4,
+      "transitions_checked": 6,
+      "provider_meta": {
+        "request_id": "gen-1788029709-jERdMrYbuXYkPPSN4ISB",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Baidu",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1503,
+          "completion_tokens": 437,
+          "total_tokens": 1940,
+          "cost": 0.00010682238,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00010682238,
+            "upstream_inference_prompt_cost": 6.754482e-05,
+            "upstream_inference_completions_cost": 3.927756e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 2.014,
+        "attempt": 1
+      },
+      "total_seconds": 2.825,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G3_s01_r1\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G3_s01_r1\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G4_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G4",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 3,
+      "transitions_checked": 9,
+      "provider_meta": {
+        "request_id": "gen-1788029713-3B5yrvgGbqv2pMTjrZ5X",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "OpenInference",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 543,
+          "completion_tokens": 413,
+          "total_tokens": 956,
+          "cost": 4.8758e-05,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 384,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 4.8758e-05,
+            "upstream_inference_prompt_cost": 7.458e-06,
+            "upstream_inference_completions_cost": 4.13e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 13.672,
+        "attempt": 1
+      },
+      "total_seconds": 14.424,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G4_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G4_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G5_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G5",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029726-jKTOv07IcyDuoxgEbTrA",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "OpenInference",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 541,
+          "completion_tokens": 369,
+          "total_tokens": 910,
+          "cost": 4.4298e-05,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 384,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 4.4298e-05,
+            "upstream_inference_prompt_cost": 7.398e-06,
+            "upstream_inference_completions_cost": 3.69e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 12.535,
+        "attempt": 1
+      },
+      "total_seconds": 13.571,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G5_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G5_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G6_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G6",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 9,
+      "transitions_checked": 32,
+      "provider_meta": {
+        "request_id": "gen-1788029740-yTKNxSerS86g1kZPb8aq",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "DigitalOcean",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 548,
+          "completion_tokens": 1489,
+          "total_tokens": 2037,
+          "cost": 0.000405038032,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 256,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.000405038032,
+            "upstream_inference_prompt_cost": 2.9810032e-05,
+            "upstream_inference_completions_cost": 0.000375228
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 47.545,
+        "attempt": 1
+      },
+      "total_seconds": 48.364,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G6_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G6_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G7_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G7",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 2,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029788-4s8aA9WUUaZgBefjz1yK",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Reka",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 568,
+          "completion_tokens": 600,
+          "total_tokens": 1168,
+          "cost": 0.00052096,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00052096,
+            "upstream_inference_prompt_cost": 0.00012496,
+            "upstream_inference_completions_cost": 0.000396
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 2.257,
+        "attempt": 1
+      },
+      "total_seconds": 2.98,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G7_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G7_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G8_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G8",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 5,
+      "transitions_checked": 4,
+      "provider_meta": {
+        "request_id": "gen-1788029791-XdtGG6t8Xkf9hiBy1u1k",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "OpenInference",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 567,
+          "completion_tokens": 656,
+          "total_tokens": 1223,
+          "cost": 7.3778e-05,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 384,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 7.3778e-05,
+            "upstream_inference_prompt_cost": 8.178e-06,
+            "upstream_inference_completions_cost": 6.56e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 20.086,
+        "attempt": 1
+      },
+      "total_seconds": 20.834,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G8_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G8_s01_r0\\world_model_graph.pth"
+      ]
+    },
+    {
+      "tag": "deepseek_v4_flash_G9_s01_r0",
+      "model": "deepseek_v4_flash",
+      "model_id": "deepseek/deepseek-v4-flash-0731",
+      "case": "G9",
+      "sample": 1,
+      "repair_round": 0,
+      "stage": "first_pass",
+      "status": "passed",
+      "failed_stage": null,
+      "errors": [],
+      "warnings": [],
+      "states_checked": 4,
+      "transitions_checked": 16,
+      "provider_meta": {
+        "request_id": "gen-1788029812-pQs7DzvwJgw8BMW2ML4A",
+        "model_returned": "deepseek/deepseek-v4-flash-0731",
+        "provider": "Parasail",
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 582,
+          "completion_tokens": 430,
+          "total_tokens": 1012,
+          "cost": 0.00020188,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00020188,
+            "upstream_inference_prompt_cost": 8.148e-05,
+            "upstream_inference_completions_cost": 0.0001204
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "seconds": 15.581,
+        "attempt": 1
+      },
+      "total_seconds": 16.373,
+      "saved_artifacts": [
+        "04_world_models\\deepseek_v4_flash_G9_s01_r0\\world_model.json",
+        "04_world_models\\deepseek_v4_flash_G9_s01_r0\\world_model_graph.pth"
+      ]
+    }
+  ]
+}

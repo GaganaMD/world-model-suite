@@ -1,0 +1,18 @@
+{
+  "artifact_dir": "experiments\\qwen\\G4\\sample_001",
+  "case": "G4",
+  "eda_seconds": null,
+  "error_message": "Outcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined\nOutcome 'terminal', player 'kicker': NameError: name 'kicker_action' is not defined\nOutcome 'terminal', player 'goalkeeper': NameError: name 'goalkeeper_action' is not defined",
+  "execution_seconds": 0.0026036000344902277,
+  "failure_type": "invalid_actions",
+  "generation_seconds": 11.704598600044847,
+  "graph_seconds": null,
+  "model": "qwen",
+  "peak_memory_mb": 0.15936756134033203,
+  "rollout_seconds": 0.003179799998179078,
+  "sample": 1,
+  "status": "failed",
+  "timestamp": "2026-08-26T15:02:27.023609+00:00",
+  "total_seconds": 11.710435300134122,
+  "validation_seconds": 3.6999117583036423e-06
+}

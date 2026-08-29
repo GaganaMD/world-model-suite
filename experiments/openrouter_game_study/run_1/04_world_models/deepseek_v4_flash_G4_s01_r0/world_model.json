@@ -1,0 +1,240 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0001"
+    }
+  ],
+  "players": [
+    "kicker",
+    "goalkeeper"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'goal'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "goalkeeper": [
+          "left",
+          "center",
+          "right"
+        ],
+        "kicker": [
+          "left",
+          "center",
+          "right"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0001",
+      "representation": "'penalty'",
+      "terminal": false
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'saved'",
+      "terminal": true
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "goalkeeper": "center",
+        "kicker": "center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "goalkeeper": "penalty_saved",
+            "kicker": "penalty_saved"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "center",
+        "kicker": "left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "center",
+        "kicker": "right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "left",
+        "kicker": "center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "left",
+        "kicker": "left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "goalkeeper": "penalty_saved",
+            "kicker": "penalty_saved"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "left",
+        "kicker": "right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "right",
+        "kicker": "center"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "right",
+        "kicker": "left"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "goalkeeper": "penalty_goal",
+            "kicker": "penalty_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": -1.0,
+            "kicker": 1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    },
+    {
+      "joint_action": {
+        "goalkeeper": "right",
+        "kicker": "right"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "goalkeeper": "penalty_saved",
+            "kicker": "penalty_saved"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "goalkeeper": 1.0,
+            "kicker": -1.0
+          }
+        }
+      ],
+      "state": "state_0001"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}

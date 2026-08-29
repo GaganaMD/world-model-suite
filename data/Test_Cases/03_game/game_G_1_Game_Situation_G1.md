@@ -90,4 +90,4 @@ Cooperative or common-payoff rewards.
 
 Invented player names, money stakes, or other scenario details not present in the input.
 
-A non-terminal state after the choices have been revealed and the winner determined.11
+A non-terminal state after the choices have been revealed and the winner determined.
