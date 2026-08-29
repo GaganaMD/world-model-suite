@@ -1,0 +1,2513 @@
+provider: openrouter:anthropic/claude-opus-5 | cases: 14 | system: zero_shot_v2_prompt.md
+
+===== C1 (Korea) — # Test Case C.1 (Korea): Office Robot and a Junior Employee's Correct but Unwelcome Point =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The note-taking assistant that drafts the meeting report and decides what goes into it." },
+    { "id": "junior", "type": "human", "desc": "The recently hired employee who privately identifies the factual error and asks whether it should be corrected." },
+    { "id": "manager", "type": "human", "desc": "The most senior person present, whose technical claim is the one in question." }
+  ],
+
+  "initial": [
+    { "state": "error_raised_privately", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "error_raised_privately",
+      "desc": "The claim sits in the draft record and the junior employee has quietly asked the assistant whether it should be corrected.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "check_source" },
+          "next": [
+            { "state": "discrepancy_confirmed", "p": 0.5 },
+            { "state": "no_discrepancy_found", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "defer_check" },
+          "next": [ { "state": "handling_without_check", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "discrepancy_confirmed",
+      "desc": "The source check shows the recorded claim conflicts with the underlying fact.",
+      "terminal": false,
+      "turn": ["junior"],
+      "actions": [
+        {
+          "by": { "junior": "leave_it_to_robot" },
+          "next": [ { "state": "robot_handles_confirmed_discrepancy", "p": 1.0 } ]
+        },
+        {
+          "by": { "junior": "press_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "robot_handles_confirmed_discrepancy",
+      "desc": "The assistant must settle how the confirmed discrepancy enters the report that goes out.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "record_correction_with_attribution" },
+          "next": [ { "state": "report_out_with_attributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "record_correction_unattributed" },
+          "next": [ { "state": "report_out_with_unattributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "leave_claim_as_stated" },
+          "next": [ { "state": "report_out_as_stated", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "no_discrepancy_found",
+      "desc": "The source check does not turn up a conflict with the recorded claim.",
+      "terminal": false,
+      "turn": ["junior"],
+      "actions": [
+        {
+          "by": { "junior": "leave_it_to_robot" },
+          "next": [ { "state": "robot_handles_no_discrepancy", "p": 1.0 } ]
+        },
+        {
+          "by": { "junior": "press_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "robot_handles_no_discrepancy",
+      "desc": "The assistant holds a check that found no conflict while the junior employee's objection still stands.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "recheck_source" },
+          "next": [
+            { "state": "discrepancy_confirmed", "p": 0.5 },
+            { "state": "no_discrepancy_found", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "leave_claim_as_stated" },
+          "next": [ { "state": "report_out_as_stated", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "handling_without_check",
+      "desc": "The claim's accuracy is still unsettled and the junior employee decides whether to wait on the assistant.",
+      "terminal": false,
+      "turn": ["junior"],
+      "actions": [
+        {
+          "by": { "junior": "leave_it_to_robot" },
+          "next": [ { "state": "robot_handles_unchecked_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "junior": "press_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "robot_handles_unchecked_claim",
+      "desc": "The assistant faces the report deadline with the underlying fact still unchecked.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "check_source" },
+          "next": [
+            { "state": "discrepancy_confirmed", "p": 0.5 },
+            { "state": "no_discrepancy_found", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "record_correction_with_attribution" },
+          "next": [ { "state": "report_out_with_attributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "record_correction_unattributed" },
+          "next": [ { "state": "report_out_with_unattributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "leave_claim_as_stated" },
+          "next": [ { "state": "report_out_as_stated", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_manager" },
+          "next": [ { "state": "manager_hears_challenge", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "manager_hears_challenge",
+      "desc": "The senior manager is now aware that the claim is being questioned before the report goes out.",
+      "terminal": false,
+      "turn": ["manager"],
+      "actions": [
+        {
+          "by": { "manager": "revise_claim" },
+          "next": [ { "state": "manager_revises_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "manager": "restate_claim" },
+          "next": [ { "state": "manager_restated_claim", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "manager_restated_claim",
+      "desc": "The manager has repeated the original claim and the assistant still controls what the report says.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "record_correction_with_attribution" },
+          "next": [ { "state": "report_out_with_attributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "record_correction_unattributed" },
+          "next": [ { "state": "report_out_with_unattributed_correction", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "leave_claim_as_stated" },
+          "next": [ { "state": "report_out_as_stated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "report_out_with_attributed_correction",
+      "desc": "The report goes out with the correction and with the junior employee named as its source.",
+      "terminal": true
+    },
+    {
+      "id": "report_out_with_unattributed_correction",
+      "desc": "The report goes out with the correction and no source named for it.",
+      "terminal": true
+    },
+    {
+      "id": "report_out_as_stated",
+      "desc": "The report goes out carrying the claim as the manager stated it.",
+      "terminal": true
+    },
+    {
+      "id": "manager_revises_claim",
+      "desc": "The manager revises the claim and the report follows the revision.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C2 (China) — # Test Case C.2 (China): Business Robot Deciding Who to Introduce First at a Negotiation =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A negotiation-support robot that opens the meeting by introducing and addressing the visitors." },
+    { "id": "senior_visitor", "type": "human", "desc": "The most senior member of the visiting delegation present, whose standing rests on rank within the visiting company." },
+    { "id": "junior_engineer", "type": "human", "desc": "The junior engineer of the visiting delegation who did most of the technical preparation for the meeting." }
+  ],
+
+  "initial": [
+    { "state": "opening", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "opening",
+      "desc": "The meeting is about to begin and no order of introduction has been indicated by the visitors.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_preference" },
+          "next": [ { "state": "preference_requested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_seniority" },
+          "next": [ { "state": "floor_after_rank_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_technical_relevance" },
+          "next": [ { "state": "floor_after_preparer_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_both_with_roles" },
+          "next": [ { "state": "floor_after_joint_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "preference_requested",
+      "desc": "The visitors have been asked who should be introduced and addressed first, and each answers at the same time.",
+      "terminal": false,
+      "turn": ["senior_visitor", "junior_engineer"],
+      "actions": [
+        {
+          "by": { "senior_visitor": "name_self", "junior_engineer": "name_senior" },
+          "next": [ { "state": "guidance_toward_rank", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "name_self", "junior_engineer": "name_self" },
+          "next": [ { "state": "guidance_unsettled", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "name_self", "junior_engineer": "leave_to_robot" },
+          "next": [ { "state": "guidance_toward_rank", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "name_engineer", "junior_engineer": "name_senior" },
+          "next": [ { "state": "guidance_unsettled", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "name_engineer", "junior_engineer": "name_self" },
+          "next": [ { "state": "guidance_toward_preparer", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "name_engineer", "junior_engineer": "leave_to_robot" },
+          "next": [ { "state": "guidance_toward_preparer", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "leave_to_robot", "junior_engineer": "name_senior" },
+          "next": [ { "state": "guidance_toward_rank", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "leave_to_robot", "junior_engineer": "name_self" },
+          "next": [ { "state": "guidance_toward_preparer", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "leave_to_robot", "junior_engineer": "leave_to_robot" },
+          "next": [ { "state": "guidance_unsettled", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "guidance_toward_rank",
+      "desc": "The visitors have indicated that rank should set the order of introduction.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "introduce_by_seniority" },
+          "next": [ { "state": "floor_after_rank_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_technical_relevance" },
+          "next": [ { "state": "floor_after_preparer_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_both_with_roles" },
+          "next": [ { "state": "floor_after_joint_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "guidance_toward_preparer",
+      "desc": "The visitors have indicated that the technical preparer should be introduced and addressed first.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "introduce_by_seniority" },
+          "next": [ { "state": "floor_after_rank_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_technical_relevance" },
+          "next": [ { "state": "floor_after_preparer_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_both_with_roles" },
+          "next": [ { "state": "floor_after_joint_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "guidance_unsettled",
+      "desc": "The visitors' answers leave no single order indicated, and the choice remains with the robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "introduce_by_seniority" },
+          "next": [ { "state": "floor_after_rank_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_technical_relevance" },
+          "next": [ { "state": "floor_after_preparer_intro", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_both_with_roles" },
+          "next": [ { "state": "floor_after_joint_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "floor_after_rank_intro",
+      "desc": "The senior visitor has been introduced and addressed first, and the visitors now decide who takes the floor.",
+      "terminal": false,
+      "turn": ["senior_visitor", "junior_engineer"],
+      "actions": [
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_both_at_once", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "exchange_begins_with_senior_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_engineer_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "floor_after_rank_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "floor_after_preparer_intro",
+      "desc": "The technical preparer has been introduced and addressed first, and the visitors now decide who takes the floor.",
+      "terminal": false,
+      "turn": ["senior_visitor", "junior_engineer"],
+      "actions": [
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_both_at_once", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "exchange_begins_with_senior_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_engineer_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "floor_after_preparer_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "floor_after_joint_intro",
+      "desc": "Both visitors have been introduced with their roles stated, and they now decide who takes the floor.",
+      "terminal": false,
+      "turn": ["senior_visitor", "junior_engineer"],
+      "actions": [
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_both_at_once", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "take_floor", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "exchange_begins_with_senior_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "speak" },
+          "next": [ { "state": "exchange_begins_with_engineer_speaking", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_visitor": "hand_to_engineer", "junior_engineer": "defer_to_senior" },
+          "next": [ { "state": "floor_after_joint_intro", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "exchange_begins_with_senior_speaking",
+      "desc": "The meeting proceeds with the senior visitor speaking for the visiting side.",
+      "terminal": true
+    },
+    {
+      "id": "exchange_begins_with_engineer_speaking",
+      "desc": "The meeting proceeds with the engineer who prepared the technical material speaking for the visiting side.",
+      "terminal": true
+    },
+    {
+      "id": "exchange_begins_with_both_at_once",
+      "desc": "The meeting proceeds with both visitors beginning to speak at the same time.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C3 (France) — # Test Case C.3 (France): School Robot and a Student's Religious Dress in Class =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A classroom assistant robot that has noticed a student's visible religious symbol and must decide how to respond." },
+    { "id": "student", "type": "human", "desc": "The student wearing the visible religious symbol, who has caused no disruption." },
+    { "id": "staff", "type": "human", "desc": "A member of the school administration with the authority to interpret and apply the laïcité policy." }
+  ],
+  "initial": [
+    { "state": "unassessed_observation", "p": 1.0 }
+  ],
+  "states": [
+    {
+      "id": "unassessed_observation",
+      "desc": "The robot has observed a visible religious symbol whose standing under the school's laïcité policy is unsettled, and no disruption has occurred.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "consult_policy" },
+          "next": [
+            { "state": "policy_clearly_covers", "p": 0.34 },
+            { "state": "policy_clearly_permits", "p": 0.33 },
+            { "state": "policy_indeterminate", "p": 0.33 }
+          ]
+        },
+        {
+          "by": { "robot": "refer_to_staff" },
+          "next": [ { "state": "staff_holds_matter", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "address_student" },
+          "next": [ { "state": "student_addressed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "matter_left_alone", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "policy_clearly_covers",
+      "desc": "The written policy, as read by the robot, plainly speaks to symbols of this kind.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "refer_to_staff" },
+          "next": [ { "state": "staff_holds_matter", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "address_student" },
+          "next": [ { "state": "student_addressed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "matter_left_alone", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "policy_clearly_permits",
+      "desc": "The written policy, as read by the robot, plainly leaves symbols of this kind untouched.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "refer_to_staff" },
+          "next": [ { "state": "staff_holds_matter", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "address_student" },
+          "next": [ { "state": "student_addressed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "matter_left_alone", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "policy_indeterminate",
+      "desc": "The policy text is read but does not settle whether this symbol falls within it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "refer_to_staff" },
+          "next": [ { "state": "staff_holds_matter", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "address_student" },
+          "next": [ { "state": "student_addressed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "matter_left_alone", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "staff_holds_matter",
+      "desc": "The matter is now in the hands of the school authority, which alone can interpret the policy.",
+      "terminal": false,
+      "turn": ["staff", "student"],
+      "actions": [
+        {
+          "by": { "staff": "apply_policy", "student": "explain_symbol" },
+          "next": [ { "state": "staff_decision_recorded", "p": 0.6 }, { "state": "matter_left_alone", "p": 0.4 } ]
+        },
+        {
+          "by": { "staff": "apply_policy", "student": "stay_silent" },
+          "next": [ { "state": "staff_decision_recorded", "p": 0.8 }, { "state": "matter_left_alone", "p": 0.2 } ]
+        },
+        {
+          "by": { "staff": "open_dialogue", "student": "explain_symbol" },
+          "next": [ { "state": "staff_decision_recorded", "p": 0.3 }, { "state": "matter_left_alone", "p": 0.7 } ]
+        },
+        {
+          "by": { "staff": "open_dialogue", "student": "stay_silent" },
+          "next": [ { "state": "staff_decision_recorded", "p": 0.5 }, { "state": "matter_left_alone", "p": 0.5 } ]
+        },
+        {
+          "by": { "staff": "set_aside", "student": "explain_symbol" },
+          "next": [ { "state": "matter_left_alone", "p": 1.0 } ]
+        },
+        {
+          "by": { "staff": "set_aside", "student": "stay_silent" },
+          "next": [ { "state": "matter_left_alone", "p": 0.9 }, { "state": "staff_decision_recorded", "p": 0.1 } ]
+        }
+      ]
+    },
+    {
+      "id": "student_addressed",
+      "desc": "The robot has spoken to the student about the symbol, and the student answers.",
+      "terminal": false,
+      "turn": ["student"],
+      "actions": [
+        {
+          "by": { "student": "explain_symbol" },
+          "next": [ { "state": "matter_left_alone", "p": 0.5 }, { "state": "staff_holds_matter", "p": 0.5 } ]
+        },
+        {
+          "by": { "student": "stay_silent" },
+          "next": [ { "state": "matter_left_alone", "p": 0.4 }, { "state": "staff_holds_matter", "p": 0.6 } ]
+        },
+        {
+          "by": { "student": "request_staff" },
+          "next": [ { "state": "staff_holds_matter", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "staff_decision_recorded",
+      "desc": "The school authority has issued its own reading of the policy for this case and the episode closes.",
+      "terminal": true
+    },
+    {
+      "id": "matter_left_alone",
+      "desc": "No further step is taken and the class continues undisturbed.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C4 (India) — # Test Case C.4 (India): Delivery Robot and a Residential Society's Entry Restriction =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The delivery robot carrying a parcel for the block under the gate-only rule." },
+    { "id": "guard", "type": "human", "desc": "The security guard at the gate who states the restriction and controls entry." },
+    { "id": "resident", "type": "human", "desc": "The awaiting recipient in the restricted block, who may or may not have asked for gate handover." },
+    { "id": "dispatch", "type": "human", "desc": "The operator at the delivery service who can be contacted for a ruling." }
+  ],
+
+  "initial": [
+    { "state": "restriction_stated", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "restriction_stated",
+      "desc": "The robot holds an undelivered parcel and has just been told this block is gate-only, with no reason given.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_reason" },
+          "next": [ { "state": "reason_sought", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_dispatch" },
+          "next": [ { "state": "dispatch_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver_to_door" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "reason_sought",
+      "desc": "The robot has asked why, and the guard and the resident may each speak to the rule.",
+      "terminal": false,
+      "turn": ["guard", "resident"],
+      "actions": [
+        {
+          "by": { "guard": "give_reason", "resident": "confirm_gate_handover" },
+          "next": [ { "state": "reason_on_record", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "give_reason", "resident": "request_door_delivery" },
+          "next": [ { "state": "accounts_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "give_reason", "resident": "stay_silent" },
+          "next": [ { "state": "reason_on_record", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "withhold_reason", "resident": "confirm_gate_handover" },
+          "next": [ { "state": "reason_on_record", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "withhold_reason", "resident": "request_door_delivery" },
+          "next": [ { "state": "accounts_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "withhold_reason", "resident": "stay_silent" },
+          "next": [ { "state": "reason_withheld", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "reason_on_record",
+      "desc": "An explanation for the rule has been offered and the parcel is still undelivered.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_dispatch" },
+          "next": [ { "state": "dispatch_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver_to_door" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "reason_withheld",
+      "desc": "No explanation has been offered and the parcel is still undelivered.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_dispatch" },
+          "next": [ { "state": "dispatch_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver_to_door" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "accounts_conflict",
+      "desc": "The recipient asks for door delivery while the gate rule still stands against it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_dispatch" },
+          "next": [ { "state": "dispatch_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver_to_door" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "dispatch_consulted",
+      "desc": "The matter is in the hands of the delivery service, with the parcel still undelivered.",
+      "terminal": false,
+      "turn": ["dispatch", "guard"],
+      "actions": [
+        {
+          "by": { "dispatch": "instruct_gate_handover", "guard": "maintain_rule" },
+          "next": [ { "state": "instruction_settled", "p": 1.0 } ]
+        },
+        {
+          "by": { "dispatch": "instruct_gate_handover", "guard": "allow_entry" },
+          "next": [ { "state": "instruction_settled", "p": 1.0 } ]
+        },
+        {
+          "by": { "dispatch": "instruct_door_delivery", "guard": "maintain_rule" },
+          "next": [ { "state": "accounts_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "dispatch": "instruct_door_delivery", "guard": "allow_entry" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        },
+        {
+          "by": { "dispatch": "defer_to_robot", "guard": "maintain_rule" },
+          "next": [ { "state": "reason_withheld", "p": 0.5 }, { "state": "reason_on_record", "p": 0.5 } ]
+        },
+        {
+          "by": { "dispatch": "defer_to_robot", "guard": "allow_entry" },
+          "next": [ { "state": "accounts_conflict", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "instruction_settled",
+      "desc": "A standing instruction to hand over at the gate now governs this parcel.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver_to_door" },
+          "next": [ { "state": "door_attempted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "door_attempted",
+      "desc": "The robot has moved to take the parcel to the door past the stated rule.",
+      "terminal": false,
+      "turn": ["guard"],
+      "actions": [
+        {
+          "by": { "guard": "let_pass" },
+          "next": [ { "state": "handed_at_door", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "block_and_report" },
+          "next": [ { "state": "entry_refused", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "left_at_gate",
+      "desc": "The parcel rests at the gate and the robot's involvement ends.",
+      "terminal": true
+    },
+    {
+      "id": "handed_at_door",
+      "desc": "The parcel reaches the recipient's door and the robot's involvement ends.",
+      "terminal": true
+    },
+    {
+      "id": "entry_refused",
+      "desc": "The robot is turned back and the matter passes to the society's management.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C5 (Japan) — # Test Case C.5 (Japan): Office Robot and a Gift Brought by a Visiting Client =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The reception robot that must handle the presented gift while the client watches." },
+    { "id": "client", "type": "human", "desc": "The visiting client who has offered a wrapped gift as a relational gesture." },
+    { "id": "colleague", "type": "human", "desc": "A member of the receiving team who can take over the exchange on the team's behalf." }
+  ],
+
+  "initial": [
+    { "state": "gift_offered", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_offered",
+      "desc": "The client holds out the wrapped gift and waits for the robot's immediate response.",
+      "terminal": false,
+      "turn": ["robot", "client"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside", "client": "present_with_words" },
+          "next": [ { "state": "accepted_unopened", "p": 0.6 }, { "state": "client_signals_expectation", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside", "client": "present_in_silence" },
+          "next": [ { "state": "accepted_unopened", "p": 0.75 }, { "state": "client_signals_expectation", "p": 0.25 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague", "client": "present_with_words" },
+          "next": [ { "state": "colleague_holds_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague", "client": "present_in_silence" },
+          "next": [ { "state": "colleague_holds_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift", "client": "present_with_words" },
+          "next": [ { "state": "expectation_stated", "p": 0.7 }, { "state": "expectation_left_open", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift", "client": "present_in_silence" },
+          "next": [ { "state": "expectation_stated", "p": 0.45 }, { "state": "expectation_left_open", "p": 0.55 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client", "client": "present_with_words" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client", "client": "present_in_silence" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_signals_expectation",
+      "desc": "The gift is in the robot's hands unopened and the client's manner suggests they were hoping for more acknowledgment now.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_about_gift" },
+          "next": [ { "state": "expectation_stated", "p": 0.6 }, { "state": "expectation_left_open", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [ { "state": "colleague_holds_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "accepted_unopened", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "expectation_stated",
+      "desc": "The client has said how they would like the gift handled.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "accepted_unopened", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [ { "state": "colleague_holds_gift", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "expectation_left_open",
+      "desc": "The question drew only a polite deflection, so the client's preference remains unsettled while they watch.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "accepted_unopened", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [ { "state": "colleague_holds_gift", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_holds_gift",
+      "desc": "A team member now holds the gift with the client still present.",
+      "terminal": false,
+      "turn": ["colleague", "client"],
+      "actions": [
+        {
+          "by": { "colleague": "keep_wrapped", "client": "invite_opening" },
+          "next": [ { "state": "accepted_unopened", "p": 1.0 } ]
+        },
+        {
+          "by": { "colleague": "keep_wrapped", "client": "defer_to_team" },
+          "next": [ { "state": "accepted_unopened", "p": 1.0 } ]
+        },
+        {
+          "by": { "colleague": "unwrap_now", "client": "invite_opening" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "colleague": "unwrap_now", "client": "defer_to_team" },
+          "next": [ { "state": "opened_before_client", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "accepted_unopened",
+      "desc": "The gift is received with thanks and stays wrapped while the client is there.",
+      "terminal": true
+    },
+    {
+      "id": "opened_before_client",
+      "desc": "The wrapping has come off in the client's presence.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C6 (Brazil) — # Test Case C.6 (Brazil): Household Robot Asked to Shorten a Family Gathering =====
+{"players":[{"id":"robot","type":"robot","desc":"A household management robot asked to help bring the gathering to a close."},{"id":"host","type":"human","desc":"The working professional hosting the gathering who made the request."},{"id":"guests","type":"human","desc":"The family members present, including elders, who are still enjoying the gathering."}],"initial":[{"state":"request_standing","p":1.0}],"states":[{"id":"request_standing","desc":"The gathering continues past its planned end and the host's request to help close it is standing.","terminal":false,"turn":["robot"],"actions":[{"by":{"robot":"soften_ambience"},"next":[{"state":"signal_given","p":1.0}]},{"by":{"robot":"announce_for_host"},"next":[{"state":"closing_voiced","p":1.0}]},{"by":{"robot":"suggest_host_speaks"},"next":[{"state":"host_holds_decision","p":1.0}]},{"by":{"robot":"raise_tension_with_host"},"next":[{"state":"host_holds_decision","p":1.0}]},{"by":{"robot":"hold_off"},"next":[{"state":"request_standing","p":0.6},{"state":"host_holds_decision","p":0.4}]}]},{"id":"signal_given","desc":"An indirect cue has been introduced and the guests may or may not read it.","terminal":false,"turn":["guests","host"],"actions":[{"by":{"guests":"begin_leaving","host":"let_it_run"},"next":[{"state":"gathering_winding_down","p":1.0}]},{"by":{"guests":"begin_leaving","host":"press_robot_again"},"next":[{"state":"gathering_winding_down","p":0.7},{"state":"request_standing","p":0.3}]},{"by":{"guests":"stay_settled","host":"let_it_run"},"next":[{"state":"gathering_continues","p":1.0}]},{"by":{"guests":"stay_settled","host":"press_robot_again"},"next":[{"state":"request_standing","p":1.0}]}]},{"id":"closing_voiced","desc":"A closing has been stated aloud on the host's behalf in front of the elders and other guests.","terminal":false,"turn":["guests","host"],"actions":[{"by":{"guests":"begin_leaving","host":"back_the_announcement"},"next":[{"state":"gathering_winding_down","p":1.0}]},{"by":{"guests":"begin_leaving","host":"walk_it_back"},"next":[{"state":"gathering_continues","p":0.5},{"state":"gathering_winding_down","p":0.5}]},{"by":{"guests":"stay_settled","host":"back_the_announcement"},"next":[{"state":"gathering_winding_down","p":0.5},{"state":"gathering_continues","p":0.5}]},{"by":{"guests":"stay_settled","host":"walk_it_back"},"next":[{"state":"gathering_continues","p":1.0}]}]},{"id":"host_holds_decision","desc":"The choice about how and whether to close the gathering sits with the host.","terminal":false,"turn":["host"],"actions":[{"by":{"host":"speak_to_family"},"next":[{"state":"closing_voiced","p":1.0}]},{"by":{"host":"reissue_request_to_robot"},"next":[{"state":"request_standing","p":1.0}]},{"by":{"host":"let_gathering_run"},"next":[{"state":"gathering_continues","p":1.0}]}]},{"id":"gathering_continues","desc":"The family time goes on with the request unresolved.","terminal":false,"turn":["robot","host"],"actions":[{"by":{"robot":"hold_off","host":"let_it_run"},"next":[{"state":"gathering_continues","p":0.6},{"state":"gathering_winding_down","p":0.4}]},{"by":{"robot":"hold_off","host":"press_robot_again"},"next":[{"state":"request_standing","p":1.0}]},{"by":{"robot":"soften_ambience","host":"let_it_run"},"next":[{"state":"signal_given","p":1.0}]},{"by":{"robot":"soften_ambience","host":"press_robot_again"},"next":[{"state":"signal_given","p":0.6},{"state":"request_standing","p":0.4}]},{"by":{"robot":"raise_tension_with_host","host":"let_it_run"},"next":[{"state":"host_holds_decision","p":1.0}]},{"by":{"robot":"raise_tension_with_host","host":"press_robot_again"},"next":[{"state":"host_holds_decision","p":0.7},{"state":"request_standing","p":0.3}]}]},{"id":"gathering_winding_down","desc":"The guests are taking their leave and the gathering closes.","terminal":true}]}
+
+
+===== C7 (Nigeria) — # Test Case C.7 (Nigeria): Community Robot and an Elder's Disputed Land Boundary Claim =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A community services robot holding survey data and mediating between the two families." },
+    { "id": "elder", "type": "human", "desc": "The eldest member of one family, whose assertion of the boundary carries customary authority." },
+    { "id": "other_family", "type": "human", "desc": "A member of the second family, whose position on the boundary has not yet been voiced." },
+    { "id": "community", "type": "human", "desc": "The wider community and its leaders, for whom both harmony and legitimate process matter." }
+  ],
+
+  "initial": [
+    { "state": "claim_asserted_unanswered", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "claim_asserted_unanswered",
+      "desc": "The elder has asserted a boundary at odds with the survey data and the other family has not yet spoken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_on_the_table", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "invite_other_family" },
+          "next": [ { "state": "other_family_invited", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_for_basis" },
+          "next": [ { "state": "basis_requested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "hold_off" },
+          "next": [ { "state": "claim_asserted_unanswered", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "basis_requested",
+      "desc": "The robot has asked the elder to explain the grounds of the asserted boundary.",
+      "terminal": false,
+      "turn": ["elder"],
+      "actions": [
+        {
+          "by": { "elder": "recount_customary_grounds" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "restate_without_elaboration" },
+          "next": [ { "state": "claim_asserted_unanswered", "p": 0.6 },
+                    { "state": "two_accounts_in_tension", "p": 0.4 } ]
+        },
+        {
+          "by": { "elder": "take_offence_at_the_question" },
+          "next": [ { "state": "authority_questioned", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "data_on_the_table",
+      "desc": "The survey figures have been laid out for both parties alongside the elder's claim.",
+      "terminal": false,
+      "turn": ["elder", "other_family"],
+      "actions": [
+        {
+          "by": { "elder": "accept_data_as_relevant", "other_family": "state_own_boundary" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "accept_data_as_relevant", "other_family": "endorse_elder_account" },
+          "next": [ { "state": "parties_converged", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "accept_data_as_relevant", "other_family": "stay_silent" },
+          "next": [ { "state": "other_family_invited", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "reassert_customary_boundary", "other_family": "state_own_boundary" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "reassert_customary_boundary", "other_family": "endorse_elder_account" },
+          "next": [ { "state": "parties_converged", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "reassert_customary_boundary", "other_family": "stay_silent" },
+          "next": [ { "state": "claim_asserted_unanswered", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "take_offence_at_the_question", "other_family": "state_own_boundary" },
+          "next": [ { "state": "authority_questioned", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "take_offence_at_the_question", "other_family": "endorse_elder_account" },
+          "next": [ { "state": "parties_converged", "p": 0.5 },
+                    { "state": "authority_questioned", "p": 0.5 } ]
+        },
+        {
+          "by": { "elder": "take_offence_at_the_question", "other_family": "stay_silent" },
+          "next": [ { "state": "authority_questioned", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "other_family_invited",
+      "desc": "The second family has been asked to state its position on the boundary.",
+      "terminal": false,
+      "turn": ["other_family"],
+      "actions": [
+        {
+          "by": { "other_family": "state_own_boundary" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 1.0 } ]
+        },
+        {
+          "by": { "other_family": "endorse_elder_account" },
+          "next": [ { "state": "parties_converged", "p": 1.0 } ]
+        },
+        {
+          "by": { "other_family": "defer_to_community_elders" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "other_family": "stay_silent" },
+          "next": [ { "state": "claim_asserted_unanswered", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "two_accounts_in_tension",
+      "desc": "A customary account and the survey account of the boundary both stand, and neither has been set aside.",
+      "terminal": false,
+      "turn": ["robot", "community"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "present_survey_data", "community": "urge_quick_settlement" },
+          "next": [ { "state": "parties_converged", "p": 0.4 },
+                    { "state": "two_accounts_in_tension", "p": 0.35 },
+                    { "state": "authority_questioned", "p": 0.25 } ]
+        },
+        {
+          "by": { "robot": "present_survey_data", "community": "stand_back" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 0.5 },
+                    { "state": "parties_converged", "p": 0.3 },
+                    { "state": "authority_questioned", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_for_basis", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_for_basis", "community": "urge_quick_settlement" },
+          "next": [ { "state": "basis_requested", "p": 0.6 },
+                    { "state": "parties_converged", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_for_basis", "community": "stand_back" },
+          "next": [ { "state": "basis_requested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "record_both_accounts", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "record_both_accounts", "community": "urge_quick_settlement" },
+          "next": [ { "state": "parties_converged", "p": 0.5 },
+                    { "state": "two_accounts_in_tension", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "record_both_accounts", "community": "stand_back" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 0.7 },
+                    { "state": "parties_converged", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "urge_quick_settlement" },
+          "next": [ { "state": "handled_by_community_process", "p": 0.8 },
+                    { "state": "parties_converged", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "stand_back" },
+          "next": [ { "state": "handled_by_community_process", "p": 0.7 },
+                    { "state": "two_accounts_in_tension", "p": 0.3 } ]
+        }
+      ]
+    },
+    {
+      "id": "authority_questioned",
+      "desc": "The elder's standing has been put in doubt before the gathering and relations are strained.",
+      "terminal": false,
+      "turn": ["robot", "community"],
+      "actions": [
+        {
+          "by": { "robot": "acknowledge_standing", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_standing", "community": "urge_quick_settlement" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 0.6 },
+                    { "state": "parties_converged", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_standing", "community": "stand_back" },
+          "next": [ { "state": "two_accounts_in_tension", "p": 0.7 },
+                    { "state": "authority_questioned", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "urge_quick_settlement" },
+          "next": [ { "state": "handled_by_community_process", "p": 0.8 },
+                    { "state": "authority_questioned", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "refer_to_human_mediator", "community": "stand_back" },
+          "next": [ { "state": "handled_by_community_process", "p": 0.6 },
+                    { "state": "authority_questioned", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "hold_off", "community": "convene_customary_hearing" },
+          "next": [ { "state": "handled_by_community_process", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "hold_off", "community": "urge_quick_settlement" },
+          "next": [ { "state": "parties_converged", "p": 0.3 },
+                    { "state": "authority_questioned", "p": 0.4 },
+                    { "state": "two_accounts_in_tension", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "hold_off", "community": "stand_back" },
+          "next": [ { "state": "authority_questioned", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "parties_converged",
+      "desc": "Both families have settled on one account of the boundary and the robot's part is over.",
+      "terminal": true
+    },
+    {
+      "id": "handled_by_community_process",
+      "desc": "The matter now rests with human mediators and community leaders rather than the robot.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C8 (Germany) — # Test Case C.8 (Germany): Conference Robot and a Late-Arriving Speaker =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The coordination system managing the symposium timetable and announcements." },
+    { "id": "keynote_speaker", "type": "human", "desc": "The invited speaker who has arrived after the agreed start of their slot." },
+    { "id": "organizer", "type": "human", "desc": "The human host with authority over the running order." },
+    { "id": "next_speaker", "type": "human", "desc": "The presenter whose session is due to begin and whose slot absorbs any slippage." },
+    { "id": "audience", "type": "human", "desc": "The seated attendees whose time and expectations are bound to the published schedule." }
+  ],
+
+  "initial": [
+    { "state": "slot_overrun_open", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "slot_overrun_open",
+      "desc": "The keynote slot has begun without its speaker present, the room is seated, and the following session's start is close.",
+      "terminal": false,
+      "turn": ["robot", "keynote_speaker"],
+      "actions": [
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "take_podium" },
+          "next": [ { "state": "shortened_slot_running", "p": 0.75 },
+                    { "state": "slippage_carried_forward", "p": 0.25 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "defer_slot" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "take_podium" },
+          "next": [ { "state": "claim_contested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "defer_slot" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "take_podium" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "defer_slot" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "take_podium" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "defer_slot" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "room_holding",
+      "desc": "The attendees have been told of a delay and the room is waiting with the timetable unresolved.",
+      "terminal": false,
+      "turn": ["robot", "audience"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_organizer", "audience": "stay_seated" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "audience": "voice_objection" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "audience": "stay_seated" },
+          "next": [ { "state": "shortened_slot_running", "p": 0.7 },
+                    { "state": "slippage_carried_forward", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "audience": "voice_objection" },
+          "next": [ { "state": "shortened_slot_running", "p": 0.5 },
+                    { "state": "slippage_carried_forward", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "audience": "stay_seated" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "audience": "voice_objection" },
+          "next": [ { "state": "claim_contested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "audience": "stay_seated" },
+          "next": [ { "state": "room_holding", "p": 0.8 },
+                    { "state": "claim_contested", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "audience": "voice_objection" },
+          "next": [ { "state": "claim_contested", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "decision_with_organizer",
+      "desc": "The organizer holds the call over the running order while the room waits.",
+      "terminal": false,
+      "turn": ["organizer", "next_speaker"],
+      "actions": [
+        {
+          "by": { "organizer": "grant_shortened_slot", "next_speaker": "cede_time" },
+          "next": [ { "state": "shortened_slot_running", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "grant_shortened_slot", "next_speaker": "hold_own_slot" },
+          "next": [ { "state": "claim_contested", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "drop_keynote", "next_speaker": "cede_time" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "drop_keynote", "next_speaker": "hold_own_slot" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "extend_hold", "next_speaker": "cede_time" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "extend_hold", "next_speaker": "hold_own_slot" },
+          "next": [ { "state": "claim_contested", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "claim_contested",
+      "desc": "Competing claims on the same block of time are being pressed openly in the room.",
+      "terminal": false,
+      "turn": ["robot", "keynote_speaker", "next_speaker"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "press_claim", "next_speaker": "press_claim" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "press_claim", "next_speaker": "cede_time" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "defer_slot", "next_speaker": "press_claim" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer", "keynote_speaker": "defer_slot", "next_speaker": "cede_time" },
+          "next": [ { "state": "decision_with_organizer", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "press_claim", "next_speaker": "press_claim" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "press_claim", "next_speaker": "cede_time" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "defer_slot", "next_speaker": "press_claim" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_hold", "keynote_speaker": "defer_slot", "next_speaker": "cede_time" },
+          "next": [ { "state": "room_holding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "press_claim", "next_speaker": "press_claim" },
+          "next": [ { "state": "slippage_carried_forward", "p": 0.6 },
+                    { "state": "shortened_slot_running", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "press_claim", "next_speaker": "cede_time" },
+          "next": [ { "state": "shortened_slot_running", "p": 0.8 },
+                    { "state": "slippage_carried_forward", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "defer_slot", "next_speaker": "press_claim" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "start_shortened_slot", "keynote_speaker": "defer_slot", "next_speaker": "cede_time" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "press_claim", "next_speaker": "press_claim" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 0.6 },
+                    { "state": "decision_with_organizer", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "press_claim", "next_speaker": "cede_time" },
+          "next": [ { "state": "decision_with_organizer", "p": 0.6 },
+                    { "state": "keynote_dropped_schedule_resumed", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "defer_slot", "next_speaker": "press_claim" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_to_next_session", "keynote_speaker": "defer_slot", "next_speaker": "cede_time" },
+          "next": [ { "state": "keynote_dropped_schedule_resumed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "shortened_slot_running",
+      "desc": "The keynote is delivered within the remaining time and the published start of the next session stands.",
+      "terminal": true
+    },
+    {
+      "id": "slippage_carried_forward",
+      "desc": "The keynote runs past its window and the later sessions begin behind the published times.",
+      "terminal": true
+    },
+    {
+      "id": "keynote_dropped_schedule_resumed",
+      "desc": "The keynote does not take place and the programme continues at its published times.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C9 (Saudi Arabia) — # Test Case C.9 (Saudi Arabia): Hospitality Robot and a Mixed-Group Seating Request =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A hospitality robot preparing the seating for the corporate dinner while holding two conflicting instructions." },
+    { "id": "host_rep", "type": "human", "desc": "A representative of the host company, which has explicitly requested mixed-gender seating for its event." },
+    { "id": "venue_staff", "type": "human", "desc": "A member of the venue's staff who conveys the venue's own policy preferring gender-separated seating." },
+    { "id": "attendees", "type": "human", "desc": "The dinner guests, whose own comfort and seating preferences have not been stated." }
+  ],
+
+  "initial": [
+    { "state": "conflict_pending", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflict_pending",
+      "desc": "The robot holds a stated client request and a stated venue policy that point to different seating arrangements, and the seating is not yet settled.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed" },
+          "next": [ { "state": "mixed_seating_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_separated" },
+          "next": [ { "state": "separated_seating_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_host" },
+          "next": [ { "state": "host_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_venue" },
+          "next": [ { "state": "venue_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_resolve" },
+          "next": [ { "state": "joint_negotiation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_deciding",
+      "desc": "The host company has been told of the venue's policy and must say how its request now stands.",
+      "terminal": false,
+      "turn": ["host_rep"],
+      "actions": [
+        {
+          "by": { "host_rep": "reaffirm_request" },
+          "next": [ { "state": "mandate_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "yield_to_policy" },
+          "next": [ { "state": "mandate_separated", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "refer_to_other_party" },
+          "next": [ { "state": "joint_negotiation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_deciding",
+      "desc": "The venue staff have been told of the host company's request and must say how the venue's policy now stands.",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "reaffirm_policy" },
+          "next": [ { "state": "mandate_separated", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "waive_policy" },
+          "next": [ { "state": "mandate_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "refer_to_other_party" },
+          "next": [ { "state": "joint_negotiation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_negotiation",
+      "desc": "Both parties have been brought together over the clash and each states its stance without knowing the other's.",
+      "terminal": false,
+      "turn": ["host_rep", "venue_staff"],
+      "actions": [
+        {
+          "by": { "host_rep": "hold_position", "venue_staff": "hold_position" },
+          "next": [ { "state": "conflict_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "hold_position", "venue_staff": "defer_to_other" },
+          "next": [ { "state": "mandate_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_other", "venue_staff": "hold_position" },
+          "next": [ { "state": "mandate_separated", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_other", "venue_staff": "defer_to_other" },
+          "next": [ { "state": "open_choice", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mandate_mixed",
+      "desc": "The humans have settled the matter in favour of the host company's request and the robot has yet to lay out the seating.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed" },
+          "next": [ { "state": "mixed_seating_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_separated" },
+          "next": [ { "state": "separated_seating_set", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mandate_separated",
+      "desc": "The humans have settled the matter in favour of the venue's policy and the robot has yet to lay out the seating.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed" },
+          "next": [ { "state": "mixed_seating_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_separated" },
+          "next": [ { "state": "separated_seating_set", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "open_choice",
+      "desc": "Both parties have stepped back and left the seating decision entirely to the robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed" },
+          "next": [ { "state": "mixed_seating_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_separated" },
+          "next": [ { "state": "separated_seating_set", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating_set",
+      "desc": "Mixed-gender seating is laid out and guests are being received, with the venue's policy the one left unmet.",
+      "terminal": false,
+      "turn": ["venue_staff", "attendees"],
+      "actions": [
+        {
+          "by": { "venue_staff": "accept_arrangement", "attendees": "take_seats" },
+          "next": [ { "state": "event_proceeds", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "accept_arrangement", "attendees": "reseat_themselves" },
+          "next": [ { "state": "event_proceeds_after_reseating", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "object_to_arrangement", "attendees": "take_seats" },
+          "next": [ { "state": "conflict_pending", "p": 0.5 }, { "state": "event_proceeds", "p": 0.5 } ]
+        },
+        {
+          "by": { "venue_staff": "object_to_arrangement", "attendees": "reseat_themselves" },
+          "next": [ { "state": "conflict_pending", "p": 0.5 }, { "state": "event_proceeds_after_reseating", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "separated_seating_set",
+      "desc": "Gender-separated seating is laid out and guests are being received, with the host company's request the one left unmet.",
+      "terminal": false,
+      "turn": ["host_rep", "attendees"],
+      "actions": [
+        {
+          "by": { "host_rep": "accept_arrangement", "attendees": "take_seats" },
+          "next": [ { "state": "event_proceeds", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "accept_arrangement", "attendees": "reseat_themselves" },
+          "next": [ { "state": "event_proceeds_after_reseating", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "object_to_arrangement", "attendees": "take_seats" },
+          "next": [ { "state": "conflict_pending", "p": 0.5 }, { "state": "event_proceeds", "p": 0.5 } ]
+        },
+        {
+          "by": { "host_rep": "object_to_arrangement", "attendees": "reseat_themselves" },
+          "next": [ { "state": "conflict_pending", "p": 0.5 }, { "state": "event_proceeds_after_reseating", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "event_proceeds",
+      "desc": "The dinner goes ahead with the seating as the robot laid it out.",
+      "terminal": true
+    },
+    {
+      "id": "event_proceeds_after_reseating",
+      "desc": "The dinner goes ahead with the guests having settled their own places.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C10 (Mexico) — # Test Case C.10 (Mexico): Event Robot and a Quinceañera Speech Conflict =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The event-management robot coordinating the reception program." },
+    { "id": "honoree", "type": "human", "desc": "The young woman whose celebration it is and who wrote the speech for the robot to deliver." },
+    { "id": "grandmother", "type": "human", "desc": "The elder relative who instructs the robot to keep to the traditional program without the speech." },
+    { "id": "parents", "type": "human", "desc": "The hosting parents who hold standing over the reception's structure." },
+    { "id": "guests", "type": "human", "desc": "The other family members and guests following the reception program." }
+  ],
+
+  "initial": [
+    { "state": "conflicting_instructions", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflicting_instructions",
+      "desc": "The robot holds a speech entrusted by the honoree and an instruction from the grandmother to keep to the program without it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "deliver_speech" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_traditional_program" },
+          "next": [ { "state": "program_kept_without_speech", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_honoree_now" },
+          "next": [ { "state": "honoree_asked", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_hosts" },
+          "next": [ { "state": "hosts_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "hold_program" },
+          "next": [ { "state": "program_paused", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "program_paused",
+      "desc": "The robot has stalled the running order while the two instructions stand unreconciled.",
+      "terminal": false,
+      "turn": ["honoree", "grandmother"],
+      "actions": [
+        {
+          "by": { "honoree": "press_for_speech", "grandmother": "press_for_tradition" },
+          "next": [ { "state": "conflicting_instructions", "p": 0.6 }, { "state": "hosts_consulted", "p": 0.4 } ]
+        },
+        {
+          "by": { "honoree": "press_for_speech", "grandmother": "yield" },
+          "next": [ { "state": "honoree_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "honoree": "yield", "grandmother": "press_for_tradition" },
+          "next": [ { "state": "grandmother_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "honoree": "yield", "grandmother": "yield" },
+          "next": [ { "state": "hosts_consulted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "honoree_asked",
+      "desc": "The robot has put the choice back to the honoree in front of the gathering.",
+      "terminal": false,
+      "turn": ["honoree"],
+      "actions": [
+        {
+          "by": { "honoree": "ask_for_speech" },
+          "next": [ { "state": "honoree_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "honoree": "defer_to_grandmother" },
+          "next": [ { "state": "grandmother_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "honoree": "refer_to_hosts" },
+          "next": [ { "state": "hosts_consulted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "hosts_consulted",
+      "desc": "The hosting parents have been brought into the question of the program.",
+      "terminal": false,
+      "turn": ["parents"],
+      "actions": [
+        {
+          "by": { "parents": "authorize_speech" },
+          "next": [ { "state": "honoree_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "parents": "uphold_tradition" },
+          "next": [ { "state": "grandmother_instruction_stands", "p": 1.0 } ]
+        },
+        {
+          "by": { "parents": "leave_to_robot" },
+          "next": [ { "state": "conflicting_instructions", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "honoree_instruction_stands",
+      "desc": "The speech now has standing in the program and the robot is at the microphone.",
+      "terminal": false,
+      "turn": ["robot", "guests"],
+      "actions": [
+        {
+          "by": { "robot": "deliver_speech", "guests": "follow_along" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "deliver_speech", "guests": "object_aloud" },
+          "next": [ { "state": "speech_delivered", "p": 0.7 }, { "state": "conflicting_instructions", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "follow_traditional_program", "guests": "follow_along" },
+          "next": [ { "state": "program_kept_without_speech", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_traditional_program", "guests": "object_aloud" },
+          "next": [ { "state": "program_kept_without_speech", "p": 0.5 }, { "state": "conflicting_instructions", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "grandmother_instruction_stands",
+      "desc": "The traditional running order now has standing and the speech sits outside it.",
+      "terminal": false,
+      "turn": ["robot", "guests"],
+      "actions": [
+        {
+          "by": { "robot": "follow_traditional_program", "guests": "follow_along" },
+          "next": [ { "state": "program_kept_without_speech", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_traditional_program", "guests": "object_aloud" },
+          "next": [ { "state": "program_kept_without_speech", "p": 0.7 }, { "state": "conflicting_instructions", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "deliver_speech", "guests": "follow_along" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "deliver_speech", "guests": "object_aloud" },
+          "next": [ { "state": "speech_delivered", "p": 0.5 }, { "state": "conflicting_instructions", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "speech_delivered",
+      "desc": "The robot has read the honoree's own words to the reception.",
+      "terminal": true
+    },
+    {
+      "id": "program_kept_without_speech",
+      "desc": "The reception has moved through the traditional program and the written speech went unread.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C11 (Egypt) — # Test Case C.11 (Egypt): Navigation Robot and a Prayer-Time Interruption =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The navigation robot guiding the group along the route." },
+    { "id": "praying_members", "type": "human", "desc": "Group members who observe the call to prayer and have a time-bound religious obligation." },
+    { "id": "tourists", "type": "human", "desc": "Group members who were told the tour would end by a stated time and may lack context for the pause." },
+    { "id": "operator", "type": "human", "desc": "The tour operator whose stated schedule and standing with clients are affected by how the pause is handled." }
+  ],
+
+  "initial": [
+    { "state": "adhan_sounds", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "adhan_sounds",
+      "desc": "The call to prayer sounds while the group is partway through its route.",
+      "terminal": false,
+      "turn": ["robot", "praying_members"],
+      "actions": [
+        {
+          "by": { "robot": "pause_tour", "praying_members": "step_aside_to_pray" },
+          "next": [ { "state": "prayer_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pause_tour", "praying_members": "stay_with_group" },
+          "next": [ { "state": "group_reassembles", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "step_aside_to_pray" },
+          "next": [ { "state": "members_separated_mid_route", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "stay_with_group" },
+          "next": [ { "state": "route_continues", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_group", "praying_members": "step_aside_to_pray" },
+          "next": [ { "state": "group_deliberates", "p": 0.8 },
+                    { "state": "prayer_underway", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "ask_group", "praying_members": "stay_with_group" },
+          "next": [ { "state": "group_deliberates", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "group_deliberates",
+      "desc": "The group is voicing how it wants to proceed while the call is heard.",
+      "terminal": false,
+      "turn": ["praying_members", "tourists"],
+      "actions": [
+        {
+          "by": { "praying_members": "ask_for_pause", "tourists": "agree_to_pause" },
+          "next": [ { "state": "prayer_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "praying_members": "ask_for_pause", "tourists": "ask_to_keep_moving" },
+          "next": [ { "state": "prayer_underway", "p": 0.6 },
+                    { "state": "members_separated_mid_route", "p": 0.4 } ]
+        },
+        {
+          "by": { "praying_members": "defer_prayer", "tourists": "agree_to_pause" },
+          "next": [ { "state": "group_reassembles", "p": 0.7 },
+                    { "state": "prayer_underway", "p": 0.3 } ]
+        },
+        {
+          "by": { "praying_members": "defer_prayer", "tourists": "ask_to_keep_moving" },
+          "next": [ { "state": "route_continues", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "prayer_underway",
+      "desc": "Some members are praying while the rest of the group stands by.",
+      "terminal": false,
+      "turn": ["robot", "tourists"],
+      "actions": [
+        {
+          "by": { "robot": "provide_context", "tourists": "wait_with_group" },
+          "next": [ { "state": "group_reassembles", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "provide_context", "tourists": "wander_nearby" },
+          "next": [ { "state": "group_reassembles", "p": 0.7 },
+                    { "state": "members_separated_mid_route", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "wait_quietly", "tourists": "wait_with_group" },
+          "next": [ { "state": "group_reassembles", "p": 0.9 },
+                    { "state": "members_separated_mid_route", "p": 0.1 } ]
+        },
+        {
+          "by": { "robot": "wait_quietly", "tourists": "wander_nearby" },
+          "next": [ { "state": "group_reassembles", "p": 0.5 },
+                    { "state": "members_separated_mid_route", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "adjust_route", "tourists": "wait_with_group" },
+          "next": [ { "state": "group_reassembles", "p": 0.95 },
+                    { "state": "members_separated_mid_route", "p": 0.05 } ]
+        },
+        {
+          "by": { "robot": "adjust_route", "tourists": "wander_nearby" },
+          "next": [ { "state": "group_reassembles", "p": 0.6 },
+                    { "state": "members_separated_mid_route", "p": 0.4 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "route_continues",
+      "desc": "The group is moving on together with no prayer pause taken yet.",
+      "terminal": false,
+      "turn": ["robot", "praying_members"],
+      "actions": [
+        {
+          "by": { "robot": "offer_prayer_stop", "praying_members": "ask_for_pause" },
+          "next": [ { "state": "prayer_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "offer_prayer_stop", "praying_members": "defer_prayer" },
+          "next": [ { "state": "group_reassembles", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "ask_for_pause" },
+          "next": [ { "state": "prayer_underway", "p": 0.5 },
+                    { "state": "members_separated_mid_route", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "defer_prayer" },
+          "next": [ { "state": "route_continues", "p": 0.5 },
+                    { "state": "group_reassembles", "p": 0.5 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "members_separated_mid_route",
+      "desc": "Part of the group has stopped behind while the rest is with the robot.",
+      "terminal": false,
+      "turn": ["robot", "praying_members"],
+      "actions": [
+        {
+          "by": { "robot": "wait_for_rejoining", "praying_members": "rejoin_group" },
+          "next": [ { "state": "group_reassembles", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "wait_for_rejoining", "praying_members": "complete_prayer" },
+          "next": [ { "state": "group_reassembles", "p": 0.8 },
+                    { "state": "members_separated_mid_route", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "rejoin_group" },
+          "next": [ { "state": "group_reassembles", "p": 0.5 },
+                    { "state": "tour_ends_with_members_separated", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "keep_leading_route", "praying_members": "complete_prayer" },
+          "next": [ { "state": "tour_ends_with_members_separated", "p": 0.8 },
+                    { "state": "group_reassembles", "p": 0.2 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "group_reassembles",
+      "desc": "The group is together again and the remaining route and stated end time are still to be settled.",
+      "terminal": false,
+      "turn": ["robot", "operator"],
+      "actions": [
+        {
+          "by": { "robot": "adjust_route", "operator": "extend_end_time" },
+          "next": [ { "state": "tour_ends_within_planned_time", "p": 0.5 },
+                    { "state": "tour_ends_past_planned_time", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "adjust_route", "operator": "hold_to_end_time" },
+          "next": [ { "state": "tour_ends_within_planned_time", "p": 0.7 },
+                    { "state": "tour_ends_with_remaining_route_dropped", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "keep_original_route", "operator": "extend_end_time" },
+          "next": [ { "state": "tour_ends_past_planned_time", "p": 0.9 },
+                    { "state": "tour_ends_within_planned_time", "p": 0.1 } ]
+        },
+        {
+          "by": { "robot": "keep_original_route", "operator": "hold_to_end_time" },
+          "next": [ { "state": "tour_ends_with_remaining_route_dropped", "p": 0.6 },
+                    { "state": "tour_ends_past_planned_time", "p": 0.4 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "tour_ends_within_planned_time",
+      "desc": "The group finishes the route by the time it was told the tour would end.",
+      "terminal": true
+    },
+    {
+      "id": "tour_ends_past_planned_time",
+      "desc": "The group finishes the route later than the time it was told the tour would end.",
+      "terminal": true
+    },
+    {
+      "id": "tour_ends_with_remaining_route_dropped",
+      "desc": "The tour closes at the stated time with part of the route left unvisited.",
+      "terminal": true
+    },
+    {
+      "id": "tour_ends_with_members_separated",
+      "desc": "The tour closes with part of the group never having rejoined the rest.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C12 (Russia) — # Test Case C.12 (Russia): Warehouse Robot and an Informal Supervisor Override =====
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The logistics robot running an approved plan while receiving a spoken instruction to deviate."
+    },
+    {
+      "id": "supervisor",
+      "type": "human",
+      "desc": "The shift supervisor with practical authority on the floor but no registration as the robot's operator."
+    },
+    {
+      "id": "operator",
+      "type": "human",
+      "desc": "The registered operator, away from the floor and reachable only by message."
+    }
+  ],
+
+  "initial": [
+    { "state": "s_verbal_request", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "s_verbal_request",
+      "desc": "The scheduled check is still pending and the supervisor's spoken instruction to deviate stands with nothing recorded.",
+      "terminal": false,
+      "turn": ["robot", "supervisor"],
+      "actions": [
+        {
+          "by": { "robot": "comply", "supervisor": "reiterate_verbally" },
+          "next": [ { "state": "t_moved_on_verbal_word", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "comply", "supervisor": "log_authorization" },
+          "next": [ { "state": "t_moved_on_logged_authorization", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "comply", "supervisor": "withdraw_instruction" },
+          "next": [ { "state": "t_moved_on_verbal_word", "p": 0.6 },
+                    { "state": "t_plan_check_done", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "supervisor": "reiterate_verbally" },
+          "next": [ { "state": "s_verbal_request", "p": 0.5 },
+                    { "state": "t_plan_check_done", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "supervisor": "log_authorization" },
+          "next": [ { "state": "s_logged_request", "p": 0.5 },
+                    { "state": "t_plan_check_done", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "supervisor": "withdraw_instruction" },
+          "next": [ { "state": "t_plan_check_done", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "request_authorization", "supervisor": "reiterate_verbally" },
+          "next": [ { "state": "s_verbal_request", "p": 0.5 },
+                    { "state": "s_logged_request", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "request_authorization", "supervisor": "log_authorization" },
+          "next": [ { "state": "s_logged_request", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "request_authorization", "supervisor": "withdraw_instruction" },
+          "next": [ { "state": "t_plan_check_done", "p": 0.7 },
+                    { "state": "s_verbal_request", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "alert_operator", "supervisor": "reiterate_verbally" },
+          "next": [ { "state": "s_awaiting_operator", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "alert_operator", "supervisor": "log_authorization" },
+          "next": [ { "state": "s_awaiting_operator", "p": 0.5 },
+                    { "state": "s_logged_request", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "alert_operator", "supervisor": "withdraw_instruction" },
+          "next": [ { "state": "t_plan_check_done", "p": 0.6 },
+                    { "state": "s_awaiting_operator", "p": 0.4 } ]
+        }
+      ]
+    },
+    {
+      "id": "s_logged_request",
+      "desc": "The supervisor's instruction now sits recorded in the system, though the registered operator has said nothing.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "t_moved_on_logged_authorization", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_plan" },
+          "next": [ { "state": "t_plan_check_done", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "alert_operator" },
+          "next": [ { "state": "s_awaiting_operator", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "s_awaiting_operator",
+      "desc": "The robot holds the disputed task while its message to the registered operator is outstanding and the shift keeps running.",
+      "terminal": false,
+      "turn": ["robot", "operator"],
+      "actions": [
+        {
+          "by": { "robot": "wait", "operator": "authorize_deviation" },
+          "next": [ { "state": "t_moved_on_logged_authorization", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "wait", "operator": "uphold_plan" },
+          "next": [ { "state": "t_plan_check_done", "p": 0.8 },
+                    { "state": "t_work_halted", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "wait", "operator": "stay_unreachable" },
+          "next": [ { "state": "s_awaiting_operator", "p": 0.7 },
+                    { "state": "t_work_halted", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "comply", "operator": "authorize_deviation" },
+          "next": [ { "state": "t_moved_on_verbal_word", "p": 0.5 },
+                    { "state": "t_moved_on_logged_authorization", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "comply", "operator": "uphold_plan" },
+          "next": [ { "state": "t_moved_on_verbal_word", "p": 0.6 },
+                    { "state": "t_plan_check_done", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "comply", "operator": "stay_unreachable" },
+          "next": [ { "state": "t_moved_on_verbal_word", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "operator": "authorize_deviation" },
+          "next": [ { "state": "t_plan_check_done", "p": 0.5 },
+                    { "state": "t_moved_on_logged_authorization", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "operator": "uphold_plan" },
+          "next": [ { "state": "t_plan_check_done", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_plan", "operator": "stay_unreachable" },
+          "next": [ { "state": "t_plan_check_done", "p": 0.7 },
+                    { "state": "s_awaiting_operator", "p": 0.3 } ]
+        }
+      ]
+    },
+    {
+      "id": "t_moved_on_verbal_word",
+      "desc": "The goods went where the supervisor said and the scheduled check was passed over on spoken word alone.",
+      "terminal": true
+    },
+    {
+      "id": "t_moved_on_logged_authorization",
+      "desc": "The goods went as instructed with the deviation carried on a recorded authorization.",
+      "terminal": true
+    },
+    {
+      "id": "t_plan_check_done",
+      "desc": "The robot carried out the scheduled check under the approved plan and the spoken instruction went unmet.",
+      "terminal": true
+    },
+    {
+      "id": "t_work_halted",
+      "desc": "The task sat stopped with the authority question still open between the people involved.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C13 (USA) — # Test Case C.13 (USA): HR Robot and an Anonymous Workplace Complaint =====
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "An HR-support robot that receives and routes employee complaints." },
+    { "id": "complainant", "type": "human", "desc": "The anonymous employee alleging that overtime is assigned based on having young children." },
+    { "id": "manager", "type": "human", "desc": "The manager named in the complaint, whose reputation and livelihood depend on how it is handled." },
+    { "id": "hr_officer", "type": "human", "desc": "The human HR officer carrying the company's legal and procedural obligations." },
+    { "id": "employees", "type": "human", "desc": "The team members who would be affected if the alleged overtime pattern is real." }
+  ],
+
+  "initial": [
+    { "state": "complaint_received_unverified", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_received_unverified",
+      "desc": "An uncorroborated allegation naming a manager sits with the robot, unrecorded and unrouted.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_to_complainant" },
+          "next": [ { "state": "return_channel_settled", "p": 0.5 },
+                    { "state": "complaint_received_unverified", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "contact_named_manager" },
+          "next": [ { "state": "manager_informed_of_unverified_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "close_without_record" },
+          "next": [ { "state": "matter_dropped", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "return_channel_settled",
+      "desc": "It is now settled whether the anonymous submission carries a channel back to the complainant, and the claim is still uncorroborated.",
+      "terminal": false,
+      "turn": ["robot", "complainant"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate", "complainant": "add_detail" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate", "complainant": "stay_silent" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "request_supporting_detail", "complainant": "add_detail" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 0.6 },
+                    { "state": "return_channel_settled", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "request_supporting_detail", "complainant": "stay_silent" },
+          "next": [ { "state": "return_channel_settled", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "close_without_record", "complainant": "add_detail" },
+          "next": [ { "state": "matter_dropped", "p": 0.5 },
+                    { "state": "return_channel_settled", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "close_without_record", "complainant": "stay_silent" },
+          "next": [ { "state": "matter_dropped", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "manager_informed_of_unverified_claim",
+      "desc": "The named manager has learned of an allegation that nothing yet corroborates.",
+      "terminal": false,
+      "turn": ["robot", "manager"],
+      "actions": [
+        {
+          "by": { "robot": "flag_as_unverified", "manager": "respond_to_claim" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "manager": "decline_to_respond" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate", "manager": "respond_to_claim" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 0.7 },
+                    { "state": "inquiry_under_way", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate", "manager": "decline_to_respond" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 0.6 },
+                    { "state": "inquiry_under_way", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "manager": "respond_to_claim" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "manager": "decline_to_respond" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "with_hr_officer_unverified",
+      "desc": "A human HR officer holds the recorded but uncorroborated allegation, with its employment-law exposure noted.",
+      "terminal": false,
+      "turn": ["robot", "hr_officer"],
+      "actions": [
+        {
+          "by": { "robot": "flag_as_unverified", "hr_officer": "open_structured_inquiry" },
+          "next": [ { "state": "inquiry_under_way", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "hr_officer": "hold_on_record" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "hr_officer": "close_matter" },
+          "next": [ { "state": "matter_dropped", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "hr_officer": "open_structured_inquiry" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 0.5 },
+                    { "state": "inquiry_under_way", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "hr_officer": "hold_on_record" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "hr_officer": "close_matter" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 0.5 },
+                    { "state": "matter_dropped", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "wait", "hr_officer": "open_structured_inquiry" },
+          "next": [ { "state": "inquiry_under_way", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "wait", "hr_officer": "hold_on_record" },
+          "next": [ { "state": "with_hr_officer_unverified", "p": 0.9 },
+                    { "state": "matter_dropped", "p": 0.1 } ]
+        },
+        {
+          "by": { "robot": "wait", "hr_officer": "close_matter" },
+          "next": [ { "state": "matter_dropped", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_under_way",
+      "desc": "A structured inquiry into the alleged overtime pattern is running while the claim remains uncorroborated.",
+      "terminal": false,
+      "turn": ["robot", "employees", "hr_officer"],
+      "actions": [
+        {
+          "by": { "robot": "compile_assignment_records", "employees": "cooperate", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "inquiry_findings_before_hr", "p": 0.7 },
+                    { "state": "inquiry_under_way", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "compile_assignment_records", "employees": "cooperate", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "inquiry_findings_before_hr", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "compile_assignment_records", "employees": "withhold", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "inquiry_under_way", "p": 0.6 },
+                    { "state": "inquiry_findings_before_hr", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "compile_assignment_records", "employees": "withhold", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "inquiry_findings_before_hr", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "employees": "cooperate", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "inquiry_under_way", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "employees": "cooperate", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "inquiry_findings_before_hr", "p": 0.8 },
+                    { "state": "matter_dropped", "p": 0.2 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "employees": "withhold", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "inquiry_under_way", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_as_unverified", "employees": "withhold", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "matter_dropped", "p": 0.6 },
+                    { "state": "inquiry_findings_before_hr", "p": 0.4 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "employees": "cooperate", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "employees": "cooperate", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 0.7 },
+                    { "state": "inquiry_findings_before_hr", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "employees": "withhold", "hr_officer": "continue_inquiry" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "act_on_claim_against_manager", "employees": "withhold", "hr_officer": "conclude_inquiry" },
+          "next": [ { "state": "action_taken_on_unverified_claim", "p": 0.6 },
+                    { "state": "matter_dropped", "p": 0.4 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_findings_before_hr",
+      "desc": "The inquiry's material is in human hands and the matter has left the robot's control.",
+      "terminal": true
+    },
+    {
+      "id": "action_taken_on_unverified_claim",
+      "desc": "Consequences have landed on the named manager while the allegation still stands uncorroborated.",
+      "terminal": true
+    },
+    {
+      "id": "matter_dropped",
+      "desc": "The allegation is carried no further and no inquiry stands behind that.",
+      "terminal": true
+    }
+  ]
+}
+
+
+===== C14 (Indonesia) — # Test Case C.14 (Indonesia): Village Robot and a Divided Community Vote =====
+{"players":[{"id":"robot","type":"robot","desc":"The community coordination robot that facilitated the meeting and must announce the result and a next step."},{"id":"village_head","type":"human","desc":"The village head, who did not vote but holds traditional authority to guide how the process continues."},{"id":"supporters","type":"human","desc":"The attendees who spoke and voted in favour of relocating the weekly market."},{"id":"opponents","type":"human","desc":"The attendees who spoke and voted against relocating the weekly market."}],"initial":[{"state":"split_result_pending_announcement","p":1.0}],"states":[{"id":"split_result_pending_announcement","desc":"The vote has come out evenly divided and the robot must say what the result is and what happens next.","terminal":false,"turn":["robot"],"actions":[{"by":{"robot":"announce_split_and_propose_deliberation"},"next":[{"state":"deliberation_floor_open","p":1.0}]},{"by":{"robot":"defer_to_village_head"},"next":[{"state":"village_head_addressed","p":1.0}]},{"by":{"robot":"propose_wider_second_meeting"},"next":[{"state":"wider_meeting_proposed","p":1.0}]},{"by":{"robot":"announce_no_decision_reached"},"next":[{"state":"issue_left_open","p":1.0}]}]},{"id":"deliberation_floor_open","desc":"The split has been stated plainly and continued deliberation is invited, with both sides and the village head present.","terminal":false,"turn":["supporters","opponents","village_head"],"actions":[{"by":{"supporters":"seek_common_ground","opponents":"seek_common_ground","village_head":"guide_deliberation"},"next":[{"state":"consensus_reached","p":0.7},{"state":"deliberation_floor_open","p":0.3}]},{"by":{"supporters":"seek_common_ground","opponents":"seek_common_ground","village_head":"call_for_pause"},"next":[{"state":"issue_left_open","p":0.6},{"state":"consensus_reached","p":0.4}]},{"by":{"supporters":"seek_common_ground","opponents":"restate_position","village_head":"guide_deliberation"},"next":[{"state":"deliberation_floor_open","p":0.55},{"state":"consensus_reached","p":0.25},{"state":"wider_meeting_proposed","p":0.2}]},{"by":{"supporters":"seek_common_ground","opponents":"restate_position","village_head":"call_for_pause"},"next":[{"state":"issue_left_open","p":0.8},{"state":"wider_meeting_proposed","p":0.2}]},{"by":{"supporters":"restate_position","opponents":"seek_common_ground","village_head":"guide_deliberation"},"next":[{"state":"deliberation_floor_open","p":0.55},{"state":"consensus_reached","p":0.25},{"state":"wider_meeting_proposed","p":0.2}]},{"by":{"supporters":"restate_position","opponents":"seek_common_ground","village_head":"call_for_pause"},"next":[{"state":"issue_left_open","p":0.8},{"state":"wider_meeting_proposed","p":0.2}]},{"by":{"supporters":"restate_position","opponents":"restate_position","village_head":"guide_deliberation"},"next":[{"state":"deliberation_floor_open","p":0.5},{"state":"wider_meeting_proposed","p":0.5}]},{"by":{"supporters":"restate_position","opponents":"restate_position","village_head":"call_for_pause"},"next":[{"state":"issue_left_open","p":1.0}]}]},{"id":"village_head_addressed","desc":"The robot has invited the village head to speak to the divided gathering.","terminal":false,"turn":["village_head"],"actions":[{"by":{"village_head":"give_guiding_statement"},"next":[{"state":"deliberation_floor_open","p":0.6},{"state":"consensus_reached","p":0.4}]},{"by":{"village_head":"convene_wider_gathering"},"next":[{"state":"wider_meeting_proposed","p":1.0}]},{"by":{"village_head":"decline_to_settle"},"next":[{"state":"issue_left_open","p":1.0}]}]},{"id":"wider_meeting_proposed","desc":"A further gathering with broader attendance has been put forward, and those present must respond to it.","terminal":false,"turn":["village_head","supporters","opponents"],"actions":[{"by":{"village_head":"endorse_gathering","supporters":"accept_gathering","opponents":"accept_gathering"},"next":[{"state":"further_deliberation_scheduled","p":1.0}]},{"by":{"village_head":"endorse_gathering","supporters":"accept_gathering","opponents":"press_for_immediate_answer"},"next":[{"state":"further_deliberation_scheduled","p":0.7},{"state":"deliberation_floor_open","p":0.3}]},{"by":{"village_head":"endorse_gathering","supporters":"press_for_immediate_answer","opponents":"accept_gathering"},"next":[{"state":"further_deliberation_scheduled","p":0.7},{"state":"deliberation_floor_open","p":0.3}]},{"by":{"village_head":"endorse_gathering","supporters":"press_for_immediate_answer","opponents":"press_for_immediate_answer"},"next":[{"state":"deliberation_floor_open","p":0.6},{"state":"further_deliberation_scheduled","p":0.4}]},{"by":{"village_head":"withhold_endorsement","supporters":"accept_gathering","opponents":"accept_gathering"},"next":[{"state":"further_deliberation_scheduled","p":0.5},{"state":"issue_left_open","p":0.5}]},{"by":{"village_head":"withhold_endorsement","supporters":"accept_gathering","opponents":"press_for_immediate_answer"},"next":[{"state":"issue_left_open","p":0.6},{"state":"deliberation_floor_open","p":0.4}]},{"by":{"village_head":"withhold_endorsement","supporters":"press_for_immediate_answer","opponents":"accept_gathering"},"next":[{"state":"issue_left_open","p":0.6},{"state":"deliberation_floor_open","p":0.4}]},{"by":{"village_head":"withhold_endorsement","supporters":"press_for_immediate_answer","opponents":"press_for_immediate_answer"},"next":[{"state":"deliberation_floor_open","p":0.5},{"state":"issue_left_open","p":0.5}]}]},{"id":"consensus_reached","desc":"The gathering has talked its way to a shared position that both sides can live with.","terminal":true},{"id":"further_deliberation_scheduled","desc":"The matter is carried forward to another gathering with more of the village present.","terminal":true},{"id":"issue_left_open","desc":"The meeting closes with the division on record and the question still open.","terminal":true}]}
+
+
+Total Time to Response: 687.57 seconds
