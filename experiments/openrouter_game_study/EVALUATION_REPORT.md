@@ -6,16 +6,16 @@
 - Lane 1 mechanical passes: **134/135**
 - Lane 3 checklist passes: **135/135**
 - Overall passes under available references: **134/135**
-- Evaluation graph artifacts: **165 `.pth` files**
+- Evaluation graph artifacts: **270 `.pth` files**
 
 ## Lane 2 Scope
 
-The repository contains ground-truth models only for G1 and G2, so Lane 2 scored
-**30** candidates and explicitly skipped **105**
-G3-G9 candidates. The external `game_matching` package is unavailable in this
-workspace; scored rows therefore use the pipeline's documented feature-multiset
-fallback. Their mean combined score is **0.5260** and must not be presented
-as an optimal graph-matching score.
+Reference POSG documents now exist for **all G1-G9** cases, so Lane 2 scored
+**135** candidates and skipped **0**.
+The external `game_matching` package is unavailable in this workspace; scored rows
+therefore use the pipeline's documented feature-multiset fallback. Their mean
+combined score is **0.7162** and must not be presented as an optimal
+graph-matching score.
 
 ## Lane 1 Failures
 

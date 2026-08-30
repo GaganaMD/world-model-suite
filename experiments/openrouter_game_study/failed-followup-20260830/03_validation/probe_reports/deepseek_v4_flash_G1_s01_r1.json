@@ -1,0 +1,333 @@
+{
+  "eda_summary": {
+    "actions": {
+      "action_redundancy": 0.7777777777777778,
+      "joint_action_count": 9,
+      "outcome_compression": 0.2222222222222222,
+      "unique_action_count": 3,
+      "unique_actions_by_player": {
+        "player_1": [
+          "paper",
+          "rock",
+          "scissors"
+        ],
+        "player_2": [
+          "paper",
+          "rock",
+          "scissors"
+        ]
+      }
+    },
+    "graph": {
+      "average_in_degree": 1.0,
+      "average_out_degree": 1.0,
+      "average_shortest_path_length": 1.0,
+      "community_count": 1,
+      "density": 1.0,
+      "edge_count": 2,
+      "global_efficiency": 0.5,
+      "largest_strongly_connected_component_size": 1,
+      "maximum_out_degree": 2,
+      "modularity": 0.0,
+      "strongly_connected_component_count": 2,
+      "strongly_connected_components": [
+        [
+          "terminal"
+        ],
+        [
+          "s0"
+        ]
+      ],
+      "weakly_connected_component_count": 1
+    },
+    "states": {
+      "average_depth_to_terminal": 0.5,
+      "branching_factor_by_state": {
+        "s0": 9,
+        "terminal": 0
+      },
+      "maximum_branching_factor": 9,
+      "maximum_depth_to_terminal": 1,
+      "maximum_trajectory_depth": null,
+      "mean_branching_factor": 4.5,
+      "non_terminal_state_count": 1,
+      "reachable_state_count": 2,
+      "self_loop_count": 1,
+      "state_count": 2,
+      "terminal_state_count": 1,
+      "terminal_to_non_terminal_ratio": 1.0
+    },
+    "terminal": {
+      "distance_to_terminal": {
+        "s0": 1,
+        "terminal": 0
+      },
+      "states_without_terminal_path": []
+    },
+    "transitions": {
+      "average_transition_branching": 1.0,
+      "deterministic_transition_fraction": 1.0,
+      "maximum_transition_branching": 1,
+      "maximum_transition_entropy": -0.0,
+      "mean_transition_entropy": 0.0,
+      "state_action_pair_count": 9,
+      "stochastic_transition_fraction": 0.0,
+      "unique_successor_state_count": 2
+    }
+  },
+  "errors": [],
+  "graph": {
+    "edges": [
+      [
+        "s0",
+        "s0"
+      ],
+      [
+        "s0",
+        "terminal"
+      ]
+    ],
+    "nodes": [
+      "s0",
+      "terminal"
+    ]
+  },
+  "stage": "complete",
+  "states_checked": 2,
+  "status": "passed",
+  "transitions_checked": 9,
+  "warnings": [],
+  "world_model": {
+    "errors": [],
+    "initial_distribution": [
+      {
+        "probability": 1.0,
+        "state": "state_0000"
+      }
+    ],
+    "players": [
+      "player_1",
+      "player_2"
+    ],
+    "states": [
+      {
+        "actions": {
+          "player_1": [
+            "rock",
+            "paper",
+            "scissors"
+          ],
+          "player_2": [
+            "rock",
+            "paper",
+            "scissors"
+          ]
+        },
+        "depth": 0,
+        "id": "state_0000",
+        "representation": "'s0'",
+        "terminal": false
+      },
+      {
+        "actions": {},
+        "depth": 1,
+        "id": "state_0001",
+        "representation": "'terminal'",
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "obs_paper_paper_s0",
+              "player_2": "obs_paper_paper_s0"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_paper_rock_terminal",
+              "player_2": "obs_paper_rock_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "paper",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_paper_scissors_terminal",
+              "player_2": "obs_paper_scissors_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_rock_paper_terminal",
+              "player_2": "obs_rock_paper_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "obs_rock_rock_s0",
+              "player_2": "obs_rock_rock_s0"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "rock",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_rock_scissors_terminal",
+              "player_2": "obs_rock_scissors_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "paper"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_scissors_paper_terminal",
+              "player_2": "obs_scissors_paper_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 1.0,
+              "player_2": -1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "rock"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0001",
+            "observations": {
+              "player_1": "obs_scissors_rock_terminal",
+              "player_2": "obs_scissors_rock_terminal"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": -1.0,
+              "player_2": 1.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      },
+      {
+        "joint_action": {
+          "player_1": "scissors",
+          "player_2": "scissors"
+        },
+        "outcomes": [
+          {
+            "next_state": "state_0000",
+            "observations": {
+              "player_1": "obs_scissors_scissors_s0",
+              "player_2": "obs_scissors_scissors_s0"
+            },
+            "probability": 1.0,
+            "rewards": {
+              "player_1": 0.0,
+              "player_2": 0.0
+            }
+          }
+        ],
+        "state": "state_0000"
+      }
+    ],
+    "truncated": false,
+    "warnings": []
+  }
+}

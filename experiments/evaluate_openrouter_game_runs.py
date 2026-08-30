@@ -123,12 +123,12 @@ def main() -> None:
 
 ## Lane 2 Scope
 
-The repository contains ground-truth models only for G1 and G2, so Lane 2 scored
-**{aggregate['lane2_scored']}** candidates and explicitly skipped **{aggregate['lane2_skipped_no_reference']}**
-G3-G9 candidates. The external `game_matching` package is unavailable in this
-workspace; scored rows therefore use the pipeline's documented feature-multiset
-fallback. Their mean combined score is **{mean_lane2:.4f}** and must not be presented
-as an optimal graph-matching score.
+Reference POSG documents now exist for **all G1-G9** cases, so Lane 2 scored
+**{aggregate['lane2_scored']}** candidates and skipped **{aggregate['lane2_skipped_no_reference']}**.
+The external `game_matching` package is unavailable in this workspace; scored rows
+therefore use the pipeline's documented feature-multiset fallback. Their mean
+combined score is **{mean_lane2:.4f}** and must not be presented as an optimal
+graph-matching score.
 
 ## Lane 1 Failures
 

@@ -1,0 +1,57 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["bid_low", "bid_high"]
+        return ["action"]
+
+    def transition(self, state, joint_action):
+        if state == "s0":
+            bid_1 = joint_action["player_1"]
+            bid_2 = joint_action["player_2"]
+            outcomes = {}
+            for value_1 in ["low", "high"]:
+                for value_2 in ["low", "high"]:
+                    if bid_1 == bid_2:
+                        state_1 = f"terminal_{value_1}_{value_2}_{bid_1}_{bid_2}_player_1"
+                        state_2 = f"terminal_{value_1}_{value_2}_{bid_1}_{bid_2}_player_2"
+                        outcomes[state_1] = 0.125
+                        outcomes[state_2] = 0.125
+                    else:
+                        winner = "player_1" if bid_1 == "bid_high" else "player_2"
+                        next_state = f"terminal_{value_1}_{value_2}_{bid_1}_{bid_2}_{winner}"
+                        outcomes[next_state] = 0.25
+            return outcomes
+        return {"terminal_fallback": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "s0" and next_state.startswith("terminal_"):
+            parts = next_state.split("_")
+            if len(parts) == 9:
+                value = parts[1] if player == "player_1" else parts[2]
+                winner = f"{parts[7]}_{parts[8]}"
+                return f"value={value};own_bid={joint_action[player]};winner={winner}"
+        return "observation"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "s0" and next_state.startswith("terminal_"):
+            parts = next_state.split("_")
+            if len(parts) == 9:
+                value = parts[1] if player == "player_1" else parts[2]
+                winner = f"{parts[7]}_{parts[8]}"
+                own_bid = joint_action[player]
+                if winner == player:
+                    value_amount = 1.0 if value == "low" else 3.0
+                    bid_amount = 1.0 if own_bid == "bid_low" else 2.0
+                    return value_amount - bid_amount
+                return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        return state.startswith("terminal_")

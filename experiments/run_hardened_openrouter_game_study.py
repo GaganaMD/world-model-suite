@@ -387,10 +387,22 @@ def run_study(args: argparse.Namespace) -> tuple[Path, list[dict[str, Any]]]:
     client = OpenRouterClient(os.getenv("OPENROUTER_API_KEY", ""), args.timeout, args.retries, args.max_tokens)
 
     total = len(selected_models) * len(selected_cases) * args.samples
+    only_tags = set(args.only or [])
+    if only_tags:
+        total = sum(
+            1
+            for model_slug in selected_models
+            for case_id in selected_cases
+            for sample in range(1, args.samples + 1)
+            if f"{model_slug}_{case_id}_s{sample:02d}_r0" in only_tags
+        )
     cell_number = 0
     for model_slug in selected_models:
         for case_id in selected_cases:
             for sample in range(1, args.samples + 1):
+                base_tag = f"{model_slug}_{case_id}_s{sample:02d}_r0"
+                if only_tags and base_tag not in only_tags:
+                    continue
                 cell_number += 1
                 latest_code = ""
                 latest_errors = ""
@@ -486,6 +498,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-depth", type=int, default=12)
     parser.add_argument("--run-id")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--only",
+        nargs="*",
+        help="Run only exact base tags, e.g. gpt_5_6_sol_G6_s01_r0.",
+    )
     return parser.parse_args()
 
 

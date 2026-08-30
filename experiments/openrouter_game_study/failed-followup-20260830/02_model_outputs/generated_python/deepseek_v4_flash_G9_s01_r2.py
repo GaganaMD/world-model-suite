@@ -1,0 +1,82 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self):
+        return ["player_1", "player_2"]
+
+    def initial_state(self):
+        return "s0"
+
+    def legal_actions(self, state, player):
+        if state == "terminal":
+            return ["noop"]
+        if state.startswith("s"):
+            try:
+                idx = int(state[1:])
+                if idx < 0:
+                    return ["0", "1", "2", "3"]
+                if idx <= 1:
+                    return ["0", "1", "2", "3"]
+                if idx == 2:
+                    return ["0", "1", "2", "3"]
+            except ValueError:
+                return ["0", "1", "2", "3"]
+        return ["0", "1", "2", "3"]
+
+    def transition(self, state, joint_action):
+        if state == "terminal":
+            return {"terminal": 1.0}
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return {"terminal": 1.0}
+        if state == "s0":
+            return {"s1": 1.0}
+        if state == "s1":
+            return {"s2": 1.0}
+        if state == "s2":
+            return {"terminal": 1.0}
+        return {"terminal": 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return "obs_terminal"
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return "obs_error"
+        if state == "s0":
+            return "obs_start"
+        if state == "s1":
+            return "obs_mid"
+        if state == "s2":
+            return "obs_end"
+        return "obs_fallback"
+
+    def reward(self, state, joint_action, next_state, player):
+        if state == "terminal":
+            return 0.0
+        try:
+            a1 = int(joint_action["player_1"])
+            a2 = int(joint_action["player_2"])
+        except (KeyError, ValueError):
+            return 0.0
+        if state == "s0":
+            return 0.0
+        if state == "s1":
+            return 0.0
+        if state == "s2":
+            return 0.0
+        return 0.0
+
+    def is_terminal(self, state):
+        if state == "terminal":
+            return True
+        if state == "s0":
+            return False
+        if state == "s1":
+            return False
+        if state == "s2":
+            return False
+        return True

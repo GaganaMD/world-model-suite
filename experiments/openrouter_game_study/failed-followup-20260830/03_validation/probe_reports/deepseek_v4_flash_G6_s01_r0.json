@@ -1,0 +1,8 @@
+{
+  "errors": [
+    "SyntaxError: invalid syntax. Perhaps you forgot a comma? (<unknown>, line 28)"
+  ],
+  "stage": "static",
+  "status": "failed",
+  "warnings": []
+}
