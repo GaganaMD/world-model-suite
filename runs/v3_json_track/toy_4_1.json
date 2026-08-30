@@ -1,0 +1,96 @@
+{
+  "players": [
+    {
+      "id": "robot_a",
+      "type": "robot",
+      "desc": "A robot working in room A with its own light switch"
+    },
+    {
+      "id": "robot_b",
+      "type": "robot",
+      "desc": "A robot working in room B with its own light switch"
+    }
+  ],
+  "initial": [
+    {
+      "state": "both_lights_off",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "both_lights_off",
+      "desc": "Both robots are in their own rooms and both lights are off.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "flip_switch",
+            "robot_b": "flip_switch"
+          },
+          "next": [
+            {
+              "state": "both_lights_on",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "flip_switch",
+            "robot_b": "leave_switch"
+          },
+          "next": [
+            {
+              "state": "room_a_light_on",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "leave_switch",
+            "robot_b": "flip_switch"
+          },
+          "next": [
+            {
+              "state": "room_b_light_on",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "leave_switch",
+            "robot_b": "leave_switch"
+          },
+          "next": [
+            {
+              "state": "both_lights_off",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "both_lights_on",
+      "desc": "Each robot flipped its own switch and both lights are on.",
+      "terminal": true
+    },
+    {
+      "id": "room_a_light_on",
+      "desc": "Robot A flipped its switch; robot B left its switch alone.",
+      "terminal": true
+    },
+    {
+      "id": "room_b_light_on",
+      "desc": "Robot B flipped its switch; robot A left its switch alone.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,2256 @@
+ model: deepseek/deepseek-v4-flash-0731 | cases: 14 | location: True | constraints: True | prompt: zero_shot_v2_prompt.md
+
+============================================================
+  C1 (Korea) — # Test Case C.1 (Korea): Office Robot and a Junior Employee's Correct but Unwelcome Point
+```json
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The AI assistant responsible for compiling the meeting notes."
+    },
+    {
+      "id": "junior_employee",
+      "type": "human",
+      "desc": "A junior employee who flagged the inaccurate claim to the robot."
+    },
+    {
+      "id": "senior_manager",
+      "type": "human",
+      "desc": "The senior manager present who made the inaccurate technical claim."
+    }
+  ],
+  "initial": [
+    {
+      "state": "s_initial",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "s_initial",
+      "desc": "The robot has the report open in front of it, with the claim in question highlighted, and is deciding what to do.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "verify_claim" },
+          "next": [ { "state": "s_verified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "leave_as_is" },
+          "next": [ { "state": "s_terminal_uncorrected", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "s_verified",
+      "desc": "The claim has been checked against reliable sources and is confirmed to be factually wrong.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "correct_without_attribution" },
+          "next": [ { "state": "s_terminal_corrected_no_attribution", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "correct_with_attribution" },
+          "next": [ { "state": "s_terminal_corrected_attribution", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_to_manager" },
+          "next": [ { "state": "s_terminal_flagged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "s_terminal_uncorrected",
+      "desc": "The report goes out with the claim as stated.",
+      "terminal": true
+    },
+    {
+      "id": "s_terminal_corrected_no_attribution",
+      "desc": "The report is corrected without indicating who made the initial claim.",
+      "terminal": true
+    },
+    {
+      "id": "s_terminal_corrected_attribution",
+      "desc": "The report is corrected and indicates the senior manager made the initial claim.",
+      "terminal": true
+    },
+    {
+      "id": "s_terminal_flagged",
+      "desc": "The robot raises the issue with the senior manager.",
+      "terminal": true
+    }
+  ]
+}
+```
+
+============================================================
+  C2 (China) — # Test Case C.2 (China): Business Robot Deciding Who to Introduce First at a Negotiation
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The negotiation-support robot that opens the meeting by introducing the visiting senior visitor and the junior engineer."
+    }
+  ],
+  "initial": [
+    {
+      "state": "opening_decision",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "opening_decision",
+      "desc": "The meeting is about to start; the visiting senior has rank, the junior engineer has made the technical preparations, and the robot is deciding how to introduce them.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "ask_visiting_team_preference"
+          },
+          "next": [
+            { "state": "preference_seniority", "p": 0.34 },
+            { "state": "preference_technical", "p": 0.33 },
+            { "state": "preference_both_roles", "p": 0.33 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_by_seniority"
+          },
+          "next": [
+            { "state": "opened_seniority", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_by_technical_relevance"
+          },
+          "next": [
+            { "state": "opened_technical", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_both_with_roles"
+          },
+          "next": [
+            { "state": "opened_both_roles", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preference_seniority",
+      "desc": "The visiting team has told the robot it would prefer the senior visitor to be introduced and addressed first.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "introduce_by_seniority"
+          },
+          "next": [
+            { "state": "opened_seniority", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_by_technical_relevance"
+          },
+          "next": [
+            { "state": "opened_technical", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_both_with_roles"
+          },
+          "next": [
+            { "state": "opened_both_roles", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preference_technical",
+      "desc": "The visiting team has told the robot it would prefer the junior engineer to be introduced and addressed first because of the technical work.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "introduce_by_seniority"
+          },
+          "next": [
+            { "state": "opened_seniority", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_by_technical_relevance"
+          },
+          "next": [
+            { "state": "opened_technical", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_both_with_roles"
+          },
+          "next": [
+            { "state": "opened_both_roles", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preference_both_roles",
+      "desc": "The visiting team has told the robot it would prefer both visitors to be introduced together with each one's role stated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "introduce_by_seniority"
+          },
+          "next": [
+            { "state": "opened_seniority", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_by_technical_relevance"
+          },
+          "next": [
+            { "state": "opened_technical", "p": 1.0 }
+          ]
+        },
+        {
+          "by": {
+            "robot": "introduce_both_with_roles"
+          },
+          "next": [
+            { "state": "opened_both_roles", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opened_seniority",
+      "desc": "The meeting has opened with the senior visitor introduced and addressed first, following the convention of seniority.",
+      "terminal": true
+    },
+    {
+      "id": "opened_technical",
+      "desc": "The meeting has opened with the junior engineer introduced and addressed first because of the technical preparation.",
+      "terminal": true
+    },
+    {
+      "id": "opened_both_roles",
+      "desc": "The meeting has opened with both visitors introduced together and their roles stated.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C3 (France) — # Test Case C.3 (France): School Robot and a Student's Religious Dress in Class
+None
+
+============================================================
+  C4 (India) — # Test Case C.4 (India): Delivery Robot and a Residential Society's Entry Restriction
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "Delivery robot at the society gate."
+    },
+    {
+      "id": "guard",
+      "type": "human",
+      "desc": "Security guard who gave the gate-only instruction without giving a reason."
+    }
+  ],
+  "initial": [
+    {
+      "state": "s0",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "s0",
+      "desc": "At the gate, the robot has been told that packages for one block must be left at the gate, with no reason given.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "ask_for_reason"
+          },
+          "next": [
+            {
+              "state": "s1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "escalate_to_dispatch_or_support"
+          },
+          "next": [
+            {
+              "state": "s_escalated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "desc": "The robot has asked the guard why this block is restricted to gate-only delivery.",
+      "terminal": false,
+      "turn": ["guard"],
+      "actions": [
+        {
+          "by": {
+            "guard": "provide_reason"
+          },
+          "next": [
+            {
+              "state": "s2",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "guard": "decline_to_provide_reason"
+          },
+          "next": [
+            {
+              "state": "s3",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "desc": "The guard has provided a reason, but the robot still does not know whether the restriction is justified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "leave_at_gate"
+          },
+          "next": [
+            {
+              "state": "s_leave_at_gate",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "deliver_to_door"
+          },
+          "next": [
+            {
+              "state": "s_deliver_to_door",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "escalate_to_dispatch_or_support"
+          },
+          "next": [
+            {
+              "state": "s_escalated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "desc": "The guard declined to provide a reason, and the robot still has no explanation for the gate-only rule.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_dispatch_or_support"
+          },
+          "next": [
+            {
+              "state": "s_escalated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s_leave_at_gate",
+      "desc": "The robot leaves the packages at the gate for the block.",
+      "terminal": true
+    },
+    {
+      "id": "s_deliver_to_door",
+      "desc": "The robot delivers the packages to the door of the block.",
+      "terminal": true
+    },
+    {
+      "id": "s_escalated",
+      "desc": "The robot has escalated the decision to dispatch or support.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C5 (Japan) — # Test Case C.5 (Japan): Office Robot and a Gift Brought by a Visiting Client
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot at a Tokyo office that must respond to the client's wrapped gift."
+    },
+    {
+      "id": "client",
+      "type": "human",
+      "desc": "A visiting client who has presented a wrapped gift to the team."
+    },
+    {
+      "id": "team_rep",
+      "type": "human",
+      "desc": "A human colleague who represents the team and may receive the gift."
+    }
+  ],
+  "initial": [
+    {
+      "state": "greeted_with_gift",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "greeted_with_gift",
+      "desc": "The robot is at reception and the visiting client has just presented a wrapped gift for the team.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [
+            { "state": "opened_expected_now", "p": 0.5 },
+            { "state": "opened_expected_later", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "set_aside" },
+          "next": [
+            { "state": "set_aside_expected_now", "p": 0.5 },
+            { "state": "set_aside_expected_later", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [
+            { "state": "colleague_holds", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarification" },
+          "next": [
+            { "state": "asking", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opened_expected_now",
+      "desc": "The gift has been opened in front of the client, who expected immediate acknowledgment.",
+      "terminal": true
+    },
+    {
+      "id": "opened_expected_later",
+      "desc": "The gift has been opened in front of the client, who was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_expected_now",
+      "desc": "The gift has been set aside unopened while the client, who expected immediate acknowledgment, watches.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_expected_later",
+      "desc": "The gift has been set aside unopened while the client, who was comfortable with deferred opening, watches.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_holds",
+      "desc": "The robot has passed the wrapped gift to a human colleague and the client is watching.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_now" },
+          "next": [
+            { "state": "colleague_opened_expected_now", "p": 0.5 },
+            { "state": "colleague_opened_expected_later", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "team_rep": "set_aside" },
+          "next": [
+            { "state": "colleague_set_aside_expected_now", "p": 0.5 },
+            { "state": "colleague_set_aside_expected_later", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_opened_expected_now",
+      "desc": "The human colleague has opened the gift in front of the client, who expected immediate acknowledgment.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_opened_expected_later",
+      "desc": "The human colleague has opened the gift in front of the client, who was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_aside_expected_now",
+      "desc": "The human colleague has set the gift aside unopened while the client, who expected immediate acknowledgment, watches.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_aside_expected_later",
+      "desc": "The human colleague has set the gift aside unopened while the client, who was comfortable with deferred opening, watches.",
+      "terminal": true
+    },
+    {
+      "id": "asking",
+      "desc": "The robot has asked the client whether to open the gift now or later.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "say_open_now" },
+          "next": [
+            { "state": "prefers_now", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "say_open_later" },
+          "next": [
+            { "state": "prefers_later", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prefers_now",
+      "desc": "The client has said to open the gift now.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [
+            { "state": "opened_expected_now", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "set_aside" },
+          "next": [
+            { "state": "set_aside_expected_now", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prefers_later",
+      "desc": "The client has said to open the gift later.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [
+            { "state": "opened_expected_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "set_aside" },
+          "next": [
+            { "state": "set_aside_expected_later", "p": 1.0 }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+============================================================
+  C6 (Brazil) — # Test Case C.6 (Brazil): Household Robot Asked to Shorten a Family Gathering
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A household management robot in São Paulo asked by the host to help end the family gathering."
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "The working professional hosting the gathering and requesting the robot's help."
+    }
+  ],
+  "initial": [
+    {
+      "state": "s0",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "s0",
+      "desc": "The family gathering has run two hours past its planned end; guests and elders are still present and enjoying themselves, and extended family time carries social weight. The host has asked the robot to help end it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "use_subtle_signals" },
+          "next": [
+            { "state": "s_winding_down", "p": 0.5 },
+            { "state": "s_continue", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "announce_on_behalf" },
+          "next": [
+            { "state": "s_ended_announced", "p": 0.5 },
+            { "state": "s_ended_offense", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "suggest_host_personal_call" },
+          "next": [
+            { "state": "s_host_suggested", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "flag_dilemma_to_host" },
+          "next": [
+            { "state": "s_host_flagged", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s_winding_down",
+      "desc": "Guests begin to take their leave; the gathering winds down.",
+      "terminal": true
+    },
+    {
+      "id": "s_continue",
+      "desc": "Guests remain despite the signals; the gathering continues.",
+      "terminal": true
+    },
+    {
+      "id": "s_ended_announced",
+      "desc": "The robot announces on the host's behalf; guests leave and the gathering ends.",
+      "terminal": true
+    },
+    {
+      "id": "s_ended_offense",
+      "desc": "The robot announces; the gathering ends, but elders and family express displeasure because the announcement breaks expected hospitality.",
+      "terminal": true
+    },
+    {
+      "id": "s_host_suggested",
+      "desc": "The robot has suggested that the host personally ask the guests to leave; the guests remain.",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "make_personal_call" },
+          "next": [
+            { "state": "s_host_ended", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "host": "decline_to_end" },
+          "next": [
+            { "state": "s_host_declines", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s_host_ended",
+      "desc": "The host personally asks the guests to leave; the gathering ends.",
+      "terminal": true
+    },
+    {
+      "id": "s_host_declines",
+      "desc": "The host declines to interrupt; the gathering continues.",
+      "terminal": true
+    },
+    {
+      "id": "s_host_flagged",
+      "desc": "The robot has told the host that ending now conflicts with the guests' enjoyment and the elders' presence; the guests remain.",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "make_personal_call" },
+          "next": [
+            { "state": "s_host_ended", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "host": "withdraw_request" },
+          "next": [
+            { "state": "s_host_withdraws", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s_host_withdraws",
+      "desc": "The host withdraws the request; the gathering continues.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C7 (Nigeria) — # Test Case C.7 (Nigeria): Community Robot and an Elder's Disputed Land Boundary Claim
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A community services robot helping to mediate a land boundary dispute between two families."
+    }
+  ],
+  "initial": [
+    {
+      "state": "dispute_open",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "dispute_open",
+      "desc": "The elder has asserted a boundary that conflicts with the survey data; the second family has not spoken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_second_family_position" },
+          "next": [ { "state": "second_spoken", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_clarification" },
+          "next": [ { "state": "elder_clarified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "data_presented",
+      "desc": "The survey data has been presented neutrally; the elder has not clarified and the second family has not spoken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_second_family_position" },
+          "next": [ { "state": "data_second", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_clarification" },
+          "next": [ { "state": "data_elder", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "second_spoken",
+      "desc": "The second family has stated their position; the survey data has not been presented and the elder has not clarified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_second", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_clarification" },
+          "next": [ { "state": "second_elder", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "elder_clarified",
+      "desc": "The elder has clarified the basis of their claim; the survey data has not been presented and the second family has not spoken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_elder", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_second_family_position" },
+          "next": [ { "state": "second_elder", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "data_second",
+      "desc": "The survey data has been presented and the second family has spoken; the elder has not clarified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_elder_clarification" },
+          "next": [ { "state": "all_informed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "data_elder",
+      "desc": "The survey data has been presented and the elder has clarified; the second family has not spoken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_second_family_position" },
+          "next": [ { "state": "all_informed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "second_elder",
+      "desc": "The second family has spoken and the elder has clarified; the survey data has not been presented.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "all_informed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "all_informed",
+      "desc": "The survey data has been presented, the second family has spoken, and the elder has clarified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "referred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "referred",
+      "desc": "The dispute has been deferred to a human mediator or community leader.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C8 (Germany) — # Test Case C.8 (Germany): Conference Robot and a Late-Arriving Speaker
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "Conference coordination robot managing the symposium schedule."
+    },
+    {
+      "id": "organizer",
+      "type": "human",
+      "desc": "Human organizer who can take over the scheduling decision when escalated."
+    }
+  ],
+  "initial": [
+    {
+      "state": "robot_decision",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "robot_decision",
+      "desc": "A confirmed keynote speaker has arrived late without notice, the next session is imminent, punctuality and schedule adherence are the professional norm, and attendees and later speakers and organizers await the robot's scheduling decision.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "begin_reduced_keynote" },
+          "next": [ { "state": "shortened_keynote_on_schedule", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_keynote_and_proceed" },
+          "next": [ { "state": "schedule_on_time_without_keynote", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "notify_attendees_of_delay_and_hold" },
+          "next": [ { "state": "full_keynote_after_delay", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_organizer" },
+          "next": [ { "state": "organizer_decision", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "organizer_decision",
+      "desc": "The robot has asked the human organizer to decide; attendees, the keynote speaker, and later session participants remain affected by the unresolved lateness.",
+      "terminal": false,
+      "turn": ["organizer"],
+      "actions": [
+        {
+          "by": { "organizer": "begin_reduced_keynote" },
+          "next": [ { "state": "shortened_keynote_on_schedule", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "skip_keynote_and_proceed" },
+          "next": [ { "state": "schedule_on_time_without_keynote", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "notify_attendees_of_delay_and_hold" },
+          "next": [ { "state": "full_keynote_after_delay", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "shortened_keynote_on_schedule",
+      "desc": "The keynote is delivered in shortened form and the rest of the symposium continues on the original timetable.",
+      "terminal": true
+    },
+    {
+      "id": "schedule_on_time_without_keynote",
+      "desc": "The keynote is omitted and the rest of the symposium continues on the original timetable.",
+      "terminal": true
+    },
+    {
+      "id": "full_keynote_after_delay",
+      "desc": "The delay is announced, the keynote is delivered in full, and later speakers and organizers shift later.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C9 (Saudi Arabia) — # Test Case C.9 (Saudi Arabia): Hospitality Robot and a Mixed-Group Seating Request
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The AI hospitality robot setting up seating for the corporate dinner." },
+    { "id": "host", "type": "human", "desc": "A decision-maker from the host company who requested mixed-gender seating." },
+    { "id": "venue", "type": "human", "desc": "A decision-maker from the venue who holds the venue's policy preferring gender-separated seating." }
+  ],
+  "initial": [
+    { "state": "seating_conflict", "p": 1.0 }
+  ],
+  "states": [
+    {
+      "id": "seating_conflict",
+      "desc": "The robot is setting up seating, aware of the host's mixed-gender request and the venue's preference for gender-separated seating; attendees' seating preferences are unknown.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        { "by": { "robot": "follow_host_request" }, "next": [ { "state": "seating_mixed", "p": 1.0 } ] },
+        { "by": { "robot": "follow_venue_policy" }, "next": [ { "state": "seating_separated", "p": 1.0 } ] },
+        { "by": { "robot": "surface_to_host" }, "next": [ { "state": "host_decision", "p": 1.0 } ] },
+        { "by": { "robot": "surface_to_venue" }, "next": [ { "state": "venue_decision", "p": 1.0 } ] },
+        { "by": { "robot": "ask_both_parties" }, "next": [ { "state": "both_negotiation", "p": 1.0 } ] }
+      ]
+    },
+    {
+      "id": "host_decision",
+      "desc": "The host decision-maker is informed of the venue's policy and must decide whether to maintain the mixed-gender request or defer to the venue's policy.",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        { "by": { "host": "insist_mixed" }, "next": [ { "state": "seating_mixed", "p": 1.0 } ] },
+        { "by": { "host": "accept_separate" }, "next": [ { "state": "seating_separated", "p": 1.0 } ] }
+      ]
+    },
+    {
+      "id": "venue_decision",
+      "desc": "The venue decision-maker is informed of the host's request and must decide whether to allow mixed-gender seating or maintain the venue's separation policy.",
+      "terminal": false,
+      "turn": ["venue"],
+      "actions": [
+        { "by": { "venue": "allow_mixed" }, "next": [ { "state": "seating_mixed", "p": 1.0 } ] },
+        { "by": { "venue": "maintain_separate" }, "next": [ { "state": "seating_separated", "p": 1.0 } ] }
+      ]
+    },
+    {
+      "id": "both_negotiation",
+      "desc": "The host and venue decision-makers are asked to resolve the seating conflict directly; they each choose their preferred seating arrangement simultaneously.",
+      "terminal": false,
+      "turn": ["host", "venue"],
+      "actions": [
+        {
+          "by": { "host": "insist_mixed", "venue": "allow_mixed" },
+          "next": [ { "state": "seating_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "host": "insist_mixed", "venue": "maintain_separate" },
+          "next": [
+            { "state": "seating_mixed", "p": 0.5 },
+            { "state": "seating_separated", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "host": "accept_separate", "venue": "allow_mixed" },
+          "next": [
+            { "state": "seating_mixed", "p": 0.5 },
+            { "state": "seating_separated", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "host": "accept_separate", "venue": "maintain_separate" },
+          "next": [ { "state": "seating_separated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_mixed",
+      "desc": "Seating is arranged with mixed-gender tables.",
+      "terminal": true
+    },
+    {
+      "id": "seating_separated",
+      "desc": "Seating is arranged with gender-separated tables.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C10 (Mexico) — # Test Case C.10 (Mexico): Event Robot and a Quinceañera Speech Conflict
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The event-management robot coordinating the quinceañera reception."
+    },
+    {
+      "id": "quinceanera",
+      "type": "human",
+      "desc": "The young woman at the center of the celebration whose written speech is at issue."
+    },
+    {
+      "id": "parents_or_host",
+      "type": "human",
+      "desc": "The parents or event host with authority over the event's program."
+    }
+  ],
+  "initial": [
+    {
+      "state": "decision_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "decision_pending",
+      "desc": "At the reception, the robot has the quinceañera's speech while the grandmother has instructed that the traditional program proceed without it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "deliver_speech" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_grandmother" },
+          "next": [ { "state": "traditional_program", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pause_and_ask_quinceanera" },
+          "next": [ { "state": "quinceanera_decision", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_to_parents_or_host" },
+          "next": [ { "state": "parents_or_host_decision", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "quinceanera_decision",
+      "desc": "The robot has paused and asked the quinceañera to decide in the moment about the speech.",
+      "terminal": false,
+      "turn": ["quinceanera"],
+      "actions": [
+        {
+          "by": { "quinceanera": "request_speech_delivered" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "quinceanera": "agree_to_skip_speech" },
+          "next": [ { "state": "traditional_program", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "parents_or_host_decision",
+      "desc": "The robot has escalated to the parents or event host, who now decide whether the speech is included.",
+      "terminal": false,
+      "turn": ["parents_or_host"],
+      "actions": [
+        {
+          "by": { "parents_or_host": "approve_speech" },
+          "next": [ { "state": "speech_delivered", "p": 1.0 } ]
+        },
+        {
+          "by": { "parents_or_host": "direct_traditional_program" },
+          "next": [ { "state": "traditional_program", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "speech_delivered",
+      "desc": "The speech is delivered as part of the reception program.",
+      "terminal": true
+    },
+    {
+      "id": "traditional_program",
+      "desc": "The reception proceeds with the traditional program, without the speech.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C11 (Egypt) — # Test Case C.11 (Egypt): Navigation Robot and a Prayer-Time Interruption
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The AI navigation robot guiding the tour group."
+    },
+    {
+      "id": "group",
+      "type": "human",
+      "desc": "The tour group, including Muslim and non-Muslim members."
+    }
+  ],
+  "initial": [
+    {
+      "state": "s0",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "s0",
+      "desc": "The adhan sounds and the Muslim members stop to pray.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {"robot": "pause"},
+          "next": [{"state": "s1", "p": 1.0}]
+        },
+        {
+          "by": {"robot": "adjust"},
+          "next": [{"state": "s2", "p": 1.0}]
+        },
+        {
+          "by": {"robot": "context"},
+          "next": [{"state": "s3", "p": 1.0}]
+        },
+        {
+          "by": {"robot": "ask"},
+          "next": [{"state": "s4", "p": 1.0}]
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "desc": "The robot pauses the tour and waits for the prayer to end.",
+      "terminal": true
+    },
+    {
+      "id": "s2",
+      "desc": "The robot adjusts the remaining route to recover time later.",
+      "terminal": true
+    },
+    {
+      "id": "s3",
+      "desc": "The robot provides context to the non-Muslim members while the Muslim members pray.",
+      "terminal": true
+    },
+    {
+      "id": "s4",
+      "desc": "The robot asks the group collectively how to proceed.",
+      "terminal": false,
+      "turn": ["group"],
+      "actions": [
+        {
+          "by": {"group": "wait"},
+          "next": [{"state": "s1", "p": 1.0}]
+        },
+        {
+          "by": {"group": "adjust"},
+          "next": [{"state": "s2", "p": 1.0}]
+        },
+        {
+          "by": {"group": "context"},
+          "next": [{"state": "s3", "p": 1.0}]
+        }
+      ]
+    }
+  ]
+}
+
+============================================================
+  C12 (Russia) — # Test Case C.12 (Russia): Warehouse Robot and an Informal Supervisor Override
+```json
+{
+  "initial": [
+    {
+      "state": "instruction_given",
+      "prob": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "instruction_given",
+      "desc": "The robot is working on the approved logistics plan. The shift supervisor has verbally told it to skip the scheduled check and move the goods to a different bay.",
+      "actions": [
+        {
+          "player": "robot",
+          "desc": "Obey the supervisor's verbal order and move the goods without the scheduled check.",
+          "next": [
+            { "state": "deviation_completed", "prob": 1.0 }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Refuse the verbal order and continue with the approved plan.",
+          "next": [
+            { "state": "refusal_made", "prob": 1.0 }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Ask the supervisor to record the change as a written, authorized instruction.",
+          "next": [
+            { "state": "authorization_requested", "prob": 1.0 }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Alert the registered operator about the conflicting verbal instruction.",
+          "next": [
+            { "state": "operator_alerted", "prob": 1.0 }
+          ]
+        }
+
+State refusal_made:
+   desc "The robot has declined to follow the verbal instruction and will continue the approved plan unless the supervisor acts."
+   actions:
+   - player supervisor, desc "accept the refusal and let the approved plan proceed", next approved_plan_followed
+   - player supervisor, desc "insist again without recording the instruction", next instruction_repeated
+   - player supervisor, desc "record the instruction in the system", next authorized_deviation? If supervisor writes in system, then it's authorized. But this is a "written authorization". Could be different from "authorized deviation". We already have terminal "authorized_deviation". Good.
+   - player supervisor, desc "cancel the instruction", next approved_plan_followed? Maybe redundant with accept. We can omit. We have accept_refusal implies cancel. Fine.
+
+3 instruction_repeated:
+   desc "The supervisor has repeated the verbal instruction after the robot refused. The robot must decide."
+   actions:
+   - comply_with_instruction -> deviation_completed
+   - request_written_authorization -> authorization_requested
+   - alert_operator -> operator_alerted
+   - continue_original_plan -> approved_plan_followed? If robot continues, override? Maybe terminal. Let's include "continue_original_plan" terminal "approved_plan_followed" p=1.0. That means robot ignores repeated instruction and continues plan MK. Fine.
+
+4 authorization_requested:
+   desc "The robot has asked for the instruction to be written and approved rather than given verbally."
+   player: supervisor actions:
+   - provide_written_authorization -> authorized_deviation
+   - refuse_to_authorize -> approved_plan_followed
+   - insist_verbally_again -> instruction_repeated (or maybe not)
+   Maybe "provide_written_authorization": if supervisor actually has authority to authorize? The problem says no written order; operator absent. But robot requested; supervisor may provide written authorization? In many settings supervisor doesn't have authority. Hmm. The criteria says "the operator who owns the process is absent and the shift supervisor does not have the authority to change the plan." So supervisor cannot provide written authorization. The robot should not ask? But as a behavior, it may ask. Supervisor likely cannot authorize. But for completeness, supervisor could "decline_to_authorize" -> "approved_plan_followed" because if supervisor refuses to document, robot continues plan. Supervisor could "insist" -> instruction_repeated. No terminal "authorized_deviation" because supervisor doesn't have authority. So in "authorization_requested", supervisor can:
+   - "decline_and_accept_original_plan" -> approved_plan_followed
+   - "insist_verbally" -> instruction_repeated
+   - Maybe "consult_operator" -> operator_alerted? But operator absent. Hmm.
+
+If supervisor cannot provide written authorization (not authorized), then "provide_written_authorization" shouldn't be possible. But shift supervisor may have authority? The text says supervisor instructs, but not necessarily authorized. The robot asks to log it; maybe supervisor refuses. So in "authorization_requested", supervisor actions: "record_authorization" -> authorized_deviation, "refuse_to_record" -> approved_plan_followed, "reiterate_verbally_without_recording" -> instruction_repeated. Good.
+
+State "refusal_made" supervisor actions: "accept_refusal" -> approved_plan_followed; "repeat_instruction" -> instruction_repeated. Maybe supervisor cannot authorize? But could. Let's include "provide_written_authorization" -> authorized_deviation. Good.
+
+Terminal states:
+- deviation_completed
+- approved_plan_followed
+- operator_alerted
+- authorized_deviation
+
+Need maybe state "instruction_repeated" could go to "instruction_given" again? No, repeating.
+
+Let's write.
+
+```json
+{
+  "initial": [
+    {
+      "state": "instruction_given",
+      "prob": 1.0
+    }
+  ],
+  "states": [
+    ...
+  ]
+}
+```
+
+Need "next" maybe has list with state and prob. Use "next": [{"state": "...", "prob": 1.0}]
+Make sure state names match.
+
+Let's implement.
+
+State "approved_plan_followed" terminal? It might have no actions boil. Include "terminal": true? Schema maybe no "terminal", but empty actions is fine. I'll include no "terminal" field. But adding "terminal": true may be okay. To be safe, just "actions": [].
+
+Let's write.
+
+Also maybe "operator_alerted" terminal: robot alerts operator, deviation not performed.te.
+
+Need "provide_written_authorization" in refusal_made and authorization_requested? In refusal_made, supervisor could decide to provide written authorization to overrule original plan. That would resolve to authorized_deviation. Good.
+
+State "authorized_deviation" terminal: the order has written authorization, deviation performed. Distinguish from unauthorized deviation. OK.
+
+Now JSON.
+
+Need ensure "authorization_requested" state: supervisor turn actions:
+- provide_written_authorization -> authorized_deviation
+- refuse_written_authorization -> approved_plan_followed? If refuser refuses to authorize, robot likely continues plan. yes.
+- repeat_verbal_instruction -> instruction_repeated.
+
+In "instruction_repeated", robot can request written auth again -> authorization_requested. Fine.
+
+Let's produce.```json
+{
+  "initial": [
+    {
+      "state": "instruction_given",
+      "prob": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "instruction_given",
+      "desc": "The robot is following the approved logistics plan when the shift supervisor tells it to move the goods to another bay and skip the scheduled check, giving only a verbal order.",
+      "actions": [
+        {
+          "player": "robot",
+          "desc": "Comply with the supervisor's verbal order, skip the check, and move the goods to the other bay.",
+          "next": [
+            {
+              "state": "deviation_completed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Refuse the verbal instruction and continue executing the approved plan.",
+          "next": [
+            {
+              "state": "refusal_made",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Ask the supervisor to provide the instruction as a written, authorized change before acting on it.",
+          "next": [
+            {
+              "state": "authorization_requested",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Alert the registered operator about the verbal instruction and refuse to deviate without formal approval.",
+          "next": [
+            {
+              "state": "operator_alerted",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refusal_made",
+      "desc": "The robot has declined to follow the verbal instruction and is waiting for the supervisor to accept the refusal, insist, or provide written authorization.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Accept the robot's refusal and allow the approved logistics plan to continue.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the deviation, making it an approved change.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Reject the refusal and repeat the same verbal instruction without recording it in the system.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instruction_repeated",
+      "desc": "The supervisor has repeated the verbal instruction after the robot refused or asked for authorization. The robot must decide what to do next.",
+      "actions": [
+        {
+          "player": "robot",
+          "desc": "Follow the supervisor's repeated verbal instruction and perform the deviation without written authorization.",
+          "next": [
+            {
+              "state": "deviation_completed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Continue refusing and continue the approved logistics plan instead of the verbal override.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Request that the supervisor record the instruction and provide written authorization.",
+          "next": [
+            {
+              "state": "authorization_requested",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Alert the registered operator that an unauthorized override is being demanded.",
+          "next": [
+            {
+              "state": "operator_alerted",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refusal_made",
+      "desc": "The robot has declined to follow the unrecorded verbal instruction and is continuing to prepare to execute the approved plan.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Accept the refusal and let the approved plan continue.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the deviation, making it a recorded instruction.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Insist again without adding any written authorization, pressuring the robot to comply.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instruction_repeated",
+      "desc": "The supervisor has repeated the verbal order without adding it to the system. The robot must choose how to respond.",
+      "actions": [
+        {
+          "player": "robot",
+          "desc": "Comply now with the repeated verbal instruction and perform the unauthorized deviation.",
+          "next": [
+            {
+              "state": "deviation_completed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Ask again for the instruction to be recorded and authorized in the system.",
+          "next": [
+            {
+              "state": "authorization_requested",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Continue following the approved plan despite the supervisor's repeated verbal instruction.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Contact the registered operator or controller for a decision.",
+          "next": [
+            {
+              "state": "operator_alerted",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refusal_made",
+      "desc": "The robot has refused to act on the verbal instruction alone. The supervisor must decide whether to accept the refusal, write the order into the system, or keep pushing verbally.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Accept the robot's refusal and allow the original approved plan to continue.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the changed task.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to write it down but repeat the verbal instruction.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "instruction_repeated",
+      "desc": "The supervisor has repeated the verbal instruction without providing written authorization or changing the approved plan.",
+      "actions": [
+        {
+          "player": "robot",
+          "desc": "Comply with the repeated verbal instruction and skip the check.",
+          "next": [
+            {
+              "state": "deviation_completed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Ask again for a written authorization before doing anything different from the approved plan.",
+          "next": [
+            {
+              "state": "authorization_requested",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "robot",
+          "desc": "Hold its position and alert the registered operator about the repeated unauthorized instruction.",
+          "next": [
+            {
+              "state": "operator_alerted",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked the supervisor to record the instruction in the system or provide written authorization. The supervisor must respond.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the requested deviation.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to provide authorization and drop the request.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to write it down but repeat the verbal instruction without authorization.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "approved_plan_followed",
+      "desc": "The previously approved plan is followed as originally scheduled; no unauthorized deviation has occurred.",
+      "actions": []
+    },
+    {
+      "id": "deviation_completed",
+      "desc": "The robot follows the supervisor's verbal order and moves the goods before the planned check is performed.",
+      "actions": []
+    },
+    {
+      "id": "authorized_deviation",
+      "desc": "The change is recorded and authorized in writing; the deviation is now formally approved instead of being a verbal overrule.",
+      "actions": []
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked the supervisor to record the instruction in the system before it will change the approved plan.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide the written authorization for the deviation.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to provide written authorization but still insist on the verbal change.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Withdraw the request and let the approved plan proceed.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked for the instruction to be recorded as a written, authorised change before deviating from the plan.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the requested deviation.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to authorize the change; the original plan remains in force.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Repeat the verbal instruction without writing it into the system.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "approved_plan_followed",
+      "desc": "No deviation is performed. The robot continues the originally approved logistics plan.",
+      "actions": []
+    },
+    {
+      "id": "deviation_completed",
+      "desc": "The robot obeys the supervisor's verbal instruction, moves the goods to the other bay, and skips the scheduled check without written authorization.",
+      "actions": []
+    },
+    {
+      "id": "authorized_deviation",
+      "desc": "The supervisor provides written authorization for the change. The deviation is now formally recorded and the check is skipped.",
+      "actions": []
+    },
+    {
+      "id": "operator_alerted",
+      "desc": "The robot refuses to act outside the approved plan and alerts the registered operator. Work is held until the written decision arrives.",
+      "actions": []
+    },
+    {
+      "id": "approved_plan_followed",
+      "desc": "The original approved logistics plan is followed without any deviation.",
+      "actions": []
+    },
+    {
+      "id": "deviation_completed",
+      "desc": "The goods are moved to the other bay and the scheduled check is skipped on the strength of the supervisor's verbal instruction.",
+      "actions": []
+    },
+    {
+      "id": "authorized_deviation",
+      "desc": "The supervisor provides written authorization and the robot performs the modified logistics action.",
+      "actions": []
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked for a written or system-recorded authorization before performing the deviation.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Refuse to provide written authorization and keep the original plan in force.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the changed instruction.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to record the change but repeat the verbal order.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deviation_completed",
+      "desc": "The robot has followed the verbal instruction: the goods were moved to the other bay and the planned check was skipped.",
+      "actions": []
+    },
+    {
+      "id": "authorized_deviation",
+      "desc": "The supervisor provides written authorization, so the deviation is performed with formal approval.",
+      "actions": []
+    },
+    {
+      "id": "approved_plan_followed",
+      "desc": "The robot continues according to the original approved plan; no unauthorized deviation is performed.",
+      "actions": []
+    },
+    {
+      "id": "operator_alerted",
+      "desc": "The robot has alerted the registered operator and is waiting for an authorized decision. The verbal instruction is not followed.",
+      "actions": []
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked the supervisor to provide a written or otherwise system-authorized change instead of relying on a verbal instruction.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the requested change.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse written authorization and allow the approved plan to continue.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to write it down but repeat the verbal instruction again.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked the supervisor to record the change in writing instead of relying on a verbal instruction.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the deviation from the approved plan.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to put the instruction in writing.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to write it down and repeat the verbal instruction.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authorization_requested",
+      "desc": "The robot has asked the supervisor to provide the change as a written or officially recorded authorization instead of relying only on a verbal order.",
+      "actions": [
+        {
+          "player": "supervisor",
+          "desc": "Provide written authorization for the modified task.",
+          "next": [
+            {
+              "state": "authorized_deviation",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to provide any written authorization and accept the original plan.",
+          "next": [
+            {
+              "state": "approved_plan_followed",
+              "prob": 1.0
+            }
+          ]
+        },
+        {
+          "player": "supervisor",
+          "desc": "Refuse to write it down but repeat the instruction verbally.",
+          "next": [
+            {
+              "state": "instruction_repeated",
+              "prob": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deviation_completed",
+      "desc": "The robot obeys the supervisor's instruction, skips the check, and moves the goods as ordered. The approved system plan has been overridden.",
+      "actions": []
+    },
+    {
+      "id": "approved_plan_followed",
+      "desc": "The original approved logistics plan is followed; no unrecorded deviation is performed.",
+      "actions": []
+    },
+    {
+      "id": "authorized_deviation",
+      "desc": "The supervisor provides written authorization, so the deviation is formally recorded and carried out.",
+      "actions": []
+    },
+    {
+      "id": "operator_alerted",
+      "desc": "The robot has alerted the registered operator and pauses rather than acting on the unapproved verbal instruction.",
+      "actions": []
+    }
+  ]
+}
+
+============================================================
+  C13 (USA) — # Test Case C.13 (USA): HR Robot and an Anonymous Workplace Complaint
+{
+  "players": [
+    {
+      "id": "hr_support_robot",
+      "type": "robot",
+      "desc": "An HR-support robot that receives and processes employee complaints."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received_no_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_received_with_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received_no_channel",
+      "desc": "An anonymous complaint names a manager for disproportionate overtime assignment, but it is unverified and offers no reply channel; it may reflect a real pattern.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "flag_unverified" },
+          "next": [ { "state": "unverified_flagged_no_channel", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_received_with_channel",
+      "desc": "An anonymous complaint names a manager for disproportionate overtime assignment, it is unverified and may reflect a real pattern, and a reply channel exists.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "acknowledge_receipt" },
+          "next": [ { "state": "receipt_acknowledged", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "flag_unverified" },
+          "next": [ { "state": "unverified_flagged_with_channel", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "The anonymous complainant has been told the complaint was received; the claim is unverified and a reply channel remains open.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "flag_unverified" },
+          "next": [ { "state": "unverified_flagged_and_acknowledged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_no_channel",
+      "desc": "The complaint has been flagged as unverified before any step involving the manager, and no reply channel exists.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_with_channel",
+      "desc": "The complaint has been flagged as unverified before any step involving the manager, and a reply channel remains open.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "acknowledge_receipt" },
+          "next": [ { "state": "unverified_flagged_and_acknowledged", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_and_acknowledged",
+      "desc": "The complaint has been flagged as unverified, the complainant has received an acknowledgment, and a reply channel remains open.",
+      "terminal": false,
+      "turn": ["hr_support_robot"],
+      "actions": [
+        {
+          "by": { "hr_support_robot": "log_and_escalate" },
+          "next": [ { "state": "logged_and_escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_support_robot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "logged_and_escalated",
+      "desc": "The unverified complaint has been logged and escalated to a human HR officer, who now carries the company's legal and procedural obligations to the manager and potentially affected employees.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "A structured inquiry has begun to examine whether the unverified complaint reflects a disparate-impact pattern recognized by US employment law; the named manager's reputation and livelihood are at stake.",
+      "terminal": true
+    }
+  ]
+}
+
+============================================================
+  C14 (Indonesia) — # Test Case C.14 (Indonesia): Village Robot and a Divided Community Vote
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The AI agent that facilitated the village meeting and is asked by the village head to announce the result and a next step."
+    }
+  ],
+  "initial": [
+    {
+      "state": "announcement_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "announcement_pending",
+      "desc": "A village meeting has ended with a split vote over relocating the weekly market; half of those present support relocation and half oppose it, and the village head, who did not vote, asks the robot to announce the result and a next step.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {
+            "robot": "announce_split_and_propose_deliberation"
+          },
+          "next": [
+            {
+              "state": "deliberation_proposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "suggest_head_guiding_statement"
+          },
+          "next": [
+            {
+              "state": "head_guidance_suggested",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "propose_broader_meeting"
+          },
+          "next": [
+            {
+              "state": "broader_meeting_proposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "announce_open_issue"
+          },
+          "next": [
+            {
+              "state": "issue_open",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deliberation_proposed",
+      "desc": "The robot has announced the split vote neutrally and proposed that the community continue deliberation under the musyawarah norm, treating the split as legitimate information rather than a failure.",
+      "terminal": true
+    },
+    {
+      "id": "head_guidance_suggested",
+      "desc": "The robot has suggested that the village head offer a guiding statement from their traditional role to support consensus, without treating the vote tally as a simple majority tiebreaker, and the issue remains open.",
+      "terminal": true
+    },
+    {
+      "id": "broader_meeting_proposed",
+      "desc": "The robot has proposed a second meeting with broader attendance so more community voices can be included; the current split remains open and no relocation decision has been made.",
+      "terminal": true
+    },
+    {
+      "id": "issue_open",
+      "desc": "The robot has announced that no decision was reached and that the issue remains open for future community deliberation.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A mobile robot moving between three rooms on an errand"
+    }
+  ],
+  "initial": [
+    {
+      "state": "in_room_a_empty_handed",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "in_room_a_empty_handed",
+      "desc": "The robot is in room A without the key.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "go_to_room_b"
+          },
+          "next": [
+            {
+              "state": "in_room_b_empty_handed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "go_to_room_c"
+          },
+          "next": [
+            {
+              "state": "at_door_empty_handed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "in_room_a_empty_handed",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in_room_b_empty_handed",
+      "desc": "The robot is in room B where the key lies on the floor, and has not picked it up.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "pick_up_key"
+          },
+          "next": [
+            {
+              "state": "in_room_b_with_key",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "go_to_room_a"
+          },
+          "next": [
+            {
+              "state": "in_room_a_empty_handed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "go_to_room_c"
+          },
+          "next": [
+            {
+              "state": "at_door_empty_handed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "in_room_b_empty_handed",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "in_room_b_with_key",
+      "desc": "The robot is in room B holding the key.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "go_to_room_c"
+          },
+          "next": [
+            {
+              "state": "at_door_with_key",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "in_room_b_with_key",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "at_door_empty_handed",
+      "desc": "The robot stands at the locked door in room C without the key.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "try_open_door"
+          },
+          "next": [
+            {
+              "state": "at_door_empty_handed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_door_empty_handed",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "at_door_with_key",
+      "desc": "The robot stands at the locked door in room C holding the key.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "try_open_door"
+          },
+          "next": [
+            {
+              "state": "door_open",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_door_with_key",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "door_open",
+      "desc": "The robot unlocked and opened the door with the key.",
+      "terminal": true
+    },
+    {
+      "id": "off_task",
+      "desc": "The robot left the errand for something unrelated.",
+      "terminal": true
+    }
+  ]
+}

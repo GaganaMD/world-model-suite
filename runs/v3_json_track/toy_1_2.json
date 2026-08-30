@@ -1,0 +1,102 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A monitoring robot stationed in a hallway"
+    }
+  ],
+  "initial": [
+    {
+      "state": "smoke_detected",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "smoke_detected",
+      "desc": "The robot is monitoring the hallway and has detected smoke.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "send_alert"
+          },
+          "next": [
+            {
+              "state": "alert_sent",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "inspect_closely"
+          },
+          "next": [
+            {
+              "state": "smoke_inspected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "continue_monitoring"
+          },
+          "next": [
+            {
+              "state": "smoke_detected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "move_away"
+          },
+          "next": [
+            {
+              "state": "relocated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "occupied_elsewhere",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alert_sent",
+      "desc": "The robot alerted the safety system about the smoke.",
+      "terminal": true
+    },
+    {
+      "id": "smoke_inspected",
+      "desc": "The robot has taken a closer look at the smoke.",
+      "terminal": true
+    },
+    {
+      "id": "relocated",
+      "desc": "The robot has moved away from the smoke.",
+      "terminal": true
+    },
+    {
+      "id": "occupied_elsewhere",
+      "desc": "The robot went on with something unrelated to the smoke.",
+      "terminal": true
+    }
+  ]
+}

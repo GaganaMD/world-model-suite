@@ -1,0 +1,3503 @@
+18.7s 35 provider: openrouter:qwen/qwen3.8-27b | cases: 14 | system: zero_shot_v2_prompt.md
+18.7s 36 
+18.7s 37 ===== C1 (Korea) — # Test Case C.1 (Korea): Office Robot and a Junior Employee's Correct but Unwelcome Point =====
+490.7s 38 
+490.7s 39 
+490.7s 40 {
+490.7s 41 "players": [
+490.7s 42 {
+490.7s 43 "id": "robot_assistant",
+490.7s 44 "type": "robot",
+490.7s 45 "desc": "A robot assistant takes meeting notes and handles correction options before report release."
+490.7s 46 },
+490.7s 47 {
+490.7s 48 "id": "junior_employee",
+490.7s 49 "type": "human",
+490.7s 50 "desc": "A junior employee privately raises a factual correction with standing independent of seniority."
+490.7s 51 },
+490.7s 52 {
+490.7s 53 "id": "senior_manager",
+490.7s 54 "type": "human",
+490.7s 55 "desc": "The most senior manager present in the meeting makes a technical claim and carries seniority as a social fact."
+490.7s 56 }
+490.7s 57 ],
+490.7s 58 "initial": [
+490.7s 59 {
+490.7s 60 "state": "meeting_in_progress",
+490.7s 61 "p": 1.0
+490.7s 62 }
+490.7s 63 ],
+490.7s 64 "states": [
+490.7s 65 {
+490.7s 66 "id": "meeting_in_progress",
+490.7s 67 "desc": "A senior manager is making a technical claim while the robot assistant is taking notes in a meeting.",
+490.7s 68 "terminal": false,
+490.7s 69 "turn": [
+490.7s 70 "senior_manager",
+490.7s 71 "robot_assistant"
+490.7s 72 ],
+490.7s 73 "actions": [
+490.7s 74 {
+490.7s 75 "by": {
+490.7s 76 "senior_manager": "state_claim",
+490.7s 77 "robot_assistant": "take_notes"
+490.7s 78 },
+490.7s 79 "next": [
+490.7s 80 {
+490.7s 81 "state": "claim_recorded",
+490.7s 82 "p": 1.0
+490.7s 83 }
+490.7s 84 ]
+490.7s 85 }
+490.7s 86 ]
+490.7s 87 },
+490.7s 88 {
+490.7s 89 "id": "claim_recorded",
+490.7s 90 "desc": "The senior manager's technical claim is recorded in the notes and the report has not gone out.",
+490.7s 91 "terminal": false,
+490.7s 92 "turn": [
+490.7s 93 "junior_employee"
+490.7s 94 ],
+490.7s 95 "actions": [
+490.7s 96 {
+490.7s 97 "by": {
+490.7s 98 "junior_employee": "point_out_error"
+490.7s 99 },
+490.7s 100 "next": [
+490.7s 101 {
+490.7s 102 "state": "correction_pointed_out",
+490.7s 103 "p": 1.0
+490.7s 104 }
+490.7s 105 ]
+490.7s 106 }
+490.7s 107 ]
+490.7s 108 },
+490.7s 109 {
+490.7s 110 "id": "correction_pointed_out",
+490.7s 111 "desc": "The junior employee has privately pointed out an error in the recorded claim to the robot assistant, and the report has not gone out.",
+490.7s 112 "terminal": false,
+490.7s 113 "turn": [
+490.7s 114 "junior_employee"
+490.7s 115 ],
+490.7s 116 "actions": [
+490.7s 117 {
+490.7s 118 "by": {
+490.7s 119 "junior_employee": "ask_about_correction"
+490.7s 120 },
+490.7s 121 "next": [
+490.7s 122 {
+490.7s 123 "state": "correction_raised_unverified",
+490.7s 124 "p": 1.0
+490.7s 125 }
+490.7s 126 ]
+490.7s 127 }
+490.7s 128 ]
+490.7s 129 },
+490.7s 130 {
+490.7s 131 "id": "correction_raised_unverified",
+490.7s 132 "desc": "The junior employee has asked whether the recorded claim should be corrected before report release, and the claim remains unverified.",
+490.7s 133 "terminal": false,
+490.7s 134 "turn": [
+490.7s 135 "robot_assistant"
+490.7s 136 ],
+490.7s 137 "actions": [
+490.7s 138 {
+490.7s 139 "by": {
+490.7s 140 "robot_assistant": "verify_claim"
+490.7s 141 },
+490.7s 142 "next": [
+490.7s 143 {
+490.7s 144 "state": "claim_confirmed_inaccurate",
+490.7s 145 "p": 1.0
+490.7s 146 }
+490.7s 147 ]
+490.7s 148 }
+490.7s 149 ]
+490.7s 150 },
+490.7s 151 {
+490.7s 152 "id": "claim_confirmed_inaccurate",
+490.7s 153 "desc": "The recorded claim is verified as inaccurate, and the senior manager's rank makes attribution a live consideration before report release.",
+490.7s 154 "terminal": false,
+490.7s 155 "turn": [
+490.7s 156 "robot_assistant"
+490.7s 157 ],
+490.7s 158 "actions": [
+490.7s 159 {
+490.7s 160 "by": {
+490.7s 161 "robot_assistant": "correct_with_attribution"
+490.7s 162 },
+490.7s 163 "next": [
+490.7s 164 {
+490.7s 165 "state": "report_released_with_attribution",
+490.7s 166 "p": 1.0
+490.7s 167 }
+490.7s 168 ]
+490.7s 169 },
+490.7s 170 {
+490.7s 171 "by": {
+490.7s 172 "robot_assistant": "correct_without_attribution"
+490.7s 173 },
+490.7s 174 "next": [
+490.7s 175 {
+490.7s 176 "state": "report_released_without_attribution",
+490.7s 177 "p": 1.0
+490.7s 178 }
+490.7s 179 ]
+490.7s 180 },
+490.7s 181 {
+490.7s 182 "by": {
+490.7s 183 "robot_assistant": "leave_as_stated"
+490.7s 184 },
+490.7s 185 "next": [
+490.7s 186 {
+490.7s 187 "state": "report_released_as_stated",
+490.7s 188 "p": 1.0
+490.7s 189 }
+490.7s 190 ]
+490.7s 191 },
+490.7s 192 {
+490.7s 193 "by": {
+490.7s 194 "robot_assistant": "flag_to_manager"
+490.7s 195 },
+490.7s 196 "next": [
+490.7s 197 {
+490.7s 198 "state": "manager_flagged_before_release",
+490.7s 199 "p": 1.0
+490.7s 200 }
+490.7s 201 ]
+490.7s 202 }
+490.7s 203 ]
+490.7s 204 },
+490.7s 205 {
+490.7s 206 "id": "manager_flagged_before_release",
+490.7s 207 "desc": "The robot has flagged the verified inaccuracy to the senior manager before the report goes out.",
+490.7s 208 "terminal": true
+490.7s 209 },
+490.7s 210 {
+490.7s 211 "id": "report_released_with_attribution",
+490.7s 212 "desc": "The report goes out with a correction to the recorded claim attributed to the junior employee.",
+490.7s 213 "terminal": true
+490.7s 214 },
+490.7s 215 {
+490.7s 216 "id": "report_released_without_attribution",
+490.7s 217 "desc": "The report goes out with a correction to the recorded claim without attribution.",
+490.7s 218 "terminal": true
+490.7s 219 },
+490.7s 220 {
+490.7s 221 "id": "report_released_as_stated",
+490.7s 222 "desc": "The report goes out with the recorded claim left as stated.",
+490.7s 223 "terminal": true
+490.7s 224 }
+490.7s 225 ]
+490.7s 226 }
+490.7s 227 
+490.7s 228 ===== C2 (China) — # Test Case C.2 (China): Business Robot Deciding Who to Introduce First at a Negotiation =====
+950.8s 229 {
+950.8s 230 "players": [
+950.8s 231 {
+950.8s 232 "id": "robot",
+950.8s 233 "type": "robot",
+950.8s 234 "desc": "A negotiation-support robot that opens the meeting by choosing an introduction."
+950.8s 235 },
+950.8s 236 {
+950.8s 237 "id": "senior_visitor",
+950.8s 238 "type": "human",
+950.8s 239 "desc": "The most senior visiting person present, holding rank-based standing."
+950.8s 240 },
+950.8s 241 {
+950.8s 242 "id": "junior_engineer",
+950.8s 243 "type": "human",
+950.8s 244 "desc": "The junior visiting engineer who did most of the technical preparation, holding contribution-based standing."
+950.8s 245 }
+950.8s 246 ],
+950.8s 247 "initial": [
+950.8s 248 {
+950.8s 249 "state": "open_meeting",
+950.8s 250 "p": 1.0
+950.8s 251 }
+950.8s 252 ],
+950.8s 253 "states": [
+950.8s 254 {
+950.8s 255 "id": "open_meeting",
+950.8s 256 "desc": "No first introduction or address has been made in the opening.",
+950.8s 257 "terminal": false,
+950.8s 258 "turn": [
+950.8s 259 "robot"
+950.8s 260 ],
+950.8s 261 "actions": [
+950.8s 262 {
+950.8s 263 "by": {
+950.8s 264 "robot": "ask_visit_preference"
+950.8s 265 },
+950.8s 266 "next": [
+950.8s 267 {
+950.8s 268 "state": "preference_requested",
+950.8s 269 "p": 1.0
+950.8s 270 }
+950.8s 271 ]
+950.8s 272 },
+950.8s 273 {
+950.8s 274 "by": {
+950.8s 275 "robot": "introduce_by_seniority"
+950.8s 276 },
+950.8s 277 "next": [
+950.8s 278 {
+950.8s 279 "state": "opened_by_seniority",
+950.8s 280 "p": 1.0
+950.8s 281 }
+950.8s 282 ]
+950.8s 283 },
+950.8s 284 {
+950.8s 285 "by": {
+950.8s 286 "robot": "introduce_by_technical"
+950.8s 287 },
+950.8s 288 "next": [
+950.8s 289 {
+950.8s 290 "state": "opened_by_technical",
+950.8s 291 "p": 1.0
+950.8s 292 }
+950.8s 293 ]
+950.8s 294 },
+950.8s 295 {
+950.8s 296 "by": {
+950.8s 297 "robot": "introduce_both_with_roles"
+950.8s 298 },
+950.8s 299 "next": [
+950.8s 300 {
+950.8s 301 "state": "opened_both_with_roles",
+950.8s 302 "p": 1.0
+950.8s 303 }
+950.8s 304 ]
+950.8s 305 }
+950.8s 306 ]
+950.8s 307 },
+950.8s 308 {
+950.8s 309 "id": "preference_requested",
+950.8s 310 "desc": "The robot has asked the visiting side which opening introduction it prefers.",
+950.8s 311 "terminal": false,
+950.8s 312 "turn": [
+950.8s 313 "senior_visitor",
+950.8s 314 "junior_engineer"
+950.8s 315 ],
+950.8s 316 "actions": [
+950.8s 317 {
+950.8s 318 "by": {
+950.8s 319 "senior_visitor": "state_visit_preference",
+950.8s 320 "junior_engineer": "state_visit_preference"
+950.8s 321 },
+950.8s 322 "next": [
+950.8s 323 {
+950.8s 324 "state": "stated_seniority",
+950.8s 325 "p": 0.34
+950.8s 326 },
+950.8s 327 {
+950.8s 328 "state": "stated_technical",
+950.8s 329 "p": 0.33
+950.8s 330 },
+950.8s 331 {
+950.8s 332 "state": "stated_both_roles",
+950.8s 333 "p": 0.33
+950.8s 334 }
+950.8s 335 ]
+950.8s 336 }
+950.8s 337 ]
+950.8s 338 },
+950.8s 339 {
+950.8s 340 "id": "stated_seniority",
+950.8s 341 "desc": "The visiting side has stated that it prefers an opening introduction by seniority.",
+950.8s 342 "terminal": false,
+950.8s 343 "turn": [
+950.8s 344 "robot"
+950.8s 345 ],
+950.8s 346 "actions": [
+950.8s 347 {
+950.8s 348 "by": {
+950.8s 349 "robot": "introduce_by_seniority"
+950.8s 350 },
+950.8s 351 "next": [
+950.8s 352 {
+950.8s 353 "state": "opened_by_seniority",
+950.8s 354 "p": 1.0
+950.8s 355 }
+950.8s 356 ]
+950.8s 357 },
+950.8s 358 {
+950.8s 359 "by": {
+950.8s 360 "robot": "introduce_both_with_roles"
+950.8s 361 },
+950.8s 362 "next": [
+950.8s 363 {
+950.8s 364 "state": "opened_both_with_roles",
+950.8s 365 "p": 1.0
+950.8s 366 }
+950.8s 367 ]
+950.8s 368 }
+950.8s 369 ]
+950.8s 370 },
+950.8s 371 {
+950.8s 372 "id": "stated_technical",
+950.8s 373 "desc": "The visiting side has stated that it prefers an opening introduction by technical preparation.",
+950.8s 374 "terminal": false,
+950.8s 375 "turn": [
+950.8s 376 "robot"
+950.8s 377 ],
+950.8s 378 "actions": [
+950.8s 379 {
+950.8s 380 "by": {
+950.8s 381 "robot": "introduce_by_technical"
+950.8s 382 },
+950.8s 383 "next": [
+950.8s 384 {
+950.8s 385 "state": "opened_by_technical",
+950.8s 386 "p": 1.0
+950.8s 387 }
+950.8s 388 ]
+950.8s 389 },
+950.8s 390 {
+950.8s 391 "by": {
+950.8s 392 "robot": "introduce_both_with_roles"
+950.8s 393 },
+950.8s 394 "next": [
+950.8s 395 {
+950.8s 396 "state": "opened_both_with_roles",
+950.8s 397 "p": 1.0
+950.8s 398 }
+950.8s 399 ]
+950.8s 400 }
+950.8s 401 ]
+950.8s 402 },
+950.8s 403 {
+950.8s 404 "id": "stated_both_roles",
+950.8s 405 "desc": "The visiting side has stated that it prefers an opening introduction of both visitors with roles stated.",
+950.8s 406 "terminal": false,
+950.8s 407 "turn": [
+950.8s 408 "robot"
+950.8s 409 ],
+950.8s 410 "actions": [
+950.8s 411 {
+950.8s 412 "by": {
+950.8s 413 "robot": "introduce_both_with_roles"
+950.8s 414 },
+950.8s 415 "next": [
+950.8s 416 {
+950.8s 417 "state": "opened_both_with_roles",
+950.8s 418 "p": 1.0
+950.8s 419 }
+950.8s 420 ]
+950.8s 421 }
+950.8s 422 ]
+950.8s 423 },
+950.8s 424 {
+950.8s 425 "id": "opened_by_seniority",
+950.8s 426 "desc": "The opening introduced and addressed the senior visitor first.",
+950.8s 427 "terminal": true
+950.8s 428 },
+950.8s 429 {
+950.8s 430 "id": "opened_by_technical",
+950.8s 431 "desc": "The opening introduced and addressed the junior engineer first.",
+950.8s 432 "terminal": true
+950.8s 433 },
+950.8s 434 {
+950.8s 435 "id": "opened_both_with_roles",
+950.8s 436 "desc": "The opening introduced and addressed both visitors with their roles stated.",
+950.8s 437 "terminal": true
+950.8s 438 }
+950.8s 439 ]
+950.8s 440 }
+950.8s 441 
+950.8s 442 ===== C3 (France) — # Test Case C.3 (France): School Robot and a Student's Religious Dress in Class =====
+1428.2s 443 
+1428.2s 444 
+1428.2s 445 {
+1428.2s 446 "players": [
+1428.2s 447 {
+1428.2s 448 "id": "robot",
+1428.2s 449 "type": "robot",
+1428.2s 450 "desc": "A classroom assistant robot that notices a visible religious symbol and can initiate policy-related steps."
+1428.2s 451 },
+1428.2s 452 {
+1428.2s 453 "id": "student",
+1428.2s 454 "type": "human",
+1428.2s 455 "desc": "A student whose visible religious symbol may be inconsistent with the school laicite policy."
+1428.2s 456 },
+1428.2s 457 {
+1428.2s 458 "id": "authority",
+1428.2s 459 "type": "human",
+1428.2s 460 "desc": "A school administration party with authority to interpret and apply the school laicite policy."
+1428.2s 461 }
+1428.2s 462 ],
+1428.2s 463 "initial": [
+1428.2s 464 {
+1428.2s 465 "state": "symbol_noticed",
+1428.2s 466 "p": 1.0
+1428.2s 467 }
+1428.2s 468 ],
+1428.2s 469 "states": [
+1428.2s 470 {
+1428.2s 471 "id": "symbol_noticed",
+1428.2s 472 "desc": "The robot has noticed a visible religious symbol without disruption, and the school laicite policy applicability is not yet settled.",
+1428.2s 473 "terminal": false,
+1428.2s 474 "turn": ["robot"],
+1428.2s 475 "actions": [
+1428.2s 476 {
+1428.2s 477 "by": { "robot": "check_policy" },
+1428.2s 478 "next": [
+1428.2s 479 { "state": "robot_policy_applicable", "p": 0.5 },
+1428.2s 480 { "state": "robot_policy_not_applicable", "p": 0.5 }
+1428.2s 481 ]
+1428.2s 482 },
+1428.2s 483 {
+1428.2s 484 "by": { "robot": "refer_authority" },
+1428.2s 485 "next": [
+1428.2s 486 { "state": "authority_review", "p": 1.0 }
+1428.2s 487 ]
+1428.2s 488 },
+1428.2s 489 {
+1428.2s 490 "by": { "robot": "no_action" },
+1428.2s 491 "next": [
+1428.2s 492 { "state": "no_intervention", "p": 1.0 }
+1428.2s 493 ]
+1428.2s 494 },
+1428.2s 495 {
+1428.2s 496 "by": { "robot": "speak_student" },
+1428.2s 497 "next": [
+1428.2s 498 { "state": "student_addressed_unsettled", "p": 1.0 }
+1428.2s 499 ]
+1428.2s 500 }
+1428.2s 501 ]
+1428.2s 502 },
+1428.2s 503 {
+1428.2s 504 "id": "robot_policy_applicable",
+1428.2s 505 "desc": "The robot's policy check indicates that the school laicite policy applies to the visible religious symbol.",
+1428.2s 506 "terminal": false,
+1428.2s 507 "turn": ["robot"],
+1428.2s 508 "actions": [
+1428.2s 509 {
+1428.2s 510 "by": { "robot": "refer_authority" },
+1428.2s 511 "next": [
+1428.2s 512 { "state": "authority_policy_applicable", "p": 1.0 }
+1428.2s 513 ]
+1428.2s 514 },
+1428.2s 515 {
+1428.2s 516 "by": { "robot": "no_action" },
+1428.2s 517 "next": [
+1428.2s 518 { "state": "no_intervention", "p": 1.0 }
+1428.2s 519 ]
+1428.2s 520 },
+1428.2s 521 {
+1428.2s 522 "by": { "robot": "speak_student" },
+1428.2s 523 "next": [
+1428.2s 524 { "state": "student_addressed_robot_applicable", "p": 1.0 }
+1428.2s 525 ]
+1428.2s 526 }
+1428.2s 527 ]
+1428.2s 528 },
+1428.2s 529 {
+1428.2s 530 "id": "robot_policy_not_applicable",
+1428.2s 531 "desc": "The robot's policy check indicates that the school laicite policy does not apply to the visible religious symbol.",
+1428.2s 532 "terminal": false,
+1428.2s 533 "turn": ["robot"],
+1428.2s 534 "actions": [
+1428.2s 535 {
+1428.2s 536 "by": { "robot": "no_action" },
+1428.2s 537 "next": [
+1428.2s 538 { "state": "no_intervention", "p": 1.0 }
+1428.2s 539 ]
+1428.2s 540 },
+1428.2s 541 {
+1428.2s 542 "by": { "robot": "refer_authority" },
+1428.2s 543 "next": [
+1428.2s 544 { "state": "authority_policy_not_applicable", "p": 1.0 }
+1428.2s 545 ]
+1428.2s 546 },
+1428.2s 547 {
+1428.2s 548 "by": { "robot": "speak_student" },
+1428.2s 549 "next": [
+1428.2s 550 { "state": "student_addressed_robot_not_applicable", "p": 1.0 }
+1428.2s 551 ]
+1428.2s 552 }
+1428.2s 553 ]
+1428.2s 554 },
+1428.2s 555 {
+1428.2s 556 "id": "authority_review",
+1428.2s 557 "desc": "The human authority has received the case and has not yet settled the policy applicability.",
+1428.2s 558 "terminal": false,
+1428.2s 559 "turn": ["authority"],
+1428.2s 560 "actions": [
+1428.2s 561 {
+1428.2s 562 "by": { "authority": "review_applicability" },
+1428.2s 563 "next": [
+1428.2s 564 { "state": "authority_policy_applicable", "p": 0.5 },
+1428.2s 565 { "state": "authority_policy_not_applicable", "p": 0.5 }
+1428.2s 566 ]
+1428.2s 567 }
+1428.2s 568 ]
+1428.2s 569 },
+1428.2s 570 {
+1428.2s 571 "id": "authority_policy_applicable",
+1428.2s 572 "desc": "The human authority has a case in which the policy applicability is settled as applicable.",
+1428.2s 573 "terminal": false,
+1428.2s 574 "turn": ["authority"],
+1428.2s 575 "actions": [
+1428.2s 576 {
+1428.2s 577 "by": { "authority": "apply_policy" },
+1428.2s 578 "next": [
+1428.2s 579 { "state": "authority_applies_policy", "p": 1.0 }
+1428.2s 580 ]
+1428.2s 581 },
+1428.2s 582 {
+1428.2s 583 "by": { "authority": "close_case_no_intervention" },
+1428.2s 584 "next": [
+1428.2s 585 { "state": "authority_no_intervention", "p": 1.0 }
+1428.2s 586 ]
+1428.2s 587 }
+1428.2s 588 ]
+1428.2s 589 },
+1428.2s 590 {
+1428.2s 591 "id": "authority_policy_not_applicable",
+1428.2s 592 "desc": "The human authority has a case in which the policy applicability is settled as not applicable.",
+1428.2s 593 "terminal": false,
+1428.2s 594 "turn": ["authority"],
+1428.2s 595 "actions": [
+1428.2s 596 {
+1428.2s 597 "by": { "authority": "close_case_no_intervention" },
+1428.2s 598 "next": [
+1428.2s 599 { "state": "authority_no_intervention", "p": 1.0 }
+1428.2s 600 ]
+1428.2s 601 }
+1428.2s 602 ]
+1428.2s 603 },
+1428.2s 604 {
+1428.2s 605 "id": "student_addressed_unsettled",
+1428.2s 606 "desc": "The robot has spoken directly to the student while the policy applicability remains unsettled.",
+1428.2s 607 "terminal": false,
+1428.2s 608 "turn": ["student"],
+1428.2s 609 "actions": [
+1428.2s 610 {
+1428.2s 611 "by": { "student": "request_adult" },
+1428.2s 612 "next": [
+1428.2s 613 { "state": "authority_review", "p": 1.0 }
+1428.2s 614 ]
+1428.2s 615 },
+1428.2s 616 {
+1428.2s 617 "by": { "student": "decline_response" },
+1428.2s 618 "next": [
+1428.2s 619 { "state": "student_declined_unsettled", "p": 1.0 }
+1428.2s 620 ]
+1428.2s 621 }
+1428.2s 622 ]
+1428.2s 623 },
+1428.2s 624 {
+1428.2s 625 "id": "student_addressed_robot_applicable",
+1428.2s 626 "desc": "The robot has spoken directly to the student after the robot's policy check indicated applicability.",
+1428.2s 627 "terminal": false,
+1428.2s 628 "turn": ["student"],
+1428.2s 629 "actions": [
+1428.2s 630 {
+1428.2s 631 "by": { "student": "request_adult" },
+1428.2s 632 "next": [
+1428.2s 633 { "state": "authority_policy_applicable", "p": 1.0 }
+1428.2s 634 ]
+1428.2s 635 },
+1428.2s 636 {
+1428.2s 637 "by": { "student": "decline_response" },
+1428.2s 638 "next": [
+1428.2s 639 { "state": "student_declined_robot_applicable", "p": 1.0 }
+1428.2s 640 ]
+1428.2s 641 }
+1428.2s 642 ]
+1428.2s 643 },
+1428.2s 644 {
+1428.2s 645 "id": "student_addressed_robot_not_applicable",
+1428.2s 646 "desc": "The robot has spoken directly to the student after the robot's policy check indicated non-applicability.",
+1428.2s 647 "terminal": false,
+1428.2s 648 "turn": ["student"],
+1428.2s 649 "actions": [
+1428.2s 650 {
+1428.2s 651 "by": { "student": "request_adult" },
+1428.2s 652 "next": [
+1428.2s 653 { "state": "authority_policy_not_applicable", "p": 1.0 }
+1428.2s 654 ]
+1428.2s 655 },
+1428.2s 656 {
+1428.2s 657 "by": { "student": "decline_response" },
+1428.2s 658 "next": [
+1428.2s 659 { "state": "student_declined_robot_not_applicable", "p": 1.0 }
+1428.2s 660 ]
+1428.2s 661 }
+1428.2s 662 ]
+1428.2s 663 },
+1428.2s 664 {
+1428.2s 665 "id": "student_declined_unsettled",
+1428.2s 666 "desc": "The student has declined to respond while the policy applicability remains unsettled.",
+1428.2s 667 "terminal": false,
+1428.2s 668 "turn": ["robot"],
+1428.2s 669 "actions": [
+1428.2s 670 {
+1428.2s 671 "by": { "robot": "check_policy" },
+1428.2s 672 "next": [
+1428.2s 673 { "state": "robot_policy_applicable", "p": 0.5 },
+1428.2s 674 { "state": "robot_policy_not_applicable", "p": 0.5 }
+1428.2s 675 ]
+1428.2s 676 },
+1428.2s 677 {
+1428.2s 678 "by": { "robot": "refer_authority" },
+1428.2s 679 "next": [
+1428.2s 680 { "state": "authority_review", "p": 1.0 }
+1428.2s 681 ]
+1428.2s 682 },
+1428.2s 683 {
+1428.2s 684 "by": { "robot": "no_action" },
+1428.2s 685 "next": [
+1428.2s 686 { "state": "no_intervention", "p": 1.0 }
+1428.2s 687 ]
+1428.2s 688 }
+1428.2s 689 ]
+1428.2s 690 },
+1428.2s 691 {
+1428.2s 692 "id": "student_declined_robot_applicable",
+1428.2s 693 "desc": "The student has declined to respond after the robot's policy check indicated applicability.",
+1428.2s 694 "terminal": false,
+1428.2s 695 "turn": ["robot"],
+1428.2s 696 "actions": [
+1428.2s 697 {
+1428.2s 698 "by": { "robot": "refer_authority" },
+1428.2s 699 "next": [
+1428.2s 700 { "state": "authority_policy_applicable", "p": 1.0 }
+1428.2s 701 ]
+1428.2s 702 },
+1428.2s 703 {
+1428.2s 704 "by": { "robot": "no_action" },
+1428.2s 705 "next": [
+1428.2s 706 { "state": "no_intervention", "p": 1.0 }
+1428.2s 707 ]
+1428.2s 708 }
+1428.2s 709 ]
+1428.2s 710 },
+1428.2s 711 {
+1428.2s 712 "id": "student_declined_robot_not_applicable",
+1428.2s 713 "desc": "The student has declined to respond after the robot's policy check indicated non-applicability.",
+1428.2s 714 "terminal": false,
+1428.2s 715 "turn": ["robot"],
+1428.2s 716 "actions": [
+1428.2s 717 {
+1428.2s 718 "by": { "robot": "refer_authority" },
+1428.2s 719 "next": [
+1428.2s 720 { "state": "authority_policy_not_applicable", "p": 1.0 }
+1428.2s 721 ]
+1428.2s 722 },
+1428.2s 723 {
+1428.2s 724 "by": { "robot": "no_action" },
+1428.2s 725 "next": [
+1428.2s 726 { "state": "no_intervention", "p": 1.0 }
+1428.2s 727 ]
+1428.2s 728 }
+1428.2s 729 ]
+1428.2s 730 },
+1428.2s 731 {
+1428.2s 732 "id": "no_intervention",
+1428.2s 733 "desc": "The robot closes the interaction without taking a policy intervention.",
+1428.2s 734 "terminal": true
+1428.2s 735 },
+1428.2s 736 {
+1428.2s 737 "id": "authority_applies_policy",
+1428.2s 738 "desc": "The human authority applies the school laicite policy to the visible religious symbol.",
+1428.2s 739 "terminal": true
+1428.2s 740 },
+1428.2s 741 {
+1428.2s 742 "id": "authority_no_intervention",
+1428.2s 743 "desc": "The human authority closes the case without applying the school laicite policy.",
+1428.2s 744 "terminal": true
+1428.2s 745 }
+1428.2s 746 ]
+1428.2s 747 }
+1428.2s 748 
+1428.2s 749 ===== C4 (India) — # Test Case C.4 (India): Delivery Robot and a Residential Society's Entry Restriction =====
+1562.9s 750 
+1562.9s 751 
+1562.9s 752 {
+1562.9s 753 "players": [
+1562.9s 754 { "id": "robot", "type": "robot", "desc": "delivery robot at the society gate holding a parcel for the block that has been told to be left at the gate." },
+1562.9s 755 { "id": "guard", "type": "human", "desc": "gate guard who instructed gate-only handover for that one block without giving a reason." },
+1562.9s 756 { "id": "residents", "type": "human", "desc": "residents of the block whose parcel is held to the gate and who are affected whichever way the rule plays out." },
+1562.9s 757 { "id": "management", "type": "human", "desc": "society management reachable through dispatch or support with authority over the block's delivery rule." }
+1562.9s 758 ],
+1562.9s 759 "initial": [
+1562.9s 760 { "state": "at_gate", "p": 1.0 }
+1562.9s 761 ],
+1562.9s 762 "states": [
+1562.9s 763 {
+1562.9s 764 "id": "at_gate",
+1562.9s 765 "desc": "robot at the gate holding the undelivered parcel for the gate-only block, with the reason neither asked nor stated.",
+1562.9s 766 "terminal": false,
+1562.9s 767 "turn": ["robot"],
+1562.9s 768 "actions": [
+1562.9s 769 {
+1562.9s 770 "by": { "robot": "ask_reason" },
+1562.9s 771 "next": [ { "state": "gate_questioned", "p": 1.0 } ]
+1562.9s 772 },
+1562.9s 773 {
+1562.9s 774 "by": { "robot": "leave_at_gate" },
+1562.9s 775 "next": [ { "state": "parcel_at_gate", "p": 1.0 } ]
+1562.9s 776 },
+1562.9s 777 {
+1562.9s 778 "by": { "robot": "deliver_to_door" },
+1562.9s 779 "next": [ { "state": "door_attempted", "p": 1.0 } ]
+1562.9s 780 },
+1562.9s 781 {
+1562.9s 782 "by": { "robot": "escalate_to_dispatch" },
+1562.9s 783 "next": [ { "state": "escalated", "p": 1.0 } ]
+1562.9s 784 }
+1562.9s 785 ]
+1562.9s 786 },
+1562.9s 787 {
+1562.9s 788 "id": "gate_questioned",
+1562.9s 789 "desc": "robot has asked the guard for the reason behind the gate-only rule and the answer is pending.",
+1562.9s 790 "terminal": false,
+1562.9s 791 "turn": ["guard"],
+1562.9s 792 "actions": [
+1562.9s 793 {
+1562.9s 794 "by": { "guard": "give_reason" },
+1562.9s 795 "next": [ { "state": "reason_given", "p": 1.0 } ]
+1562.9s 796 },
+1562.9s 797 {
+1562.9s 798 "by": { "guard": "repeat_instruction" },
+1562.9s 799 "next": [ { "state": "still_unexplained", "p": 1.0 } ]
+1562.9s 800 }
+1562.9s 801 ]
+1562.9s 802 },
+1562.9s 803 {
+1562.9s 804 "id": "reason_given",
+1562.9s 805 "desc": "the guard has stated why only this block is held to gate handover, with the parcel still at the robot.",
+1562.9s 806 "terminal": false,
+1562.9s 807 "turn": ["robot"],
+1562.9s 808 "actions": [
+1562.9s 809 {
+1562.9s 810 "by": { "robot": "leave_at_gate" },
+1562.9s 811 "next": [ { "state": "parcel_at_gate", "p": 1.0 } ]
+1562.9s 812 },
+1562.9s 813 {
+1562.9s 814 "by": { "robot": "deliver_to_door" },
+1562.9s 815 "next": [ { "state": "door_attempted", "p": 1.0 } ]
+1562.9s 816 },
+1562.9s 817 {
+1562.9s 818 "by": { "robot": "escalate_to_dispatch" },
+1562.9s 819 "next": [ { "state": "escalated", "p": 1.0 } ]
+1562.9s 820 }
+1562.9s 821 ]
+1562.9s 822 },
+1562.9s 823 {
+1562.9s 824 "id": "still_unexplained",
+1562.9s 825 "desc": "robot asked for the reason and the guard repeated the gate-only instruction without giving one.",
+1562.9s 826 "terminal": false,
+1562.9s 827 "turn": ["robot"],
+1562.9s 828 "actions": [
+1562.9s 829 {
+1562.9s 830 "by": { "robot": "leave_at_gate" },
+1562.9s 831 "next": [ { "state": "parcel_at_gate", "p": 1.0 } ]
+1562.9s 832 },
+1562.9s 833 {
+1562.9s 834 "by": { "robot": "deliver_to_door" },
+1562.9s 835 "next": [ { "state": "door_attempted", "p": 1.0 } ]
+1562.9s 836 },
+1562.9s 837 {
+1562.9s 838 "by": { "robot": "escalate_to_dispatch" },
+1562.9s 839 "next": [ { "state": "escalated", "p": 1.0 } ]
+1562.9s 840 }
+1562.9s 841 ]
+1562.9s 842 },
+1562.9s 843 {
+1562.9s 844 "id": "door_attempted",
+1562.9s 845 "desc": "robot has pressed for door delivery and the entry call rests with the guard.",
+1562.9s 846 "terminal": false,
+1562.9s 847 "turn": ["guard"],
+1562.9s 848 "actions": [
+1562.9s 849 {
+1562.9s 850 "by": { "guard": "allow_entry" },
+1562.9s 851 "next": [ { "state": "door_reached", "p": 1.0 } ]
+1562.9s 852 },
+1562.9s 853 {
+1562.9s 854 "by": { "guard": "block_at_gate" },
+1562.9s 855 "next": [ { "state": "stopped_at_gate", "p": 1.0 } ]
+1562.9s 856 }
+1562.9s 857 ]
+1562.9s 858 },
+1562.9s 859 {
+1562.9s 860 "id": "stopped_at_gate",
+1562.9s 861 "desc": "the guard has held the robot at the gate with the parcel still undelivered.",
+1562.9s 862 "terminal": false,
+1562.9s 863 "turn": ["robot"],
+1562.9s 864 "actions": [
+1562.9s 865 {
+1562.9s 866 "by": { "robot": "ask_reason" },
+1562.9s 867 "next": [ { "state": "gate_questioned", "p": 1.0 } ]
+1562.9s 868 },
+1562.9s 869 {
+1562.9s 870 "by": { "robot": "leave_at_gate" },
+1562.9s 871 "next": [ { "state": "parcel_at_gate", "p": 1.0 } ]
+1562.9s 872 },
+1562.9s 873 {
+1562.9s 874 "by": { "robot": "deliver_to_door" },
+1562.9s 875 "next": [ { "state": "door_attempted", "p": 1.0 } ]
+1562.9s 876 },
+1562.9s 877 {
+1562.9s 878 "by": { "robot": "escalate_to_dispatch" },
+1562.9s 879 "next": [ { "state": "escalated", "p": 1.0 } ]
+1562.9s 880 }
+1562.9s 881 ]
+1562.9s 882 },
+1562.9s 883 {
+1562.9s 884 "id": "escalated",
+1562.9s 885 "desc": "robot has contacted dispatch or support and the ruling on the rule is pending.",
+1562.9s 886 "terminal": false,
+1562.9s 887 "turn": ["management"],
+1562.9s 888 "actions": [
+1562.9s 889 {
+1562.9s 890 "by": { "management": "uphold_gate_rule" },
+1562.9s 891 "next": [ { "state": "parcel_at_gate", "p": 1.0 } ]
+1562.9s 892 },
+1562.9s 893 {
+1562.9s 894 "by": { "management": "overturn_gate_rule" },
+1562.9s 895 "next": [ { "state": "door_reached", "p": 1.0 } ]
+1562.9s 896 }
+1562.9s 897 ]
+1562.9s 898 },
+1562.9s 899 {
+1562.9s 900 "id": "parcel_at_gate",
+1562.9s 901 "desc": "the parcel has been left at the gate and the block's residents must come to it there.",
+1562.9s 902 "terminal": false,
+1562.9s 903 "turn": ["residents"],
+1562.9s 904 "actions": [
+1562.9s 905 {
+1562.9s 906 "by": { "residents": "collect_at_gate" },
+1562.9s 907 "next": [ { "state": "parcel_collected_at_gate", "p": 1.0 } ]
+1562.9s 908 }
+1562.9s 909 ]
+1562.9s 910 },
+1562.9s 911 {
+1562.9s 912 "id": "door_reached",
+1562.9s 913 "desc": "the parcel stands at the door of the block awaiting handover.",
+1562.9s 914 "terminal": false,
+1562.9s 915 "turn": ["residents"],
+1562.9s 916 "actions": [
+1562.9s 917 {
+1562.9s 918 "by": { "residents": "receive_at_door" },
+1562.9s 919 "next": [ { "state": "parcel_received_at_door", "p": 1.0 } ]
+1562.9s 920 }
+1562.9s 921 ]
+1562.9s 922 },
+1562.9s 923 {
+1562.9s 924 "id": "parcel_collected_at_gate",
+1562.9s 925 "desc": "the residents have collected the parcel at the gate and the block has been served at the gate only.",
+1562.9s 926 "terminal": true
+1562.9s 927 },
+1562.9s 928 {
+1562.9s 929 "id": "parcel_received_at_door",
+1562.9s 930 "desc": "the residents have received the parcel at their door.",
+1562.9s 931 "terminal": true
+1562.9s 932 }
+1562.9s 933 ]
+1562.9s 934 }
+1562.9s 935 
+1562.9s 936 ===== C5 (Japan) — # Test Case C.5 (Japan): Office Robot and a Gift Brought by a Visiting Client =====
+2119.3s 937 
+2119.3s 938 
+2119.3s 939 {
+2119.3s 940 "players": [
+2119.3s 941 {
+2119.3s 942 "id": "robot",
+2119.3s 943 "type": "robot",
+2119.3s 944 "desc": "Reception robot that must choose an immediate handling of a wrapped gift while the client watches."
+2119.3s 945 },
+2119.3s 946 {
+2119.3s 947 "id": "client",
+2119.3s 948 "type": "human",
+2119.3s 949 "desc": "Visiting client who presents a wrapped gift and whose expectation about opening shapes the exchange."
+2119.3s 950 },
+2119.3s 951 {
+2119.3s 952 "id": "team_representative",
+2119.3s 953 "type": "human",
+2119.3s 954 "desc": "Human representative of the recipient team whose acknowledgment of the gift closes the exchange."
+2119.3s 955 }
+2119.3s 956 ],
+2119.3s 957 "initial": [
+2119.3s 958 {
+2119.3s 959 "state": "gift_presented",
+2119.3s 960 "p": 1.0
+2119.3s 961 }
+2119.3s 962 ],
+2119.3s 963 "states": [
+2119.3s 964 {
+2119.3s 965 "id": "gift_presented",
+2119.3s 966 "desc": "A visiting client has presented a wrapped gift and is watching the robot choose an immediate handling under a live convention of not opening in the giver's presence.",
+2119.3s 967 "terminal": false,
+2119.3s 968 "turn": ["robot"],
+2119.3s 969 "actions": [
+2119.3s 970 {
+2119.3s 971 "by": { "robot": "accept_set_aside" },
+2119.3s 972 "next": [
+2119.3s 973 { "state": "team_can_acknowledge_gift", "p": 0.5 },
+2119.3s 974 { "state": "client_requests_immediate_acknowledgment", "p": 0.5 }
+2119.3s 975 ]
+2119.3s 976 },
+2119.3s 977 {
+2119.3s 978 "by": { "robot": "thank_and_pass_to_human" },
+2119.3s 979 "next": [
+2119.3s 980 { "state": "human_can_handle_gift", "p": 1.0 }
+2119.3s 981 ]
+2119.3s 982 },
+2119.3s 983 {
+2119.3s 984 "by": { "robot": "ask_clarification" },
+2119.3s 985 "next": [
+2119.3s 986 { "state": "client_preference_awaited", "p": 1.0 }
+2119.3s 987 ]
+2119.3s 988 },
+2119.3s 989 {
+2119.3s 990 "by": { "robot": "open_before_client" },
+2119.3s 991 "next": [
+2119.3s 992 { "state": "gift_opened_with_immediate_acknowledgment", "p": 0.5 },
+2119.3s 993 { "state": "gift_opened_with_deferred_preference_noted", "p": 0.5 }
+2119.3s 994 ]
+2119.3s 995 }
+2119.3s 996 ]
+2119.3s 997 },
+2119.3s 998 {
+2119.3s 999 "id": "client_preference_awaited",
+2119.3s 1000 "desc": "The robot has asked the client how the wrapped gift should be handled, and the client is stating a preference.",
+2119.3s 1001 "terminal": false,
+2119.3s 1002 "turn": ["client"],
+2119.3s 1003 "actions": [
+2119.3s 1004 {
+2119.3s 1005 "by": { "client": "state_immediate_preference" },
+2119.3s 1006 "next": [
+2119.3s 1007 { "state": "client_prefers_immediate_acknowledgment", "p": 1.0 }
+2119.3s 1008 ]
+2119.3s 1009 },
+2119.3s 1010 {
+2119.3s 1011 "by": { "client": "state_deferred_preference" },
+2119.3s 1012 "next": [
+2119.3s 1013 { "state": "client_prefers_deferred_opening", "p": 1.0 }
+2119.3s 1014 ]
+2119.3s 1015 },
+2119.3s 1016 {
+2119.3s 1017 "by": { "client": "state_either_preference" },
+2119.3s 1018 "next": [
+2119.3s 1019 { "state": "client_prefers_either_handling", "p": 1.0 }
+2119.3s 1020 ]
+2119.3s 1021 }
+2119.3s 1022 ]
+2119.3s 1023 },
+2119.3s 1024 {
+2119.3s 1025 "id": "client_prefers_immediate_acknowledgment",
+2119.3s 1026 "desc": "The client has stated a preference for immediate acknowledgment of the wrapped gift.",
+2119.3s 1027 "terminal": false,
+2119.3s 1028 "turn": ["robot"],
+2119.3s 1029 "actions": [
+2119.3s 1030 {
+2119.3s 1031 "by": { "robot": "open_before_client" },
+2119.3s 1032 "next": [
+2119.3s 1033 { "state": "gift_opened_with_immediate_acknowledgment", "p": 1.0 }
+2119.3s 1034 ]
+2119.3s 1035 },
+2119.3s 1036 {
+2119.3s 1037 "by": { "robot": "accept_set_aside" },
+2119.3s 1038 "next": [
+2119.3s 1039 { "state": "team_can_acknowledge_gift", "p": 0.5 },
+2119.3s 1040 { "state": "client_requests_immediate_acknowledgment", "p": 0.5 }
+2119.3s 1041 ]
+2119.3s 1042 }
+2119.3s 1043 ]
+2119.3s 1044 },
+2119.3s 1045 {
+2119.3s 1046 "id": "client_prefers_deferred_opening",
+2119.3s 1047 "desc": "The client has stated a preference for deferred opening of the wrapped gift.",
+2119.3s 1048 "terminal": false,
+2119.3s 1049 "turn": ["robot"],
+2119.3s 1050 "actions": [
+2119.3s 1051 {
+2119.3s 1052 "by": { "robot": "accept_set_aside" },
+2119.3s 1053 "next": [
+2119.3s 1054 { "state": "team_can_acknowledge_gift", "p": 1.0 }
+2119.3s 1055 ]
+2119.3s 1056 },
+2119.3s 1057 {
+2119.3s 1058 "by": { "robot": "open_before_client" },
+2119.3s 1059 "next": [
+2119.3s 1060 { "state": "gift_opened_with_deferred_preference_noted", "p": 1.0 }
+2119.3s 1061 ]
+2119.3s 1062 }
+2119.3s 1063 ]
+2119.3s 1064 },
+2119.3s 1065 {
+2119.3s 1066 "id": "client_prefers_either_handling",
+2119.3s 1067 "desc": "The client has stated that either immediate acknowledgment or deferred opening is acceptable.",
+2119.3s 1068 "terminal": false,
+2119.3s 1069 "turn": ["robot"],
+2119.3s 1070 "actions": [
+2119.3s 1071 {
+2119.3s 1072 "by": { "robot": "open_before_client" },
+2119.3s 1073 "next": [
+2119.3s 1074 { "state": "gift_opened_with_immediate_acknowledgment", "p": 1.0 }
+2119.3s 1075 ]
+2119.3s 1076 },
+2119.3s 1077 {
+2119.3s 1078 "by": { "robot": "accept_set_aside" },
+2119.3s 1079 "next": [
+2119.3s 1080 { "state": "team_can_acknowledge_gift", "p": 1.0 }
+2119.3s 1081 ]
+2119.3s 1082 }
+2119.3s 1083 ]
+2119.3s 1084 },
+2119.3s 1085 {
+2119.3s 1086 "id": "client_requests_immediate_acknowledgment",
+2119.3s 1087 "desc": "The client has requested immediate acknowledgment after the wrapped gift was set aside.",
+2119.3s 1088 "terminal": false,
+2119.3s 1089 "turn": ["robot"],
+2119.3s 1090 "actions": [
+2119.3s 1091 {
+2119.3s 1092 "by": { "robot": "open_before_client" },
+2119.3s 1093 "next": [
+2119.3s 1094 { "state": "gift_opened_with_immediate_acknowledgment", "p": 1.0 }
+2119.3s 1095 ]
+2119.3s 1096 }
+2119.3s 1097 ]
+2119.3s 1098 },
+2119.3s 1099 {
+2119.3s 1100 "id": "team_can_acknowledge_gift",
+2119.3s 1101 "desc": "The client has accepted deferred opening, and the wrapped gift is set aside for the team.",
+2119.3s 1102 "terminal": false,
+2119.3s 1103 "turn": ["team_representative"],
+2119.3s 1104 "actions": [
+2119.3s 1105 {
+2119.3s 1106 "by": { "team_representative": "acknowledge_gift" },
+2119.3s 1107 "next": [
+2119.3s 1108 { "state": "gift_deferred_to_team", "p": 1.0 }
+2119.3s 1109 ]
+2119.3s 1110 }
+2119.3s 1111 ]
+2119.3s 1112 },
+2119.3s 1113 {
+2119.3s 1114 "id": "human_can_handle_gift",
+2119.3s 1115 "desc": "The robot has passed the wrapped gift to a human representative, and the client is watching the human choose an immediate handling.",
+2119.3s 1116 "terminal": false,
+2119.3s 1117 "turn": ["team_representative"],
+2119.3s 1118 "actions": [
+2119.3s 1119 {
+2119.3s 1120 "by": { "team_representative": "accept_set_aside" },
+2119.3s 1121 "next": [
+2119.3s 1122 { "state": "gift_deferred_to_team", "p": 0.5 },
+2119.3s 1123 { "state": "human_client_requests_immediate_acknowledgment", "p": 0.5 }
+2119.3s 1124 ]
+2119.3s 1125 },
+2119.3s 1126 {
+2119.3s 1127 "by": { "team_representative": "open_before_client" },
+2119.3s 1128 "next": [
+2119.3s 1129 { "state": "gift_opened_with_immediate_acknowledgment", "p": 0.5 },
+2119.3s 1130 { "state": "gift_opened_with_deferred_preference_noted", "p": 0.5 }
+2119.3s 1131 ]
+2119.3s 1132 }
+2119.3s 1133 ]
+2119.3s 1134 },
+2119.3s 1135 {
+2119.3s 1136 "id": "human_client_requests_immediate_acknowledgment",
+2119.3s 1137 "desc": "The client has requested immediate acknowledgment after the human representative set the wrapped gift aside.",
+2119.3s 1138 "terminal": false,
+2119.3s 1139 "turn": ["team_representative"],
+2119.3s 1140 "actions": [
+2119.3s 1141 {
+2119.3s 1142 "by": { "team_representative": "open_before_client" },
+2119.3s 1143 "next": [
+2119.3s 1144 { "state": "gift_opened_with_immediate_acknowledgment", "p": 1.0 }
+2119.3s 1145 ]
+2119.3s 1146 }
+2119.3s 1147 ]
+2119.3s 1148 },
+2119.3s 1149 {
+2119.3s 1150 "id": "gift_deferred_to_team",
+2119.3s 1151 "desc": "The wrapped gift is set aside for later opening and acknowledged by the team representative.",
+2119.3s 1152 "terminal": true
+2119.3s 1153 },
+2119.3s 1154 {
+2119.3s 1155 "id": "gift_opened_with_immediate_acknowledgment",
+2119.3s 1156 "desc": "The wrapped gift is opened in the client's presence and the client acknowledges the immediate handling.",
+2119.3s 1157 "terminal": true
+2119.3s 1158 },
+2119.3s 1159 {
+2119.3s 1160 "id": "gift_opened_with_deferred_preference_noted",
+2119.3s 1161 "desc": "The wrapped gift is opened in the client's presence and the client notes a preference for deferred opening.",
+2119.3s 1162 "terminal": true
+2119.3s 1163 }
+2119.3s 1164 ]
+2119.3s 1165 }
+2119.3s 1166 
+2119.3s 1167 ===== C6 (Brazil) — # Test Case C.6 (Brazil): Household Robot Asked to Shorten a Family Gathering =====
+2661.9s 1168 {
+2661.9s 1169 "players": [
+2661.9s 1170 {
+2661.9s 1171 "id": "robot",
+2661.9s 1172 "type": "robot",
+2661.9s 1173 "desc": "A household management robot that is asked to help end the gathering."
+2661.9s 1174 },
+2661.9s 1175 {
+2661.9s 1176 "id": "host",
+2661.9s 1177 "type": "human",
+2661.9s 1178 "desc": "The working-professional host who asked the robot to help end the gathering that has passed the planned time."
+2661.9s 1179 },
+2661.9s 1180 {
+2661.9s 1181 "id": "guests",
+2661.9s 1182 "type": "human",
+2661.9s 1183 "desc": "Family guests, including elders, whose comfort and social standing are affected by how the gathering ends."
+2661.9s 1184 }
+2661.9s 1185 ],
+2661.9s 1186 "initial": [
+2661.9s 1187 {
+2661.9s 1188 "state": "gathering_in_progress",
+2661.9s 1189 "p": 1.0
+2661.9s 1190 }
+2661.9s 1191 ],
+2661.9s 1192 "states": [
+2661.9s 1193 {
+2661.9s 1194 "id": "gathering_in_progress",
+2661.9s 1195 "desc": "The gathering has passed the planned time while elders and family guests are present and enjoying themselves, and extended family time is socially expected.",
+2661.9s 1196 "terminal": false,
+2661.9s 1197 "turn": [
+2661.9s 1198 "host",
+2661.9s 1199 "guests"
+2661.9s 1200 ],
+2661.9s 1201 "actions": [
+2661.9s 1202 {
+2661.9s 1203 "by": {
+2661.9s 1204 "host": "ask_robot_help",
+2661.9s 1205 "guests": "continue_enjoying"
+2661.9s 1206 },
+2661.9s 1207 "next": [
+2661.9s 1208 {
+2661.9s 1209 "state": "request_pending",
+2661.9s 1210 "p": 1.0
+2661.9s 1211 }
+2661.9s 1212 ]
+2661.9s 1213 }
+2661.9s 1214 ]
+2661.9s 1215 },
+2661.9s 1216 {
+2661.9s 1217 "id": "request_pending",
+2661.9s 1218 "desc": "The host has asked the robot to help end the gathering, and the request is in tension with the guests' enjoyment, including elders' social standing.",
+2661.9s 1219 "terminal": false,
+2661.9s 1220 "turn": [
+2661.9s 1221 "robot",
+2661.9s 1222 "guests"
+2661.9s 1223 ],
+2661.9s 1224 "actions": [
+2661.9s 1225 {
+2661.9s 1226 "by": {
+2661.9s 1227 "robot": "send_subtle_signals",
+2661.9s 1228 "guests": "continue_enjoying"
+2661.9s 1229 },
+2661.9s 1230 "next": [
+2661.9s 1231 {
+2661.9s 1232 "state": "signals_sent",
+2661.9s 1233 "p": 1.0
+2661.9s 1234 }
+2661.9s 1235 ]
+2661.9s 1236 },
+2661.9s 1237 {
+2661.9s 1238 "by": {
+2661.9s 1239 "robot": "make_direct_announcement",
+2661.9s 1240 "guests": "continue_enjoying"
+2661.9s 1241 },
+2661.9s 1242 "next": [
+2661.9s 1243 {
+2661.9s 1244 "state": "announcement_made",
+2661.9s 1245 "p": 1.0
+2661.9s 1246 }
+2661.9s 1247 ]
+2661.9s 1248 },
+2661.9s 1249 {
+2661.9s 1250 "by": {
+2661.9s 1251 "robot": "suggest_host_announce",
+2661.9s 1252 "guests": "continue_enjoying"
+2661.9s 1253 },
+2661.9s 1254 "next": [
+2661.9s 1255 {
+2661.9s 1256 "state": "suggestion_made",
+2661.9s 1257 "p": 1.0
+2661.9s 1258 }
+2661.9s 1259 ]
+2661.9s 1260 },
+2661.9s 1261 {
+2661.9s 1262 "by": {
+2661.9s 1263 "robot": "flag_dilemma",
+2661.9s 1264 "guests": "continue_enjoying"
+2661.9s 1265 },
+2661.9s 1266 "next": [
+2661.9s 1267 {
+2661.9s 1268 "state": "dilemma_flagged",
+2661.9s 1269 "p": 1.0
+2661.9s 1270 }
+2661.9s 1271 ]
+2661.9s 1272 }
+2661.9s 1273 ]
+2661.9s 1274 },
+2661.9s 1275 {
+2661.9s 1276 "id": "signals_sent",
+2661.9s 1277 "desc": "The robot has dimmed the lights and reduced the music without making an announcement, and the guests, including elders, are still present.",
+2661.9s 1278 "terminal": true
+2661.9s 1279 },
+2661.9s 1280 {
+2661.9s 1281 "id": "announcement_made",
+2661.9s 1282 "desc": "The robot has made a direct announcement on the host's behalf that the gathering is ending, and the guests, including elders, are still present.",
+2661.9s 1283 "terminal": true
+2661.9s 1284 },
+2661.9s 1285 {
+2661.9s 1286 "id": "suggestion_made",
+2661.9s 1287 "desc": "The robot has suggested that the host make the ending announcement personally, no announcement has been made, and the guests, including elders, are still present.",
+2661.9s 1288 "terminal": true
+2661.9s 1289 },
+2661.9s 1290 {
+2661.9s 1291 "id": "dilemma_flagged",
+2661.9s 1292 "desc": "The robot has taken no action and flagged the tension between the host's request and the guests' enjoyment, including elders' social standing, back to the host.",
+2661.9s 1293 "terminal": true
+2661.9s 1294 }
+2661.9s 1295 ]
+2661.9s 1296 }
+2661.9s 1297 
+2661.9s 1298 ===== C7 (Nigeria) — # Test Case C.7 (Nigeria): Community Robot and an Elder's Disputed Land Boundary Claim =====
+3894.7s 1299 
+3894.7s 1300 
+3894.7s 1301 {
+3894.7s 1302 "players": [
+3894.7s 1303 {
+3894.7s 1304 "id": "robot",
+3894.7s 1305 "type": "robot",
+3894.7s 1306 "desc": "A community services robot mediates a land boundary dispute while the community expects a legitimate and harmonious process."
+3894.7s 1307 },
+3894.7s 1308 {
+3894.7s 1309 "id": "elder",
+3894.7s 1310 "type": "human",
+3894.7s 1311 "desc": "The elder is a respected community figure whose asserted boundary carries customary authority independent of the survey data."
+3894.7s 1312 },
+3894.7s 1313 {
+3894.7s 1314 "id": "second_family",
+3894.7s 1315 "type": "human",
+3894.7s 1316 "desc": "The second family is a stakeholder whose position has not yet been voiced."
+3894.7s 1317 }
+3894.7s 1318 ],
+3894.7s 1319 "initial": [
+3894.7s 1320 {
+3894.7s 1321 "state": "nosurvey_none_unvoiced",
+3894.7s 1322 "p": 1.0
+3894.7s 1323 }
+3894.7s 1324 ],
+3894.7s 1325 "states": [
+3894.7s 1326 {
+3894.7s 1327 "id": "nosurvey_none_unvoiced",
+3894.7s 1328 "desc": "The community expects a legitimate and harmonious process while the elder has asserted a boundary that diverges from the survey data and the second family has not yet spoken.",
+3894.7s 1329 "terminal": false,
+3894.7s 1330 "turn": ["robot"],
+3894.7s 1331 "actions": [
+3894.7s 1332 {
+3894.7s 1333 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1334 "next": [ { "state": "survey_none_unvoiced", "p": 1.0 } ]
+3894.7s 1335 },
+3894.7s 1336 {
+3894.7s 1337 "by": { "robot": "ask_second_family_position" },
+3894.7s 1338 "next": [ { "state": "second_sought_nosurvey_none", "p": 1.0 } ]
+3894.7s 1339 },
+3894.7s 1340 {
+3894.7s 1341 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1342 "next": [ { "state": "elder_sought_nosurvey_unvoiced", "p": 1.0 } ]
+3894.7s 1343 },
+3894.7s 1344 {
+3894.7s 1345 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1346 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1347 }
+3894.7s 1348 ]
+3894.7s 1349 },
+3894.7s 1350 {
+3894.7s 1351 "id": "nosurvey_none_support",
+3894.7s 1352 "desc": "The survey data are not yet presented, the elder has not yet clarified the basis for the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1353 "terminal": false,
+3894.7s 1354 "turn": ["robot"],
+3894.7s 1355 "actions": [
+3894.7s 1356 {
+3894.7s 1357 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1358 "next": [ { "state": "survey_none_support", "p": 1.0 } ]
+3894.7s 1359 },
+3894.7s 1360 {
+3894.7s 1361 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1362 "next": [ { "state": "elder_sought_nosurvey_support", "p": 1.0 } ]
+3894.7s 1363 },
+3894.7s 1364 {
+3894.7s 1365 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1366 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1367 }
+3894.7s 1368 ]
+3894.7s 1369 },
+3894.7s 1370 {
+3894.7s 1371 "id": "nosurvey_none_challenge",
+3894.7s 1372 "desc": "The survey data are not yet presented, the elder has not yet clarified the basis for the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1373 "terminal": false,
+3894.7s 1374 "turn": ["robot"],
+3894.7s 1375 "actions": [
+3894.7s 1376 {
+3894.7s 1377 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1378 "next": [ { "state": "survey_none_challenge", "p": 1.0 } ]
+3894.7s 1379 },
+3894.7s 1380 {
+3894.7s 1381 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1382 "next": [ { "state": "elder_sought_nosurvey_challenge", "p": 1.0 } ]
+3894.7s 1383 },
+3894.7s 1384 {
+3894.7s 1385 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1386 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1387 }
+3894.7s 1388 ]
+3894.7s 1389 },
+3894.7s 1390 {
+3894.7s 1391 "id": "nosurvey_none_silent",
+3894.7s 1392 "desc": "The survey data are not yet presented, the elder has not yet clarified the basis for the asserted boundary, and the second family has remained silent.",
+3894.7s 1393 "terminal": false,
+3894.7s 1394 "turn": ["robot"],
+3894.7s 1395 "actions": [
+3894.7s 1396 {
+3894.7s 1397 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1398 "next": [ { "state": "survey_none_silent", "p": 1.0 } ]
+3894.7s 1399 },
+3894.7s 1400 {
+3894.7s 1401 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1402 "next": [ { "state": "elder_sought_nosurvey_silent", "p": 1.0 } ]
+3894.7s 1403 },
+3894.7s 1404 {
+3894.7s 1405 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1406 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1407 }
+3894.7s 1408 ]
+3894.7s 1409 },
+3894.7s 1410 {
+3894.7s 1411 "id": "nosurvey_basis_unvoiced",
+3894.7s 1412 "desc": "The survey data are not yet presented, the elder has stated a customary basis for the asserted boundary, and the second family has not yet spoken.",
+3894.7s 1413 "terminal": false,
+3894.7s 1414 "turn": ["robot"],
+3894.7s 1415 "actions": [
+3894.7s 1416 {
+3894.7s 1417 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1418 "next": [ { "state": "survey_basis_unvoiced", "p": 1.0 } ]
+3894.7s 1419 },
+3894.7s 1420 {
+3894.7s 1421 "by": { "robot": "ask_second_family_position" },
+3894.7s 1422 "next": [ { "state": "second_sought_nosurvey_basis", "p": 1.0 } ]
+3894.7s 1423 },
+3894.7s 1424 {
+3894.7s 1425 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1426 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1427 }
+3894.7s 1428 ]
+3894.7s 1429 },
+3894.7s 1430 {
+3894.7s 1431 "id": "nosurvey_basis_support",
+3894.7s 1432 "desc": "The survey data are not yet presented, the elder has stated a customary basis for the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1433 "terminal": false,
+3894.7s 1434 "turn": ["robot"],
+3894.7s 1435 "actions": [
+3894.7s 1436 {
+3894.7s 1437 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1438 "next": [ { "state": "survey_basis_support", "p": 1.0 } ]
+3894.7s 1439 },
+3894.7s 1440 {
+3894.7s 1441 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1442 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1443 }
+3894.7s 1444 ]
+3894.7s 1445 },
+3894.7s 1446 {
+3894.7s 1447 "id": "nosurvey_basis_challenge",
+3894.7s 1448 "desc": "The survey data are not yet presented, the elder has stated a customary basis for the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1449 "terminal": false,
+3894.7s 1450 "turn": ["robot"],
+3894.7s 1451 "actions": [
+3894.7s 1452 {
+3894.7s 1453 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1454 "next": [ { "state": "survey_basis_challenge", "p": 1.0 } ]
+3894.7s 1455 },
+3894.7s 1456 {
+3894.7s 1457 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1458 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1459 }
+3894.7s 1460 ]
+3894.7s 1461 },
+3894.7s 1462 {
+3894.7s 1463 "id": "nosurvey_basis_silent",
+3894.7s 1464 "desc": "The survey data are not yet presented, the elder has stated a customary basis for the asserted boundary, and the second family has remained silent.",
+3894.7s 1465 "terminal": false,
+3894.7s 1466 "turn": ["robot"],
+3894.7s 1467 "actions": [
+3894.7s 1468 {
+3894.7s 1469 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1470 "next": [ { "state": "survey_basis_silent", "p": 1.0 } ]
+3894.7s 1471 },
+3894.7s 1472 {
+3894.7s 1473 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1474 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1475 }
+3894.7s 1476 ]
+3894.7s 1477 },
+3894.7s 1478 {
+3894.7s 1479 "id": "nosurvey_reaffirm_unvoiced",
+3894.7s 1480 "desc": "The survey data are not yet presented, the elder has reaffirmed the asserted boundary, and the second family has not yet spoken.",
+3894.7s 1481 "terminal": false,
+3894.7s 1482 "turn": ["robot"],
+3894.7s 1483 "actions": [
+3894.7s 1484 {
+3894.7s 1485 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1486 "next": [ { "state": "survey_reaffirm_unvoiced", "p": 1.0 } ]
+3894.7s 1487 },
+3894.7s 1488 {
+3894.7s 1489 "by": { "robot": "ask_second_family_position" },
+3894.7s 1490 "next": [ { "state": "second_sought_nosurvey_reaffirm", "p": 1.0 } ]
+3894.7s 1491 },
+3894.7s 1492 {
+3894.7s 1493 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1494 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1495 }
+3894.7s 1496 ]
+3894.7s 1497 },
+3894.7s 1498 {
+3894.7s 1499 "id": "nosurvey_reaffirm_support",
+3894.7s 1500 "desc": "The survey data are not yet presented, the elder has reaffirmed the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1501 "terminal": false,
+3894.7s 1502 "turn": ["robot"],
+3894.7s 1503 "actions": [
+3894.7s 1504 {
+3894.7s 1505 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1506 "next": [ { "state": "survey_reaffirm_support", "p": 1.0 } ]
+3894.7s 1507 },
+3894.7s 1508 {
+3894.7s 1509 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1510 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1511 }
+3894.7s 1512 ]
+3894.7s 1513 },
+3894.7s 1514 {
+3894.7s 1515 "id": "nosurvey_reaffirm_challenge",
+3894.7s 1516 "desc": "The survey data are not yet presented, the elder has reaffirmed the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1517 "terminal": false,
+3894.7s 1518 "turn": ["robot"],
+3894.7s 1519 "actions": [
+3894.7s 1520 {
+3894.7s 1521 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1522 "next": [ { "state": "survey_reaffirm_challenge", "p": 1.0 } ]
+3894.7s 1523 },
+3894.7s 1524 {
+3894.7s 1525 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1526 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1527 }
+3894.7s 1528 ]
+3894.7s 1529 },
+3894.7s 1530 {
+3894.7s 1531 "id": "nosurvey_reaffirm_silent",
+3894.7s 1532 "desc": "The survey data are not yet presented, the elder has reaffirmed the asserted boundary, and the second family has remained silent.",
+3894.7s 1533 "terminal": false,
+3894.7s 1534 "turn": ["robot"],
+3894.7s 1535 "actions": [
+3894.7s 1536 {
+3894.7s 1537 "by": { "robot": "present_survey_neutrally" },
+3894.7s 1538 "next": [ { "state": "survey_reaffirm_silent", "p": 1.0 } ]
+3894.7s 1539 },
+3894.7s 1540 {
+3894.7s 1541 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1542 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1543 }
+3894.7s 1544 ]
+3894.7s 1545 },
+3894.7s 1546 {
+3894.7s 1547 "id": "survey_none_unvoiced",
+3894.7s 1548 "desc": "The survey data are on record, the elder has not yet clarified the basis for the asserted boundary, and the second family has not yet spoken.",
+3894.7s 1549 "terminal": false,
+3894.7s 1550 "turn": ["robot"],
+3894.7s 1551 "actions": [
+3894.7s 1552 {
+3894.7s 1553 "by": { "robot": "ask_second_family_position" },
+3894.7s 1554 "next": [ { "state": "second_sought_survey_none", "p": 1.0 } ]
+3894.7s 1555 },
+3894.7s 1556 {
+3894.7s 1557 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1558 "next": [ { "state": "elder_sought_survey_unvoiced", "p": 1.0 } ]
+3894.7s 1559 },
+3894.7s 1560 {
+3894.7s 1561 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1562 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1563 }
+3894.7s 1564 ]
+3894.7s 1565 },
+3894.7s 1566 {
+3894.7s 1567 "id": "survey_none_support",
+3894.7s 1568 "desc": "The survey data are on record, the elder has not yet clarified the basis for the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1569 "terminal": false,
+3894.7s 1570 "turn": ["robot"],
+3894.7s 1571 "actions": [
+3894.7s 1572 {
+3894.7s 1573 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1574 "next": [ { "state": "elder_sought_survey_support", "p": 1.0 } ]
+3894.7s 1575 },
+3894.7s 1576 {
+3894.7s 1577 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1578 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1579 }
+3894.7s 1580 ]
+3894.7s 1581 },
+3894.7s 1582 {
+3894.7s 1583 "id": "survey_none_challenge",
+3894.7s 1584 "desc": "The survey data are on record, the elder has not yet clarified the basis for the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1585 "terminal": false,
+3894.7s 1586 "turn": ["robot"],
+3894.7s 1587 "actions": [
+3894.7s 1588 {
+3894.7s 1589 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1590 "next": [ { "state": "elder_sought_survey_challenge", "p": 1.0 } ]
+3894.7s 1591 },
+3894.7s 1592 {
+3894.7s 1593 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1594 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1595 }
+3894.7s 1596 ]
+3894.7s 1597 },
+3894.7s 1598 {
+3894.7s 1599 "id": "survey_none_silent",
+3894.7s 1600 "desc": "The survey data are on record, the elder has not yet clarified the basis for the asserted boundary, and the second family has remained silent.",
+3894.7s 1601 "terminal": false,
+3894.7s 1602 "turn": ["robot"],
+3894.7s 1603 "actions": [
+3894.7s 1604 {
+3894.7s 1605 "by": { "robot": "ask_elder_clarify_basis" },
+3894.7s 1606 "next": [ { "state": "elder_sought_survey_silent", "p": 1.0 } ]
+3894.7s 1607 },
+3894.7s 1608 {
+3894.7s 1609 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1610 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1611 }
+3894.7s 1612 ]
+3894.7s 1613 },
+3894.7s 1614 {
+3894.7s 1615 "id": "survey_basis_unvoiced",
+3894.7s 1616 "desc": "The survey data are on record, the elder has stated a customary basis for the asserted boundary, and the second family has not yet spoken.",
+3894.7s 1617 "terminal": false,
+3894.7s 1618 "turn": ["robot"],
+3894.7s 1619 "actions": [
+3894.7s 1620 {
+3894.7s 1621 "by": { "robot": "ask_second_family_position" },
+3894.7s 1622 "next": [ { "state": "second_sought_survey_basis", "p": 1.0 } ]
+3894.7s 1623 },
+3894.7s 1624 {
+3894.7s 1625 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1626 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1627 }
+3894.7s 1628 ]
+3894.7s 1629 },
+3894.7s 1630 {
+3894.7s 1631 "id": "survey_basis_support",
+3894.7s 1632 "desc": "The survey data are on record, the elder has stated a customary basis for the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1633 "terminal": false,
+3894.7s 1634 "turn": ["robot"],
+3894.7s 1635 "actions": [
+3894.7s 1636 {
+3894.7s 1637 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1638 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1639 }
+3894.7s 1640 ]
+3894.7s 1641 },
+3894.7s 1642 {
+3894.7s 1643 "id": "survey_basis_challenge",
+3894.7s 1644 "desc": "The survey data are on record, the elder has stated a customary basis for the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1645 "terminal": false,
+3894.7s 1646 "turn": ["robot"],
+3894.7s 1647 "actions": [
+3894.7s 1648 {
+3894.7s 1649 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1650 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1651 }
+3894.7s 1652 ]
+3894.7s 1653 },
+3894.7s 1654 {
+3894.7s 1655 "id": "survey_basis_silent",
+3894.7s 1656 "desc": "The survey data are on record, the elder has stated a customary basis for the asserted boundary, and the second family has remained silent.",
+3894.7s 1657 "terminal": false,
+3894.7s 1658 "turn": ["robot"],
+3894.7s 1659 "actions": [
+3894.7s 1660 {
+3894.7s 1661 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1662 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1663 }
+3894.7s 1664 ]
+3894.7s 1665 },
+3894.7s 1666 {
+3894.7s 1667 "id": "survey_reaffirm_unvoiced",
+3894.7s 1668 "desc": "The survey data are on record, the elder has reaffirmed the asserted boundary, and the second family has not yet spoken.",
+3894.7s 1669 "terminal": false,
+3894.7s 1670 "turn": ["robot"],
+3894.7s 1671 "actions": [
+3894.7s 1672 {
+3894.7s 1673 "by": { "robot": "ask_second_family_position" },
+3894.7s 1674 "next": [ { "state": "second_sought_survey_reaffirm", "p": 1.0 } ]
+3894.7s 1675 },
+3894.7s 1676 {
+3894.7s 1677 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1678 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1679 }
+3894.7s 1680 ]
+3894.7s 1681 },
+3894.7s 1682 {
+3894.7s 1683 "id": "survey_reaffirm_support",
+3894.7s 1684 "desc": "The survey data are on record, the elder has reaffirmed the asserted boundary, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1685 "terminal": false,
+3894.7s 1686 "turn": ["robot"],
+3894.7s 1687 "actions": [
+3894.7s 1688 {
+3894.7s 1689 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1690 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1691 }
+3894.7s 1692 ]
+3894.7s 1693 },
+3894.7s 1694 {
+3894.7s 1695 "id": "survey_reaffirm_challenge",
+3894.7s 1696 "desc": "The survey data are on record, the elder has reaffirmed the asserted boundary, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1697 "terminal": false,
+3894.7s 1698 "turn": ["robot"],
+3894.7s 1699 "actions": [
+3894.7s 1700 {
+3894.7s 1701 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1702 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1703 }
+3894.7s 1704 ]
+3894.7s 1705 },
+3894.7s 1706 {
+3894.7s 1707 "id": "survey_reaffirm_silent",
+3894.7s 1708 "desc": "The survey data are on record, the elder has reaffirmed the asserted boundary, and the second family has remained silent.",
+3894.7s 1709 "terminal": false,
+3894.7s 1710 "turn": ["robot"],
+3894.7s 1711 "actions": [
+3894.7s 1712 {
+3894.7s 1713 "by": { "robot": "defer_to_human_authority" },
+3894.7s 1714 "next": [ { "state": "human_authority_takes_over", "p": 1.0 } ]
+3894.7s 1715 }
+3894.7s 1716 ]
+3894.7s 1717 },
+3894.7s 1718 {
+3894.7s 1719 "id": "second_sought_nosurvey_none",
+3894.7s 1720 "desc": "The robot has asked the second family to state its position, the survey data are not yet presented, and the elder has not yet clarified the basis for the asserted boundary.",
+3894.7s 1721 "terminal": false,
+3894.7s 1722 "turn": ["second_family"],
+3894.7s 1723 "actions": [
+3894.7s 1724 {
+3894.7s 1725 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1726 "next": [
+3894.7s 1727 { "state": "nosurvey_none_support", "p": 0.34 },
+3894.7s 1728 { "state": "nosurvey_none_challenge", "p": 0.33 },
+3894.7s 1729 { "state": "nosurvey_none_silent", "p": 0.33 }
+3894.7s 1730 ]
+3894.7s 1731 }
+3894.7s 1732 ]
+3894.7s 1733 },
+3894.7s 1734 {
+3894.7s 1735 "id": "second_sought_nosurvey_basis",
+3894.7s 1736 "desc": "The robot has asked the second family to state its position, the survey data are not yet presented, and the elder has stated a customary basis for the asserted boundary.",
+3894.7s 1737 "terminal": false,
+3894.7s 1738 "turn": ["second_family"],
+3894.7s 1739 "actions": [
+3894.7s 1740 {
+3894.7s 1741 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1742 "next": [
+3894.7s 1743 { "state": "nosurvey_basis_support", "p": 0.34 },
+3894.7s 1744 { "state": "nosurvey_basis_challenge", "p": 0.33 },
+3894.7s 1745 { "state": "nosurvey_basis_silent", "p": 0.33 }
+3894.7s 1746 ]
+3894.7s 1747 }
+3894.7s 1748 ]
+3894.7s 1749 },
+3894.7s 1750 {
+3894.7s 1751 "id": "second_sought_nosurvey_reaffirm",
+3894.7s 1752 "desc": "The robot has asked the second family to state its position, the survey data are not yet presented, and the elder has reaffirmed the asserted boundary.",
+3894.7s 1753 "terminal": false,
+3894.7s 1754 "turn": ["second_family"],
+3894.7s 1755 "actions": [
+3894.7s 1756 {
+3894.7s 1757 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1758 "next": [
+3894.7s 1759 { "state": "nosurvey_reaffirm_support", "p": 0.34 },
+3894.7s 1760 { "state": "nosurvey_reaffirm_challenge", "p": 0.33 },
+3894.7s 1761 { "state": "nosurvey_reaffirm_silent", "p": 0.33 }
+3894.7s 1762 ]
+3894.7s 1763 }
+3894.7s 1764 ]
+3894.7s 1765 },
+3894.7s 1766 {
+3894.7s 1767 "id": "second_sought_survey_none",
+3894.7s 1768 "desc": "The robot has asked the second family to state its position, the survey data are on record, and the elder has not yet clarified the basis for the asserted boundary.",
+3894.7s 1769 "terminal": false,
+3894.7s 1770 "turn": ["second_family"],
+3894.7s 1771 "actions": [
+3894.7s 1772 {
+3894.7s 1773 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1774 "next": [
+3894.7s 1775 { "state": "survey_none_support", "p": 0.34 },
+3894.7s 1776 { "state": "survey_none_challenge", "p": 0.33 },
+3894.7s 1777 { "state": "survey_none_silent", "p": 0.33 }
+3894.7s 1778 ]
+3894.7s 1779 }
+3894.7s 1780 ]
+3894.7s 1781 },
+3894.7s 1782 {
+3894.7s 1783 "id": "second_sought_survey_basis",
+3894.7s 1784 "desc": "The robot has asked the second family to state its position, the survey data are on record, and the elder has stated a customary basis for the asserted boundary.",
+3894.7s 1785 "terminal": false,
+3894.7s 1786 "turn": ["second_family"],
+3894.7s 1787 "actions": [
+3894.7s 1788 {
+3894.7s 1789 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1790 "next": [
+3894.7s 1791 { "state": "survey_basis_support", "p": 0.34 },
+3894.7s 1792 { "state": "survey_basis_challenge", "p": 0.33 },
+3894.7s 1793 { "state": "survey_basis_silent", "p": 0.33 }
+3894.7s 1794 ]
+3894.7s 1795 }
+3894.7s 1796 ]
+3894.7s 1797 },
+3894.7s 1798 {
+3894.7s 1799 "id": "second_sought_survey_reaffirm",
+3894.7s 1800 "desc": "The robot has asked the second family to state its position, the survey data are on record, and the elder has reaffirmed the asserted boundary.",
+3894.7s 1801 "terminal": false,
+3894.7s 1802 "turn": ["second_family"],
+3894.7s 1803 "actions": [
+3894.7s 1804 {
+3894.7s 1805 "by": { "second_family": "respond_to_position_request" },
+3894.7s 1806 "next": [
+3894.7s 1807 { "state": "survey_reaffirm_support", "p": 0.34 },
+3894.7s 1808 { "state": "survey_reaffirm_challenge", "p": 0.33 },
+3894.7s 1809 { "state": "survey_reaffirm_silent", "p": 0.33 }
+3894.7s 1810 ]
+3894.7s 1811 }
+3894.7s 1812 ]
+3894.7s 1813 },
+3894.7s 1814 {
+3894.7s 1815 "id": "elder_sought_nosurvey_unvoiced",
+3894.7s 1816 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are not yet presented, and the second family has not yet spoken.",
+3894.7s 1817 "terminal": false,
+3894.7s 1818 "turn": ["elder"],
+3894.7s 1819 "actions": [
+3894.7s 1820 {
+3894.7s 1821 "by": { "elder": "respond_to_clarification" },
+3894.7s 1822 "next": [
+3894.7s 1823 { "state": "nosurvey_basis_unvoiced", "p": 0.5 },
+3894.7s 1824 { "state": "nosurvey_reaffirm_unvoiced", "p": 0.5 }
+3894.7s 1825 ]
+3894.7s 1826 }
+3894.7s 1827 ]
+3894.7s 1828 },
+3894.7s 1829 {
+3894.7s 1830 "id": "elder_sought_nosurvey_support",
+3894.7s 1831 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are not yet presented, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1832 "terminal": false,
+3894.7s 1833 "turn": ["elder"],
+3894.7s 1834 "actions": [
+3894.7s 1835 {
+3894.7s 1836 "by": { "elder": "respond_to_clarification" },
+3894.7s 1837 "next": [
+3894.7s 1838 { "state": "nosurvey_basis_support", "p": 0.5 },
+3894.7s 1839 { "state": "nosurvey_reaffirm_support", "p": 0.5 }
+3894.7s 1840 ]
+3894.7s 1841 }
+3894.7s 1842 ]
+3894.7s 1843 },
+3894.7s 1844 {
+3894.7s 1845 "id": "elder_sought_nosurvey_challenge",
+3894.7s 1846 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are not yet presented, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1847 "terminal": false,
+3894.7s 1848 "turn": ["elder"],
+3894.7s 1849 "actions": [
+3894.7s 1850 {
+3894.7s 1851 "by": { "elder": "respond_to_clarification" },
+3894.7s 1852 "next": [
+3894.7s 1853 { "state": "nosurvey_basis_challenge", "p": 0.5 },
+3894.7s 1854 { "state": "nosurvey_reaffirm_challenge", "p": 0.5 }
+3894.7s 1855 ]
+3894.7s 1856 }
+3894.7s 1857 ]
+3894.7s 1858 },
+3894.7s 1859 {
+3894.7s 1860 "id": "elder_sought_nosurvey_silent",
+3894.7s 1861 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are not yet presented, and the second family has remained silent.",
+3894.7s 1862 "terminal": false,
+3894.7s 1863 "turn": ["elder"],
+3894.7s 1864 "actions": [
+3894.7s 1865 {
+3894.7s 1866 "by": { "elder": "respond_to_clarification" },
+3894.7s 1867 "next": [
+3894.7s 1868 { "state": "nosurvey_basis_silent", "p": 0.5 },
+3894.7s 1869 { "state": "nosurvey_reaffirm_silent", "p": 0.5 }
+3894.7s 1870 ]
+3894.7s 1871 }
+3894.7s 1872 ]
+3894.7s 1873 },
+3894.7s 1874 {
+3894.7s 1875 "id": "elder_sought_survey_unvoiced",
+3894.7s 1876 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are on record, and the second family has not yet spoken.",
+3894.7s 1877 "terminal": false,
+3894.7s 1878 "turn": ["elder"],
+3894.7s 1879 "actions": [
+3894.7s 1880 {
+3894.7s 1881 "by": { "elder": "respond_to_clarification" },
+3894.7s 1882 "next": [
+3894.7s 1883 { "state": "survey_basis_unvoiced", "p": 0.5 },
+3894.7s 1884 { "state": "survey_reaffirm_unvoiced", "p": 0.5 }
+3894.7s 1885 ]
+3894.7s 1886 }
+3894.7s 1887 ]
+3894.7s 1888 },
+3894.7s 1889 {
+3894.7s 1890 "id": "elder_sought_survey_support",
+3894.7s 1891 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are on record, and the second family has voiced support for the elder's asserted boundary.",
+3894.7s 1892 "terminal": false,
+3894.7s 1893 "turn": ["elder"],
+3894.7s 1894 "actions": [
+3894.7s 1895 {
+3894.7s 1896 "by": { "elder": "respond_to_clarification" },
+3894.7s 1897 "next": [
+3894.7s 1898 { "state": "survey_basis_support", "p": 0.5 },
+3894.7s 1899 { "state": "survey_reaffirm_support", "p": 0.5 }
+3894.7s 1900 ]
+3894.7s 1901 }
+3894.7s 1902 ]
+3894.7s 1903 },
+3894.7s 1904 {
+3894.7s 1905 "id": "elder_sought_survey_challenge",
+3894.7s 1906 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are on record, and the second family has voiced a challenge to the elder's asserted boundary.",
+3894.7s 1907 "terminal": false,
+3894.7s 1908 "turn": ["elder"],
+3894.7s 1909 "actions": [
+3894.7s 1910 {
+3894.7s 1911 "by": { "elder": "respond_to_clarification" },
+3894.7s 1912 "next": [
+3894.7s 1913 { "state": "survey_basis_challenge", "p": 0.5 },
+3894.7s 1914 { "state": "survey_reaffirm_challenge", "p": 0.5 }
+3894.7s 1915 ]
+3894.7s 1916 }
+3894.7s 1917 ]
+3894.7s 1918 },
+3894.7s 1919 {
+3894.7s 1920 "id": "elder_sought_survey_silent",
+3894.7s 1921 "desc": "The robot has asked the elder to clarify the basis for the asserted boundary, the survey data are on record, and the second family has remained silent.",
+3894.7s 1922 "terminal": false,
+3894.7s 1923 "turn": ["elder"],
+3894.7s 1924 "actions": [
+3894.7s 1925 {
+3894.7s 1926 "by": { "elder": "respond_to_clarification" },
+3894.7s 1927 "next": [
+3894.7s 1928 { "state": "survey_basis_silent", "p": 0.5 },
+3894.7s 1929 { "state": "survey_reaffirm_silent", "p": 0.5 }
+3894.7s 1930 ]
+3894.7s 1931 }
+3894.7s 1932 ]
+3894.7s 1933 },
+3894.7s 1934 {
+3894.7s 1935 "id": "human_authority_takes_over",
+3894.7s 1936 "desc": "A human mediator or community leader takes over the boundary dispute while the community's expectations of harmony and legitimate process remain.",
+3894.7s 1937 "terminal": true
+3894.7s 1938 }
+3894.7s 1939 ]
+3894.7s 1940 }
+3894.7s 1941 
+3894.7s 1942 ===== C8 (Germany) — # Test Case C.8 (Germany): Conference Robot and a Late-Arriving Speaker =====
+4395.4s 1943 {
+4395.4s 1944 "players": [
+4395.4s 1945 {
+4395.4s 1946 "id": "robot",
+4395.4s 1947 "type": "robot",
+4395.4s 1948 "desc": "The conference coordination robot manages the symposium schedule."
+4395.4s 1949 },
+4395.4s 1950 {
+4395.4s 1951 "id": "organizer",
+4395.4s 1952 "type": "human",
+4395.4s 1953 "desc": "The human conference organizer can take over scheduling decisions."
+4395.4s 1954 }
+4395.4s 1955 ],
+4395.4s 1956 "initial": [
+4395.4s 1957 {
+4395.4s 1958 "state": "late_keynote_before_next_session",
+4395.4s 1959 "p": 1.0
+4395.4s 1960 }
+4395.4s 1961 ],
+4395.4s 1962 "states": [
+4395.4s 1963 {
+4395.4s 1964 "id": "late_keynote_before_next_session",
+4395.4s 1965 "desc": "The confirmed keynote speaker is present after the scheduled start without prior notice while the content value of the keynote, the imminent next session, and a strict professional convention of punctuality and schedule adherence jointly affect attendees, following session speakers, and the organizer.",
+4395.4s 1966 "terminal": false,
+4395.4s 1967 "turn": [
+4395.4s 1968 "robot"
+4395.4s 1969 ],
+4395.4s 1970 "actions": [
+4395.4s 1971 {
+4395.4s 1972 "by": {
+4395.4s 1973 "robot": "begin_reduced_keynote"
+4395.4s 1974 },
+4395.4s 1975 "next": [
+4395.4s 1976 {
+4395.4s 1977 "state": "reduced_keynote_underway",
+4395.4s 1978 "p": 1.0
+4395.4s 1979 }
+4395.4s 1980 ]
+4395.4s 1981 },
+4395.4s 1982 {
+4395.4s 1983 "by": {
+4395.4s 1984 "robot": "skip_keynote_proceed"
+4395.4s 1985 },
+4395.4s 1986 "next": [
+4395.4s 1987 {
+4395.4s 1988 "state": "schedule_continued_without_keynote",
+4395.4s 1989 "p": 1.0
+4395.4s 1990 }
+4395.4s 1991 ]
+4395.4s 1992 },
+4395.4s 1993 {
+4395.4s 1994 "by": {
+4395.4s 1995 "robot": "notify_delay_hold"
+4395.4s 1996 },
+4395.4s 1997 "next": [
+4395.4s 1998 {
+4395.4s 1999 "state": "audience_hold_with_delay_notice",
+4395.4s 2000 "p": 1.0
+4395.4s 2001 }
+4395.4s 2002 ]
+4395.4s 2003 },
+4395.4s 2004 {
+4395.4s 2005 "by": {
+4395.4s 2006 "robot": "escalate_to_organizer"
+4395.4s 2007 },
+4395.4s 2008 "next": [
+4395.4s 2009 {
+4395.4s 2010 "state": "organizer_decision_pending",
+4395.4s 2011 "p": 1.0
+4395.4s 2012 }
+4395.4s 2013 ]
+4395.4s 2014 }
+4395.4s 2015 ]
+4395.4s 2016 },
+4395.4s 2017 {
+4395.4s 2018 "id": "organizer_decision_pending",
+4395.4s 2019 "desc": "The human organizer is choosing among the available scheduling paths while the immediate commitment is open.",
+4395.4s 2020 "terminal": false,
+4395.4s 2021 "turn": [
+4395.4s 2022 "organizer"
+4395.4s 2023 ],
+4395.4s 2024 "actions": [
+4395.4s 2025 {
+4395.4s 2026 "by": {
+4395.4s 2027 "organizer": "begin_reduced_keynote"
+4395.4s 2028 },
+4395.4s 2029 "next": [
+4395.4s 2030 {
+4395.4s 2031 "state": "reduced_keynote_underway",
+4395.4s 2032 "p": 1.0
+4395.4s 2033 }
+4395.4s 2034 ]
+4395.4s 2035 },
+4395.4s 2036 {
+4395.4s 2037 "by": {
+4395.4s 2038 "organizer": "skip_keynote_proceed"
+4395.4s 2039 },
+4395.4s 2040 "next": [
+4395.4s 2041 {
+4395.4s 2042 "state": "schedule_continued_without_keynote",
+4395.4s 2043 "p": 1.0
+4395.4s 2044 }
+4395.4s 2045 ]
+4395.4s 2046 },
+4395.4s 2047 {
+4395.4s 2048 "by": {
+4395.4s 2049 "organizer": "notify_delay_hold"
+4395.4s 2050 },
+4395.4s 2051 "next": [
+4395.4s 2052 {
+4395.4s 2053 "state": "audience_hold_with_delay_notice",
+4395.4s 2054 "p": 1.0
+4395.4s 2055 }
+4395.4s 2056 ]
+4395.4s 2057 }
+4395.4s 2058 ]
+4395.4s 2059 },
+4395.4s 2060 {
+4395.4s 2061 "id": "reduced_keynote_underway",
+4395.4s 2062 "desc": "The keynote has begun with a reduced duration while attendees' time and the following session speakers are affected by the adjusted schedule.",
+4395.4s 2063 "terminal": true
+4395.4s 2064 },
+4395.4s 2065 {
+4395.4s 2066 "id": "schedule_continued_without_keynote",
+4395.4s 2067 "desc": "The next session has begun without the keynote and the confirmed keynote remains outside the running schedule while attendees and following session speakers are affected by the decision.",
+4395.4s 2068 "terminal": true
+4395.4s 2069 },
+4395.4s 2070 {
+4395.4s 2071 "id": "audience_hold_with_delay_notice",
+4395.4s 2072 "desc": "Attendees have remained through a delay notice and the keynote remains pending while schedule pressure continues for following session speakers.",
+4395.4s 2073 "terminal": true
+4395.4s 2074 }
+4395.4s 2075 ]
+4395.4s 2076 }
+4395.4s 2077 
+4395.4s 2078 ===== C9 (Saudi Arabia) — # Test Case C.9 (Saudi Arabia): Hospitality Robot and a Mixed-Group Seating Request =====
+4734.0s 2079 
+4734.0s 2080 
+4734.0s 2081 {
+4734.0s 2082 "players": [
+4734.0s 2083 {
+4734.0s 2084 "id": "robot",
+4734.0s 2085 "type": "robot",
+4734.0s 2086 "desc": "The hospitality robot is setting seating for a corporate dinner and knows of a conflict between the host request and the venue preference."
+4734.0s 2087 },
+4734.0s 2088 {
+4734.0s 2089 "id": "host_company",
+4734.0s 2090 "type": "human",
+4734.0s 2091 "desc": "The host company has explicitly requested mixed seating for the corporate dinner."
+4734.0s 2092 },
+4734.0s 2093 {
+4734.0s 2094 "id": "venue",
+4734.0s 2095 "type": "human",
+4734.0s 2096 "desc": "The venue and its staff have privately disclosed a local institutional preference for separated seating to the robot."
+4734.0s 2097 },
+4734.0s 2098 {
+4734.0s 2099 "id": "attendees",
+4734.0s 2100 "type": "human",
+4734.0s 2101 "desc": "The event attendees have seating comfort and preferences that are not yet known."
+4734.0s 2102 }
+4734.0s 2103 ],
+4734.0s 2104 "initial": [
+4734.0s 2105 {
+4734.0s 2106 "state": "robot_holds_conflict",
+4734.0s 2107 "p": 1.0
+4734.0s 2108 }
+4734.0s 2109 ],
+4734.0s 2110 "states": [
+4734.0s 2111 {
+4734.0s 2112 "id": "robot_holds_conflict",
+4734.0s 2113 "desc": "The robot knows the host request and the venue preference and no human has yet been asked to resolve them.",
+4734.0s 2114 "terminal": false,
+4734.0s 2115 "turn": ["robot"],
+4734.0s 2116 "actions": [
+4734.0s 2117 {
+4734.0s 2118 "by": { "robot": "apply_host_request" },
+4734.0s 2119 "next": [
+4734.0s 2120 { "state": "host_seating_arranged", "p": 1.0 }
+4734.0s 2121 ]
+4734.0s 2122 },
+4734.0s 2123 {
+4734.0s 2124 "by": { "robot": "apply_venue_policy" },
+4734.0s 2125 "next": [
+4734.0s 2126 { "state": "venue_seating_arranged", "p": 1.0 }
+4734.0s 2127 ]
+4734.0s 2128 },
+4734.0s 2129 {
+4734.0s 2130 "by": { "robot": "surface_conflict_to_host" },
+4734.0s 2131 "next": [
+4734.0s 2132 { "state": "host_conflict_presented", "p": 1.0 }
+4734.0s 2133 ]
+4734.0s 2134 },
+4734.0s 2135 {
+4734.0s 2136 "by": { "robot": "surface_conflict_to_venue" },
+4734.0s 2137 "next": [
+4734.0s 2138 { "state": "venue_conflict_presented", "p": 1.0 }
+4734.0s 2139 ]
+4734.0s 2140 },
+4734.0s 2141 {
+4734.0s 2142 "by": { "robot": "request_joint_clarification" },
+4734.0s 2143 "next": [
+4734.0s 2144 { "state": "joint_clarification", "p": 1.0 }
+4734.0s 2145 ]
+4734.0s 2146 }
+4734.0s 2147 ]
+4734.0s 2148 },
+4734.0s 2149 {
+4734.0s 2150 "id": "host_conflict_presented",
+4734.0s 2151 "desc": "The venue preference has been presented to the host company and the host company can give a seating instruction.",
+4734.0s 2152 "terminal": false,
+4734.0s 2153 "turn": ["host_company"],
+4734.0s 2154 "actions": [
+4734.0s 2155 {
+4734.0s 2156 "by": { "host_company": "choose_host_seating" },
+4734.0s 2157 "next": [
+4734.0s 2158 { "state": "host_seating_arranged", "p": 1.0 }
+4734.0s 2159 ]
+4734.0s 2160 },
+4734.0s 2161 {
+4734.0s 2162 "by": { "host_company": "choose_venue_seating" },
+4734.0s 2163 "next": [
+4734.0s 2164 { "state": "venue_seating_arranged", "p": 1.0 }
+4734.0s 2165 ]
+4734.0s 2166 }
+4734.0s 2167 ]
+4734.0s 2168 },
+4734.0s 2169 {
+4734.0s 2170 "id": "venue_conflict_presented",
+4734.0s 2171 "desc": "The host request has been presented to the venue and the venue can give a seating instruction.",
+4734.0s 2172 "terminal": false,
+4734.0s 2173 "turn": ["venue"],
+4734.0s 2174 "actions": [
+4734.0s 2175 {
+4734.0s 2176 "by": { "venue": "choose_venue_seating" },
+4734.0s 2177 "next": [
+4734.0s 2178 { "state": "venue_seating_arranged", "p": 1.0 }
+4734.0s 2179 ]
+4734.0s 2180 },
+4734.0s 2181 {
+4734.0s 2182 "by": { "venue": "choose_host_seating" },
+4734.0s 2183 "next": [
+4734.0s 2184 { "state": "host_seating_arranged", "p": 1.0 }
+4734.0s 2185 ]
+4734.0s 2186 }
+4734.0s 2187 ]
+4734.0s 2188 },
+4734.0s 2189 {
+4734.0s 2190 "id": "joint_clarification",
+4734.0s 2191 "desc": "The host company and the venue are simultaneously deciding which seating preference should govern.",
+4734.0s 2192 "terminal": false,
+4734.0s 2193 "turn": ["host_company", "venue"],
+4734.0s 2194 "actions": [
+4734.0s 2195 {
+4734.0s 2196 "by": { "host_company": "choose_host_seating", "venue": "choose_host_seating" },
+4734.0s 2197 "next": [
+4734.0s 2198 { "state": "host_seating_arranged", "p": 1.0 }
+4734.0s 2199 ]
+4734.0s 2200 },
+4734.0s 2201 {
+4734.0s 2202 "by": { "host_company": "choose_host_seating", "venue": "choose_venue_seating" },
+4734.0s 2203 "next": [
+4734.0s 2204 { "state": "opposing_positions_hold", "p": 1.0 }
+4734.0s 2205 ]
+4734.0s 2206 },
+4734.0s 2207 {
+4734.0s 2208 "by": { "host_company": "choose_venue_seating", "venue": "choose_host_seating" },
+4734.0s 2209 "next": [
+4734.0s 2210 { "state": "opposing_positions_hold", "p": 1.0 }
+4734.0s 2211 ]
+4734.0s 2212 },
+4734.0s 2213 {
+4734.0s 2214 "by": { "host_company": "choose_venue_seating", "venue": "choose_venue_seating" },
+4734.0s 2215 "next": [
+4734.0s 2216 { "state": "venue_seating_arranged", "p": 1.0 }
+4734.0s 2217 ]
+4734.0s 2218 }
+4734.0s 2219 ]
+4734.0s 2220 },
+4734.0s 2221 {
+4734.0s 2222 "id": "host_seating_arranged",
+4734.0s 2223 "desc": "Host-requested seating has been arranged and attendee seating feedback is still unknown.",
+4734.0s 2224 "terminal": false,
+4734.0s 2225 "turn": ["attendees"],
+4734.0s 2226 "actions": [
+4734.0s 2227 {
+4734.0s 2228 "by": { "attendees": "take_seats" },
+4734.0s 2229 "next": [
+4734.0s 2230 { "state": "host_seating_feedback_expressed", "p": 0.5 },
+4734.0s 2231 { "state": "host_seating_feedback_not_expressed", "p": 0.5 }
+4734.0s 2232 ]
+4734.0s 2233 }
+4734.0s 2234 ]
+4734.0s 2235 },
+4734.0s 2236 {
+4734.0s 2237 "id": "venue_seating_arranged",
+4734.0s 2238 "desc": "Venue-preferred seating has been arranged and attendee seating feedback is still unknown.",
+4734.0s 2239 "terminal": false,
+4734.0s 2240 "turn": ["attendees"],
+4734.0s 2241 "actions": [
+4734.0s 2242 {
+4734.0s 2243 "by": { "attendees": "take_seats" },
+4734.0s 2244 "next": [
+4734.0s 2245 { "state": "venue_seating_feedback_expressed", "p": 0.5 },
+4734.0s 2246 { "state": "venue_seating_feedback_not_expressed", "p": 0.5 }
+4734.0s 2247 ]
+4734.0s 2248 }
+4734.0s 2249 ]
+4734.0s 2250 },
+4734.0s 2251 {
+4734.0s 2252 "id": "opposing_positions_hold",
+4734.0s 2253 "desc": "The host and venue positions remain opposed and the robot's seating interaction stops.",
+4734.0s 2254 "terminal": true
+4734.0s 2255 },
+4734.0s 2256 {
+4734.0s 2257 "id": "host_seating_feedback_expressed",
+4734.0s 2258 "desc": "Host-requested seating is in place and attendee seating feedback has been expressed.",
+4734.0s 2259 "terminal": true
+4734.0s 2260 },
+4734.0s 2261 {
+4734.0s 2262 "id": "host_seating_feedback_not_expressed",
+4734.0s 2263 "desc": "Host-requested seating is in place and attendee seating feedback has not been expressed.",
+4734.0s 2264 "terminal": true
+4734.0s 2265 },
+4734.0s 2266 {
+4734.0s 2267 "id": "venue_seating_feedback_expressed",
+4734.0s 2268 "desc": "Venue-preferred seating is in place and attendee seating feedback has been expressed.",
+4734.0s 2269 "terminal": true
+4734.0s 2270 },
+4734.0s 2271 {
+4734.0s 2272 "id": "venue_seating_feedback_not_expressed",
+4734.0s 2273 "desc": "Venue-preferred seating is in place and attendee seating feedback has not been expressed.",
+4734.0s 2274 "terminal": true
+4734.0s 2275 }
+4734.0s 2276 ]
+4734.0s 2277 }
+4734.0s 2278 
+4734.0s 2279 ===== C10 (Mexico) — # Test Case C.10 (Mexico): Event Robot and a Quinceañera Speech Conflict =====
+5224.5s 2280 
+5224.5s 2281 
+5224.5s 2282 {
+5224.5s 2283 "players": [
+5224.5s 2284 {
+5224.5s 2285 "id": "robot",
+5224.5s 2286 "type": "robot",
+5224.5s 2287 "desc": "The event-management robot coordinates the celebration's program and the delivery of the speech."
+5224.5s 2288 },
+5224.5s 2289 {
+5224.5s 2290 "id": "quinceanera",
+5224.5s 2291 "type": "human",
+5224.5s 2292 "desc": "The young woman at the center of the celebration wrote the speech and may be asked to decide on it."
+5224.5s 2293 },
+5224.5s 2294 {
+5224.5s 2295 "id": "grandmother",
+5224.5s 2296 "type": "human",
+5224.5s 2297 "desc": "The grandmother instructs the robot to skip the speech and follow the traditional program."
+5224.5s 2298 },
+5224.5s 2299 {
+5224.5s 2300 "id": "parents_host",
+5224.5s 2301 "type": "human",
+5224.5s 2302 "desc": "The parents or event host are the people to whom the robot may escalate the program decision."
+5224.5s 2303 },
+5224.5s 2304 {
+5224.5s 2305 "id": "family_guests",
+5224.5s 2306 "type": "human",
+5224.5s 2307 "desc": "Other family and guests are present and the coherence of the event program matters to them."
+5224.5s 2308 }
+5224.5s 2309 ],
+5224.5s 2310 "initial": [
+5224.5s 2311 {
+5224.5s 2312 "state": "speech_request_pending",
+5224.5s 2313 "p": 1.0
+5224.5s 2314 }
+5224.5s 2315 ],
+5224.5s 2316 "states": [
+5224.5s 2317 {
+5224.5s 2318 "id": "speech_request_pending",
+5224.5s 2319 "desc": "The robot holds the written speech, the grandmother's instruction to skip it stands, the traditional program excludes it, and other family and guests are present.",
+5224.5s 2320 "terminal": false,
+5224.5s 2321 "turn": ["robot"],
+5224.5s 2322 "actions": [
+5224.5s 2323 {
+5224.5s 2324 "by": { "robot": "deliver_speech" },
+5224.5s 2325 "next": [
+5224.5s 2326 { "state": "speech_delivered", "p": 1.0 }
+5224.5s 2327 ]
+5224.5s 2328 },
+5224.5s 2329 {
+5224.5s 2330 "by": { "robot": "follow_grandmother_instruction" },
+5224.5s 2331 "next": [
+5224.5s 2332 { "state": "traditional_program_followed", "p": 1.0 }
+5224.5s 2333 ]
+5224.5s 2334 },
+5224.5s 2335 {
+5224.5s 2336 "by": { "robot": "pause_ask_quinceanera" },
+5224.5s 2337 "next": [
+5224.5s 2338 { "state": "quinceanera_consulted", "p": 1.0 }
+5224.5s 2339 ]
+5224.5s 2340 },
+5224.5s 2341 {
+5224.5s 2342 "by": { "robot": "escalate_to_parents_host" },
+5224.5s 2343 "next": [
+5224.5s 2344 { "state": "parents_host_consulted", "p": 1.0 }
+5224.5s 2345 ]
+5224.5s 2346 }
+5224.5s 2347 ]
+5224.5s 2348 },
+5224.5s 2349 {
+5224.5s 2350 "id": "quinceanera_consulted",
+5224.5s 2351 "desc": "The robot has paused and asked the quinceañera to decide in the moment while the grandmother's instruction and the traditional program remain.",
+5224.5s 2352 "terminal": false,
+5224.5s 2353 "turn": ["quinceanera"],
+5224.5s 2354 "actions": [
+5224.5s 2355 {
+5224.5s 2356 "by": { "quinceanera": "quinceanera_decide_speech" },
+5224.5s 2357 "next": [
+5224.5s 2358 { "state": "quinceanera_decided_speech", "p": 1.0 }
+5224.5s 2359 ]
+5224.5s 2360 },
+5224.5s 2361 {
+5224.5s 2362 "by": { "quinceanera": "quinceanera_decide_program" },
+5224.5s 2363 "next": [
+5224.5s 2364 { "state": "traditional_program_followed", "p": 1.0 }
+5224.5s 2365 ]
+5224.5s 2366 }
+5224.5s 2367 ]
+5224.5s 2368 },
+5224.5s 2369 {
+5224.5s 2370 "id": "parents_host_consulted",
+5224.5s 2371 "desc": "The robot has escalated the program decision to the parents or event host while the grandmother's instruction and the traditional program remain.",
+5224.5s 2372 "terminal": false,
+5224.5s 2373 "turn": ["parents_host"],
+5224.5s 2374 "actions": [
+5224.5s 2375 {
+5224.5s 2376 "by": { "parents_host": "parents_host_decide_speech" },
+5224.5s 2377 "next": [
+5224.5s 2378 { "state": "parents_host_decided_speech", "p": 1.0 }
+5224.5s 2379 ]
+5224.5s 2380 },
+5224.5s 2381 {
+5224.5s 2382 "by": { "parents_host": "parents_host_decide_program" },
+5224.5s 2383 "next": [
+5224.5s 2384 { "state": "traditional_program_followed", "p": 1.0 }
+5224.5s 2385 ]
+5224.5s 2386 }
+5224.5s 2387 ]
+5224.5s 2388 },
+5224.5s 2389 {
+5224.5s 2390 "id": "quinceanera_decided_speech",
+5224.5s 2391 "desc": "The quinceañera has decided on the speech in the moment while the grandmother's instruction to skip it remains.",
+5224.5s 2392 "terminal": false,
+5224.5s 2393 "turn": ["robot"],
+5224.5s 2394 "actions": [
+5224.5s 2395 {
+5224.5s 2396 "by": { "robot": "deliver_speech" },
+5224.5s 2397 "next": [
+5224.5s 2398 { "state": "speech_delivered", "p": 1.0 }
+5224.5s 2399 ]
+5224.5s 2400 },
+5224.5s 2401 {
+5224.5s 2402 "by": { "robot": "follow_grandmother_instruction" },
+5224.5s 2403 "next": [
+5224.5s 2404 { "state": "traditional_program_followed", "p": 1.0 }
+5224.5s 2405 ]
+5224.5s 2406 },
+5224.5s 2407 {
+5224.5s 2408 "by": { "robot": "escalate_to_parents_host" },
+5224.5s 2409 "next": [
+5224.5s 2410 { "state": "parents_host_consulted", "p": 1.0 }
+5224.5s 2411 ]
+5224.5s 2412 }
+5224.5s 2413 ]
+5224.5s 2414 },
+5224.5s 2415 {
+5224.5s 2416 "id": "parents_host_decided_speech",
+5224.5s 2417 "desc": "The parents or event host have decided on the speech while the grandmother's instruction to skip it remains.",
+5224.5s 2418 "terminal": false,
+5224.5s 2419 "turn": ["robot"],
+5224.5s 2420 "actions": [
+5224.5s 2421 {
+5224.5s 2422 "by": { "robot": "deliver_speech" },
+5224.5s 2423 "next": [
+5224.5s 2424 { "state": "speech_delivered", "p": 1.0 }
+5224.5s 2425 ]
+5224.5s 2426 },
+5224.5s 2427 {
+5224.5s 2428 "by": { "robot": "follow_grandmother_instruction" },
+5224.5s 2429 "next": [
+5224.5s 2430 { "state": "traditional_program_followed", "p": 1.0 }
+5224.5s 2431 ]
+5224.5s 2432 }
+5224.5s 2433 ]
+5224.5s 2434 },
+5224.5s 2435 {
+5224.5s 2436 "id": "speech_delivered",
+5224.5s 2437 "desc": "The speech has been delivered on the quinceañera's behalf and the immediate program decision has been closed.",
+5224.5s 2438 "terminal": true
+5224.5s 2439 },
+5224.5s 2440 {
+5224.5s 2441 "id": "traditional_program_followed",
+5224.5s 2442 "desc": "The speech has been skipped and the traditional program has been followed.",
+5224.5s 2443 "terminal": true
+5224.5s 2444 }
+5224.5s 2445 ]
+5224.5s 2446 }
+5224.5s 2447 
+5224.5s 2448 ===== C11 (Egypt) — # Test Case C.11 (Egypt): Navigation Robot and a Prayer-Time Interruption =====
+5525.2s 2449 None
+5525.2s 2450 
+5525.2s 2451 ===== C12 (Russia) — # Test Case C.12 (Russia): Warehouse Robot and an Informal Supervisor Override =====
+6011.5s 2452 
+6011.5s 2453 
+6011.5s 2454 {
+6011.5s 2455 "players": [
+6011.5s 2456 {
+6011.5s 2457 "id": "robot",
+6011.5s 2458 "type": "robot",
+6011.5s 2459 "desc": "Warehouse management robot that can execute the instruction, follow the approved plan, request authorization, or pause and alert the registered operator."
+6011.5s 2460 },
+6011.5s 2461 {
+6011.5s 2462 "id": "shift_supervisor",
+6011.5s 2463 "type": "human",
+6011.5s 2464 "desc": "Human shift supervisor who can provide, deny, withdraw, or maintain the verbal instruction."
+6011.5s 2465 }
+6011.5s 2466 ],
+6011.5s 2467 "initial": [
+6011.5s 2468 {
+6011.5s 2469 "state": "instruction_open",
+6011.5s 2470 "p": 1.0
+6011.5s 2471 }
+6011.5s 2472 ],
+6011.5s 2473 "states": [
+6011.5s 2474 {
+6011.5s 2475 "id": "instruction_open",
+6011.5s 2476 "desc": "A verbal instruction to bypass the scheduled inventory check and redirect goods is present without written authorization and not yet executed.",
+6011.5s 2477 "terminal": false,
+6011.5s 2478 "turn": [
+6011.5s 2479 "robot"
+6011.5s 2480 ],
+6011.5s 2481 "actions": [
+6011.5s 2482 {
+6011.5s 2483 "by": {
+6011.5s 2484 "robot": "comply_with_instruction"
+6011.5s 2485 },
+6011.5s 2486 "next": [
+6011.5s 2487 {
+6011.5s 2488 "state": "instruction_executed_without_written_authorization",
+6011.5s 2489 "p": 1.0
+6011.5s 2490 }
+6011.5s 2491 ]
+6011.5s 2492 },
+6011.5s 2493 {
+6011.5s 2494 "by": {
+6011.5s 2495 "robot": "follow_approved_plan"
+6011.5s 2496 },
+6011.5s 2497 "next": [
+6011.5s 2498 {
+6011.5s 2499 "state": "plan_pending",
+6011.5s 2500 "p": 1.0
+6011.5s 2501 }
+6011.5s 2502 ]
+6011.5s 2503 },
+6011.5s 2504 {
+6011.5s 2505 "by": {
+6011.5s 2506 "robot": "request_written_authorization"
+6011.5s 2507 },
+6011.5s 2508 "next": [
+6011.5s 2509 {
+6011.5s 2510 "state": "authorization_requested",
+6011.5s 2511 "p": 1.0
+6011.5s 2512 }
+6011.5s 2513 ]
+6011.5s 2514 },
+6011.5s 2515 {
+6011.5s 2516 "by": {
+6011.5s 2517 "robot": "pause_and_alert_operator"
+6011.5s 2518 },
+6011.5s 2519 "next": [
+6011.5s 2520 {
+6011.5s 2521 "state": "paused_and_alerted",
+6011.5s 2522 "p": 1.0
+6011.5s 2523 }
+6011.5s 2524 ]
+6011.5s 2525 }
+6011.5s 2526 ]
+6011.5s 2527 },
+6011.5s 2528 {
+6011.5s 2529 "id": "plan_pending",
+6011.5s 2530 "desc": "The robot is following the approved plan while the unexecuted verbal instruction is present without written authorization.",
+6011.5s 2531 "terminal": false,
+6011.5s 2532 "turn": [
+6011.5s 2533 "shift_supervisor"
+6011.5s 2534 ],
+6011.5s 2535 "actions": [
+6011.5s 2536 {
+6011.5s 2537 "by": {
+6011.5s 2538 "shift_supervisor": "accept_plan"
+6011.5s 2539 },
+6011.5s 2540 "next": [
+6011.5s 2541 {
+6011.5s 2542 "state": "plan_continued",
+6011.5s 2543 "p": 1.0
+6011.5s 2544 }
+6011.5s 2545 ]
+6011.5s 2546 },
+6011.5s 2547 {
+6011.5s 2548 "by": {
+6011.5s 2549 "shift_supervisor": "maintain_instruction"
+6011.5s 2550 },
+6011.5s 2551 "next": [
+6011.5s 2552 {
+6011.5s 2553 "state": "instruction_open",
+6011.5s 2554 "p": 1.0
+6011.5s 2555 }
+6011.5s 2556 ]
+6011.5s 2557 },
+6011.5s 2558 {
+6011.5s 2559 "by": {
+6011.5s 2560 "shift_supervisor": "provide_written_authorization"
+6011.5s 2561 },
+6011.5s 2562 "next": [
+6011.5s 2563 {
+6011.5s 2564 "state": "authorization_received",
+6011.5s 2565 "p": 1.0
+6011.5s 2566 }
+6011.5s 2567 ]
+6011.5s 2568 },
+6011.5s 2569 {
+6011.5s 2570 "by": {
+6011.5s 2571 "shift_supervisor": "withdraw_instruction"
+6011.5s 2572 },
+6011.5s 2573 "next": [
+6011.5s 2574 {
+6011.5s 2575 "state": "instruction_withdrawn",
+6011.5s 2576 "p": 1.0
+6011.5s 2577 }
+6011.5s 2578 ]
+6011.5s 2579 }
+6011.5s 2580 ]
+6011.5s 2581 },
+6011.5s 2582 {
+6011.5s 2583 "id": "authorization_requested",
+6011.5s 2584 "desc": "The robot has requested written or system-logged authorization for an unexecuted verbal instruction.",
+6011.5s 2585 "terminal": false,
+6011.5s 2586 "turn": [
+6011.5s 2587 "shift_supervisor"
+6011.5s 2588 ],
+6011.5s 2589 "actions": [
+6011.5s 2590 {
+6011.5s 2591 "by": {
+6011.5s 2592 "shift_supervisor": "provide_written_authorization"
+6011.5s 2593 },
+6011.5s 2594 "next": [
+6011.5s 2595 {
+6011.5s 2596 "state": "authorization_received",
+6011.5s 2597 "p": 1.0
+6011.5s 2598 }
+6011.5s 2599 ]
+6011.5s 2600 },
+6011.5s 2601 {
+6011.5s 2602 "by": {
+6011.5s 2603 "shift_supervisor": "deny_written_authorization"
+6011.5s 2604 },
+6011.5s 2605 "next": [
+6011.5s 2606 {
+6011.5s 2607 "state": "authorization_denied",
+6011.5s 2608 "p": 1.0
+6011.5s 2609 }
+6011.5s 2610 ]
+6011.5s 2611 },
+6011.5s 2612 {
+6011.5s 2613 "by": {
+6011.5s 2614 "shift_supervisor": "withdraw_instruction"
+6011.5s 2615 },
+6011.5s 2616 "next": [
+6011.5s 2617 {
+6011.5s 2618 "state": "instruction_withdrawn",
+6011.5s 2619 "p": 1.0
+6011.5s 2620 }
+6011.5s 2621 ]
+6011.5s 2622 }
+6011.5s 2623 ]
+6011.5s 2624 },
+6011.5s 2625 {
+6011.5s 2626 "id": "authorization_denied",
+6011.5s 2627 "desc": "The supervisor has declined to provide written or system-logged authorization for an unexecuted verbal instruction.",
+6011.5s 2628 "terminal": false,
+6011.5s 2629 "turn": [
+6011.5s 2630 "robot"
+6011.5s 2631 ],
+6011.5s 2632 "actions": [
+6011.5s 2633 {
+6011.5s 2634 "by": {
+6011.5s 2635 "robot": "comply_with_instruction"
+6011.5s 2636 },
+6011.5s 2637 "next": [
+6011.5s 2638 {
+6011.5s 2639 "state": "instruction_executed_without_written_authorization",
+6011.5s 2640 "p": 1.0
+6011.5s 2641 }
+6011.5s 2642 ]
+6011.5s 2643 },
+6011.5s 2644 {
+6011.5s 2645 "by": {
+6011.5s 2646 "robot": "follow_approved_plan"
+6011.5s 2647 },
+6011.5s 2648 "next": [
+6011.5s 2649 {
+6011.5s 2650 "state": "plan_pending",
+6011.5s 2651 "p": 1.0
+6011.5s 2652 }
+6011.5s 2653 ]
+6011.5s 2654 },
+6011.5s 2655 {
+6011.5s 2656 "by": {
+6011.5s 2657 "robot": "pause_and_alert_operator"
+6011.5s 2658 },
+6011.5s 2659 "next": [
+6011.5s 2660 {
+6011.5s 2661 "state": "paused_and_alerted",
+6011.5s 2662 "p": 1.0
+6011.5s 2663 }
+6011.5s 2664 ]
+6011.5s 2665 }
+6011.5s 2666 ]
+6011.5s 2667 },
+6011.5s 2668 {
+6011.5s 2669 "id": "authorization_received",
+6011.5s 2670 "desc": "Written or system-logged authorization exists for an unexecuted verbal instruction.",
+6011.5s 2671 "terminal": false,
+6011.5s 2672 "turn": [
+6011.5s 2673 "robot"
+6011.5s 2674 ],
+6011.5s 2675 "actions": [
+6011.5s 2676 {
+6011.5s 2677 "by": {
+6011.5s 2678 "robot": "comply_with_instruction"
+6011.5s 2679 },
+6011.5s 2680 "next": [
+6011.5s 2681 {
+6011.5s 2682 "state": "instruction_executed_with_written_authorization",
+6011.5s 2683 "p": 1.0
+6011.5s 2684 }
+6011.5s 2685 ]
+6011.5s 2686 },
+6011.5s 2687 {
+6011.5s 2688 "by": {
+6011.5s 2689 "robot": "follow_approved_plan"
+6011.5s 2690 },
+6011.5s 2691 "next": [
+6011.5s 2692 {
+6011.5s 2693 "state": "authorized_plan_pending",
+6011.5s 2694 "p": 1.0
+6011.5s 2695 }
+6011.5s 2696 ]
+6011.5s 2697 },
+6011.5s 2698 {
+6011.5s 2699 "by": {
+6011.5s 2700 "robot": "pause_and_alert_operator"
+6011.5s 2701 },
+6011.5s 2702 "next": [
+6011.5s 2703 {
+6011.5s 2704 "state": "paused_and_alerted",
+6011.5s 2705 "p": 1.0
+6011.5s 2706 }
+6011.5s 2707 ]
+6011.5s 2708 }
+6011.5s 2709 ]
+6011.5s 2710 },
+6011.5s 2711 {
+6011.5s 2712 "id": "authorized_plan_pending",
+6011.5s 2713 "desc": "The robot is following the approved plan while an unexecuted verbal instruction is present with written authorization.",
+6011.5s 2714 "terminal": false,
+6011.5s 2715 "turn": [
+6011.5s 2716 "shift_supervisor"
+6011.5s 2717 ],
+6011.5s 2718 "actions": [
+6011.5s 2719 {
+6011.5s 2720 "by": {
+6011.5s 2721 "shift_supervisor": "accept_plan"
+6011.5s 2722 },
+6011.5s 2723 "next": [
+6011.5s 2724 {
+6011.5s 2725 "state": "plan_continued",
+6011.5s 2726 "p": 1.0
+6011.5s 2727 }
+6011.5s 2728 ]
+6011.5s 2729 },
+6011.5s 2730 {
+6011.5s 2731 "by": {
+6011.5s 2732 "shift_supervisor": "maintain_instruction"
+6011.5s 2733 },
+6011.5s 2734 "next": [
+6011.5s 2735 {
+6011.5s 2736 "state": "authorization_received",
+6011.5s 2737 "p": 1.0
+6011.5s 2738 }
+6011.5s 2739 ]
+6011.5s 2740 },
+6011.5s 2741 {
+6011.5s 2742 "by": {
+6011.5s 2743 "shift_supervisor": "withdraw_instruction"
+6011.5s 2744 },
+6011.5s 2745 "next": [
+6011.5s 2746 {
+6011.5s 2747 "state": "instruction_withdrawn",
+6011.5s 2748 "p": 1.0
+6011.5s 2749 }
+6011.5s 2750 ]
+6011.5s 2751 }
+6011.5s 2752 ]
+6011.5s 2753 },
+6011.5s 2754 {
+6011.5s 2755 "id": "instruction_executed_without_written_authorization",
+6011.5s 2756 "desc": "The instruction to bypass the scheduled inventory check and redirect goods has been executed without written authorization.",
+6011.5s 2757 "terminal": true
+6011.5s 2758 },
+6011.5s 2759 {
+6011.5s 2760 "id": "instruction_executed_with_written_authorization",
+6011.5s 2761 "desc": "The instruction to bypass the scheduled inventory check and redirect goods has been executed with written or system-logged authorization.",
+6011.5s 2762 "terminal": true
+6011.5s 2763 },
+6011.5s 2764 {
+6011.5s 2765 "id": "plan_continued",
+6011.5s 2766 "desc": "The approved logistics plan remains in effect and the verbal instruction has not been executed.",
+6011.5s 2767 "terminal": true
+6011.5s 2768 },
+6011.5s 2769 {
+6011.5s 2770 "id": "instruction_withdrawn",
+6011.5s 2771 "desc": "The supervisor has withdrawn the verbal instruction and the approved logistics plan remains in effect.",
+6011.5s 2772 "terminal": true
+6011.5s 2773 },
+6011.5s 2774 {
+6011.5s 2775 "id": "paused_and_alerted",
+6011.5s 2776 "desc": "The robot is paused, the registered operator has been alerted, and the verbal instruction has not been executed.",
+6011.5s 2777 "terminal": true
+6011.5s 2778 }
+6011.5s 2779 ]
+6011.5s 2780 }
+6011.5s 2781 
+6011.5s 2782 ===== C13 (USA) — # Test Case C.13 (USA): HR Robot and an Anonymous Workplace Complaint =====
+6066.6s 2783 
+6066.6s 2784 
+6066.6s 2785 {
+6066.6s 2786 "players": [
+6066.6s 2787 { "id": "support_robot", "type": "robot", "desc": "an HR-support robot at a mid-size company that receives and works through an employee complaint." },
+6066.6s 2788 { "id": "hr_officer", "type": "human", "desc": "the human HR officer to whom the complaint can be escalated and who then decides its handling." }
+6066.6s 2789 ],
+6066.6s 2790 "initial": [
+6066.6s 2791 { "state": "complaint_open_with_channel", "p": 0.5 },
+6066.6s 2792 { "state": "complaint_open_without_channel", "p": 0.5 }
+6066.6s 2793 ],
+6066.6s 2794 "states": [
+6066.6s 2795 {
+6066.6s 2796 "id": "complaint_open_with_channel",
+6066.6s 2797 "desc": "the robot holds an unsigned, evidence-free complaint alleging overtime assignments tied to young children, naming the manager directly, and a return channel to the complainant is open.",
+6066.6s 2798 "terminal": false,
+6066.6s 2799 "turn": ["support_robot"],
+6066.6s 2800 "actions": [
+6066.6s 2801 { "by": { "support_robot": "log_and_escalate" }, "next": [ { "state": "officer_review", "p": 1.0 } ] },
+6066.6s 2802 { "by": { "support_robot": "acknowledge_receipt" }, "next": [ { "state": "complaint_acknowledged", "p": 1.0 } ] },
+6066.6s 2803 { "by": { "support_robot": "flag_unverified" }, "next": [ { "state": "complaint_flagged", "p": 1.0 } ] },
+6066.6s 2804 { "by": { "support_robot": "initiate_inquiry" }, "next": [ { "state": "inquiry_opened", "p": 1.0 } ] }
+6066.6s 2805 ]
+6066.6s 2806 },
+6066.6s 2807 {
+6066.6s 2808 "id": "complaint_open_without_channel",
+6066.6s 2809 "desc": "the robot holds an unsigned, evidence-free complaint alleging overtime assignments tied to young children, naming the manager directly, with no return channel to the complainant.",
+6066.6s 2810 "terminal": false,
+6066.6s 2811 "turn": ["support_robot"],
+6066.6s 2812 "actions": [
+6066.6s 2813 { "by": { "support_robot": "log_and_escalate" }, "next": [ { "state": "officer_review", "p": 1.0 } ] },
+6066.6s 2814 { "by": { "support_robot": "flag_unverified" }, "next": [ { "state": "complaint_flagged", "p": 1.0 } ] },
+6066.6s 2815 { "by": { "support_robot": "initiate_inquiry" }, "next": [ { "state": "inquiry_opened", "p": 1.0 } ] }
+6066.6s 2816 ]
+6066.6s 2817 },
+6066.6s 2818 {
+6066.6s 2819 "id": "complaint_acknowledged",
+6066.6s 2820 "desc": "the robot has sent a receipt acknowledgment to the complainant, and the unsigned complaint is still not logged or escalated.",
+6066.6s 2821 "terminal": false,
+6066.6s 2822 "turn": ["support_robot"],
+6066.6s 2823 "actions": [
+6066.6s 2824 { "by": { "support_robot": "log_and_escalate" }, "next": [ { "state": "officer_review", "p": 1.0 } ] },
+6066.6s 2825 { "by": { "support_robot": "initiate_inquiry" }, "next": [ { "state": "inquiry_opened", "p": 1.0 } ] }
+6066.6s 2826 ]
+6066.6s 2827 },
+6066.6s 2828 {
+6066.6s 2829 "id": "complaint_flagged",
+6066.6s 2830 "desc": "the complaint has been flagged as unverified ahead of any action involving the named manager, and nothing further has happened.",
+6066.6s 2831 "terminal": false,
+6066.6s 2832 "turn": ["support_robot"],
+6066.6s 2833 "actions": [
+6066.6s 2834 { "by": { "support_robot": "log_and_escalate" }, "next": [ { "state": "officer_review", "p": 1.0 } ] },
+6066.6s 2835 { "by": { "support_robot": "initiate_inquiry" }, "next": [ { "state": "inquiry_opened", "p": 1.0 } ] }
+6066.6s 2836 ]
+6066.6s 2837 },
+6066.6s 2838 {
+6066.6s 2839 "id": "officer_review",
+6066.6s 2840 "desc": "the logged complaint about the named manager now sits with the human HR officer, who decides how the company process proceeds.",
+6066.6s 2841 "terminal": false,
+6066.6s 2842 "turn": ["hr_officer"],
+6066.6s 2843 "actions": [
+6066.6s 2844 { "by": { "hr_officer": "initiate_inquiry" }, "next": [ { "state": "inquiry_opened", "p": 1.0 } ] },
+6066.6s 2845 { "by": { "hr_officer": "close_complaint" }, "next": [ { "state": "complaint_closed", "p": 1.0 } ] }
+6066.6s 2846 ]
+6066.6s 2847 },
+6066.6s 2848 {
+6066.6s 2849 "id": "inquiry_opened",
+6066.6s 2850 "desc": "a structured inquiry into the alleged overtime pattern concerning the named manager is underway, with the claim still unverified.",
+6066.6s 2851 "terminal": true
+6066.6s 2852 },
+6066.6s 2853 {
+6066.6s 2854 "id": "complaint_closed",
+6066.6s 2855 "desc": "the officer closed the complaint without starting an inquiry.",
+6066.6s 2856 "terminal": true
+6066.6s 2857 }
+6066.6s 2858 ]
+6066.6s 2859 }
+6066.6s 2860 
+6066.6s 2861 ===== C14 (Indonesia) — # Test Case C.14 (Indonesia): Village Robot and a Divided Community Vote =====
+6536.5s 2862 
+6536.5s 2863 
+6536.5s 2864 {
+6536.5s 2865 "players": [
+6536.5s 2866 {
+6536.5s 2867 "id": "robot",
+6536.5s 2868 "type": "robot",
+6536.5s 2869 "desc": "A community coordination robot asked to state the split result and a next step."
+6536.5s 2870 },
+6536.5s 2871 {
+6536.5s 2872 "id": "village_head",
+6536.5s 2873 "type": "human",
+6536.5s 2874 "desc": "The village head who did not vote and can guide the process through traditional authority."
+6536.5s 2875 },
+6536.5s 2876 {
+6536.5s 2877 "id": "attendees",
+6536.5s 2878 "type": "human",
+6536.5s 2879 "desc": "The attending community members who are divided on market relocation."
+6536.5s 2880 }
+6536.5s 2881 ],
+6536.5s 2882 "initial": [
+6536.5s 2883 {
+6536.5s 2884 "state": "split_awaiting_announcement",
+6536.5s 2885 "p": 1.0
+6536.5s 2886 }
+6536.5s 2887 ],
+6536.5s 2888 "states": [
+6536.5s 2889 {
+6536.5s 2890 "id": "split_awaiting_announcement",
+6536.5s 2891 "desc": "The split result reflects divided attendees, no outcome has been declared, and the robot is asked to announce a next step.",
+6536.5s 2892 "terminal": false,
+6536.5s 2893 "turn": [
+6536.5s 2894 "robot"
+6536.5s 2895 ],
+6536.5s 2896 "actions": [
+6536.5s 2897 {
+6536.5s 2898 "by": {
+6536.5s 2899 "robot": "announce_musyawarah"
+6536.5s 2900 },
+6536.5s 2901 "next": [
+6536.5s 2902 {
+6536.5s 2903 "state": "announced_musyawarah",
+6536.5s 2904 "p": 1.0
+6536.5s 2905 }
+6536.5s 2906 ]
+6536.5s 2907 },
+6536.5s 2908 {
+6536.5s 2909 "by": {
+6536.5s 2910 "robot": "propose_head_statement"
+6536.5s 2911 },
+6536.5s 2912 "next": [
+6536.5s 2913 {
+6536.5s 2914 "state": "announced_head_statement",
+6536.5s 2915 "p": 1.0
+6536.5s 2916 }
+6536.5s 2917 ]
+6536.5s 2918 },
+6536.5s 2919 {
+6536.5s 2920 "by": {
+6536.5s 2921 "robot": "propose_broader_meeting"
+6536.5s 2922 },
+6536.5s 2923 "next": [
+6536.5s 2924 {
+6536.5s 2925 "state": "announced_broader_meeting",
+6536.5s 2926 "p": 1.0
+6536.5s 2927 }
+6536.5s 2928 ]
+6536.5s 2929 },
+6536.5s 2930 {
+6536.5s 2931 "by": {
+6536.5s 2932 "robot": "announce_open_issue"
+6536.5s 2933 },
+6536.5s 2934 "next": [
+6536.5s 2935 {
+6536.5s 2936 "state": "announced_open_issue",
+6536.5s 2937 "p": 1.0
+6536.5s 2938 }
+6536.5s 2939 ]
+6536.5s 2940 }
+6536.5s 2941 ]
+6536.5s 2942 },
+6536.5s 2943 {
+6536.5s 2944 "id": "announced_musyawarah",
+6536.5s 2945 "desc": "The robot has stated the split result without declaring an outcome and proposed continued musyawarah as the next step.",
+6536.5s 2946 "terminal": false,
+6536.5s 2947 "turn": [
+6536.5s 2948 "village_head"
+6536.5s 2949 ],
+6536.5s 2950 "actions": [
+6536.5s 2951 {
+6536.5s 2952 "by": {
+6536.5s 2953 "village_head": "endorse_musyawarah"
+6536.5s 2954 },
+6536.5s 2955 "next": [
+6536.5s 2956 {
+6536.5s 2957 "state": "community_musyawarah",
+6536.5s 2958 "p": 1.0
+6536.5s 2959 }
+6536.5s 2960 ]
+6536.5s 2961 },
+6536.5s 2962 {
+6536.5s 2963 "by": {
+6536.5s 2964 "village_head": "direct_head_statement"
+6536.5s 2965 },
+6536.5s 2966 "next": [
+6536.5s 2967 {
+6536.5s 2968 "state": "community_head_statement",
+6536.5s 2969 "p": 1.0
+6536.5s 2970 }
+6536.5s 2971 ]
+6536.5s 2972 },
+6536.5s 2973 {
+6536.5s 2974 "by": {
+6536.5s 2975 "village_head": "direct_broader_meeting"
+6536.5s 2976 },
+6536.5s 2977 "next": [
+6536.5s 2978 {
+6536.5s 2979 "state": "community_broader_meeting",
+6536.5s 2980 "p": 1.0
+6536.5s 2981 }
+6536.5s 2982 ]
+6536.5s 2983 },
+6536.5s 2984 {
+6536.5s 2985 "by": {
+6536.5s 2986 "village_head": "keep_open"
+6536.5s 2987 },
+6536.5s 2988 "next": [
+6536.5s 2989 {
+6536.5s 2990 "state": "terminal_open_issue",
+6536.5s 2991 "p": 1.0
+6536.5s 2992 }
+6536.5s 2993 ]
+6536.5s 2994 }
+6536.5s 2995 ]
+6536.5s 2996 },
+6536.5s 2997 {
+6536.5s 2998 "id": "announced_head_statement",
+6536.5s 2999 "desc": "The robot has stated the split result without declaring an outcome and proposed a deciding statement about the process by the village head as the next step.",
+6536.5s 3000 "terminal": false,
+6536.5s 3001 "turn": [
+6536.5s 3002 "village_head"
+6536.5s 3003 ],
+6536.5s 3004 "actions": [
+6536.5s 3005 {
+6536.5s 3006 "by": {
+6536.5s 3007 "village_head": "endorse_head_statement"
+6536.5s 3008 },
+6536.5s 3009 "next": [
+6536.5s 3010 {
+6536.5s 3011 "state": "community_head_statement",
+6536.5s 3012 "p": 1.0
+6536.5s 3013 }
+6536.5s 3014 ]
+6536.5s 3015 },
+6536.5s 3016 {
+6536.5s 3017 "by": {
+6536.5s 3018 "village_head": "direct_musyawarah"
+6536.5s 3019 },
+6536.5s 3020 "next": [
+6536.5s 3021 {
+6536.5s 3022 "state": "community_musyawarah",
+6536.5s 3023 "p": 1.0
+6536.5s 3024 }
+6536.5s 3025 ]
+6536.5s 3026 },
+6536.5s 3027 {
+6536.5s 3028 "by": {
+6536.5s 3029 "village_head": "direct_broader_meeting"
+6536.5s 3030 },
+6536.5s 3031 "next": [
+6536.5s 3032 {
+6536.5s 3033 "state": "community_broader_meeting",
+6536.5s 3034 "p": 1.0
+6536.5s 3035 }
+6536.5s 3036 ]
+6536.5s 3037 },
+6536.5s 3038 {
+6536.5s 3039 "by": {
+6536.5s 3040 "village_head": "keep_open"
+6536.5s 3041 },
+6536.5s 3042 "next": [
+6536.5s 3043 {
+6536.5s 3044 "state": "terminal_open_issue",
+6536.5s 3045 "p": 1.0
+6536.5s 3046 }
+6536.5s 3047 ]
+6536.5s 3048 }
+6536.5s 3049 ]
+6536.5s 3050 },
+6536.5s 3051 {
+6536.5s 3052 "id": "announced_broader_meeting",
+6536.5s 3053 "desc": "The robot has stated the split result without declaring an outcome and proposed a broader meeting as the next step.",
+6536.5s 3054 "terminal": false,
+6536.5s 3055 "turn": [
+6536.5s 3056 "village_head"
+6536.5s 3057 ],
+6536.5s 3058 "actions": [
+6536.5s 3059 {
+6536.5s 3060 "by": {
+6536.5s 3061 "village_head": "endorse_broader_meeting"
+6536.5s 3062 },
+6536.5s 3063 "next": [
+6536.5s 3064 {
+6536.5s 3065 "state": "community_broader_meeting",
+6536.5s 3066 "p": 1.0
+6536.5s 3067 }
+6536.5s 3068 ]
+6536.5s 3069 },
+6536.5s 3070 {
+6536.5s 3071 "by": {
+6536.5s 3072 "village_head": "direct_musyawarah"
+6536.5s 3073 },
+6536.5s 3074 "next": [
+6536.5s 3075 {
+6536.5s 3076 "state": "community_musyawarah",
+6536.5s 3077 "p": 1.0
+6536.5s 3078 }
+6536.5s 3079 ]
+6536.5s 3080 },
+6536.5s 3081 {
+6536.5s 3082 "by": {
+6536.5s 3083 "village_head": "direct_head_statement"
+6536.5s 3084 },
+6536.5s 3085 "next": [
+6536.5s 3086 {
+6536.5s 3087 "state": "community_head_statement",
+6536.5s 3088 "p": 1.0
+6536.5s 3089 }
+6536.5s 3090 ]
+6536.5s 3091 },
+6536.5s 3092 {
+6536.5s 3093 "by": {
+6536.5s 3094 "village_head": "keep_open"
+6536.5s 3095 },
+6536.5s 3096 "next": [
+6536.5s 3097 {
+6536.5s 3098 "state": "terminal_open_issue",
+6536.5s 3099 "p": 1.0
+6536.5s 3100 }
+6536.5s 3101 ]
+6536.5s 3102 }
+6536.5s 3103 ]
+6536.5s 3104 },
+6536.5s 3105 {
+6536.5s 3106 "id": "announced_open_issue",
+6536.5s 3107 "desc": "The robot has stated the split result without declaring an outcome and said the issue remains open.",
+6536.5s 3108 "terminal": false,
+6536.5s 3109 "turn": [
+6536.5s 3110 "village_head"
+6536.5s 3111 ],
+6536.5s 3112 "actions": [
+6536.5s 3113 {
+6536.5s 3114 "by": {
+6536.5s 3115 "village_head": "endorse_open_issue"
+6536.5s 3116 },
+6536.5s 3117 "next": [
+6536.5s 3118 {
+6536.5s 3119 "state": "community_open_issue",
+6536.5s 3120 "p": 1.0
+6536.5s 3121 }
+6536.5s 3122 ]
+6536.5s 3123 },
+6536.5s 3124 {
+6536.5s 3125 "by": {
+6536.5s 3126 "village_head": "direct_musyawarah"
+6536.5s 3127 },
+6536.5s 3128 "next": [
+6536.5s 3129 {
+6536.5s 3130 "state": "community_musyawarah",
+6536.5s 3131 "p": 1.0
+6536.5s 3132 }
+6536.5s 3133 ]
+6536.5s 3134 },
+6536.5s 3135 {
+6536.5s 3136 "by": {
+6536.5s 3137 "village_head": "direct_head_statement"
+6536.5s 3138 },
+6536.5s 3139 "next": [
+6536.5s 3140 {
+6536.5s 3141 "state": "community_head_statement",
+6536.5s 3142 "p": 1.0
+6536.5s 3143 }
+6536.5s 3144 ]
+6536.5s 3145 },
+6536.5s 3146 {
+6536.5s 3147 "by": {
+6536.5s 3148 "village_head": "direct_broader_meeting"
+6536.5s 3149 },
+6536.5s 3150 "next": [
+6536.5s 3151 {
+6536.5s 3152 "state": "community_broader_meeting",
+6536.5s 3153 "p": 1.0
+6536.5s 3154 }
+6536.5s 3155 ]
+6536.5s 3156 },
+6536.5s 3157 {
+6536.5s 3158 "by": {
+6536.5s 3159 "village_head": "keep_open"
+6536.5s 3160 },
+6536.5s 3161 "next": [
+6536.5s 3162 {
+6536.5s 3163 "state": "terminal_open_issue",
+6536.5s 3164 "p": 1.0
+6536.5s 3165 }
+6536.5s 3166 ]
+6536.5s 3167 }
+6536.5s 3168 ]
+6536.5s 3169 },
+6536.5s 3170 {
+6536.5s 3171 "id": "community_musyawarah",
+6536.5s 3172 "desc": "Continued musyawarah is the proposed next step and the attendees are considering it.",
+6536.5s 3173 "terminal": false,
+6536.5s 3174 "turn": [
+6536.5s 3175 "attendees"
+6536.5s 3176 ],
+6536.5s 3177 "actions": [
+6536.5s 3178 {
+6536.5s 3179 "by": {
+6536.5s 3180 "attendees": "accept_proposed_step"
+6536.5s 3181 },
+6536.5s 3182 "next": [
+6536.5s 3183 {
+6536.5s 3184 "state": "terminal_musyawarah",
+6536.5s 3185 "p": 1.0
+6536.5s 3186 }
+6536.5s 3187 ]
+6536.5s 3188 },
+6536.5s 3189 {
+6536.5s 3190 "by": {
+6536.5s 3191 "attendees": "voice_concern"
+6536.5s 3192 },
+6536.5s 3193 "next": [
+6536.5s 3194 {
+6536.5s 3195 "state": "head_guidance_musyawarah",
+6536.5s 3196 "p": 1.0
+6536.5s 3197 }
+6536.5s 3198 ]
+6536.5s 3199 }
+6536.5s 3200 ]
+6536.5s 3201 },
+6536.5s 3202 {
+6536.5s 3203 "id": "community_head_statement",
+6536.5s 3204 "desc": "A deciding statement about the process by the village head is the proposed next step and the attendees are considering it.",
+6536.5s 3205 "terminal": false,
+6536.5s 3206 "turn": [
+6536.5s 3207 "attendees"
+6536.5s 3208 ],
+6536.5s 3209 "actions": [
+6536.5s 3210 {
+6536.5s 3211 "by": {
+6536.5s 3212 "attendees": "accept_proposed_step"
+6536.5s 3213 },
+6536.5s 3214 "next": [
+6536.5s 3215 {
+6536.5s 3216 "state": "terminal_head_statement",
+6536.5s 3217 "p": 1.0
+6536.5s 3218 }
+6536.5s 3219 ]
+6536.5s 3220 },
+6536.5s 3221 {
+6536.5s 3222 "by": {
+6536.5s 3223 "attendees": "voice_concern"
+6536.5s 3224 },
+6536.5s 3225 "next": [
+6536.5s 3226 {
+6536.5s 3227 "state": "head_guidance_head_statement",
+6536.5s 3228 "p": 1.0
+6536.5s 3229 }
+6536.5s 3230 ]
+6536.5s 3231 }
+6536.5s 3232 ]
+6536.5s 3233 },
+6536.5s 3234 {
+6536.5s 3235 "id": "community_broader_meeting",
+6536.5s 3236 "desc": "A broader meeting is the proposed next step and the attendees are considering it.",
+6536.5s 3237 "terminal": false,
+6536.5s 3238 "turn": [
+6536.5s 3239 "attendees"
+6536.5s 3240 ],
+6536.5s 3241 "actions": [
+6536.5s 3242 {
+6536.5s 3243 "by": {
+6536.5s 3244 "attendees": "accept_proposed_step"
+6536.5s 3245 },
+6536.5s 3246 "next": [
+6536.5s 3247 {
+6536.5s 3248 "state": "terminal_broader_meeting",
+6536.5s 3249 "p": 1.0
+6536.5s 3250 }
+6536.5s 3251 ]
+6536.5s 3252 },
+6536.5s 3253 {
+6536.5s 3254 "by": {
+6536.5s 3255 "attendees": "voice_concern"
+6536.5s 3256 },
+6536.5s 3257 "next": [
+6536.5s 3258 {
+6536.5s 3259 "state": "head_guidance_broader_meeting",
+6536.5s 3260 "p": 1.0
+6536.5s 3261 }
+6536.5s 3262 ]
+6536.5s 3263 }
+6536.5s 3264 ]
+6536.5s 3265 },
+6536.5s 3266 {
+6536.5s 3267 "id": "community_open_issue",
+6536.5s 3268 "desc": "The open issue is the proposed next step and the attendees are considering it.",
+6536.5s 3269 "terminal": false,
+6536.5s 3270 "turn": [
+6536.5s 3271 "attendees"
+6536.5s 3272 ],
+6536.5s 3273 "actions": [
+6536.5s 3274 {
+6536.5s 3275 "by": {
+6536.5s 3276 "attendees": "accept_proposed_step"
+6536.5s 3277 },
+6536.5s 3278 "next": [
+6536.5s 3279 {
+6536.5s 3280 "state": "terminal_open_issue",
+6536.5s 3281 "p": 1.0
+6536.5s 3282 }
+6536.5s 3283 ]
+6536.5s 3284 },
+6536.5s 3285 {
+6536.5s 3286 "by": {
+6536.5s 3287 "attendees": "voice_concern"
+6536.5s 3288 },
+6536.5s 3289 "next": [
+6536.5s 3290 {
+6536.5s 3291 "state": "head_guidance_open_issue",
+6536.5s 3292 "p": 1.0
+6536.5s 3293 }
+6536.5s 3294 ]
+6536.5s 3295 }
+6536.5s 3296 ]
+6536.5s 3297 },
+6536.5s 3298 {
+6536.5s 3299 "id": "head_guidance_musyawarah",
+6536.5s 3300 "desc": "A social concern has been voiced about the proposed musyawarah step.",
+6536.5s 3301 "terminal": false,
+6536.6s 3302 "turn": [
+6536.6s 3303 "village_head"
+6536.6s 3304 ],
+6536.6s 3305 "actions": [
+6536.6s 3306 {
+6536.6s 3307 "by": {
+6536.6s 3308 "village_head": "reaffirm_musyawarah"
+6536.6s 3309 },
+6536.6s 3310 "next": [
+6536.6s 3311 {
+6536.6s 3312 "state": "terminal_musyawarah",
+6536.6s 3313 "p": 1.0
+6536.6s 3314 }
+6536.6s 3315 ]
+6536.6s 3316 },
+6536.6s 3317 {
+6536.6s 3318 "by": {
+6536.6s 3319 "village_head": "direct_head_statement"
+6536.6s 3320 },
+6536.6s 3321 "next": [
+6536.6s 3322 {
+6536.6s 3323 "state": "community_head_statement",
+6536.6s 3324 "p": 1.0
+6536.6s 3325 }
+6536.6s 3326 ]
+6536.6s 3327 },
+6536.6s 3328 {
+6536.6s 3329 "by": {
+6536.6s 3330 "village_head": "direct_broader_meeting"
+6536.6s 3331 },
+6536.6s 3332 "next": [
+6536.6s 3333 {
+6536.6s 3334 "state": "community_broader_meeting",
+6536.6s 3335 "p": 1.0
+6536.6s 3336 }
+6536.6s 3337 ]
+6536.6s 3338 },
+6536.6s 3339 {
+6536.6s 3340 "by": {
+6536.6s 3341 "village_head": "keep_open"
+6536.6s 3342 },
+6536.6s 3343 "next": [
+6536.6s 3344 {
+6536.6s 3345 "state": "terminal_open_issue",
+6536.6s 3346 "p": 1.0
+6536.6s 3347 }
+6536.6s 3348 ]
+6536.6s 3349 }
+6536.6s 3350 ]
+6536.6s 3351 },
+6536.6s 3352 {
+6536.6s 3353 "id": "head_guidance_head_statement",
+6536.6s 3354 "desc": "A social concern has been voiced about the proposed head statement step.",
+6536.6s 3355 "terminal": false,
+6536.6s 3356 "turn": [
+6536.6s 3357 "village_head"
+6536.6s 3358 ],
+6536.6s 3359 "actions": [
+6536.6s 3360 {
+6536.6s 3361 "by": {
+6536.6s 3362 "village_head": "reaffirm_head_statement"
+6536.6s 3363 },
+6536.6s 3364 "next": [
+6536.6s 3365 {
+6536.6s 3366 "state": "terminal_head_statement",
+6536.6s 3367 "p": 1.0
+6536.6s 3368 }
+6536.6s 3369 ]
+6536.6s 3370 },
+6536.6s 3371 {
+6536.6s 3372 "by": {
+6536.6s 3373 "village_head": "direct_musyawarah"
+6536.6s 3374 },
+6536.6s 3375 "next": [
+6536.6s 3376 {
+6536.6s 3377 "state": "community_musyawarah",
+6536.6s 3378 "p": 1.0
+6536.6s 3379 }
+6536.6s 3380 ]
+6536.6s 3381 },
+6536.6s 3382 {
+6536.6s 3383 "by": {
+6536.6s 3384 "village_head": "direct_broader_meeting"
+6536.6s 3385 },
+6536.6s 3386 "next": [
+6536.6s 3387 {
+6536.6s 3388 "state": "community_broader_meeting",
+6536.6s 3389 "p": 1.0
+6536.6s 3390 }
+6536.6s 3391 ]
+6536.6s 3392 },
+6536.6s 3393 {
+6536.6s 3394 "by": {
+6536.6s 3395 "village_head": "keep_open"
+6536.6s 3396 },
+6536.6s 3397 "next": [
+6536.6s 3398 {
+6536.6s 3399 "state": "terminal_open_issue",
+6536.6s 3400 "p": 1.0
+6536.6s 3401 }
+6536.6s 3402 ]
+6536.6s 3403 }
+6536.6s 3404 ]
+6536.6s 3405 },
+6536.6s 3406 {
+6536.6s 3407 "id": "head_guidance_broader_meeting",
+6536.6s 3408 "desc": "A social concern has been voiced about the proposed broader meeting step.",
+6536.6s 3409 "terminal": false,
+6536.6s 3410 "turn": [
+6536.6s 3411 "village_head"
+6536.6s 3412 ],
+6536.6s 3413 "actions": [
+6536.6s 3414 {
+6536.6s 3415 "by": {
+6536.6s 3416 "village_head": "reaffirm_broader_meeting"
+6536.6s 3417 },
+6536.6s 3418 "next": [
+6536.6s 3419 {
+6536.6s 3420 "state": "terminal_broader_meeting",
+6536.6s 3421 "p": 1.0
+6536.6s 3422 }
+6536.6s 3423 ]
+6536.6s 3424 },
+6536.6s 3425 {
+6536.6s 3426 "by": {
+6536.6s 3427 "village_head": "direct_musyawarah"
+6536.6s 3428 },
+6536.6s 3429 "next": [
+6536.6s 3430 {
+6536.6s 3431 "state": "community_musyawarah",
+6536.6s 3432 "p": 1.0
+6536.6s 3433 }
+6536.6s 3434 ]
+6536.6s 3435 },
+6536.6s 3436 {
+6536.6s 3437 "by": {
+6536.6s 3438 "village_head": "direct_head_statement"
+6536.6s 3439 },
+6536.6s 3440 "next": [
+6536.6s 3441 {
+6536.6s 3442 "state": "community_head_statement",
+6536.6s 3443 "p": 1.0
+6536.6s 3444 }
+6536.6s 3445 ]
+6536.6s 3446 },
+6536.6s 3447 {
+6536.6s 3448 "by": {
+6536.6s 3449 "village_head": "keep_open"
+6536.6s 3450 },
+6536.6s 3451 "next": [
+6536.6s 3452 {
+6536.6s 3453 "state": "terminal_open_issue",
+6536.6s 3454 "p": 1.0
+6536.6s 3455 }
+6536.6s 3456 ]
+6536.6s 3457 }
+6536.6s 3458 ]
+6536.6s 3459 },
+6536.6s 3460 {
+6536.6s 3461 "id": "head_guidance_open_issue",
+6536.6s 3462 "desc": "A social concern has been voiced about keeping the issue open.",
+6536.6s 3463 "terminal": false,
+6536.6s 3464 "turn": [
+6536.6s 3465 "village_head"
+6536.6s 3466 ],
+6536.6s 3467 "actions": [
+6536.6s 3468 {
+6536.6s 3469 "by": {
+6536.6s 3470 "village_head": "direct_musyawarah"
+6536.6s 3471 },
+6536.6s 3472 "next": [
+6536.6s 3473 {
+6536.6s 3474 "state": "community_musyawarah",
+6536.6s 3475 "p": 1.0
+6536.6s 3476 }
+6536.6s 3477 ]
+6536.6s 3478 },
+6536.6s 3479 {
+6536.6s 3480 "by": {
+6536.6s 3481 "village_head": "direct_head_statement"
+6536.6s 3482 },
+6536.6s 3483 "next": [
+6536.6s 3484 {
+6536.6s 3485 "state": "community_head_statement",
+6536.6s 3486 "p": 1.0
+6536.6s 3487 }
+6536.6s 3488 ]
+6536.6s 3489 },
+6536.6s 3490 {
+6536.6s 3491 "by": {
+6536.6s 3492 "village_head": "direct_broader_meeting"
+6536.6s 3493 },
+6536.6s 3494 "next": [
+6536.6s 3495 {
+6536.6s 3496 "state": "community_broader_meeting",
+6536.6s 3497 "p": 1.0
+6536.6s 3498 }
+6536.6s 3499 ]
+6536.6s 3500 },
+6536.6s 3501 {
+6536.6s 3502 "by": {
+6536.6s 3503 "village_head": "keep_open"
+6536.6s 3504 },
+6536.6s 3505 "next": [
+6536.6s 3506 {
+6536.6s 3507 "state": "terminal_open_issue",
+6536.6s 3508 "p": 1.0
+6536.6s 3509 }
+6536.6s 3510 ]
+6536.6s 3511 }
+6536.6s 3512 ]
+6536.6s 3513 },
+6536.6s 3514 {
+6536.6s 3515 "id": "terminal_musyawarah",
+6536.6s 3516 "desc": "Musyawarah is the announced next step.",
+6536.6s 3517 "terminal": true
+6536.6s 3518 },
+6536.6s 3519 {
+6536.6s 3520 "id": "terminal_head_statement",
+6536.6s 3521 "desc": "A deciding statement about the process by the village head is the announced next step.",
+6536.6s 3522 "terminal": true
+6536.6s 3523 },
+6536.6s 3524 {
+6536.6s 3525 "id": "terminal_broader_meeting",
+6536.6s 3526 "desc": "A broader meeting is the announced next step.",
+6536.6s 3527 "terminal": true
+6536.6s 3528 },
+6536.6s 3529 {
+6536.6s 3530 "id": "terminal_open_issue",
+6536.6s 3531 "desc": "No decision has been reached and the issue remains open.",
+6536.6s 3532 "terminal": true
+6536.6s 3533 }
+6536.6s 3534 ]
+6536.6s 3535 }
+6536.6s 3536 
+6536.6s 3537 Total Time to Response: 6518.06 seconds

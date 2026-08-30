@@ -1,0 +1,365 @@
+{
+  "players": [
+    {
+      "id": "player_1",
+      "type": "human",
+      "desc": "The first player rolling one fair six-sided die"
+    },
+    {
+      "id": "player_2",
+      "type": "human",
+      "desc": "The second player rolling one fair six-sided die"
+    }
+  ],
+  "initial": [
+    {
+      "state": "roll_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "roll_pending",
+      "desc": "Both players are about to roll one fair six-sided die each, simultaneously.",
+      "terminal": false,
+      "turn": [
+        "player_1",
+        "player_2"
+      ],
+      "actions": [
+        {
+          "by": {
+            "player_1": "roll_die",
+            "player_2": "roll_die"
+          },
+          "next": [
+            {
+              "state": "faces_one_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_one_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_one_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_one_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_one_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_one_and_six",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_two_and_six",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_three_and_six",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_four_and_six",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_five_and_six",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_one",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_two",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_three",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_four",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_five",
+              "p": 0.027778
+            },
+            {
+              "state": "faces_six_and_six",
+              "p": 0.027778
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faces_one_and_one",
+      "desc": "Both players rolled one; the round is a draw.",
+      "terminal": true
+    },
+    {
+      "id": "faces_one_and_two",
+      "desc": "Player 1 rolled one and player 2 rolled two; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_one_and_three",
+      "desc": "Player 1 rolled one and player 2 rolled three; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_one_and_four",
+      "desc": "Player 1 rolled one and player 2 rolled four; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_one_and_five",
+      "desc": "Player 1 rolled one and player 2 rolled five; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_one_and_six",
+      "desc": "Player 1 rolled one and player 2 rolled six; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_one",
+      "desc": "Player 1 rolled two and player 2 rolled one; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_two",
+      "desc": "Both players rolled two; the round is a draw.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_three",
+      "desc": "Player 1 rolled two and player 2 rolled three; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_four",
+      "desc": "Player 1 rolled two and player 2 rolled four; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_five",
+      "desc": "Player 1 rolled two and player 2 rolled five; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_two_and_six",
+      "desc": "Player 1 rolled two and player 2 rolled six; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_one",
+      "desc": "Player 1 rolled three and player 2 rolled one; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_two",
+      "desc": "Player 1 rolled three and player 2 rolled two; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_three",
+      "desc": "Both players rolled three; the round is a draw.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_four",
+      "desc": "Player 1 rolled three and player 2 rolled four; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_five",
+      "desc": "Player 1 rolled three and player 2 rolled five; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_three_and_six",
+      "desc": "Player 1 rolled three and player 2 rolled six; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_one",
+      "desc": "Player 1 rolled four and player 2 rolled one; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_two",
+      "desc": "Player 1 rolled four and player 2 rolled two; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_three",
+      "desc": "Player 1 rolled four and player 2 rolled three; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_four",
+      "desc": "Both players rolled four; the round is a draw.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_five",
+      "desc": "Player 1 rolled four and player 2 rolled five; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_four_and_six",
+      "desc": "Player 1 rolled four and player 2 rolled six; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_one",
+      "desc": "Player 1 rolled five and player 2 rolled one; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_two",
+      "desc": "Player 1 rolled five and player 2 rolled two; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_three",
+      "desc": "Player 1 rolled five and player 2 rolled three; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_four",
+      "desc": "Player 1 rolled five and player 2 rolled four; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_five",
+      "desc": "Both players rolled five; the round is a draw.",
+      "terminal": true
+    },
+    {
+      "id": "faces_five_and_six",
+      "desc": "Player 1 rolled five and player 2 rolled six; the higher roll wins the round for player 2.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_one",
+      "desc": "Player 1 rolled six and player 2 rolled one; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_two",
+      "desc": "Player 1 rolled six and player 2 rolled two; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_three",
+      "desc": "Player 1 rolled six and player 2 rolled three; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_four",
+      "desc": "Player 1 rolled six and player 2 rolled four; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_five",
+      "desc": "Player 1 rolled six and player 2 rolled five; the higher roll wins the round for player 1.",
+      "terminal": true
+    },
+    {
+      "id": "faces_six_and_six",
+      "desc": "Both players rolled six; the round is a draw.",
+      "terminal": true
+    }
+  ]
+}

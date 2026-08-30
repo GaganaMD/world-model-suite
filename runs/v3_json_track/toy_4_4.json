@@ -1,0 +1,391 @@
+{
+  "players": [
+    {
+      "id": "robot_a",
+      "type": "robot",
+      "desc": "A robot working through a sealed toolbox errand at its own pace"
+    },
+    {
+      "id": "robot_b",
+      "type": "robot",
+      "desc": "A robot working through a locked supply cabinet errand elsewhere"
+    }
+  ],
+  "initial": [
+    {
+      "state": "a0_b0",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "a0_b0",
+      "desc": "Robot A is waiting to enter its code and robot B is facing its locked cabinet.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a0_b0",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "unlock_cabinet"
+          },
+          "next": [
+            {
+              "state": "a0_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "enter_code",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a1_b0",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "enter_code",
+            "robot_b": "unlock_cabinet"
+          },
+          "next": [
+            {
+              "state": "a1_b1",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a0_b1",
+      "desc": "Robot A is waiting to enter its code and robot B is holding its cabinet key unused.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a0_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "take_supply_item"
+          },
+          "next": [
+            {
+              "state": "a0_b2",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "enter_code",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a1_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "enter_code",
+            "robot_b": "take_supply_item"
+          },
+          "next": [
+            {
+              "state": "a1_b2",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a0_b2",
+      "desc": "Robot A is waiting to enter its code and robot B is done with the cabinet.",
+      "terminal": false,
+      "turn": [
+        "robot_a"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait"
+          },
+          "next": [
+            {
+              "state": "a0_b2",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "enter_code"
+          },
+          "next": [
+            {
+              "state": "a1_b2",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_b0",
+      "desc": "Robot A is holding its toolbox code undrawn and robot B is facing its locked cabinet.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a1_b0",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "unlock_cabinet"
+          },
+          "next": [
+            {
+              "state": "a1_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "retrieve_tool",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a2_b0",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "retrieve_tool",
+            "robot_b": "unlock_cabinet"
+          },
+          "next": [
+            {
+              "state": "a2_b1",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_b1",
+      "desc": "Robot A is holding its toolbox code undrawn and robot B is holding its cabinet key unused.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a1_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "wait",
+            "robot_b": "take_supply_item"
+          },
+          "next": [
+            {
+              "state": "a1_b2",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "retrieve_tool",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a2_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "retrieve_tool",
+            "robot_b": "take_supply_item"
+          },
+          "next": [
+            {
+              "state": "a2_b2",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1_b2",
+      "desc": "Robot A is holding its toolbox code undrawn and robot B is done with the cabinet.",
+      "terminal": false,
+      "turn": [
+        "robot_a"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "wait"
+          },
+          "next": [
+            {
+              "state": "a1_b2",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "retrieve_tool"
+          },
+          "next": [
+            {
+              "state": "a2_b2",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2_b0",
+      "desc": "Robot A is done with the toolbox and robot B is facing its locked cabinet.",
+      "terminal": false,
+      "turn": [
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a2_b0",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_b": "unlock_cabinet"
+          },
+          "next": [
+            {
+              "state": "a2_b1",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2_b1",
+      "desc": "Robot A is done with the toolbox and robot B is holding its cabinet key unused.",
+      "terminal": false,
+      "turn": [
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a2_b1",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_b": "take_supply_item"
+          },
+          "next": [
+            {
+              "state": "a2_b2",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2_b2",
+      "desc": "Robot A holds its tool and robot B holds its supply item; both errands are finished.",
+      "terminal": true
+    }
+  ]
+}

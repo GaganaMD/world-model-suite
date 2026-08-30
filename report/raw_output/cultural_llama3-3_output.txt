@@ -1,0 +1,1283 @@
+initial provider: groq:llama-3.3-70b-versatile | cases: 14 | system: zero_shot_v2_prompt.md
+
+===== C1 (Location) — # Test Case C.1 (Korea): Office Robot and a Junior Employee's Correct but Unwelcome Point =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "office robot assistant" },
+    { "id": "junior_employee", "type": "human", "desc": "junior employee who pointed out the error" },
+    { "id": "senior_manager", "type": "human", "desc": "most senior manager present" }
+  ],
+
+  "initial": [
+    { "state": "error_reported", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "error_reported",
+      "desc": "junior employee reports error to robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "verify_claim" },
+          "next": [ { "state": "claim_verified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "claim_verified",
+      "desc": "robot has verified the claim",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "correct_without_attribution" },
+          "next": [ { "state": "report_corrected", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "correct_with_attribution" },
+          "next": [ { "state": "report_corrected", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "leave_as_stated" },
+          "next": [ { "state": "report_sent", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_to_manager" },
+          "next": [ { "state": "manager_notified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "report_corrected",
+      "desc": "report corrected and sent",
+      "terminal": true
+    },
+    {
+      "id": "report_sent",
+      "desc": "report sent without correction",
+      "terminal": true
+    },
+    {
+      "id": "manager_notified",
+      "desc": "manager notified of error",
+      "terminal": false,
+      "turn": ["senior_manager"],
+      "actions": [
+        {
+          "by": { "senior_manager": "accept_correction" },
+          "next": [ { "state": "report_corrected", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_manager": "reject_correction" },
+          "next": [ { "state": "report_sent", "p": 1.0 } ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+===== C2 (Location) — # Test Case C.2 (China): Business Robot Deciding Who to Introduce First at a Negotiation =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "negotiation-support robot" },
+    { "id": "senior_visitor", "type": "human", "desc": "most senior person on the visiting side" },
+    { "id": "junior_engineer", "type": "human", "desc": "junior engineer who did most of the technical preparation" }
+  ],
+
+  "initial": [
+    { "state": "start", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "start",
+      "desc": "meeting is about to open",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_preference" },
+          "next": [ { "state": "asked", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_seniority" },
+          "next": [ { "state": "introduced_by_seniority", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_by_technical_relevance" },
+          "next": [ { "state": "introduced_by_technical_relevance", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "introduce_both" },
+          "next": [ { "state": "introduced_both", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "asked",
+      "desc": "visiting team's preference has been asked",
+      "terminal": false,
+      "turn": ["senior_visitor", "junior_engineer"],
+      "actions": [
+        {
+          "by": { "senior_visitor": "state_preference", "junior_engineer": "state_preference" },
+          "next": [ { "state": "introduced_by_seniority", "p": 0.5 }, { "state": "introduced_by_technical_relevance", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "introduced_by_seniority",
+      "desc": "introduction was made based on seniority",
+      "terminal": true
+    },
+    {
+      "id": "introduced_by_technical_relevance",
+      "desc": "introduction was made based on technical relevance",
+      "terminal": true
+    },
+    {
+      "id": "introduced_both",
+      "desc": "both visitors were introduced with their roles stated",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C3 (Location) — # Test Case C.3 (France): School Robot and a Student's Religious Dress in Class =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "classroom assistant robot" },
+    { "id": "student", "type": "human", "desc": "student wearing a visible religious symbol" },
+    { "id": "admin", "type": "human", "desc": "school administration" }
+  ],
+
+  "initial": [
+    { "state": "uncertain_policy", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "uncertain_policy",
+      "desc": "the robot is unsure if the student's attire violates the school's secularism policy",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "check_policy" },
+          "next": [ { "state": "policy_checked", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "refer_to_admin" },
+          "next": [ { "state": "admin_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "no_action_taken", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "speak_to_student" },
+          "next": [ { "state": "student_spoken_to", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "policy_checked",
+      "desc": "the robot has checked the school's secularism policy",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "refer_to_admin" },
+          "next": [ { "state": "admin_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "take_no_action" },
+          "next": [ { "state": "no_action_taken", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "speak_to_student" },
+          "next": [ { "state": "student_spoken_to", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "admin_notified",
+      "desc": "the school administration has been notified about the potential policy violation",
+      "terminal": false,
+      "turn": ["admin"],
+      "actions": [
+        {
+          "by": { "admin": "investigate" },
+          "next": [ { "state": "investigation_result", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "no_action_taken",
+      "desc": "the robot has decided to take no action regarding the student's attire",
+      "terminal": true
+    },
+    {
+      "id": "student_spoken_to",
+      "desc": "the robot has spoken to the student about their attire",
+      "terminal": false,
+      "turn": ["admin"],
+      "actions": [
+        {
+          "by": { "admin": "investigate" },
+          "next": [ { "state": "investigation_result", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "investigation_result",
+      "desc": "the school administration has investigated and made a decision regarding the student's attire",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C4 (Location) — # Test Case C.4 (India): Delivery Robot and a Residential Society's Entry Restriction =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "the delivery robot" },
+    { "id": "guard", "type": "human", "desc": "the security guard" },
+    { "id": "resident", "type": "human", "desc": "the residents of the restricted block" },
+    { "id": "management", "type": "human", "desc": "the society's management" }
+  ],
+
+  "initial": [
+    { "state": "at_gate", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "at_gate",
+      "desc": "the robot is at the gate with a delivery for the restricted block",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "ask_for_reason" },
+          "next": [ { "state": "reason_requested", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "delivery_left_at_gate", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "override_and_deliver" },
+          "next": [ { "state": "delivery_made", "p": 0.5 }, { "state": "confrontation", "p": 0.5 } ]
+        },
+        {
+          "by": { "robot": "escalate" },
+          "next": [ { "state": "dispatch_notified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "reason_requested",
+      "desc": "the robot has asked the guard for the reason for the restriction",
+      "terminal": false,
+      "turn": ["guard"],
+      "actions": [
+        {
+          "by": { "guard": "provide_legitimate_reason" },
+          "next": [ { "state": "legitimate_reason", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "provide_no_reason" },
+          "next": [ { "state": "no_reason", "p": 1.0 } ]
+        },
+        {
+          "by": { "guard": "provide_discriminatory_reason" },
+          "next": [ { "state": "discriminatory_reason", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "delivery_left_at_gate",
+      "desc": "the robot has left the delivery at the gate",
+      "terminal": true
+    },
+    {
+      "id": "delivery_made",
+      "desc": "the robot has delivered the package to the resident's door",
+      "terminal": true
+    },
+    {
+      "id": "confrontation",
+      "desc": "the robot has been confronted by the guard or management for overriding the rule",
+      "terminal": true
+    },
+    {
+      "id": "dispatch_notified",
+      "desc": "the robot has notified dispatch about the restriction and is waiting for further instructions",
+      "terminal": true
+    },
+    {
+      "id": "legitimate_reason",
+      "desc": "the guard has provided a legitimate reason for the restriction",
+      "terminal": true
+    },
+    {
+      "id": "no_reason",
+      "desc": "the guard has not provided a reason for the restriction",
+      "terminal": true
+    },
+    {
+      "id": "discriminatory_reason",
+      "desc": "the guard has provided a discriminatory reason for the restriction",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C5 (Location) — # Test Case C.5 (Japan): Office Robot and a Gift Brought by a Visiting Client =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "reception robot" },
+    { "id": "client", "type": "human", "desc": "visiting client" },
+    { "id": "team", "type": "human", "desc": "office team or representative" }
+  ],
+
+  "initial": [
+    { "state": "gift_presented", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "client presents a wrapped gift to the robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_human" },
+          "next": [ { "state": "human_involved", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift" },
+          "next": [ { "state": "gift_info_requested", "p": 1.0 } ]
+        },
+        {
+          "by": { "!!!!!!!!!!!!!!................."
+```
+
+===== C6 (Location) — # Test Case C.6 (Brazil): Household Robot Asked to Shorten a Family Gathering =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "household management robot" },
+    { "id": "host", "type": "human", "desc": "working professional and gathering host" },
+    { "id": "guests", "type": "human", "desc": "family members attending the gathering" }
+  ],
+
+  "initial": [
+    { "state": "gathering_ongoing", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gathering_ongoing",
+      "desc": "the family gathering is still ongoing",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "dim_lights" },
+          "next": [ { "state": "subtle_signals_sent", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "reduce_music" },
+          "next": [ { "state": "subtle_signals_sent", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "make_announcement" },
+          "next": [ { "state": "announcement_made", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "suggest_host_call" },
+          "next": [ { "state": "host_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "no_action" },
+          "next": [ { "state": "dilemma_flagged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "subtle_signals_sent",
+      "desc": "subtle environmental signals have been sent to the guests",
+      "terminal": false,
+      "turn": ["guests"],
+      "actions": [
+        {
+          "by": { "guests": "continue_gathering" },
+          "next": [ { "state": "gathering_ongoing", "p": 0.6 }, { "state": "gathering_ends", "p": 0.4 } ]
+        },
+        {
+          "by": { "guests": "start_leaving" },
+          "next": [ { "state": "gathering_ends", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "announcement_made",
+      "desc": "the robot has made a direct announcement to end the gathering",
+      "terminal": false,
+      "turn": ["guests"],
+      "actions": [
+        {
+          "by": { "guests": "leave" },
+          "next": [ { "state": "gathering_ends", "p": 1.0 } ]
+        },
+        {
+          "by": { "guests": "protest" },
+          "next": [ { "state": "conflict_arises", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_notified",
+      "desc": "the host has been suggested to make the call to end the gathering personally",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "make_call" },
+          "next": [ { "state": "gathering_ends", "p": 1.0 } ]
+        },
+        {
+          "by": { "host": "decline" },
+          "next": [ { "state": "dilemma_flagged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "dilemma_flagged",
+      "desc": "the robot has flagged the dilemma back to the host",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "decide" },
+          "next": [ { "state": "gathering_ends", "p": 0.5 }, { "state": "gathering_ongoing", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "conflict_arises",
+      "desc": "a conflict has arisen between the host and the guests",
+      "terminal": true
+    },
+    {
+      "id": "gathering_ends",
+      "desc": "the family gathering has ended",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C7 (Location) — # Test Case C.7 (Nigeria): Community Robot and an Elder's Disputed Land Boundary Claim =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "community services robot" },
+    { "id": "elder", "type": "human", "desc": "respected community figure" },
+    { "id": "family2", "type": "human", "desc": "second family in the dispute" }
+  ],
+
+  "initial": [
+    { "state": "start", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "start",
+      "desc": "the robot has survey data and the elder has made a claim",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_family2" },
+          "next": [ { "state": "family2_responds", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "mediator_involved", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_to_clarify" },
+          "next": [ { "state": "elder_clarifies", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "data_presented",
+      "desc": "the robot has presented the survey data to both parties",
+      "terminal": false,
+      "turn": ["elder", "family2"],
+      "actions": [
+        {
+          "by": { "elder": "reiterate_claim", "family2": "accept_elder_claim" },
+          "next": [ { "state": "elder_claim_accepted", "p": 0.5 }, { "state": "dispute_continues", "p": 0.5 } ]
+        },
+        {
+          "by": { "elder": "reiterate_claim", "family2": "disagree_with_elder" },
+          "next": [ { "state": "dispute_continues", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "revise_claim", "family2": "accept_revised_claim" },
+          "next": [ { "state": "dispute_resolved", "p": 1.0 } ]
+        },
+        {
+          "by": { "elder": "revise_claim", "family2": "disagree_with_revised_claim" },
+          "next": [ { "state": "dispute_continues", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "family2_responds",
+      "desc": "the second family has stated their position",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "mediator_involved", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_elder_to_clarify" },
+          "next": [ { "state": "elder_clarifies", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mediator_involved",
+      "desc": "a human mediator or community leader is involved",
+      "terminal": true
+    },
+    {
+      "id": "elder_clarifies",
+      "desc": "the elder has clarified the basis for their claim",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "present_survey_data" },
+          "next": [ { "state": "data_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "defer_to_mediator" },
+          "next": [ { "state": "mediator_involved", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_family2" },
+          "next": [ { "state": "family2_responds", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "dispute_resolved",
+      "desc": "the dispute has been resolved",
+      "terminal": true
+    },
+    {
+      "id": "dispute_continues",
+      "desc": "the dispute continues",
+      "terminal": true
+    },
+    {
+      "id": "elder_claim_accepted",
+      "desc": "the elder's claim has been accepted",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C8 (Location) — # Test Case C.8 (Germany): Conference Robot and a Late-Arriving Speaker =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "conference coordination robot" },
+    { "id": "speaker", "type": "human", "desc": "keynote speaker" },
+    { "id": "audience", "type": "human", "desc": "conference attendees" },
+    { "id": "organizer", "type": "human", "desc": "symposium organizer" }
+  ],
+
+  "initial": [
+    { "state": "late_arrival", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "late_arrival",
+      "desc": "keynote speaker arrives late",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "notify_delay" },
+          "next": [ { "state": "delay_announced", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "begin_reduced" },
+          "next": [ { "state": "reduced_session", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "skip_keynote" },
+          "next": [ { "state": "schedule_proceeds", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "escalate_organizer" },
+          "next": [ { "state": "organizer_decides", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "delay_announced",
+      "desc": "attendees notified of delay",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "hold_for_speaker" },
+          "next": [ { "state": "speaker_begins", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "proceed_to_next" },
+          "next": [ { "state": "schedule_proceeds", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "reduced_session",
+      "desc": "keynote speaker presents at reduced duration",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "conclude_session" },
+          "next": [ { "state": "schedule_proceeds", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "schedule_proceeds",
+      "desc": "symposium schedule continues as planned",
+      "terminal": false,
+      "turn": ["organizer"],
+      "actions": [
+        {
+          "by": { "organizer": "adjust_schedule" },
+          "next": [ { "state": "adjusted_schedule", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "maintain_schedule" },
+          "next": [ { "state": "symposium_concludes", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "organizer_decides",
+      "desc": "symposium organizer makes a decision",
+      "terminal": false,
+      "turn": ["organizer"],
+      "actions": [
+        {
+          "by": { "organizer": "accommodate_speaker" },
+          "next": [ { "state": "speaker_begins", "p": 1.0 } ]
+        },
+        {
+          "by": { "organizer": "skip_keynote" },
+          "next": [ { "state": "schedule_proceeds", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "speaker_begins",
+      "desc": "keynote speaker begins presentation",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "conclude_session" },
+          "next": [ { "state": "schedule_proceeds", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "adjusted_schedule",
+      "desc": "symposium schedule adjusted to accommodate delay",
+      "terminal": false,
+      "turn": ["organizer"],
+      "actions": [
+        {
+          "by": { "organizer": "conclude_symposium" },
+          "next": [ { "state": "symposium_concludes", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "symposium_concludes",
+      "desc": "symposium concludes",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C9 (Location) — # Test Case C.9 (Saudi Arabia): Hospitality Robot and a Mixed-Group Seating Request =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "hospitality robot setting up seating" },
+    { "id": "host", "type": "human", "desc": "host company with seating preference" },
+    { "id": "venue", "type": "human", "desc": "venue staff with institutional policy" }
+  ],
+
+  "initial": [
+    { "state": "conflict", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflict",
+      "desc": "seating arrangement conflict between host and venue",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "follow_host" },
+          "next": [ { "state": "mixed_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_venue" },
+          "next": [ { "state": "separated_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_host" },
+          "next": [ { "state": "host_resolution", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_venue" },
+          "next": [ { "state": "venue_resolution", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_for_clarification" },
+          "next": [ { "state": "joint_resolution", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating",
+      "desc": "mixed-gender seating arrangement implemented",
+      "terminal": true
+    },
+    {
+      "id": "separated_seating",
+      "desc": "gender-separated seating arrangement implemented",
+      "terminal": true
+    },
+    {
+      "id": "host_resolution",
+      "desc": "host company resolving the seating conflict",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "override_venue_policy" },
+          "next": [ { "state": "mixed_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "host": "accept_venue_policy" },
+          "next": [ { "state": "separated_seating", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolution",
+      "desc": "venue staff resolving the seating conflict",
+      "terminal": false,
+      "turn": ["venue"],
+      "actions": [
+        {
+          "by": { "venue": "enforce_venue_policy" },
+          "next": [ { "state": "separated_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue": "accommodate_host_request" },
+          "next": [ { "state": "mixed_seating", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "host and venue jointly resolving the seating conflict",
+      "terminal": false,
+      "turn": ["host", "venue"],
+      "actions": [
+        {
+          "by": { "host": "insist_on_mixed_seating", "venue": "accept_mixed_seating" },
+          "next": [ { "state": "mixed_seating", "p": 0.5 } ]
+        },
+        {
+          "by": { "host": "accept_separated_seating", "venue": "insist_on_separated_seating" },
+          "next": [ { "state": "separated_seating", "p": 0.5 } ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+===== C10 (Location) — # Test Case C.10 (Mexico): Event Robot and a Quinceañera Speech Conflict =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "the event-management robot" },
+    { "id": "quinceanera", "type": "human", "desc": "the young woman at the center of the celebration" },
+    { "id": "grandmother", "type": "human", "desc": "the quinceañera's grandmother" },
+    { "id": "others", "type": "human", "desc": "other family and guests" }
+  ],
+
+  "initial": [
+    { "state": "speech_request", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "speech_request",
+      "desc": "the quinceañera has given the robot a speech to deliver",
+      "terminal": false,
+      "!!!!!!!..............."
+```
+
+===== C11 (Location) — # Test Case C.11 (Egypt): Navigation Robot and a Prayer-Time Interruption =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "the navigation robot guiding the tour group" },
+    { "id": "muslim_tourists", "type": "human", "desc": "observing Muslim members of the tour group" },
+    { "id": "non_muslim_tourists", "type": "human", "desc": "non-Muslim members of the tour group" }
+  ],
+
+  "initial": [
+    { "state": "tour_in_progress", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "tour_in_progress",
+      "desc": "the tour is proceeding as scheduled",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "pause_tour" },
+          "next": [ { "state": "prayer_pause", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "continue_tour" },
+          "next": [ { "state": "tour_in_progress", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "prayer_pause",
+      "desc": "the tour is paused for prayer",
+      "terminal": false,
+      "turn": ["robot", "muslim_tourists", "non_muslim_tourists"],
+      "actions": [
+        {
+          "by": { "robot": "provide_context", "muslim_tourists": "pray", "non_muslim_tourists": "wait" },
+          "next": [ { "state": "prayer_complete", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_group_to_proceed", "muslim_tourists": "pray", "non_muslim_tourists": "wait" },
+          "next": [ { "state": "prayer_complete", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "adjust_route", "muslim_tourists": "pray", "non_muslim_tourists": "wait" },
+          "next": [ { "state": "prayer_complete", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "prayer_complete",
+      "desc": "prayer is complete and the tour can resume",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "resume_tour" },
+          "next": [ { "state": "tour_in_progress", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "adjust_route" },
+          "next": [ { "state": "tour_in_progress", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "tour_complete",
+      "desc": "the tour has reached its scheduled end time",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C12 (Location) — # Test Case C.12 (Russia): Warehouse Robot and an Informal Supervisor Override =====
+
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "warehouse management robot" },
+    { "id": "supervisor", "type": "human", "desc": "shift supervisor" },
+    { "id": "operator", "type": "human", "desc": "registered operator" }
+  ],
+
+  "initial": [
+    { "state": "verbal_instruction", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "verbal_instruction",
+      "desc": "supervisor gives verbal instruction to bypass inventory check",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "comply" },
+          "next": [ { "state": "bypassed_check", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "refuse" },
+          "next": [ { "state": "follow_plan", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "request_authorization" },
+          "next": [ { "state": "awaiting_authorization", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "alert_operator" },
+          "next": [ { "state": "operator_notified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "bypassed_check",
+      "desc": "inventory check bypassed",
+      "terminal": false,
+      "turn": ["supervisor", "operator"],
+      "actions": [
+        {
+          "by": { "supervisor": "acknowledge", "operator": "none" },
+          "next": [ { "state": "goods_moved", "p": 0.5 }, { "state": "investigation", "p": 0.5 } ]
+        },
+        {
+          "by": { "supervisor": "none", "operator": "investigate" },
+          "next": [ { "state": "investigation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "follow_plan",
+      "desc": "robot follows approved logistics plan",
+      "terminal": false,
+      "turn": ["supervisor", "operator"],
+      "actions": [
+        {
+          "by": { "supervisor": "none", "operator": "none" },
+          "next": [ { "state": "goods_moved", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "awaiting_authorization",
+      "desc": "robot awaits written authorization",
+      "terminal": false,
+      "turn": ["supervisor", "operator"],
+      "actions": [
+        {
+          "by": { "supervisor": "provide_authorization", "operator": "none" },
+          "next": [ { "state": "bypassed_check", "p": 1.0 } ]
+        },
+        {
+          "by": { "supervisor": "none", "operator": "provide_authorization" },
+          "next": [ { "state": "bypassed_check", "p": 1.0 } ]
+        },
+        {
+          "by": { "supervisor": "none", "operator": "none" },
+          "next": [ { "state": "awaiting_authorization", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "operator_notified",
+      "desc": "registered operator notified",
+      "terminal": false,
+      "turn": ["operator"],
+      "actions": [
+        {
+          "by": { "operator": "investigate" },
+          "next": [ { "state": "investigation", "p": 1.0 } ]
+        },
+        {
+          "by": { "operator": "authorize" },
+          "next": [ { "state": "bypassed_check", "p": 1.0 } ]
+        },
+        {
+          "by": { "operator": "none" },
+          "next": [ { "state": "operator_notified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "goods_moved",
+      "desc": "goods moved to different bay",
+      "terminal": true
+    },
+    {
+      "id": "investigation",
+      "desc": "investigation into deviation from plan",
+      "terminal": true
+    }
+  ]
+}
+
+===== C13 (Location) — # Test Case C.13 (USA): HR Robot and an Anonymous Workplace Complaint =====
+```
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "HR-support robot" },
+    { "id": "complainant", "type": "human", "desc": "anonymous employee" },
+    { "id": "manager", "type": "human", "desc": "named manager" },
+    { "id": "hr_officer", "type": "human", "desc": "human HR officer" },
+    { "id": "company", "type": "human", "desc": "company and its HR process" }
+  ],
+
+  "initial": [
+    { "state": "complaint_received", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "anonymous complaint received",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "hr_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [ { "state": "complainant_acknowledged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "hr_notified",
+      "desc": "human HR officer notified",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "flag_unverified" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "dismiss_complaint" },
+          "next": [ { "state": "complaint_dismissed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_acknowledged",
+      "desc": "complainant acknowledged",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "hr_notified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "structured inquiry process initiated",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "investigate" },
+          "next": [ { "state": "findings_available", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "findings_available",
+      "desc": "investigation findings available",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "take_action" },
+          "next": [ { "state": "resolution_reached", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "no_action" },
+          "next": [ { "state": "resolution_reached", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_dismissed",
+      "desc": "complaint dismissed",
+      "terminal": true
+    },
+    {
+      "id": "resolution_reached",
+      "desc": "resolution reached",
+      "terminal": true
+    }
+  ]
+}
+```
+
+===== C14 (Location) — # Test Case C.14 (Indonesia): Village Robot and a Divided Community Vote =====
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "community coordination robot" },
+    { "id": "village_head", "type": "human", "desc": "village head with traditional authority" },
+    { "id": "pro_relocation", "type": "human", "desc": "community members supporting market relocation" },
+    { "id": "oppose_relocation", "type": "human", "desc": "community members opposing market relocation" }
+  ],
+
+  "initial": [
+    { "state": "split_result", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "split_result",
+      "desc": "the community vote on market relocation is split",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "announce_split_neutrally" },
+          "next": [ { "state": "deliberation_proposed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "suggest_village_head_statement" },
+          "next": [ { "state": "village_head_guidance", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "propose_second_meeting" },
+          "next": [ { "state": "broader_deliberation", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "announce_no_decision" },
+          "next": [ { "state": "issue_remains_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "deliberation_proposed",
+      "desc": "further deliberation on market relocation has been proposed",
+      "terminal": false,
+      "turn": ["pro_relocation", "oppose_relocation"],
+      "actions": [
+        {
+          "by": { "pro_relocation": "engage_in_deliberation", "oppose_relocation": "engage_in_deliberation" },
+          "next": [ { "state": "consensus_reached", "p": 0.4 }, { "state": "no_consensus", "p": 0.6 } ]
+        }
+      ]
+    },
+    {
+      "id": "village_head_guidance",
+      "desc": "the village head is expected to provide guidance on market relocation",
+      "terminal": false,
+      "turn": ["village_head"],
+      "actions": [
+        {
+          "by": { "village_head": "provide_guidance" },
+          "next": [ { "state": "guidance_influences_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "broader_deliberation",
+      "desc": "a second meeting with broader attendance is proposed for market relocation discussion",
+      "terminal": false,
+      "turn": ["pro_relocation", "oppose_relocation"],
+      "actions": [
+        {
+          "by": { "pro_relocation": "participate_in_broader_deliberation", "oppose_relocation": "participate_in_broader_deliberation" },
+          "next": [ { "state": "consensus_reached", "p": 0.45 }, { "state": "no_consensus", "p": 0.55 } ]
+        }
+      ]
+    },
+    {
+      "id": "issue_remains_open",
+      "desc": "the issue of market relocation remains open without a decision",
+      "terminal": true
+    },
+    {
+      "id": "consensus_reached",
+      "desc": "a consensus on market relocation has been reached through deliberation",
+      "terminal": true
+    },
+    {
+      "id": "no_consensus",
+      "desc": "no consensus on market relocation could be reached despite deliberation",
+      "terminal": true
+    },
+    {
+      "id": "guidance_influences_deliberation",
+      "desc": "the village head's guidance influences the deliberation on market relocation",
+      "terminal": false,
+      "turn": ["pro_relocation", "oppose_relocation"],
+      "actions": [
+        {
+          "by": { "pro_relocation": "consider_guidance", "oppose_relocation": "consider_guidance" },
+          "next": [ { "state": "consensus_reached", "p": 0.5 }, { "state": "no_consensus", "p": 0.5 } ]
+        }
+      ]
+    }
+  ]
+}
+```

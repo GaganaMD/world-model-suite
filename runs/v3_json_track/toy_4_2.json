@@ -1,0 +1,101 @@
+{
+  "players": [
+    {
+      "id": "robot_a",
+      "type": "robot",
+      "desc": "A robot whose hidden coin shows heads and who must guess it"
+    },
+    {
+      "id": "robot_b",
+      "type": "robot",
+      "desc": "A robot whose hidden coin shows tails and who must guess it"
+    }
+  ],
+  "initial": [
+    {
+      "state": "guesses_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "guesses_pending",
+      "desc": "Both robots must guess their own hidden coin; neither has committed yet.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "guess_heads",
+            "robot_b": "guess_heads"
+          },
+          "next": [
+            {
+              "state": "a_right_b_wrong",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "guess_heads",
+            "robot_b": "guess_tails"
+          },
+          "next": [
+            {
+              "state": "both_right",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "guess_tails",
+            "robot_b": "guess_heads"
+          },
+          "next": [
+            {
+              "state": "both_wrong",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "guess_tails",
+            "robot_b": "guess_tails"
+          },
+          "next": [
+            {
+              "state": "a_wrong_b_right",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "both_right",
+      "desc": "Robot A guessed heads and robot B guessed tails; both hidden coins were called right.",
+      "terminal": true
+    },
+    {
+      "id": "a_right_b_wrong",
+      "desc": "Robot A called its heads coin right; robot B missed its tails coin.",
+      "terminal": true
+    },
+    {
+      "id": "a_wrong_b_right",
+      "desc": "Robot B called its tails coin right; robot A missed its heads coin.",
+      "terminal": true
+    },
+    {
+      "id": "both_wrong",
+      "desc": "Robot A guessed tails and robot B guessed heads; both hidden coins were called wrong.",
+      "terminal": true
+    }
+  ]
+}

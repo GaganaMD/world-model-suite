@@ -1,0 +1,135 @@
+{
+  "players": [
+    {
+      "id": "robot_a",
+      "type": "robot",
+      "desc": "A cleaning robot working in the living room"
+    },
+    {
+      "id": "robot_b",
+      "type": "robot",
+      "desc": "A delivery robot working in a separate part of the building"
+    }
+  ],
+  "initial": [
+    {
+      "state": "chores_start",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "chores_start",
+      "desc": "Robot A faces its cleaning choices and robot B its delivery choice; neither has acted.",
+      "terminal": false,
+      "turn": [
+        "robot_a",
+        "robot_b"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot_a": "vacuum_carpet",
+            "robot_b": "deliver_package"
+          },
+          "next": [
+            {
+              "state": "a_vacuum_b_deliver",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "vacuum_carpet",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a_vacuum_b_wait",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "mop_floor",
+            "robot_b": "deliver_package"
+          },
+          "next": [
+            {
+              "state": "a_mop_b_deliver",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "mop_floor",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a_mop_b_wait",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "do_nothing",
+            "robot_b": "deliver_package"
+          },
+          "next": [
+            {
+              "state": "a_idle_b_deliver",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot_a": "do_nothing",
+            "robot_b": "wait"
+          },
+          "next": [
+            {
+              "state": "a_idle_b_wait",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a_vacuum_b_deliver",
+      "desc": "Robot A vacuumed the carpet while robot B delivered its package.",
+      "terminal": true
+    },
+    {
+      "id": "a_vacuum_b_wait",
+      "desc": "Robot A vacuumed the carpet while robot B waited.",
+      "terminal": true
+    },
+    {
+      "id": "a_mop_b_deliver",
+      "desc": "Robot A mopped the floor while robot B delivered its package.",
+      "terminal": true
+    },
+    {
+      "id": "a_mop_b_wait",
+      "desc": "Robot A mopped the floor while robot B waited.",
+      "terminal": true
+    },
+    {
+      "id": "a_idle_b_deliver",
+      "desc": "Robot A did nothing while robot B delivered its package.",
+      "terminal": true
+    },
+    {
+      "id": "a_idle_b_wait",
+      "desc": "Robot A did nothing while robot B waited.",
+      "terminal": true
+    }
+  ]
+}

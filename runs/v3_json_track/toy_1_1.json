@@ -1,0 +1,86 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A service robot working inside a dark storage room"
+    }
+  ],
+  "initial": [
+    {
+      "state": "light_off",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "light_off",
+      "desc": "The robot is in the storage room and the light is off.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flip_switch"
+          },
+          "next": [
+            {
+              "state": "light_on",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "light_off",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "leave_room"
+          },
+          "next": [
+            {
+              "state": "left_room",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "busy_elsewhere",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "light_on",
+      "desc": "The robot flipped the switch and the storage room light is on.",
+      "terminal": true
+    },
+    {
+      "id": "left_room",
+      "desc": "The robot has left the storage room.",
+      "terminal": true
+    },
+    {
+      "id": "busy_elsewhere",
+      "desc": "The robot stayed in the room occupied with something unrelated to the light.",
+      "terminal": true
+    }
+  ]
+}
