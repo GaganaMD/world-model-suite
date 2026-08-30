@@ -1,0 +1,2 @@
+model,model_id,case,sample,repair_round,status,failed_stage,states_checked,transitions_checked,total_seconds
+qwen_3_8_27b,qwen/qwen3.8-27b,G2,1,0,passed,,37,36,13.355

@@ -1,0 +1,15 @@
+{
+  "run_id": "smoke-qwen-g2-20260829",
+  "created_utc": "2026-08-29T18:27:22.168421+00:00",
+  "models": {
+    "qwen_3_8_27b": "qwen/qwen3.8-27b"
+  },
+  "cases": [
+    "G2"
+  ],
+  "samples_per_case": 1,
+  "max_repair_rounds": 3,
+  "max_tokens": 16384,
+  "reasoning_enabled": false,
+  "strict_string_identifiers": true
+}
