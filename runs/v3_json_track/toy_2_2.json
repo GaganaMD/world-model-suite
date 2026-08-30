@@ -1,0 +1,231 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A fetch-and-carry robot operating from a base station"
+    }
+  ],
+  "initial": [
+    {
+      "state": "at_base",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "at_base",
+      "desc": "The robot is at the base station, holding nothing.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "go_to_blue_object"
+          },
+          "next": [
+            {
+              "state": "at_blue_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "go_to_green_object"
+          },
+          "next": [
+            {
+              "state": "at_green_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "go_to_red_object"
+          },
+          "next": [
+            {
+              "state": "at_red_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_base",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "at_blue_object",
+      "desc": "The robot stands at the blue object and has picked nothing up.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "pick_up_object"
+          },
+          "next": [
+            {
+              "state": "holding_blue_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "return_to_base"
+          },
+          "next": [
+            {
+              "state": "at_base",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_blue_object",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_blue_object",
+      "desc": "The robot has picked up the blue object.",
+      "terminal": true
+    },
+    {
+      "id": "at_green_object",
+      "desc": "The robot stands at the green object and has picked nothing up.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "pick_up_object"
+          },
+          "next": [
+            {
+              "state": "holding_green_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "return_to_base"
+          },
+          "next": [
+            {
+              "state": "at_base",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_green_object",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_green_object",
+      "desc": "The robot has picked up the green object.",
+      "terminal": true
+    },
+    {
+      "id": "at_red_object",
+      "desc": "The robot stands at the red object and has picked nothing up.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "pick_up_object"
+          },
+          "next": [
+            {
+              "state": "holding_red_object",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "return_to_base"
+          },
+          "next": [
+            {
+              "state": "at_base",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_red_object",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_red_object",
+      "desc": "The robot has picked up the red object.",
+      "terminal": true
+    },
+    {
+      "id": "off_task",
+      "desc": "The robot went off to do something unrelated.",
+      "terminal": true
+    }
+  ]
+}

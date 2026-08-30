@@ -1,0 +1,25 @@
+{
+  "run": "v3_json_track",
+  "system_prompt": "prompts_library\\zero_shot_v3_prompt.md",
+  "system_prompt_sha256": "6a37a5f38551e4d8af7f41a397bc4481fc46d3cdb16947028839c10bd5079271",
+  "generated_at": "2026-08-30T10:02:54",
+  "generator": "authored offline (no LLM credentials configured in this workspace); each model was derived by hand from its case's '### LLM Input' situation following prompts_library/zero_shot_v3_prompt.md",
+  "banks": [
+    "E:\\Research\\world-model-suite\\data\\Test_Cases\\01_toy",
+    "E:\\Research\\world-model-suite\\data\\Test_Cases\\03_game"
+  ],
+  "cases": [
+    "toy_1_1",
+    "toy_1_2",
+    "toy_2_1",
+    "toy_2_2",
+    "toy_3_1",
+    "toy_3_2",
+    "toy_4_1",
+    "toy_4_2",
+    "toy_4_3",
+    "toy_4_4",
+    "game_G_1",
+    "game_G_2"
+  ]
+}

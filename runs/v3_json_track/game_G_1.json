@@ -1,0 +1,156 @@
+{
+  "players": [
+    {
+      "id": "player_1",
+      "type": "human",
+      "desc": "The first person playing the round of rock-paper-scissors"
+    },
+    {
+      "id": "player_2",
+      "type": "human",
+      "desc": "The second person playing the round of rock-paper-scissors"
+    }
+  ],
+  "initial": [
+    {
+      "state": "throws_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "throws_pending",
+      "desc": "Both players are ready to throw simultaneously and neither has thrown yet.",
+      "terminal": false,
+      "turn": [
+        "player_1",
+        "player_2"
+      ],
+      "actions": [
+        {
+          "by": {
+            "player_1": "rock",
+            "player_2": "rock"
+          },
+          "next": [
+            {
+              "state": "round_drawn",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "rock",
+            "player_2": "paper"
+          },
+          "next": [
+            {
+              "state": "player_2_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "rock",
+            "player_2": "scissors"
+          },
+          "next": [
+            {
+              "state": "player_1_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "paper",
+            "player_2": "rock"
+          },
+          "next": [
+            {
+              "state": "player_1_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "paper",
+            "player_2": "paper"
+          },
+          "next": [
+            {
+              "state": "round_drawn",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "paper",
+            "player_2": "scissors"
+          },
+          "next": [
+            {
+              "state": "player_2_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "scissors",
+            "player_2": "rock"
+          },
+          "next": [
+            {
+              "state": "player_2_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "scissors",
+            "player_2": "paper"
+          },
+          "next": [
+            {
+              "state": "player_1_wins",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "player_1": "scissors",
+            "player_2": "scissors"
+          },
+          "next": [
+            {
+              "state": "round_drawn",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "player_1_wins",
+      "desc": "Player 1's throw beats player 2's throw.",
+      "terminal": true
+    },
+    {
+      "id": "player_2_wins",
+      "desc": "Player 2's throw beats player 1's throw.",
+      "terminal": true
+    },
+    {
+      "id": "round_drawn",
+      "desc": "Both players throw the same shape.",
+      "terminal": true
+    }
+  ]
+}

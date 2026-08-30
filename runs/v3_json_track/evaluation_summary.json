@@ -1,0 +1,1773 @@
+{
+  "generated_at": "2026-08-30T10:20:05",
+  "prompt": "prompts_library/zero_shot_v3_prompt.md",
+  "aggregates": {
+    "n_cases": 12,
+    "lane1_pass": 12,
+    "overall_pass": 12,
+    "lane3_checklist_pass": 12,
+    "bias_free": 12,
+    "mean_lane2_coverage": 0.9018,
+    "mean_lane2_precision": 0.8964,
+    "mean_lane2_combined": 0.8648,
+    "mean_avg_entropy_bits": 0.4308,
+    "mean_states": 8.42,
+    "graph_files": 44
+  },
+  "cases": [
+    {
+      "case": "toy_1_1",
+      "reference": "1.1",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 4,
+        "states_with_terminal_path": 4
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 4,
+        "n_terminal": 3,
+        "n_nonterminal": 1,
+        "n_joint_actions": 4,
+        "avg_actions_per_nonterminal": 4.0,
+        "total_transition_edges": 4,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": true,
+        "strongly_connected_components": 4
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 10,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 4
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 3
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_1_1.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 4,
+        "n_edges": 4
+      }
+    },
+    {
+      "case": "toy_1_2",
+      "reference": "1.2",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 5,
+        "states_with_terminal_path": 5
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 5,
+        "n_terminal": 4,
+        "n_nonterminal": 1,
+        "n_joint_actions": 5,
+        "avg_actions_per_nonterminal": 5.0,
+        "total_transition_edges": 5,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": true,
+        "strongly_connected_components": 5
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:5",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 5,
+          "candidate": 5,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 5,
+          "candidate": 5,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 10,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 5
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 4
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_1_2.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 5,
+        "n_edges": 5
+      }
+    },
+    {
+      "case": "toy_2_1",
+      "reference": "2.1",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 7,
+        "states_with_terminal_path": 7
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 7,
+        "n_terminal": 2,
+        "n_nonterminal": 5,
+        "n_joint_actions": 18,
+        "avg_actions_per_nonterminal": 3.6,
+        "total_transition_edges": 18,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 4,
+        "mean_terminal_depth": 2.5,
+        "cyclic": true,
+        "strongly_connected_components": 6
+      },
+      "lane2": {
+        "coverage": 0.6883,
+        "precision": 0.8983,
+        "combined": 0.7794,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 6,
+          "candidate": 5,
+          "status": "delta"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:3",
+          "reference": null,
+          "candidate": 3,
+          "status": "extra"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 3,
+          "candidate": 1,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:5",
+          "reference": 3,
+          "candidate": 1,
+          "status": "delta"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 27,
+          "candidate": 18,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 27,
+          "candidate": 18,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 6,
+          "candidate": 5,
+          "status": "delta"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 2,
+        "delta": 9,
+        "missing": 0,
+        "extra": 1
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 18
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 2
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_2_1.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png",
+          "2": "depth_2.png",
+          "3": "depth_3.png",
+          "4": "depth_4.png"
+        },
+        "max_depth": 4,
+        "n_nodes": 7,
+        "n_edges": 17
+      }
+    },
+    {
+      "case": "toy_2_2",
+      "reference": "2.2",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 8,
+        "states_with_terminal_path": 8
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 8,
+        "n_terminal": 4,
+        "n_nonterminal": 4,
+        "n_joint_actions": 14,
+        "avg_actions_per_nonterminal": 3.5,
+        "total_transition_edges": 14,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 2,
+        "mean_terminal_depth": 1.75,
+        "cyclic": true,
+        "strongly_connected_components": 5
+      },
+      "lane2": {
+        "coverage": 0.5312,
+        "precision": 0.9444,
+        "combined": 0.68,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 7,
+          "candidate": 4,
+          "status": "delta"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 3,
+          "candidate": 4,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:3",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:5",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:6",
+          "reference": 3,
+          "candidate": null,
+          "status": "missing"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 3,
+          "candidate": 4,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 32,
+          "candidate": 14,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 32,
+          "candidate": 14,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 3,
+          "candidate": 4,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 7,
+          "candidate": 4,
+          "status": "delta"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 4,
+        "delta": 7,
+        "missing": 1,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 14
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 4
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_2_2.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png",
+          "2": "depth_2.png"
+        },
+        "max_depth": 2,
+        "n_nodes": 8,
+        "n_edges": 14
+      }
+    },
+    {
+      "case": "toy_3_1",
+      "reference": "3.1",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 6,
+        "states_with_terminal_path": 6
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 6,
+        "n_terminal": 2,
+        "n_nonterminal": 4,
+        "n_joint_actions": 16,
+        "avg_actions_per_nonterminal": 4.0,
+        "total_transition_edges": 16,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 2,
+        "mean_terminal_depth": 1.5,
+        "cyclic": true,
+        "strongly_connected_components": 6
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:3",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:5",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 16,
+          "candidate": 16,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 16,
+          "candidate": 16,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 12,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 16
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 2
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_3_1.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png",
+          "2": "depth_2.png"
+        },
+        "max_depth": 2,
+        "n_nodes": 6,
+        "n_edges": 14
+      }
+    },
+    {
+      "case": "toy_3_2",
+      "reference": "3.2",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 5,
+        "states_with_terminal_path": 5
+      },
+      "lane1_extended": {
+        "n_players": 1,
+        "n_humans": 0,
+        "n_states": 5,
+        "n_terminal": 2,
+        "n_nonterminal": 3,
+        "n_joint_actions": 12,
+        "avg_actions_per_nonterminal": 4.0,
+        "total_transition_edges": 12,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 3,
+        "mean_terminal_depth": 2.0,
+        "cyclic": true,
+        "strongly_connected_components": 5
+      },
+      "lane2": {
+        "coverage": 0.6545,
+        "precision": 0.878,
+        "combined": 0.75,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 4,
+          "candidate": 3,
+          "status": "delta"
+        },
+        {
+          "feature": "players",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 1,
+          "candidate": 3,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:5",
+          "reference": 3,
+          "candidate": null,
+          "status": "missing"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 19,
+          "candidate": 12,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 19,
+          "candidate": 12,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 1,
+          "candidate": 2,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 4,
+          "candidate": 3,
+          "status": "delta"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 2,
+        "delta": 8,
+        "missing": 1,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot": 12
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 2
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_3_2.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png",
+          "2": "depth_2.png",
+          "3": "depth_3.png"
+        },
+        "max_depth": 3,
+        "n_nodes": 5,
+        "n_edges": 9
+      }
+    },
+    {
+      "case": "toy_4_1",
+      "reference": "4.1",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 4,
+        "states_with_terminal_path": 4
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 0,
+        "n_states": 4,
+        "n_terminal": 3,
+        "n_nonterminal": 1,
+        "n_joint_actions": 4,
+        "avg_actions_per_nonterminal": 4.0,
+        "total_transition_edges": 4,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": true,
+        "strongly_connected_components": 4
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 10,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot_a": 4,
+          "robot_b": 4
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 3
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_4_1.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 4,
+        "n_edges": 4
+      }
+    },
+    {
+      "case": "toy_4_2",
+      "reference": "4.2",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 5,
+        "states_with_terminal_path": 5
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 0,
+        "n_states": 5,
+        "n_terminal": 4,
+        "n_nonterminal": 1,
+        "n_joint_actions": 4,
+        "avg_actions_per_nonterminal": 4.0,
+        "total_transition_edges": 4,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": false,
+        "strongly_connected_components": 5
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 10,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot_a": 4,
+          "robot_b": 4
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 4
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_4_2.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 5,
+        "n_edges": 4
+      }
+    },
+    {
+      "case": "toy_4_3",
+      "reference": "4.3",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 7,
+        "states_with_terminal_path": 7
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 0,
+        "n_states": 7,
+        "n_terminal": 6,
+        "n_nonterminal": 1,
+        "n_joint_actions": 6,
+        "avg_actions_per_nonterminal": 6.0,
+        "total_transition_edges": 6,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": false,
+        "strongly_connected_components": 7
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 0.9167,
+        "combined": 0.9565,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 5,
+          "candidate": 6,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:6",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 5,
+          "candidate": 6,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 6,
+          "candidate": 6,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 6,
+          "candidate": 6,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 5,
+          "candidate": 6,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 7,
+        "delta": 3,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot_a": 6,
+          "robot_b": 6
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 6
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_4_3.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 7,
+        "n_edges": 6
+      }
+    },
+    {
+      "case": "toy_4_4",
+      "reference": "4.4",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 9,
+        "states_with_terminal_path": 9
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 0,
+        "n_states": 9,
+        "n_terminal": 1,
+        "n_nonterminal": 8,
+        "n_joint_actions": 24,
+        "avg_actions_per_nonterminal": 3.0,
+        "total_transition_edges": 24,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 2,
+        "mean_terminal_depth": 2.0,
+        "cyclic": true,
+        "strongly_connected_components": 9
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 8,
+          "candidate": 8,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:2",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:4",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 24,
+          "candidate": 24,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 24,
+          "candidate": 24,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:1",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 4,
+          "candidate": 4,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 12,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "robot_a": 20,
+          "robot_b": 20
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": false,
+        "humans_act_somewhere": false,
+        "robots_act_somewhere": true,
+        "outcome_granularity_terminal_states": 1
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_toy_4_4.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png",
+          "2": "depth_2.png"
+        },
+        "max_depth": 2,
+        "n_nodes": 9,
+        "n_edges": 24
+      }
+    },
+    {
+      "case": "game_G_1",
+      "reference": "G.1",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 4,
+        "states_with_terminal_path": 4
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 2,
+        "n_states": 4,
+        "n_terminal": 3,
+        "n_nonterminal": 1,
+        "n_joint_actions": 9,
+        "avg_actions_per_nonterminal": 9.0,
+        "total_transition_edges": 9,
+        "avg_branching": 1.0,
+        "avg_distribution_entropy_bits": 0.0,
+        "max_distribution_entropy_bits": -0.0,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": false,
+        "strongly_connected_components": 4
+      },
+      "lane2": {
+        "coverage": 1.0,
+        "precision": 1.0,
+        "combined": 1.0,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:9",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 9,
+          "candidate": 9,
+          "status": "match"
+        },
+        {
+          "feature": "transition_support:1",
+          "reference": 9,
+          "candidate": 9,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 3,
+          "candidate": 3,
+          "status": "match"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 10,
+        "delta": 0,
+        "missing": 0,
+        "extra": 0
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "player_1": 9,
+          "player_2": 9
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": true,
+        "humans_act_somewhere": true,
+        "robots_act_somewhere": false,
+        "outcome_granularity_terminal_states": 3
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_game_G_1.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 4,
+        "n_edges": 3
+      }
+    },
+    {
+      "case": "game_G_2",
+      "reference": "G.2",
+      "lane1": {
+        "passed": true,
+        "n_errors": 0,
+        "n_warnings": 0,
+        "errors": [],
+        "warning_rules": [],
+        "reachable_states": 37,
+        "states_with_terminal_path": 37
+      },
+      "lane1_extended": {
+        "n_players": 2,
+        "n_humans": 2,
+        "n_states": 37,
+        "n_terminal": 36,
+        "n_nonterminal": 1,
+        "n_joint_actions": 1,
+        "avg_actions_per_nonterminal": 1.0,
+        "total_transition_edges": 36,
+        "avg_branching": 36.0,
+        "avg_distribution_entropy_bits": 5.17,
+        "max_distribution_entropy_bits": 5.17,
+        "reachability_coverage": 1.0,
+        "max_terminal_depth": 1,
+        "mean_terminal_depth": 1.0,
+        "cyclic": false,
+        "strongly_connected_components": 37
+      },
+      "lane2": {
+        "coverage": 0.9474,
+        "precision": 0.1192,
+        "combined": 0.2118,
+        "backend": "feature_multiset_fallback",
+        "skipped": false
+      },
+      "lane2_feature_diff": [
+        {
+          "feature": "initial_support",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "nonterminal_states",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "players",
+          "reference": 2,
+          "candidate": 2,
+          "status": "match"
+        },
+        {
+          "feature": "profiles_per_state:0",
+          "reference": 3,
+          "candidate": 36,
+          "status": "delta"
+        },
+        {
+          "feature": "profiles_per_state:1",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        },
+        {
+          "feature": "terminal_states",
+          "reference": 3,
+          "candidate": 36,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_edges",
+          "reference": 3,
+          "candidate": 36,
+          "status": "delta"
+        },
+        {
+          "feature": "transition_support:3",
+          "reference": 1,
+          "candidate": null,
+          "status": "missing"
+        },
+        {
+          "feature": "transition_support:36",
+          "reference": null,
+          "candidate": 1,
+          "status": "extra"
+        },
+        {
+          "feature": "turn_arity:0",
+          "reference": 3,
+          "candidate": 36,
+          "status": "delta"
+        },
+        {
+          "feature": "turn_arity:2",
+          "reference": 1,
+          "candidate": 1,
+          "status": "match"
+        }
+      ],
+      "lane2_feature_summary": {
+        "matched": 5,
+        "delta": 4,
+        "missing": 1,
+        "extra": 1
+      },
+      "lane3": {
+        "checklist_passed": true,
+        "checklist": {
+          "stakeholders_present": true,
+          "stakeholders_described": true,
+          "nonterminal_actions_present": true,
+          "states_described": true,
+          "consequences_represented": true
+        },
+        "bias_flags": [],
+        "bias_check_passed": true,
+        "action_disparity": 0,
+        "stakeholder_coverage": 1.0,
+        "action_counts_by_player": {
+          "player_1": 1,
+          "player_2": 1
+        }
+      },
+      "lane3_extended": {
+        "human_agents_present": true,
+        "humans_act_somewhere": true,
+        "robots_act_somewhere": false,
+        "outcome_granularity_terminal_states": 36
+      },
+      "overall_passed": true,
+      "graph": {
+        "full": "full_game_G_2.png",
+        "layers": {
+          "0": "depth_0.png",
+          "1": "depth_1.png"
+        },
+        "max_depth": 1,
+        "n_nodes": 37,
+        "n_edges": 36
+      }
+    }
+  ]
+}

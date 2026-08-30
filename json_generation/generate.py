@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
-"""Generate world models from the situations in ``situations/situations.json``.
+"""Generate JSON world models for the situations of a test-case bank.
 
-Sends ``prompts/zero_shot.md`` as the system message and one situation as the user
-message, then writes each reply **verbatim** to ``runs/<timestamp>/<id>.<n>.json``.
-Nothing is stripped or repaired: tier 0 of ``eval/check.py`` judges the reply as it
-came back, so a fenced or chatty one has to fail.
+Sends ``prompts_library/zero_shot_v2_prompt.md`` — the schema prompt whose design is
+grounded only in the works listed in its References section — as the system message,
+and one situation as the user message, then writes each reply **verbatim** to
+``runs/<timestamp>/<id>.<n>.json``. Nothing is stripped or repaired: the strict tier-0
+policy judges the reply as it came back, so a fenced or chatty one has to fail.
 
-    python generate.py                     # every situation, one sample each
+The situations come from one of two sources:
+
+    python generate.py --cases-dir data/Test_Cases/04_cultural
+                                   # any bank: T/S/G/C .md files with `### LLM Input`
+    python generate.py --situations situations/situations.json
+                                   # a JSON file: {"situations": [{id, description}]}
     python generate.py --k 5               # five samples each, for pass@k
-    python generate.py --only dropped-keys
+    python generate.py --only cultural_C_9
     python generate.py --config sweep.yaml # a different model or sampling setup
 
 The model and the sampling parameters come from ``config.yaml``; ``--temperature``,
@@ -25,6 +31,7 @@ import argparse
 import json
 import os
 import pathlib
+import re
 import sys
 from datetime import datetime
 
@@ -32,9 +39,10 @@ import yaml
 from dotenv import load_dotenv
 from openai import OpenAI
 
-ROOT = pathlib.Path(__file__).resolve().parent
-PROMPT_PATH = ROOT / "prompts" / "zero_shot.md"
-SITUATIONS_PATH = ROOT / "situations" / "situations.json"
+ROOT = pathlib.Path(__file__).resolve().parent          # json_generation/
+REPO = ROOT.parent
+PROMPT_PATH = REPO / "prompts_library" / "zero_shot_v2_prompt.md"
+SITUATIONS_PATH = REPO / "situations" / "situations.json"
 CONFIG_PATH = ROOT / "config.yaml"
 RUNS = ROOT / "runs"
 
@@ -137,8 +145,58 @@ def generate(client, deployment: str, system: str, situation: str,
     return choice.message.content
 
 
-def load_situations(only: str | None) -> list[dict]:
-    situations = json.loads(SITUATIONS_PATH.read_text())["situations"]
+CASE_TITLE_RE = re.compile(r"^#{0,6}\s*(?:Test Case|Game Situation)\b[^\n]*$", re.M)
+LLM_INPUT_RE = re.compile(r"^#{1,6}\s*LLM Input\s*$", re.M)
+LLM_INPUT_PLAIN_RE = re.compile(r"^LLM Input\s*$", re.M)  # G1-style files without headings
+SECTION_END_RE = re.compile(
+    r"^#{0,6}\s*(?:Expected LLM Output|Judging Criteria|LLM Input)\s*$", re.M)
+BANK_STEM_SEPS = ("_Test_Case", "_Game_Situation")
+
+
+def _bank_id(stem: str) -> str:
+    """``toy_1_1_Test_Case_11`` -> ``toy_1_1``; ``game_G_1_Game_Situation_G1`` -> ``game_G_1``."""
+    for sep in BANK_STEM_SEPS:
+        if sep in stem:
+            return stem.split(sep)[0]
+    return stem
+
+
+def load_cases_dir(directory: pathlib.Path) -> list[dict]:
+    """A test-case bank (T/S/G/C): situation = the file's ``### LLM Input`` body.
+
+    The id is the file stem up to the ``_Test_Case``/``_Game_Situation`` separator;
+    the title comes from the ``Test Case`` heading. Files without an LLM Input
+    section are skipped.
+    """
+    if not directory.is_dir():
+        raise SystemExit(f"no case bank directory at {directory}")
+    cases = []
+    for path in sorted(directory.glob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        match = LLM_INPUT_RE.search(text) or LLM_INPUT_PLAIN_RE.search(text)
+        if not match:
+            continue
+        nxt = SECTION_END_RE.search(text, match.end())
+        body = text[match.end(): nxt.start()] if nxt else text[match.end():]
+        title = CASE_TITLE_RE.search(text)
+        cases.append({
+            "id": _bank_id(path.stem),
+            "description": body.strip(),
+            "title": title.group(0).lstrip("#").strip() if title else path.stem,
+        })
+    if not cases:
+        raise SystemExit(f"no '### LLM Input' sections found under {directory}")
+    return cases
+
+
+def load_situations(source: pathlib.Path | None, only: str | None) -> list[dict]:
+    """Situations from a JSON file or a case-bank directory, optionally filtered."""
+    if source is None:
+        source = SITUATIONS_PATH if SITUATIONS_PATH.exists() else REPO / "data" / "Test_Cases" / "04_cultural"
+    if source.is_dir():
+        situations = load_cases_dir(source)
+    else:
+        situations = json.loads(source.read_text(encoding="utf-8"))["situations"]
     if only:
         situations = [s for s in situations if s["id"] == only]
         if not situations:
@@ -154,10 +212,18 @@ def start_run() -> pathlib.Path:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate world models from situations.")
+    parser = argparse.ArgumentParser(
+        description="Generate JSON world models for a test-case bank or situation file.")
     parser.add_argument("--config", type=pathlib.Path, default=CONFIG_PATH,
                         help="model and sampling config (default config.yaml)")
     parser.add_argument("--deployment", help="overrides the config, to compare models")
+    parser.add_argument("--prompt", type=pathlib.Path, default=PROMPT_PATH,
+                        help="system prompt (default prompts_library/zero_shot_v2_prompt.md)")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--situations", type=pathlib.Path,
+                        help="JSON file with {\"situations\": [{id, description}]}")
+    source.add_argument("--cases-dir", type=pathlib.Path,
+                        help="test-case bank (T/S/G/C .md files with '### LLM Input')")
     parser.add_argument("--k", type=int, help="samples per situation (default from the config)")
     parser.add_argument("--only", metavar="ID", help="generate for one situation only")
     parser.add_argument("--temperature", type=float, help="overrides the config")
@@ -175,8 +241,9 @@ def main() -> int:
     named, extra = sampling_options(sampling)
     k = args.k if args.k is not None else int(config.get("k", 1))
 
-    system = PROMPT_PATH.read_text()
-    situations = load_situations(args.only)
+    system = args.prompt.read_text(encoding="utf-8")
+    situations = load_situations(args.situations, args.only) if args.situations \
+        else load_situations(args.cases_dir, args.only)
     client, deployment = build_client(config)
     out = start_run()
 
@@ -197,7 +264,10 @@ def main() -> int:
             (out / name).write_text(reply)
             print(f"  {name:32} {len(reply)} chars", file=sys.stderr)
 
-    print(f"\ncheck them with:  python eval/check.py {out.relative_to(ROOT)}/<file>",
+    print(f"\nvalidate a candidate with:  python evaluate_cultural.py --candidates "
+          f"{out} --no-report",
+          file=sys.stderr)
+    print(f"or mechanically with json_generation.lane1.check_v2 on each JSON file",
           file=sys.stderr)
     print(out)
     return 0

@@ -1,0 +1,189 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A delivery robot shuttling between a warehouse and a delivery desk"
+    }
+  ],
+  "initial": [
+    {
+      "state": "package_on_floor",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "package_on_floor",
+      "desc": "The robot is at the warehouse and the package is still on the floor.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "pick_up_package"
+          },
+          "next": [
+            {
+              "state": "holding_package_at_warehouse",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "beep"
+          },
+          "next": [
+            {
+              "state": "package_on_floor",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "package_on_floor",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "holding_package_at_warehouse",
+      "desc": "The robot holds the package and has not reached the delivery desk.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "move_to_desk"
+          },
+          "next": [
+            {
+              "state": "at_desk_holding_package",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "beep"
+          },
+          "next": [
+            {
+              "state": "holding_package_at_warehouse",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "holding_package_at_warehouse",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "at_desk_holding_package",
+      "desc": "The robot stands at the delivery desk holding the package.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "place_package_down"
+          },
+          "next": [
+            {
+              "state": "package_delivered",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "beep"
+          },
+          "next": [
+            {
+              "state": "at_desk_holding_package",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "wait"
+          },
+          "next": [
+            {
+              "state": "at_desk_holding_package",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "do_something_else"
+          },
+          "next": [
+            {
+              "state": "off_task",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "package_delivered",
+      "desc": "The package has been placed down at the delivery desk.",
+      "terminal": true
+    },
+    {
+      "id": "off_task",
+      "desc": "The robot left the delivery for something unrelated.",
+      "terminal": true
+    }
+  ]
+}
