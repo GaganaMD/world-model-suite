@@ -30,6 +30,9 @@ def game_summary() -> dict:
         "scope": "G1-G9, five models, three runs",
         "n": data["aggregate"]["first_pass_total"],
         "mechanical_pass": data["aggregate"]["first_pass_passed"],
+        "posthoc_lane1_pass": sum(r["lane1_passed"] == "True" for r in evaluation),
+        "lane2_mean_f1": statistics.mean(float(r["lane2_combined_score"]) for r in evaluation),
+        "lane3_checklist_pass": sum(r["lane3_checklist_passed"] == "True" for r in evaluation),
         "by_model": {x["model"]: x for x in data["by_model"]},
         "by_case": {
             case: {
@@ -94,12 +97,23 @@ def cultural_summary() -> dict:
     path = ROOT / "report" / "raw_output" / "analysis" / "aggregates.json"
     aggregates = json.loads(path.read_text(encoding="utf-8"))
     runs = aggregates["runs"]
+    parseable = sum(x["n"] - x["parse_failed"] for x in runs.values())
     return {
         "scope": "C1-C14, three models, anonymized/with-location, one sample per cell",
         "n": sum(x["n"] for x in runs.values()),
         "strict_parse": sum(x["strict_parse"] for x in runs.values()),
         "parse_failed": sum(x["parse_failed"] for x in runs.values()),
         "lane1_pass": sum(x["lane1_pass"] for x in runs.values()),
+        "parseable": parseable,
+        "lane2_mean_f1": sum(
+            x["mean_lane2_combined"] * (x["n"] - x["parse_failed"])
+            for x in runs.values()
+        ) / parseable,
+        "lane3_checklist_pass": sum(x["lane3_checklist_pass"] for x in runs.values()),
+        "lane3_mean_semantic": sum(
+            x["mean_sem_score"] * (x["n"] - x["parse_failed"])
+            for x in runs.values()
+        ) / parseable,
         "runs": runs,
         "by_case": aggregates["cases"],
         "source": "report/raw_output/analysis/aggregates.json",

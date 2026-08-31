@@ -3,6 +3,9 @@
     "scope": "G1-G9, five models, three runs",
     "n": 135,
     "mechanical_pass": 124,
+    "posthoc_lane1_pass": 134,
+    "lane2_mean_f1": 0.716157037037037,
+    "lane3_checklist_pass": 135,
     "by_model": {
       "claude_opus_5": {
         "model": "claude_opus_5",
@@ -173,6 +176,10 @@
     "strict_parse": 52,
     "parse_failed": 2,
     "lane1_pass": 75,
+    "parseable": 82,
+    "lane2_mean_f1": 0.5533097560975611,
+    "lane3_checklist_pass": 82,
+    "lane3_mean_semantic": 0.8962548780487803,
     "runs": {
       "gpt5-6sol__anonymized": {
         "n": 14,

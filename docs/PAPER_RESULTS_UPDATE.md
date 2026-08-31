@@ -15,11 +15,15 @@
 | Situational S1--S9: 107/135 mechanical passes; per-model rates 59.26--100% | saved notebook outputs in `notebooks/Copy_of_world_models_python_prompting_situational.ipynb`; extracted by `experiments/build_three_track_paper_results.py` | Three-track overview; Situational results table |
 | Cultural track: 52/84 strict parses, 82/84 recoverable parses, and 75/84 Lane-1 passes | `report/raw_output/analysis/aggregates.json` | Three-track overview; Cultural results |
 | Game, situational, and cultural case-level breakdowns | game `evaluation_summary.csv`; saved situational notebook output; cultural `aggregates.json` | Appendix case-level tables |
+| Game automated Lane-3 checklist passes 135/135 | `experiments/openrouter_game_study/evaluation_summary.csv`, `EVALUATION_REPORT.md` | Three-lane evidence table; Lane-3 boundary subsection |
+| Cultural mean fallback Lane-2 F1 0.5533 over 82 parseable candidates | `report/raw_output/analysis/aggregates.json`; recomputed by `experiments/build_three_track_paper_results.py` | Three-lane evidence table; Cultural results |
+| Cultural automated Lane-3 checklist 82/84 and mean semantic score 0.8963 | same cultural aggregate; recomputed by `experiments/build_three_track_paper_results.py` | Three-lane evidence table; Cultural and Lane-3 subsections |
 
 ## Results NOT incorporated
 
 - The v3 JSON-track models are not LLM outputs: `_manifest.json` records offline hand authorship.
 - Situational S10--S11 are not assigned aggregate performance because their saved execution log is incomplete, even though generated source files exist.
+- Situational Lane-2 fidelity and Lane-3 performance are not reported: generated programs exist, but no completed reference-backed structural comparison or semantic annotation aggregate exists.
 - Automated Lane-3 bias flags are not reported as evidence of bias and automated semantic scores are not described as human validated.
 - Original OpenRouter and local-Qwen studies are not pooled with the hardened study because settings differ or the later study supersedes them.
 - No planning, control, empowerment, reversibility, or real-world-safety result is claimed because no downstream experiment measures it.
@@ -32,6 +36,7 @@
 - Added research questions and a five-model results table.
 - Added a reproducible figure contrasting mechanical validity with fallback structural F1.
 - Added conditional analysis among mechanically valid artifacts and conservative treatment of cultural diagnostics.
+- Replaced the Lane-1-only track overview with an explicit three-lane evidence matrix and added a Lane-3 evidence-boundary subsection.
 
 ## Remaining high-value work before submission
 

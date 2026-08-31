@@ -284,7 +284,7 @@ These diagnostics are interpreted jointly with the semantic evaluation in Lane~3
 
 
 \paragraph{Lane 3: LLM-as-a-Judge and Human-in-the-Loop Semantic Review}
-For scenarios where no unique reference world model exists, we evaluate semantic fidelity using feature-level human annotations. Annotators identify scenario-relevant features as \textit{must include}, \textit{plausible}, or \textit{must not include}. These categories distinguish required structure whose omission would make the generated world model incomplete, reasonable but non-essential structure that may vary across valid representations, and unsupported or contradictory structure that should not be introduced. An LLM judge is then used as an auxiliary evaluator to identify these features in generated world models and flag potential omissions, unsupported additions, and semantic inconsistencies. Human annotations provide the reference against which these judgments can be assessed, rather than treating the LLM judge itself as ground truth.
+For scenarios where no unique reference world model exists, our protocol calls for feature-level human annotations. Annotators identify scenario-relevant features as \textit{must include}, \textit{plausible}, or \textit{must not include}. These categories distinguish required structure whose omission would make the generated world model incomplete, reasonable but non-essential structure that may vary across valid representations, and unsupported or contradictory structure that should not be introduced. An LLM judge can serve as an auxiliary evaluator for omissions and unsupported additions, but human annotations must provide the reference rather than the judge being treated as ground truth. The completed artifacts reported here contain automated checklists for the game and cultural tracks; because human annotation is not complete, we label every resulting Lane-3 number diagnostic.
 
 \section{Experimental Setup}
 \label{sec:setup}
@@ -299,21 +299,26 @@ Lane 1 checks execution, hashable states, the interface contract, probability di
 \section{Results}
 \label{sec:results}
 
-\subsection{Three-track overview}
+\subsection{Evidence across all three evaluation lanes}
 \begin{table}[t]
 \centering
 \small
-\caption{Completed, comparable subsets in each empirical track. Pass definitions follow each track's preserved mechanical/Lane-1 evaluator; rates are not pooled across formats.}
+\caption{Completed evidence by track and evaluation lane. Lane-2 F1 values use the representation-sensitive fallback. Lane-3 values are automated diagnostics, not human-validated semantic judgments. A dash means that the preserved artifacts do not support that evaluation.}
 \label{tab:tracks}
-\begin{tabular}{lrrrl}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llll}
 \toprule
-Track & Cases & Models & First passes & Mechanical/L1 pass \\
+Track & Lane 1: mechanical & Lane 2: structural & Lane 3: semantic \\
 \midrule
-Game & 9 & 5 & 135 & 124/135 (91.85\%) \\
-Situational & 9 & 5 & 135 & 107/135 (79.26\%) \\
-Cultural & 14 & 3 & 84 & 75/84 (89.29\%) \\
+Game & 134/135 post-hoc & mean F1 .7162 & checklist 135/135$^\dagger$ \\
+Situational & 107/135 & no reference comparison & --- \\
+Cultural & 75/84 & mean F1 .5533 & checklist 82/84; mean .8963$^\dagger$ \\
 \bottomrule
 \end{tabular}
+}
+\vspace{1mm}
+
+\raggedright\scriptsize $^\dagger$Automated checklist/expect--avoid diagnostics only; no completed human validation.
 \end{table}
 
 \begin{figure}[t]
@@ -323,7 +328,7 @@ Cultural & 14 & 3 & 84 & 75/84 (89.29\%) \\
     \label{fig:three_tracks}
 \end{figure}
 
-Together, the three tracks contain 354 first-pass candidates over 32 distinct scenarios. Table~\ref{tab:tracks} keeps the evidence regimes separate: games have formal references, situational cases have executable validation but no unique semantic target, and cultural cases use JSON plus automated diagnostics.
+Together, the three tracks contain 354 first-pass candidates over 32 distinct scenarios. Table~\ref{tab:tracks} makes clear that the paper does not contain only Lane-1 results: the game and cultural tracks also contain Lane-2 structural results, and both retain automated Lane-3 diagnostics. The evidence is intentionally asymmetric. Games have formal references; cultural cases have reference-feature comparisons and expect/avoid criteria; situational cases have executable validation but neither a unique structural reference nor completed semantic annotations. We therefore report those cells as unavailable rather than manufacturing cross-track comparability.
 
 \subsection{Game track: mechanical validity and repair}
 Across all trials, 124/135 (91.85\%) succeed on the first attempt. Recorded repair rounds produce a contract-valid final artifact for 135/135 trials. A separate post-hoc Lane-1 audit passes 134/135; the sole failure is DeepSeek G9 in run 1. These quantities answer different questions: first-pass validity measures unaided generation, repair-assisted validity measures the complete generation pipeline, and Lane 1 is a later stricter audit.
@@ -400,10 +405,15 @@ All & 114/135 & 110/135 & 107/135 (79.26\%) \\
 \end{tabular}
 \end{table}
 
-\subsection{Cultural track: context and semantic diagnostics}
-The cultural track has 84 candidates. Strict parsing succeeds for 52/84; documented fence/brace recovery produces parseable candidates for 82/84, and 75/84 pass Lane 1. By run, GPT and Claude each pass Lane 1 on all 28 candidates. Llama passes 8/14 anonymized and 11/14 country-named candidates. Mean fallback structural F1 is 0.6386 versus 0.5777 for GPT, 0.6449 versus 0.6554 for Llama, and 0.4187 versus 0.3977 for Claude (anonymized versus location named).
+The situational artifacts also contain generated source programs, but the completed experiment records no reference-backed graph comparison and no finished Lane-3 annotation set. Graph statistics computed from these programs would characterize generated topology, not measure fidelity. Consequently, this track contributes a defensible Lane-1 result but no Lane-2 or Lane-3 performance number.
 
-Mean automated semantic scores change by $-0.006$, $-0.007$, and $-0.001$ when location is revealed for GPT, Llama, and Claude respectively. These are descriptive diagnostics: providers differ for Llama across conditions, there is one sample per cell, reference wording differs slightly in six bullets, and no completed human study validates the automated semantic or bias checks. In particular, diagnostic bias flags are not evidence that a model is biased.
+\subsection{Cultural track: context and semantic diagnostics}
+The cultural track has 84 candidates. Strict parsing succeeds for 52/84; documented fence/brace recovery produces parseable candidates for 82/84, and 75/84 pass Lane 1. By run, GPT and Claude each pass Lane 1 on all 28 candidates. Llama passes 8/14 anonymized and 11/14 country-named candidates. Across the 82 parseable candidates, mean fallback Lane-2 F1 is 0.5533. By model and condition it is 0.6386 versus 0.5777 for GPT, 0.6449 versus 0.6554 for Llama, and 0.4187 versus 0.3977 for Claude (anonymized versus location named).
+
+For Lane 3, all 82 parseable candidates pass the automated expect/avoid checklist and their mean automated semantic score is 0.8963. Mean scores change by $-0.006$, $-0.007$, and $-0.001$ when location is revealed for GPT, Llama, and Claude respectively. These are descriptive diagnostics: providers differ for Llama across conditions, there is one sample per cell, reference wording differs slightly in six bullets, and no completed human study validates the automated semantic or bias checks. In particular, checklist passage is not proof of semantic faithfulness, and diagnostic bias flags are not evidence that a model is biased.
+
+\subsection{Lane-3 evidence and its boundary}
+The game evaluator records 135/135 passes on its automated Lane-3 checklist, while the cultural evaluator records 82/84 (all parseable candidates) and mean automated semantic score 0.8963. These checks establish that the implemented criteria fired as recorded; they do not establish agreement with human judgment. The situational track has no completed Lane-3 result. Accordingly, our empirical claim is about available automated diagnostics, not human-validated semantic fidelity.
 
 \begin{table*}[t]
 \centering
