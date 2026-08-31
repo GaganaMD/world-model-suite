@@ -12,11 +12,13 @@
 | Among 134 Lane-1 passes, mean fallback F1 is 0.7178 and 32 have F1=1 | `evaluation_summary.csv`; generated in `paper_results.json` | Abstract; Results/RQ2 |
 | Run first-pass rates 95.56%, 91.11%, and 88.89% | `reliability_summary.json` | Results/RQ3 |
 | Cultural parse and location-condition diagnostics | `report/raw_output/analysis/aggregates.json` and `report/raw_output/README.md` | Separate cultural diagnostic |
+| Situational S1--S9: 107/135 mechanical passes; per-model rates 59.26--100% | saved notebook outputs in `notebooks/Copy_of_world_models_python_prompting_situational.ipynb`; extracted by `experiments/build_three_track_paper_results.py` | Three-track overview; Situational results table |
+| Cultural track: 52/84 strict parses, 82/84 recoverable parses, and 75/84 Lane-1 passes | `report/raw_output/analysis/aggregates.json` | Three-track overview; Cultural results |
 
 ## Results NOT incorporated
 
 - The v3 JSON-track models are not LLM outputs: `_manifest.json` records offline hand authorship.
-- Situational Python source files are not assigned aggregate performance because no compatible completed summary was found.
+- Situational S10--S11 are not assigned aggregate performance because their saved execution log is incomplete, even though generated source files exist.
 - Automated Lane-3 bias flags are not reported as evidence of bias and automated semantic scores are not described as human validated.
 - Original OpenRouter and local-Qwen studies are not pooled with the hardened study because settings differ or the later study supersedes them.
 - No planning, control, empowerment, reversibility, or real-world-safety result is claimed because no downstream experiment measures it.

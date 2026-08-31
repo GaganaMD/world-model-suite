@@ -12,11 +12,11 @@ This audit records the evidence considered for the NeurIPS 2026 workshop paper. 
 | Original OpenRouter run | 5 models; G1--G9; 45 candidates | executable generation and probes | completed precursor to hardened study | `experiments/openrouter/openrouter-20260829T152909Z/summary.json` | No separate aggregate | Superseded by the controlled three-run study; avoid double counting. |
 | Local Qwen and prompt-sensitivity studies | Qwen 2.5 Coder; selected games/prompts | execution, semantic oracle, robustness | useful diagnostic artifacts and historical failure examples | `experiments/qwen*`, `experiments/prompt_sensitivity`, `experiments/robustness` | Qualitative background only | Conditions differ from the main study and should not be pooled. |
 | v3 JSON track | 12 toy/game cases | three lanes and graph metrics | 12/12 mechanically valid authored models | `runs/v3_json_track/_manifest.json`, `README.md` | No LLM-performance claim | Manifest states candidates were authored offline by hand. |
-| Python situational outputs | 5 models; S1--S11; generated source files | generation artifacts | generation files exist | `results/python-situational/generated_python` | No quantitative claim | No compatible completed aggregate evaluation was found. |
+| Python situational outputs | 5 models; balanced S1--S9 subset; 3 generations; 135 first passes | execution, validation, complete mechanical verdict | 114/135 execute, 110/135 validate, 107/135 pass mechanically | saved outputs in `notebooks/Copy_of_world_models_python_prompting_situational.ipynb`; extracted by `experiments/build_three_track_paper_results.py` | Yes | S10--S11 are excluded because the saved execution log is incomplete; repairs are excluded from headline rates. |
 
 ## Status classification
 
-- **Final for this paper:** hardened game-study validity, fallback structural evaluation, and three-run reliability summaries.
+- **Final for this paper:** hardened game-study validity/structure/reliability and the complete balanced S1--S9 situational first-pass subset.
 - **Diagnostic:** cultural automated evaluation, local Qwen failure studies, prompt sensitivity, and robustness artifacts.
 - **Not LLM evidence:** hand-authored v3 JSON track and executable reference fixtures.
-- **Incomplete for quantitative reporting:** situational Python outputs without a compatible aggregate evaluation.
+- **Incomplete for quantitative reporting:** situational S10--S11, whose source files exist but whose saved execution log is incomplete.
