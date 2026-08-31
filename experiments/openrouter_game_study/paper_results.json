@@ -1,0 +1,463 @@
+{
+  "source": "experiments/openrouter_game_study/evaluation_summary.csv",
+  "structural_backend": [
+    "feature_multiset_fallback"
+  ],
+  "n_evaluated": 135,
+  "by_model": [
+    {
+      "model": "claude_opus_5",
+      "n": 27,
+      "lane1_passed": 27,
+      "mean_coverage": 0.9083296296296296,
+      "mean_precision": 0.41121851851851854,
+      "mean_combined_score": 0.5174592592592593,
+      "sd_combined_score": 0.3100580457557774,
+      "exact_combined_matches": 1
+    },
+    {
+      "model": "deepseek_v4_flash",
+      "n": 27,
+      "lane1_passed": 26,
+      "mean_coverage": 0.778762962962963,
+      "mean_precision": 0.7334259259259259,
+      "mean_combined_score": 0.7070888888888889,
+      "sd_combined_score": 0.2868261565871636,
+      "exact_combined_matches": 4
+    },
+    {
+      "model": "gpt_5_6_sol",
+      "n": 27,
+      "lane1_passed": 27,
+      "mean_coverage": 0.9440111111111111,
+      "mean_precision": 0.7625444444444445,
+      "mean_combined_score": 0.7854074074074074,
+      "sd_combined_score": 0.30432272207935634,
+      "exact_combined_matches": 11
+    },
+    {
+      "model": "llama_3_3_70b",
+      "n": 27,
+      "lane1_passed": 27,
+      "mean_coverage": 0.8890740740740741,
+      "mean_precision": 0.7018407407407408,
+      "mean_combined_score": 0.7487074074074074,
+      "sd_combined_score": 0.2338221545171029,
+      "exact_combined_matches": 9
+    },
+    {
+      "model": "qwen_3_8_27b",
+      "n": 27,
+      "lane1_passed": 27,
+      "mean_coverage": 0.8577222222222223,
+      "mean_precision": 0.8761666666666666,
+      "mean_combined_score": 0.8221222222222222,
+      "sd_combined_score": 0.2507120096741913,
+      "exact_combined_matches": 7
+    }
+  ],
+  "conditional_on_lane1_pass": {
+    "n": 134,
+    "mean_combined_score": 0.7177701492537314,
+    "exact_combined_matches": 32
+  },
+  "reliability": {
+    "runs": [
+      {
+        "run": "run_1",
+        "first_pass_passed": 43,
+        "first_pass_total": 45,
+        "first_pass_rate_pct": 95.56,
+        "final_passed": 45,
+        "final_total": 45,
+        "final_rate_pct": 100.0,
+        "attempt_count": 47,
+        "json_artifacts": 45,
+        "pth_artifacts": 45
+      },
+      {
+        "run": "run_2",
+        "first_pass_passed": 41,
+        "first_pass_total": 45,
+        "first_pass_rate_pct": 91.11,
+        "final_passed": 45,
+        "final_total": 45,
+        "final_rate_pct": 100.0,
+        "attempt_count": 50,
+        "json_artifacts": 45,
+        "pth_artifacts": 45
+      },
+      {
+        "run": "run_3",
+        "first_pass_passed": 40,
+        "first_pass_total": 45,
+        "first_pass_rate_pct": 88.89,
+        "final_passed": 45,
+        "final_total": 45,
+        "final_rate_pct": 100.0,
+        "attempt_count": 68,
+        "json_artifacts": 45,
+        "pth_artifacts": 45
+      }
+    ],
+    "aggregate": {
+      "first_pass_passed": 124,
+      "first_pass_total": 135,
+      "first_pass_rate_pct": 91.85,
+      "final_passed": 135,
+      "final_total": 135,
+      "final_rate_pct": 100.0,
+      "json_artifacts": 135,
+      "pth_artifacts": 135
+    },
+    "by_model": [
+      {
+        "model": "claude_opus_5",
+        "first_pass_passed": 27,
+        "trials": 27,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "first_pass_passed": 23,
+        "trials": 27,
+        "first_pass_rate_pct": 85.19
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "first_pass_passed": 26,
+        "trials": 27,
+        "first_pass_rate_pct": 96.3
+      },
+      {
+        "model": "llama_3_3_70b",
+        "first_pass_passed": 22,
+        "trials": 27,
+        "first_pass_rate_pct": 81.48
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "first_pass_passed": 26,
+        "trials": 27,
+        "first_pass_rate_pct": 96.3
+      }
+    ],
+    "by_model_game": [
+      {
+        "model": "claude_opus_5",
+        "case": "G1",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G2",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G3",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G4",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G5",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G6",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G7",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G8",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "claude_opus_5",
+        "case": "G9",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G1",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G2",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G3",
+        "first_pass_passed": 1,
+        "trials": 3,
+        "first_pass_rate_pct": 33.33
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G4",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G5",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G6",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G7",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G8",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "deepseek_v4_flash",
+        "case": "G9",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G1",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G2",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G3",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G4",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G5",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G6",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G7",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G8",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "gpt_5_6_sol",
+        "case": "G9",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G1",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G2",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G3",
+        "first_pass_passed": 1,
+        "trials": 3,
+        "first_pass_rate_pct": 33.33
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G4",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G5",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G6",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G7",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G8",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "llama_3_3_70b",
+        "case": "G9",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G1",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G2",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G3",
+        "first_pass_passed": 2,
+        "trials": 3,
+        "first_pass_rate_pct": 66.67
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G4",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G5",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G6",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G7",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G8",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      },
+      {
+        "model": "qwen_3_8_27b",
+        "case": "G9",
+        "first_pass_passed": 3,
+        "trials": 3,
+        "first_pass_rate_pct": 100.0
+      }
+    ]
+  }
+}
