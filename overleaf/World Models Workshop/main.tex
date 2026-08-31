@@ -333,15 +333,15 @@ Across all trials, 124/135 (91.85\%) succeed on the first attempt. Recorded repa
 \small
 \caption{Mechanical reliability and fallback structural comparison over 27 trials per model. Structural values are means; $\pm$ is sample standard deviation across model--game--run rows.}
 \label{tab:main_results}
-\begin{tabular}{lrrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
-Model & First pass & Lane 1 & Coverage & Precision & Structural F1 \\
+Model & First pass & Lane 1 & Coverage & Precision & Structural F1 & Exact \\
 \midrule
-Claude Opus 5 & 27/27 & 27/27 & .9083 & .4112 & $.5175\pm.3101$ \\
-DeepSeek V4 Flash & 23/27 & 26/27 & .7788 & .7334 & $.7071\pm.2868$ \\
-GPT-5.6 Sol & 26/27 & 27/27 & .9440 & .7625 & $.7854\pm.3043$ \\
-Llama 3.3 70B & 22/27 & 27/27 & .8891 & .7018 & $.7487\pm.2338$ \\
-Qwen 3.8 27B & 26/27 & 27/27 & .8577 & .8762 & $.8221\pm.2507$ \\
+Claude Opus 5 & 27/27 & 27/27 & .9083 & .4112 & $.5175\pm.3101$ & 1/27 \\
+DeepSeek V4 Flash & 23/27 & 26/27 & .7788 & .7334 & $.7071\pm.2868$ & 4/27 \\
+GPT-5.6 Sol & 26/27 & 27/27 & .9440 & .7625 & $.7854\pm.3043$ & 11/27 \\
+Llama 3.3 70B & 22/27 & 27/27 & .8891 & .7018 & $.7487\pm.2338$ & 9/27 \\
+Qwen 3.8 27B & 26/27 & 27/27 & .8577 & .8762 & $.8221\pm.2507$ & 7/27 \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -359,23 +359,43 @@ The mean fallback structural F1 over all 135 artifacts is 0.7162. Among the 134 
 \subsection{Observed run-to-run reliability}
 First-pass validity is 43/45 (95.56\%) in run 1, 41/45 (91.11\%) in run 2, and 40/45 (88.89\%) in run 3. By model it ranges from 22/27 (81.48\%) for Llama to 27/27 (100\%) for Claude; DeepSeek reaches 23/27 and GPT and Qwen each reach 26/27. Three repetitions establish observed variation, not statistical significance or a stable population ranking. The structural standard deviations in Table~\ref{tab:main_results} also mix game difficulty with run variation and are not pure stability estimates.
 
+\begin{table}[t]
+\centering
+\small
+\caption{Game-track reliability by repeated run. ``Final'' includes explicitly recorded repair rounds; attempts counts every first pass and repair call.}
+\label{tab:game_runs}
+\begin{tabular}{lrrr}
+\toprule
+Run & First-pass valid & Final valid & Attempts \\
+\midrule
+1 & 43/45 (95.56\%) & 45/45 & 47 \\
+2 & 41/45 (91.11\%) & 45/45 & 50 \\
+3 & 40/45 (88.89\%) & 45/45 & 68 \\
+\midrule
+All & 124/135 (91.85\%) & 135/135 & 165 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Situational track: executable Python POSGs}
 Across the balanced S1--S9 subset, 114/135 first-pass programs execute, 110/135 pass the notebook's validation stage, and 107/135 pass the complete mechanical verdict. Claude and GPT each pass 27/27, Llama 20/27, Qwen 17/27, and DeepSeek 16/27. These rates come directly from saved notebook output rather than from the presence of source files. Repair files are retained but excluded from the headline. The spread is larger than in the game track, consistent with the situational cases' longer, less tightly specified dynamics, but the experiment does not isolate which property causes the difference.
 
 \begin{table}[t]
 \centering
 \small
-\caption{Situational S1--S9 first-pass mechanical results (three generations per model--case pair). S10--S11 are excluded because their saved execution log is incomplete.}
+\caption{Situational S1--S9 first-pass funnel (three generations per model--case pair). S10--S11 are excluded because their saved execution log is incomplete.}
 \label{tab:situational}
-\begin{tabular}{lr}
+\begin{tabular}{lrrr}
 \toprule
-Model & Mechanical pass \\
+Model & Executes & Validates & Mechanical pass \\
 \midrule
-Claude Opus 5 & 27/27 (100\%) \\
-GPT-5.6 Sol & 27/27 (100\%) \\
-Llama 3.3 70B & 20/27 (74.07\%) \\
-Qwen 3.8 27B & 17/27 (62.96\%) \\
-DeepSeek V4 Flash & 16/27 (59.26\%) \\
+Claude Opus 5 & 27/27 & 27/27 & 27/27 (100\%) \\
+GPT-5.6 Sol & 27/27 & 27/27 & 27/27 (100\%) \\
+Llama 3.3 70B & 25/27 & 22/27 & 20/27 (74.07\%) \\
+Qwen 3.8 27B & 19/27 & 18/27 & 17/27 (62.96\%) \\
+DeepSeek V4 Flash & 16/27 & 16/27 & 16/27 (59.26\%) \\
+\midrule
+All & 114/135 & 110/135 & 107/135 (79.26\%) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -384,6 +404,27 @@ DeepSeek V4 Flash & 16/27 (59.26\%) \\
 The cultural track has 84 candidates. Strict parsing succeeds for 52/84; documented fence/brace recovery produces parseable candidates for 82/84, and 75/84 pass Lane 1. By run, GPT and Claude each pass Lane 1 on all 28 candidates. Llama passes 8/14 anonymized and 11/14 country-named candidates. Mean fallback structural F1 is 0.6386 versus 0.5777 for GPT, 0.6449 versus 0.6554 for Llama, and 0.4187 versus 0.3977 for Claude (anonymized versus location named).
 
 Mean automated semantic scores change by $-0.006$, $-0.007$, and $-0.001$ when location is revealed for GPT, Llama, and Claude respectively. These are descriptive diagnostics: providers differ for Llama across conditions, there is one sample per cell, reference wording differs slightly in six bullets, and no completed human study validates the automated semantic or bias checks. In particular, diagnostic bias flags are not evidence that a model is biased.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Cultural-track results by model and prompt condition (14 cases per row). ``Recovered'' denotes documented fence/brace recovery after strict parsing; semantic scores are automated diagnostics, not human judgments.}
+\label{tab:cultural}
+\begin{tabular}{llrrrrr}
+\toprule
+Model & Condition & Strict & Recovered & Lane 1 & Structural F1 & Semantic \\
+\midrule
+GPT-5.6 Sol & Anonymized & 13/14 & 1 & 14/14 & .6386 & .9454 \\
+GPT-5.6 Sol & Country named & 13/14 & 1 & 14/14 & .5777 & .9393 \\
+Llama 3.3 70B & Anonymized & 0/14 & 12 & 8/14 & .6449 & .8380 \\
+Llama 3.3 70B & Country named & 0/14 & 14 & 11/14 & .6554 & .8307 \\
+Claude Opus 5 & Anonymized & 13/14 & 1 & 14/14 & .4187 & .9086 \\
+Claude Opus 5 & Country named & 13/14 & 1 & 14/14 & .3977 & .9071 \\
+\midrule
+All & --- & 52/84 & 30 & 75/84 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
 \section{Discussion and Failure Analysis}
 Mechanical correctness is necessary but insufficient for a trustworthy executable world model. In the game track nearly every artifact passes Lane 1, while fallback structural agreement spans a wide range; the other tracks show that even the mechanical gate itself becomes less reliable as scenarios and output regimes change. Differences can reflect under-modeling (missing features or shortened trajectories), over-modeling (extra states or finer outcome expansion), transition or terminal differences, or an alternative but valid granularity. Only reference mechanics and targeted semantic review can distinguish these explanations.
@@ -753,6 +794,53 @@ Across three empirical tracks we analyze 354 first-pass candidates: 135 referenc
 \appendix
 
 \section{Additional graph diagnostics}
+\subsection{Case-level results}
+\begin{table}[h]
+\centering
+\small
+\caption{Game results by case, pooled over five models and three runs (15 candidates per case). F1 is the mean feature-multiset fallback score.}
+\label{tab:game_cases}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Case & G1 & G2 & G3 & G4 & G5 & G6 & G7 & G8 & G9 \\
+\midrule
+Lane 1 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 14 \\
+Mean F1 & .851 & .201 & .756 & .881 & .889 & .449 & .855 & .745 & .819 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Situational first-pass mechanical validity by case, pooled over five models and three generations (15 attempts per case).}
+\label{tab:situational_cases}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Case & S1 & S2 & S3 & S4 & S5 & S6 & S7 & S8 & S9 \\
+\midrule
+Pass & 13 & 13 & 11 & 10 & 13 & 11 & 12 & 13 & 11 \\
+Total & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table*}[h]
+\centering
+\small
+\caption{Cultural results by case, pooled over three models and two prompt conditions (six candidates per case). Semantic values are automated diagnostics.}
+\label{tab:cultural_cases}
+\begin{tabular}{lrrrrrrrrrrrrrr}
+\toprule
+Case & C1 & C2 & C3 & C4 & C5 & C6 & C7 & C8 & C9 & C10 & C11 & C12 & C13 & C14 \\
+\midrule
+Lane 1 & 6 & 6 & 6 & 6 & 5 & 6 & 4 & 6 & 5 & 5 & 4 & 4 & 6 & 6 \\
+Mean F1 & .676 & .634 & .630 & .595 & .528 & .411 & .377 & .529 & .524 & .546 & .490 & .647 & .461 & .692 \\
+Mean semantic & .903 & .909 & .841 & .887 & .963 & .855 & .878 & .856 & .924 & .869 & .898 & .906 & .927 & .938 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 Figure~\ref{fig:reference_comparison} characterizes the structural diversity of the nine reference games used by the evaluation. Figure~\ref{fig:qwen_example} records an earlier local-Qwen G1 artifact that passed structural rollout but failed game-specific reward and observation checks. This example is diagnostic and is not pooled with the five-model study.
 
 \begin{figure}[h]

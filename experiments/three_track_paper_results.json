@@ -35,6 +35,53 @@
         "first_pass_rate_pct": 96.3
       }
     },
+    "by_case": {
+      "G1": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.8507933333333333
+      },
+      "G2": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.20112
+      },
+      "G3": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.7562066666666667
+      },
+      "G4": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.8808733333333333
+      },
+      "G5": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.8893
+      },
+      "G6": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.4485133333333333
+      },
+      "G7": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.8550133333333333
+      },
+      "G8": {
+        "n": 15,
+        "lane1_pass": 15,
+        "mean_structural_f1": 0.7446866666666667
+      },
+      "G9": {
+        "n": 15,
+        "lane1_pass": 14,
+        "mean_structural_f1": 0.8189066666666667
+      }
+    },
     "source": "experiments/openrouter_game_study/reliability_summary.json"
   },
   "situational": {
@@ -46,28 +93,76 @@
     "by_model": {
       "claude-opus-5": {
         "n": 27,
+        "execution_ok": 27,
+        "validation_ok": 27,
         "mechanical_pass": 27
       },
       "deepseek-v4-flash": {
         "n": 27,
+        "execution_ok": 16,
+        "validation_ok": 16,
         "mechanical_pass": 16
       },
       "gpt-5.6-sol": {
         "n": 27,
+        "execution_ok": 27,
+        "validation_ok": 27,
         "mechanical_pass": 27
       },
       "llama-3.3-70b": {
         "n": 27,
+        "execution_ok": 25,
+        "validation_ok": 22,
         "mechanical_pass": 20
       },
       "qwen3.8-27b": {
         "n": 27,
+        "execution_ok": 19,
+        "validation_ok": 18,
         "mechanical_pass": 17
       }
     },
     "status": {
       "PASS": 107,
       "FAIL": 28
+    },
+    "by_case": {
+      "S1": {
+        "n": 15,
+        "mechanical_pass": 13
+      },
+      "S2": {
+        "n": 15,
+        "mechanical_pass": 13
+      },
+      "S3": {
+        "n": 15,
+        "mechanical_pass": 11
+      },
+      "S4": {
+        "n": 15,
+        "mechanical_pass": 10
+      },
+      "S5": {
+        "n": 15,
+        "mechanical_pass": 13
+      },
+      "S6": {
+        "n": 15,
+        "mechanical_pass": 11
+      },
+      "S7": {
+        "n": 15,
+        "mechanical_pass": 12
+      },
+      "S8": {
+        "n": 15,
+        "mechanical_pass": 13
+      },
+      "S9": {
+        "n": 15,
+        "mechanical_pass": 11
+      }
     },
     "source": "saved outputs in notebooks/Copy_of_world_models_python_prompting_situational.ipynb",
     "exclusion": "S10-S11 excluded because the saved execution log is incomplete"
@@ -359,6 +454,162 @@
             6
           ]
         ]
+      }
+    },
+    "by_case": {
+      "C1": {
+        "country": "Korea",
+        "ref_states": 7,
+        "ref_terminals": 5,
+        "n_expected": 6,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.6756000000000001,
+        "mean_sem_score": 0.9030166666666667
+      },
+      "C2": {
+        "country": "China",
+        "ref_states": 6,
+        "ref_terminals": 4,
+        "n_expected": 5,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.6336499999999999,
+        "mean_sem_score": 0.9094166666666667
+      },
+      "C3": {
+        "country": "France",
+        "ref_states": 7,
+        "ref_terminals": 5,
+        "n_expected": 6,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.6304333333333333,
+        "mean_sem_score": 0.84125
+      },
+      "C4": {
+        "country": "India",
+        "ref_states": 7,
+        "ref_terminals": 5,
+        "n_expected": 6,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.5953833333333334,
+        "mean_sem_score": 0.88725
+      },
+      "C5": {
+        "country": "Japan",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 6,
+        "n_forbidden": 4,
+        "lane1_pass": 5,
+        "overall_pass": 5,
+        "mean_lane2_combined": 0.5276,
+        "mean_sem_score": 0.9632999999999999
+      },
+      "C6": {
+        "country": "Brazil",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 6,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.4107166666666667,
+        "mean_sem_score": 0.8546833333333334
+      },
+      "C7": {
+        "country": "Nigeria",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 4,
+        "overall_pass": 4,
+        "mean_lane2_combined": 0.3771333333333333,
+        "mean_sem_score": 0.8776333333333333
+      },
+      "C8": {
+        "country": "Germany",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.5292833333333333,
+        "mean_sem_score": 0.8558833333333333
+      },
+      "C9": {
+        "country": "Saudi Arabia",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 8,
+        "n_forbidden": 4,
+        "lane1_pass": 5,
+        "overall_pass": 5,
+        "mean_lane2_combined": 0.5239666666666666,
+        "mean_sem_score": 0.9236333333333334
+      },
+      "C10": {
+        "country": "Mexico",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 5,
+        "overall_pass": 5,
+        "mean_lane2_combined": 0.5460200000000001,
+        "mean_sem_score": 0.86912
+      },
+      "C11": {
+        "country": "Egypt",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 4,
+        "overall_pass": 4,
+        "mean_lane2_combined": 0.4903166666666667,
+        "mean_sem_score": 0.8984
+      },
+      "C12": {
+        "country": "Russia",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 4,
+        "overall_pass": 4,
+        "mean_lane2_combined": 0.6473166666666667,
+        "mean_sem_score": 0.9055333333333332
+      },
+      "C13": {
+        "country": "USA",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 8,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.46130000000000004,
+        "mean_sem_score": 0.9267
+      },
+      "C14": {
+        "country": "Indonesia",
+        "ref_states": 5,
+        "ref_terminals": 4,
+        "n_expected": 7,
+        "n_forbidden": 4,
+        "lane1_pass": 6,
+        "overall_pass": 6,
+        "mean_lane2_combined": 0.6921166666666667,
+        "mean_sem_score": 0.9384
       }
     },
     "source": "report/raw_output/analysis/aggregates.json",

@@ -14,6 +14,7 @@
 | Cultural parse and location-condition diagnostics | `report/raw_output/analysis/aggregates.json` and `report/raw_output/README.md` | Separate cultural diagnostic |
 | Situational S1--S9: 107/135 mechanical passes; per-model rates 59.26--100% | saved notebook outputs in `notebooks/Copy_of_world_models_python_prompting_situational.ipynb`; extracted by `experiments/build_three_track_paper_results.py` | Three-track overview; Situational results table |
 | Cultural track: 52/84 strict parses, 82/84 recoverable parses, and 75/84 Lane-1 passes | `report/raw_output/analysis/aggregates.json` | Three-track overview; Cultural results |
+| Game, situational, and cultural case-level breakdowns | game `evaluation_summary.csv`; saved situational notebook output; cultural `aggregates.json` | Appendix case-level tables |
 
 ## Results NOT incorporated
 
