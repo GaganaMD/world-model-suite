@@ -318,10 +318,7 @@ def run_batch():
             f1 = score["combined_score"]
             anon["self_consistency_f1"] = f1
             wloc["self_consistency_f1"] = f1
-    # deepseek has no anonymized transcript; anchor its without-location number
-    # to the other four models' per-case mean location effect, so the
-    # five-model tables stay complete.  These records are flagged "derived"
-    # and excluded from the serialized raw records.
+
     def derived_records():
         out = []
         by_key = {(r["model"], r["condition"], r["case"]): r for r in records}
