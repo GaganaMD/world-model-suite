@@ -225,3 +225,5 @@ experiments/openrouter/openrouter-20260829T150535Z/
 
 
 e.py
+*.pyc
+.env
