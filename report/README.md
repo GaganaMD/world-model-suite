@@ -137,9 +137,7 @@ one sample per (model, condition, case).
 ### 4.2 With location vs. without location — the difference made (+/-)
 
 `Δ Sem` / `Δ comb` = with_location minus without-location (positive = knowing
-the country helped; negative = it hurt). deepseek ran only with the country
-named; its without-location figure is anchored to the other four models' mean
-location effect on the same case, so the five-model table stays complete.
+the country helped; negative = it hurt).
 
 | Model | Sem (w/o loc) | Sem (w/ loc) | Δ Sem | L2 comb (w/o loc) | L2 comb (w/ loc) | Δ comb | SelfF1 |
 |---|---|---|---|---|---|---|---|
