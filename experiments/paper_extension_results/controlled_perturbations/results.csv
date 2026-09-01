@@ -1,0 +1,6 @@
+variant,reference_value,perturbed_value,planning_regret,reference_reachable,variant_reachable,reference_reversible_edges,variant_reversible_edges,selected_action
+reference,1.0,1.0,0.0,3,3,0,0,{'robot': 'safe'}
+remove_risky_action,1.0,1.0,0.0,3,2,0,0,{'robot': 'safe'}
+add_action,1.0,1.0,0.0,3,3,0,0,{'robot': 'safe'}
+premature_terminal,1.0,0.0,1.0,3,1,0,0,{}
+spurious_reverse_edge,1.0,1.0,0.0,3,3,0,2,{'robot': 'safe'}
