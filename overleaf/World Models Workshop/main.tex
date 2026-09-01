@@ -69,7 +69,7 @@
 
 
 % Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
-\title{Mechanical Validity Does Not Imply World-Model Fidelity: Evaluating LLM-Generated Executable POSGs}
+\title{Mechanical Validity Does Not Imply Structural Fidelity in LLM-Generated Executable POSGs}
 
 
 % The \author macro works with any number of authors. There are two commands
@@ -92,7 +92,7 @@
 
 \begin{abstract}
   %The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on both the left- and right-hand margins. Use 10~point type, with a vertical spacing (leading) of 11~points. The word \textbf{Abstract} must be centered, bold, and in point size 12. Two line spaces precede the abstract. The abstract must be limited to one paragraph.
-World models used for planning must capture action-conditioned dynamics, not merely satisfy an executable interface. We study whether large language models can translate natural-language situations into executable partially observable stochastic games (POSGs). Our 44-scenario benchmark has three empirical tracks with different evidence regimes. The game track evaluates five models on nine reference-backed games over three runs (135 first-pass trials); the situational track provides a balanced completed subset of 135 first-pass trials on S1--S9; and the cultural track evaluates 84 JSON candidates from three models under anonymized and country-named prompts. First-pass mechanical/Lane-1 validity is respectively 124/135, 107/135, and 75/84. In the game track, the 134 artifacts passing a post-hoc Lane-1 audit obtain mean fallback structural F1 0.7178, with only 32 exact fallback matches. Cultural location disclosure changes mean automated semantic scores by at most 0.007 in the three observed model pairs, but these diagnostics are not human validated. Across tracks, mechanical validity varies with scenario regime and does not establish structural or semantic fidelity.
+Executable world models used for planning must preserve action-conditioned dynamics, not merely satisfy a software interface. We evaluate LLM-generated partially observable stochastic games (POSGs) with a 44-scenario benchmark that separates mechanical validity, permutation-invariant structural matching, and semantic diagnostics. Across three empirical tracks we analyze 354 completed first-pass candidates. In the reference-backed game track, 134/135 final artifacts pass a strict post-hoc mechanical audit, yet their mean permutation-invariant structural F1 is 0.3660 (median 0.1778), and only 28/134 score exactly 1. Across the three observed generations per model--game pair, the mean within-pair F1 standard deviation is 0.1679, while an exploratory nine-game analysis associates reference stochasticity with lower agreement ($\rho=-0.677$). These results show that executability is a necessary gate but does not establish structural fidelity.
 \end{abstract}
 
 \section{Introduction}
@@ -114,7 +114,7 @@ In this paper, we focus on a single layer of such a hierarchy: generating and ev
 % \todo{i like this very much so far!}
 
 \paragraph{LLMs as World Model Generators}
-This work investigates whether modern Large Language Models (LLMs) can bridge the gap between unstructured, real-world scenario descriptions and formal safety environments by constructing Partially Observable Stochastic Games (POSGs)encoded in a structured format (JSON or Python). For single-agent, largely deterministic settings, literature shows that LLMs are able to produce correct models expressed in planning languages such as PDDL, and to generate executable ``code world models'' for model-based planning \citet{cao2025large,dainese2024generating}. For complex situations with multiple affected humans, this capability has been studied far less, and arguably PDDL or its extensions might not (yet) be the right data structures to represent them.
+This work investigates whether modern Large Language Models (LLMs) can bridge the gap between unstructured, real-world scenario descriptions and formal safety environments by constructing Partially Observable Stochastic Games (POSGs) encoded in a structured format (JSON or Python). For single-agent, largely deterministic settings, literature shows that LLMs are able to produce correct models expressed in planning languages such as PDDL, and to generate executable ``code world models'' for model-based planning \citet{cao2025large,dainese2024generating}. For complex situations with multiple affected humans, this capability has been studied far less, and arguably PDDL or its extensions might not (yet) be the right data structures to represent them.
 
 The multi-human setting also faces failure modes that are specific to LLM generation and largely absent from the deterministic single-agent case:
 \begin{itemize}
@@ -124,7 +124,6 @@ The multi-human setting also faces failure modes that are specific to LLM genera
 \end{itemize}
 
 These are not merely syntactic or mechanical quality failures. Each can occur in an otherwise well-formed world model while materially changing the conclusions of a downstream planner. This distinction motivates our evaluation framework: mechanical validity alone is insufficient, and evaluation must additionally test structural fidelity, semantic coverage, and unsupported invention.
-% \todo{i don't understand why those issues are not quality issues? isn't unbiasedness not a quality?}
 
 \paragraph{Key Contributions}
 In this workshop paper, we contribute:
@@ -151,10 +150,10 @@ LLMs have been used to synthesize environments and domain-specific programs, inc
 %Discussion of existing benchmarking tools for state-space coverage, LLM-as-a-judge reliability, and structural graph analysis in synthetic environments.
 Evaluating synthesised situational world models draws on several metrics, including mechanical validity checks (well-formedness, probability normalisation, reachability of generated states), structural and graph-based comparison of state-transition topologies, and LLM-as-a-judge protocols for qualities that are difficult to verify automatically. Existing metrics often assume the existence of a reference model, failing to address situations where correctness is genuinely indeterminate and must be evaluated against human-specified expectations rather than a ground-truth model. We combine mechanical, structural, and judgement-based metrics into a single framework in Section~\ref{subsec:evaluation_framework}.
 
-\section{Benchmark and Evaluation Method}
+\section{Benchmark and World-Model Generation}
 \label{sec:method}
 
-\subsection{Preliminaries}
+\subsection{POSG representation}
 \label{subsec:preliminaries}
 
 \paragraph{Partially Observable Stochastic Games (POSG)}
@@ -181,7 +180,7 @@ Models are formalized as POSGs encoded either as explicit JSON structures listin
 %     \label{fig:world}
 % \end{figure}
 
-\section{Dataset and Benchmark Suite}
+\subsection{Benchmark suite}
 \label{sec:dataset}
 
 To evaluate world-model synthesis under realistic conditions, we construct a specialized benchmark suite that prioritizes structural diversity, domain coverage, and distinct multi-player trade-offs over brute-force data volume. Rather than inflating dataset size through trivial parameter variations—such as resizing grids or swapping entity labels—each scenario introduces a unique combination of partial observability, state-space topology, non-zero-sum payoff structure, and safety-critical choices.
@@ -235,10 +234,8 @@ We also highlight normative and contextual uncertainty across complex domain bou
 
 The suite also includes scenarios in which an available action can irreversibly remove future options for one or more players, enabling direct evaluation of whether generated world models preserve safety-relevant distinctions in reachability and reversibility.
 
-% \todo{Someone commented: Verify whether the final camera-ready layout requires breaking down the exact JSON schema validation pass rate per tier alongside Table~\ref{tab:dataset_taxonomy}.} % that was not my comment... (Jobst)
 
 \subsection{World-Model Generation Pipeline}
-% \todo{Jobst: good structure!}
 \label{subsec:wm_generation}
 
 %\paragraph{Natural-Language-to-POSG Code Synthesis}
@@ -254,7 +251,7 @@ Extending world-model generation beyond simple toy games to multi-agent situatio
 \fi
 %%%%%%%%%
 
-\subsection{Multi-Lane Evaluation Framework}
+\section{Evaluation Framework}
 \label{subsec:evaluation_framework}
 
 \paragraph{Lane 1: Python World Model Correctness (Mechanical Verification)}
@@ -280,7 +277,6 @@ We therefore interpret these quantities as exploratory diagnostics and evaluate 
 
 These diagnostics are interpreted jointly with the semantic evaluation in Lane~3. A structurally unusual graph may still represent a valid situation, while a structurally plausible graph may remain semantically incorrect; therefore, we do not use graph topology alone as evidence of world-model correctness.
 
-% \todo[inline]{Jobst: this needs careful motivation: what can these indicators tell us about the quality of the world model? If we are doubtful, we should make this smaller/give it less room in the paper}
 
 
 \paragraph{Lane 3: LLM-as-a-Judge and Human-in-the-Loop Semantic Review}
@@ -288,13 +284,13 @@ For scenarios where no unique reference world model exists, our protocol calls f
 
 \section{Experimental Setup}
 \label{sec:setup}
-\paragraph{Game track (Gagana).} The controlled study evaluates GPT-5.6 Sol, Claude Opus 5, Llama 3.3 70B Instruct, Qwen 3.8 27B, and DeepSeek V4 Flash through OpenRouter. Each model is run on G1--G9 in each of three preserved runs, yielding 27 trials per model and 135 first-pass trials. Run directories retain configuration, exact prompts, raw responses, generated Python, probe reports, canonical JSON, and graph objects. Explicitly logged repair attempts are separated from unaided generation.
+\paragraph{Game track.} The controlled study evaluates GPT-5.6 Sol, Claude Opus 5, Llama 3.3 70B Instruct, Qwen 3.8 27B, and DeepSeek V4 Flash through OpenRouter. Each model is run on G1--G9 in each of three preserved runs, yielding 27 trials per model and 135 first-pass trials. Run directories retain configuration, exact prompts, raw responses, generated Python, probe reports, canonical JSON, and graph objects. Explicitly logged repair attempts are separated from unaided generation.
 
-\paragraph{Situational track (Amna).} The Python-POSG notebook configures the same five model families for 11 situations and three generations. Its saved output log completely records the balanced S1--S9 subset: 5 models $\times$ 9 cases $\times$ 3 generations, or 135 first-pass attempts. The saved log for S10--S11 is incomplete, so those cases and their source files are excluded from all reported rates. This track tests executable generation and mechanical validation without assuming a unique semantic reference.
+\paragraph{Situational track.} The Python-POSG notebook configures the same five model families for 11 situations and three generations. Its saved output log completely records the balanced S1--S9 subset: 5 models $\times$ 9 cases $\times$ 3 generations, or 135 first-pass attempts. The saved log for S10--S11 is incomplete, so those cases and their source files are excluded from all reported rates. This track tests executable generation and mechanical validation without assuming a unique semantic reference.
 
-\paragraph{Cultural track (Ani).} The cultural experiment contains 84 JSON candidates: GPT-5.6 Sol, Llama 3.3, and Claude Opus 5 across C1--C14, one sample under an anonymized prompt and one with the country named. It records strict parsing, documented lenient recovery, Lane 1, fallback structural diagnostics, and automated expect/avoid criteria. Llama uses different providers across the two conditions, so location contrasts are descriptive rather than causal.
+\paragraph{Cultural track.} The cultural experiment contains 84 JSON candidates: GPT-5.6 Sol, Llama 3.3, and Claude Opus 5 across C1--C14, one sample under an anonymized prompt and one with the country named. It records strict parsing, documented lenient recovery, Lane 1, fallback structural diagnostics, and automated expect/avoid criteria. Llama uses different providers across the two conditions, so location contrasts are descriptive rather than causal.
 
-Lane 1 checks execution, hashable states, the interface contract, probability distributions, references, joint-action completeness, reachability, and paths to termination. Lane 2 compares candidate and reference feature multisets through coverage, precision, and harmonic-mean F1. The intended optimal \texttt{game\_matching} dependency was unavailable, so every reported Lane-2 value uses the documented fallback. It is representation-sensitive and is not a semantic-equivalence score. We do not pool earlier local-Qwen, prompt-sensitivity, robustness, or hand-authored JSON runs because their conditions differ.
+Lane 1 checks execution, hashable states, the interface contract, probability distributions, references, joint-action completeness, reachability, and paths to termination. For the game track, Lane 2 converts both POSGs to depth-three acyclic games and uses the pinned \texttt{game\_matching} implementation (Hungarian initialization followed by seeded local search) to align players, states, and actions. Coverage normalizes the cross-game score by the reference self-score, precision by the candidate self-score, and F1 is their harmonic mean. The alignment is invariant to tested state ordering and state/action/player renaming, incorporates transition probabilities and intrinsic action-conditioned structure, but remains approximate and horizon-dependent. We retain the old feature-multiset fallback for traceability and continue to use it for the separately configured cultural track. We do not pool earlier local-Qwen, prompt-sensitivity, robustness, or hand-authored JSON runs because their conditions differ.
 
 \section{Results}
 \label{sec:results}
@@ -303,22 +299,22 @@ Lane 1 checks execution, hashable states, the interface contract, probability di
 \begin{table}[t]
 \centering
 \small
-\caption{Completed evidence by track and evaluation lane. Lane-2 F1 values use the representation-sensitive fallback. Lane-3 values are automated diagnostics, not human-validated semantic judgments. A dash means that the preserved artifacts do not support that evaluation.}
+\caption{Completed evidence by track and evaluation lane. Game Lane 2 uses permutation-invariant matching; Cultural Lane 2 retains the feature-multiset fallback. Lane-3 values are automated diagnostics, not human-validated judgments.}
 \label{tab:tracks}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{llll}
 \toprule
 Track & Lane 1: mechanical & Lane 2: structural & Lane 3: semantic \\
 \midrule
-Game & 134/135 post-hoc & mean F1 .7162 & checklist 135/135$^\dagger$ \\
+Game & 134/135 post-hoc & mean F1 .3660$^*$ & checklist 135/135$^\dagger$ \\
 Situational & 107/135 & no reference comparison & --- \\
-Cultural & 75/84 & mean F1 .5533 & checklist 82/84; mean .8963$^\dagger$ \\
+Cultural & 75/84 & fallback F1 .5533 & checklist 82/84; mean .8963$^\dagger$ \\
 \bottomrule
 \end{tabular}
 }
 \vspace{1mm}
 
-\raggedright\scriptsize $^\dagger$Automated checklist/expect--avoid diagnostics only; no completed human validation.
+\raggedright\scriptsize $^*$Conditional on Lane-1 passage. $^\dagger$Automated checklist/expect--avoid diagnostics only; no completed human validation.
 \end{table}
 
 \begin{figure}[t]
@@ -328,41 +324,92 @@ Cultural & 75/84 & mean F1 .5533 & checklist 82/84; mean .8963$^\dagger$ \\
     \label{fig:three_tracks}
 \end{figure}
 
-Together, the three tracks contain 354 first-pass candidates over 32 distinct scenarios. Table~\ref{tab:tracks} makes clear that the paper does not contain only Lane-1 results: the game and cultural tracks also contain Lane-2 structural results, and both retain automated Lane-3 diagnostics. The evidence is intentionally asymmetric. Games have formal references; cultural cases have reference-feature comparisons and expect/avoid criteria; situational cases have executable validation but neither a unique structural reference nor completed semantic annotations. We therefore report those cells as unavailable rather than manufacturing cross-track comparability.
+Together, the three tracks contain 354 first-pass candidates over 32 distinct scenarios. Their evidence is intentionally asymmetric: games have formal references; cultural cases have reference-feature comparisons and expect/avoid criteria; situational cases have executable validation but neither a unique structural reference nor completed semantic annotations. We report unavailable cells rather than manufacture cross-track comparability.
 
 \subsection{Game track: mechanical validity and repair}
 Across all trials, 124/135 (91.85\%) succeed on the first attempt. Recorded repair rounds produce a contract-valid final artifact for 135/135 trials. A separate post-hoc Lane-1 audit passes 134/135; the sole failure is DeepSeek G9 in run 1. These quantities answer different questions: first-pass validity measures unaided generation, repair-assisted validity measures the complete generation pipeline, and Lane 1 is a later stricter audit.
 
+The evaluation flow is \emph{first response $\rightarrow$ optional logged repair $\rightarrow$ contract-valid final artifact $\rightarrow$ common post-hoc Lane 1 $\rightarrow$ structural comparison}. A repaired artifact is never counted as a first-pass success, and structural F1 is computed on the preserved final artifact independently of its repair history.
+
 \begin{table*}[t]
 \centering
 \small
-\caption{Mechanical reliability and fallback structural comparison over 27 trials per model. Structural values are means; $\pm$ is sample standard deviation across model--game--run rows.}
+\caption{Mechanical reliability over 27 trials per model. Brackets give descriptive 95\% Wilson intervals for first-pass proportions; trials span nine games and are not assumed to be IID population draws.}
 \label{tab:main_results}
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{lrrr}
 \toprule
-Model & First pass & Lane 1 & Coverage & Precision & Structural F1 & Exact \\
+Model & First pass & 95\% Wilson CI & Lane 1 \\
 \midrule
-Claude Opus 5 & 27/27 & 27/27 & .9083 & .4112 & $.5175\pm.3101$ & 1/27 \\
-DeepSeek V4 Flash & 23/27 & 26/27 & .7788 & .7334 & $.7071\pm.2868$ & 4/27 \\
-GPT-5.6 Sol & 26/27 & 27/27 & .9440 & .7625 & $.7854\pm.3043$ & 11/27 \\
-Llama 3.3 70B & 22/27 & 27/27 & .8891 & .7018 & $.7487\pm.2338$ & 9/27 \\
-Qwen 3.8 27B & 26/27 & 27/27 & .8577 & .8762 & $.8221\pm.2507$ & 7/27 \\
+Claude Opus 5 & 27/27 & [.875, 1.000] & 27/27 \\
+DeepSeek V4 Flash & 23/27 & [.675, .941] & 26/27 \\
+GPT-5.6 Sol & 26/27 & [.817, .993] & 27/27 \\
+Llama 3.3 70B & 22/27 & [.633, .918] & 27/27 \\
+Qwen 3.8 27B & 26/27 & [.817, .993] & 27/27 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{fig/main_empirical_results.pdf}
-    \caption{First-pass mechanical validity and mean fallback structural F1 by model (27 trials each). Validity is a pass rate; structural F1 is a representation-sensitive feature comparison. Their separation is the central empirical result.}
-    \label{fig:main_empirical}
-\end{figure}
+\begin{table*}[t]
+\centering
+\small
+\caption{Permutation-invariant structural comparison over 27 final artifacts per model. Means are supplemented by median and IQR; machine-readable results also report game-clustered bootstrap intervals.}
+\label{tab:structural_results}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Coverage & Precision & Mean F1 & Median [Q1,Q3] & Exact \\
+\midrule
+Claude Opus 5 & .3133 & .1416 & .1709 & .1128 [.0597,.2312] & 1/27 \\
+DeepSeek V4 Flash & .3255 & .2679 & .2696 & .1769 [.1171,.1941] & 4/27 \\
+GPT-5.6 Sol & .5558 & .4879 & .4981 & .2500 [.1333,1.000] & 8/27 \\
+Llama 3.3 70B & .5312 & .4528 & .4719 & .2000 [.1461,1.000] & 9/27 \\
+Qwen 3.8 27B & .4324 & .4147 & .4087 & .1778 [.1524,.9441] & 6/27 \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
 \subsection{Structural fidelity conditional on validity}
-The mean fallback structural F1 over all 135 artifacts is 0.7162. Among the 134 Lane-1-passing artifacts it is 0.7178, and only 32/134 attain F1=1 under the fallback. Thus, the mechanical gate removes almost none of the observed structural variation. Table~\ref{tab:main_results} also shows that coverage alone is insufficient: high coverage can accompany low precision, consistent with extra represented features or finer modeling granularity. We do not label every feature difference an error without case-level semantic inspection.
+The stronger matcher materially changes the scale but strengthens rather than weakens the separation. Mean F1 is 0.3639 over all 135 final artifacts and 0.3660 among the 134 Lane-1 passes, versus 0.7178 under the old fallback. Among passing artifacts, median F1 is 0.1778, Q1--Q3 is [0.1258, 0.7396], and 28/134 score exactly 1. In descriptive threshold counts, 100/134 (74.63\%) fall below 0.75 and 33/134 (24.63\%) reach at least 0.90. These cutoffs summarize the distribution; they are not validated quality categories.
 
-\subsection{Observed run-to-run reliability}
-First-pass validity is 43/45 (95.56\%) in run 1, 41/45 (91.11\%) in run 2, and 40/45 (88.89\%) in run 3. By model it ranges from 22/27 (81.48\%) for Llama to 27/27 (100\%) for Claude; DeepSeek reaches 23/27 and GPT and Qwen each reach 26/27. Three repetitions establish observed variation, not statistical significance or a stable population ranking. The structural standard deviations in Table~\ref{tab:main_results} also mix game difficulty with run variation and are not pure stability estimates.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{fig/matched_f1_ecdf.pdf}
+    \caption{ECDF of permutation-invariant structural F1 for the 134 Lane-1-passing game artifacts. The dashed 0.75 cutoff is descriptive, not a definition of fidelity.}
+    \label{fig:matched_ecdf}
+\end{figure}
+
+Claude illustrates the separation particularly clearly: it succeeds on all 27 first passes and Lane-1 audits, yet mean matched precision is 0.1416 and mean F1 is 0.1709. Low precision means its artifacts contain additional matched structural mass relative to the compact references; it does not by itself prove those additions wrong. The inspected G6 example identifies one addition explicitly excluded by the case specification.
+
+\subsection{Structural failure case study}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{fig/g6_claude_failure_case.pdf}
+    \caption{Compressed phase graph for G6 versus the mechanically valid Claude Opus 5 artifact from run 1 (matched F1 0.0383). The candidate has 101 states. Unlike the two-bid-level reference, it introduces bids $\{0,1,2,3\}$ despite the rubric explicitly disallowing invented bid amounts, and expands the dynamics through four type states and 16 tie states. Nodes are grouped by verified phase prefix for legibility.}
+    \label{fig:g6_failure}
+\end{figure}
+This is a confirmed unsupported expansion rather than merely a low score. Across all 107 non-exact artifacts, objective count-level flags include terminal-count mismatch in 99, additional states in 55, fewer states in 41, additional transition supports in 52, and stochastic-profile-rate mismatch in 41. Categories overlap. Except for inspected cases such as G6, these are structural differences requiring semantic inspection, not automatically errors.
+
+\subsection{Run-to-run stability within model--game pairs}
+For each of the 45 model--game pairs, we compute variation across its three observed generations. Overall mean within-pair F1 SD is 0.1679 and the median within-pair range is 0.0591. Only 4/45 pairs match the reference exactly in all three runs, while 15/45 generation triples are mutually structurally equivalent under all three pairwise matches. Qwen shows the largest observed variation (mean within-pair SD 0.3601; median range 0.7865), whereas GPT has the smallest (0.0618; median range 0). These are descriptive summaries of three generations, not stable variance estimates.
+
+\begin{table}[t]
+\centering\scriptsize
+\caption{Within-pair structural variation across three generations. ``Equivalent'' counts triples whose three pairwise matched scores are 1.}
+\label{tab:stability}
+\begin{tabular}{lrrr}
+\toprule
+Model & Mean SD & Median range & Equivalent \\
+\midrule
+Claude & .0715 & .0005 & 4/9 \\
+DeepSeek & .1775 & .1053 & 1/9 \\
+GPT & .0618 & .0000 & 5/9 \\
+Llama & .1684 & .1184 & 4/9 \\
+Qwen & .3601 & .7865 & 1/9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Reference complexity and fidelity}
+With only nine games, complexity analysis is exploratory. Across six pre-specified reference metrics, state count ($\rho=.053$), terminal count ($\rho=.053$), action profiles ($\rho=.202$), transition supports ($\rho=.009$), and average branching ($\rho=.053$) show little monotonic association with mean matched F1. The stochastic-profile fraction has $\rho=-.677$. Although its descriptive two-sided $p=.045$, the small case count and correlated metrics preclude confirmatory or causal interpretation; it is a hypothesis for a larger benchmark, not an established complexity law.
 
 \begin{table}[t]
 \centering
@@ -437,16 +484,16 @@ All & --- & 52/84 & 30 & 75/84 & --- & --- \\
 \end{table*}
 
 \section{Discussion and Failure Analysis}
-Mechanical correctness is necessary but insufficient for a trustworthy executable world model. In the game track nearly every artifact passes Lane 1, while fallback structural agreement spans a wide range; the other tracks show that even the mechanical gate itself becomes less reliable as scenarios and output regimes change. Differences can reflect under-modeling (missing features or shortened trajectories), over-modeling (extra states or finer outcome expansion), transition or terminal differences, or an alternative but valid granularity. Only reference mechanics and targeted semantic review can distinguish these explanations.
+Mechanical correctness is necessary but insufficient for a trustworthy executable world model. In the game track nearly every artifact passes Lane 1, while permutation-invariant structural agreement spans a wide range. Restoring the intended matcher lowers rather than eliminates the observed gap, and the conditional result changes little when the sole Lane-1 failure is removed. Differences can reflect under-modeling, unsupported expansion, transition or terminal differences, or an alternative but valid granularity. The G6 audit confirms one unsupported invention, but we deliberately do not relabel every non-exact match as a semantic error.
 
-This distinction matters for Physical AI even though the present cases are symbolic controls. An omitted successor can make a harmful state appear unreachable; an invented reverse edge can make an irreversible action appear recoverable; and incorrect stochasticity changes risk estimates. The experiments demonstrate the need for formal evaluation, not real-world safety. No downstream planner or controller is evaluated.
+This distinction matters conceptually for Physical AI even though the present cases are symbolic controls. An omitted successor can make a hazardous outcome appear unreachable; an invented reverse edge can make an irreversible action appear recoverable; wrong stochasticity changes risk estimates; a shortened horizon hides delayed consequences; and omitted or extra actions change estimated controllability. The experiments demonstrate the need for formal evaluation, not real-world safety. No downstream planner or controller is evaluated.
 
 \section{Limitations}
-The experiments use symbolic POSGs rather than continuous, perceptual physical dynamics. The game study and reported situational subset have three repetitions per model--case pair; the cultural track has one sample per condition. Provider/model versions may change, and Llama's cultural provider differs by condition. Exhaustive rollout is bounded. Lane 2 uses a representation-sensitive fallback because optimal graph matching was unavailable; topology alone does not establish semantic correctness. Human Lane-3 validation is incomplete, so semantic scores and flags remain diagnostic. The situational S10--S11 execution record is incomplete and excluded, while the v3 JSON track was authored offline by hand and is not reported as LLM performance. We do not measure downstream planning, control, empowerment, reversibility, or real-world safety.
+The experiments use symbolic discrete POSGs rather than continuous perceptual or physical dynamics. The game study and reported situational subset have only three generations per model--case pair; the cultural track has one sample per condition. Provider/model versions may change, and Llama's cultural provider differs by condition. Exhaustive rollout and matching are bounded at depth three. The restored matcher is permutation-invariant under our tests but remains approximate, depends on finite-horizon conversion, and can penalize alternative valid granularity; its F1 is structural rather than semantic fidelity. The complexity analysis has only nine game units. Human Lane-3 validation is incomplete, so semantic scores and flags remain diagnostic. Situational S10--S11 are excluded because their execution record is incomplete, and the hand-authored v3 JSON track is not reported as LLM performance. We do not measure downstream planning, control, empowerment, reversibility, or real-world safety.
 
 \section{Conclusion}
 \label{sec:conclusion}
-Across three empirical tracks we analyze 354 first-pass candidates: 135 reference-backed games, 135 logged situational Python POSGs, and 84 cultural JSON models. Mechanical validity varies by track and model. In games, repair makes all final artifacts executable, but structural comparison remains below exact agreement for most mechanically valid outputs. Situational generation shows a wider first-pass mechanical spread, while cultural results expose the importance of separating strict formatting, recovered validity, structural diagnostics, and unvalidated semantic criteria. Executability is therefore a gate, not evidence of world-model fidelity. Future work should complete the remaining situational log, add embodied dynamics and human semantic annotation, validate representation-invariant matching, and test downstream policies.
+Across three empirical tracks we analyze 354 first-pass candidates: 135 reference-backed games, 135 logged situational Python POSGs, and 84 cultural JSON models. In games, repair makes all final artifacts available and 134 pass the common mechanical audit, but the restored permutation-invariant matcher yields mean F1 0.3660 among those passes and only 28 exact scores. Within-pair variation and the inspected G6 expansion show why aggregate executability cannot substitute for dynamics evaluation. Situational and cultural results retain their different evidence boundaries. Executability is therefore a gate, not evidence of structural fidelity. Future work should add embodied dynamics, complete human semantic annotation, test matching across valid granularities, and evaluate downstream policies.
 
 
 \section{References}
@@ -808,14 +855,14 @@ Across three empirical tracks we analyze 354 first-pass candidates: 135 referenc
 \begin{table}[h]
 \centering
 \small
-\caption{Game results by case, pooled over five models and three runs (15 candidates per case). F1 is the mean feature-multiset fallback score.}
+\caption{Game results by case, pooled over five models and three runs (15 candidates per case). F1 uses permutation-invariant matching.}
 \label{tab:game_cases}
 \begin{tabular}{lrrrrrrrrr}
 \toprule
 Case & G1 & G2 & G3 & G4 & G5 & G6 & G7 & G8 & G9 \\
 \midrule
 Lane 1 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 14 \\
-Mean F1 & .851 & .201 & .756 & .881 & .889 & .449 & .855 & .745 & .819 \\
+Mean F1 & .345 & .095 & .321 & .634 & .468 & .183 & .610 & .492 & .127 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -870,7 +917,6 @@ Figure~\ref{fig:reference_comparison} characterizes the structural diversity of 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \todo[inline]{
-% Ani: Just commentted out for the time being
 % }
 \newpage
 \input{checklist.tex}

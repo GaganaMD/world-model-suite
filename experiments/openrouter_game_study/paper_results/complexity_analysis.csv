@@ -1,0 +1,7 @@
+metric,n_games,spearman_rho_with_mean_f1,two_sided_p_descriptive,direction,note
+states,9,0.05270462766947298,0.892879242924744,positive,exploratory; n=9; no causal or confirmatory inference
+terminal_states,9,0.05270462766947298,0.892879242924744,positive,exploratory; n=9; no causal or confirmatory inference
+action_profiles,9,0.2018433569398328,0.6025136178718973,positive,exploratory; n=9; no causal or confirmatory inference
+transition_edges,9,0.008549819600709618,0.982583511510105,positive,exploratory; n=9; no causal or confirmatory inference
+avg_branching,9,0.05270462766947298,0.892879242924744,positive,exploratory; n=9; no causal or confirmatory inference
+stochastic_profile_fraction,9,-0.6772962119561564,0.04504334646725907,negative,exploratory; n=9; no causal or confirmatory inference

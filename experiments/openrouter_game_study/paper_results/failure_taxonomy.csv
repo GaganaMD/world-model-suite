@@ -1,0 +1,108 @@
+model,game,run,tag,lane1_pass,matched_f1,objective_difference_flags,semantic_status
+claude_opus_5,G1,run_1,claude_opus_5_G1_s01_r0,True,0.2207,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G2,run_1,claude_opus_5_G2_s01_r0,True,0.0288,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G3,run_1,claude_opus_5_G3_s01_r0,True,0.2417,additional states / possible state splitting; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G4,run_1,claude_opus_5_G4_s01_r0,True,0.0718,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G5,run_1,claude_opus_5_G5_s01_r0,True,0.2526,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G6,run_1,claude_opus_5_G6_s01_r0,True,0.0383,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G8,run_1,claude_opus_5_G8_s01_r0,True,0.1067,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G9,run_1,claude_opus_5_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G1,run_1,deepseek_v4_flash_G1_s01_r0,True,0.1524,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G2,run_1,deepseek_v4_flash_G2_s01_r0,True,0.0283,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G3,run_1,deepseek_v4_flash_G3_s01_r0,True,0.1882,fewer states; fewer transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G6,run_1,deepseek_v4_flash_G6_s01_r0,True,0.099,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G7,run_1,deepseek_v4_flash_G7_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G8,run_1,deepseek_v4_flash_G8_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G9,run_1,deepseek_v4_flash_G9_s01_r0,False,0.0716,additional action profiles; additional transition supports; terminal-count mismatch; cycle-presence mismatch,requires semantic inspection
+gpt_5_6_sol,G1,run_1,gpt_5_6_sol_G1_s01_r0,True,0.2207,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G2,run_1,gpt_5_6_sol_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G3,run_1,gpt_5_6_sol_G3_s01_r0,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G4,run_1,gpt_5_6_sol_G4_s01_r0,True,0.9238,matcher disagreement without count-level flag,requires semantic inspection
+gpt_5_6_sol,G6,run_1,gpt_5_6_sol_G6_s01_r0,True,0.1185,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G9,run_1,gpt_5_6_sol_G9_s01_r0,True,0.1769,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G2,run_1,llama_3_3_70b_G2_s01_r1,True,0.2462,fewer states; fewer transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+llama_3_3_70b,G3,run_1,llama_3_3_70b_G3_s01_r1,True,0.8895,fewer transition supports; stochastic-profile-rate mismatch,requires semantic inspection
+llama_3_3_70b,G5,run_1,llama_3_3_70b_G5_s01_r0,True,0.1397,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+llama_3_3_70b,G6,run_1,llama_3_3_70b_G6_s01_r0,True,0.29,fewer states; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G8,run_1,llama_3_3_70b_G8_s01_r0,True,0.1746,additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G9,run_1,llama_3_3_70b_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G2,run_1,qwen_3_8_27b_G2_s01_r0,True,0.1041,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G4,run_1,qwen_3_8_27b_G4_s01_r0,True,0.9238,matcher disagreement without count-level flag,requires semantic inspection
+qwen_3_8_27b,G5,run_1,qwen_3_8_27b_G5_s01_r0,True,0.2,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G6,run_1,qwen_3_8_27b_G6_s01_r0,True,0.1778,fewer states; fewer transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G7,run_1,qwen_3_8_27b_G7_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G8,run_1,qwen_3_8_27b_G8_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G9,run_1,qwen_3_8_27b_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G1,run_2,claude_opus_5_G1_s01_r0,True,0.2207,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G2,run_2,claude_opus_5_G2_s01_r0,True,0.0283,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G3,run_2,claude_opus_5_G3_s01_r0,True,0.2417,additional states / possible state splitting; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G4,run_2,claude_opus_5_G4_s01_r0,True,0.0718,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G5,run_2,claude_opus_5_G5_s01_r0,True,0.2526,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G6,run_2,claude_opus_5_G6_s01_r0,True,0.0383,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G7,run_2,claude_opus_5_G7_s01_r0,True,0.1889,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G8,run_2,claude_opus_5_G8_s01_r0,True,0.1702,additional states / possible state splitting; additional action profiles; additional transition supports,requires semantic inspection
+claude_opus_5,G9,run_2,claude_opus_5_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G1,run_2,deepseek_v4_flash_G1_s01_r2,True,0.1525,fewer states; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G2,run_2,deepseek_v4_flash_G2_s01_r0,True,0.0796,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G3,run_2,deepseek_v4_flash_G3_s01_r1,True,0.2115,additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G5,run_2,deepseek_v4_flash_G5_s01_r0,True,0.2,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G6,run_2,deepseek_v4_flash_G6_s01_r0,True,0.1008,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G7,run_2,deepseek_v4_flash_G7_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G9,run_2,deepseek_v4_flash_G9_s01_r0,True,0.1769,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G1,run_2,gpt_5_6_sol_G1_s01_r0,True,0.2207,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G2,run_2,gpt_5_6_sol_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G3,run_2,gpt_5_6_sol_G3_s01_r0,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G4,run_2,gpt_5_6_sol_G4_s01_r0,True,0.9238,matcher disagreement without count-level flag,requires semantic inspection
+gpt_5_6_sol,G6,run_2,gpt_5_6_sol_G6_s01_r1,True,0.0701,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G9,run_2,gpt_5_6_sol_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G1,run_2,llama_3_3_70b_G1_s01_r0,True,0.1525,fewer states; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G2,run_2,llama_3_3_70b_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G3,run_2,llama_3_3_70b_G3_s01_r0,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+llama_3_3_70b,G6,run_2,llama_3_3_70b_G6_s01_r0,True,0.1716,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G8,run_2,llama_3_3_70b_G8_s01_r0,True,0.1746,additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G9,run_2,llama_3_3_70b_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G1,run_2,qwen_3_8_27b_G1_s01_r0,True,0.1524,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G2,run_2,qwen_3_8_27b_G2_s01_r0,True,0.1041,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G3,run_2,qwen_3_8_27b_G3_s01_r1,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G4,run_2,qwen_3_8_27b_G4_s01_r0,True,0.16,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G5,run_2,qwen_3_8_27b_G5_s01_r0,True,0.2,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G6,run_2,qwen_3_8_27b_G6_s01_r0,True,0.1778,fewer states; fewer transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G7,run_2,qwen_3_8_27b_G7_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G9,run_2,qwen_3_8_27b_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G1,run_3,claude_opus_5_G1_s01_r0,True,0.2207,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G2,run_3,claude_opus_5_G2_s01_r0,True,0.0283,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G3,run_3,claude_opus_5_G3_s01_r0,True,0.2417,additional states / possible state splitting; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G4,run_3,claude_opus_5_G4_s01_r0,True,0.192,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G5,run_3,claude_opus_5_G5_s01_r0,True,0.2526,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+claude_opus_5,G6,run_3,claude_opus_5_G6_s01_r0,True,0.0496,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G7,run_3,claude_opus_5_G7_s01_r0,True,0.0698,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G8,run_3,claude_opus_5_G8_s01_r0,True,0.0485,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+claude_opus_5,G9,run_3,claude_opus_5_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G1,run_3,deepseek_v4_flash_G1_s01_r0,True,0.1524,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G2,run_3,deepseek_v4_flash_G2_s01_r0,True,0.0283,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G3,run_3,deepseek_v4_flash_G3_s01_r2,True,0.0985,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G4,run_3,deepseek_v4_flash_G4_s01_r0,True,0.16,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G5,run_3,deepseek_v4_flash_G5_s01_r0,True,0.2,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G6,run_3,deepseek_v4_flash_G6_s01_r1,True,0.1581,fewer states; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+deepseek_v4_flash,G7,run_3,deepseek_v4_flash_G7_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G8,run_3,deepseek_v4_flash_G8_s01_r0,True,0.1778,fewer states; terminal-count mismatch,requires semantic inspection
+deepseek_v4_flash,G9,run_3,deepseek_v4_flash_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G1,run_3,gpt_5_6_sol_G1_s01_r0,True,0.1524,fewer states; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G2,run_3,gpt_5_6_sol_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G3,run_3,gpt_5_6_sol_G3_s01_r0,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G4,run_3,gpt_5_6_sol_G4_s01_r0,True,0.9238,matcher disagreement without count-level flag,requires semantic inspection
+gpt_5_6_sol,G5,run_3,gpt_5_6_sol_G5_s01_r0,True,0.2,fewer states; terminal-count mismatch,requires semantic inspection
+gpt_5_6_sol,G6,run_3,gpt_5_6_sol_G6_s01_r0,True,0.1245,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+gpt_5_6_sol,G9,run_3,gpt_5_6_sol_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G2,run_3,llama_3_3_70b_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G3,run_3,llama_3_3_70b_G3_s01_r2,True,0.2,additional states / possible state splitting; additional action profiles; additional transition supports; stochastic-profile-rate mismatch,requires semantic inspection
+llama_3_3_70b,G5,run_3,llama_3_3_70b_G5_s01_r9,True,0.1158,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G6,run_3,llama_3_3_70b_G6_s01_r0,True,0.1716,additional states / possible state splitting; additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G8,run_3,llama_3_3_70b_G8_s01_r9,True,0.1746,additional action profiles; additional transition supports; terminal-count mismatch,requires semantic inspection
+llama_3_3_70b,G9,run_3,llama_3_3_70b_G9_s01_r0,True,0.1128,additional states / possible state splitting; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G1,run_3,qwen_3_8_27b_G1_s01_r0,True,0.1524,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G2,run_3,qwen_3_8_27b_G2_s01_r0,True,0.1258,additional states / possible state splitting; additional transition supports; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G3,run_3,qwen_3_8_27b_G3_s01_r0,True,0.25,fewer states; additional transition supports; terminal-count mismatch; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G4,run_3,qwen_3_8_27b_G4_s01_r0,True,0.16,fewer states; terminal-count mismatch,requires semantic inspection
+qwen_3_8_27b,G6,run_3,qwen_3_8_27b_G6_s01_r0,True,0.9643,fewer transition supports; stochastic-profile-rate mismatch,requires semantic inspection
+qwen_3_8_27b,G9,run_3,qwen_3_8_27b_G9_s01_r0,True,0.1333,fewer states; terminal-count mismatch,requires semantic inspection

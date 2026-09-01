@@ -1,0 +1,17 @@
+[
+  {
+    "game": "G6",
+    "model": "claude_opus_5",
+    "run": "run_1",
+    "tag": "claude_opus_5_G6_s01_r0",
+    "lane1_pass": true,
+    "matched_f1": 0.0383,
+    "reference_states": 5,
+    "generated_states": 101,
+    "reference_action_profiles": 4,
+    "generated_action_profiles": 81,
+    "verified_mismatch": "Candidate invents numeric bids 0,1,2,3 although the case specifies two bid levels and explicitly disallows invented bid amounts; it also inserts private-type and tie phases, expanding 5 reference states to 101 generated states.",
+    "candidate_source": "experiments/openrouter_game_study/run_1/02_model_outputs/raw_replies/claude_opus_5_G6_s01_r0.txt",
+    "case_source": "experiments/openrouter_game_study/run_1/01_inputs/game_cases/game_G_6_Game_Situation_G6.md"
+  }
+]

@@ -106,6 +106,12 @@ On macOS or Linux, activate the environment with `source .venv/bin/activate`.
 
 ### 2. Install dependencies
 
+Initialize the pinned permutation-invariant structural matcher:
+
+```powershell
+git submodule update --init --recursive
+```
+
 The repository does not yet provide a single pinned dependency manifest. For the core validation, EDA, and test workflows, install:
 
 ```powershell
@@ -194,6 +200,12 @@ python experiments/analyze_game_run_reliability.py --help
 ```
 
 These scripts operate on preserved artifacts, so evaluation logic can be rerun without making new model calls.
+
+Regenerate the paper-facing matched structural analysis, uncertainty summaries, stability and complexity CSVs, and figures with:
+
+```powershell
+python experiments/build_paper_results.py
+```
 
 ## Reading the results
 

@@ -4,7 +4,9 @@
     "n": 135,
     "mechanical_pass": 124,
     "posthoc_lane1_pass": 134,
-    "lane2_mean_f1": 0.716157037037037,
+    "lane2_mean_f1": 0.3638577777777778,
+    "lane2_backend": "game_matching",
+    "fallback_lane2_mean_f1": 0.716157037037037,
     "lane3_checklist_pass": 135,
     "by_model": {
       "claude_opus_5": {
@@ -42,47 +44,47 @@
       "G1": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.8507933333333333
+        "mean_structural_f1": 0.3447
       },
       "G2": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.20112
+        "mean_structural_f1": 0.09538666666666666
       },
       "G3": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.7562066666666667
+        "mean_structural_f1": 0.3208533333333333
       },
       "G4": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.8808733333333333
+        "mean_structural_f1": 0.6340533333333334
       },
       "G5": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.8893
+        "mean_structural_f1": 0.4675533333333333
       },
       "G6": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.4485133333333333
+        "mean_structural_f1": 0.18335333333333334
       },
       "G7": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.8550133333333333
+        "mean_structural_f1": 0.6098466666666666
       },
       "G8": {
         "n": 15,
         "lane1_pass": 15,
-        "mean_structural_f1": 0.7446866666666667
+        "mean_structural_f1": 0.49217333333333335
       },
       "G9": {
         "n": 15,
         "lane1_pass": 14,
-        "mean_structural_f1": 0.8189066666666667
+        "mean_structural_f1": 0.1268
       }
     },
     "source": "experiments/openrouter_game_study/reliability_summary.json"

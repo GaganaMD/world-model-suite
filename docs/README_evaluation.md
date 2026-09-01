@@ -15,15 +15,15 @@ Structural evaluation of LLM-generated world models. All code targets the **v2 s
 
 ## Dependencies
 
-Lane 2 needs Jobst's `game_matching` on the path:
+Lane 2 uses the repository-pinned `game_matching` submodule:
 ```
-git clone https://github.com/mensch72/game_matching.git
+git submodule update --init --recursive
 ```
-Then `import lane2_v2` works from the same directory (it finds `gm_convert_v2` and `game_match`).
+`json_generation/lane2.py` discovers that pinned path automatically. The paper analysis fixes the horizon, local-search iterations, and random seed and retains the old feature-multiset scores for traceability.
 
 ## Status
 
-- Lanes 1 and 2: implemented and validated on the 12 reference-model cases.
+- Lanes 1 and 2: implemented; the permutation-invariant matcher passes ordering, renaming, missing/extra structure, terminality, and probability sanity tests.
 - Lane 3 (coverage/bias for the situational cases): specified, in progress (see the annotation template).
 
 ## OpenRouter five-model game run

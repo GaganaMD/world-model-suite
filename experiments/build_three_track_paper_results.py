@@ -23,6 +23,17 @@ def game_summary() -> dict:
         newline="", encoding="utf-8"
     ) as f:
         evaluation = list(csv.DictReader(f))
+    matched = json.loads(
+        (ROOT / "experiments" / "openrouter_game_study" / "paper_results" / "summary.json").read_text(encoding="utf-8")
+    )
+    matched_by_case = {
+        row["game"]: row
+        for row in csv.DictReader(
+            (ROOT / "experiments" / "openrouter_game_study" / "paper_results" / "per_game_complexity.csv").open(
+                newline="", encoding="utf-8"
+            )
+        )
+    }
     by_case: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in evaluation:
         by_case[row["case"]].append(row)
@@ -31,14 +42,16 @@ def game_summary() -> dict:
         "n": data["aggregate"]["first_pass_total"],
         "mechanical_pass": data["aggregate"]["first_pass_passed"],
         "posthoc_lane1_pass": sum(r["lane1_passed"] == "True" for r in evaluation),
-        "lane2_mean_f1": statistics.mean(float(r["lane2_combined_score"]) for r in evaluation),
+        "lane2_mean_f1": matched["all_trials"]["mean"],
+        "lane2_backend": "game_matching",
+        "fallback_lane2_mean_f1": statistics.mean(float(r["lane2_combined_score"]) for r in evaluation),
         "lane3_checklist_pass": sum(r["lane3_checklist_passed"] == "True" for r in evaluation),
         "by_model": {x["model"]: x for x in data["by_model"]},
         "by_case": {
             case: {
                 "n": len(rows),
                 "lane1_pass": sum(r["lane1_passed"] == "True" for r in rows),
-                "mean_structural_f1": statistics.mean(float(r["lane2_combined_score"]) for r in rows),
+                "mean_structural_f1": float(matched_by_case[case]["mean_matched_f1"]),
             }
             for case, rows in sorted(by_case.items())
         },

@@ -12,10 +12,12 @@
 
 Reference POSG documents now exist for **all G1-G9** cases, so Lane 2 scored
 **135** candidates and skipped **0**.
-The external `game_matching` package is unavailable in this workspace; scored rows
-therefore use the pipeline's documented feature-multiset fallback. Their mean
-combined score is **0.7162** and must not be presented as an optimal
-graph-matching score.
+The original `evaluation_summary.csv` preserves the pipeline's feature-multiset
+fallback (mean **0.7162**) for historical traceability. The paper-strengthening
+analysis restores the intended pinned `game_matching` backend and writes its
+permutation-invariant results separately under `paper_results/` and
+`paper_structural_comparison.csv`. Its mean is **0.3639** over all 135 final
+artifacts and **0.3660** among the 134 Lane-1 passes. Do not mix the two backends.
 
 ## Lane 1 Failures
 
