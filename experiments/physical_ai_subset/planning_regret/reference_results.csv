@@ -1,0 +1,6 @@
+scenario,initial_state,optimal_action,optimal_value,success_probability,failure_probability,unsafe_probability
+P1_blocked_door,s0,open_door,1.0,reference objective,reference objective,reference objective
+P2_fragile_delivery,s0,pick_up,1.0,reference objective,reference objective,reference objective
+P3_battery_delivery,s0,move,1.0,reference objective,reference objective,reference objective
+P4_collision_risk,s0,safe_route,1.0,reference objective,reference objective,reference objective
+P5_irreversible_switch,s0,press_switch,1.0,reference objective,reference objective,reference objective

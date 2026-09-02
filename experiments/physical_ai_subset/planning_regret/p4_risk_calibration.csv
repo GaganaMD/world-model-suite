@@ -1,0 +1,6 @@
+assumed_collision_probability,optimal_action,model_value,reference_policy_value,planning_regret,collision_probability_under_selected_policy,decision_threshold
+0.0,safe_route,1.0,1.0,0.0,0.0,0.0 (success-probability objective)
+0.2,safe_route,1.0,1.0,0.0,0.0,0.0 (success-probability objective)
+0.5,safe_route,1.0,1.0,0.0,0.0,0.0 (success-probability objective)
+0.8,safe_route,1.0,1.0,0.0,0.0,0.0 (success-probability objective)
+1.0,safe_route,1.0,1.0,0.0,0.0,0.0 (success-probability objective)

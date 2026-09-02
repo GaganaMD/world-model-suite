@@ -1,0 +1,4 @@
+Scenario,Model,Lane-1,Structural F1,Planning Eligible,Policy Agreement,Reference Value,Transferred Value,Regret,Success Delta,Unsafe Delta
+P4,GPT-5.6 Sol,pass,0.9538,no,NA,NA,NA,NA,NA,NA
+P4,Claude Opus 5,pass,0.9538,no,NA,NA,NA,NA,NA,NA
+P4,Llama 3.3 70B,fail,NA,no,NA,NA,NA,NA,NA,NA
