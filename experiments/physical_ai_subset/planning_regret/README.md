@@ -84,6 +84,17 @@ fixed risk values 0, .2, .5, .8, and 1.0; all select `safe_route` with reference
 value 1 and regret 0. This null result is retained and was not tuned to induce
 regret.
 
+## P4 Decision-Relevant Risk Variant
+
+The original success-only P4 is preserved as a negative control. Before any new
+model outputs, we froze `P4b_COLLISION_RISK_TRADEOFF` with safe-route cost 0.4,
+risky-route cost 0.1, success utility 1, and collision penalty 0.35. Thus
+`U_safe=0.6`, `U_risky(p)=0.9-1.35p`, and `p*=2/9≈0.2222`. The reference risk
+is 0.5. Beliefs below the threshold select risky and beliefs above it select
+safe; at the threshold deterministic profile ordering selects risky. At belief
+0.1, transferred value is 0.225 and regret is 0.375. This is a pre-registered
+calibration, not an LLM result.
+
 ## 14. Existing Generated Candidates
 
 The earlier GPT and Claude P4 candidates (F1=.9538) remain ineligible because
