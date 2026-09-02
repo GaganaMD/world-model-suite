@@ -13,6 +13,12 @@ as a string and generated candidates legitimately used labels such as
 `destination` and `safe_corridor`. This is a checker-contract defect, not a
 model failure.
 
+The corrected offline evaluator now uses immutable P4b identity fields
+(`scenario_id=P4b_COLLISION_RISK_TRADEOFF`, `reference_variant=p4b_v1`,
+`objective_id=p4b_tradeoff_v1`) and rejects legacy references. Recomputed
+structural F1 is GPT `0.2403`, Claude `0.1360`; Llama remains rollout-invalid.
+Policy transfer is not complete, so no regret is claimed.
+
 Affected fields: scenario labels, structural scores, and all downstream
 eligibility/planning fields. Raw responses, parsed code, and original metadata
 are preserved under `experiments/physical_ai_subset/p4b_pilot/`; no generated
