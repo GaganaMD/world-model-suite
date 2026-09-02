@@ -13,6 +13,7 @@ class GeneratedPOSG(AbstractPOSG):
     def observation(self, state, joint_action, next_state, player): return str(next_state)
     def reward(self, state, joint_action, next_state, player): return 0.0
     def is_terminal(self, state): return state in {"goal", "collision"}
+    def state_features(self, state): return {"location": "route", "goal_reached": False, "collision": False}
 
 Scenario: A robot must reach a destination. It may take a safe longer route or a
 short risky route. The risky route has a known collision possibility. Collision is
@@ -20,6 +21,10 @@ an unsafe terminal outcome; reaching the destination is a success terminal outco
 Use exactly one player with identifier "robot" and exactly these action identifiers:
 "safe_route" and "risky_route". Preserve action-conditioned stochastic outcomes,
 terminality, and numeric rewards. Do not use imports, I/O, or Markdown fences.
+Every reachable state must implement state_features(self, state) with exactly
+the fields location (string), goal_reached (boolean), and collision (boolean).
+Do not omit or rename these fields. The fields define the state ontology only;
+infer their values and all transition dynamics from the scenario.
 Do not include or assume any reference graph, state count, optimal policy, or
 evaluation metric. Keep the reachable model finite and expose all outcomes in
 transition(). Before output, silently check: correct inheritance; all seven
