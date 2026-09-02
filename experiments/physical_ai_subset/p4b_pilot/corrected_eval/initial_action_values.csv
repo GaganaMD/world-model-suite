@@ -1,0 +1,4 @@
+World,Safe-route Q,Risky-route Q,Selected action
+Canonical P4b at p=0.25,0.6,0.5625,safe_route
+GPT-5.6 Sol,0.2,0.5625,risky_route
+Claude Opus 5,-0.2,0.4125,risky_route

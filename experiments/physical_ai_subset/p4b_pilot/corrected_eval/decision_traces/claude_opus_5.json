@@ -1,0 +1,26 @@
+[
+  {
+    "action": "safe_route",
+    "next_state": "safe_mid",
+    "probability": 1.0,
+    "terminal": false,
+    "goal_reached": false,
+    "collision": false
+  },
+  {
+    "action": "risky_route",
+    "next_state": "risky_mid",
+    "probability": 0.75,
+    "terminal": false,
+    "goal_reached": false,
+    "collision": false
+  },
+  {
+    "action": "risky_route",
+    "next_state": "collision",
+    "probability": 0.25,
+    "terminal": true,
+    "goal_reached": false,
+    "collision": true
+  }
+]

@@ -6,7 +6,9 @@ SCHEMAS={
  'P1': {'required':{'location':str,'door_open':bool,'goal_reached':bool},'domains':{'location':{'left','right','goal'}}},
  'P2': {'required':{'robot_location':str,'object_location':str,'carrying':bool,'broken':bool,'delivered':bool},'domains':{}},
  'P3': {'required':{'location':str,'battery':int,'package_delivered':bool,'failed':bool},'domains':{}},
- 'P4': {'required':{'location':str,'goal_reached':bool,'collision':bool},'domains':{'location':{'route','goal','collision'}}},
+ # Location is intentionally an opaque scenario-defined string; requiring
+ # literal labels would make state IDs/lexical choices part of the objective.
+ 'P4': {'required':{'location':str,'goal_reached':bool,'collision':bool},'domains':{}},
  'P5': {'required':{'location':str,'switch_pressed':bool,'access_open':bool,'goal_reached':bool},'domains':{}}
 }
 

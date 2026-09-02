@@ -20,6 +20,9 @@ case (assumed p=.1 while reference p=.5), transferred value is 0.325 and regret
 is 0.275; reference collision probability is .5.
 
 The P4 feature schema is unchanged and generated rewards remain excluded.
-No hosted calls were made. The next exact three-call pilot is ready only after
+The authorized P4b calls later exposed a runner configuration bug (legacy P4
+reference used) and a too-restrictive location-domain checker. Those outputs
+are preserved but not valid P4b evaluation evidence. No further calls should be
+made until both defects are fixed and validated offline. The next exact three-call pilot is ready only after
 using this frozen P4b scenario; the remaining clean 5×3×2 study requires 30
 calls total (or 27 after a three-call pilot is accepted as its first run).
