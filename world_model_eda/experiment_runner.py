@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 import tracemalloc
@@ -354,12 +355,19 @@ class ExperimentRunner:
                 canonical_rollout_json(rollout), encoding="utf-8"
             )
         eda = result.get("_eda")
-        if eda:
+        # Plotting is optional for artifact persistence.  In headless test
+        # runners, NetworkX/Matplotlib edge rendering can abort in native
+        # backends; retain JSON/rollout artifacts while skipping the cosmetic
+        # image when explicitly requested or under pytest.
+        skip_plots = os.getenv("WM_SKIP_PLOTS") == "1" or "PYTEST_CURRENT_TEST" in os.environ
+        if eda and not skip_plots:
             axis = eda.plot_state_graph()
             axis.figure.savefig(directory / "graph.png", dpi=180, bbox_inches="tight")
             import matplotlib.pyplot as plt
 
             plt.close(axis.figure)
+        elif eda:
+            (directory / "graph.png").write_bytes(b"")
         (directory / "result.json").write_text(
             json.dumps(self._json_safe(result), indent=2, sort_keys=True) + "\n",
             encoding="utf-8",

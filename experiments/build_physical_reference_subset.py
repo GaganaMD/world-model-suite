@@ -3,6 +3,9 @@ from pathlib import Path
 import json
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'experiments/paper_extension_results/physical_reference'; OUT.mkdir(parents=True,exist_ok=True)
 def env(name, actions, states, objective, invariant):
+    for state in states:
+        if not state.get('terminal'):
+            state.setdefault('turn', ['robot'])
     return {'id':name,'players':[{'id':'robot'}],'initial':[{'state':'s0','p':1.0}], 'states':states,'objective':objective,'invariant':invariant,'allowed_actions':actions}
 def main():
     cases=[

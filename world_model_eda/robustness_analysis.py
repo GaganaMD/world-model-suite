@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from collections import Counter, defaultdict
 from pathlib import Path
 from statistics import mean, pstdev
@@ -232,7 +233,10 @@ def export_robustness_report(
         json.dumps(summaries, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     _write_summary_markdown(summaries, rows, targets["summary_markdown"])
-    _plot_variability(rows, targets["plot"])
+    if os.getenv("WM_SKIP_PLOTS") != "1":
+        _plot_variability(rows, targets["plot"])
+    else:
+        targets["plot"].write_bytes(b"")
     return targets
 
 

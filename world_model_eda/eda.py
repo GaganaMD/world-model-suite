@@ -10,6 +10,14 @@ from typing import Any, Dict, Hashable, Iterable, Mapping, Optional, Sequence
 
 import networkx as nx
 
+# Ensure headless, deterministic rendering in CI and subprocess evaluation.
+# This must happen before pyplot is imported by plotting helpers.
+try:
+    import matplotlib
+    matplotlib.use("Agg", force=True)
+except Exception:
+    pass
+
 
 @dataclass(frozen=True)
 class Transition:
