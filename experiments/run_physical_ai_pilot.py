@@ -11,7 +11,7 @@ from src.evaluation.lane1_mechanical import evaluate_mechanical
 from json_generation.lane2 import lane2_score
 
 MODELS={'gpt_5_6_sol':'openai/gpt-5.6-sol','claude_opus_5':'anthropic/claude-opus-5','llama_3_3_70b':'meta-llama/llama-3.3-70b-instruct'}
-OUT=ROOT/'experiments/physical_ai_subset/pilot_p4'; PROMPT=(ROOT/'data/Test_Cases/Physical/P4_collision_risk_prompt.txt').read_text(encoding='utf-8')
+OUT=ROOT/'experiments/physical_ai_subset/contract_pilot_v2'; PROMPT=(ROOT/'data/Test_Cases/Physical/P4_collision_risk_prompt.txt').read_text(encoding='utf-8')
 REF=[x for x in json.loads((ROOT/'experiments/paper_extension_results/physical_reference/references.json').read_text()) if x['id']=='P4_collision_risk'][0]
 
 def load_env(): load_dotenv(); key=os.getenv('OPENROUTER_API_KEY');
@@ -25,7 +25,7 @@ def main():
     for sub in ('raw','parsed','validation','graphs','planning','manual_audit','figures'): (OUT/sub).mkdir(parents=True,exist_ok=True)
     rows=[]; summary=[]
     for slug,model in MODELS.items():
-      for run in (1,2):
+      for run in (1,):
         tag=f'{slug}_P4_r{run}'; meta={'scenario':'P4_collision_risk','model':model,'run':run,'timestamp':datetime.now(timezone.utc).isoformat(),'provider_status':'returned'}
         try:
           raw,callmeta=call(model,PROMPT); (OUT/'raw'/f'{tag}.txt').write_text(raw,encoding='utf-8'); meta.update(callmeta)
