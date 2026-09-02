@@ -1,0 +1,12 @@
+{
+  "syntax_ok": true,
+  "base_class_ok": true,
+  "required_methods_ok": true,
+  "signature_ok": false,
+  "instantiation_ok": false,
+  "errors": [
+    "transition signature ['self', 'state', 'action'] != ['self', 'state', 'joint_action']",
+    "observation signature ['self', 'state', 'player'] != ['self', 'state', 'joint_action', 'next_state', 'player']",
+    "reward signature ['self', 'state', 'action', 'next_state'] != ['self', 'state', 'joint_action', 'next_state', 'player']"
+  ]
+}
