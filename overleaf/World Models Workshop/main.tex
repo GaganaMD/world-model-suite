@@ -486,6 +486,8 @@ All & --- & 52/84 & 30 & 75/84 & --- & --- \\
 \section{Discussion and Failure Analysis}
 Mechanical correctness is necessary but insufficient for a trustworthy executable world model. In the game track nearly every artifact passes Lane 1, while permutation-invariant structural agreement spans a wide range. Restoring the intended matcher lowers rather than eliminates the observed gap, and the conditional result changes little when the sole Lane-1 failure is removed. Differences can reflect under-modeling, unsupported expansion, transition or terminal differences, or an alternative but valid granularity. The G6 audit confirms one unsupported invention, but we deliberately do not relabel every non-exact match as a semantic error.
 
+As a robustness check on representation sensitivity, a bounded $H=3$ action-trace audit found identical terminal/outcome distributions for all nine Claude--G1 traces in three low-F1 cases, while three other ambiguous cases remained unresolved because their action vocabularies could not be aligned conservatively. This does not replace structural F1, but shows that some low scores can coexist with bounded-horizon trace agreement.
+
 This distinction matters conceptually for Physical AI even though the present cases are symbolic controls. An omitted successor can make a hazardous outcome appear unreachable; an invented reverse edge can make an irreversible action appear recoverable; wrong stochasticity changes risk estimates; a shortened horizon hides delayed consequences; and omitted or extra actions change estimated controllability. The experiments demonstrate the need for formal evaluation, not real-world safety. No downstream planner or controller is evaluated.
 
 \section{Limitations}

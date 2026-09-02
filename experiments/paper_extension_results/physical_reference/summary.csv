@@ -1,0 +1,6 @@
+id,states,actions,transition_support,objective,invariant
+P1_blocked_door,3,3,3,reach goal,closed door blocks traversal
+P2_fragile_delivery,5,4,4,deliver intact object,broken object cannot recover
+P3_battery_delivery,4,3,3,deliver with battery,movement consumes battery
+P4_collision_risk,3,2,3,reach goal while avoiding collision,collision probability is 0.2
+P5_irreversible_switch,3,2,2,reach target,switch state cannot revert

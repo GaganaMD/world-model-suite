@@ -10,3 +10,5 @@ import subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable, str(ROOT/'experiments'/'build_paper_results.py')], check=True)
 subprocess.run([sys.executable, str(ROOT/'experiments'/'run_controlled_perturbation_study.py')], check=True)
+subprocess.run([sys.executable, str(ROOT/'experiments'/'run_trace_equivalence_audit.py')], check=True)
+subprocess.run([sys.executable, str(ROOT/'experiments'/'build_physical_reference_subset.py')], check=True)
