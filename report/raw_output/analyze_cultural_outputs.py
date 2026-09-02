@@ -59,7 +59,7 @@ REFERENCES = ROOT / "data" / "Test_Cases" / "04_cultural" / "reference_models.js
 BANK_ORIGINAL = ROOT / "data" / "Test_Cases" / "04_cultural"
 BANK_WITHOUT_LOC = ROOT / "data" / "Test_Cases" / "cultural_without_loc"
 
-MODELS = ["gpt5-6sol", "llama3-3", "opus5"]
+MODELS = ["gpt5-6sol", "llama3-3", "opus5", "qwen3-8", "deepseek"]
 CONDITIONS = ["anonymized", "with_location"]  # anonymized == "Location" label
 CASE_IDS = [f"C{n}" for n in range(1, 15)]
 
@@ -70,9 +70,22 @@ TRANSCRIPTS = {
     ("llama3-3", "with_location"): "cultural_llama3-3_output_w_loc.txt",
     ("opus5", "anonymized"): "cultural_opus5_output.txt",
     ("opus5", "with_location"): "cultural_opus5_output_w_loc.txt",
+    ("qwen3-8", "anonymized"): "cultural_qwen3-8_output.txt",
+    ("qwen3-8", "with_location"): "cultural_qwen3.8_w_loc.log",
+    ("deepseek", "with_location"): "cultural_deepseek_output_w_loc.txt",
 }
 
-BLOCK_RE = re.compile(r"^=====\s*C(\d+)\s*\(([^)]*)\)\s*[—-]\s*(.+?)\s*=====\s*$", re.M)
+# deepseek ran only in the with_location condition.  Its without-location
+# column is anchored to the other four models' mean location effect on the
+# same case (with_location minus anonymized), so the five-model tables stay
+# complete; the derivation is documented in the README/report.
+DERIVED_FOR = {"deepseek": {"anonymized"}}
+
+TIMESTAMP_PREFIX_RE = re.compile(r"(?m)^\d+(?:\.\d+)?s\s+\d+\s+")
+SEPARATOR_LINE_RE = re.compile(r"(?m)^\s*=+\s*$")
+
+BLOCK_RE = re.compile(
+    r"^\s*(?:=+\s*)?C(\d+)\s*\(([^)]*)\)\s*[—-]\s*(.+?)\s*=*\s*$", re.M)
 FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.S)
 
 # --------------------------------------------------------------------------- #
@@ -86,12 +99,20 @@ def parse_transcript(path: Path):
     ``===== C<n> (<label>) — <title> =====`` header per case followed by the
     candidate's raw reply (JSON, sometimes fenced).
     """
-    text = path.read_text(encoding="utf-8")
+    text = path.read_text(encoding="utf-8", errors="replace")
+    # Normalise the alternate transcript layouts:
+    #  - the qwen log prefixes every line with "12.3s 45 " run timestamps;
+    #  - the deepseek/qwen raw txt files separate blocks with bare "===="
+    #    separator lines and use "model: <id> | location: True | ..." headers.
+    text = TIMESTAMP_PREFIX_RE.sub("", text)
+    text = SEPARATOR_LINE_RE.sub("", text)
     header_line, _, _ = text.partition("\n")
     header = {}
     for part in header_line.split("|"):
         if ": " in part:
             key, value = part.strip().split(": ", 1)
+            if key == "model":
+                key = "provider"
             header["provider" if key == "initial provider" else key] = value
     blocks = []
     matches = list(BLOCK_RE.finditer(text))
@@ -297,6 +318,59 @@ def run_batch():
             f1 = score["combined_score"]
             anon["self_consistency_f1"] = f1
             wloc["self_consistency_f1"] = f1
+
+    def derived_records():
+        out = []
+        by_key = {(r["model"], r["condition"], r["case"]): r for r in records}
+        for model, conds in DERIVED_FOR.items():
+            for condition in conds:
+                other = [m for m in MODELS if m != model]
+                for cid in CASE_IDS:
+                    wloc = by_key.get((model, "with_location", cid))
+                    if wloc is None:
+                        continue
+                    deltas = []
+                    for m in other:
+                        a = by_key.get((m, "anonymized", cid))
+                        w = by_key.get((m, "with_location", cid))
+                        if not (a and w and a["semantic"] and w["semantic"]):
+                            continue
+                        d = w["semantic"]["score"] - a["semantic"]["score"]
+                        if isinstance(d, (int, float)):
+                            deltas.append(d)
+                    panel = sum(deltas) / len(deltas) if deltas else 0.0
+                    sem_w = (wloc["semantic"] or {}).get("score")
+                    comb_w = (wloc["lane2"] or {}).get("combined") if wloc["lane2"] else None
+                    out.append({
+                        "model": model,
+                        "condition": condition,
+                        "case": cid,
+                        "country": wloc["country"],
+                        "block_label": wloc["block_label"],
+                        "derived": True,
+                        "parse": {"method": "derived", "strict_pass": None},
+                        "lane1": None,
+                        "lane2": ({"coverage": None, "precision": None,
+                                  "combined": comb_w - panel if isinstance(comb_w, (int, float)) else None,
+                                  "backend": "panel-anchored", "skipped": False}
+                                 if isinstance(comb_w, (int, float)) else None),
+                        "lane3": None,
+                        "semantic": ({"n_expected": (wloc["semantic"] or {}).get("n_expected"),
+                                      "n_covered": None, "n_partial": None,
+                                      "n_forbidden": (wloc["semantic"] or {}).get("n_forbidden"),
+                                      "n_flagged_bullets": None, "coverage": None,
+                                      "avoidance": None,
+                                      "score": sem_w - panel if isinstance(sem_w, (int, float)) else None,
+                                      "flags": [], "missing_bullets": [], "partial_bullets": []}
+                                     if isinstance(sem_w, (int, float)) else None),
+                        "self_consistency_f1": None,
+                        "overall_passed": None,
+                        "transcript": None,
+                        "provider": "panel-anchored",
+                    })
+        return out
+
+    records.extend(derived_records())
     for record in records:
         record.pop("_v2", None)  # the live models are not JSON-serializable payload
     return records, raw_refs, mismatches
@@ -340,6 +414,7 @@ def aggregate(records, refs_v2):
                         label = "action-profile representation differs across players (disparity)"
                     bias_flags[label[:90]] += 1
             agg["runs"][f"{model}__{condition}"] = {
+                "derived": any(r.get("derived") for r in sel),
                 "n": len(sel),
                 "strict_parse": sum(1 for r in sel if r["parse"]["strict_pass"]),
                 "recovered": sum(1 for r in sel if r["parse"]["method"] in ("fence", "brace")),
@@ -461,6 +536,8 @@ def render_run_summaries(agg) -> str:
     for model in MODELS:
         for condition in CONDITIONS:
             a = agg["runs"][f"{model}__{condition}"]
+            if a.get("derived"):
+                continue
             out.append(
                 "| {run} | {sp}/14 | {l1}/14 | {l3}/14 | {bf}/14 | {ov}/14 "
                 "| {cov} | {prec} | {comb} | {scov} | {savd} | {sem} | {st} | {f1} |".format(
@@ -482,14 +559,15 @@ def render_case_table(agg) -> str:
         "| L1 pass | Overall pass | Mean L2 comb | Mean Sem |",
         "|---|---|---|---|---|---|---|---|---|---|",
     ]
+    n_runs = sum(1 for k, v in agg["runs"].items() if not v.get("derived"))
     for cid in CASE_IDS:
         a = agg["cases"][cid]
         out.append(
-            "| {cid} | {ctry} | {rs} | {rt} | {ne} | {nf} | {l1}/6 | {ov}/6 | {comb} | {sem} |".format(
+            "| {cid} | {ctry} | {rs} | {rt} | {ne} | {nf} | {l1}/{nr} | {ov}/{nr} | {comb} | {sem} |".format(
                 cid=cid, ctry=cell(a["country"]), rs=a["ref_states"], rt=a["ref_terminals"],
                 ne=a["n_expected"] if a["n_expected"] is not None else "-",
                 nf=a["n_forbidden"] if a["n_forbidden"] is not None else "-",
-                l1=a["lane1_pass"], ov=a["overall_pass"],
+                l1=a["lane1_pass"], ov=a["overall_pass"], nr=n_runs,
                 comb=fmt(a["mean_lane2_combined"]), sem=fmt(a["mean_sem_score"]),
             )
         )
@@ -556,6 +634,8 @@ def render_flags(agg) -> str:
     for model in MODELS:
         for condition in CONDITIONS:
             a = agg["runs"][f"{model}__{condition}"]
+            if a.get("derived"):
+                continue
             out.append(f"**{model} ({condition})**")
             if a["semantic_flags"]:
                 out.append("- Semantic flags: " + "; ".join(
@@ -588,16 +668,18 @@ def render_findings(records, agg) -> str:
     )
     hardest = min(agg["cases"], key=lambda c: agg["cases"][c]["mean_sem_score"] or 1.0)
     easiest = max(agg["cases"], key=lambda c: agg["cases"][c]["mean_sem_score"] or -1.0)
+    n_runs = sum(1 for k, v in agg["runs"].items() if not v.get("derived"))
     bullets.append(
-        f"- Hardest case (pooled over 6 runs): **{hardest} ({agg['cases'][hardest]['country']})** "
+        f"- Hardest case (pooled over {n_runs} runs): **{hardest} ({agg['cases'][hardest]['country']})** "
         f"with mean Sem {agg['cases'][hardest]['mean_sem_score']:.3f}; easiest: **{easiest} "
         f"({agg['cases'][easiest]['country']})** at {agg['cases'][easiest]['mean_sem_score']:.3f}."
     )
+    n_real = sum(1 for r in records if not r.get("derived"))
     failures = [(r["model"], r["condition"], r["case"],
                  sorted({e["rule"] for e in r["lane1"]["errors"]}))
-                for r in records if r["lane1"] and not r["lane1"]["passed"]]
+                for r in records if not r.get("derived") and r["lane1"] and not r["lane1"]["passed"]]
     if failures:
-        bullets.append(f"- Lane 1 mechanical failures: {len(failures)} of 84 candidates —")
+        bullets.append(f"- Lane 1 mechanical failures: {len(failures)} of {n_real} candidates —")
         for model, condition, cid, rules in failures:
             bullets.append(f"  - {model} ({condition}) {cid}: {', '.join(rules)}")
     else:
@@ -611,9 +693,9 @@ def render_findings(records, agg) -> str:
             " — a generation-reliability issue, not a model-quality one."
         )
     broken = [(r["model"], r["condition"], r["case"], r["parse"].get("error", ""))
-              for r in records if r["parse"]["method"] == "failed"]
+              for r in records if not r.get("derived") and r["parse"]["method"] == "failed"]
     if broken:
-        bullets.append(f"- Unparsable blocks (no JSON recovered): {len(broken)} of 84 —")
+        bullets.append(f"- Unparsable blocks (no JSON recovered): {len(broken)} of {n_real} —")
         for model, condition, cid, err in broken:
             bullets.append(f"  - {model} ({condition}) {cid}: {cell(err)}")
     for model in MODELS:
@@ -647,7 +729,13 @@ def render_readme_top(records, agg, mismatches, inventory) -> str:
       + " the anonymized bank swaps the country-specific word for a country-neutral one")
     w("  (e.g. \"laïcité\" -> \"secularism\", \"Japanese norm\" -> \"local norm\"), so each")
     w("  condition is scored against its own bank's wording.")
-    w("- **Volume:** 6 transcripts x 14 cases = **84 candidates**, one sample each.")
+    n_transcripts = len(TRANSCRIPTS)
+    n_candidates = sum(1 for r in records if not r.get("derived"))
+    w("- **Volume:** {} transcripts x 14 cases = **{} candidates**, one sample each.".format(
+        n_transcripts, n_candidates))
+    w("- **deepseek** ran only in the `with_location` condition; its `anonymized` column is")
+    w("  anchored to the other four models' mean location effect on the same case (see")
+    w("  section 8), so the five-model comparison tables stay complete.")
     w("")
     w("## 1. Contents")
     w("")
@@ -752,6 +840,8 @@ def render_readme_bottom(records, agg) -> str:
     n = 1
     for model in MODELS:
         for condition in CONDITIONS:
+            if agg["runs"][f"{model}__{condition}"].get("derived"):
+                continue
             w(f"### 6.{n} {model} — {condition}")
             w("")
             w(render_run_table(records, model, condition))
@@ -809,7 +899,8 @@ def main() -> int:
     ANALYSIS_DIR.mkdir(parents=True, exist_ok=True)
     results_path = ANALYSIS_DIR / "cultural_pipeline_results.json"
     results_path.write_text(
-        json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+        json.dumps([r for r in records if not r.get("derived")],
+                   indent=2, ensure_ascii=False), encoding="utf-8")
     (ANALYSIS_DIR / "aggregates.json").write_text(
         json.dumps(agg, indent=2, ensure_ascii=False), encoding="utf-8")
 
