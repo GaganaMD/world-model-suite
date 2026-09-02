@@ -1,0 +1,277 @@
+{
+  "matcher": {
+    "backend": "game_matching",
+    "pinned_revision": "76ca30bdfc2c44cad5fa5db98c3bdaef7d3fa629",
+    "horizon": 3,
+    "sa_iters": 3000,
+    "seed": 0,
+    "use_intrinsic": true
+  },
+  "all_trials": {
+    "n": 135,
+    "mean": 0.3638577777777778,
+    "sd": 0.367050226028892,
+    "min": 0.0283,
+    "q1": 0.1258,
+    "median": 0.1778,
+    "q3": 0.58975,
+    "iqr": 0.46395,
+    "max": 1.0,
+    "exact": 28,
+    "at_least_090": 33,
+    "at_least_075": 34,
+    "below_075": 101
+  },
+  "lane1_passing": {
+    "n": 134,
+    "mean": 0.36603880597014926,
+    "sd": 0.36754841467402716,
+    "min": 0.0283,
+    "q1": 0.1258,
+    "median": 0.1778,
+    "q3": 0.739625,
+    "iqr": 0.613825,
+    "max": 1.0,
+    "exact": 28,
+    "at_least_090": 33,
+    "at_least_075": 34,
+    "below_075": 100
+  },
+  "fallback_lane1_passing": {
+    "n": 134,
+    "mean": 0.7177701492537314,
+    "sd": 0.2951310344970278,
+    "min": 0.098,
+    "q1": 0.588775,
+    "median": 0.7907,
+    "q3": 0.966425,
+    "iqr": 0.37764999999999993,
+    "max": 1.0,
+    "exact": 32,
+    "at_least_090": 54,
+    "at_least_075": 79,
+    "below_075": 55
+  },
+  "models": [
+    {
+      "model": "claude_opus_5",
+      "n": 27,
+      "first_pass_valid": 27,
+      "first_pass_rate": 1.0,
+      "first_pass_wilson_low": 0.8754449702581328,
+      "first_pass_wilson_high": 0.9999999999999998,
+      "lane1_pass": 27,
+      "fallback_mean_f1": 0.5174592592592593,
+      "matched_mean_coverage": 0.3133444444444444,
+      "matched_mean_precision": 0.1416,
+      "matched_mean_f1": 0.17091481481481482,
+      "matched_median_f1": 0.1128,
+      "matched_q1": 0.0597,
+      "matched_q3": 0.23120000000000002,
+      "matched_cluster_boot_low": 0.10133462962962962,
+      "matched_cluster_boot_high": 0.2496557407407407,
+      "exact_matches": 1
+    },
+    {
+      "model": "deepseek_v4_flash",
+      "n": 27,
+      "first_pass_valid": 23,
+      "first_pass_rate": 0.8518518518518519,
+      "first_pass_wilson_low": 0.6752131457218702,
+      "first_pass_wilson_high": 0.9408407222375568,
+      "lane1_pass": 26,
+      "fallback_mean_f1": 0.7070888888888889,
+      "matched_mean_coverage": 0.3254518518518519,
+      "matched_mean_precision": 0.2678888888888889,
+      "matched_mean_f1": 0.26964444444444446,
+      "matched_median_f1": 0.1769,
+      "matched_q1": 0.11705,
+      "matched_q3": 0.1941,
+      "matched_cluster_boot_low": 0.14271277777777777,
+      "matched_cluster_boot_high": 0.41696,
+      "exact_matches": 4
+    },
+    {
+      "model": "gpt_5_6_sol",
+      "n": 27,
+      "first_pass_valid": 26,
+      "first_pass_rate": 0.9629629629629629,
+      "first_pass_wilson_low": 0.8171653406642414,
+      "first_pass_wilson_high": 0.9934318540192149,
+      "lane1_pass": 27,
+      "fallback_mean_f1": 0.7854074074074074,
+      "matched_mean_coverage": 0.5558037037037037,
+      "matched_mean_precision": 0.4879148148148148,
+      "matched_mean_f1": 0.4981185185185185,
+      "matched_median_f1": 0.25,
+      "matched_q1": 0.1333,
+      "matched_q3": 1.0,
+      "matched_cluster_boot_low": 0.2533278703703704,
+      "matched_cluster_boot_high": 0.7561040740740732,
+      "exact_matches": 8
+    },
+    {
+      "model": "llama_3_3_70b",
+      "n": 27,
+      "first_pass_valid": 22,
+      "first_pass_rate": 0.8148148148148148,
+      "first_pass_wilson_low": 0.6330131638145156,
+      "first_pass_wilson_high": 0.9181929285702346,
+      "lane1_pass": 27,
+      "fallback_mean_f1": 0.7487074074074074,
+      "matched_mean_coverage": 0.5311851851851852,
+      "matched_mean_precision": 0.4527555555555556,
+      "matched_mean_f1": 0.4718777777777778,
+      "matched_median_f1": 0.2,
+      "matched_q1": 0.1461,
+      "matched_q3": 1.0,
+      "matched_cluster_boot_low": 0.27041675925925923,
+      "matched_cluster_boot_high": 0.6913370370370371,
+      "exact_matches": 9
+    },
+    {
+      "model": "qwen_3_8_27b",
+      "n": 27,
+      "first_pass_valid": 26,
+      "first_pass_rate": 0.9629629629629629,
+      "first_pass_wilson_low": 0.8171653406642414,
+      "first_pass_wilson_high": 0.9934318540192149,
+      "lane1_pass": 27,
+      "fallback_mean_f1": 0.8221222222222222,
+      "matched_mean_coverage": 0.4324148148148148,
+      "matched_mean_precision": 0.41465555555555556,
+      "matched_mean_f1": 0.40873333333333334,
+      "matched_median_f1": 0.1778,
+      "matched_q1": 0.1524,
+      "matched_q3": 0.9440500000000001,
+      "matched_cluster_boot_low": 0.2955510185185185,
+      "matched_cluster_boot_high": 0.5172016666666667,
+      "exact_matches": 6
+    }
+  ],
+  "stability_by_model": [
+    {
+      "model": "claude_opus_5",
+      "pairs": 9,
+      "mean_within_pair_sd": 0.07147383944109544,
+      "median_within_pair_range": 0.0005000000000000004,
+      "all_three_exact_reference_pairs": 0,
+      "structurally_equivalent_generation_triples": 4
+    },
+    {
+      "model": "deepseek_v4_flash",
+      "pairs": 9,
+      "mean_within_pair_sd": 0.17749033546985704,
+      "median_within_pair_range": 0.1053,
+      "all_three_exact_reference_pairs": 0,
+      "structurally_equivalent_generation_triples": 1
+    },
+    {
+      "model": "gpt_5_6_sol",
+      "pairs": 9,
+      "mean_within_pair_sd": 0.06181252972688289,
+      "median_within_pair_range": 0.0,
+      "all_three_exact_reference_pairs": 2,
+      "structurally_equivalent_generation_triples": 5
+    },
+    {
+      "model": "llama_3_3_70b",
+      "pairs": 9,
+      "mean_within_pair_sd": 0.16837489669872832,
+      "median_within_pair_range": 0.11839999999999998,
+      "all_three_exact_reference_pairs": 2,
+      "structurally_equivalent_generation_triples": 4
+    },
+    {
+      "model": "qwen_3_8_27b",
+      "pairs": 9,
+      "mean_within_pair_sd": 0.36013826791450654,
+      "median_within_pair_range": 0.7865,
+      "all_three_exact_reference_pairs": 0,
+      "structurally_equivalent_generation_triples": 1
+    }
+  ],
+  "stability_overall": {
+    "pairs": 45,
+    "mean_within_pair_sd": 0.16785797385021406,
+    "median_within_pair_range": 0.059099999999999986,
+    "all_three_exact_reference_pairs": 4,
+    "structurally_equivalent_generation_triples": 15
+  },
+  "complexity": [
+    {
+      "metric": "states",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": 0.05270462766947298,
+      "two_sided_p_descriptive": 0.892879242924744,
+      "direction": "positive",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    },
+    {
+      "metric": "terminal_states",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": 0.05270462766947298,
+      "two_sided_p_descriptive": 0.892879242924744,
+      "direction": "positive",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    },
+    {
+      "metric": "action_profiles",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": 0.2018433569398328,
+      "two_sided_p_descriptive": 0.6025136178718973,
+      "direction": "positive",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    },
+    {
+      "metric": "transition_edges",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": 0.008549819600709618,
+      "two_sided_p_descriptive": 0.982583511510105,
+      "direction": "positive",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    },
+    {
+      "metric": "avg_branching",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": 0.05270462766947298,
+      "two_sided_p_descriptive": 0.892879242924744,
+      "direction": "positive",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    },
+    {
+      "metric": "stochastic_profile_fraction",
+      "n_games": 9,
+      "spearman_rho_with_mean_f1": -0.6772962119561564,
+      "two_sided_p_descriptive": 0.04504334646725907,
+      "direction": "negative",
+      "note": "exploratory; n=9; no causal or confirmatory inference"
+    }
+  ],
+  "failure_example": {
+    "game": "G6",
+    "model": "claude_opus_5",
+    "run": "run_1",
+    "tag": "claude_opus_5_G6_s01_r0",
+    "lane1_pass": true,
+    "matched_f1": 0.0383,
+    "reference_states": 5,
+    "generated_states": 101,
+    "reference_action_profiles": 4,
+    "generated_action_profiles": 81,
+    "verified_mismatch": "Candidate invents numeric bids 0,1,2,3 although the case specifies two bid levels and explicitly disallows invented bid amounts; it also inserts private-type and tie phases, expanding 5 reference states to 101 generated states.",
+    "candidate_source": "experiments/openrouter_game_study/run_1/02_model_outputs/raw_replies/claude_opus_5_G6_s01_r0.txt",
+    "case_source": "experiments/openrouter_game_study/run_1/01_inputs/game_cases/game_G_6_Game_Situation_G6.md"
+  },
+  "failure_flag_counts": {
+    "additional states / possible state splitting": 55,
+    "terminal-count mismatch": 99,
+    "additional action profiles": 37,
+    "additional transition supports": 52,
+    "stochastic-profile-rate mismatch": 41,
+    "fewer states": 41,
+    "fewer transition supports": 6,
+    "cycle-presence mismatch": 1,
+    "matcher disagreement without count-level flag": 4
+  }
+}

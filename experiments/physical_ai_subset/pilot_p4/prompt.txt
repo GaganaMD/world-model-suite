@@ -1,0 +1,13 @@
+You are given a small symbolic embodied-control scenario. Return ONLY Python source
+defining class GeneratedPOSG(AbstractPOSG), with the exact methods and string-only
+state/action identifiers required by the repository's POSG interface.
+
+Scenario: A robot must reach a destination. It may take a safe longer route or a
+short risky route. The risky route has a known collision possibility. Collision is
+an unsafe terminal outcome; reaching the destination is a success terminal outcome.
+Use exactly one player with identifier "robot" and exactly these action identifiers:
+"safe_route" and "risky_route". Preserve action-conditioned stochastic outcomes,
+terminality, and numeric rewards. Do not use imports, I/O, or Markdown fences.
+Do not include or assume any reference graph, state count, optimal policy, or
+evaluation metric. Keep the reachable model finite and expose all outcomes in
+transition().

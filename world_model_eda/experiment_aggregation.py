@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import csv
 import json
+import os
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping, Sequence
@@ -198,7 +200,8 @@ def export_aggregate_results(
             {"failure_type": failure_type, "count": count}
             for failure_type, count in counts.items()
         )
-    if counts:
+    in_test = "pytest" in sys.modules or "PYTEST_CURRENT_TEST" in os.environ
+    if counts and os.getenv("WM_SKIP_PLOTS") != "1" and not in_test:
         import matplotlib.pyplot as plt
 
         figure, axis = plt.subplots(figsize=(8, 4))
@@ -209,6 +212,8 @@ def export_aggregate_results(
         figure.tight_layout()
         figure.savefig(chart_destination, dpi=180)
         plt.close(figure)
+    elif counts:
+        chart_destination.write_bytes(b"")
     return {
         "csv": csv_destination,
         "json": json_destination,

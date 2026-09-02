@@ -1,0 +1,12 @@
+{
+  "models": {
+    "gpt_5_6_sol": "openai/gpt-5.6-sol",
+    "claude_opus_5": "anthropic/claude-opus-5",
+    "llama_3_3_70b": "meta-llama/llama-3.3-70b-instruct"
+  },
+  "runs": [
+    1,
+    2
+  ],
+  "calls_authorized": 6
+}

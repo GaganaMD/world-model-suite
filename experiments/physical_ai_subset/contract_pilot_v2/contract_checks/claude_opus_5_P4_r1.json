@@ -1,0 +1,8 @@
+{
+  "syntax_ok": true,
+  "base_class_ok": true,
+  "required_methods_ok": true,
+  "signature_ok": true,
+  "instantiation_ok": true,
+  "errors": []
+}

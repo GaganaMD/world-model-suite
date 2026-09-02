@@ -1,0 +1,40 @@
+class GeneratedPOSG:
+    def __init__(self):
+        self.player_id = "robot"
+        self.state = "start"
+        self.actions = ["safe_route", "risky_route"]
+        self.outcomes = {
+            "start": {
+                "safe_route": {"destination": 1.0},
+                "risky_route": {"collision": 0.2, "destination": 0.8}
+            },
+            "destination": {},
+            "collision": {}
+        }
+        self.rewards = {
+            "start": {
+                "safe_route": {"destination": 10},
+                "risky_route": {"collision": -10, "destination": 20}
+            },
+            "destination": {},
+            "collision": {}
+        }
+        self.terminal_states = ["destination", "collision"]
+
+    def transition(self, state, action):
+        return self.outcomes.get(state, {}).get(action, {})
+
+    def reward(self, state, action, next_state):
+        return self.rewards.get(state, {}).get(action, {}).get(next_state, 0)
+
+    def is_terminal(self, state):
+        return state in self.terminal_states
+
+    def get_player_id(self):
+        return self.player_id
+
+    def get_actions(self, state):
+        return self.actions
+
+    def get_initial_state(self):
+        return "start"

@@ -1,0 +1,16 @@
+{
+  "syntax_ok": true,
+  "base_class_ok": false,
+  "required_methods_ok": false,
+  "signature_ok": false,
+  "instantiation_ok": false,
+  "errors": [
+    "class must inherit AbstractPOSG",
+    "missing players()",
+    "missing initial_state()",
+    "missing legal_actions()",
+    "transition signature ['self', 'state', 'action'] != ['self', 'state', 'joint_action']",
+    "missing observation()",
+    "reward signature ['self', 'state', 'action', 'next_state'] != ['self', 'state', 'joint_action', 'next_state', 'player']"
+  ]
+}

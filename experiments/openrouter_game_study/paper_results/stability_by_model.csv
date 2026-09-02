@@ -1,0 +1,6 @@
+model,pairs,mean_within_pair_sd,median_within_pair_range,all_three_exact_reference_pairs,structurally_equivalent_generation_triples
+claude_opus_5,9,0.07147383944109544,0.0005000000000000004,0,4
+deepseek_v4_flash,9,0.17749033546985704,0.1053,0,1
+gpt_5_6_sol,9,0.06181252972688289,0.0,2,5
+llama_3_3_70b,9,0.16837489669872832,0.11839999999999998,2,4
+qwen_3_8_27b,9,0.36013826791450654,0.7865,0,1

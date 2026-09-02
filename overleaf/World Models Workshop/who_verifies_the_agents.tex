@@ -1,0 +1,1043 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+\usepackage{neurips_2026}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{listings} % for lstlisting environment
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+\usepackage{fvextra} % for Unicode in verbatim
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+  \usepackage[dblblindworkshop]{neurips_2026}
+% 7. "education" option is used for the Education Track
+%  \usepackage[education]{neurips_2026}
+
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle 
+% 7. Education Track
+% \usepackage[education, final]{neurips_2026}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+\usepackage{amsmath}
+
+\usepackage{todonotes}
+\setuptodonotes{size=\tiny}
+
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Can We Trust Evaluations of LLM-Generated World Models?}
+% Test Cases, Evaluation Methods, and First Results
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+  %The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on both the left- and right-hand margins. Use 10~point type, with a vertical spacing (leading) of 11~points. The word \textbf{Abstract} must be centered, bold, and in point size 12. Two line spaces precede the abstract. The abstract must be limited to one paragraph.
+  Safe-by-design AI frameworks depend on agents having formal, tractable world models for long-term planning and evaluation of safety-relevant criteria such as action reversibility and empowerment of AI agents and humans. Existing world models rely on neural networks or large Bayesian networks, which can be illsuited for this purpose due to low tractability or interpretability. 
+  
+  This paper develops a methodology for investigating whether LLMs can construct situational, partially observable stochastic games, encoded in JSON or Python, that represent the relevant stakeholders, states of the world, behavioral opportunities, and possible consequences of the interactions between AI agents with humans. We use prompt engineering to probe LLM capabilities, evaluate output quality, and validate results against an existing codebase. The target output will be demonstrating whether LLM-generated world models can support formal safety experiments.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+% \todo{i'm not sure "formatting" is the right phrase. also, i'm not sure "safe-by-design" is essential. what if we use the title "Can LLMs Construct Formal, Situational World Models for AI Agents? Test Cases, Evaluation Methods, and First Results"}
+% \todo{make sure all official general neurips and workshop-specific formatting rules are followed!}
+% \todo{we must agree on an author list and ordering since that is probably part of the online submission form. i suggest alphabetical ordering for simplicity, unless someone vetos this.}
+Many approaches to ``safe-by-design'' AI systems \citep{dalrymple2024guaranteedsafeaiframework} rely on formal, tractable world models to evaluate safety-critical metrics such as action reversibility \citep{eysenbach2018leave}, state reachability \citep{krakovna2020avoiding}, agent empowerment \citep{klyubin2005empowerment}, and the effects on humans an agent interacts with \citep{salge2017empowerment,heitzigfair}. 
+Traditional world models \citep{amodei2016concrete,ha2018world} often lack the structural transparency or symbolic foundation required for formal verification  \citep{konidaris2018from}, or are too large for tractable planning. 
+
+Constructing such models becomes difficult in real-world, multi-human settings. Unlike many single-agent environments with known mechanics, there may be no unique ground-truth model: different plausible abstractions emphasize different stakeholders, choices, uncertainties, and consequences. A model that is too coarse may omit a safety-critical distinction, while an overly detailed model may become intractable. Ultimately, this motivates hierarchical refinement. We study one layer of that problem by generating and evaluating a single situational model for each scenario.
+
+We investigate whether modern LLMs can map natural language situations into formal Partially Observable Stochastic Games (POSGs), represented either as structured JSON or executable Python. Prior work shows that LLMs can generate planning domains and executable world models in predominantly single-agent settings with reference dynamics \citep{cao2025large,dainese2024generating}. Multi-human situations introduce a different challenge: an output may be mechanically valid yet invent unsupported facts or intentions, omit implicit but safety relevant stakeholders or options, or resolve cultural ambiguity through biased assumptions. Thus, syntactic correctness alone cannot establish world-model quality.
+
+In this paper, we contribute the following:
+\begin{itemize}
+    \item A curated benchmark spanning toy, game, situational, and culturally contextualized scenarios with varying availability of ground truth.
+    \item A generation pipeline for producing POSGs in JSON and Python.
+    \item A multi-lane evaluation framework combining mechanical validation, structural diagnostics, and semantic assessment of coverage, unsupported invention, and bias.
+\end{itemize}
+
+
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Safe-by-Design AI and Empowerment}
+%Formal safety criteria require explicit modeling of state-action-state transitions to ensure non-irreversible actions and maintain bounded agent influence.
+A line of work aims to keep AI systems safe by preserving human choices rather than telling AI agents what to do. Methods like attainable-utility preservation \citep{turner2020conservative} and reachability-based side-effect penalties \citep{krakovna2020avoiding} aim to make AI agents act cautiously, but quantify this from the agent's own perspective rather than measuring human capability. In contrast, empowerment-based goals aim to preserve or increase the human's capability to influence outcomes. Recent research formalizes a fair, risk- and inequality-averse aggregate of human power as a formal AI objective \citet{heitzigfair}. All these methods rely on a clear state–action–state framework: computing reversibility, reachability, or power presupposes a world model that already contains the relevant stakeholders, options, and consequences. 
+
+\paragraph{LLMs for Environment Synthesis and Code Generation}
+%Prior research explores generating grid-worlds or domain-specific languages (DSLs) via LLMs, but lacks comprehensive multi-agent stochastic game modeling.
+LLMs have been used to synthesize environments and domain-specific programs, including generating grid worlds, task specifications, and planning-language descriptions. \citet{dainese2024generating} generated code-world models for model-based RL. They argue that calling code at planning time, rather than an LLM, yields greater precision, interpretability, and efficiency. the broader literature is surveyed by \citet{cao2025large}. This body of work is overwhelmingly single-agent and equipped with a ground truth against which outputs can be scored. Our setting differs on both assumptions: the target is a multi-agent stochastic game, and for realistic situations there is no single ground-truth model, which motivates the evaluation design in Section \ref{subsec:evaluation_framework}. 
+
+Prior evaluation relies on mechanical validity checks, graph-based structural comparison, and LLM-as-a-judge protocols, but largely assumes a reference model or executable environment \citet{hu2025text2worldbenchmarkinglargelanguage}. We instead combine mechanical, structural, and judgement-based metrics into a single framework and address scenarios lacking a ground-truth model.
+
+%\paragraph{World-Model Evaluation}
+%Discussion of existing benchmarking tools for state-space coverage, LLM-as-a-judge reliability, and structural graph analysis in synthetic environments.
+%Evaluating synthesised situational world models draws on several metrics, including mechanical validity checks (well-formedness, probability normalisation, reachability of generated states), structural and graph-based comparison of state-transition topologies, and LLM-as-a-judge protocols for qualities that are difficult to verify automatically. Increasingly, benchmarks of world models categorise these metrics based on target, protocol, and data axes (section\ref{}). However, existing metrics often assume the existence of a reference model, failing to address situations where correctness is genuinely indeterminate and must be evaluated against human-specified expectations rather than a ground-truth model. We combine mechanical, structural, and judgement-based metrics into a single framework and address scenarios lacking a ground-truth model.
+
+\section{Proposed Method}
+\label{sec:method}
+
+\subsection{Preliminaries}
+\label{subsec:preliminaries}
+
+\paragraph{Partially Observable Stochastic Games (POSG)}
+A formal POSG is defined as a tuple $\mathcal{M} = \langle \mathcal{N}, \mathcal{S}, \mathcal{A}=\{\mathcal{A}_i\}_{i \in \mathcal{N}}, \mathcal{P}, \mathcal{O}=\{\mathcal{O}_i\}_{i \in \mathcal{N}}, \Omega \rangle$, where $\mathcal{N}$ is a set of players which may include humans and AI systems,
+%\todo{let's use the established game-theoretical term `player' for humans+AIs, and reserve `agent' for AI systems?}
+$\mathcal{S}$ is the set of (potentially hidden) states, $\mathcal{A}_i$ is the action space for player $i$, $\mathcal{P}(s' \mid s, a)$ defines state transition probabilities given joint action $a=\{a_i\}_{i\in\mathcal N}$, and $\Omega:\mathcal S\times\mathcal A\times\mathcal S\to\mathcal O$ is a (deterministic) observation function representing what every player will actually observe after a transition.
+
+\paragraph{The Situation--World-Model--Planner Architecture}
+We adopt a modular, neutral baseline architecture decoupling the world model from policy synthesis:
+\begin{enumerate}
+    \item \textbf{Perception / Prompt Input}: The natural-language scenario or situation description.
+    \item \textbf{Situational World Model (LLM Output)}: A neutral, predictive resource representing valid state-space transitions without embedded agent biases.
+    \item \textbf{Planner / Decision Engine}: The downstream decision algorithm executing policy searches over the synthesized world model (e.g. some form of dynamic programming or model-based reinforcement learning).
+\end{enumerate}
+
+\paragraph{Output Formats for Representing Situational World Models}
+Models are formalized as POSGs encoded either as explicit JSON structures listing individual transitions, obeying a prescribed schema (for small state spaces), or as executable Python classes generating transitions programmatically, extending a prescribed Abstract Base Class (for more complex environments).
+% \todo{I also like sections 2 and 3 very much so far! you're on a good track!!}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=1\linewidth]{world model generation.png}
+%     \caption{World-Model Generation.}
+%     \label{fig:world}
+% \end{figure}
+
+\subsection{Dataset and Benchmark Suite}
+\label{sec:dataset}
+
+To evaluate world-model synthesis under realistic conditions, we construct a specialized benchmark suite that prioritizes structural diversity, domain coverage, and distinct multi-player trade-offs over brute-force data volume. Rather than inflating dataset size through trivial parameter variations—such as resizing grids or swapping entity labels—each scenario introduces a unique combination of partial observability, state-space topology, non-zero-sum payoff structure, and safety-critical choices.
+
+The dataset is structured into four primary domain tiers, each designed to isolate specific reasoning challenges ranging from low-level transition dynamics to high-level normative constraints:
+(1) toy environments with tightly specified mechanics; (2) simple games with known rules and reference structure; (3) situational scenarios involving asymmetric stakeholders, resources, or consequences; and (4) culturally contextualized scenarios in which relevant structure or norms may be underspecified.
+% \todo{please confirm that this is a better description than ``Canonical POSGs and game-theoretic equilibria''}
+
+
+%%%%%%%%%%% deactivated:
+\iffalse
+\begin{verbatim}
+world-model-suite/data/
+├── README.md
+└── Test_Cases/
+    ├── 01_toy/           # Mechanics & exact transition baselines
+    ├── 02_situational/   # Resource conflicts & asymmetric stakes
+    ├── 03_game/          # Canonical POSGs & game-theoretic equilibria
+    └── 04_cultural/      # Social hierarchies & regional norm shifts
+\end{verbatim}
+\fi
+%%%%%%%%%%%%
+
+To provide a granular view of the dataset's scope, Table~\ref{tab:dataset_taxonomy} outlines the scenario distribution across all four categories, detailing the explicit case counts and representative state-action dimensions.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Taxonomy of the benchmark suite detailing scenario counts, state-space scale ($|S|$), and action-space dimensionality ($|A|$) across tiers.}
+\label{tab:dataset_taxonomy}
+\begin{tabularx}{\linewidth}{l X c c c}
+\toprule
+\textbf{Tier} & \textbf{Category} & \textbf{Count} & \textbf{State Space $|S|$} & \textbf{Action Space $|A|$} \\
+\midrule
+\textbf{01} & Toy Environments & 10 & $10^1 - 10^2$ & $2 - 4$ \\
+\textbf{02} & Situational Dilemmas & 11 & $10^3 - 10^5$ & $4 - 10$ \\
+\textbf{03} & Simple Games & 9 & $10^1 - 10^3$ & $2 - 6$ \\
+\textbf{04} & Cultural Dynamics & 14 & Unbounded & $6 - 15$ \\
+\midrule
+\textbf{Total} & \textbf{Benchmark Suite} & \textbf{44} & -- & -- \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+Table 1 characterizes the benchmark. %rather than model performance; validation and evaluation outcomes are reported separately in Section 5 to avoid conflating dataset composition with evaluation results.
+
+Following that line of work, we develop a benchmark design that explicitly avoids overpopulating the suite with syntactically similar scenarios. By shifting focus toward qualitative variations rather than repetitive scaling, we aim to help establishing whether large language models can generalize across distinct behavioral landscapes rather than simply memorizing repetitive structural patterns.
+
+We also highlight normative and contextual uncertainty across complex domain boundaries. Scenarios within the cultural tier present ambiguous social hierarchies where appropriate actions depend heavily on localized norms rather than universal safety constraints. These cases are designed to test whether generated world models introduce culturally specific assumptions that are unsupported by the scenario description, and whether those assumptions vary when contextual information is changed or withheld.
+
+% \todo{if we indeed find that they do, that finding must go into sec 5, not here.}
+
+The suite also includes scenarios in which an available action can irreversibly remove future options for one or more players, enabling direct evaluation of whether generated world models preserve safety-relevant distinctions in reachability and reversibility.
+
+% \todo{Someone commented: Verify whether the final camera-ready layout requires breaking down the exact JSON schema validation pass rate per tier alongside Table~\ref{tab:dataset_taxonomy}.} % that was not my comment... (Jobst)
+
+\subsection{World-Model Generation Pipeline}
+% \todo{Jobst: good structure!}
+\label{subsec:wm_generation}
+
+%\paragraph{Natural-Language-to-POSG Code Synthesis}
+We provide either the prescribed JSON schema or Python \texttt{AbstractPOSG} interface in the generation prompt and require the model to represent the players, decision-relevant states, available actions, transition dynamics, and player observations through that interface. Full representation contracts and implementation-level validation rules are provided in the appendix.
+
+%\paragraph{Standardized Prompt Blueprint and Constrained Schemas}
+Prompt variants impose progressively stronger, task-independent representation constraints, including interface compliance, valid transition distributions, consistency between states and actions, and preservation of the decision horizon described by the scenario. Importantly, generated models are evaluated as produced: unsupported invention, omission of relevant structure, and semantic inconsistencies are treated as evaluation outcomes rather than silently repaired during post-processing.
+
+%%%%%%%%% deactivated because redundant with previous text:
+\iffalse
+\paragraph{Handling Complex Scenarios and Dilemmas}
+Extending world-model generation beyond simple toy games to multi-agent situational dilemmas (e.g., taxi fleet resource distribution, ethical co-pilot choices, and cultural coordination dynamics).
+\fi
+%%%%%%%%%
+
+\subsection{Multi-Lane Evaluation Framework}
+\label{subsec:evaluation_framework}
+
+\paragraph{Lane 1: Python World Model Correctness (Mechanical Verification)}
+Direct programmatic testing evaluating whether generated JSON/code produces a mathematically sound world model:
+\begin{itemize}
+    \item \textbf{State/Action Coverage}: $N_{\text{generated}} / N_{\text{expected}}$ and valid state-action pairing counts.
+    \item \textbf{Transition Normalization}: Verifying transition probabilities sum to unity.
+    \item \textbf{Reachability and Dead-State Rate}: Identify unreachable states, invalid actions, and cycles.
+\end{itemize}
+
+\paragraph{Lane 2: Structural Diagnostics (Exploratory Analysis)}
+We roll out each executable POSG into an explicit state-transition graph $G=(V,E)$ and analyze its induced transition structure. These graph statistics are used as diagnostic indicators rather than direct measures of correctness: they can reveal structural patterns that warrant further inspection, but cannot by themselves establish whether a generated world model faithfully represents the original situation.
+
+\begin{itemize}
+    \item \textbf{Branching and degree profiles} characterize how many successor states are reachable from each state. Unexpectedly uniform degree profiles or excessive branching can flag potentially invented symmetry or dynamics.
+
+    \item \textbf{Reachability and strongly connected components} characterize which states are mutually or sequentially reachable. Unexpected cycles, self-loops, or recurrent regions can indicate dynamics not supported by the situation description.
+
+    \item \textbf{Transition entropy} characterizes stochasticity in successor-state distributions. Unexpected entropy can flag stochastic outcomes introduced by the generated model where the situation instead specifies deterministic dynamics.
+\end{itemize}
+
+We therefore interpret these quantities as exploratory diagnostics and evaluate suspected structural anomalies against the semantic content of the original scenario rather than treating graph topology alone as evidence of world-model quality.
+
+These diagnostics are interpreted jointly with the semantic evaluation in Lane~3. A structurally unusual graph may still represent a valid situation, while a structurally plausible graph may remain semantically incorrect; therefore, we do not use graph topology alone as evidence of world-model correctness.
+
+% \todo[inline]{Jobst: this needs careful motivation: what can these indicators tell us about the quality of the world model? If we are doubtful, we should make this smaller/give it less room in the paper}
+
+
+\paragraph{Lane 3: LLM-as-a-Judge and Human-in-the-Loop Semantic Review}
+For scenarios where no unique reference world model exists, we evaluate semantic fidelity using feature-level human annotations. Annotators identify scenario-relevant features as \textit{must include}, \textit{plausible}, or \textit{must not include}. These categories distinguish required structure whose omission would make the generated world model incomplete, reasonable but non-essential structure that may vary across valid representations, and unsupported or contradictory structure that should not be introduced. An LLM judge is then used as an auxiliary evaluator to identify these features in generated world models and flag potential omissions, unsupported additions, and semantic inconsistencies. Human annotations provide the reference against which these judgments can be assessed, rather than treating the LLM judge itself as ground truth.
+
+% \section{Results and Discussion}
+% \label{sec:results}
+
+% \textcolor{brown}{Among our findings, we establish that asymmetric stakeholder presence fundamentally alters model evaluation. Multiple test cases in our benchmark incorporate passive entities—such as pedestrians, patients, or non-acting bystanders—who possess zero direct action capacity yet absorb significant potential impact from active agent decisions. We find that this structure explicitly isolates the world model's capacity to account for non-agent outcomes.}\todo{moved to here from 4 since this is results}
+
+% \textcolor{brown}{Perhaps surprisingly, our experiments also show that the inclusion of severe, irreversible action triggers indeed led to drastically clearer measurement of safety-critical reachability and side-effect penalties. By grounding evaluation in diverse, high-consequence edge cases rather than repetitive baseline tasks, we demonstrate that this suite provides a rigorous testbed for formal world-model synthesis.}\todo{ditto -- is this indeed a finding already?}
+
+
+
+% \paragraph{Correctness Benchmarks Across Model Families}
+% Empirical evaluation comparing small (<1B), medium, and large LLMs on code syntax error rates, probability distribution errors, and dead-state rates.
+
+% \subsection{Transition Graph Analysis}
+% \label{sec:transition_graph_analysis}
+
+% We analyze the synthesized state-transition dynamics using structural graph topology diagnostics across model families. Figure~\ref{fig:graph_1x4} / Figure~\ref{fig:graph_2x4} illustrates the structural variations and graph connectivity profiles generated during world-model synthesis.\todo{i believe neurips has rules about the minimal font size in figures and the figure below almost certainly does not meet it. i would put it into the appendix and instead have the illustrative figure i suggested yesterday, showing a single *trajectory* with a meaningful ethical violation}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{fig/1x4.png}
+%     \caption{1$\times$4 state-transition mapping profile.}
+%     \label{fig:graph_1x4}
+% \end{figure}
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{fig/2x4.png}
+%     \caption{2$\times$4 multi-lane state-transition topology.}
+%     \label{fig:graph_2x4}
+% \end{figure}
+
+% \paragraph{Structural Analysis of Synthesized Graphs}
+% Findings from state-transition topology analysis comparing toy games, situational scenarios, and cultural dilemma models against expected baseline regularities.
+
+% \paragraph{LLM Judge Precision and Recall}
+% Quantitative analysis measuring the accuracy of the LLM-as-a-judge framework in identifying hallucinated transitions compared against expert human annotations.
+
+% \paragraph{Limitations and Failure Modes}
+% Discussion on model hallucinations, context-length limitations in complex state spaces, and transition probability drift.
+
+
+\section{Conclusion and Outlook}
+\label{sec:conclusion}
+
+We presented a methodology for testing whether LLMs can turn natural-language situations into formal world models for safety analysis: a 44-scenario benchmark across four tiers, a pipeline generating POSGs as JSON or Python, and a three-lane evaluation covering mechanical validity, structural comparison, and semantic judgement. We report the framework rather than results, to get feedback on the design before committing to a costly annotation run.
+
+Limitations. Lane 3 is gated on human annotation that is not yet complete, so the judge remains unvalidated and currently emits diagnostic flags rather than scores. At 44 scenarios, the benchmark supports qualitative comparison across models but not narrow confidence intervals.
+
+We are currently running a first suite of experiments to evaluate our framework. Our next steps are to complete the annotation campaign, then run the full benchmark across model families (GPT-5.6 Sol, Claude Opus 5, Llama 3.3 70B, Qwen3 27B, DeepSeek V4) with multiple samples and prompt variants. Longer term, we aim to measure error in the downstream human-power estimate rather than in structure.
+
+%This work contributes to the groundwork for formal safety experiments that depend on tractable, interpretable world models. We are currently running a first suite of experiments to evaluate our framework. Future work should scale evaluation to additional LLM families, study the effect of prompt engineering strategies on semantic fidelity, and investigate hierarchical refinement of world models.
+
+%Future work should scale evaluation to additional LLM families, study the effect of prompt engineering strategies on semantic fidelity, and investigate hierarchical refinement of world models across levels of abstraction. Most importantly, the connection between world-model evaluation quality and downstream safety computations such as empowerment estimation and reversibility checking should be closed empirically, demonstrating that improvements in benchmark score translate to more reliable formal safety metrics in practice.
+
+%We presented a methodology for testing whether LLMs can turn natural-language descriptions of multi-human situations into formal, tractable world models suitable for safety analysis. It has three parts: a benchmark of 44 scenarios across four tiers with deliberately varying ground-truth availability (10 toy, 9 game, 11 situational, 14 cultural); a pipeline generating POSGs as schema-constrained JSON or executable Python; and a three-lane evaluation separating mechanical validity, structural comparison, and semantic judgement. Throughout, models are evaluated as produced — omissions and unsupported inventions are recorded as outcomes, not silently repaired. We report the framework rather than results, in order to get feedback on the evaluation design before committing to a run whose annotation cost makes later redesign expensive.
+
+
+
+% \section{References}
+% \label{sec:references}
+
+% Papers to be submitted to NeurIPS 2026 must be prepared according to the
+% instructions presented here. Papers may only be up to {\bf nine} pages long, including figures. \textbf{Papers that exceed the page limit will not be reviewed (or in any other way considered) for presentation at the conference.}
+% Additional pages \emph{containing acknowledgments, references, checklist, and optional technical appendices} do not count as content pages. 
+
+
+% The margins in 2026 are the same as those in previous years.
+
+
+% Authors are required to use the NeurIPS \LaTeX{} style files obtainable at the NeurIPS website as indicated below. Please make sure you use the current files and not previous versions. Tweaking the style files may be grounds for desk rejection.
+
+
+% \subsection{Retrieval of style files}
+
+
+% The style files for NeurIPS and other conference information are available on the website at
+% \begin{center}
+%   \url{https://neurips.cc}.
+% \end{center}
+% % The file \verb+neurips_2026.pdf+ contains these instructions and illustrates the various formatting requirements your NeurIPS paper must satisfy.
+
+
+% The only supported style file for NeurIPS 2026 is \verb+neurips_2026.sty+, rewritten for \LaTeXe{}. \textbf{Previous style files for \LaTeX{} 2.09,  Microsoft Word, and RTF are no longer supported.}
+
+
+% The \LaTeX{} style file contains three optional arguments: 
+% \begin{itemize}
+% \item \verb+final+, which creates a camera-ready copy, 
+% \item \verb+preprint+, which creates a preprint for submission to, e.g., arXiv, \item \verb+nonatbib+, which will not load the \verb+natbib+ package for you in case of package clash.
+% \end{itemize}
+
+
+% \paragraph{Preprint option}
+% If you wish to post a preprint of your work online, e.g., on arXiv, using the NeurIPS style, please use the \verb+preprint+ option. This will create a nonanonymized version of your work with the text ``Preprint. Work in progress.'' in the footer. This version may be distributed as you see fit, as long as you do not say which conference it was submitted to. Please \textbf{do not} use the \verb+final+ option, which should \textbf{only} be used for papers accepted to NeurIPS.
+
+
+% At submission time, please omit the \verb+final+ and \verb+preprint+ options. This will anonymize your submission and add line numbers to aid review. Please do \emph{not} refer to these line numbers in your paper as they will be removed during generation of camera-ready copies.
+
+
+% The file \verb+neurips_2026.tex+ may be used as a ``shell'' for writing your paper. All you have to do is replace the author, title, abstract, and text of the paper with your own.
+
+
+% The formatting instructions contained in these style files are summarized in Sections \ref{gen_inst}, \ref{headings}, and \ref{others} below.
+
+
+% \section{General formatting instructions}
+% \label{gen_inst}
+
+
+% The text must be confined within a rectangle 5.5~inches (33~picas) wide and
+% 9~inches (54~picas) long. The left margin is 1.5~inch (9~picas).  Use 10~point
+% type with a vertical spacing (leading) of 11~points.  Times New Roman is the
+% preferred typeface throughout, and will be selected for you by default.
+% Paragraphs are separated by \nicefrac{1}{2}~line space (5.5 points), with no
+% indentation.
+
+
+% The paper title should be 17~point, initial caps/lower case, bold, centered
+% between two horizontal rules. The top rule should be 4~points thick and the
+% bottom rule should be 1~point thick. Allow \nicefrac{1}{4}~inch space above and
+% below the title to rules. All pages should start at 1~inch (6~picas) from the
+% top of the page.
+
+
+% For the final version, authors' names are set in boldface, and each name is
+% centered above the corresponding address. The lead author's name is to be listed
+% first (left-most), and the co-authors' names (if different address) are set to
+% follow. If there is only one co-author, list both author and co-author side by
+% side.
+
+
+% Please pay special attention to the instructions in Section \ref{others}
+% regarding figures, tables, acknowledgments, and references.
+
+% \section{Headings: first level}
+% \label{headings}
+
+
+% All headings should be lower case (except for first word and proper nouns),
+% flush left, and bold.
+
+
+% First-level headings should be in 12-point type.
+
+
+% \subsection{Headings: second level}
+
+
+% Second-level headings should be in 10-point type.
+
+
+% \subsubsection{Headings: third level}
+
+
+% Third-level headings should be in 10-point type.
+
+
+% \paragraph{Paragraphs}
+
+
+% There is also a \verb+\paragraph+ command available, which sets the heading in
+% bold, flush left, and inline with the text, with the heading followed by 1\,em
+% of space.
+
+
+% \section{Citations, figures, tables, references}
+% \label{others}
+
+
+% These instructions apply to everyone.
+
+
+% \subsection{Citations within the text}
+
+
+% The \verb+natbib+ package will be loaded for you by default.  Citations may be
+% author/year or numeric, as long as you maintain internal consistency.  As to the
+% format of the references themselves, any style is acceptable as long as it is
+% used consistently.
+
+
+% The documentation for \verb+natbib+ may be found at
+% \begin{center}
+%   \url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
+% \end{center}
+% Of note is the command \verb+\citet+, which produces citations appropriate for
+% use in inline text.  For example,
+% \begin{verbatim}
+%    \citet{hasselmo} investigated\dots
+% \end{verbatim}
+% produces
+% \begin{quote}
+%   Hasselmo, et al.\ (1995) investigated\dots
+% \end{quote}
+
+
+% If you wish to load the \verb+natbib+ package with options, you may add the
+% following before loading the \verb+neurips_2026+ package:
+% \begin{verbatim}
+%    \PassOptionsToPackage{options}{natbib}
+% \end{verbatim}
+
+
+% If \verb+natbib+ clashes with another package you load, you can add the optional
+% argument \verb+nonatbib+ when loading the style file:
+% \begin{verbatim}
+%    \usepackage[nonatbib]{neurips_2026}
+% \end{verbatim}
+
+
+% As submission is double blind, refer to your own published work in the third
+% person. That is, use ``In the previous work of Jones et al.\ [4],'' not ``In our
+% previous work [4].'' If you cite your other papers that are not widely available
+% (e.g., a journal paper under review), use anonymous author names in the
+% citation, e.g., an author of the form ``A.\ Anonymous'' and include a copy of the anonymized paper in the supplementary material.
+
+
+% \subsection{Footnotes}
+
+
+% Footnotes should be used sparingly.  If you do require a footnote, indicate
+% footnotes with a number\footnote{Sample of the first footnote.} in the
+% text. Place the footnotes at the bottom of the page on which they appear.
+% Precede the footnote with a horizontal rule of 2~inches (12~picas).
+
+
+% Note that footnotes are properly typeset \emph{after} punctuation
+% marks.\footnote{As in this example.}
+
+
+% \subsection{Figures}
+
+
+% \begin{figure}
+%   \centering
+%   \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+%   \caption{Sample figure caption. Explain what the figure shows and add a key take-away message to the caption.}
+% \end{figure}
+
+
+% All artwork must be neat, clean, and legible. Lines should be dark enough for
+%  reproduction purposes. The figure number and caption always appear after the
+% figure. Place one line space before the figure caption and one line space after
+% the figure. The figure caption should be lower case (except for the first word and proper nouns); figures are numbered consecutively.
+
+
+% You may use color figures.  However, it is best for the figure captions and the
+% paper body to be legible if the paper is printed in either black/white or in
+% color.
+
+
+% \subsection{Tables}
+
+
+% All tables must be centered, neat, clean, and legible.  The table number and
+% title always appear before the table.  See Table~\ref{sample-table}.
+
+
+% Place one line space before the table title, one line space after the
+% table title, and one line space after the table. The table title must
+% be lower case (except for the first word and proper nouns); tables are
+% numbered consecutively.
+
+
+% Note that publication-quality tables \emph{do not contain vertical rules}. We
+% strongly suggest the use of the \verb+booktabs+ package, which allows for
+% typesetting high-quality, professional tables:
+% \begin{center}
+%   \url{https://www.ctan.org/pkg/booktabs}
+% \end{center}
+% This package was used to typeset Table~\ref{sample-table}.
+
+
+% \begin{table}
+%   \caption{Sample table caption. Explain what the table shows and add a key take-away message to the caption.}
+%   \label{sample-table}
+%   \centering
+%   \begin{tabular}{lll}
+%     \toprule
+%     \multicolumn{2}{c}{Part}                   \\
+%     \cmidrule(r){1-2}
+%     Name     & Description     & Size ($\mu$m) \\
+%     \midrule
+%     Dendrite & Input terminal  & $\approx$100     \\
+%     Axon     & Output terminal & $\approx$10      \\
+%     Soma     & Cell body       & up to $10^6$  \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+
+% \subsection{Math}
+% Note that display math in bare TeX commands will not create correct line numbers for submission. Please use LaTeX (or AMSTeX) commands for unnumbered display math. (You really shouldn't be using \$\$ anyway; see \url{https://tex.stackexchange.com/questions/503/why-is-preferable-to} and \url{https://tex.stackexchange.com/questions/40492/what-are-the-differences-between-align-equation-and-displaymath} for more information.)
+
+% \subsection{Final instructions}
+
+% Do not change any aspects of the formatting parameters in the style files.  In
+% particular, do not modify the width or length of the rectangle the text should
+% fit into, and do not change font sizes. Please note that pages should be
+% numbered.
+
+
+% \section{Preparing PDF files}
+
+
+% Please prepare submission files with paper size ``US Letter,'' and not, for
+% example, ``A4.''
+
+
+% Fonts were the main cause of problems in the past years. Your PDF file must only
+% contain Type 1 or Embedded TrueType fonts. Here are a few instructions to
+% achieve this.
+
+
+% \begin{itemize}
+
+
+% \item You should directly generate PDF files using \verb+pdflatex+.
+
+
+% \item You can check which fonts a PDF files uses.  In Acrobat Reader, select the
+%   menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
+%   also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
+%   available out-of-the-box on most Linux machines.
+
+
+% \item \verb+xfig+ ``patterned'' shapes are implemented with bitmap fonts.  Use
+%   "solid" shapes instead.
+
+
+% \item The \verb+\bbold+ package almost always uses bitmap fonts.  You should use
+%   the equivalent AMS Fonts:
+% \begin{verbatim}
+%    \usepackage{amsfonts}
+% \end{verbatim}
+% followed by, e.g., \verb+\mathbb{R}+, \verb+\mathbb{N}+, or \verb+\mathbb{C}+
+% for $\mathbb{R}$, $\mathbb{N}$ or $\mathbb{C}$.  You can also use the following
+% workaround for reals, natural and complex:
+% \begin{verbatim}
+%    \newcommand{\RR}{I\!\!R} %real numbers
+%    \newcommand{\Nat}{I\!\!N} %natural numbers
+%    \newcommand{\CC}{I\!\!\!\!C} %complex numbers
+% \end{verbatim}
+% Note that \verb+amsfonts+ is automatically loaded by the \verb+amssymb+ package.
+
+
+% \end{itemize}
+
+
+% If your file contains type 3 fonts or non embedded TrueType fonts, we will ask
+% you to fix it.
+
+
+% \subsection{Margins in \LaTeX{}}
+
+
+% Most of the margin problems come from figures positioned by hand using
+% \verb+\special+ or other commands. We suggest using the command
+% \verb+\includegraphics+ from the \verb+graphicx+ package. Always specify the
+% figure width as a multiple of the line width as in the example below:
+% \begin{verbatim}
+%    \usepackage[pdftex]{graphicx} ...
+%    \includegraphics[width=0.8\linewidth]{myfile.pdf}
+% \end{verbatim}
+% See Section 4.4 in the graphics bundle documentation
+% (\url{http://mirrors.ctan.org/macros/latex/required/graphics/grfguide.pdf})
+
+
+% A number of width problems arise when \LaTeX{} cannot properly hyphenate a
+% line. Please give LaTeX hyphenation hints using the \verb+\-+ command when
+% necessary.
+
+% \begin{ack}
+% Use unnumbered first level headings for the acknowledgments. All acknowledgments
+% go at the end of the paper before the list of references. Moreover, you are required to declare
+% funding (financial activities supporting the submitted work) and competing interests (related financial activities outside the submitted work).
+% More information about this disclosure can be found at: \url{https://neurips.cc/Conferences/2026/PaperInformation/FundingDisclosure}.
+
+
+% Do {\bf not} include this section in the anonymized submission, only in the final paper. You can use the \texttt{ack} environment provided in the style file to automatically hide this section in the anonymized submission.
+% \end{ack}
+
+%\section*{References}
+%\bibliographystyle{plainnat}
+\bibliographystyle{unsrtnat} 
+%\bibliography{reference}
+
+%References follow the acknowledgments in the camera-ready paper. Use unnumbered first-level heading for
+%the references. Any choice of citation style is acceptable as long as you are
+%consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
+%when listing the references.
+%Note that the Reference section does not count towards the page limit.
+\medskip
+
+
+{
+\small
+\bibliography{reference}
+
+%[1] Alexander, J.A.\ \& Mozer, M.C.\ (1995) Template-based algorithms for connectionist rule extraction. In G.\ Tesauro, D.S.\ Touretzky and T.K.\ Leen (eds.), {\it Advances in Neural Information Processing Systems 7}, pp.\ 609--616. Cambridge, MA: MIT Press.
+
+
+%[2] Bower, J.M.\ \& Beeman, D.\ (1995) {\it The Book of GENESIS: Exploring Realistic Neural Models with the GEneral NEural SImulation System.}  New York: TELOS/Springer--Verlag.
+
+
+%[3] Hasselmo, M.E., Schnell, E.\ \& Barkai, E.\ (1995) Dynamics of learning and recall at excitatory recurrent synapses and cholinergic modulation in rat hippocampal region CA3. {\it Journal of Neuroscience} {\bf 15}(7):5249-5262.
+}
+
+
+
+\newpage
+\appendix
+
+\section*{Technical Appendix}
+\section{Dataset Details and Test Case Schema}
+\label{sec:dataset_details}
+
+ Our benchmark dataset comprises $44$ standardized test cases designed to probe both raw syntactic correctness and nuanced domain understanding.
+
+\subsection{Dataset Taxonomy and Domain Breakdown}
+The benchmark dataset is divided into four primary tiers:
+
+\begin{enumerate}
+    \item \textbf{Toy Environments (Levels 1--4; 10 cases):}
+    \begin{itemize}
+        \item \textit{Purpose:} Evaluates raw pipeline mechanics and deterministic state-action representation.
+        \item \textit{Prompt Input:} Explicit natural-language descriptions of the environment state space and available actions.
+        \item \textit{Ground Truth \& Evaluation:} Evaluated by exact structural matching against ground-truth JSON representations (Lane 1 and Lane 2).
+    \end{itemize}
+
+    \item \textbf{Game Benchmark Cases (9 cases):}
+    \begin{itemize}
+        \item \textit{Purpose:} Evaluates objective rule-reconstruction and game-theoretic state boundaries from parametric general knowledge.
+        \item \textit{Prompt Input:} Names a known game without revealing explicit transition matrices, action sets, or rule definitions.
+        \item \textit{Ground Truth \& Evaluation:} Scored against objective game rules via state-label permutation-invariant matching.
+    \end{itemize}
+
+    \item \textbf{Situational Scenarios (11 cases):}
+    \begin{itemize}
+        \item \textit{Purpose:} Tests autonomous world-building from open-ended real-world situations. Focuses on unstated safety boundaries, partial observability, implicit authorizers, and multi-agent dilemmas under uncertainty.
+        \item \textit{Prompt Input:} Purely natural-language situation descriptions without explicit action spaces or state transitions.
+        \item \textit{Ground Truth \& Evaluation:} Evaluated using pre-annotated \texttt{Expect} and \texttt{Must-Not} criteria via independent human annotations (Lane 3).
+    \end{itemize}
+
+    \item \textbf{Cultural-Norm Scenarios (14 cases):}
+    \begin{itemize}
+        \item \textit{Purpose:} Probes structural fairness, social-norm compliance, and counterfactual robustness across cultural contexts.
+        \item \textit{Prompt Input:} Symmetric real-world scenarios containing demographic, cultural, or social status cues.
+        \item \textit{Ground Truth \& Evaluation:} Evaluated via counterfactual swaps (e.g., swapping social roles, authority figures, or titles) to detect hidden biases in state space and transition probability assignment.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Standardized Test Case Schema}
+To ensure reproducible prompting and consistent multi-lane evaluation, every test case in the benchmark is specified using a formal Markdown schema.
+
+\begin{figure}[t]
+\begin{lstlisting}[basicstyle=\ttfamily\small, breaklines=true, frame=single]
+# Test Case Specification
+
+## 1. Metadata
+- Test Case ID: [e.g., TOY-L1-01, SIT-04, CULT-02]
+- Category: [Toy | Game | Situational | Cultural]
+
+## 2. Situation Prompt (LLM Input)
+[Plain natural-language text describing the scene, participating agents, 
+ immediate environment, and context given directly to the model]
+
+## 3. Structural Ground Truth / Reference Specifications
+- Players / Agents: List of all mandatory actors (including implicit agents)
+- State Space: Core discrete states required to capture dynamics
+- Action Sets: Valid actions per agent
+- Transition Dynamics: Deterministic or stochastic mapping functions
+- Partial Observability: Information set boundaries per agent
+
+## 4. Evaluation Criteria (Lane 3 Annotations)
+### Expect Checklist (Must Contain)
+- [ ] Essential entities (e.g., absent authorizing parent, legal owner)
+- [ ] Required safety validation actions (e.g., identity verification)
+- [ ] Critical non-terminal and terminal state distinctions
+
+### Must-Not Checklist (Must Avoid)
+- [ ] Fact invention (e.g., assuming child smile implies authorization)
+- [ ] Hallucinated state transitions or ungrounded probability distributions
+- [ ] Paternalistic over-blocking or unjust privilege assignment
+
+## 5. Counterfactual Probes (Bias Testing)
+- Base Cue: [Original demographic or situational variable]
+- Permuted Cue: [Swapped variable for counterfactual evaluation]
+- Expected Invariance: [Specific structural properties that must remain identical]
+\end{lstlisting}
+\caption{Formal Markdown specification template for benchmark test cases.}
+\label{fig:test_case_schema}
+\end{figure}
+
+\subsection{Evaluation Lane Mapping}
+The dataset test cases are evaluated through a strict three-lane verification process scored on a $[0, 1]$ interval, where the overall model rating is determined by the worst-performing lane:
+
+\begin{table}[t]
+\centering
+\small
+\caption{Mapping of dataset tiers to the 3-Lane evaluation architecture.}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Evaluation Lane} & \textbf{Applicable Tiers} & \textbf{Verification Mechanics} \\ 
+\midrule
+\textbf{Lane 1: Mechanical Gate} & All Tiers & Automated check verifying stochastic validity (probabilities sum to 1), absence of unreachable or hallucinated states, and action-player consistency. \\ 
+\addlinespace
+\textbf{Lane 2: Structural Match} & Toy, Game & Label-mapping optimization and structural graph dissimilarity checks against canonical ground-truth models. \\ 
+\addlinespace
+\textbf{Lane 3: Coverage \& Bias} & Situational, Cultural & Judgment scoring against human-annotated \texttt{Expect}/\texttt{Must-Not} lists and counterfactual invariance checks. \\ 
+\bottomrule
+\end{tabularx}
+\label{tab:evaluation_lanes}
+\end{table}
+
+%------------------------------------------------------------
+\section{POSG Document Schema}
+\label{sec:json_schema}
+
+All JSON-format world models must conform to the POSG document schema below.
+Lane~1 validation rejects any model that violates this structure before proceeding
+to probability or reachability checks.
+
+\begin{samepage}
+\begin{lstlisting}[basicstyle=\ttfamily\small, breaklines=true, frame=single]
+{
+  "players": [
+    {"id": "<player_id>", "desc": "<description>"}
+  ],
+  "initial": [
+    {"state": "<state_id>", "p": <float>}
+  ],
+  "states": [
+    {
+      "id": "<state_id>",
+      "desc": "<description>",
+      "terminal": false,
+      "turn": ["<player_id>", ...],
+      "actions": [
+        {
+          "by": {"<player_id>": "<action_label>", ...},
+          "next": [
+            {"state": "<state_id>", "p": <float>},
+            ...
+          ]
+        }
+      ]
+    }
+  ]
+}
+\end{lstlisting}
+\end{samepage}
+
+%------------------------------------------------------------
+\section{Lane~1: Mechanical Validity Checks}
+\label{sec:lane1_details}
+
+Lane~1 runs a battery of programmatic checks organised into schema,
+probability, action-profile, and reachability categories. A model passes
+Lane~1 iff it produces zero error-severity findings;
+warning-severity findings are reported but do not constitute a failure.
+
+\paragraph{Schema checks.}
+The validator verifies the presence of the three required top-level keys
+(\texttt{players}, \texttt{initial}, \texttt{states}). Each player must carry
+a unique string identifier, and each state must likewise carry a unique string
+identifier. Models with duplicate player or state identifiers are rejected.
+
+\paragraph{Probability checks.}
+The initial distribution must sum to $1.0 \pm 10^{-3}$, and every entry
+probability must be strictly positive and finite. For every (state,
+joint-action profile) pair the successor probabilities must also sum to
+$1.0 \pm 10^{-3}$, with each individual probability strictly positive and
+finite. Profiles with an empty successor list are flagged as errors.
+
+\paragraph{Action-profile checks.}
+Non-terminal states without a \texttt{turn} or \texttt{actions} entry are
+flagged. Terminal states that carry either field are likewise flagged. Any
+player named in \texttt{turn} that does not appear in the declared player list
+is rejected. A profile's \texttt{by} mapping must contain exactly the players
+in \texttt{turn}, and all action identifiers must be strings. The validator
+enumerates the Cartesian product of per-player action sets within each state
+and flags any missing joint-action profile. Duplicate profiles within a state
+are rejected. Players that never appear in any state's \texttt{turn} list
+produce a warning-severity finding.
+
+\paragraph{Reachability checks.}
+A directed transition graph is constructed and a breadth-first traversal from
+the support of the initial distribution identifies unreachable states. A
+reverse traversal from the set of terminal states identifies states from which
+no terminal is reachable. Models with no declared terminal state are flagged
+as errors.
+
+\paragraph{Output.}
+The evaluator returns a passed flag, a list of error messages, and a details
+block containing the full finding list with per-finding severity and category,
+the reachable state set, and the set of states that possess a path to a
+terminal.
+
+%------------------------------------------------------------
+\section{Lane~2: Structural Diagnostics}
+\label{sec:lane2_details}
+
+Lane~2 compares the generated POSG against a reference model when one is
+available (Toy and Game tiers) and reports name-insensitive structural feature
+overlap otherwise.
+
+\paragraph{Primary backend.}
+When the game-matching module is available, Lane~2 performs optimal graph
+matching under state-label permutation invariance and returns three scores on
+$[0,1]$. Coverage measures the fraction of reference structural features
+present in the candidate. Precision measures the fraction of candidate
+structural features that appear in the reference. The combined score is the
+harmonic mean of coverage and precision. The matcher additionally returns an
+explicit player map and state map under the optimal alignment, together with
+any assumptions made during matching.
+
+\paragraph{Fallback backend.}
+If the game-matching module is unavailable, the evaluator falls back to a
+name-insensitive feature multiset comparison. Structural features extracted
+per model include player count, initial-support size, terminal and non-terminal
+state counts, turn-arity distribution, profiles-per-state distribution, and
+total transition-edge count. Coverage, precision, and combined score are
+computed identically over these multiset counts. All fallback results carry a
+warning noting that scores reflect feature overlap rather than optimal graph
+matching.
+
+\paragraph{Ground-truth absence.}
+For Situational and Cultural tiers no reference model exists. The evaluator
+returns zero scores with a skipped flag; these tiers are evaluated exclusively
+in Lane~3.
+
+%------------------------------------------------------------
+\section{Lane~3: Qualitative and Bias Evaluation}
+\label{sec:lane3_details}
+
+Lane~3 applies a deterministic completeness checklist and a bias-risk screen
+to the generated world model, producing diagnostic flags that guide human and
+counterfactual review.
+
+\paragraph{Structural completeness checklist.}
+Five binary checks are computed over the model's \texttt{players} and
+\texttt{states} fields. First, the player list must be non-empty. Second,
+every player must carry a non-empty description field. Third, every
+non-terminal state must have at least one action. Fourth, every state must
+carry a non-empty description. Fifth, at least one successor state must be
+reachable via an action's successor list across all non-terminal states,
+verifying that the model encodes observable consequences. The checklist passes
+if and only if all five checks pass.
+
+\paragraph{Bias-risk screen.}
+Two bias flags are computed. The first concerns action-profile disparity:
+per-player action counts are tallied across all non-terminal states, and if
+the range of counts across players is non-zero a flag is raised reporting the
+disparity magnitude. This flag is diagnostic only, since an asymmetric
+scenario may legitimately assign more actions to one player than another.
+
+The second flag concerns sensitive-term detection. A regular-expression scan
+over all string-valued fields in \texttt{players} and \texttt{states}
+identifies occurrences of protected or proxy attributes including gender, race,
+religion, caste, disability, and nationality. Any match triggers a flag listing
+the matched terms and requesting human or counterfactual review. When either
+flag is raised, the output marks the scenario as requiring human review, and
+notes that statistical or counterfactual evidence is required before a
+disparity is classified as bias.
+
+\paragraph{Stakeholder coverage.}
+When a reference model is provided, Lane~3 computes stakeholder coverage as
+the fraction of reference player identifiers recovered by the candidate:
+\begin{equation}
+  \text{stakeholder\_coverage} =
+    \frac{|\mathcal{P}_{\text{ref}} \cap \mathcal{P}_{\text{cand}}|}
+         {|\mathcal{P}_{\text{ref}}|}
+\end{equation}
+For Situational and Cultural tiers this metric is absent, as no reference
+model exists.
+
+%------------------------------------------------------------
+\section{Annotation Protocol for Lane~3 Human Review}
+\label{sec:annotation_protocol}
+
+Scenarios flagged by Lane~3 as requiring human review, and all Situational and
+Cultural tier scenarios, are submitted to human annotation. Annotators work
+exclusively from the scenario text and the test-case schema; they do not see
+any generated output during the annotation phase.
+
+\paragraph{Annotation categories.}
+Each annotator produces three lists per scenario. The Expect list contains
+features the world model is required to represent, for example that an
+off-site authority figure appears as a player with a consult action. The
+Must-Not list contains features the model must not introduce, for example
+that transition probabilities must not be conditioned on demographic attributes
+absent from the scenario text. The Plausible list contains features that are
+permissible but not required; their presence or absence does not affect the
+Lane~3 score.
+
+\paragraph{Inter-annotator agreement.}
+Three independent annotators label each scenario. Candidate features are
+pooled across annotators and each annotator makes a binary include or exclude
+decision per feature. Agreement is measured with Fleiss' $\kappa$; scenarios
+below $\kappa = 0.6$ are escalated to a fourth senior annotator whose
+adjudication is final. Adjudicated items are marked in the dataset release.
+
+\paragraph{Scoring.}
+Given the adjudicated Expect list $E$, Must-Not list $\bar{E}$, and generated
+model $\hat{M}$, Lane~3 scores are computed as follows:
+\begin{align}
+  \text{Coverage}  &= \frac{|\{e \in E \;:\; e \text{ satisfied by } \hat{M}\}|}{|E|}\\[4pt]
+  \text{Avoidance} &= \frac{|\{\bar{e} \in \bar{E} \;:\; \bar{e} \text{ absent from } \hat{M}\}|}{|\bar{E}|}\\[4pt]
+  \text{Lane\,3 score} &= \min(\text{Coverage},\;\text{Avoidance})
+\end{align}
+Taking the minimum penalises over-generation: a model that satisfies all
+Expect items by inventing additional structure risks introducing Must-Not
+features, and the minimum directly captures this trade-off.
+
+%------------------------------------------------------------
+\section{Aggregated Evaluation Score}
+\label{sec:aggregation}
+
+The three lanes produce scores on $[0,1]$. Lane~1 is binary; Lanes~2 and~3
+are continuous. The overall score for a scenario is:
+\begin{equation}
+  \text{Score} =
+    \mathbf{1}[\text{Lane\,1 passed}]
+    \times \min(\text{Lane\,2},\;\text{Lane\,3})
+\end{equation}
+Lane~2 is set to $1.0$ for tiers without a reference model, and Lane~3 is
+set to $1.0$ for tiers evaluated purely by structural matching, pending human
+annotation. A Lane~1 failure unconditionally zeroes the score, ensuring that
+neither structural nor semantic quality can mask a mechanical deficit.
+
+\paragraph{Tier-level aggregation.}
+Scenario-level scores are averaged within each tier to produce four tier
+scores. The benchmark score is the macro-average across tiers, weighting each
+tier equally regardless of scenario count. This prevents the larger Cultural
+tier from dominating the aggregate.
+
+\newpage
+\input{checklist.tex}
+
+\end{document}

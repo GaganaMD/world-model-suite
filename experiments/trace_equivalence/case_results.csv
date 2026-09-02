@@ -1,0 +1,7 @@
+reference_traces,candidate_traces,common_sequences,trace_sequence_coverage,trace_terminal_agreement,trace_probability_exact,trace_probability_tv,behaviorally_equivalent,model,game,run,matched_f1,lane1
+9,9,9,1.0,1.0,1.0,0.0,True,claude_opus_5,G1,run_1,0.2207,True
+9,9,9,1.0,1.0,1.0,0.0,True,claude_opus_5,G1,run_2,0.2207,True
+9,9,9,1.0,1.0,1.0,0.0,True,claude_opus_5,G1,run_3,0.2207,True
+4,4,0,0.0,,,,False,qwen_3_8_27b,G8,run_1,0.1778,True
+4,4,0,0.0,,,,False,qwen_3_8_27b,G8,run_2,1.0,True
+16,16,0,0.0,,,,False,llama_3_3_70b,G9,run_1,0.1128,True

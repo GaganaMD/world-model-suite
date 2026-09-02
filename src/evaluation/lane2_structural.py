@@ -61,6 +61,7 @@ def evaluate_structural(
     unroll: str = "always",
     sa_iters: int = 3000,
     seed: int = 0,
+    use_intrinsic: bool = True,
 ) -> dict[str, Any]:
     if ground_truth is None:
         return {
@@ -79,6 +80,7 @@ def evaluate_structural(
             unroll=unroll,
             sa_iters=sa_iters,
             seed=seed,
+            use_intrinsic=use_intrinsic,
         )
         return {
             "coverage": float(score["coverage"]),
@@ -89,6 +91,7 @@ def evaluate_structural(
                 "player_map": score.get("player_map", {}),
                 "state_map": score.get("state_map_src", {}),
                 "assumptions": score.get("assumptions", []),
+                "use_intrinsic": use_intrinsic,
             },
         }
     except ImportError as error:

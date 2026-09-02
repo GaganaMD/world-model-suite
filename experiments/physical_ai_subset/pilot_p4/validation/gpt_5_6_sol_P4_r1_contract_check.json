@@ -1,0 +1,14 @@
+{
+  "syntax_ok": true,
+  "base_class_ok": true,
+  "required_methods_ok": false,
+  "signature_ok": false,
+  "instantiation_ok": false,
+  "errors": [
+    "missing players()",
+    "missing legal_actions()",
+    "transition signature ['self', 'state', 'actions'] != ['self', 'state', 'joint_action']",
+    "missing observation()",
+    "reward signature ['self', 'state', 'actions', 'next_state'] != ['self', 'state', 'joint_action', 'next_state', 'player']"
+  ]
+}

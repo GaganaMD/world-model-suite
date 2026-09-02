@@ -13,12 +13,19 @@ would hide which way the model went wrong.
 """
 from __future__ import annotations
 import copy
+import sys
+from pathlib import Path
 
 try:
     from .gm_convert import strip_private, to_game_matching
 except ImportError:
     # Supports the standalone notebook workflow that adds json_generation to sys.path.
     from gm_convert import strip_private, to_game_matching
+# Prefer the repository-pinned revision, while retaining support for notebook
+# workflows that put game_matching on PYTHONPATH explicitly.
+_PINNED_MATCHER = Path(__file__).resolve().parents[1] / "third_party" / "game_matching"
+if (_PINNED_MATCHER / "game_match.py").is_file() and str(_PINNED_MATCHER) not in sys.path:
+    sys.path.insert(0, str(_PINNED_MATCHER))
 try:
     from game_match import load_game, match
 except ImportError:
@@ -39,7 +46,7 @@ def _prep(model, horizon, unroll):
 
 
 def lane2_score(reference, candidate, horizon=DEFAULT_HORIZON, unroll="always",
-                sa_iters=DEFAULT_SA_ITERS, seed=0, use_intrinsic=False):
+                sa_iters=DEFAULT_SA_ITERS, seed=0, use_intrinsic=True):
     A, gA = _prep(reference, horizon, unroll)
     B, gB = _prep(candidate, horizon, unroll)
     kw = dict(seed=seed, sa_iters=sa_iters, use_intrinsic=use_intrinsic)
