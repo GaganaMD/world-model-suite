@@ -107,6 +107,17 @@ class PermutationInvariantLane2Tests(unittest.TestCase):
         result = lane2_score(reference, candidate, horizon=2, sa_iters=1_000, seed=7)
         self.assertLess(result["lane2"], 1.0)
 
+    def test_spurious_reverse_edge_lowers_score(self) -> None:
+        candidate = fixture()
+        candidate["states"][1] = {"id": "win", "terminal": False, "turn": ["row"],
+                                  "actions": [{"by": {"row": "return"}, "next": [{"state": "start", "p": 1.0}]}]}
+        self.assertLess(self.score(candidate)["lane2"], 1.0)
+
+    def test_omitted_action_lowers_score(self) -> None:
+        candidate = fixture()
+        candidate["states"][0]["actions"] = candidate["states"][0]["actions"][:2]
+        self.assertLess(self.score(candidate)["lane2"], 1.0)
+
 
 if __name__ == "__main__":
     unittest.main()
