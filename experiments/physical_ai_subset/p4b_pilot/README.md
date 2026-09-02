@@ -27,11 +27,20 @@ structural diagnostics only.
 
 ## Planning Results
 
-No candidate is reported as strictly eligible for regret because policy transfer
-is not yet complete.
+Corrected initial-context transfer makes GPT and Claude strictly eligible; see
+the policy-transfer section below. Llama remains ineligible.
 
 ## Scientific Status and Final Study
 
 Generation artifacts are valid for GPT/Claude, but this is debug evidence only
 because evaluation was repaired after generation. No further calls were made;
 30 clean final calls remain required.
+
+## Corrected Policy-Transfer Evaluation
+
+The evaluator maps a unique generated initial decision context to the reference
+initial context and requires the exact canonical actions; state-name equality
+and structural matching are not used. GPT and Claude both select `risky_route`.
+At reference risk .5, each transfers to value .225 with regret .375 and
+collision probability .5. Their corrected structural F1 values are .2403 and
+.1360 respectively. Llama remains invalid. These are pilot/debug results.
