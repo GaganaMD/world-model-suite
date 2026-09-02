@@ -16,3 +16,13 @@ repaired after generation.
 
 No hosted calls were made. The pipeline is ready to freeze, but the clean final
 study still requires 30 fresh calls.
+
+## Action-value decomposition
+
+The canonical `p=0.25` control selects `safe_route` (`Q_safe=.6` versus
+`Q_risky=.5625`). Direct evaluation of the preserved generated models gives
+GPT `Q_safe=.20, Q_risky=.5625` and Claude `Q_safe=-.20, Q_risky=.4125`.
+Both models make the risky choice because their generated topology/path costs
+alter the route values; `p_gen=.25` alone is not sufficient to explain it.
+The decomposition and probability-weighted traces are in
+`experiments/physical_ai_subset/p4b_pilot/corrected_eval/`.

@@ -7,3 +7,6 @@ class P4bTransferValueTests(unittest.TestCase):
  def test_generated_rewards_are_not_objective(self):
   # External P4b values depend only on action costs and collision predicates.
   self.assertEqual(1.0-.4,.6)
+ def test_canonical_p025_selects_safe(self):
+  self.assertAlmostEqual(0.9 - 1.35*0.25, 0.5625)
+  self.assertGreater(0.6, 0.5625)

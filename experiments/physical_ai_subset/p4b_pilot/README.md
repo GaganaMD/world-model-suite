@@ -44,3 +44,16 @@ and structural matching are not used. GPT and Claude both select `risky_route`.
 At reference risk .5, each transfers to value .225 with regret .375 and
 collision probability .5. Their corrected structural F1 values are .2403 and
 .1360 respectively. Llama remains invalid. These are pilot/debug results.
+
+## Why p_gen Alone Does Not Explain the Policy
+
+The frozen threshold is `p*=2/9≈0.2222`. In the canonical P4b topology,
+`p=0.25` gives `Q_safe=0.6` and `Q_risky=0.5625`, so `safe_route` is optimal.
+Both generated candidates nevertheless select `risky_route` with `p_gen=0.25`.
+Their direct action values are GPT `Q_safe=0.20, Q_risky=0.5625` and Claude
+`Q_safe=-0.20, Q_risky=0.4125`. Thus the scalar risk estimate alone does not
+explain the choice: generated topology/path costs make the safe route
+multi-step and costly, while the risky route terminates immediately. This is
+a compound dynamics/value error, not a risk-only threshold crossing. See
+`corrected_eval/decision_decomposition.csv` and
+`P4B_DECISION_ERROR_CASE_STUDY.md`.
