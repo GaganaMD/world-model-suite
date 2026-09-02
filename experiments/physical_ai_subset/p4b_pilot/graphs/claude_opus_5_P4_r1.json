@@ -1,0 +1,264 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0005"
+    }
+  ],
+  "players": [
+    "robot"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'collision'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 2,
+      "id": "state_0001",
+      "representation": "'goal'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "robot": [
+          "safe_route",
+          "risky_route"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0002",
+      "representation": "'risky_mid'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "robot": [
+          "safe_route",
+          "risky_route"
+        ]
+      },
+      "depth": 1,
+      "id": "state_0003",
+      "representation": "'safe_mid'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "robot": [
+          "safe_route",
+          "risky_route"
+        ]
+      },
+      "depth": 2,
+      "id": "state_0004",
+      "representation": "'safe_near_goal'",
+      "terminal": false
+    },
+    {
+      "actions": {
+        "robot": [
+          "safe_route",
+          "risky_route"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0005",
+      "representation": "'start'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "robot": "risky_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "robot": "obs_collision"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "robot": -50.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "robot": "obs_goal"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "robot": 20.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "robot": "safe_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "robot": "obs_near_destination"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "robot": -1.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "robot": "risky_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "robot": "obs_collision"
+          },
+          "probability": 0.3,
+          "rewards": {
+            "robot": -50.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "robot": "obs_risky_corridor"
+          },
+          "probability": 0.7,
+          "rewards": {
+            "robot": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "robot": "safe_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0004",
+          "observations": {
+            "robot": "obs_near_destination"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "robot": -1.0
+          }
+        }
+      ],
+      "state": "state_0003"
+    },
+    {
+      "joint_action": {
+        "robot": "risky_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "robot": "obs_collision"
+          },
+          "probability": 0.2,
+          "rewards": {
+            "robot": -50.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "robot": "obs_goal"
+          },
+          "probability": 0.8,
+          "rewards": {
+            "robot": 20.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "robot": "safe_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "robot": "obs_goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "robot": 20.0
+          }
+        }
+      ],
+      "state": "state_0004"
+    },
+    {
+      "joint_action": {
+        "robot": "risky_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "robot": "obs_collision"
+          },
+          "probability": 0.25,
+          "rewards": {
+            "robot": -50.0
+          }
+        },
+        {
+          "next_state": "state_0002",
+          "observations": {
+            "robot": "obs_risky_corridor"
+          },
+          "probability": 0.75,
+          "rewards": {
+            "robot": -1.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    },
+    {
+      "joint_action": {
+        "robot": "safe_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0003",
+          "observations": {
+            "robot": "obs_safe_corridor"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "robot": -1.0
+          }
+        }
+      ],
+      "state": "state_0005"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}
