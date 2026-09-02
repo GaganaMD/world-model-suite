@@ -8,6 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]; sys.path.insert(0,str(ROOT))
 from experiments.run_hardened_openrouter_game_study import extract_python, static_contract_errors, load_dotenv
 from world_model_eda.python_posg import execute_generated_posg, rollout_world_model, canonical_rollout_json
 from src.evaluation.lane1_mechanical import evaluate_mechanical
+from src.evaluation.pipeline import _load_model
 from json_generation.lane2 import lane2_score
 
 MODELS={'gpt_5_6_sol':'openai/gpt-5.6-sol','claude_opus_5':'anthropic/claude-opus-5','llama_3_3_70b':'meta-llama/llama-3.3-70b-instruct'}
@@ -38,9 +39,9 @@ def main():
           if ex.get('success'):
             roll=rollout_world_model(ex['world_model'],max_states=100,max_depth=10); meta['first_pass_lane1']=not bool(roll.get('errors')) and not roll.get('truncated');
             if meta['first_pass_lane1']:
-              model_json=json.loads(canonical_rollout_json(roll)); (OUT/'graphs'/f'{tag}.json').write_text(json.dumps(model_json,indent=2),encoding='utf-8'); meta['final_lane1']=evaluate_mechanical(model_json)['passed']
+              model_json=json.loads(canonical_rollout_json(roll)); (OUT/'graphs'/f'{tag}.json').write_text(json.dumps(model_json,indent=2),encoding='utf-8'); adapted=_load_model(model_json,'candidate'); meta['final_lane1']=evaluate_mechanical(adapted)['passed']
               try:
-                sc=lane2_score(REF,model_json,horizon=3,sa_iters=1000); meta.update(structural_coverage=sc['coverage'],structural_precision=sc['precision'],structural_f1=sc['lane2'],exact_match=sc['lane2']==1.0)
+                sc=lane2_score(REF,adapted,horizon=3,sa_iters=1000); meta.update(structural_coverage=sc['coverage'],structural_precision=sc['precision'],structural_f1=sc['lane2'],exact_match=sc['lane2']==1.0)
               except Exception as e: meta['structural_error']=str(e)
             else: meta['validation_errors']=roll.get('errors',[])
           else: meta['validation_errors']=ex.get('errors',[])

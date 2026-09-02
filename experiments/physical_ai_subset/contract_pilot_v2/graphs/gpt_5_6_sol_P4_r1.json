@@ -1,0 +1,90 @@
+{
+  "errors": [],
+  "initial_distribution": [
+    {
+      "probability": 1.0,
+      "state": "state_0002"
+    }
+  ],
+  "players": [
+    "robot"
+  ],
+  "states": [
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0000",
+      "representation": "'collision'",
+      "terminal": true
+    },
+    {
+      "actions": {},
+      "depth": 1,
+      "id": "state_0001",
+      "representation": "'goal'",
+      "terminal": true
+    },
+    {
+      "actions": {
+        "robot": [
+          "safe_route",
+          "risky_route"
+        ]
+      },
+      "depth": 0,
+      "id": "state_0002",
+      "representation": "'s0'",
+      "terminal": false
+    }
+  ],
+  "transitions": [
+    {
+      "joint_action": {
+        "robot": "risky_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0000",
+          "observations": {
+            "robot": "collision"
+          },
+          "probability": 0.2,
+          "rewards": {
+            "robot": -10.0
+          }
+        },
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "robot": "goal"
+          },
+          "probability": 0.8,
+          "rewards": {
+            "robot": 10.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    },
+    {
+      "joint_action": {
+        "robot": "safe_route"
+      },
+      "outcomes": [
+        {
+          "next_state": "state_0001",
+          "observations": {
+            "robot": "goal"
+          },
+          "probability": 1.0,
+          "rewards": {
+            "robot": 10.0
+          }
+        }
+      ],
+      "state": "state_0002"
+    }
+  ],
+  "truncated": false,
+  "warnings": []
+}
