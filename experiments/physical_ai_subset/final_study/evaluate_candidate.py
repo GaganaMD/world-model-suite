@@ -69,8 +69,6 @@ def evaluate_python_code(sid, code, model='synthetic', run=1):
         ref=next(x for x in canonical_specs() if x['scenario_id']==sid)
         try:
             sc=evaluate_structural(cand,ref); out['structural_f1']=sc['combined_score']; out['exact_structural_match']=sc['combined_score']==1.0
-        except Exception:
-            # Frozen matcher may reject the canonicalized adapter shape; retain
-            # structural evaluability and an explicit deterministic fixture score.
-            out['structural_f1']=1.0; out['exact_structural_match']=True
+        except Exception as exc:
+            out['structural_evaluable']=False; out['structural_f1']='NA'; out['exact_structural_match']='NA'; out['structural_exclusion_reason']=type(exc).__name__
     return out
