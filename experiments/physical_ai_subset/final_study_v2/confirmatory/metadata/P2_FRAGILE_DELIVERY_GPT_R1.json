@@ -1,0 +1,12 @@
+{
+  "candidate_id": "P2_FRAGILE_DELIVERY_GPT_R1",
+  "scenario_id": "P2_FRAGILE_DELIVERY",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "1",
+  "prompt_hash": "317a41d6b971e38a6b661adb6c1eeb94837213132721e11a76544d0a0713cc6f",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T07:59:15.186886+00:00",
+  "provider_success": false,
+  "error_class": "ConnectionError",
+  "error_message": "HTTPSConnectionPool(host='openrouter.ai', port=443): Max retries exceeded with url: /api/v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002B328681950>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))"
+}

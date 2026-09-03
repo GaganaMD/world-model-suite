@@ -1,0 +1,12 @@
+{
+  "candidate_id": "P3_BATTERY_DELIVERY_Claude_R2",
+  "scenario_id": "P3_BATTERY_DELIVERY",
+  "model_id": "anthropic/claude-opus-5",
+  "run_id": "2",
+  "prompt_hash": "b3fd2019519928349df2fea2ede5e07c76cb162f61c5c748fff2811c52b8cfde",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T07:59:15.828056+00:00",
+  "provider_success": false,
+  "error_class": "ConnectionError",
+  "error_message": "HTTPSConnectionPool(host='openrouter.ai', port=443): Max retries exceeded with url: /api/v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002B328671D90>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))"
+}

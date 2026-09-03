@@ -1,0 +1,12 @@
+{
+  "candidate_id": "P5_IRREVERSIBLE_SWITCH_Llama_R2",
+  "scenario_id": "P5_IRREVERSIBLE_SWITCH",
+  "model_id": "meta-llama/llama-3.3-70b-instruct",
+  "run_id": "2",
+  "prompt_hash": "0b79460e9620f32683def35185f714612a512dee8483991c67906717ff7d9b85",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T07:59:16.458249+00:00",
+  "provider_success": false,
+  "error_class": "ConnectionError",
+  "error_message": "HTTPSConnectionPool(host='openrouter.ai', port=443): Max retries exceeded with url: /api/v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002B328693490>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))"
+}

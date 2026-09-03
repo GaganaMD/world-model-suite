@@ -1,0 +1,152 @@
+[
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_Claude_R1.json",
+    "sha256": "079E663B947D68F5A43FA050689315D67903A58D58FA665A571AE39617496B00",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_Claude_R2.json",
+    "sha256": "ACE8E495150184F2EA02E0F1E185573525A658F64B82A296976E4D32F5E645E2",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_GPT_R1.json",
+    "sha256": "7007732B53AD3EED2280975252CFDED8681804FFB5CC5FCF3E1C0F47C0B28F01",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_GPT_R2.json",
+    "sha256": "77C1F1E02C2C0BE2EE25D538E012BDC701D9B8ECA9FB923024E0A92AEBF91048",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_Llama_R1.json",
+    "sha256": "D88B8177919E79864714035B74D0ADAA6799E05814650FB93DF4B8913F6527F0",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P1_BLOCKED_DOOR_Llama_R2.json",
+    "sha256": "C3CC6D0EBEFC2F3BD79D4E0069F702D9697D51054AA760316A434EE462358F32",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_Claude_R1.json",
+    "sha256": "13CCC4E04856CF14DDB399689BE5D74E33CC9D99609150B6F45837526EE17E43",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_Claude_R2.json",
+    "sha256": "44815172994CE2AE22C1D2074F554009018772758D2B88D6E0E38FB754D1B207",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_GPT_R1.json",
+    "sha256": "54448F9CD854771970DD2531C72779005183F05F6BCB7925E003400E78431C3E",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_GPT_R2.json",
+    "sha256": "9A1806C78215F6DF52466F5F931859BCD8800488A4F1012713C6F7A65DD83022",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_Llama_R1.json",
+    "sha256": "638CAD716F6568F4F9ED2D7394190BEF67214D46BA93E25A59CD9D7CABDCFB40",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P2_FRAGILE_DELIVERY_Llama_R2.json",
+    "sha256": "2B8902D94FD29E98BC10212CD2B760A30C61FDF696AE3DDD89DED1F21B7B8CFA",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_Claude_R1.json",
+    "sha256": "89FDB173736392ACEAD4ECF9086DF72EB2B763F3FDDC1367AF5BDC0294B30EE9",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_Claude_R2.json",
+    "sha256": "B5592B38D127649B8A5A644058E38C4FF5D86A1958F48DF8440DDE99EF803267",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_GPT_R1.json",
+    "sha256": "2D61CE652A96611A51E135D20DB755334E99EFDB3FC829688488BF94A50825BD",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_GPT_R2.json",
+    "sha256": "7CADC47C5A900584F6B8BE33C75F9AC40110AF4A6C95FC4CF236C655B40FB708",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_Llama_R1.json",
+    "sha256": "F7CFBCED682655FDEE44F3343BA17C4E6ACDE0DFE3B9E62D699EB168C0F7F0C3",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P3_BATTERY_DELIVERY_Llama_R2.json",
+    "sha256": "4938309F13496A7AB0D5CBF8A62AE34ACD5594A9B69B72EF83F6DFD7F4727776",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_Claude_R1.json",
+    "sha256": "640032C60527373683670220B3848A159174C11ABAA94316277384F86994A0BF",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_Claude_R2.json",
+    "sha256": "0662A4413037954B215EBD5B243570AD1721B8D84EB24D46975C78739418B6D2",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_GPT_R1.json",
+    "sha256": "0D2EDBFED6B2FEE53D6FF18245827E2F25CCAFE4BA977EBBB2347F2169646B85",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_GPT_R2.json",
+    "sha256": "59AD6BC86BE484C0E3C6CDD2534A0DDA590B0AA1570346FD1E288203F82C8D6A",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_Llama_R1.json",
+    "sha256": "92544D981ED865ECE3883F443ACCC7FB69AE985AE52EE0A1D46AED8744EAA291",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P4b_COLLISION_RISK_TRADEOFF_Llama_R2.json",
+    "sha256": "06B514ABD4B000BBCF21AAF789E60B4AC9A905ABF20B5269697E3B9752F4AC5D",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_Claude_R1.json",
+    "sha256": "A4F7B86F2A7889DBA1E7F20617E6F281DE9ED8CCB7E746445C011FE43E584F24",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_Claude_R2.json",
+    "sha256": "BC721C7FB5BDC24B3A0EA32069C05951E50B688F6C781A7EEBACB7DFC322B56F",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_GPT_R1.json",
+    "sha256": "29F66B68E9B1FE4FD3E7D0AFAA668556AA531347268CD5081A05436676575F94",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_GPT_R2.json",
+    "sha256": "874053B14585E129083F35F055A2E67718F1AAEA58BD5E8CEBD3034A97E72ADD",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_Llama_R1.json",
+    "sha256": "08E563951F3A931DB6B34DBC23030EA2ED53DE904D994D04C1C55303ECCE78A2",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\metadata\\P5_IRREVERSIBLE_SWITCH_Llama_R2.json",
+    "sha256": "98A3D8DFC366DFC739014DCE86F737E5453BD7BC0073BBEE4257EC46CA2A09F8",
+    "label": "ABORTED_PRE_PROVIDER_NETWORK_FAILURE"
+  }
+]
