@@ -1,0 +1,22 @@
+{
+  "loading": "world_model_eda/python_posg.py",
+  "contract": "world_model_eda/python_posg.py",
+  "features": "src/evaluation/physical_features.py",
+  "lane1": "world_model_eda/python_posg.py",
+  "rollout": "world_model_eda/python_posg.py",
+  "structural_adapter": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+  "structural_matcher": "src/evaluation/lane2_structural.py",
+  "alignment": "json_generation/gm_convert.py",
+  "planning": "src/planning/finite_horizon.py",
+  "transfer": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+  "reference_execution": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+  "regret": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+  "success": "src/evaluation/physical_features.py",
+  "safety": "src/evaluation/physical_features.py",
+  "p4b": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+  "batch": "experiments/physical_ai_subset/final_study/evaluate_final_study.py",
+  "protocol": "experiments/physical_ai_subset/final_study_v2/protocol.json",
+  "prompts": "experiments/physical_ai_subset/final_study_v2/prompt_hashes.json",
+  "references": "experiments/physical_ai_subset/final_study/reference_spec.py",
+  "preflight": "experiments/physical_ai_subset/final_study_v2/preflight.py"
+}
