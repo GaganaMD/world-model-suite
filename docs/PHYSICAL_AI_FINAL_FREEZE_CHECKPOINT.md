@@ -15,3 +15,8 @@
 - Clean final call count: **30** (5 × 3 × 2).
 - Protocol status: ready for final hosted generation; authorization is still a
   separate decision.
+
+The original intended-design freeze is `45b4fc2`; after completeness repair,
+the commit containing the materialized references, prompt hashes, matrix, and
+preflight is the executable pre-data freeze and supersedes it for
+reproducibility.

@@ -2,6 +2,15 @@
 
 Version `physical-ai-v1`; no hosted calls have been made under this protocol.
 
+### Protocol-completeness repair after failed preflight
+
+The original intended-design freeze was commit `45b4fc2`. Before any clean
+sample existed, preflight found missing P1/P2/P3/P5 reference files, missing
+per-scenario prompt hashes, and a P4/P4b naming inconsistency. Zero final calls
+were made. This repair materializes the committed intended definitions and
+exact rendered prompts without changing task semantics; the repair commit is
+the executable pre-data freeze.
+
 ## Design
 
 The clean study contains five reference-backed symbolic embodied POSGs (P1
