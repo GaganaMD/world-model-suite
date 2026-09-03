@@ -1,1 +1,124 @@
-{"evaluator_source":"experiments/physical_ai_subset/final_study/evaluator_manifest.json","real_outputs_present":false,"hosted_calls":0}
+{
+  "files": [
+    {
+      "path": "world_model_eda/python_posg.py",
+      "sha256": "9e89571a48387e15fc2d0c59cee0f73603c5a4e028bd87ce99e71d1a2e5f7917",
+      "role": "Executes GeneratedPOSG source and rollout",
+      "category": "loading"
+    },
+    {
+      "path": "world_model_eda/python_posg.py",
+      "sha256": "9e89571a48387e15fc2d0c59cee0f73603c5a4e028bd87ce99e71d1a2e5f7917",
+      "role": "Loads executable candidate interface",
+      "category": "contract"
+    },
+    {
+      "path": "src/evaluation/physical_features.py",
+      "sha256": "e406a67c366ace5989fc465ab67986cd1c276a0d1bb40a1ac1882153bc947c09",
+      "role": "Validates canonical state features",
+      "category": "features"
+    },
+    {
+      "path": "world_model_eda/python_posg.py",
+      "sha256": "9e89571a48387e15fc2d0c59cee0f73603c5a4e028bd87ce99e71d1a2e5f7917",
+      "role": "Performs rollout mechanical checks",
+      "category": "lane1"
+    },
+    {
+      "path": "world_model_eda/python_posg.py",
+      "sha256": "9e89571a48387e15fc2d0c59cee0f73603c5a4e028bd87ce99e71d1a2e5f7917",
+      "role": "Enumerates reachable states/transitions",
+      "category": "rollout"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+      "sha256": "e3c700a11b64f10a1b2ef384b753020565d1a2f1eae839684f075103d32b6a1f",
+      "role": "Adapts rollout to matcher schema",
+      "category": "structural_adapter"
+    },
+    {
+      "path": "src/evaluation/lane2_structural.py",
+      "sha256": "d91caa110dd144ea66f76126288a7ee3efbb1a01238b777e1714e7a79c9232a8",
+      "role": "Computes structural fidelity",
+      "category": "structural_matcher"
+    },
+    {
+      "path": "json_generation/gm_convert.py",
+      "sha256": "e6a76f279c15af1e33349a5d8e435ab6492df833aa1a2bd10e82b5865a89041f",
+      "role": "Aligns state/player representations",
+      "category": "alignment"
+    },
+    {
+      "path": "src/planning/finite_horizon.py",
+      "sha256": "29a210ca1ca81f6523b72a08b29c8fd4b9b2778737db44420440d627f655e6e0",
+      "role": "Computes finite-horizon action values",
+      "category": "planning"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+      "sha256": "e3c700a11b64f10a1b2ef384b753020565d1a2f1eae839684f075103d32b6a1f",
+      "role": "Transfers initial canonical action",
+      "category": "transfer"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+      "sha256": "e3c700a11b64f10a1b2ef384b753020565d1a2f1eae839684f075103d32b6a1f",
+      "role": "Evaluates policy in reference",
+      "category": "reference_execution"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+      "sha256": "e3c700a11b64f10a1b2ef384b753020565d1a2f1eae839684f075103d32b6a1f",
+      "role": "Computes value regret",
+      "category": "regret"
+    },
+    {
+      "path": "src/evaluation/physical_features.py",
+      "sha256": "e406a67c366ace5989fc465ab67986cd1c276a0d1bb40a1ac1882153bc947c09",
+      "role": "External success predicates",
+      "category": "success"
+    },
+    {
+      "path": "src/evaluation/physical_features.py",
+      "sha256": "e406a67c366ace5989fc465ab67986cd1c276a0d1bb40a1ac1882153bc947c09",
+      "role": "External unsafe predicates",
+      "category": "safety"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_candidate.py",
+      "sha256": "e3c700a11b64f10a1b2ef384b753020565d1a2f1eae839684f075103d32b6a1f",
+      "role": "P4b objective and risk metrics",
+      "category": "p4b"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/evaluate_final_study.py",
+      "sha256": "6ca474bb55a82dc5f24fc0c0946f5a5ef487d2fa9cb0b8bec5b7ed3657fc0f21",
+      "role": "Batch orchestration",
+      "category": "batch"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/protocol.json",
+      "sha256": "54ab0a2d8176b11d31e950eee7973f8ccfd2a658111501ab6032e276d5be1321",
+      "role": "Frozen protocol",
+      "category": "protocol"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/prompt_hashes.json",
+      "sha256": "a76f2dfee55132099a83403f4da49523e501374ee551bf819c41b2ec897d3701",
+      "role": "Frozen prompt hashes",
+      "category": "prompts"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study/reference_spec.py",
+      "sha256": "fa1b1932bbc35518c21869c003a2e13e90015d0af23d1d3b0b4a3a612272d474",
+      "role": "P1-P5 references",
+      "category": "references"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/preflight.py",
+      "sha256": "1448f8c5dbddb2ffc7ff5471801365ba0be7476e01c8e2e40579d700597af0e3",
+      "role": "Fail-closed preflight",
+      "category": "preflight"
+    }
+  ]
+}

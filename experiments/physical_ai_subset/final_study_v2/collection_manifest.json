@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/run_confirmatory_collection.py",
+      "sha256": "d81cb8fccccb289c795be9ce85e7f00cbea0ce63e5e6bed358dfd15e0d888c62",
+      "role": "v2 collection provenance",
+      "category": "collection"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/preflight.py",
+      "sha256": "1448f8c5dbddb2ffc7ff5471801365ba0be7476e01c8e2e40579d700597af0e3",
+      "role": "v2 collection provenance",
+      "category": "collection"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/protocol.json",
+      "sha256": "54ab0a2d8176b11d31e950eee7973f8ccfd2a658111501ab6032e276d5be1321",
+      "role": "v2 collection provenance",
+      "category": "collection"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/candidate_matrix.csv",
+      "sha256": "0b7365313a406e4f50f5dae71b9864764131f3c17fb27d5a097e922c6cfc6ba6",
+      "role": "v2 collection provenance",
+      "category": "collection"
+    },
+    {
+      "path": "experiments/physical_ai_subset/final_study_v2/prompt_hashes.json",
+      "sha256": "a76f2dfee55132099a83403f4da49523e501374ee551bf819c41b2ec897d3701",
+      "role": "v2 collection provenance",
+      "category": "collection"
+    }
+  ]
+}
