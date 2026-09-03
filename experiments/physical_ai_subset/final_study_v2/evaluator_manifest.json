@@ -116,7 +116,7 @@
     },
     {
       "path": "experiments/physical_ai_subset/final_study_v2/preflight.py",
-      "sha256": "a2284774851c16774ce3409f48209415739e6b2e0db114e496f6eaef1ed506e3",
+      "sha256": "1448f8c5dbddb2ffc7ff5471801365ba0be7476e01c8e2e40579d700597af0e3",
       "role": "Fail-closed preflight",
       "category": "preflight"
     }

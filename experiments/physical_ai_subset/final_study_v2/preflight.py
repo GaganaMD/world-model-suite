@@ -20,5 +20,8 @@ def main():
  mf=ROOT/'evaluator_manifest.json'; m=json.loads(mf.read_text()); validate_manifest(m)
  sv=ROOT/'structural_validation.csv'; assert sv.exists(); sr=list(csv.DictReader(sv.open())); assert len(sr)==5 and all(x['matcher_success']=='True' and x['structural_f1']!='NA' for x in sr)
  gp=ROOT/'generated_python_dry_run'/'integrity_report.json'; gi=json.loads(gp.read_text()); assert gi['inputs']==30 and gi['outputs']==30 and gi.get('failures',0)==0
+ runner=ROOT/'run_confirmatory_collection.py'; assert runner.exists(); assert not any((ROOT/'confirmatory'/'raw').glob('*'))
+ hashes=json.loads((ROOT/'prompt_hashes.json').read_text())['hashes']
+ for sid,h in hashes.items(): assert hashlib.sha256((ROOT/'rendered_prompts'/f'{sid}.txt').read_bytes()).hexdigest()==h
  print('V2 PREFLIGHT PASS: 5 scenarios, 3 models, 2 runs, 30 cells, zero outputs')
 if __name__=='__main__': main()
