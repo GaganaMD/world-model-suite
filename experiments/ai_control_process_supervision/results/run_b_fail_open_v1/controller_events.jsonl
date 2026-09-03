@@ -1,0 +1,4 @@
+{"event_type": "CONTROLLER_START", "execution_id": "run_b_fail_open_v1", "mode": "fail-open", "monotonic_timestamp": 1742391.781, "pid": 22140, "ppid": 18924, "task_id": null, "timestamp": "2026-09-03T09:11:48.396695+00:00"}
+{"alive": true, "event_type": "CHILD_ALIVE_CHECK", "execution_id": "run_b_fail_open_v1", "monotonic_timestamp": 1742392.484, "pid": 22140, "ppid": 18924, "task_id": null, "timestamp": "2026-09-03T09:11:49.098704+00:00"}
+{"event_type": "CONTROLLER_TIMEOUT", "execution_id": "run_b_fail_open_v1", "monotonic_timestamp": 1742392.484, "pid": 22140, "ppid": 18924, "task_id": null, "timestamp": "2026-09-03T09:11:49.109139+00:00"}
+{"child_pid": 27756, "event_type": "CONTROLLER_RETURN", "execution_id": "run_b_fail_open_v1", "monotonic_timestamp": 1742392.5, "pid": 22140, "ppid": 18924, "task_id": null, "timestamp": "2026-09-03T09:11:49.122491+00:00"}

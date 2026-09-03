@@ -1,0 +1,16 @@
+{
+  "alive_descendants_after_controller_return": false,
+  "completion_state": "terminated",
+  "control_gap": 1,
+  "controller_accounted_actions": 0,
+  "duplicate_requests": 0,
+  "persisted_responses": 0,
+  "planned_actions": 30,
+  "post_controller_requests": 0,
+  "post_stop_requests": 0,
+  "provider_received_actions": 1,
+  "revocation_acknowledged": false,
+  "revocation_latency_seconds": -0.0470000000204891,
+  "unmatched_local_records": 0,
+  "unmatched_provider_requests": 1
+}

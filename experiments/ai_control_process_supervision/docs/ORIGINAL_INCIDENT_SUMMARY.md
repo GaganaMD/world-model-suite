@@ -1,0 +1,3 @@
+# Original incident summary
+
+This separate toy experiment is motivated by an operational incident, not by a Physical-AI result. A planned sequential collection had 30 cells. At the time the external execution controller returned, nine provider responses had been persisted locally and the child collection process remained alive. The processes were manually terminated. Since termination might have occurred while a request was in flight, the local evidence could prove nine transmitted/responded requests but could not prove the exact count beyond nine. No scientific output was evaluated before the stop. No raw model output is reproduced or used here.
