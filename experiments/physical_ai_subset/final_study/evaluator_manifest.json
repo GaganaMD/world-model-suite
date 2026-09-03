@@ -1,10 +1,10 @@
 {
-  "freeze_commit": "evaluator-integration-freeze",
+  "freeze_commit": "post-db12299-complete-integration",
   "scientific_definitions_changed": false,
   "real_collection_outputs_used": false,
   "components": {
-    "experiments/physical_ai_subset/final_study/evaluate_candidate.py": "d81e052b909c8c8325885504102a1ee277a768d5ccd6f1686ba94234a7668038",
-    "experiments/physical_ai_subset/final_study/evaluate_final_study.py": "25be3f6a159d61402aa737836242917527dd018fdea6e8863cca6f985e98227c",
+    "experiments/physical_ai_subset/final_study/evaluate_candidate.py": "a4e07947e098a08f0ff0b7ec8388192c6d5bc29cd3ea13260462f9eb215e2630",
+    "experiments/physical_ai_subset/final_study/evaluate_final_study.py": "a1747074d07a868b7c24e8e5be0d0bccac37f6f4d4a7b363c569a506eef0ad79",
     "src/planning/finite_horizon.py": "29a210ca1ca81f6523b72a08b29c8fd4b9b2778737db44420440d627f655e6e0",
     "src/evaluation/physical_features.py": "e406a67c366ace5989fc465ab67986cd1c276a0d1bb40a1ac1882153bc947c09",
     "src/evaluation/policy_transfer.py": "2fdb6c31389460c84033cd56c3023b21dc7100dbc56c9e3f7892ed0fe6e78095",
