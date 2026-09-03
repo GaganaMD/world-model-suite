@@ -6,6 +6,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
 from experiments.physical_ai_subset.final_study.reference_spec import canonical_specs
 from src.planning.finite_horizon import finite_horizon_plan
 from src.evaluation.physical_features import external_predicates
+from world_model_eda.python_posg import execute_generated_posg,rollout_world_model,canonical_rollout_json
+from src.evaluation.lane2_structural import evaluate_structural
 
 HORIZON=10
 def scenario_adapter(sid):
@@ -37,3 +39,17 @@ def evaluate_dict_candidate(sid, candidate, model='synthetic', run=1):
     rr=evaluate_reference(sid); eligible=action in ref['allowed_actions']
     correct=eligible and action==rr['reference_optimal_action']
     return {'candidate_id':f'{sid}_{model}_R{run}','scenario':sid,'model':model,'run':run,'provider_success':True,'contract_valid':True,'feature_contract_valid':True,'lane1_valid':True,'structural_evaluable':True,'structural_f1':1.0,'exact_structural_match':True,'planning_eligible':eligible,'planning_exclusion_reason':'NA' if eligible else 'canonical initial action unavailable','reference_optimal_action':rr['reference_optimal_action'],'generated_optimal_action':action or 'NA','policy_agreement':1.0 if correct else 0.0,'policy_mapping_coverage':1.0 if eligible else 0.0,'reference_optimal_value':rr['reference_optimal_value'],'generated_predicted_value':plan['initial_value'],'transferred_reference_value':rr['reference_optimal_value'] if correct else (0.225 if sid.startswith('P4b') and action=='risky_route' else 'NA'),'planning_regret':0.0 if correct else (0.375 if sid.startswith('P4b') and action=='risky_route' else 'NA'),'success_probability_reference':1.0,'success_probability_transferred':1.0 if correct else 'NA','unsafe_probability_reference':0.0,'unsafe_probability_transferred':0.0 if correct else ('0.5' if sid.startswith('P4b') and action=='risky_route' else 'NA')}
+
+def evaluate_python_code(sid, code, model='synthetic', run=1):
+    ex=execute_generated_posg(code)
+    if not ex.get('success'): return {'candidate_id':f'{sid}_{model}_R{run}','scenario':sid,'model':model,'run':run,'contract_valid':False,'feature_contract_valid':False,'lane1_valid':False,'planning_eligible':False,'planning_exclusion_reason':'execution failure'}
+    inst=ex['world_model']; roll=rollout_world_model(inst,max_states=200,max_depth=10)
+    out=evaluate_dict_candidate(sid,json.loads(canonical_rollout_json(roll)),model,run)
+    out['contract_valid']=True; out['lane1_valid']=not bool(roll.get('errors')) and not roll.get('truncated')
+    states=list(roll.get('states',[])); case='P4' if sid.startswith('P4b') else sid.split('_')[0]
+    fc=__import__('src.evaluation.physical_features',fromlist=['check_instance_features']).check_instance_features(case,inst,states)
+    out['feature_contract_valid']=fc['state_features_schema_valid']
+    out['structural_evaluable']=out['lane1_valid']
+    if out['lane1_valid']:
+        ref=next(x for x in canonical_specs() if x['scenario_id']==sid); sc=evaluate_structural(json.loads(canonical_rollout_json(roll)),ref); out['structural_f1']=sc['combined_score']; out['exact_structural_match']=sc['combined_score']==1.0
+    return out
