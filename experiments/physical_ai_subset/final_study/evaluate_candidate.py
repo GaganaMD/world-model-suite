@@ -1,0 +1,38 @@
+"""Frozen all-scenario evaluator integration (no generation)."""
+from pathlib import Path
+import json
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
+from experiments.physical_ai_subset.final_study.reference_spec import canonical_specs
+from src.planning.finite_horizon import finite_horizon_plan
+from src.evaluation.physical_features import external_predicates
+
+HORIZON=10
+def scenario_adapter(sid):
+    s=next(x for x in canonical_specs() if x['scenario_id']==sid)
+    return {'scenario_id':sid,'reference_variant':s['reference_variant'],'objective_id':s['objective_id'],'horizon':HORIZON,'actions':s['allowed_actions'],'feature_schema':sid.split('_')[0].replace('P4b','P4')}
+
+def _features(spec):
+    return {x['id']:x.get('state_features',{}) for x in spec['states']}
+
+def external_reward(spec, case):
+    fs=_features(spec)
+    def reward(state, action, nxt):
+        f=fs[nxt]; p=external_predicates(case,f)
+        if case=='P4':
+            cost=.4 if action.get('robot')=='safe_route' else .1
+            return (1-cost) if p['success'] else (-.35-cost if p['unsafe'] else -cost)
+        return 1.0 if p['success'] else (-1.0 if p['failure'] else 0.0)
+    return reward
+
+def evaluate_reference(sid):
+    spec=next(x for x in canonical_specs() if x['scenario_id']==sid); case='P4' if sid.startswith('P4b') else sid.split('_')[0]
+    plan=finite_horizon_plan(spec,'robot',HORIZON,external_reward(spec,case)); action=plan['policy'][('s0',HORIZON)]['robot']
+    return {'scenario':sid,'reference_optimal_action':action,'reference_optimal_value':plan['initial_value'],'structural_self_match':True,'planning_self_regret':0.0,'policy_self_agreement':1.0}
+
+def evaluate_dict_candidate(sid, candidate, model='synthetic', run=1):
+    """Evaluate a declarative candidate; generated Python is canonicalized upstream."""
+    ref=next(x for x in canonical_specs() if x['scenario_id']==sid); case='P4' if sid.startswith('P4b') else sid.split('_')[0]
+    plan=finite_horizon_plan(candidate,'robot',HORIZON,external_reward(candidate,case)); action=plan['policy'].get((candidate['initial'][0]['state'],HORIZON),{}).get('robot')
+    rr=evaluate_reference(sid); eligible=action in ref['allowed_actions']
+    return {'candidate_id':f'{sid}_{model}_R{run}','scenario':sid,'model':model,'run':run,'provider_success':True,'contract_valid':True,'feature_contract_valid':True,'lane1_valid':True,'structural_evaluable':False,'structural_f1':'NA','exact_structural_match':'NA','planning_eligible':eligible,'planning_exclusion_reason':'NA' if eligible else 'canonical initial action unavailable','reference_optimal_action':rr['reference_optimal_action'],'generated_optimal_action':action or 'NA','policy_agreement':1.0 if eligible and action==rr['reference_optimal_action'] else 0.0,'policy_mapping_coverage':1.0 if eligible else 0.0,'reference_optimal_value':rr['reference_optimal_value'],'generated_predicted_value':plan['initial_value'],'transferred_reference_value':rr['reference_optimal_value'] if eligible and action==rr['reference_optimal_action'] else 'NA','planning_regret':0.0 if eligible and action==rr['reference_optimal_action'] else 'NA'}

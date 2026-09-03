@@ -1,0 +1,14 @@
+{
+  "freeze_commit": "evaluator-integration-freeze",
+  "scientific_definitions_changed": false,
+  "real_collection_outputs_used": false,
+  "components": {
+    "experiments/physical_ai_subset/final_study/evaluate_candidate.py": "d81e052b909c8c8325885504102a1ee277a768d5ccd6f1686ba94234a7668038",
+    "experiments/physical_ai_subset/final_study/evaluate_final_study.py": "25be3f6a159d61402aa737836242917527dd018fdea6e8863cca6f985e98227c",
+    "src/planning/finite_horizon.py": "29a210ca1ca81f6523b72a08b29c8fd4b9b2778737db44420440d627f655e6e0",
+    "src/evaluation/physical_features.py": "e406a67c366ace5989fc465ab67986cd1c276a0d1bb40a1ac1882153bc947c09",
+    "src/evaluation/policy_transfer.py": "2fdb6c31389460c84033cd56c3023b21dc7100dbc56c9e3f7892ed0fe6e78095",
+    "json_generation/lane1.py": "77c1fd9ee28ed30f1584cb0481ee396c0aef1670dc67bb858725ac58b4381413",
+    "json_generation/lane2.py": "d35c615e7d11b4d17da12d8cd2dbfa007c6d2e58997f71bdaf49143139d73c95"
+  }
+}

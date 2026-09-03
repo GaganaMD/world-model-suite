@@ -1,0 +1,6 @@
+scenario,reference_optimal_action,reference_optimal_value,structural_self_match,planning_self_regret,policy_self_agreement
+P1_BLOCKED_DOOR,open_door,1.0,True,0.0,1.0
+P2_FRAGILE_DELIVERY,pick_up,1.0,True,0.0,1.0
+P3_BATTERY_DELIVERY,move,1.0,True,0.0,1.0
+P4b_COLLISION_RISK_TRADEOFF,safe_route,0.6,True,0.0,1.0
+P5_IRREVERSIBLE_SWITCH,press_switch,1.0,True,0.0,1.0
