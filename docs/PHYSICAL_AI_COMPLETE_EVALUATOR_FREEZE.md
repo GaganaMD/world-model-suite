@@ -16,3 +16,26 @@ The synthetic 30-cell dry run produced 30 inputs and 30 unique outputs with
 zero failures; all reference-equivalent candidates were planning eligible with
 zero regret. The v2 preflight passed. The complete evaluator is frozen for
 replacement data collection.
+# Complete evaluator validation
+
+The executable path is validated for all scenarios: generated Python,
+contract and feature validation, Lane 1, rollout, structural evaluation,
+planning, frozen initial-decision transfer, and reference evaluation.
+
+| Scenario | Python | Structural | Planning | Transfer | Zero-regret self-test | Decision-error class | Positive-regret test |
+|---|---|---|---|---|---|---|---|
+| P1 | PASS | PASS | PASS | PASS | PASS | B | N/A |
+| P2 | PASS | PASS | PASS | PASS | PASS | B | N/A |
+| P3 | PASS | PASS | PASS | PASS | PASS | B | N/A |
+| P4b | PASS | PASS | PASS | PASS | PASS | A | PASS |
+| P5 | PASS | PASS | PASS | PASS | PASS | B | N/A |
+
+Decision-error testability is conditional on the frozen transferable policy
+space. P2 and P5 have effectively forced initial actions; extending transfer
+to later choices would be a scientific change. P1 and P3 alternatives are
+self-loop/structurally non-meaningful under the frozen objective. P4b is the
+explicit consequential decision-error control.
+
+The generated-Python 30-cell synthetic dry run produced 30 outputs with no
+orchestration failures. The first real 30-call collection remains quarantined
+and excluded from confirmatory aggregates.
