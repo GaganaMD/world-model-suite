@@ -1,0 +1,6 @@
+{
+  "protocol_version": "physical-ai-v1",
+  "shared_contract_prompt_sha256": "34165d1ed1eb548220882b0af873be5c560d7d2287690b379a73440170e1e818",
+  "scenario_prompt_status": "frozen source text is maintained by the P1-P5 generation configuration; per-call manifests must copy the exact rendered prompt and hash before dispatch",
+  "scenarios": ["P1_BLOCKED_DOOR", "P2_FRAGILE_DELIVERY", "P3_BATTERY_DELIVERY", "P4_COLLISION_RISK", "P5_IRREVERSIBLE_SWITCH"]
+}
