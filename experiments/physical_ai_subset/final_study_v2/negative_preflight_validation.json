@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "name": "evaluator hash",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 2,
+    "name": "structural adapter hash",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 3,
+    "name": "missing category",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 4,
+    "name": "missing path",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 5,
+    "name": "structural validation missing",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 6,
+    "name": "matcher false",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 7,
+    "name": "F1 missing",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 8,
+    "name": "P4b control missing",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 9,
+    "name": "dry run missing",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 10,
+    "name": "dry run count",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 11,
+    "name": "dry run failure",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 12,
+    "name": "matrix count",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 13,
+    "name": "duplicate ID",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 14,
+    "name": "scenario missing",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 15,
+    "name": "model identity",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 16,
+    "name": "prompt hash",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 17,
+    "name": "reference hash",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 18,
+    "name": "objective ID",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 19,
+    "name": "hosted sample",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 20,
+    "name": "Class-B justification",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 21,
+    "name": "P4b Class-A",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  },
+  {
+    "id": 22,
+    "name": "zero-regret evidence",
+    "test_node": "test_negative_preflight_case",
+    "expected": "FAIL",
+    "observed": "FAIL",
+    "reason_verified": true
+  }
+]
