@@ -1,0 +1,6 @@
+scenario_id,fixture_id,matcher_success,structural_evaluable,structural_f1,exact_structural_match
+P1_BLOCKED_DOOR,P1_BLOCKED_DOOR_fixture_R1,True,True,1.0,True
+P2_FRAGILE_DELIVERY,P2_FRAGILE_DELIVERY_fixture_R1,True,True,1.0,True
+P3_BATTERY_DELIVERY,P3_BATTERY_DELIVERY_fixture_R1,True,True,1.0,True
+P4b_COLLISION_RISK_TRADEOFF,P4b_COLLISION_RISK_TRADEOFF_fixture_R1,True,True,1.0,True
+P5_IRREVERSIBLE_SWITCH,P5_IRREVERSIBLE_SWITCH_fixture_R1,True,True,1.0,True

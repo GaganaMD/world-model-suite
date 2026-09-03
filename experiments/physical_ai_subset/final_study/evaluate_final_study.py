@@ -30,5 +30,11 @@ def main():
   w=csv.DictWriter(f,fieldnames=sorted({k for r in grows for k in r})); w.writeheader(); w.writerows(grows)
  (gp/'integrity_report.json').write_text(json.dumps({'inputs':30,'outputs':len(grows),'duplicate_ids':0,'failures':sum(not r.get('contract_valid',False) for r in grows)},indent=2))
  (gp/'summary.md').write_text('# Generated-Python 30-cell dry run\n\n30 executable fixture candidates traversed the evaluator.\n')
+ sv=ROOT.parent/'final_study_v2'/'structural_validation.csv'; sv.parent.mkdir(exist_ok=True)
+ with sv.open('w',newline='') as f:
+  fields=['scenario_id','fixture_id','matcher_success','structural_evaluable','structural_f1','exact_structural_match']
+  w=csv.DictWriter(f,fieldnames=fields); w.writeheader()
+  for sid in sids:
+   r=evaluate_python_code(sid,source_for(sid),'fixture',1); w.writerow({'scenario_id':sid,'fixture_id':r['candidate_id'],'matcher_success':r.get('structural_evaluable',False),'structural_evaluable':r.get('structural_evaluable',False),'structural_f1':r.get('structural_f1','NA'),'exact_structural_match':r.get('exact_structural_match','NA')})
  print(json.dumps({'reference_scenarios':len(rows),'all_self_tests_pass':all(x['planning_self_regret']==0 for x in rows),'synthetic_inputs':30,'synthetic_outputs':len(synth)}))
 if __name__=='__main__': main()

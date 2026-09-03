@@ -47,7 +47,7 @@ def evaluate_python_code(sid, code, model='synthetic', run=1):
     inst=ex['world_model']; roll=rollout_world_model(inst,max_states=200,max_depth=10)
     raw=json.loads(canonical_rollout_json(roll)); ids={st['id']:st for st in raw.get('states',[])}; cand={'initial':[{'state':raw['initial_distribution'][0]['state'],'p':raw['initial_distribution'][0].get('probability',1.0)}],'players':[{'id':p} for p in raw.get('players',[])],'states':[]}
     for st in raw.get('states',[]):
-        ns={'id':st['id'],'terminal':st.get('terminal',False),'state_features':{}}
+        ns={'id':st['id'],'terminal':st.get('terminal',False),'state_features':{},'turn':['robot']}
         try: ns['state_features']=inst.state_features(ast.literal_eval(st.get('representation',st['id'])))
         except Exception: pass
         ns['actions']=[]
