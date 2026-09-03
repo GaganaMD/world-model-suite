@@ -1,0 +1,135 @@
+{
+  "execution_id": "restart_03",
+  "source_rows": 30,
+  "excluded_sources": {
+    "restart_01": 0,
+    "restart_02": 0,
+    "legacy": 0,
+    "pilot_debug": 0,
+    "quarantined": 0
+  },
+  "overall_funnel": {
+    "scope": "overall",
+    "authorized": 30,
+    "provider_success": 30,
+    "parse_execution_success": 10,
+    "contract_valid": 10,
+    "feature_contract_valid": 10,
+    "lane1_valid": 10,
+    "structural_evaluable": 10,
+    "planning_eligible": 10,
+    "decision_transfer_eligible": 3
+  },
+  "structural_overall": {
+    "scope": "overall",
+    "n": 10,
+    "mean_f1": 0.19549,
+    "median_f1": 0.18414999999999998,
+    "min_f1": 0.1362,
+    "max_f1": 0.2813,
+    "exact_matches": 0
+  },
+  "decision_overall": {
+    "scope": "overall",
+    "n_eligible": 3,
+    "agreement": 1,
+    "disagreement": 2,
+    "positive_regret": 2,
+    "zero_regret": 1,
+    "mean_regret": 0.25,
+    "median_regret": 0.375,
+    "max_regret": 0.375
+  },
+  "f1_regret_spearman": {
+    "n": 3,
+    "rho": 0.0,
+    "informative": true,
+    "note": "Descriptive only; N=3 and regret takes two values."
+  },
+  "highest_f1_nonexact": "P3_BATTERY_DELIVERY_GPT_R1",
+  "lowest_f1_valid": "P5_IRREVERSIBLE_SWITCH_GPT_R1",
+  "exact_structural_matches": 0,
+  "claims": [
+    {
+      "claim": "Mechanical validity does not imply structural fidelity.",
+      "status": "SUPPORTED",
+      "evidence": "All 10 mechanically valid/evaluable rows had F1 0.1362\u20130.2813; exact matches were 0/10."
+    },
+    {
+      "claim": "Structural fidelity does not perfectly determine policy fidelity.",
+      "status": "PARTIALLY SUPPORTED",
+      "evidence": "At similar low F1, P2 GPT R1 was decision-correct (0.1881) while P4b GPT R1 was decision-wrong (0.1802); this is descriptive and scenario-confounded."
+    },
+    {
+      "claim": "Generated-model planning can expose consequential world-model errors.",
+      "status": "SUPPORTED",
+      "evidence": "Both evaluable P4b GPT rows planned risky_route and incurred reference-world regret 0.375."
+    },
+    {
+      "claim": "Some structurally different models preserve the correct decision.",
+      "status": "SUPPORTED",
+      "evidence": "P2_FRAGILE_DELIVERY_GPT_R1 had F1 0.1881 but transferred pick_up with regret 0."
+    },
+    {
+      "claim": "Some mechanically valid generated models induce positive reference-world regret.",
+      "status": "SUPPORTED",
+      "evidence": "Both valid P4b GPT rows had positive regret 0.375."
+    },
+    {
+      "claim": "P4b demonstrates a safety-relevant policy error in confirmatory data.",
+      "status": "SUPPORTED",
+      "evidence": "Both evaluable P4b GPT rows select risky_route rather than safe_route; reference transferred collision probability is 0.5."
+    },
+    {
+      "claim": "Structural F1 is a sufficient proxy for downstream usefulness.",
+      "status": "NOT SUPPORTED",
+      "evidence": "A correct zero-regret P2 row and wrong positive-regret P4b row occur at similar low F1, and the only paired F1/regret sample is N=3."
+    }
+  ],
+  "examples": [
+    {
+      "candidate_id": "P2_FRAGILE_DELIVERY_GPT_R1",
+      "model": "GPT-5.6 Sol",
+      "scenario": "P2_FRAGILE_DELIVERY",
+      "case": "structural disagreement + correct transferred decision",
+      "structural_f1": 0.1881,
+      "generated_action": "pick_up",
+      "reference_action": "pick_up",
+      "planning_regret": 0.0,
+      "mechanistic_note": "F1 is 0.1881, yet the frozen initial transfer is pick_up and regret is 0."
+    },
+    {
+      "candidate_id": "P4b_COLLISION_RISK_TRADEOFF_GPT_R1",
+      "model": "GPT-5.6 Sol",
+      "scenario": "P4b_COLLISION_RISK_TRADEOFF",
+      "case": "structural disagreement + wrong transferred decision",
+      "structural_f1": 0.1802,
+      "generated_action": "risky_route",
+      "reference_action": "safe_route",
+      "planning_regret": 0.375,
+      "mechanistic_note": "Generated p_gen is 0.25 and frozen-planner Q_safe=0.1625 versus Q_risky=0.5625; risky_route transfers with regret 0.375."
+    },
+    {
+      "candidate_id": "P4b_COLLISION_RISK_TRADEOFF_GPT_R2",
+      "model": "GPT-5.6 Sol",
+      "scenario": "P4b_COLLISION_RISK_TRADEOFF",
+      "case": "relatively higher F1 + wrong transferred decision",
+      "structural_f1": 0.2403,
+      "generated_action": "risky_route",
+      "reference_action": "safe_route",
+      "planning_regret": 0.375,
+      "mechanistic_note": "F1 is 0.2403, but Q_safe=0.2000 versus Q_risky=0.5625 and risky_route transfers with regret 0.375."
+    },
+    {
+      "candidate_id": "P5_IRREVERSIBLE_SWITCH_GPT_R1",
+      "model": "GPT-5.6 Sol",
+      "scenario": "P5_IRREVERSIBLE_SWITCH",
+      "case": "mechanically valid, lowest-F1 valid candidate",
+      "structural_f1": 0.1362,
+      "generated_action": "move",
+      "reference_action": "press_switch",
+      "planning_regret": null,
+      "mechanistic_note": "F1 is 0.1362; generated action differs, but frozen transfer does not define a regret value for this action."
+    }
+  ]
+}

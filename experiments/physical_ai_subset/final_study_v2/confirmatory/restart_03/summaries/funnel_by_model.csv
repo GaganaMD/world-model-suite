@@ -1,0 +1,4 @@
+authorized,contract_valid,decision_transfer_eligible,feature_contract_valid,lane1_valid,model,parse_execution_success,planning_eligible,provider_success,structural_evaluable
+10,0,0,0,0,Claude Opus 5,0,0,10,0
+10,0,0,0,0,Llama 3.3 70B,0,0,10,0
+10,10,3,10,10,GPT-5.6 Sol,10,10,10,10

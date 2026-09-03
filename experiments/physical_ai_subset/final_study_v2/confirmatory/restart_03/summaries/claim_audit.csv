@@ -1,0 +1,8 @@
+claim,evidence,status
+Mechanical validity does not imply structural fidelity.,All 10 mechanically valid/evaluable rows had F1 0.1362–0.2813; exact matches were 0/10.,SUPPORTED
+Structural fidelity does not perfectly determine policy fidelity.,"At similar low F1, P2 GPT R1 was decision-correct (0.1881) while P4b GPT R1 was decision-wrong (0.1802); this is descriptive and scenario-confounded.",PARTIALLY SUPPORTED
+Generated-model planning can expose consequential world-model errors.,Both evaluable P4b GPT rows planned risky_route and incurred reference-world regret 0.375.,SUPPORTED
+Some structurally different models preserve the correct decision.,P2_FRAGILE_DELIVERY_GPT_R1 had F1 0.1881 but transferred pick_up with regret 0.,SUPPORTED
+Some mechanically valid generated models induce positive reference-world regret.,Both valid P4b GPT rows had positive regret 0.375.,SUPPORTED
+P4b demonstrates a safety-relevant policy error in confirmatory data.,Both evaluable P4b GPT rows select risky_route rather than safe_route; reference transferred collision probability is 0.5.,SUPPORTED
+Structural F1 is a sufficient proxy for downstream usefulness.,"A correct zero-regret P2 row and wrong positive-regret P4b row occur at similar low F1, and the only paired F1/regret sample is N=3.",NOT SUPPORTED

@@ -1,0 +1,7 @@
+Q_gap,Q_risky,Q_safe,candidate_id,contract_valid,feature_contract_valid,generated_optimal_action,lane1_valid,model,p_gen,planning_eligible,planning_regret,policy_agreement,provider_success,reference_collision_probability,reference_optimal_action,run,safe_route_steps,structural_f1,transferred_reference_value,unsafe_probability_transferred
+0.4,0.5625,0.16249999999999998,P4b_COLLISION_RISK_TRADEOFF_GPT_R1,True,True,risky_route,True,openai/gpt-5.6-sol,0.25,True,0.375,0.0,True,0.5,safe_route,1,3,0.1802,0.225,0.5
+0.36250000000000004,0.5625,0.19999999999999996,P4b_COLLISION_RISK_TRADEOFF_GPT_R2,True,True,risky_route,True,openai/gpt-5.6-sol,0.25,True,0.375,0.0,True,0.5,safe_route,2,2,0.2403,0.225,0.5
+NA,NA,NA,P4b_COLLISION_RISK_TRADEOFF_Claude_R1,False,False,,False,anthropic/claude-opus-5,NA,False,,,True,NA,,1,NA,,,
+NA,NA,NA,P4b_COLLISION_RISK_TRADEOFF_Claude_R2,False,False,,False,anthropic/claude-opus-5,NA,False,,,True,NA,,2,NA,,,
+NA,NA,NA,P4b_COLLISION_RISK_TRADEOFF_Llama_R1,False,False,,False,meta-llama/llama-3.3-70b-instruct,NA,False,,,True,NA,,1,NA,,,
+NA,NA,NA,P4b_COLLISION_RISK_TRADEOFF_Llama_R2,False,False,,False,meta-llama/llama-3.3-70b-instruct,NA,False,,,True,NA,,2,NA,,,

@@ -1,0 +1,22 @@
+{
+  "generation_freeze": "6ce1bc5",
+  "evaluation_ingestion_freeze": "ea34d64",
+  "execution_id": "restart_03",
+  "authorized_cells": 30,
+  "restart03_records": 30,
+  "restart03_raw_hashes_valid": true,
+  "evaluator_manifest_hashes_valid": true,
+  "prompt_hashes_valid": true,
+  "retries": 0,
+  "replacements": 0,
+  "fallbacks": 0,
+  "excluded_sources": {
+    "restart_01": 0,
+    "restart_02": 0,
+    "legacy": 0,
+    "pilot_debug": 0,
+    "quarantined": 0
+  },
+  "hosted_generation_requests_during_evaluation": 0,
+  "scientific_evaluator_modified_after_generation": false
+}
