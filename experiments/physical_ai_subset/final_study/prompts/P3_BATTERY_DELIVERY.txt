@@ -1,0 +1,35 @@
+Return ONLY completed Python source defining exactly class GeneratedPOSG(AbstractPOSG).
+Use the exact scaffold and signatures below; do not rename, remove, add, or alter
+required methods. No imports, I/O, placeholders, pseudocode, TODOs, ellipses,
+Markdown fences, or explanatory prose.
+
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["safe_route", "risky_route"]
+    def transition(self, state, joint_action): return {"goal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state in {"goal", "collision"}
+    def state_features(self, state): return {"location": "route", "goal_reached": False, "collision": False}
+
+Scenario: A robot must navigate to a destination. It can choose a safe route
+that takes longer, or a shorter risky route with a stochastic possibility of
+collision. Collision is an unsafe terminal outcome; reaching the destination
+is a success terminal outcome. Use exactly one player "robot" and exactly the
+actions "safe_route" and "risky_route". Represent every reachable state with
+state_features containing exactly location (str), goal_reached (bool), and
+collision (bool). State IDs may be arbitrary strings. Infer the world dynamics
+from this scenario; do not assume or reproduce any reference graph, state count,
+transition count, optimal policy, collision probability, evaluator, threshold,
+or score. Preserve action-conditioned stochastic outcomes and normalized
+probabilities. Before output silently check inheritance, all eight methods,
+exact signatures, canonical actions, valid feature fields, terminality, and
+non-empty normalized transition dictionaries.
+
+
+SCENARIO_ID: P3_BATTERY_DELIVERY
+SCENARIO: deliver the package with finite battery
+CANONICAL_ACTIONS: move, charge, deliver
+REQUIRED_STATE_FEATURES: {"battery": 1, "failed": false, "location": "start", "package_delivered": false}

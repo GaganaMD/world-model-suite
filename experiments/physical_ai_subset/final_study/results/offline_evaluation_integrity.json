@@ -1,0 +1,14 @@
+{
+  "status": "ABORTED_NO_FROZEN_ALL_SCENARIO_EVALUATOR",
+  "collection_commit": "7be3908",
+  "pre_data_freeze": "71b05f9",
+  "collected_candidates": 30,
+  "offline_evaluated_records": 0,
+  "hosted_calls_during_task": 0,
+  "retries": 0,
+  "pilot_rows_included": 0,
+  "raw_file_count": 30,
+  "raw_sorted_sha256_concat_digest": "aeee46d0d8d0abfd043e28bcffbb47cd360013df74cd6c31a7d60c0c18c6ed2f",
+  "scientific_evaluator_changes": 0,
+  "status_reason": "The frozen commit has individual evaluator components but no complete all-scenario offline driver; applying the requested metrics would require post-data implementation work."
+}

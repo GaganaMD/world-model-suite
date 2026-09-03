@@ -1,0 +1,24 @@
+```python
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["safe_route", "risky_route"]
+    def transition(self, state, joint_action): 
+        if joint_action == "safe_route": 
+            return {"s1": 1.0}
+        elif joint_action == "risky_route": 
+            return {"s1": 0.9, "collision": 0.1}
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player): return 0.0
+    def is_terminal(self, state): return state in {"goal", "collision"}
+    def state_features(self, state): 
+        if state == "s0": 
+            return {"location": "start", "goal_reached": False, "collision": False}
+        elif state == "s1": 
+            return {"location": "route", "goal_reached": False, "collision": False}
+        elif state == "goal": 
+            return {"location": "goal", "goal_reached": True, "collision": False}
+        elif state == "collision": 
+            return {"location": "collision", "goal_reached": False, "collision": True}
+```

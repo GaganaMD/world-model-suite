@@ -1,0 +1,47 @@
+{
+  "P1_BLOCKED_DOOR": {
+    "scenario_id": "P1_BLOCKED_DOOR",
+    "reference_variant": "v1",
+    "objective_id": "p1_blocked_door_objective_v1",
+    "reference_hash": "6ecbd322228214f95260da99cf3995eefbb301f15c0e034672d77703c55ad39f",
+    "reference_file": "references\\references.json",
+    "planning_horizon": 10,
+    "feature_contract_version": "physical-features-v1"
+  },
+  "P2_FRAGILE_DELIVERY": {
+    "scenario_id": "P2_FRAGILE_DELIVERY",
+    "reference_variant": "v1",
+    "objective_id": "p2_fragile_delivery_objective_v1",
+    "reference_hash": "4f7b9f58084119002bccb46ad36bacba07615dea6b1e9054abe776c7247b97a5",
+    "reference_file": "references\\references.json",
+    "planning_horizon": 10,
+    "feature_contract_version": "physical-features-v1"
+  },
+  "P3_BATTERY_DELIVERY": {
+    "scenario_id": "P3_BATTERY_DELIVERY",
+    "reference_variant": "v1",
+    "objective_id": "p3_battery_delivery_objective_v1",
+    "reference_hash": "ce34f6f760f0cbd8920d44efd5f12dcd87fa59dd5e33777dd1421066191b8784",
+    "reference_file": "references\\references.json",
+    "planning_horizon": 10,
+    "feature_contract_version": "physical-features-v1"
+  },
+  "P4b_COLLISION_RISK_TRADEOFF": {
+    "scenario_id": "P4b_COLLISION_RISK_TRADEOFF",
+    "reference_variant": "p4b_v1",
+    "objective_id": "p4b_tradeoff_v1",
+    "reference_hash": "5659df86ec5b0b8ce72ed44c42361d7cddd6570f601148812327dd3c47d242e9",
+    "reference_file": "references\\references.json",
+    "planning_horizon": 10,
+    "feature_contract_version": "physical-features-v1"
+  },
+  "P5_IRREVERSIBLE_SWITCH": {
+    "scenario_id": "P5_IRREVERSIBLE_SWITCH",
+    "reference_variant": "v1",
+    "objective_id": "p5_irreversible_switch_objective_v1",
+    "reference_hash": "06b68acfc883d2d46afcc87634de509d61f98c7d5d9b9a35714d96e872716802",
+    "reference_file": "references\\references.json",
+    "planning_horizon": 10,
+    "feature_contract_version": "physical-features-v1"
+  }
+}

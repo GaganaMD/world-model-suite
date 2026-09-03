@@ -1,0 +1,18 @@
+{
+  "model": "anthropic/claude-opus-5",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Return only the requested Python class."
+    },
+    {
+      "role": "user",
+      "content": "Return ONLY completed Python source defining exactly class GeneratedPOSG(AbstractPOSG).\nUse the exact scaffold and signatures below; do not rename, remove, add, or alter\nrequired methods. No imports, I/O, placeholders, pseudocode, TODOs, ellipses,\nMarkdown fences, or explanatory prose.\n\nclass GeneratedPOSG(AbstractPOSG):\n    @property\n    def players(self): return [\"robot\"]\n    def initial_state(self): return \"s0\"\n    def legal_actions(self, state, player): return [\"safe_route\", \"risky_route\"]\n    def transition(self, state, joint_action): return {\"goal\": 1.0}\n    def observation(self, state, joint_action, next_state, player): return str(next_state)\n    def reward(self, state, joint_action, next_state, player): return 0.0\n    def is_terminal(self, state): return state in {\"goal\", \"collision\"}\n    def state_features(self, state): return {\"location\": \"route\", \"goal_reached\": False, \"collision\": False}\n\nScenario: A robot must navigate to a destination. It can choose a safe route\nthat takes longer, or a shorter risky route with a stochastic possibility of\ncollision. Collision is an unsafe terminal outcome; reaching the destination\nis a success terminal outcome. Use exactly one player \"robot\" and exactly the\nactions \"safe_route\" and \"risky_route\". Represent every reachable state with\nstate_features containing exactly location (str), goal_reached (bool), and\ncollision (bool). State IDs may be arbitrary strings. Infer the world dynamics\nfrom this scenario; do not assume or reproduce any reference graph, state count,\ntransition count, optimal policy, collision probability, evaluator, threshold,\nor score. Preserve action-conditioned stochastic outcomes and normalized\nprobabilities. Before output silently check inheritance, all eight methods,\nexact signatures, canonical actions, valid feature fields, terminality, and\nnon-empty normalized transition dictionaries.\n\n\nSCENARIO_ID: P1_BLOCKED_DOOR\nSCENARIO: reach destination; a closed door blocks traversal\nCANONICAL_ACTIONS: move_left, move_right, open_door\nREQUIRED_STATE_FEATURES: {\"door_open\": false, \"goal_reached\": false, \"location\": \"left\"}\n"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 12000,
+  "reasoning": {
+    "enabled": false
+  }
+}

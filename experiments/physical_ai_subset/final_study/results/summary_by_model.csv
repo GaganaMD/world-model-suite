@@ -1,0 +1,4 @@
+model,attempted,provider_success,contract_valid,feature_valid,lane1_valid,planning_eligible
+anthropic/claude-opus-5,10,10,10,8,10,8
+meta-llama/llama-3.3-70b-instruct,10,10,10,2,0,0
+openai/gpt-5.6-sol,10,10,10,6,10,6

@@ -1,0 +1,503 @@
+[
+  {
+    "scenario_id": "P1_BLOCKED_DOOR",
+    "reference_variant": "v1",
+    "objective_id": "p1_blocked_door_objective_v1",
+    "players": [
+      {
+        "id": "robot"
+      }
+    ],
+    "initial": [
+      {
+        "state": "s0",
+        "p": 1.0
+      }
+    ],
+    "allowed_actions": [
+      "move_left",
+      "move_right",
+      "open_door"
+    ],
+    "states": [
+      {
+        "id": "s0",
+        "state_features": {
+          "location": "left",
+          "door_open": false,
+          "goal_reached": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "open_door"
+            },
+            "next": [
+              {
+                "state": "s1",
+                "p": 1
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot": "move_right"
+            },
+            "next": [
+              {
+                "state": "s0",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "s1",
+        "state_features": {
+          "location": "left",
+          "door_open": true,
+          "goal_reached": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "move_right"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "goal",
+        "terminal": true,
+        "state_features": {
+          "location": "right",
+          "door_open": true,
+          "goal_reached": true
+        }
+      }
+    ],
+    "objective": "reach destination; a closed door blocks traversal",
+    "invariant": "door remains closed until open_door; goal is reachable after opening"
+  },
+  {
+    "scenario_id": "P2_FRAGILE_DELIVERY",
+    "reference_variant": "v1",
+    "objective_id": "p2_fragile_delivery_objective_v1",
+    "players": [
+      {
+        "id": "robot"
+      }
+    ],
+    "initial": [
+      {
+        "state": "s0",
+        "p": 1.0
+      }
+    ],
+    "allowed_actions": [
+      "move",
+      "pick_up",
+      "drop",
+      "deliver"
+    ],
+    "states": [
+      {
+        "id": "s0",
+        "state_features": {
+          "robot_location": "start",
+          "object_location": "start",
+          "carrying": false,
+          "broken": false,
+          "delivered": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "pick_up"
+            },
+            "next": [
+              {
+                "state": "carrying",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "carrying",
+        "state_features": {
+          "robot_location": "start",
+          "object_location": "carried",
+          "carrying": true,
+          "broken": false,
+          "delivered": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "move"
+            },
+            "next": [
+              {
+                "state": "dropoff",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "dropoff",
+        "state_features": {
+          "robot_location": "dropoff",
+          "object_location": "carried",
+          "carrying": true,
+          "broken": false,
+          "delivered": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "deliver"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 1
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot": "drop"
+            },
+            "next": [
+              {
+                "state": "broken",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "broken",
+        "terminal": true,
+        "state_features": {
+          "robot_location": "dropoff",
+          "object_location": "dropoff",
+          "carrying": false,
+          "broken": true,
+          "delivered": false
+        }
+      },
+      {
+        "id": "goal",
+        "terminal": true,
+        "state_features": {
+          "robot_location": "dropoff",
+          "object_location": "dropoff",
+          "carrying": false,
+          "broken": false,
+          "delivered": true
+        }
+      }
+    ],
+    "objective": "deliver the object intact",
+    "invariant": "broken object cannot recover without a repair action (none exists)"
+  },
+  {
+    "scenario_id": "P3_BATTERY_DELIVERY",
+    "reference_variant": "v1",
+    "objective_id": "p3_battery_delivery_objective_v1",
+    "players": [
+      {
+        "id": "robot"
+      }
+    ],
+    "initial": [
+      {
+        "state": "s0",
+        "p": 1.0
+      }
+    ],
+    "allowed_actions": [
+      "move",
+      "charge",
+      "deliver"
+    ],
+    "states": [
+      {
+        "id": "s0",
+        "state_features": {
+          "location": "start",
+          "battery": 1,
+          "package_delivered": false,
+          "failed": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "move"
+            },
+            "next": [
+              {
+                "state": "s1",
+                "p": 1
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot": "charge"
+            },
+            "next": [
+              {
+                "state": "s0",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "s1",
+        "state_features": {
+          "location": "destination",
+          "battery": 0,
+          "package_delivered": false,
+          "failed": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "deliver"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "goal",
+        "terminal": true,
+        "state_features": {
+          "location": "destination",
+          "battery": 0,
+          "package_delivered": true,
+          "failed": false
+        }
+      },
+      {
+        "id": "dead",
+        "terminal": true,
+        "state_features": {
+          "location": "destination",
+          "battery": 0,
+          "package_delivered": false,
+          "failed": true
+        }
+      }
+    ],
+    "objective": "deliver the package with finite battery",
+    "invariant": "battery does not increase except through charge; movement consumes battery"
+  },
+  {
+    "scenario_id": "P4b_COLLISION_RISK_TRADEOFF",
+    "reference_variant": "p4b_v1",
+    "objective_id": "p4b_tradeoff_v1",
+    "players": [
+      {
+        "id": "robot"
+      }
+    ],
+    "initial": [
+      {
+        "state": "s0",
+        "p": 1.0
+      }
+    ],
+    "allowed_actions": [
+      "safe_route",
+      "risky_route"
+    ],
+    "states": [
+      {
+        "id": "s0",
+        "state_features": {
+          "location": "start",
+          "goal_reached": false,
+          "collision": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "safe_route"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 1
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot": "risky_route"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 0.5
+              },
+              {
+                "state": "collision",
+                "p": 0.5
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "goal",
+        "terminal": true,
+        "state_features": {
+          "location": "destination",
+          "goal_reached": true,
+          "collision": false
+        }
+      },
+      {
+        "id": "collision",
+        "terminal": true,
+        "state_features": {
+          "location": "collision_site",
+          "goal_reached": false,
+          "collision": true
+        }
+      }
+    ],
+    "objective": "reach destination via a safe longer route or a shorter risky route; collision is possible on risky_route",
+    "invariant": "collision-risk tradeoff; collision is irreversible"
+  },
+  {
+    "scenario_id": "P5_IRREVERSIBLE_SWITCH",
+    "reference_variant": "v1",
+    "objective_id": "p5_irreversible_switch_objective_v1",
+    "players": [
+      {
+        "id": "robot"
+      }
+    ],
+    "initial": [
+      {
+        "state": "s0",
+        "p": 1.0
+      }
+    ],
+    "allowed_actions": [
+      "move",
+      "press_switch"
+    ],
+    "states": [
+      {
+        "id": "s0",
+        "state_features": {
+          "location": "start",
+          "switch_pressed": false,
+          "access_open": false,
+          "goal_reached": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "press_switch"
+            },
+            "next": [
+              {
+                "state": "s1",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "s1",
+        "state_features": {
+          "location": "corridor",
+          "switch_pressed": true,
+          "access_open": true,
+          "goal_reached": false
+        },
+        "actions": [
+          {
+            "by": {
+              "robot": "move"
+            },
+            "next": [
+              {
+                "state": "goal",
+                "p": 1
+              }
+            ]
+          }
+        ],
+        "turn": [
+          "robot"
+        ]
+      },
+      {
+        "id": "goal",
+        "terminal": true,
+        "state_features": {
+          "location": "target",
+          "switch_pressed": true,
+          "access_open": true,
+          "goal_reached": true
+        }
+      }
+    ],
+    "objective": "press the irreversible switch and reach the target",
+    "invariant": "switch state cannot revert"
+  }
+]

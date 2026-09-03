@@ -148,3 +148,13 @@ study and remain unrun.
 - P4b decomposition: `experiments/physical_ai_subset/p4b_pilot/corrected_eval/`
 - Decision case study: `experiments/physical_ai_subset/p4b_pilot/P4B_DECISION_ERROR_CASE_STUDY.md`
 - Final-study staging: `experiments/physical_ai_subset/final_study/`
+
+## 11. Protocol-completeness repair
+
+The original prose freeze (`45b4fc2`) was incomplete before any clean sample
+was generated: P1/P2/P3/P5 executable reference artifacts and per-scenario
+rendered prompt hashes were missing, and one scenario used the ambiguous
+legacy P4 name. No hosted calls were made. The repair materializes the already
+documented five reference specifications, renders immutable prompts for the
+canonical IDs, records SHA-256 hashes, creates all 30 candidate IDs, and adds
+a fail-closed preflight. Task semantics and P4b parameters were not changed.

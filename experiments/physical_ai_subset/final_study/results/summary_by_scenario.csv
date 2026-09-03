@@ -1,0 +1,6 @@
+scenario,attempted,provider_success,contract_valid,feature_valid,lane1_valid,planning_eligible
+P1_BLOCKED_DOOR,6,6,6,1,4,1
+P2_FRAGILE_DELIVERY,6,6,6,2,4,2
+P3_BATTERY_DELIVERY,6,6,6,4,4,4
+P4b_COLLISION_RISK_TRADEOFF,6,6,6,6,4,4
+P5_IRREVERSIBLE_SWITCH,6,6,6,3,4,3

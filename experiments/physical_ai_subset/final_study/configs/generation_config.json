@@ -1,0 +1,14 @@
+{
+  "models": {
+    "GPT": "openai/gpt-5.6-sol",
+    "Claude": "anthropic/claude-opus-5",
+    "Llama": "meta-llama/llama-3.3-70b-instruct"
+  },
+  "runs": [
+    1,
+    2
+  ],
+  "retries": 0,
+  "repairs": false,
+  "protocol_version": "physical-ai-v1"
+}
