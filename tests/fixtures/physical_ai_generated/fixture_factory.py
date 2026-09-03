@@ -4,12 +4,18 @@ from experiments.physical_ai_subset.final_study.reference_spec import canonical_
 
 def source_for(scenario_id, wrong=False):
     spec=next(s for s in canonical_specs() if s['scenario_id']==scenario_id)
-    if wrong and scenario_id=='P4b_COLLISION_RISK_TRADEOFF':
-        # Valid dynamics with a deliberately risk-free risky branch.
-        for s in spec['states']:
-            for a in s.get('actions',[]):
-                if a.get('by',{}).get('robot')=='risky_route':
-                    a['next']=[{'state':'goal','p':1.0}]
+    if wrong:
+        # Valid dynamics with a deliberately suboptimal initial decision.
+        s0=next(s for s in spec['states'] if s['id']=='s0')
+        optimal=s0.get('actions',[{}])[0].get('by',{}).get('robot')
+        alt=next((a for a in spec['allowed_actions'] if a!=optimal), optimal)
+        for a in s0.get('actions',[]):
+            if a.get('by',{}).get('robot')==optimal: a['next']=[{'state':'s0','p':1.0}]
+        if not any(a.get('by',{}).get('robot')==alt for a in s0.get('actions',[])):
+            s0.setdefault('actions',[]).append({'by':{'robot':alt},'next':[{'state':'goal','p':1.0}]})
+        else:
+            for a in s0['actions']:
+                if a.get('by',{}).get('robot')==alt: a['next']=[{'state':'goal','p':1.0}]
     payload=pprint.pformat(spec,width=120)
     return f'''class GeneratedPOSG(AbstractPOSG):
     def __init__(self): self._m={payload}
