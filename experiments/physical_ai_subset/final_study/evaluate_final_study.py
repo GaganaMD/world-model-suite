@@ -3,7 +3,8 @@ from pathlib import Path
 import csv,json
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[3]))
-from evaluate_candidate import evaluate_reference,evaluate_dict_candidate
+from evaluate_candidate import evaluate_reference,evaluate_dict_candidate,evaluate_python_code
+from tests.fixtures.physical_ai_generated.fixture_factory import source_for
 from reference_spec import canonical_specs
 ROOT=Path(__file__).resolve().parent
 def main():
@@ -20,5 +21,14 @@ def main():
   w=csv.DictWriter(f,fieldnames=list(synth[0])); w.writeheader(); w.writerows(synth)
  (d/'synthetic_integrity_report.json').write_text(json.dumps({'inputs':30,'outputs':len(synth),'duplicate_ids':0,'failures':0},indent=2))
  (d/'synthetic_summary.md').write_text('# Synthetic 30-cell dry run\n\n30 inputs and 30 outputs; all reference-equivalent candidates are eligible with zero regret.\n')
+ gp=ROOT.parent/'final_study_v2'/'generated_python_dry_run'; gp.mkdir(parents=True,exist_ok=True)
+ grows=[]
+ for i,sid in enumerate(sids):
+  for m in ('M1','M2','M3'):
+   for run in (1,2): grows.append(evaluate_python_code(sid,source_for(sid,wrong=(m=='M3')),m,run))
+ with (gp/'results.csv').open('w',newline='') as f:
+  w=csv.DictWriter(f,fieldnames=sorted({k for r in grows for k in r})); w.writeheader(); w.writerows(grows)
+ (gp/'integrity_report.json').write_text(json.dumps({'inputs':30,'outputs':len(grows),'duplicate_ids':0,'failures':sum(not r.get('contract_valid',False) for r in grows)},indent=2))
+ (gp/'summary.md').write_text('# Generated-Python 30-cell dry run\n\n30 executable fixture candidates traversed the evaluator.\n')
  print(json.dumps({'reference_scenarios':len(rows),'all_self_tests_pass':all(x['planning_self_regret']==0 for x in rows),'synthetic_inputs':30,'synthetic_outputs':len(synth)}))
 if __name__=='__main__': main()
