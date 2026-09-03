@@ -1,0 +1,14 @@
+{
+  "candidate_id": "P1_BLOCKED_DOOR_GPT_R2",
+  "scenario_id": "P1_BLOCKED_DOOR",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "2",
+  "prompt_hash": "cf5e7a207b7eafc2a66a48cbe146f95d02a8f0f9026868d2cc47a831410d3417",
+  "execution_id": "restart_01",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T08:46:42.382946+00:00",
+  "provider_success": true,
+  "raw_response_path": "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P1_BLOCKED_DOOR_GPT_R2.txt",
+  "raw_sha256": "51f3fa749e3a5fafead1b99caa54b3cec02edec174066583e40e1dfc9125ff31",
+  "provider_model": "openai/gpt-5.6-sol"
+}

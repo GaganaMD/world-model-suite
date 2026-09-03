@@ -1,0 +1,14 @@
+{
+  "candidate_id": "P5_IRREVERSIBLE_SWITCH_GPT_R1",
+  "scenario_id": "P5_IRREVERSIBLE_SWITCH",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "1",
+  "prompt_hash": "0b79460e9620f32683def35185f714612a512dee8483991c67906717ff7d9b85",
+  "execution_id": "restart_01",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T08:49:14.228800+00:00",
+  "provider_success": true,
+  "raw_response_path": "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P5_IRREVERSIBLE_SWITCH_GPT_R1.txt",
+  "raw_sha256": "b63b06961341ce59ac306683b040bb864c006770212ec8245a7df61fbda74643",
+  "provider_model": "openai/gpt-5.6-sol"
+}

@@ -1,0 +1,60 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+
+    def initial_state(self): return "start_1"
+
+    def legal_actions(self, state, player):
+        if player != "robot" or self.is_terminal(state):
+            return []
+        return ["move", "charge", "deliver"]
+
+    def transition(self, state, joint_action):
+        if self.is_terminal(state):
+            return {state: 1.0}
+        if isinstance(joint_action, dict):
+            action = joint_action.get("robot")
+        elif isinstance(joint_action, (list, tuple)) and len(joint_action) == 1:
+            action = joint_action[0]
+        else:
+            action = joint_action
+        features = self.state_features(state)
+        battery = features["battery"]
+        location = features["location"]
+        if action == "charge":
+            return {location + "_" + str(min(2, battery + 1)): 1.0}
+        if action == "move":
+            if battery == 0:
+                return {"failed": 1.0}
+            next_location = "destination" if location == "start" else "start"
+            return {next_location + "_" + str(battery - 1): 1.0}
+        if action == "deliver":
+            if location == "destination":
+                if battery > 0:
+                    return {"goal": 1.0}
+                return {"failed": 1.0}
+            return {state: 1.0}
+        return {state: 1.0}
+
+    def observation(self, state, joint_action, next_state, player):
+        return str(next_state)
+
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "goal":
+            return 20.0
+        if next_state == "failed":
+            return -20.0
+        return -1.0
+
+    def is_terminal(self, state):
+        return state in {"goal", "failed"}
+
+    def state_features(self, state):
+        if state == "goal":
+            return {"battery": 0, "failed": False, "location": "destination", "package_delivered": True}
+        if state == "failed":
+            return {"battery": 0, "failed": True, "location": "destination", "package_delivered": False}
+        parts = state.rsplit("_", 1)
+        if len(parts) == 2 and parts[0] in {"start", "destination"} and parts[1] in {"0", "1", "2"}:
+            return {"battery": int(parts[1]), "failed": False, "location": parts[0], "package_delivered": False}
+        return {"battery": 0, "failed": True, "location": "start", "package_delivered": False}

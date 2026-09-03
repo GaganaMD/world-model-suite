@@ -1,0 +1,14 @@
+{
+  "candidate_id": "P4b_COLLISION_RISK_TRADEOFF_GPT_R2",
+  "scenario_id": "P4b_COLLISION_RISK_TRADEOFF",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "2",
+  "prompt_hash": "563147c5470c18a2c6dbb284d989fac98d9d5e3998f63909b8abd058256e10e6",
+  "execution_id": "restart_01",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T08:48:58.832236+00:00",
+  "provider_success": true,
+  "raw_response_path": "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P4b_COLLISION_RISK_TRADEOFF_GPT_R2.txt",
+  "raw_sha256": "d4b578ca11a80337257b0cf082538d72ca8d43e898afd5a17ac4dcc44a920f43",
+  "provider_model": "openai/gpt-5.6-sol"
+}

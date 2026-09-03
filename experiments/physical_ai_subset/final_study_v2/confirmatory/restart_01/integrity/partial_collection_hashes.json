@@ -1,0 +1,74 @@
+[
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P1_BLOCKED_DOOR_GPT_R1.txt",
+    "sha256": "5F65EBE613BB7BD0C719AC04F612BB7030F32C15487E63B1DBD80257316EDFB0"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P1_BLOCKED_DOOR_GPT_R2.txt",
+    "sha256": "EE4040F5958799DAF2042B680C318DF230A1965E9C3CF62A1505ABB2FD5DEEE6"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P2_FRAGILE_DELIVERY_GPT_R1.txt",
+    "sha256": "C827527C9439CDFBC1A8EAC23D105C1F67A1B5ACE63C26C1AAAEEDCF456AAE81"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P2_FRAGILE_DELIVERY_GPT_R2.txt",
+    "sha256": "06AFF672D3BF1224922C5AC74B2589FD2ADC30354AED5FE70D2E6AB875665816"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P3_BATTERY_DELIVERY_GPT_R1.txt",
+    "sha256": "CB4154FAE5F3DFBDC5BC7C91BFD92ED14CADEC148938BA01ACD26E3155F5A5B1"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P3_BATTERY_DELIVERY_GPT_R2.txt",
+    "sha256": "3E2612A9CD3009C010622481E35EE8AD28F127E1479E4178425FC46479DD279C"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P4b_COLLISION_RISK_TRADEOFF_GPT_R1.txt",
+    "sha256": "3C90AE649C67703C076E040B63CB326428742C1A8F2CFED4CE66CF063743D3CD"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P4b_COLLISION_RISK_TRADEOFF_GPT_R2.txt",
+    "sha256": "4D95F11C1AA5963F8D5101BEF384A5CDAEB0B7966987A7C819C89A847BED23D4"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P5_IRREVERSIBLE_SWITCH_GPT_R1.txt",
+    "sha256": "73624BB5D07EE781BD8FB9F02511923416A1F21677F059E9E404B36A5F8CDFB0"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P1_BLOCKED_DOOR_GPT_R1.json",
+    "sha256": "42467D959BEED5919CB1A019E612A989FC8CB4ED89368EAB2EB82760988AD647"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P1_BLOCKED_DOOR_GPT_R2.json",
+    "sha256": "8F84257D279865CD4B157EECC89D90CD5EE7E19187E3567C40CD41048E561DAD"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P2_FRAGILE_DELIVERY_GPT_R1.json",
+    "sha256": "1495D78E27A0F834D9E21ADEF80307DD533C87BFE939BBC3481CA9A35DC851FA"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P2_FRAGILE_DELIVERY_GPT_R2.json",
+    "sha256": "189A817A1FF195D418A37CF5C7035E38E8B76EBCE1DD610880A39DD923202843"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P3_BATTERY_DELIVERY_GPT_R1.json",
+    "sha256": "FEBE16B66C94D6E71360300E44E1B3527B5B395696F0030066A9FAC4DE8C8FD3"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P3_BATTERY_DELIVERY_GPT_R2.json",
+    "sha256": "44532C6A0AB3327C2ABE2279DCEEA441FA63B6B7BBECCFDDA7D7FEE78CA0BA4C"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P4b_COLLISION_RISK_TRADEOFF_GPT_R1.json",
+    "sha256": "62B5FFF51CDF8C63C2B87F936B55034CC7CC1B71A94B6720E37FC5254585B11D"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P4b_COLLISION_RISK_TRADEOFF_GPT_R2.json",
+    "sha256": "6FC673E078A64DEDE7F5A1609629AD611A5A13D2338656A914D7FFE74462C57E"
+  },
+  {
+    "path": "experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\metadata\\P5_IRREVERSIBLE_SWITCH_GPT_R1.json",
+    "sha256": "8E2FEFD306E3574683FAB26DA0DE868410D0C20B6ADC3DA09769ED4FD1A4028B"
+  }
+]
