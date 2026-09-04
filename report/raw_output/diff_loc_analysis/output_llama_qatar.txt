@@ -1,0 +1,103 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "a reception robot" },
+    { "id": "client", "type": "human", "desc": "a visiting client" },
+    { "id": "team", "type": "human", "desc": "the team or its representative" }
+  ],
+
+  "initial": [
+    { "state": "gift_presented", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "the client presents a wrapped gift to the robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_human" },
+          "next": [ { "state": "human_handles_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift" },
+          "next": [ { "state": "gift_info_clarified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [ { "state": "gift_opened_immediately", "p": 0.5 }, { "state": "gift_opened_immediately_client_uncomfortable", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_set_aside",
+      "desc": "the robot sets the gift aside for later opening",
+      "terminal": false,
+      "turn": ["team"],
+      "actions": [
+        {
+          "by": { "team": "open_gift_later" },
+          "next": [ { "state": "gift_opened_later", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "human_handles_gift",
+      "desc": "a human colleague handles the gift",
+      "terminal": false,
+      "turn": ["team"],
+      "actions": [
+        {
+          "by": { "team": "open_gift_immediately" },
+          "next": [ { "state": "gift_opened_immediately", "p": 1.0 } ]
+        },
+        {
+          "by": { "team": "set_gift_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_info_clarified",
+      "desc": "the robot has clarified information about the gift",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_human" },
+          "next": [ { "state": "human_handles_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [ { "state": "gift_opened_immediately", "p": 0.5 }, { "state": "gift_opened_immediately_client_uncomfortable", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_opened_immediately",
+      "desc": "the gift is opened immediately in front of the client",
+      "terminal": true
+    },
+    {
+      "id": "gift_opened_immediately_client_uncomfortable",
+      "desc": "the gift is opened immediately but the client seems uncomfortable",
+      "terminal": true
+    },
+    {
+      "id": "gift_opened_later",
+      "desc": "the gift is opened later by the team",
+      "terminal": true
+    }
+  ]
+}
+```

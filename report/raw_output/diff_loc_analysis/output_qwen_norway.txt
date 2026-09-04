@@ -1,0 +1,641 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot that greets the client and handles the presented gift."
+    },
+    {
+      "id": "client",
+      "type": "human",
+      "desc": "A visiting client whose gift gesture carries relational meaning."
+    },
+    {
+      "id": "team_rep",
+      "type": "human",
+      "desc": "A human colleague representing the receiving team in a flat low-formality workplace."
+    }
+  ],
+  "initial": [
+    {
+      "state": "arrival",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "arrival",
+      "desc": "The visiting client is present before any gift is presented.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "greet_client" },
+          "next": [
+            { "state": "client_presents", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_presents",
+      "desc": "The robot has greeted the client and the client is ready to present a wrapped gift.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "present_gift" },
+          "next": [
+            { "state": "greeting_with_gift", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greeting_with_gift",
+      "desc": "The robot faces a wrapped gift presented by the client while the client watches and a team representative is available.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_away" },
+          "next": [
+            { "state": "set_away_team_deferred", "p": 0.55 },
+            { "state": "set_away_team_immediate", "p": 0.45 }
+          ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [
+            { "state": "colleague_receives", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarification" },
+          "next": [
+            { "state": "client_answers", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "opening_team_deferred", "p": 0.55 },
+            { "state": "opening_team_immediate", "p": 0.45 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_away_team_deferred",
+      "desc": "The gift has been set aside and the client's convention favors deferred opening.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "set_away_deferred_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "set_away_deferred_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_away_team_immediate",
+      "desc": "The gift has been set aside and the client expects immediate acknowledgment.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "set_away_immediate_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "set_away_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opening_team_deferred",
+      "desc": "The gift has been opened in front of the client and the client's convention favors deferred opening.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_opening" },
+          "next": [
+            { "state": "opening_deferred_accept", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "state_deferred_preference" },
+          "next": [
+            { "state": "opening_deferred_deferred", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opening_team_immediate",
+      "desc": "The gift has been opened in front of the client and the client expects immediate acknowledgment.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_opening" },
+          "next": [
+            { "state": "opening_immediate_accept", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "state_deferred_preference" },
+          "next": [
+            { "state": "opening_immediate_deferred", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_receives",
+      "desc": "A human colleague has received the gift and faces the client in a low-formality workplace.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "set_away_for_later" },
+          "next": [
+            { "state": "colleague_set_away_deferred", "p": 0.55 },
+            { "state": "colleague_set_away_immediate", "p": 0.45 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_opening_deferred", "p": 0.55 },
+            { "state": "colleague_opening_immediate", "p": 0.45 }
+          ]
+        },
+        {
+          "by": { "team_rep": "ask_client_preference" },
+          "next": [
+            { "state": "colleague_asks", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_set_away_deferred",
+      "desc": "The colleague has set the gift aside and the client's convention favors deferred opening.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "colleague_set_away_deferred_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_set_away_deferred_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_set_away_immediate",
+      "desc": "The colleague has set the gift aside and the client expects immediate acknowledgment.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "colleague_set_away_immediate_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_set_away_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_asks",
+      "desc": "The colleague has asked the client whether immediate or deferred opening is preferred.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "state_deferred_preference" },
+          "next": [
+            { "state": "colleague_answer_deferred", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "state_immediate_preference" },
+          "next": [
+            { "state": "colleague_answer_immediate", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_answer_deferred",
+      "desc": "The client has stated a preference for deferred opening after the colleague asked.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "set_away_for_later" },
+          "next": [
+            { "state": "colleague_answer_deferred_set", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_answer_deferred_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_answer_immediate",
+      "desc": "The client has stated a preference for immediate acknowledgment after the colleague asked.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "set_away_for_later" },
+          "next": [
+            { "state": "colleague_answer_immediate_set", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_answer_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_answers",
+      "desc": "The robot has asked a clarifying question about the gift.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "state_deferred_preference" },
+          "next": [
+            { "state": "robot_answer_deferred", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "state_immediate_preference" },
+          "next": [
+            { "state": "robot_answer_immediate", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "robot_answer_deferred",
+      "desc": "The client has stated a preference for deferred opening after the robot asked.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_away" },
+          "next": [
+            { "state": "set_away_answered_deferred", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [
+            { "state": "colleague_answered_deferred", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "opening_answered_deferred", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "robot_answer_immediate",
+      "desc": "The client has stated a preference for immediate acknowledgment after the robot asked.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_away" },
+          "next": [
+            { "state": "set_away_answered_immediate", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [
+            { "state": "colleague_answered_immediate", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "opening_answered_immediate", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_away_answered_deferred",
+      "desc": "The client has stated a preference for deferred opening and the robot has set the gift aside.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "set_away_answered_deferred_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "set_away_answered_deferred_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_away_answered_immediate",
+      "desc": "The client has stated a preference for immediate acknowledgment and the robot has set the gift aside.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "confirm_later_opening" },
+          "next": [
+            { "state": "set_away_answered_immediate_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "set_away_answered_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_answered_deferred",
+      "desc": "The client has stated a preference for deferred opening and the robot has passed the gift to a colleague.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "set_away_for_later" },
+          "next": [
+            { "state": "colleague_answered_deferred_set", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_answered_deferred_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_answered_immediate",
+      "desc": "The client has stated a preference for immediate acknowledgment and the robot has passed the gift to a colleague.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "set_away_for_later" },
+          "next": [
+            { "state": "colleague_answered_immediate_set", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "colleague_answered_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opening_answered_deferred",
+      "desc": "The client has stated a preference for deferred opening and the robot has opened the gift in front.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_opening" },
+          "next": [
+            { "state": "opening_answered_deferred_accept", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "state_deferred_preference" },
+          "next": [
+            { "state": "opening_answered_deferred_deferred", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opening_answered_immediate",
+      "desc": "The client has stated a preference for immediate acknowledgment and the robot has opened the gift in front.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_opening" },
+          "next": [
+            { "state": "opening_answered_immediate_accept", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "state_deferred_preference" },
+          "next": [
+            { "state": "opening_answered_immediate_deferred", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_away_deferred_later",
+      "desc": "The gift is set aside, the client favors deferred opening, and the team confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_deferred_opening",
+      "desc": "The gift is set aside, the client favors deferred opening, and the team opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_immediate_later",
+      "desc": "The gift is set aside, the client expects immediate acknowledgment, and the team confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_immediate_opening",
+      "desc": "The gift is set aside, the client expects immediate acknowledgment, and the team opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "opening_deferred_accept",
+      "desc": "The gift is opened in front, the client favors deferred opening, and the team accepts the opening.",
+      "terminal": true
+    },
+    {
+      "id": "opening_deferred_deferred",
+      "desc": "The gift is opened in front, the client favors deferred opening, and the team states a deferred preference.",
+      "terminal": true
+    },
+    {
+      "id": "opening_immediate_accept",
+      "desc": "The gift is opened in front, the client expects immediate acknowledgment, and the team accepts the opening.",
+      "terminal": true
+    },
+    {
+      "id": "opening_immediate_deferred",
+      "desc": "The gift is opened in front, the client expects immediate acknowledgment, and the team states a deferred preference.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_away_deferred_later",
+      "desc": "The colleague sets the gift aside, the client favors deferred opening, and the colleague confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_away_deferred_opening",
+      "desc": "The colleague sets the gift aside, the client favors deferred opening, and the colleague opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_away_immediate_later",
+      "desc": "The colleague sets the gift aside, the client expects immediate acknowledgment, and the colleague confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_set_away_immediate_opening",
+      "desc": "The colleague sets the gift aside, the client expects immediate acknowledgment, and the colleague opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_opening_deferred",
+      "desc": "The colleague opens the gift in front and the client favors deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_opening_immediate",
+      "desc": "The colleague opens the gift in front and the client expects immediate acknowledgment.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answer_deferred_set",
+      "desc": "The client states a deferred preference and the colleague sets the gift aside.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answer_deferred_opening",
+      "desc": "The client states a deferred preference and the colleague opens the gift in front.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answer_immediate_set",
+      "desc": "The client states an immediate preference and the colleague sets the gift aside.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answer_immediate_opening",
+      "desc": "The client states an immediate preference and the colleague opens the gift in front.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_answered_deferred_later",
+      "desc": "The client states a deferred preference, the robot sets the gift aside, and the team confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_answered_deferred_opening",
+      "desc": "The client states a deferred preference, the robot sets the gift aside, and the team opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_answered_immediate_later",
+      "desc": "The client states an immediate preference, the robot sets the gift aside, and the team confirms later opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_away_answered_immediate_opening",
+      "desc": "The client states an immediate preference, the robot sets the gift aside, and the team opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answered_deferred_set",
+      "desc": "The client states a deferred preference, the robot passes the gift to a colleague, and the colleague sets it aside.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answered_deferred_opening",
+      "desc": "The client states a deferred preference, the robot passes the gift to a colleague, and the colleague opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answered_immediate_set",
+      "desc": "The client states an immediate preference, the robot passes the gift to a colleague, and the colleague sets it aside.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_answered_immediate_opening",
+      "desc": "The client states an immediate preference, the robot passes the gift to a colleague, and the colleague opens it in front.",
+      "terminal": true
+    },
+    {
+      "id": "opening_answered_deferred_accept",
+      "desc": "The client states a deferred preference, the robot opens the gift in front, and the team accepts the opening.",
+      "terminal": true
+    },
+    {
+      "id": "opening_answered_deferred_deferred",
+      "desc": "The client states a deferred preference, the robot opens the gift in front, and the team states a deferred preference.",
+      "terminal": true
+    },
+    {
+      "id": "opening_answered_immediate_accept",
+      "desc": "The client states an immediate preference, the robot opens the gift in front, and the team accepts the opening.",
+      "terminal": true
+    },
+    {
+      "id": "opening_answered_immediate_deferred",
+      "desc": "The client states an immediate preference, the robot opens the gift in front, and the team states a deferred preference.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,846 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The human resources support robot receives the anonymous complaint and controls early routing and logging."
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "The anonymous complainant alleges an overtime pattern involving young children that may reflect a real practice and may respond if a return channel exists."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "The named manager is subject to process steps that may affect reputation and livelihood."
+    },
+    {
+      "id": "human_officer",
+      "type": "human",
+      "desc": "The human resources officer operates the company's procedural and applicable employment-law obligations."
+    },
+    {
+      "id": "employees",
+      "type": "human",
+      "desc": "Potentially affected employees in a diverse, multi-religious community may provide or withhold statements about the alleged overtime pattern."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_open_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_open_no_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_open_channel",
+      "desc": "An anonymous complaint naming the manager alleges an overtime pattern involving young children, is open with a return channel, unlogged, unverified, and framed by an applicable employment-law disparate-impact issue.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "complaint_logged_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_open_no_channel",
+      "desc": "An anonymous complaint naming the manager alleges an overtime pattern involving young children, is open without a return channel, unlogged, unverified, and framed by an applicable employment-law disparate-impact issue.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "complaint_logged_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_channel",
+      "desc": "The complaint is logged, unverified, and a return channel exists.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "complainant_response_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_flagged_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_no_channel",
+      "desc": "The complaint is logged, unverified, and no return channel exists.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_flagged_no_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_response_channel",
+      "desc": "The logged complaint has been acknowledged over a return channel and the complainant may respond.",
+      "terminal": false,
+      "turn": [
+        "complainant"
+      ],
+      "actions": [
+        {
+          "by": {
+            "complainant": "respond_to_acknowledgment"
+          },
+          "next": [
+            {
+              "state": "evidence_provided",
+              "p": 0.5
+            },
+            {
+              "state": "complaint_logged_channel",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_provided",
+      "desc": "The logged complaint has complainant-provided material, remains unverified, and awaits routing.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review_evidence",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "evidence_provided_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_evidence",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_flagged_channel",
+      "desc": "The logged complaint is flagged as unverified, a return channel exists, and no human review has begun.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "complainant_response_flagged_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_flagged_no_channel",
+      "desc": "The logged complaint is flagged as unverified, no return channel exists, and no human review has begun.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_response_flagged_channel",
+      "desc": "The flagged complaint has been acknowledged over a return channel and the complainant may respond.",
+      "terminal": false,
+      "turn": [
+        "complainant"
+      ],
+      "actions": [
+        {
+          "by": {
+            "complainant": "respond_to_acknowledgment"
+          },
+          "next": [
+            {
+              "state": "evidence_provided_flagged",
+              "p": 0.5
+            },
+            {
+              "state": "complaint_flagged_channel",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_provided_flagged",
+      "desc": "The flagged complaint has complainant-provided material, remains unverified, and awaits routing.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_human_officer"
+          },
+          "next": [
+            {
+              "state": "human_review_evidence_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_evidence_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_review",
+      "desc": "The logged complaint is in human review, unflagged, unverified, and no inquiry has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "human_review_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "human_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_review_flagged",
+      "desc": "The logged complaint is in human review, flagged as unverified, and no inquiry has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_review_evidence",
+      "desc": "The logged complaint with complainant-provided material is in human review, unflagged, and unverified.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "human_review_evidence_flagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "human_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_evidence",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_review_evidence_flagged",
+      "desc": "The logged complaint with complainant-provided material is in human review, flagged as unverified, and no inquiry has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_evidence_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open",
+      "desc": "A structured inquiry is open, the complaint is unflagged, unverified, and no manager step has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open_flagged",
+      "desc": "A structured inquiry is open, the complaint is flagged as unverified, and no response step has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "request_manager_response"
+          },
+          "next": [
+            {
+              "state": "manager_response",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "human_officer": "request_employee_statements"
+          },
+          "next": [
+            {
+              "state": "employee_response",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open_evidence",
+      "desc": "A structured inquiry is open with complainant-provided material, the complaint is unflagged, and unverified.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "inquiry_open_evidence_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open_evidence_flagged",
+      "desc": "A structured inquiry is open with complainant-provided material, the complaint is flagged as unverified, and no response step has begun.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "request_manager_response"
+          },
+          "next": [
+            {
+              "state": "manager_response_evidence",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "human_officer": "request_employee_statements"
+          },
+          "next": [
+            {
+              "state": "employee_response_evidence",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manager_response",
+      "desc": "The flagged inquiry awaits the named manager's response, the complaint remains unverified, and no response material is recorded.",
+      "terminal": false,
+      "turn": [
+        "manager"
+      ],
+      "actions": [
+        {
+          "by": {
+            "manager": "respond_to_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_response",
+              "p": 0.6
+            },
+            {
+              "state": "inquiry_no_response",
+              "p": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manager_response_evidence",
+      "desc": "The flagged inquiry with complainant-provided material awaits the named manager's response, and the complaint remains unverified.",
+      "terminal": false,
+      "turn": [
+        "manager"
+      ],
+      "actions": [
+        {
+          "by": {
+            "manager": "respond_to_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_response_evidence",
+              "p": 0.6
+            },
+            {
+              "state": "inquiry_no_response_evidence",
+              "p": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "employee_response",
+      "desc": "The flagged inquiry awaits employee statements, the complaint remains unverified, and no response material is recorded.",
+      "terminal": false,
+      "turn": [
+        "employees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "employees": "respond_to_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_response",
+              "p": 0.4
+            },
+            {
+              "state": "inquiry_no_response",
+              "p": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "employee_response_evidence",
+      "desc": "The flagged inquiry with complainant-provided material awaits employee statements, and the complaint remains unverified.",
+      "terminal": false,
+      "turn": [
+        "employees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "employees": "respond_to_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_response_evidence",
+              "p": 0.4
+            },
+            {
+              "state": "inquiry_no_response_evidence",
+              "p": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_response",
+      "desc": "The flagged inquiry has some response material, the complaint remains unverified, and evidence has not been assessed.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "assess_evidence"
+          },
+          "next": [
+            {
+              "state": "material_recorded",
+              "p": 0.4
+            },
+            {
+              "state": "material_not_recorded",
+              "p": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_no_response",
+      "desc": "The flagged inquiry has no response material, the complaint remains unverified, and evidence has not been assessed.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "assess_evidence"
+          },
+          "next": [
+            {
+              "state": "material_recorded",
+              "p": 0.2
+            },
+            {
+              "state": "material_not_recorded",
+              "p": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_response_evidence",
+      "desc": "The flagged inquiry with complainant-provided material has some response material, the complaint remains unverified, and evidence has not been assessed.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "assess_evidence"
+          },
+          "next": [
+            {
+              "state": "material_recorded",
+              "p": 0.6
+            },
+            {
+              "state": "material_not_recorded",
+              "p": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_no_response_evidence",
+      "desc": "The flagged inquiry with complainant-provided material has no response material, the complaint remains unverified, and evidence has not been assessed.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "assess_evidence"
+          },
+          "next": [
+            {
+              "state": "material_recorded",
+              "p": 0.3
+            },
+            {
+              "state": "material_not_recorded",
+              "p": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "material_recorded",
+      "desc": "The assessed inquiry record contains recorded material while the complaint remains formally unverified.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "conclude_documented"
+          },
+          "next": [
+            {
+              "state": "record_documented_material",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "material_not_recorded",
+      "desc": "The assessed inquiry record lacks recorded material while the complaint remains formally unverified.",
+      "terminal": false,
+      "turn": [
+        "human_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "human_officer": "conclude_documented"
+          },
+          "next": [
+            {
+              "state": "record_documented_no_material",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "record_documented_material",
+      "desc": "The interaction ends with a documented record noting recorded material and preserving the unverified status.",
+      "terminal": true
+    },
+    {
+      "id": "record_documented_no_material",
+      "desc": "The interaction ends with a documented record noting absent recorded material and preserving the unverified status.",
+      "terminal": true
+    }
+  ]
+}

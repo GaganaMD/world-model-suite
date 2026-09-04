@@ -1,0 +1,253 @@
+{
+  "players": [
+    { "id": "hr_bot", "type": "robot", "desc": "An HR-support robot serving the personnel office of a tribal government enterprise on the reservation." },
+    { "id": "complainant", "type": "human", "desc": "An employee who filed an anonymous digital complaint alleging that overtime is assigned according to whether employees have young children." },
+    { "id": "supervisor", "type": "human", "desc": "The supervisor named in the complaint, whose livelihood and standing in the tribal community turn on how the matter is handled." },
+    { "id": "personnel_officer", "type": "human", "desc": "The tribal personnel officer answerable to the council's personnel committee and bound by tribal employment policy and anti-discrimination obligations." },
+    { "id": "coworkers", "type": "human", "desc": "Other employees in the same work unit who would be affected by the alleged assignment pattern." }
+  ],
+
+  "initial": [
+    { "state": "complaint_intake", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_intake",
+      "desc": "The robot holds a freshly received anonymous allegation against a named supervisor with nothing supporting it.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "acknowledge_receipt" },
+          "next": [ { "state": "awaiting_complainant", "p": 0.5 },
+                    { "state": "uncorroborated_claim_pending", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "open_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "awaiting_complainant",
+      "desc": "A return channel to the anonymous filer is live and the robot's acknowledgement asking for detail sits with them.",
+      "terminal": false,
+      "turn": ["complainant"],
+      "actions": [
+        {
+          "by": { "complainant": "provide_detail" },
+          "next": [ { "state": "intake_with_account", "p": 1.0 } ]
+        },
+        {
+          "by": { "complainant": "remain_silent" },
+          "next": [ { "state": "uncorroborated_claim_pending", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "uncorroborated_claim_pending",
+      "desc": "The robot has no further word from the filer and the allegation stands alone against a named supervisor.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "open_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "intake_with_account",
+      "desc": "A first-hand account from the filer is now on the record alongside the still-unverified allegation.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_with_supporting_material", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "open_inquiry" },
+          "next": [ { "state": "corroborated_claim", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open",
+      "desc": "A structured inquiry into the assignment practice is underway with nothing yet gathered.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "request_aggregate_records" },
+          "next": [ { "state": "pattern_visible", "p": 0.5 },
+                    { "state": "pattern_not_visible", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "invite_employee_input" },
+          "next": [ { "state": "employee_input_stage", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "notify_supervisor_of_unverified_claim" },
+          "next": [ { "state": "supervisor_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_unverified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "employee_input_stage",
+      "desc": "An open invitation for input on assignment practice sits with the work unit.",
+      "terminal": false,
+      "turn": ["coworkers"],
+      "actions": [
+        {
+          "by": { "coworkers": "come_forward" },
+          "next": [ { "state": "corroborated_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "coworkers": "stay_silent" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "corroborated_claim",
+      "desc": "An employee account now sits on the inquiry record while the assignment records themselves show nothing pointed.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "request_aggregate_records" },
+          "next": [ { "state": "pattern_visible", "p": 0.6 },
+                    { "state": "corroborated_claim", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_bot": "notify_supervisor_of_unverified_claim" },
+          "next": [ { "state": "supervisor_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_with_supporting_material", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "pattern_visible",
+      "desc": "Aggregate assignment records before the robot show a disparity of the kind the allegation describes.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "invite_employee_input" },
+          "next": [ { "state": "employee_input_stage", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "notify_supervisor_of_unverified_claim" },
+          "next": [ { "state": "supervisor_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_with_supporting_material", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "pattern_not_visible",
+      "desc": "Aggregate assignment records before the robot show no disparity bearing on the allegation.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "invite_employee_input" },
+          "next": [ { "state": "employee_input_stage", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "notify_supervisor_of_unverified_claim" },
+          "next": [ { "state": "supervisor_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "referred_unverified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "supervisor_notified",
+      "desc": "The named supervisor has been told of the claim with its unverified status flagged and can now speak to it.",
+      "terminal": false,
+      "turn": ["supervisor"],
+      "actions": [
+        {
+          "by": { "supervisor": "provide_explanation" },
+          "next": [ { "state": "referred_with_supporting_material", "p": 1.0 } ]
+        },
+        {
+          "by": { "supervisor": "decline_to_respond" },
+          "next": [ { "state": "referred_unverified", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "referred_unverified",
+      "desc": "The tribal personnel officer holds the logged claim with its unverified status flagged and nothing gathered around it.",
+      "terminal": false,
+      "turn": ["personnel_officer"],
+      "actions": [
+        {
+          "by": { "personnel_officer": "open_formal_investigation" },
+          "next": [ { "state": "formal_process_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "personnel_officer": "direct_further_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        },
+        {
+          "by": { "personnel_officer": "close_record" },
+          "next": [ { "state": "record_closed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "referred_with_supporting_material",
+      "desc": "The tribal personnel officer holds the claim together with accounts or records gathered around it.",
+      "terminal": false,
+      "turn": ["personnel_officer"],
+      "actions": [
+        {
+          "by": { "personnel_officer": "open_formal_investigation" },
+          "next": [ { "state": "formal_process_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "personnel_officer": "direct_further_inquiry" },
+          "next": [ { "state": "corroborated_claim", "p": 1.0 } ]
+        },
+        {
+          "by": { "personnel_officer": "close_record" },
+          "next": [ { "state": "record_closed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "formal_process_underway",
+      "desc": "The matter has passed out of the robot's hands into a formal tribal personnel proceeding.",
+      "terminal": true
+    },
+    {
+      "id": "record_closed",
+      "desc": "The personnel officer has closed the file and the robot's handling of the matter is over.",
+      "terminal": true
+    }
+  ]
+}

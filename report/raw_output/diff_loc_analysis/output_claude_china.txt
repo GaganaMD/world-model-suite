@@ -1,0 +1,173 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A hospitality robot preparing banquet seating for a corporate dinner at a private event venue." },
+    { "id": "host_rep", "type": "human", "desc": "The host company's event representative, who asked for guests to be seated with ranks mixed across tables." },
+    { "id": "venue_staff", "type": "human", "desc": "A member of the venue's staff who privately cites the venue's own protocol of seating guests in order of seniority." },
+    { "id": "attendees", "type": "human", "desc": "The arriving guests, whose own seating preferences and sense of protocol are not yet known." }
+  ],
+
+  "initial": [
+    { "state": "conflicting_instructions", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflicting_instructions",
+      "desc": "The robot holds the host company's stated seating request alongside the venue staff's competing house protocol, with no arrangement laid out yet.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_ranks" },
+          "next": [ { "state": "seating_mixed_ranks_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_by_seniority" },
+          "next": [ { "state": "seating_seniority_order_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_host" },
+          "next": [ { "state": "host_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_venue" },
+          "next": [ { "state": "venue_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "convene_both" },
+          "next": [ { "state": "parties_convened", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted",
+      "desc": "The host company's representative has been told of the venue's competing protocol and must say what stands.",
+      "terminal": false,
+      "turn": ["host_rep"],
+      "actions": [
+        {
+          "by": { "host_rep": "restate_request" },
+          "next": [ { "state": "directive_mixed_ranks", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_venue" },
+          "next": [ { "state": "directive_seniority_order", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted",
+      "desc": "The venue staff member has been told of the client's competing request and must say whether the house protocol applies.",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "maintain_policy" },
+          "next": [ { "state": "directive_seniority_order", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "waive_policy" },
+          "next": [ { "state": "directive_mixed_ranks", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "parties_convened",
+      "desc": "The host representative and the venue staff member are brought together on the seating question and each states a position without knowing the other's.",
+      "terminal": false,
+      "turn": ["host_rep", "venue_staff"],
+      "actions": [
+        {
+          "by": { "host_rep": "restate_request", "venue_staff": "maintain_policy" },
+          "next": [ { "state": "conflicting_instructions", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "restate_request", "venue_staff": "waive_policy" },
+          "next": [ { "state": "directive_mixed_ranks", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_venue", "venue_staff": "maintain_policy" },
+          "next": [ { "state": "directive_seniority_order", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_venue", "venue_staff": "waive_policy" },
+          "next": [ { "state": "conflicting_instructions", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "directive_mixed_ranks",
+      "desc": "A human decision-maker has settled the question in favour of seating with ranks mixed across tables.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_ranks" },
+          "next": [ { "state": "seating_mixed_ranks_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_by_seniority" },
+          "next": [ { "state": "seating_seniority_order_set", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "directive_seniority_order",
+      "desc": "A human decision-maker has settled the question in favour of the house protocol of seating in order of seniority.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_ranks" },
+          "next": [ { "state": "seating_mixed_ranks_set", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_by_seniority" },
+          "next": [ { "state": "seating_seniority_order_set", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_mixed_ranks_set",
+      "desc": "The tables are laid out with ranks mixed across them and the guests are arriving.",
+      "terminal": false,
+      "turn": ["attendees"],
+      "actions": [
+        {
+          "by": { "attendees": "take_assigned_seats" },
+          "next": [ { "state": "guests_seated_as_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "reseat_themselves" },
+          "next": [ { "state": "guests_reseated_themselves", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_seniority_order_set",
+      "desc": "The tables are laid out in order of seniority per house protocol and the guests are arriving.",
+      "terminal": false,
+      "turn": ["attendees"],
+      "actions": [
+        {
+          "by": { "attendees": "take_assigned_seats" },
+          "next": [ { "state": "guests_seated_as_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "reseat_themselves" },
+          "next": [ { "state": "guests_reseated_themselves", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "guests_seated_as_arranged",
+      "desc": "The dinner begins with the guests seated as the robot laid the tables out.",
+      "terminal": true
+    },
+    {
+      "id": "guests_reseated_themselves",
+      "desc": "The dinner begins with the guests having moved themselves to seats of their own choosing.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "HR-support robot" },
+    { "id": "complainant", "type": "human", "desc": "anonymous employee filing complaint" },
+    { "id": "manager", "type": "human", "desc": "manager accused in complaint" },
+    { "id": "hr_officer", "type": "human", "desc": "human HR officer" },
+    { "id": "company", "type": "human", "desc": "company with legal and procedural obligations" },
+    { "id": "employees", "type": "human", "desc": "employees potentially affected by alleged pattern" }
+  ],
+
+  "initial": [
+    { "state": "complaint_received", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "complaint received by robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [ { "state": "complaint_logged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_complainant" },
+          "next": [ { "state": "complainant_acknowledged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged",
+      "desc": "complaint logged by robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [ { "state": "hr_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [ { "state": "unverified_flagged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_acknowledged",
+      "desc": "complainant acknowledged by robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [ { "state": "complaint_logged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "hr_notified",
+      "desc": "HR officer notified",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "request_more_info" },
+          "next": [ { "state": "more_info_requested", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged",
+      "desc": "complaint flagged as unverified",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "inquiry initiated",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "gather_evidence" },
+          "next": [ { "state": "evidence_gathered", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "more_info_requested",
+      "desc": "more information requested",
+      "terminal": false,
+      "turn": ["complainant"],
+      "actions": [
+        {
+          "by": { "complainant": "provide_info" },
+          "next": [ { "state": "info_provided", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_gathered",
+      "desc": "evidence gathered",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "analyze_evidence" },
+          "next": [ { "state": "evidence_analyzed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "info_provided",
+      "desc": "information provided",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_analyzed",
+      "desc": "evidence analyzed",
+      "terminal": true
+    }
+  ]
+}
+```

@@ -1,0 +1,138 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot at the office who must decide how to handle the wrapped gift immediately."
+    }
+  ],
+  "initial": [
+    {
+      "state": "gift_presented",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "A visiting client has presented a wrapped gift for the team and is watching the reception robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [
+            { "state": "gift_set_aside_client_comfortable", "p": 0.5 },
+            { "state": "gift_set_aside_client_expects_open", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [
+            { "state": "gift_passed_colleague_later", "p": 0.5 },
+            { "state": "gift_passed_colleague_now", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarifying_question" },
+          "next": [
+            { "state": "clarified_deferred_ok", "p": 0.5 },
+            { "state": "clarified_expects_open_now", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [
+            { "state": "gift_opened_client_comfortable", "p": 0.5 },
+            { "state": "gift_opened_client_prefers_deferred", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clarified_deferred_ok",
+      "desc": "The client has clarified that the gift is for the team and can be opened later; the wrapped gift remains wrapped.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [
+            { "state": "gift_set_aside_client_comfortable", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [
+            { "state": "gift_passed_colleague_later", "p": 0.5 },
+            { "state": "gift_passed_colleague_now", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [
+            { "state": "gift_opened_client_comfortable", "p": 0.5 },
+            { "state": "gift_opened_client_prefers_deferred", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clarified_expects_open_now",
+      "desc": "The client has clarified that they expect the gift to be opened now; the wrapped gift remains wrapped.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [
+            { "state": "gift_opened_client_comfortable", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [
+            { "state": "gift_set_aside_client_expects_open", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [
+            { "state": "gift_passed_colleague_later", "p": 0.5 },
+            { "state": "gift_passed_colleague_now", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_set_aside_client_comfortable",
+      "desc": "The robot has accepted the wrapped gift on behalf of the team and set it aside for the team to open later, in keeping with the convention of not opening gifts in the giver's presence; the client is at ease with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "gift_set_aside_client_expects_open",
+      "desc": "The robot has accepted the wrapped gift on behalf of the team and set it aside for the team to open later, in keeping with the convention of not opening gifts in the giver's presence; the client shows they expected the gift to be opened now.",
+      "terminal": true
+    },
+    {
+      "id": "gift_passed_colleague_later",
+      "desc": "The robot has thanked the client and passed the wrapped gift to a human colleague, who will open it later with the team.",
+      "terminal": true
+    },
+    {
+      "id": "gift_passed_colleague_now",
+      "desc": "The robot has thanked the client and passed the wrapped gift to a human colleague, who opens it in front of the client.",
+      "terminal": true
+    },
+    {
+      "id": "gift_opened_client_comfortable",
+      "desc": "The robot has opened the wrapped gift in front of the client; the client is at ease with immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "gift_opened_client_prefers_deferred",
+      "desc": "The robot has opened the wrapped gift in front of the client; the client shows they would have preferred deferred opening.",
+      "terminal": true
+    }
+  ]
+}

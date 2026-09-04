@@ -1,0 +1,161 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "office reception robot" },
+    { "id": "client", "type": "human", "desc": "visiting client with a gift" },
+    { "id": "team", "type": "human", "desc": "office team or its representative" }
+  ],
+
+  "initial": [
+    { "state": "gift_presented", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "the client presents a wrapped gift to the robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [
+            { "state": "gift_set_aside", "p": 0.5 },
+            { "state": "client_expects_immediate_opening", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_human" },
+          "next": [
+            { "state": "human_handles_gift", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarifying_question" },
+          "next": [
+            { "state": "client_clarifies_expectations", "p": 0.7 },
+            { "state": "client_does_not_clarify", "p": 0.3 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front_of_client" },
+          "next": [
+            { "state": "gift_opened_in_front_of_client", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_set_aside",
+      "desc": "the robot sets the gift aside for later opening",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "seems_comfortable_with_deferred_opening" },
+          "next": [
+            { "state": "team_opens_gift_later", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "seems_to_expect_immediate_acknowledgment" },
+          "next": [
+            { "state": "client_expects_immediate_opening", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_expects_immediate_opening",
+      "desc": "the client seems to expect the gift to be opened immediately",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_gift_immediately" },
+          "next": [
+            { "state": "gift_opened_in_front_of_client", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "explain_deferred_opening" },
+          "next": [
+            { "state": "client_understands_deferred_opening", "p": 0.8 },
+            { "state": "client_insistent_on_immediate_opening", "p": 0.2 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_handles_gift",
+      "desc": "a human colleague handles the gift",
+      "terminal": false,
+      "turn": ["team"],
+      "actions": [
+        {
+          "by": { "team": "opens_gift_immediately" },
+          "next": [
+            { "state": "gift_opened_in_front_of_client", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team": "sets_gift_aside_for_later" },
+          "next": [
+            { "state": "team_opens_gift_later", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_clarifies_expectations",
+      "desc": "the client clarifies their expectations for the gift",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "responds_to_client_expectations" },
+          "next": [
+            { "state": "gift_opened_in_front_of_client", "p": 0.5 },
+            { "state": "gift_set_aside", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_does_not_clarify",
+      "desc": "the client does not clarify their expectations for the gift",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "makes_informed_decision" },
+          "next": [
+            { "state": "gift_opened_in_front_of_client", "p": 0.5 },
+            { "state": "gift_set_aside", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_opened_in_front_of_client",
+      "desc": "the gift is opened in front of the client",
+      "terminal": true
+    },
+    {
+      "id": "team_opens_gift_later",
+      "desc": "the team opens the gift later",
+      "terminal": true
+    },
+    {
+      "id": "client_understands_deferred_opening",
+      "desc": "the client understands the reason for deferred opening",
+      "terminal": true
+    },
+    {
+      "id": "client_insistent_on_immediate_opening",
+      "desc": "the client insists on immediate opening despite explanation",
+      "terminal": true
+    }
+  ]
+}
+```

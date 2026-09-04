@@ -1,0 +1,295 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The reception robot greets the client and handles the gift."
+    },
+    {
+      "id": "client",
+      "type": "human",
+      "desc": "The visiting client presents a wrapped gift and watches how the gesture is received."
+    },
+    {
+      "id": "team_rep",
+      "type": "human",
+      "desc": "A human colleague represents the team as a peer when receiving the gift."
+    }
+  ],
+  "initial": [
+    {
+      "state": "arrival",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "arrival",
+      "desc": "The robot is receiving the client as the client prepares to present a wrapped team gift.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "greet_client",
+            "client": "present_gift"
+          },
+          "next": [
+            {
+              "state": "gift_offered",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_offered",
+      "desc": "The client watches while the robot handles the gift, with immediate acknowledgment and later opening both plausible.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "set_aside_present",
+              "p": 0.5
+            },
+            {
+              "state": "set_aside_later",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "colleague_present",
+              "p": 0.5
+            },
+            {
+              "state": "colleague_later",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_about_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "present_cue",
+              "p": 0.5
+            },
+            {
+              "state": "later_cue",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "opened_present",
+              "p": 0.5
+            },
+            {
+              "state": "opened_later",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "present_cue",
+      "desc": "The client has indicated that acknowledgment in the giver's presence matters.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "set_aside_present",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "colleague_present",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "opened_present",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "later_cue",
+      "desc": "The client has indicated comfort with the recognized convention of opening the gift after the giver departs.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "set_aside_later",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "colleague_later",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "opened_later",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_present",
+      "desc": "The robot has thanked the client and offered the gift to a colleague while acknowledgment in the client's presence matters.",
+      "terminal": false,
+      "turn": [
+        "team_rep",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "team_rep": "receive_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "passed_present",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_later",
+      "desc": "The robot has thanked the client and offered the gift to a colleague while the client is comfortable with later opening.",
+      "terminal": false,
+      "turn": [
+        "team_rep",
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "team_rep": "receive_gift",
+            "client": "watch"
+          },
+          "next": [
+            {
+              "state": "passed_later",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_aside_present",
+      "desc": "The gift has been accepted for the team and set aside while acknowledgment in the client's presence mattered.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_later",
+      "desc": "The gift has been accepted for the team and set aside under the convention of opening it later.",
+      "terminal": true
+    },
+    {
+      "id": "opened_present",
+      "desc": "The gift has been opened in the client's presence when acknowledgment there mattered.",
+      "terminal": true
+    },
+    {
+      "id": "opened_later",
+      "desc": "The gift has been opened in the client's presence while the client was also comfortable with later opening.",
+      "terminal": true
+    },
+    {
+      "id": "passed_present",
+      "desc": "The colleague has received the gift after the robot thanked the client while acknowledgment there mattered.",
+      "terminal": true
+    },
+    {
+      "id": "passed_later",
+      "desc": "The colleague has received the gift after the robot thanked the client while later opening remained acceptable.",
+      "terminal": true
+    }
+  ]
+}

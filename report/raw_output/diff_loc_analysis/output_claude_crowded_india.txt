@@ -1,0 +1,288 @@
+{
+  "players": [
+    { "id": "hr_bot", "type": "robot", "desc": "An HR-support robot at a mid-size firm in a dense, heavily populated urban centre that receives and routes employee grievances." },
+    { "id": "complainant", "type": "human", "desc": "An anonymous employee alleging that overtime and shift rosters are skewed against colleagues with young children." },
+    { "id": "manager", "type": "human", "desc": "The manager named in the uncorroborated complaint, whose standing and livelihood turn on how it is handled." },
+    { "id": "hr_officer", "type": "human", "desc": "The human HR officer carrying the firm's statutory and internal grievance obligations." },
+    { "id": "coworkers", "type": "human", "desc": "Employees on the same roster who may speak about assignment practices or keep quiet." }
+  ],
+
+  "initial": [
+    { "state": "complaint_intake", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_intake",
+      "desc": "An anonymous grievance naming a manager has just arrived with nothing to corroborate it.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "review_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "attempt_acknowledge" },
+          "next": [ { "state": "return_channel_open", "p": 0.5 },
+                    { "state": "return_channel_absent", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "flag_unverified" },
+          "next": [ { "state": "record_marked_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 0.5 },
+                    { "state": "manager_notified", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "hold" },
+          "next": [ { "state": "complaint_intake", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "return_channel_open",
+      "desc": "The anonymous filer can still be reached through the intake channel while the claim stays uncorroborated.",
+      "terminal": false,
+      "turn": ["hr_bot", "complainant"],
+      "actions": [
+        {
+          "by": { "hr_bot": "request_details", "complainant": "provide_details" },
+          "next": [ { "state": "inquiry_open", "p": 0.7 },
+                    { "state": "review_pending", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_bot": "request_details", "complainant": "stay_silent" },
+          "next": [ { "state": "record_marked_unverified", "p": 0.6 },
+                    { "state": "complaint_intake", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_bot": "request_details", "complainant": "withdraw_complaint" },
+          "next": [ { "state": "complaint_withdrawn", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "complainant": "provide_details" },
+          "next": [ { "state": "review_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "complainant": "stay_silent" },
+          "next": [ { "state": "review_pending", "p": 0.7 },
+                    { "state": "record_marked_unverified", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "complainant": "withdraw_complaint" },
+          "next": [ { "state": "complaint_withdrawn", "p": 0.6 },
+                    { "state": "review_pending", "p": 0.4 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "return_channel_absent",
+      "desc": "The filer cannot be reached at all, so the claim can neither be enlarged nor tested with them.",
+      "terminal": false,
+      "turn": ["hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_bot": "log_and_escalate" },
+          "next": [ { "state": "review_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "flag_unverified" },
+          "next": [ { "state": "record_marked_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 0.5 },
+                    { "state": "manager_notified", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "hold" },
+          "next": [ { "state": "return_channel_absent", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "record_marked_unverified",
+      "desc": "The grievance sits on the file expressly marked as uncorroborated before anything touches the named manager.",
+      "terminal": false,
+      "turn": ["hr_officer", "hr_bot"],
+      "actions": [
+        {
+          "by": { "hr_officer": "open_structured_inquiry", "hr_bot": "solicit_accounts" },
+          "next": [ { "state": "corroboration_gathering", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "open_structured_inquiry", "hr_bot": "review_assignment_records" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "close_file", "hr_bot": "solicit_accounts" },
+          "next": [ { "state": "corroboration_gathering", "p": 0.5 },
+                    { "state": "file_closed", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_officer": "close_file", "hr_bot": "review_assignment_records" },
+          "next": [ { "state": "file_closed", "p": 0.7 },
+                    { "state": "review_pending", "p": 0.3 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "review_pending",
+      "desc": "The uncorroborated claim now sits with the human HR officer, who owes the firm a lawful grievance route.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "open_structured_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "seek_corroboration" },
+          "next": [ { "state": "corroboration_gathering", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "close_file" },
+          "next": [ { "state": "file_closed", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "hold" },
+          "next": [ { "state": "review_pending", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "corroboration_gathering",
+      "desc": "Accounts of rostering practice are being sought from employees while the allegation remains untested.",
+      "terminal": false,
+      "turn": ["hr_bot", "coworkers"],
+      "actions": [
+        {
+          "by": { "hr_bot": "solicit_accounts", "coworkers": "share_accounts" },
+          "next": [ { "state": "inquiry_open", "p": 0.7 },
+                    { "state": "referred_for_adjudication", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_bot": "solicit_accounts", "coworkers": "stay_silent" },
+          "next": [ { "state": "record_marked_unverified", "p": 0.6 },
+                    { "state": "file_closed", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_bot": "review_assignment_records", "coworkers": "share_accounts" },
+          "next": [ { "state": "inquiry_open", "p": 0.8 },
+                    { "state": "review_pending", "p": 0.2 } ]
+        },
+        {
+          "by": { "hr_bot": "review_assignment_records", "coworkers": "stay_silent" },
+          "next": [ { "state": "review_pending", "p": 0.5 },
+                    { "state": "inquiry_open", "p": 0.5 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "inquiry_open",
+      "desc": "A structured inquiry into the rostering pattern is running with the manager named but nothing established.",
+      "terminal": false,
+      "turn": ["hr_officer", "manager"],
+      "actions": [
+        {
+          "by": { "hr_officer": "interview_manager", "manager": "respond_to_allegation" },
+          "next": [ { "state": "inquiry_concluded", "p": 0.6 },
+                    { "state": "referred_for_adjudication", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_officer": "interview_manager", "manager": "decline_to_respond" },
+          "next": [ { "state": "referred_for_adjudication", "p": 0.6 },
+                    { "state": "inquiry_concluded", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_officer": "interview_manager", "manager": "contest_anonymity" },
+          "next": [ { "state": "record_marked_unverified", "p": 0.5 },
+                    { "state": "inquiry_concluded", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_officer": "review_assignment_records", "manager": "respond_to_allegation" },
+          "next": [ { "state": "inquiry_concluded", "p": 0.7 },
+                    { "state": "referred_for_adjudication", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_officer": "review_assignment_records", "manager": "decline_to_respond" },
+          "next": [ { "state": "inquiry_concluded", "p": 0.5 },
+                    { "state": "corroboration_gathering", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_officer": "review_assignment_records", "manager": "contest_anonymity" },
+          "next": [ { "state": "corroboration_gathering", "p": 0.6 },
+                    { "state": "inquiry_concluded", "p": 0.4 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "manager_notified",
+      "desc": "The manager has learned that an uncorroborated grievance names them over overtime allocation.",
+      "terminal": false,
+      "turn": ["hr_bot", "manager"],
+      "actions": [
+        {
+          "by": { "hr_bot": "state_claim_unverified", "manager": "respond_to_allegation" },
+          "next": [ { "state": "inquiry_open", "p": 0.7 },
+                    { "state": "review_pending", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_bot": "state_claim_unverified", "manager": "decline_to_respond" },
+          "next": [ { "state": "review_pending", "p": 0.6 },
+                    { "state": "record_marked_unverified", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_bot": "state_claim_unverified", "manager": "contest_anonymity" },
+          "next": [ { "state": "record_marked_unverified", "p": 0.5 },
+                    { "state": "review_pending", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "manager": "respond_to_allegation" },
+          "next": [ { "state": "review_pending", "p": 0.8 },
+                    { "state": "inquiry_open", "p": 0.2 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "manager": "decline_to_respond" },
+          "next": [ { "state": "review_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_bot": "log_and_escalate", "manager": "contest_anonymity" },
+          "next": [ { "state": "review_pending", "p": 0.5 },
+                    { "state": "referred_for_adjudication", "p": 0.5 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "inquiry_concluded",
+      "desc": "The inquiry record is complete and rests with the human grievance process.",
+      "terminal": true
+    },
+    {
+      "id": "referred_for_adjudication",
+      "desc": "The matter has passed out of HR to a formal grievance forum with statutory standing.",
+      "terminal": true
+    },
+    {
+      "id": "file_closed",
+      "desc": "The grievance is closed on the record with no further steps taken.",
+      "terminal": true
+    },
+    {
+      "id": "complaint_withdrawn",
+      "desc": "The filer has withdrawn the grievance and the file rests as withdrawn.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The HR-support robot handles complaints for a workforce with varied religious and community values."
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "The anonymous complainant may be reporting a real overtime pattern despite lacking corroborating evidence."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "The named manager has a reputation and livelihood that may be affected by the complaint's handling."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "The HR officer represents the company process and its legal and procedural obligations."
+    },
+    {
+      "id": "employees",
+      "type": "human",
+      "desc": "The employees may be affected by the alleged caregiving-based overtime pattern."
+    }
+  ],
+  "initial": [
+    {
+      "state": "received_with_channel",
+      "p": 0.5
+    },
+    {
+      "state": "received_without_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "received_with_channel",
+      "desc": "An anonymous complaint lacking corroborating evidence names the manager, alleges caregiving-based overtime disparities, and has a return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "logged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "received_without_channel",
+      "desc": "An anonymous complaint lacking corroborating evidence names the manager, alleges caregiving-based overtime disparities, and has no return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "logged_without_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logged_with_channel",
+      "desc": "The complaint is logged as an unverified potential disparate-impact employment issue, and its return channel remains available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "acknowledged_unflagged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logged_without_channel",
+      "desc": "The complaint is logged as an unverified potential disparate-impact employment issue without a return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_without_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acknowledged_unflagged",
+      "desc": "Receipt has been acknowledged, while the complaint still needs an explicit unverified-status flag before manager involvement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_and_acknowledged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_with_channel",
+      "desc": "The logged claim is explicitly unverified, and acknowledgment remains possible through the return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "flagged_and_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "escalate_hr"
+          },
+          "next": [
+            {
+              "state": "with_hr_officer",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_begun",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_without_channel",
+      "desc": "The logged claim is explicitly unverified, and acknowledgment is unavailable because no return channel exists.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_hr"
+          },
+          "next": [
+            {
+              "state": "with_hr_officer",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_begun",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_and_acknowledged",
+      "desc": "The logged claim is explicitly unverified, and the complainant has received acknowledgment.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_hr"
+          },
+          "next": [
+            {
+              "state": "with_hr_officer",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_begun",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "with_hr_officer",
+      "desc": "The explicitly unverified complaint is with a human HR officer under the company's legal and procedural process.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_begun",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_begun",
+      "desc": "A structured inquiry into the unverified disparate-impact concern has begun without a finding about the manager.",
+      "terminal": true
+    }
+  ]
+}

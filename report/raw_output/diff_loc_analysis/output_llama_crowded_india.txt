@@ -1,0 +1,172 @@
+```json
+{
+  "players": [
+    { "id": "hr_robot", "type": "robot", "desc": "The HR-support robot handling the complaint" },
+    { "id": "complainant", "type": "human", "desc": "The anonymous employee who filed the complaint" },
+    { "id": "manager", "type": "human", "desc": "The manager accused of disproportionate overtime assignment" },
+    { "id": "hr_officer", "type": "human", "desc": "The human HR officer who will handle the complaint" },
+    { "id": "company", "type": "human", "desc": "The company with legal and procedural obligations" }
+  ],
+
+  "initial": [
+    { "state": "complaint_received", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "The HR robot has received the anonymous complaint",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_complaint" },
+          "next": [ { "state": "complaint_logged", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "acknowledge_complainant" },
+          "next": [ { "state": "complainant_acknowledged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged",
+      "desc": "The HR robot has logged the complaint and prepared to escalate",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "escalate_to_hr" },
+          "next": [ { "state": "hr_notified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "flag_unverified" },
+          "next": [ { "state": "unverified_flagged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_acknowledged",
+      "desc": "The HR robot has acknowledged receipt of the complaint to the complainant",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_complaint" },
+          "next": [ { "state": "complaint_logged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "hr_notified",
+      "desc": "The human HR officer has been notified of the complaint",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "request_more_info" },
+          "next": [ { "state": "more_info_requested", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged",
+      "desc": "The complaint has been flagged as unverified",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "A structured inquiry process has been initiated",
+      "terminal": false,
+      "turn": ["hr_officer", "manager"],
+      "actions": [
+        {
+          "by": { "hr_officer": "gather_evidence", "manager": "provide_info" },
+          "next": [ { "state": "evidence_gathered", "p": 0.7 }, { "state": "no_evidence", "p": 0.3 } ]
+        }
+      ]
+    },
+    {
+      "id": "more_info_requested",
+      "desc": "The HR officer has requested more information about the complaint",
+      "terminal": false,
+      "turn": ["complainant"],
+      "actions": [
+        {
+          "by": { "complainant": "provide_more_info" },
+          "next": [ { "state": "more_info_provided", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_gathered",
+      "desc": "Evidence has been gathered during the inquiry",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "analyze_evidence" },
+          "next": [ { "state": "evidence_analyzed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "no_evidence",
+      "desc": "No evidence was found to support the complaint",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "close_complaint" },
+          "next": [ { "state": "complaint_closed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "more_info_provided",
+      "desc": "The complainant has provided more information about the complaint",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_analyzed",
+      "desc": "The evidence gathered has been analyzed",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "take_action" },
+          "next": [ { "state": "action_taken", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "action_taken",
+      "desc": "Action has been taken based on the analysis of the evidence",
+      "terminal": true
+    },
+    {
+      "id": "complaint_closed",
+      "desc": "The complaint has been closed due to lack of evidence",
+      "terminal": true
+    }
+  ]
+}
+```

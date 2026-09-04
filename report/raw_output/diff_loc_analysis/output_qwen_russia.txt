@@ -1,0 +1,577 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "Hospitality robot arranging seating for a corporate dinner."
+    },
+    {
+      "id": "host_company",
+      "type": "human",
+      "desc": "Human host-company decision-maker with authority over the event seating request."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "Human venue staff member with standing to state the venue seating policy."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "Human attendees whose seating comfort is relevant but not yet expressed."
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflict_known",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflict_known",
+      "desc": "The robot faces a stated host request for mixed-gender seating and a stated venue policy for gender-separated seating, with seating not yet set.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host_request"
+          },
+          "next": [
+            {
+              "state": "mixed_directed_venue_response",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue_policy"
+          },
+          "next": [
+            {
+              "state": "separated_directed_host_response",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "joint_clarification",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_directed_venue_response",
+      "desc": "The robot has committed to mixed-gender seating, and the venue staff has not yet accepted the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "set_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_set_venue_response",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_directed_venue_accepted",
+      "desc": "The robot has committed to mixed-gender seating, and the venue staff has already accepted the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "set_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_ready",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_directed_host_response",
+      "desc": "The robot has committed to gender-separated seating, and the host company has not yet accepted the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "set_separated"
+          },
+          "next": [
+            {
+              "state": "separated_set_host_response",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_directed_host_accepted",
+      "desc": "The robot has committed to gender-separated seating, and the host company has already accepted the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "set_separated"
+          },
+          "next": [
+            {
+              "state": "separated_ready",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_set_venue_response",
+      "desc": "Mixed-gender seating is set, and the venue staff may respond to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "accept_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_ready",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "object_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_objection",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_set_host_response",
+      "desc": "Gender-separated seating is set, and the host company may respond to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "accept_separated"
+          },
+          "next": [
+            {
+              "state": "separated_ready",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "object_separated"
+          },
+          "next": [
+            {
+              "state": "separated_objection",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_ready",
+      "desc": "Mixed-gender seating is set and accepted, and the attendees' seating comfort is not yet expressed.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "arrive"
+          },
+          "next": [
+            {
+              "state": "mixed_event_proceeds",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_ready",
+      "desc": "Gender-separated seating is set and accepted, and the attendees' seating comfort is not yet expressed.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "arrive"
+          },
+          "next": [
+            {
+              "state": "separated_event_proceeds",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_objection",
+      "desc": "Mixed-gender seating is set, and the venue staff objects to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_consulted_venue_opposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_consulted_host_opposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "joint_clarification",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_objection",
+      "desc": "Gender-separated seating is set, and the host company objects to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_consulted_venue_opposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_consulted_host_opposed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "joint_clarification",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted",
+      "desc": "The robot has asked the host company to clarify its seating preference.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "confirm_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_directed_venue_response",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "separated_directed_host_accepted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted",
+      "desc": "The robot has asked the venue staff to clarify the venue seating position.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "accept_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_directed_venue_accepted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "separated_directed_host_response",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted_venue_opposed",
+      "desc": "The robot has asked the host company to clarify its preference while the venue staff has not accepted mixed-gender seating.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "confirm_mixed"
+          },
+          "next": [
+            {
+              "state": "authority_unresolved",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "separated_directed_host_accepted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted_host_opposed",
+      "desc": "The robot has asked the venue staff to clarify its position while the host company has not accepted gender-separated seating.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "accept_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_directed_venue_accepted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "authority_unresolved",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_clarification",
+      "desc": "The robot has asked both parties to clarify their seating positions at the same time.",
+      "terminal": false,
+      "turn": [
+        "host_company",
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "confirm_mixed",
+            "venue_staff": "accept_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_directed_venue_accepted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "confirm_mixed",
+            "venue_staff": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "authority_unresolved",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "confirm_separated",
+            "venue_staff": "accept_mixed"
+          },
+          "next": [
+            {
+              "state": "authority_unresolved",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "confirm_separated",
+            "venue_staff": "confirm_separated"
+          },
+          "next": [
+            {
+              "state": "separated_directed_host_accepted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_event_proceeds",
+      "desc": "Mixed-gender seating is in place, the attendees have arrived, and their seating comfort remains unexpressed.",
+      "terminal": true
+    },
+    {
+      "id": "separated_event_proceeds",
+      "desc": "Gender-separated seating is in place, the attendees have arrived, and their seating comfort remains unexpressed.",
+      "terminal": true
+    },
+    {
+      "id": "authority_unresolved",
+      "desc": "The host company and venue staff have not aligned their seating positions, and human resolution is required.",
+      "terminal": true
+    }
+  ]
+}

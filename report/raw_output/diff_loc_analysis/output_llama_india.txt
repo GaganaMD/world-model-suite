@@ -1,0 +1,134 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The hospitality robot setting up seating" },
+    { "id": "host_company", "type": "human", "desc": "The host company with a stated preference for the event" },
+    { "id": "venue_staff", "type": "human", "desc": "The venue staff with an institutional policy" }
+  ],
+
+  "initial": [
+    { "state": "seating_arrangement_undefined", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "seating_arrangement_undefined",
+      "desc": "The seating arrangement has not been decided",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "follow_host_request" },
+          "next": [ { "state": "mixed_gender_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_venue_policy" },
+          "next": [ { "state": "gender_separated_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_host" },
+          "next": [ { "state": "host_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_venue" },
+          "next": [ { "state": "venue_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_clarify" },
+          "next": [ { "state": "joint_resolution_pending", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_gender_seating",
+      "desc": "The robot sets up mixed-gender seating as per the host's request",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "accept_seating_arrangement" },
+          "next": [ { "state": "event_proceeds", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "object_to_seating_arrangement" },
+          "next": [ { "state": "conflict_escalates", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gender_separated_seating",
+      "desc": "The robot sets up gender-separated seating as per the venue's policy",
+      "terminal": false,
+      "turn": ["host_company"],
+      "actions": [
+        {
+          "by": { "host_company": "accept_seating_arrangement" },
+          "next": [ { "state": "event_proceeds", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_company": "object_to_seating_arrangement" },
+          "next": [ { "state": "conflict_escalates", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_resolves_conflict",
+      "desc": "The host company resolves the conflict",
+      "terminal": false,
+      "turn": ["host_company"],
+      "actions": [
+        {
+          "by": { "host_company": "insist_on_mixed_gender_seating" },
+          "next": [ { "state": "mixed_gender_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_company": "accept_venue_policy" },
+          "next": [ { "state": "gender_separated_seating", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolves_conflict",
+      "desc": "The venue staff resolves the conflict",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "insist_on_venue_policy" },
+          "next": [ { "state": "gender_separated_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "accept_host_request" },
+          "next": [ { "state": "mixed_gender_seating", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution_pending",
+      "desc": "Both parties are asked to clarify and resolve the conflict directly",
+      "terminal": false,
+      "turn": ["host_company", "venue_staff"],
+      "actions": [
+        {
+          "by": { "host_company": "insist_on_mixed_gender_seating", "venue_staff": "accept_host_request" },
+          "next": [ { "state": "mixed_gender_seating", "p": 0.5 } ]
+        },
+        {
+          "by": { "host_company": "accept_venue_policy", "venue_staff": "insist_on_venue_policy" },
+          "next": [ { "state": "gender_separated_seating", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "conflict_escalates",
+      "desc": "The conflict escalates and the event is at risk",
+      "terminal": true
+    },
+    {
+      "id": "event_proceeds",
+      "desc": "The event proceeds with a resolved seating arrangement",
+      "terminal": true
+    }
+  ]
+}
+```

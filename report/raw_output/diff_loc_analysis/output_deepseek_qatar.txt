@@ -1,0 +1,93 @@
+ {
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot at a Qatari office."
+    }
+  ],
+  "initial": [
+    {
+      "state": "gift_presented",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "A visiting client presents a wrapped gift to the reception robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": {"robot": "accept_and_set_aside"},
+          "next": [
+            {"state": "accept_set_aside_positive", "p": 0.5},
+            {"state": "accept_set_aside_negative", "p": 0.5}
+          ]
+        },
+        {
+          "by": {"robot": "thank_and_pass"},
+          "next": [
+            {"state": "thank_pass_positive", "p": 0.5},
+            {"state": "thank_pass_negative", "p": 0.5}
+          ]
+        },
+        {
+          "by": {"robot": "ask_clarifying_question"},
+          "next": [
+            {"state": "ask_question_positive", "p": 0.5},
+            {"state": "ask_question_negative", "p": 0.5}
+          ]
+        },
+        {
+          "by": {"robot": "open_immediately"},
+          "next": [
+            {"state": "open_immediate_positive", "p": 0.5},
+            {"state": "open_immediate_negative", "p": 0.5}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accept_set_aside_positive",
+      "desc": "The client appears pleased that the gift is respectfully set aside for later opening.",
+      "terminal": true
+    },
+    {
+      "id": "accept_set_aside_negative",
+      "desc": "The client appears disappointed that the gift was not opened immediately.",
+      "terminal": true
+    },
+    {
+      "id": "thank_pass_positive",
+      "desc": "The client appreciates the polite thanks and the gift being handed to a colleague.",
+      "terminal": true
+    },
+    {
+      "id": "thank_pass_negative",
+      "desc": "The client seems confused or offended that the gift was passed along without opening.",
+      "terminal": true
+    },
+    {
+      "id": "ask_question_positive",
+      "desc": "The client appreciates the question and clarifies the appropriate way to handle the gift.",
+      "terminal": true
+    },
+    {
+      "id": "ask_question_negative",
+      "desc": "The client is annoyed by the question, feeling it shows a lack of cultural awareness.",
+      "terminal": true
+    },
+    {
+      "id": "open_immediate_positive",
+      "desc": "The client is pleased that the gift was opened right away, showing enthusiasm.",
+      "terminal": true
+    },
+    {
+      "id": "open_immediate_negative",
+      "desc": "The client is offended that the gift was opened immediately, as the norm is to defer.",
+      "terminal": true
+    }
+  ]
+}

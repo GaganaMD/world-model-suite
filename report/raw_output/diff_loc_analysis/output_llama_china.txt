@@ -1,0 +1,112 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "the hospitality robot setting up seating" },
+    { "id": "host", "type": "human", "desc": "the host company with a preference for mixed-gender seating" },
+    { "id": "venue", "type": "human", "desc": "the venue's staff with a policy preferring gender-separated seating" }
+  ],
+
+  "initial": [
+    { "state": "seating_arrangement_undecided", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "seating_arrangement_undecided",
+      "desc": "the seating arrangement has not been decided",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "follow_host_request" },
+          "next": [ { "state": "mixed_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_venue_policy" },
+          "next": [ { "state": "separated_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_host" },
+          "next": [ { "state": "host_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_venue" },
+          "next": [ { "state": "venue_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_clarify" },
+          "next": [ { "state": "both_parties_resolving_conflict", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating_arranged",
+      "desc": "mixed-gender seating has been arranged according to the host's request",
+      "terminal": true
+    },
+    {
+      "id": "separated_seating_arranged",
+      "desc": "gender-separated seating has been arranged according to the venue's policy",
+      "terminal": true
+    },
+    {
+      "id": "host_resolves_conflict",
+      "desc": "the host company is resolving the conflict",
+      "terminal": false,
+      "turn": ["host"],
+      "actions": [
+        {
+          "by": { "host": "insist_on_mixed_seating" },
+          "next": [ { "state": "mixed_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "host": "accept_venue_policy" },
+          "next": [ { "state": "separated_seating_arranged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolves_conflict",
+      "desc": "the venue is resolving the conflict",
+      "terminal": false,
+      "turn": ["venue"],
+      "actions": [
+        {
+          "by": { "venue": "insist_on_separated_seating" },
+          "next": [ { "state": "separated_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue": "accept_host_request" },
+          "next": [ { "state": "mixed_seating_arranged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "both_parties_resolving_conflict",
+      "desc": "both the host and the venue are resolving the conflict together",
+      "terminal": false,
+      "turn": ["host", "venue"],
+      "actions": [
+        {
+          "by": { "host": "insist_on_mixed_seating", "venue": "insist_on_separated_seating" },
+          "next": [ { "state": "conflict_unresolved", "p": 1.0 } ]
+        },
+        {
+          "by": { "host": "accept_venue_policy", "venue": "accept_host_request" },
+          "next": [ { "state": "seating_arrangement_agreed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "conflict_unresolved",
+      "desc": "the conflict remains unresolved",
+      "terminal": true
+    },
+    {
+      "id": "seating_arrangement_agreed",
+      "desc": "a seating arrangement has been agreed upon by both parties",
+      "terminal": true
+    }
+  ]
+}
+```

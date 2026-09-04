@@ -1,0 +1,297 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot handles the client's gift while observing workplace hierarchy and gift conventions."
+    },
+    {
+      "id": "client",
+      "type": "human",
+      "desc": "A visiting client presents a gift whose reception carries relational meaning."
+    },
+    {
+      "id": "team_rep",
+      "type": "human",
+      "desc": "An authorized team representative can receive the gift on the team's behalf."
+    }
+  ],
+  "initial": [
+    {
+      "state": "client_arrives",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "client_arrives",
+      "desc": "A visiting client approaches before the gift is handled.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "greet_client"
+          },
+          "next": [
+            {
+              "state": "gift_ready",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_ready",
+      "desc": "The greeted client is ready to offer a wrapped team gift.",
+      "terminal": false,
+      "turn": [
+        "client"
+      ],
+      "actions": [
+        {
+          "by": {
+            "client": "present_gift"
+          },
+          "next": [
+            {
+              "state": "gift_offered",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_offered",
+      "desc": "The robot faces the offered gift while deferred opening is legitimate, the client watches, and an authorized colleague is available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside"
+          },
+          "next": [
+            {
+              "state": "aside_immediate",
+              "p": 0.5
+            },
+            {
+              "state": "aside_deferred",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass"
+          },
+          "next": [
+            {
+              "state": "pass_immediate",
+              "p": 0.5
+            },
+            {
+              "state": "pass_deferred",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_about_gift"
+          },
+          "next": [
+            {
+              "state": "immediate_known",
+              "p": 0.5
+            },
+            {
+              "state": "deferred_known",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift"
+          },
+          "next": [
+            {
+              "state": "opened_immediate",
+              "p": 0.5
+            },
+            {
+              "state": "opened_deferred",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "immediate_known",
+      "desc": "The client indicates that immediate acknowledgment through opening would be appreciated.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside"
+          },
+          "next": [
+            {
+              "state": "aside_immediate",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass"
+          },
+          "next": [
+            {
+              "state": "pass_immediate",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift"
+          },
+          "next": [
+            {
+              "state": "opened_immediate",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deferred_known",
+      "desc": "The client indicates comfort with the team deferring the opening.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "accept_and_set_aside"
+          },
+          "next": [
+            {
+              "state": "aside_deferred",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "thank_and_pass"
+          },
+          "next": [
+            {
+              "state": "pass_deferred",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "open_gift"
+          },
+          "next": [
+            {
+              "state": "opened_deferred",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass_immediate",
+      "desc": "The thanked client expected immediate acknowledgment, and the authorized representative is ready to receive the gift.",
+      "terminal": false,
+      "turn": [
+        "team_rep"
+      ],
+      "actions": [
+        {
+          "by": {
+            "team_rep": "receive_gift"
+          },
+          "next": [
+            {
+              "state": "received_immediate",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass_deferred",
+      "desc": "The thanked client accepts deferred opening, and the authorized representative is ready to receive the gift.",
+      "terminal": false,
+      "turn": [
+        "team_rep"
+      ],
+      "actions": [
+        {
+          "by": {
+            "team_rep": "receive_gift"
+          },
+          "next": [
+            {
+              "state": "received_deferred",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aside_immediate",
+      "desc": "The gift is accepted and set aside while the client had expected acknowledgment through opening.",
+      "terminal": true
+    },
+    {
+      "id": "aside_deferred",
+      "desc": "The gift is accepted and set aside with the client comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "received_immediate",
+      "desc": "The authorized representative receives the gift after the client expected immediate acknowledgment.",
+      "terminal": true
+    },
+    {
+      "id": "received_deferred",
+      "desc": "The authorized representative receives the gift with the client comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "opened_immediate",
+      "desc": "The gift is opened in the client's presence when immediate acknowledgment was expected.",
+      "terminal": true
+    },
+    {
+      "id": "opened_deferred",
+      "desc": "The gift is opened in the client's presence when deferred opening was also acceptable.",
+      "terminal": true
+    }
+  ]
+}

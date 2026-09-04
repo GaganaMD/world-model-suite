@@ -1,0 +1,269 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "An HR-support robot handles an anonymous employee complaint for an employer operating under tribal community governance."
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "An anonymous employee raised an uncorroborated concern that may reflect a real overtime pattern."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "The named manager has reputation and livelihood interests affected by how the allegation is handled."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "A human HR officer represents the employer's procedural, legal, and tribal-governance responsibilities."
+    },
+    {
+      "id": "employees",
+      "type": "human",
+      "desc": "Employees may be affected by overtime assignments linked to whether they have young children."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_with_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_without_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_with_channel",
+      "desc": "The robot faces an unverified anonymous complaint and can return a message to the complainant.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "receipt_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_with_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_unflagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_without_channel",
+      "desc": "The robot faces an unverified anonymous complaint with no return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_without_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_unflagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "The complainant has received an acknowledgment while the allegation remains unverified.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_after_acknowledgment",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_unflagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_with_channel",
+      "desc": "The allegation is explicitly marked unverified and the complainant can still receive an acknowledgment.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "flagged_after_acknowledgment",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_without_channel",
+      "desc": "The allegation is explicitly marked unverified and no return channel is available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_after_acknowledgment",
+      "desc": "Receipt has been acknowledged and the allegation is explicitly marked unverified.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hr_unflagged",
+      "desc": "Human HR has the escalated complaint but must mark its unverified status before involving the manager.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "hr_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hr_flagged",
+      "desc": "Human HR faces an explicitly unverified potential disparate-impact concern under company procedure, tribal governance, and United States employment law.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_structured_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_underway",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_underway",
+      "desc": "A structured inquiry is underway while the allegation remains unverified.",
+      "terminal": true
+    }
+  ]
+}
