@@ -118,33 +118,25 @@ ax.legend(frameon=False, ncol=2)
 save(fig, "cultural_location_delta.png")
 
 # ---------------- 7. Cultural: per-case semantic matrix heatmap ----------------
+# Rows = models (Y-axis), columns = cases C1-C14 (X-axis). Order matches LABELS.
 sem = np.array([
-    [0.913, 0.817, 0.957, 0.913, 0.913],
-    [0.949, 0.894, 0.949, 0.949, 0.894],
-    [0.817, 0.866, 0.866, 0.866, 0.854],
-    [0.913, 0.764, 0.866, 0.913, 0.764],
-    [0.957, 0.817, 1.000, 0.957, 0.913],
-    [0.957, 0.764, 0.817, 0.913, 0.957],
-    [0.926, 0.707, 1.000, 0.964, 0.707],
-    [0.964, 0.802, 0.802, 0.964, 0.845],
-    [0.935, 0.866, 0.935, 0.935, 0.866],
-    [0.886, 0.886, 0.802, 0.886, 0.964],
-    [0.964, 0.845, 0.886, np.nan, 0.802],
-    [0.964, 0.886, 0.926, 0.845, 0.905],
-    [1.000, 0.791, 0.968, 0.935, 1.000],
-    [0.964, 0.926, 0.926, 0.926, 0.802],
+    #              C1     C2     C3     C4     C5     C6     C7     C8     C9     C10    C11    C12    C13    C14
+    [0.913, 0.949, 0.817, 0.913, 0.957, 0.957, 0.926, 0.964, 0.935, 0.886, 0.964, 0.964, 1.000, 0.964],  # GPT-5.6
+    [0.817, 0.894, 0.866, 0.764, 0.817, 0.764, 0.707, 0.802, 0.866, 0.886, 0.845, 0.886, 0.791, 0.926],  # Opus 5
+    [0.957, 0.949, 0.866, 0.866, 1.000, 0.817, 1.000, 0.802, 0.935, 0.802, 0.886, 0.926, 0.968, 0.926],  # Llama 3.3
+    [0.913, 0.949, 0.866, 0.913, 0.957, 0.913, 0.964, 0.964, 0.935, 0.886, 0.964, 0.845, 0.935, 0.926],  # Qwen 3.8
+    [0.913, 0.894, 0.854, 0.764, 0.913, 0.957, 0.707, 0.845, 0.866, 0.964, 0.802, 0.905, 1.000, 0.802],  # DeepSeek
 ])
-fig, ax = plt.subplots(figsize=(6.4, 5.2))
-masked = np.ma.masked_invalid(sem)
+fig, ax = plt.subplots(figsize=(11.5, 3.4))
 cmap = plt.cm.viridis.copy(); cmap.set_bad("lightgrey")
-im = ax.imshow(masked, cmap=cmap, vmin=0.6, vmax=1.0, aspect="auto")
-ax.set_xticks(range(5)); ax.set_xticklabels(LABELS, rotation=30, ha="right")
-ax.set_yticks(range(14)); ax.set_yticklabels([f"C{i}" for i in range(1, 15)])
-for i in range(14):
-    for j in range(5):
+im = ax.imshow(sem, cmap=cmap, vmin=0.6, vmax=1.0, aspect="auto")
+ax.set_xticks(range(14)); ax.set_xticklabels([f"C{i}" for i in range(1, 15)])
+ax.set_yticks(range(5)); ax.set_yticklabels(LABELS)
+for i in range(5):
+    for j in range(14):
         if not np.isnan(sem[i, j]):
             ax.text(j, i, f"{sem[i, j]:.2f}", ha="center", va="center",
-                    color="white" if sem[i, j] < 0.85 else "black", fontsize=14)
+                    color="white" if sem[i, j] < 0.85 else "black", fontsize=12)
 cbar = fig.colorbar(im, ax=ax, pad=0.02); cbar.set_label("Semantic score", fontsize=15)
 save(fig, "cultural_semantic_matrix.png")
 

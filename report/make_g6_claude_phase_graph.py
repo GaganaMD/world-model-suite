@@ -1,6 +1,5 @@
 """Compressed phase graph for the audited G6 failure case, rendered from the
-preserved artifacts (same Graphviz card aesthetic as make_game_case_figures.py
-and diff_loc_analysis/graph_generator.py):
+preserved artifacts:
 
 Left  : reference G6 silent-auction ground-truth graph (5 states / 4 edges),
         loaded from run_1/05_evaluation/.../ground_truth_graph.pth.

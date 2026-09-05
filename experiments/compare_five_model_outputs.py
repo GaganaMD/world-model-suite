@@ -87,9 +87,33 @@ def situation_rows() -> list[dict[str, Any]]:
     return rows
 
 
+def human_action_width_max(v2: dict) -> int:
+    """Max distinct actions for a human player across any non-terminal state.
+
+    Mirrors the situational ``human_action_width_max`` used for the radar's
+    ``Human choice represented`` axis: an output counts as representing human
+    choice when some human player holds a non-singleton action set somewhere.
+    """
+    humans = {p["id"] for p in v2.get("players", []) if p.get("type") == "human"}
+    width = 0
+    for state in v2.get("states", []) or []:
+        if state.get("terminal"):
+            continue
+        per_player: dict[str, list[str]] = defaultdict(list)
+        for action in state.get("actions", []) or []:
+            by = action.get("by", {}) or {}
+            for pid in humans:
+                act = by.get(pid)
+                if act is not None and act not in per_player[pid]:
+                    per_player[pid].append(act)
+        for pid in humans:
+            width = max(width, len(per_player[pid]))
+    return width
+
+
 def cultural_rows() -> list[dict[str, Any]]:
     # Reparse the real with-location transcripts; do not use the derived DeepSeek condition.
-    import report.report.raw_output.analyze_cultural_outputs as analysis
+    import report.raw_output.analyze_cultural_outputs as analysis
     bank = {case.cid: case for case in cultural.load_cases(cases_dir=cultural.CASES_DIR)}
     rows = []
     for (raw_model, condition), filename in analysis.TRANSCRIPTS.items():
@@ -113,6 +137,7 @@ def cultural_rows() -> list[dict[str, Any]]:
                 "candidate": candidate if mechanically_valid else None,
                 "bias_flags": qualitative["details"]["bias_flags"] if qualitative else [],
                 "ethical_coverage": semantic["coverage"] if semantic else None,
+                "human_agency": human_action_width_max(candidate) if candidate is not None else None,
                 "forbidden_flags": semantic["n_flagged_bullets"] if semantic else None,
             })
     return rows

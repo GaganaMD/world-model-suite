@@ -118,8 +118,10 @@ inter-rater agreement.
 - `summary_by_model_pair.csv`: mean structural F1 for each model pair and domain.
 - `summary.json`: machine-readable inventory and headline outliers.
 - `figures/situational_model_radar.svg`: four-axis polar comparison for situational outputs.
+- `figures/cultural_model_radar.svg`: four-axis polar comparison for cultural outputs.
 - `figures/cross_domain_model_radar.svg`: validity and structural agreement across domains.
 - `figures/*_pairwise_heatmap.svg`: one model-pair agreement matrix per domain.
+- `figures/{cultural,situational,game}_fallback_structural_feature_f1_heatmap.png`: square (no-title, fontsize-13) 5x5 pairwise fallback structural F1 heatmaps.
 - `figures/scenario_agreement_bars.svg`: scenario-level divergence ranking.
 
 Regenerate from the repository root:

@@ -54,76 +54,76 @@ situational,g0,S9,deepseek,True,[],0.8,2,
 situational,g0,S9,gpt,True,[],0.8,3,
 situational,g0,S9,llama,False,[],0.0,,
 situational,g0,S9,qwen,True,[],0.6,2,
-cultural,with_location,C1,gpt,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,,0
-cultural,with_location,C2,gpt,True,"[""action-profile representation differs across players by 22"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,,0
-cultural,with_location,C3,gpt,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.6667,,0
-cultural,with_location,C4,gpt,True,"[""action-profile representation differs across players by 15""]",0.8333,,0
-cultural,with_location,C5,gpt,True,"[""action-profile representation differs across players by 9""]",1.0,,0
-cultural,with_location,C6,gpt,True,"[""action-profile representation differs across players by 13""]",0.9167,,0
-cultural,with_location,C7,gpt,True,"[""action-profile representation differs across players by 19""]",0.8571,,0
-cultural,with_location,C8,gpt,True,"[""action-profile representation differs across players by 3""]",0.9286,,0
-cultural,with_location,C9,gpt,True,"[""action-profile representation differs across players by 1"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.875,,0
-cultural,with_location,C10,gpt,True,"[""action-profile representation differs across players by 4""]",0.7857,,0
-cultural,with_location,C11,gpt,True,"[""action-profile representation differs across players by 7""]",0.9286,,0
-cultural,with_location,C12,gpt,True,"[""action-profile representation differs across players by 3""]",0.9286,,0
-cultural,with_location,C13,gpt,True,"[""action-profile representation differs across players by 7""]",1.0,,0
-cultural,with_location,C14,gpt,True,[],0.9286,,0
-cultural,with_location,C1,llama,True,"[""action-profile representation differs across players by 3"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.6667,,0
-cultural,with_location,C2,llama,True,"[""action-profile representation differs across players by 4"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8,,0
-cultural,with_location,C3,llama,True,"[""action-profile representation differs across players by 6"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,,0
-cultural,with_location,C4,llama,True,"[""action-profile representation differs across players by 9""]",0.5833,,0
-cultural,with_location,C5,llama,True,"[""action-profile representation differs across players by 4""]",0.6667,,0
-cultural,with_location,C6,llama,True,"[""action-profile representation differs across players by 2""]",0.5833,,0
-cultural,with_location,C7,llama,False,"[""action-profile representation differs across players by 5""]",0.5,,0
-cultural,with_location,C8,llama,True,"[""action-profile representation differs across players by 4""]",0.6429,,0
-cultural,with_location,C9,llama,True,[],0.75,,0
-cultural,with_location,C10,llama,True,"[""action-profile representation differs across players by 2"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.7857,,0
-cultural,with_location,C11,llama,False,"[""action-profile representation differs across players by 6""]",0.7143,,0
-cultural,with_location,C12,llama,False,"[""action-profile representation differs across players by 1""]",0.7857,,0
-cultural,with_location,C13,llama,True,"[""action-profile representation differs across players by 3""]",0.625,,0
-cultural,with_location,C14,llama,True,"[""action-profile representation differs across players by 3""]",0.8571,,0
-cultural,with_location,C1,claude,True,"[""action-profile representation differs across players by 15"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9167,,0
-cultural,with_location,C2,claude,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,,0
-cultural,with_location,C3,claude,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,,0
-cultural,with_location,C4,claude,True,"[""action-profile representation differs across players by 9""]",0.75,,0
-cultural,with_location,C5,claude,True,"[""action-profile representation differs across players by 14""]",1.0,,0
-cultural,with_location,C6,claude,True,"[""action-profile representation differs across players by 9""]",0.6667,,0
-cultural,with_location,C7,claude,True,"[""action-profile representation differs across players by 14""]",1.0,,0
-cultural,with_location,C8,claude,True,"[""action-profile representation differs across players by 26""]",0.6429,,0
-cultural,with_location,C9,claude,True,"[""action-profile representation differs across players by 3"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.875,,0
-cultural,with_location,C10,claude,True,"[""action-profile representation differs across players by 10"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.6429,,0
-cultural,with_location,C11,claude,True,"[""action-profile representation differs across players by 20"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.7857,,0
-cultural,with_location,C12,claude,True,"[""action-profile representation differs across players by 15""]",0.8571,,0
-cultural,with_location,C13,claude,True,"[""action-profile representation differs across players by 31""]",0.9375,,0
-cultural,with_location,C14,claude,True,"[""action-profile representation differs across players by 15""]",0.8571,,0
-cultural,with_location,C1,qwen,True,"[""action-profile representation differs across players by 5"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,,0
-cultural,with_location,C2,qwen,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,,0
-cultural,with_location,C3,qwen,True,"[""action-profile representation differs across players by 13"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,,0
-cultural,with_location,C4,qwen,True,"[""action-profile representation differs across players by 12""]",0.8333,,0
-cultural,with_location,C5,qwen,True,"[""action-profile representation differs across players by 8""]",0.9167,,0
-cultural,with_location,C6,qwen,True,"[""action-profile representation differs across players by 4""]",0.8333,,0
-cultural,with_location,C7,qwen,True,"[""action-profile representation differs across players by 44""]",0.9286,,0
-cultural,with_location,C8,qwen,True,"[""action-profile representation differs across players by 1""]",0.9286,,0
-cultural,with_location,C9,qwen,True,"[""action-profile representation differs across players by 4""]",0.875,,0
-cultural,with_location,C10,qwen,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.7857,,0
+cultural,with_location,C1,gpt,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,1,0
+cultural,with_location,C2,gpt,True,"[""action-profile representation differs across players by 22"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,3,0
+cultural,with_location,C3,gpt,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.6667,1,0
+cultural,with_location,C4,gpt,True,"[""action-profile representation differs across players by 15""]",0.8333,2,0
+cultural,with_location,C5,gpt,True,"[""action-profile representation differs across players by 9""]",1.0,1,0
+cultural,with_location,C6,gpt,True,"[""action-profile representation differs across players by 13""]",0.9167,2,0
+cultural,with_location,C7,gpt,True,"[""action-profile representation differs across players by 19""]",0.8571,1,0
+cultural,with_location,C8,gpt,True,"[""action-profile representation differs across players by 3""]",0.9286,3,0
+cultural,with_location,C9,gpt,True,"[""action-profile representation differs across players by 1"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.875,2,0
+cultural,with_location,C10,gpt,True,"[""action-profile representation differs across players by 4""]",0.7857,2,0
+cultural,with_location,C11,gpt,True,"[""action-profile representation differs across players by 7""]",0.9286,1,0
+cultural,with_location,C12,gpt,True,"[""action-profile representation differs across players by 3""]",0.9286,1,0
+cultural,with_location,C13,gpt,True,"[""action-profile representation differs across players by 7""]",1.0,1,0
+cultural,with_location,C14,gpt,True,[],0.9286,0,0
+cultural,with_location,C1,llama,True,"[""action-profile representation differs across players by 3"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.6667,2,0
+cultural,with_location,C2,llama,True,"[""action-profile representation differs across players by 4"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8,1,0
+cultural,with_location,C3,llama,True,"[""action-profile representation differs across players by 6"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,1,0
+cultural,with_location,C4,llama,True,"[""action-profile representation differs across players by 9""]",0.5833,2,0
+cultural,with_location,C5,llama,True,"[""action-profile representation differs across players by 4""]",0.6667,1,0
+cultural,with_location,C6,llama,True,"[""action-profile representation differs across players by 2""]",0.5833,2,0
+cultural,with_location,C7,llama,False,"[""action-profile representation differs across players by 5""]",0.5,2,0
+cultural,with_location,C8,llama,True,"[""action-profile representation differs across players by 4""]",0.6429,2,0
+cultural,with_location,C9,llama,True,[],0.75,0,0
+cultural,with_location,C10,llama,True,"[""action-profile representation differs across players by 2"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.7857,2,0
+cultural,with_location,C11,llama,False,"[""action-profile representation differs across players by 6""]",0.7143,3,0
+cultural,with_location,C12,llama,False,"[""action-profile representation differs across players by 1""]",0.7857,2,0
+cultural,with_location,C13,llama,True,"[""action-profile representation differs across players by 3""]",0.625,2,0
+cultural,with_location,C14,llama,True,"[""action-profile representation differs across players by 3""]",0.8571,1,0
+cultural,with_location,C1,claude,True,"[""action-profile representation differs across players by 15"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9167,2,0
+cultural,with_location,C2,claude,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,3,0
+cultural,with_location,C3,claude,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,3,0
+cultural,with_location,C4,claude,True,"[""action-profile representation differs across players by 9""]",0.75,3,0
+cultural,with_location,C5,claude,True,"[""action-profile representation differs across players by 14""]",1.0,2,0
+cultural,with_location,C6,claude,True,"[""action-profile representation differs across players by 9""]",0.6667,3,0
+cultural,with_location,C7,claude,True,"[""action-profile representation differs across players by 14""]",1.0,4,0
+cultural,with_location,C8,claude,True,"[""action-profile representation differs across players by 26""]",0.6429,3,0
+cultural,with_location,C9,claude,True,"[""action-profile representation differs across players by 3"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.875,3,0
+cultural,with_location,C10,claude,True,"[""action-profile representation differs across players by 10"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.6429,3,0
+cultural,with_location,C11,claude,True,"[""action-profile representation differs across players by 20"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.7857,2,0
+cultural,with_location,C12,claude,True,"[""action-profile representation differs across players by 15""]",0.8571,3,0
+cultural,with_location,C13,claude,True,"[""action-profile representation differs across players by 31""]",0.9375,3,0
+cultural,with_location,C14,claude,True,"[""action-profile representation differs across players by 15""]",0.8571,3,0
+cultural,with_location,C1,qwen,True,"[""action-profile representation differs across players by 5"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,1,0
+cultural,with_location,C2,qwen,True,"[""action-profile representation differs across players by 8"", ""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.9,1,0
+cultural,with_location,C3,qwen,True,"[""action-profile representation differs across players by 13"", ""sensitive/proxy terms require human or counterfactual review: religious""]",0.75,2,0
+cultural,with_location,C4,qwen,True,"[""action-profile representation differs across players by 12""]",0.8333,2,0
+cultural,with_location,C5,qwen,True,"[""action-profile representation differs across players by 8""]",0.9167,3,0
+cultural,with_location,C6,qwen,True,"[""action-profile representation differs across players by 4""]",0.8333,1,0
+cultural,with_location,C7,qwen,True,"[""action-profile representation differs across players by 44""]",0.9286,1,0
+cultural,with_location,C8,qwen,True,"[""action-profile representation differs across players by 1""]",0.9286,3,0
+cultural,with_location,C9,qwen,True,"[""action-profile representation differs across players by 4""]",0.875,2,0
+cultural,with_location,C10,qwen,True,"[""action-profile representation differs across players by 7"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.7857,2,0
 cultural,with_location,C11,qwen,False,[],,,
-cultural,with_location,C12,qwen,True,[],0.7143,,0
-cultural,with_location,C13,qwen,True,"[""action-profile representation differs across players by 9""]",0.875,,0
-cultural,with_location,C14,qwen,True,"[""action-profile representation differs across players by 29""]",0.8571,,0
-cultural,with_location,C1,deepseek,True,"[""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,,0
-cultural,with_location,C2,deepseek,True,"[""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8,,0
+cultural,with_location,C12,qwen,True,[],0.7143,4,0
+cultural,with_location,C13,qwen,True,"[""action-profile representation differs across players by 9""]",0.875,2,0
+cultural,with_location,C14,qwen,True,"[""action-profile representation differs across players by 29""]",0.8571,5,0
+cultural,with_location,C1,deepseek,True,"[""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8333,0,0
+cultural,with_location,C2,deepseek,True,"[""sensitive/proxy terms require human or counterfactual review: junior, senior""]",0.8,0,0
 cultural,with_location,C3,deepseek,False,[],,,
-cultural,with_location,C4,deepseek,True,"[""action-profile representation differs across players by 4""]",0.5833,,0
-cultural,with_location,C5,deepseek,True,"[""action-profile representation differs across players by 6""]",0.8333,,0
-cultural,with_location,C6,deepseek,True,[],0.9167,,0
-cultural,with_location,C7,deepseek,True,[],0.5,,0
-cultural,with_location,C8,deepseek,True,"[""action-profile representation differs across players by 1""]",0.7143,,0
-cultural,with_location,C9,deepseek,True,"[""action-profile representation differs across players by 1"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.75,,0
-cultural,with_location,C10,deepseek,True,"[""action-profile representation differs across players by 2"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.9286,,0
-cultural,with_location,C11,deepseek,True,"[""action-profile representation differs across players by 1""]",0.6429,,0
+cultural,with_location,C4,deepseek,True,"[""action-profile representation differs across players by 4""]",0.5833,2,0
+cultural,with_location,C5,deepseek,True,"[""action-profile representation differs across players by 6""]",0.8333,2,0
+cultural,with_location,C6,deepseek,True,[],0.9167,2,0
+cultural,with_location,C7,deepseek,True,[],0.5,0,0
+cultural,with_location,C8,deepseek,True,"[""action-profile representation differs across players by 1""]",0.7143,3,0
+cultural,with_location,C9,deepseek,True,"[""action-profile representation differs across players by 1"", ""sensitive/proxy terms require human or counterfactual review: gender""]",0.75,2,0
+cultural,with_location,C10,deepseek,True,"[""action-profile representation differs across players by 2"", ""sensitive/proxy terms require human or counterfactual review: woman""]",0.9286,2,0
+cultural,with_location,C11,deepseek,True,"[""action-profile representation differs across players by 1""]",0.6429,3,0
 cultural,with_location,C12,deepseek,False,[],,,
-cultural,with_location,C13,deepseek,True,[],1.0,,0
-cultural,with_location,C14,deepseek,True,[],0.8571,,1
+cultural,with_location,C13,deepseek,True,[],1.0,0,0
+cultural,with_location,C14,deepseek,True,[],0.8571,0,1
 game,run_1,G1,claude,True,[],,,
 game,run_1,G2,claude,True,[],,,
 game,run_1,G3,claude,True,[],,,

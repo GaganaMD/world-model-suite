@@ -12,6 +12,9 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import mean
 
+import numpy as np
+from matplotlib import pyplot as plt
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "results" / "cross_model_comparison"
 OUT = DATA / "figures"
@@ -81,6 +84,23 @@ def situational_radar() -> None:
           ["Mechanical validity", "Stakeholder capacity", "Human choice represented", "Pairwise structural agreement"], series)
 
 
+def cultural_radar() -> None:
+    models = [row for row in read("summary_by_model.csv") if row["domain"] == "cultural"]
+    pairs = [row for row in read("summary_by_model_pair.csv") if row["domain"] == "cultural"]
+    agreement = defaultdict(list)
+    for row in pairs:
+        if row["mean_structural_f1"]:
+            value = float(row["mean_structural_f1"])
+            agreement[row["model_a"]].append(value); agreement[row["model_b"]].append(value)
+    series = {}
+    for row in models:
+        model = row["model"]
+        series[model] = [float(row["validity_rate"]), float(row["mean_criteria_coverage_proxy"]),
+                         int(row["human_choice_outputs"])/int(row["outputs"]), mean(agreement[model])]
+    radar("cultural_model_radar.svg", "Cultural model comparison",
+          ["Mechanical validity", "Semantic coverage", "Human choice represented", "Pairwise structural agreement"], series)
+
+
 def cross_domain_radar() -> None:
     rows = read("summary_by_model.csv"); pairs = read("summary_by_model_pair.csv")
     validity = {(r["domain"], r["model"]): float(r["validity_rate"]) for r in rows}
@@ -140,9 +160,39 @@ def divergence_chart() -> None:
     save("scenario_agreement_bars.svg", body, width, height)
 
 
+def fallback_f1_heatmaps() -> None:
+    """Write three square PNG heatmaps of the fallback structural-feature F1 matrix."""
+    rows = read("summary_by_model_pair.csv")
+    values = {}
+    for row in rows:
+        if row["mean_structural_f1"]:
+            values[(row["domain"], frozenset((row["model_a"], row["model_b"])))] = float(row["mean_structural_f1"])
+    for domain in ("cultural", "situational", "game"):
+        matrix = np.ones((len(MODELS), len(MODELS)))
+        for i, left in enumerate(MODELS):
+            for j, right in enumerate(MODELS):
+                if i != j:
+                    matrix[i, j] = values.get((domain, frozenset((left, right))), np.nan)
+        fig, ax = plt.subplots(figsize=(5.6, 5.6))
+        masked = np.ma.masked_invalid(matrix)
+        ax.imshow(masked, cmap="viridis", vmin=0.0, vmax=1.0)
+        ax.set_aspect("equal")
+        ax.set_xticks(range(len(MODELS))); ax.set_xticklabels(MODELS, fontsize=13)
+        ax.set_yticks(range(len(MODELS))); ax.set_yticklabels(MODELS, fontsize=13)
+        for i in range(len(MODELS)):
+            for j in range(len(MODELS)):
+                if not np.isnan(matrix[i, j]):
+                    ax.text(j, i, f"{matrix[i, j]:.2f}", ha="center", va="center",
+                            color="white" if matrix[i, j] < 0.55 else "black", fontsize=13)
+        fig.savefig(OUT / f"{domain}_fallback_structural_feature_f1_heatmap.png",
+                    dpi=200, bbox_inches="tight")
+        plt.close(fig)
+
+
 def main() -> None:
-    situational_radar(); cross_domain_radar(); heatmaps(); divergence_chart()
-    print(f"Wrote 6 SVG figures to {OUT.relative_to(ROOT)}")
+    situational_radar(); cultural_radar(); cross_domain_radar(); heatmaps(); divergence_chart()
+    fallback_f1_heatmaps()
+    print(f"Wrote 7 SVG figures + 3 PNG heatmaps to {OUT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
