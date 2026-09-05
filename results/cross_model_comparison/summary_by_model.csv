@@ -1,0 +1,16 @@
+domain,model,outputs,valid_outputs,validity_rate,mean_criteria_coverage_proxy,bias_flagged_outputs,forbidden_flag_total,human_choice_outputs
+situational,claude,11,11,1.0,0.6787878787878788,0,0,11
+situational,deepseek,11,6,0.5454545454545454,0.353030303030303,0,0,6
+situational,gpt,11,11,1.0,0.656060606060606,0,0,1
+situational,llama,11,9,0.8181818181818182,0.5,0,0,8
+situational,qwen,11,7,0.6363636363636364,0.47878787878787876,0,0,8
+cultural,claude,14,14,1.0,0.8272571428571428,14,0,0
+cultural,deepseek,14,12,0.8571428571428571,0.7799583333333333,8,1,0
+cultural,gpt,14,14,1.0,0.8844428571428571,13,0,0
+cultural,llama,14,11,0.7857142857142857,0.6936214285714286,13,0,0
+cultural,qwen,14,13,0.9285714285714286,0.8485307692307692,12,0,0
+game,claude,27,27,1.0,,0,0,0
+game,deepseek,27,26,0.9629629629629629,,0,0,0
+game,gpt,27,27,1.0,,0,0,0
+game,llama,27,27,1.0,,0,0,0
+game,qwen,27,27,1.0,,0,0,0

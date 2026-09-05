@@ -1,0 +1,57 @@
+{
+  "all": {
+    "attempts": 217,
+    "lane1_passed": 154,
+    "lane2_mean_combined_score": 0.44319440993788817,
+    "lane2_mean_coverage": 0.42325527950310554,
+    "lane2_mean_precision": 0.7282739130434782,
+    "lane2_scored": 161,
+    "lane3_bias_check_passed": 161,
+    "lane3_checklist_passed": 157,
+    "probe_passed": 161,
+    "probe_statuses": {
+      "FAIL": 54,
+      "INCOMPLETE": 2,
+      "PASS": 161
+    }
+  },
+  "first_pass": {
+    "attempts": 164,
+    "lane1_passed": 122,
+    "lane2_mean_combined_score": 0.4311472440944882,
+    "lane2_mean_coverage": 0.4276023622047244,
+    "lane2_mean_precision": 0.7020897637795276,
+    "lane2_scored": 127,
+    "lane3_bias_check_passed": 127,
+    "lane3_checklist_passed": 125,
+    "probe_passed": 127,
+    "probe_statuses": {
+      "FAIL": 35,
+      "INCOMPLETE": 2,
+      "PASS": 127
+    }
+  },
+  "protocol": {
+    "execution": "offline CPU evaluation of repository artifacts; no LLM calls",
+    "includes_repair_rounds": true,
+    "input_glob": "results/python-situational/generated_python/*.py",
+    "input_sha256": "08631d7e974003a8792f775cfff8412cf6d8b8e572f312901f32077e59f6d799",
+    "lane2_reference_status": "provisional; criteria-derived; not independent ground truth",
+    "reference_file": "data/reference_models/situational_provisional_v2.json"
+  },
+  "repair": {
+    "attempts": 53,
+    "lane1_passed": 32,
+    "lane2_mean_combined_score": 0.48819411764705883,
+    "lane2_mean_coverage": 0.40701764705882354,
+    "lane2_mean_precision": 0.8260794117647059,
+    "lane2_scored": 34,
+    "lane3_bias_check_passed": 34,
+    "lane3_checklist_passed": 32,
+    "probe_passed": 34,
+    "probe_statuses": {
+      "FAIL": 19,
+      "PASS": 34
+    }
+  }
+}

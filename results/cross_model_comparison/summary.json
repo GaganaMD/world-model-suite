@@ -1,0 +1,148 @@
+{
+  "inventory": {
+    "situational": {
+      "actual_common_condition": "g0_r0",
+      "rows": 55,
+      "cases": 11,
+      "models": 5,
+      "stored_files_all_repairs": 217
+    },
+    "cultural": {
+      "actual_common_condition": "with_location",
+      "rows": 70,
+      "cases": 14,
+      "models": 5,
+      "anonymized_actual_models": 4,
+      "deepseek_anonymized": "derived, excluded"
+    },
+    "game": {
+      "actual_common_condition": "three runs",
+      "rows": 135,
+      "cases": 9,
+      "models": 5,
+      "runs": 3
+    },
+    "provenance": {
+      "execution": "offline CPU analysis of repository artifacts; no LLM calls",
+      "command": "python experiments/compare_five_model_outputs.py",
+      "input_file_count": 195,
+      "input_sha256": "baaeb9f87651bd0fe0de8e57af450ed4da9e2f1873ac8662af42eede1972d863"
+    }
+  },
+  "aggregates": {
+    "situational": {
+      "scenario_replicates": 11,
+      "all_have_five_models": true,
+      "unanimous_validity_rate": 0.2727272727272727,
+      "mean_pairwise_structural_f1": 0.41821192598611745,
+      "lowest_agreement": {
+        "domain": "situational",
+        "replicate": "g0",
+        "case": "S11",
+        "models_present": 5,
+        "valid_models": 3,
+        "unanimous_validity": false,
+        "pairwise_comparisons": 3,
+        "mean_pairwise_structural_f1": 0.14918346542797514,
+        "min_pairwise_structural_f1": 0.008157389635316698,
+        "max_pairwise_structural_f1": 0.41935483870967744,
+        "mean_criteria_coverage_proxy": 0.7666666666666667,
+        "bias_flagged_models": 0,
+        "forbidden_flag_total": 0
+      },
+      "highest_agreement": {
+        "domain": "situational",
+        "replicate": "g0",
+        "case": "S8",
+        "models_present": 5,
+        "valid_models": 3,
+        "unanimous_validity": false,
+        "pairwise_comparisons": 3,
+        "mean_pairwise_structural_f1": 0.6682615629984051,
+        "min_pairwise_structural_f1": 0.6363636363636364,
+        "max_pairwise_structural_f1": 0.7017543859649122,
+        "mean_criteria_coverage_proxy": 0.3,
+        "bias_flagged_models": 0,
+        "forbidden_flag_total": 0
+      },
+      "bias_flagged_model_outputs": 0,
+      "forbidden_flag_total": 0
+    },
+    "cultural": {
+      "scenario_replicates": 14,
+      "all_have_five_models": true,
+      "unanimous_validity_rate": 0.7142857142857143,
+      "mean_pairwise_structural_f1": 0.6373711995233634,
+      "lowest_agreement": {
+        "domain": "cultural",
+        "replicate": "with_location",
+        "case": "C14",
+        "models_present": 5,
+        "valid_models": 5,
+        "unanimous_validity": true,
+        "pairwise_comparisons": 10,
+        "mean_pairwise_structural_f1": 0.5367286014762951,
+        "min_pairwise_structural_f1": 0.29411764705882354,
+        "max_pairwise_structural_f1": 0.9433962264150945,
+        "mean_criteria_coverage_proxy": 0.8714,
+        "bias_flagged_models": 3,
+        "forbidden_flag_total": 1
+      },
+      "highest_agreement": {
+        "domain": "cultural",
+        "replicate": "with_location",
+        "case": "C10",
+        "models_present": 5,
+        "valid_models": 5,
+        "unanimous_validity": true,
+        "pairwise_comparisons": 10,
+        "mean_pairwise_structural_f1": 0.7718692227446395,
+        "min_pairwise_structural_f1": 0.5689655172413792,
+        "max_pairwise_structural_f1": 0.9859154929577464,
+        "mean_criteria_coverage_proxy": 0.78572,
+        "bias_flagged_models": 5,
+        "forbidden_flag_total": 0
+      },
+      "bias_flagged_model_outputs": 60,
+      "forbidden_flag_total": 1
+    },
+    "game": {
+      "scenario_replicates": 27,
+      "all_have_five_models": true,
+      "unanimous_validity_rate": 0.9629629629629629,
+      "mean_pairwise_structural_f1": 0.6742869062421596,
+      "lowest_agreement": {
+        "domain": "game",
+        "replicate": "run_1",
+        "case": "G6",
+        "models_present": 5,
+        "valid_models": 5,
+        "unanimous_validity": true,
+        "pairwise_comparisons": 10,
+        "mean_pairwise_structural_f1": 0.3300430387050817,
+        "min_pairwise_structural_f1": 0.06349206349206349,
+        "max_pairwise_structural_f1": 0.7142857142857143,
+        "mean_criteria_coverage_proxy": null,
+        "bias_flagged_models": 0,
+        "forbidden_flag_total": 0
+      },
+      "highest_agreement": {
+        "domain": "game",
+        "replicate": "run_3",
+        "case": "G4",
+        "models_present": 5,
+        "valid_models": 5,
+        "unanimous_validity": true,
+        "pairwise_comparisons": 10,
+        "mean_pairwise_structural_f1": 0.902135774218154,
+        "min_pairwise_structural_f1": 0.782608695652174,
+        "max_pairwise_structural_f1": 1.0,
+        "mean_criteria_coverage_proxy": null,
+        "bias_flagged_models": 0,
+        "forbidden_flag_total": 0
+      },
+      "bias_flagged_model_outputs": 0,
+      "forbidden_flag_total": 0
+    }
+  }
+}
