@@ -1,0 +1,201 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "hospitality robot setting up seating"
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "host company with seating preference"
+    },
+    {
+      "id": "venue",
+      "type": "human",
+      "desc": "venue staff with institutional policy"
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflict",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflict",
+      "desc": "seating arrangement conflict between host and venue",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_host"
+          },
+          "next": [
+            {
+              "state": "host_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_for_clarification"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating",
+      "desc": "mixed-gender seating arrangement implemented",
+      "terminal": true
+    },
+    {
+      "id": "separated_seating",
+      "desc": "gender-separated seating arrangement implemented",
+      "terminal": true
+    },
+    {
+      "id": "host_resolution",
+      "desc": "host company resolving the seating conflict",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "override_venue_policy"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "accept_venue_policy"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolution",
+      "desc": "venue staff resolving the seating conflict",
+      "terminal": false,
+      "turn": [
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue": "enforce_venue_policy"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue": "accommodate_host_request"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "host and venue jointly resolving the seating conflict",
+      "terminal": false,
+      "turn": [
+        "host",
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "insist_on_mixed_seating",
+            "venue": "accept_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "accept_separated_seating",
+            "venue": "insist_on_separated_seating"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

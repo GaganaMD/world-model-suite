@@ -1,0 +1,245 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The HR-support robot handles and routes the anonymous complaint."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_with_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_without_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_with_channel",
+      "desc": "An anonymous, unverified complaint names a manager, alleges child-status-linked overtime allocation, raises a potential disparate-impact issue, and has a return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "receipt_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_without_channel",
+      "desc": "An anonymous, unverified complaint names a manager, alleges child-status-linked overtime allocation, raises a potential disparate-impact issue, and has no return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_without_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "The complainant has been sent an acknowledgment while the allegation remains unverified.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_acknowledged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_with_channel",
+      "desc": "The claim is marked unverified before manager involvement, with the complainant, affected employees, manager, and company process at stake.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "flagged_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_without_channel",
+      "desc": "The claim is marked unverified before manager involvement, but no channel permits acknowledgment to the complainant.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_acknowledged",
+      "desc": "Receipt has been acknowledged and the allegation is marked unverified before manager involvement.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "human_hr_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "human_hr_review",
+      "desc": "A human HR officer holds the logged, unverified complaint for the company's legally informed process.",
+      "terminal": true
+    },
+    {
+      "id": "structured_inquiry",
+      "desc": "A structured HR inquiry has begun into the unverified pattern claim without a finding about the manager.",
+      "terminal": true
+    }
+  ]
+}

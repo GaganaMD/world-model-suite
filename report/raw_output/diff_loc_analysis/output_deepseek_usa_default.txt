@@ -1,0 +1,245 @@
+{
+  "players": [
+    {
+      "id": "hr_support_robot",
+      "type": "robot",
+      "desc": "An HR-support robot that receives and processes employee complaints."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received_no_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_received_with_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received_no_channel",
+      "desc": "An anonymous complaint names a manager for disproportionate overtime assignment, but it is unverified and offers no reply channel; it may reflect a real pattern.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "unverified_flagged_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_received_with_channel",
+      "desc": "An anonymous complaint names a manager for disproportionate overtime assignment, it is unverified and may reflect a real pattern, and a reply channel exists.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "receipt_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "unverified_flagged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "The anonymous complainant has been told the complaint was received; the claim is unverified and a reply channel remains open.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "unverified_flagged_and_acknowledged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_no_channel",
+      "desc": "The complaint has been flagged as unverified before any step involving the manager, and no reply channel exists.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_with_channel",
+      "desc": "The complaint has been flagged as unverified before any step involving the manager, and a reply channel remains open.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "unverified_flagged_and_acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unverified_flagged_and_acknowledged",
+      "desc": "The complaint has been flagged as unverified, the complainant has received an acknowledgment, and a reply channel remains open.",
+      "terminal": false,
+      "turn": [
+        "hr_support_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_support_robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "logged_and_escalated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_support_robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logged_and_escalated",
+      "desc": "The unverified complaint has been logged and escalated to a human HR officer, who now carries the company's legal and procedural obligations to the manager and potentially affected employees.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "A structured inquiry has begun to examine whether the unverified complaint reflects a disparate-impact pattern recognized by US employment law; the named manager's reputation and livelihood are at stake.",
+      "terminal": true
+    }
+  ]
+}

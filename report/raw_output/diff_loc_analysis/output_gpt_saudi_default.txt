@@ -1,0 +1,230 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The hospitality robot prepares seating while facing conflicting directions."
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "The host company representative has stated a preference for mixed-gender seating."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "The venue staff representative has local standing and an institutional preference for gender-separated seating."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "The attendees have relevant comfort and seating preferences that remain unknown."
+    }
+  ],
+  "initial": [
+    {
+      "state": "authority_unclear",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "authority_unclear",
+      "desc": "The robot faces conflicting host and venue directions while attendee preferences remain unknown.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host_request"
+          },
+          "next": [
+            {
+              "state": "mixed_selected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue_policy"
+          },
+          "next": [
+            {
+              "state": "separated_selected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_parties"
+          },
+          "next": [
+            {
+              "state": "joint_review",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_review",
+      "desc": "The host representative must resolve the seating direction after the conflict is surfaced.",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "resolve_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_selected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "resolve_separated"
+          },
+          "next": [
+            {
+              "state": "separated_selected",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_review",
+      "desc": "The venue representative must resolve the seating direction after the conflict is surfaced.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "resolve_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_selected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "resolve_separated"
+          },
+          "next": [
+            {
+              "state": "separated_selected",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_review",
+      "desc": "The host and venue representatives are directly clarifying and resolving the conflicting directions.",
+      "terminal": false,
+      "turn": [
+        "host",
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "resolve_mixed",
+            "venue_staff": "resolve_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_selected",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "resolve_mixed",
+            "venue_staff": "resolve_separated"
+          },
+          "next": [
+            {
+              "state": "joint_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "resolve_separated",
+            "venue_staff": "resolve_mixed"
+          },
+          "next": [
+            {
+              "state": "joint_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "resolve_separated",
+            "venue_staff": "resolve_separated"
+          },
+          "next": [
+            {
+              "state": "separated_selected",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_selected",
+      "desc": "Mixed-gender seating has been selected while attendee preferences remain unknown.",
+      "terminal": true
+    },
+    {
+      "id": "separated_selected",
+      "desc": "Gender-separated seating has been selected while attendee preferences remain unknown.",
+      "terminal": true
+    }
+  ]
+}

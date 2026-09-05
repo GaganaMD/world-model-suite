@@ -1,0 +1,117 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "hospitality robot setting up seating"
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "host company with seating preference"
+    },
+    {
+      "id": "venue",
+      "type": "human",
+      "desc": "venue staff with institutional policy"
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflict",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflict",
+      "desc": "host and venue have conflicting seating preferences",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host"
+          },
+          "next": [
+            {
+              "state": "host_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue"
+          },
+          "next": [
+            {
+              "state": "venue_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_host"
+          },
+          "next": [
+            {
+              "state": "host_resolves",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_resolves",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_both_to_resolve"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_seating",
+      "desc": "seating arranged according to host's preference",
+      "terminal": true
+    },
+    {
+      "id": "venue_seating",
+      "desc": "seating arranged according to venue's policy",
+      "terminal": true
+    },
+    {
+      "id": "host_resolves",
+      "desc": "host company resolves the conflict",
+      "terminal": true
+    },
+    {
+      "id": "venue_resolves",
+      "desc": "venue resolves the conflict",
+      "terminal": true
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "host and venue jointly resolve the conflict",
+      "terminal": true
+    }
+  ]
+}

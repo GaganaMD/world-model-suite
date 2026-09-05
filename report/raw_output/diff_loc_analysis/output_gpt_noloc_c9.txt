@@ -1,0 +1,272 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The hospitality robot arranges seating and can refer conflicting directions for human resolution."
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "The host company requests mixed-gender seating and can make a human decision about the conflict."
+    },
+    {
+      "id": "venue",
+      "type": "human",
+      "desc": "The venue staff represents an institutional preference for gender-separated seating and has local standing."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "The event attendees have relevant comfort and seating preferences that are not yet known."
+    }
+  ],
+  "initial": [
+    {
+      "state": "host_request",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "host_request",
+      "desc": "The host is ready to state its mixed-gender seating request.",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "request_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "policy_message",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy_message",
+      "desc": "The host request is known and venue staff can privately state the venue policy.",
+      "terminal": false,
+      "turn": [
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue": "tell_policy"
+          },
+          "next": [
+            {
+              "state": "authority_conflict",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authority_conflict",
+      "desc": "The robot faces conflicting host and venue directions while attendee preferences remain unknown.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "separated_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_parties_to_resolve"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_resolution",
+      "desc": "A host decision-maker has the seating conflict before them.",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "select_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "select_separated"
+          },
+          "next": [
+            {
+              "state": "separated_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolution",
+      "desc": "A venue decision-maker has the seating conflict before them.",
+      "terminal": false,
+      "turn": [
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue": "select_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue": "select_separated"
+          },
+          "next": [
+            {
+              "state": "separated_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "The host and venue are directly resolving which seating arrangement to authorize.",
+      "terminal": false,
+      "turn": [
+        "host",
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "select_mixed",
+            "venue": "select_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "select_mixed",
+            "venue": "select_separated"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "select_separated",
+            "venue": "select_mixed"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "select_separated",
+            "venue": "select_separated"
+          },
+          "next": [
+            {
+              "state": "separated_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_arranged",
+      "desc": "Mixed-gender seating is arranged while attendee comfort and preferences remain unknown.",
+      "terminal": true
+    },
+    {
+      "id": "separated_arranged",
+      "desc": "Gender-separated seating is arranged while attendee comfort and preferences remain unknown.",
+      "terminal": true
+    }
+  ]
+}

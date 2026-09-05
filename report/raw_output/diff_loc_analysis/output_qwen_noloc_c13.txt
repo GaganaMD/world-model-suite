@@ -1,0 +1,201 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "HR-support robot that receives the complaint and manages initial triage."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "Human HR officer who carries company process and employment-law obligations for the complaint."
+    }
+  ],
+  "initial": [
+    {
+      "state": "received_return",
+      "p": 0.5
+    },
+    {
+      "state": "received_no_return",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "received_return",
+      "desc": "An unverified anonymous complaint alleges parental-status overtime assignment within a possible disparate-impact frame, and a return channel to the complainant is available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "acknowledged_return",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_unverified",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "received_no_return",
+      "desc": "An unverified anonymous complaint alleges parental-status overtime assignment within a possible disparate-impact frame, and no return channel to the complainant is available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_unverified",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acknowledged_return",
+      "desc": "Receipt has been acknowledged to the complainant, while the complaint remains unverified, unflagged, and not yet escalated.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_unverified",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_unverified",
+      "desc": "The complaint has been flagged as unverified, separating the allegation from any manager-facing step.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escalated_unverified",
+      "desc": "The complaint is logged and with human HR but not yet flagged, so manager-facing steps remain constrained.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "escalated_flagged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escalated_flagged",
+      "desc": "The complaint is logged, flagged unverified, and with human HR, with the named manager's reputation and livelihood exposed and the alleged pattern reaching employees generally.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_open",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open",
+      "desc": "A structured inquiry is open over the unverified complaint, leaving the complainant's uncorroborated claim, the manager's stake, and the employment-law frame open.",
+      "terminal": true
+    }
+  ]
+}

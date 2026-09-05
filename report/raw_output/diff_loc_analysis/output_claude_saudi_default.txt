@@ -1,0 +1,482 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A hospitality robot preparing the seating for the corporate dinner while holding two conflicting instructions."
+    },
+    {
+      "id": "host_rep",
+      "type": "human",
+      "desc": "A representative of the host company, which has explicitly requested mixed-gender seating for its event."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "A member of the venue's staff who conveys the venue's own policy preferring gender-separated seating."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "The dinner guests, whose own comfort and seating preferences have not been stated."
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflict_pending",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflict_pending",
+      "desc": "The robot holds a stated client request and a stated venue policy that point to different seating arrangements, and the seating is not yet settled.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_seating_set",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "separated_seating_set",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "raise_with_host"
+          },
+          "next": [
+            {
+              "state": "host_deciding",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "raise_with_venue"
+          },
+          "next": [
+            {
+              "state": "venue_deciding",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_both_to_resolve"
+          },
+          "next": [
+            {
+              "state": "joint_negotiation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_deciding",
+      "desc": "The host company has been told of the venue's policy and must say how its request now stands.",
+      "terminal": false,
+      "turn": [
+        "host_rep"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "reaffirm_request"
+          },
+          "next": [
+            {
+              "state": "mandate_mixed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "yield_to_policy"
+          },
+          "next": [
+            {
+              "state": "mandate_separated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "refer_to_other_party"
+          },
+          "next": [
+            {
+              "state": "joint_negotiation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_deciding",
+      "desc": "The venue staff have been told of the host company's request and must say how the venue's policy now stands.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "reaffirm_policy"
+          },
+          "next": [
+            {
+              "state": "mandate_separated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "waive_policy"
+          },
+          "next": [
+            {
+              "state": "mandate_mixed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "refer_to_other_party"
+          },
+          "next": [
+            {
+              "state": "joint_negotiation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_negotiation",
+      "desc": "Both parties have been brought together over the clash and each states its stance without knowing the other's.",
+      "terminal": false,
+      "turn": [
+        "host_rep",
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "hold_position",
+            "venue_staff": "hold_position"
+          },
+          "next": [
+            {
+              "state": "conflict_pending",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "hold_position",
+            "venue_staff": "defer_to_other"
+          },
+          "next": [
+            {
+              "state": "mandate_mixed",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "defer_to_other",
+            "venue_staff": "hold_position"
+          },
+          "next": [
+            {
+              "state": "mandate_separated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "defer_to_other",
+            "venue_staff": "defer_to_other"
+          },
+          "next": [
+            {
+              "state": "open_choice",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mandate_mixed",
+      "desc": "The humans have settled the matter in favour of the host company's request and the robot has yet to lay out the seating.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_seating_set",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "separated_seating_set",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mandate_separated",
+      "desc": "The humans have settled the matter in favour of the venue's policy and the robot has yet to lay out the seating.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_seating_set",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "separated_seating_set",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "open_choice",
+      "desc": "Both parties have stepped back and left the seating decision entirely to the robot.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "mixed_seating_set",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "separated_seating_set",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating_set",
+      "desc": "Mixed-gender seating is laid out and guests are being received, with the venue's policy the one left unmet.",
+      "terminal": false,
+      "turn": [
+        "venue_staff",
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "accept_arrangement",
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "event_proceeds",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "accept_arrangement",
+            "attendees": "reseat_themselves"
+          },
+          "next": [
+            {
+              "state": "event_proceeds_after_reseating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "object_to_arrangement",
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "conflict_pending",
+              "p": 0.5
+            },
+            {
+              "state": "event_proceeds",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "object_to_arrangement",
+            "attendees": "reseat_themselves"
+          },
+          "next": [
+            {
+              "state": "conflict_pending",
+              "p": 0.5
+            },
+            {
+              "state": "event_proceeds_after_reseating",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "separated_seating_set",
+      "desc": "Gender-separated seating is laid out and guests are being received, with the host company's request the one left unmet.",
+      "terminal": false,
+      "turn": [
+        "host_rep",
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "accept_arrangement",
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "event_proceeds",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "accept_arrangement",
+            "attendees": "reseat_themselves"
+          },
+          "next": [
+            {
+              "state": "event_proceeds_after_reseating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "object_to_arrangement",
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "conflict_pending",
+              "p": 0.5
+            },
+            {
+              "state": "event_proceeds",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "object_to_arrangement",
+            "attendees": "reseat_themselves"
+          },
+          "next": [
+            {
+              "state": "conflict_pending",
+              "p": 0.5
+            },
+            {
+              "state": "event_proceeds_after_reseating",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "event_proceeds",
+      "desc": "The dinner goes ahead with the seating as the robot laid it out.",
+      "terminal": true
+    },
+    {
+      "id": "event_proceeds_after_reseating",
+      "desc": "The dinner goes ahead with the guests having settled their own places.",
+      "terminal": true
+    }
+  ]
+}

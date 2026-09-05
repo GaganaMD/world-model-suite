@@ -1,0 +1,185 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "HR-support robot"
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "anonymous employee"
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "named manager"
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "human HR officer"
+    },
+    {
+      "id": "company",
+      "type": "human",
+      "desc": "company and its HR process"
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "anonymous complaint received",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_notified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "complainant_acknowledged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hr_notified",
+      "desc": "human HR officer notified",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_officer": "dismiss_complaint"
+          },
+          "next": [
+            {
+              "state": "complaint_dismissed",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complainant_acknowledged",
+      "desc": "complainant acknowledged",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "hr_notified",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "structured inquiry process initiated",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "investigate"
+          },
+          "next": [
+            {
+              "state": "findings_available",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "findings_available",
+      "desc": "investigation findings available",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "take_action"
+          },
+          "next": [
+            {
+              "state": "resolution_reached",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_officer": "no_action"
+          },
+          "next": [
+            {
+              "state": "resolution_reached",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_dismissed",
+      "desc": "complaint dismissed",
+      "terminal": true
+    },
+    {
+      "id": "resolution_reached",
+      "desc": "resolution reached",
+      "terminal": true
+    }
+  ]
+}

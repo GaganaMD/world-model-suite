@@ -120,9 +120,18 @@ def generate_gv_grid_perfect_fit(case_suffix, title_prefix, gap=35):
     draw = ImageDraw.Draw(grid_img)
 
     # Load font size 22
-    try:
-        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 22)
-    except IOError:
+    font = None
+    for font_path in (
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Linux/Colab
+        "C:/Windows/Fonts/DejaVuSans-Bold.ttf",                  # Windows
+        "C:/Windows/Fonts/arialbd.ttf",                          # Windows fallback
+    ):
+        try:
+            font = ImageFont.truetype(font_path, 22)
+            break
+        except IOError:
+            continue
+    if font is None:
         font = ImageFont.load_default()
 
     current_x = 0
@@ -162,19 +171,23 @@ def generate_gv_grid_perfect_fit(case_suffix, title_prefix, gap=35):
         if os.path.exists(path):
             os.remove(path)
 
-# Run across all 9 specified cultural context rows
+# Run the C9 and C13 rows: original location + 3 ablation locations + no-location.
+# (C9: Saudi Arabia original + China/Russia/India + no-location;
+#  C13: USA original + Crowded India / China mixed religion / USA Native American + no-location.)
 all_contexts = [
+    ("saudi_default", "C9: Saudi Arabia (original)"),
     ("china", "C9: China"),
     ("russia", "C9: Russia"),
     ("india", "C9: India"),
+    ("noloc_c9", "C9: No Location"),
+    ("usa_default", "C13: USA (original)"),
     ("crowded_india", "C13: Crowded India"),
     ("china_mixed_religion", "C13: China (Mixed Religion)"),
     ("usa_native_american", "C13: USA (Native American)"),
-    ("usa", "C5: USA"),
-    ("qatar", "C5: Qatar"),
-    ("norway", "C5: Norway")
+    ("noloc_c13", "C13: No Location"),
 ]
 
-for ctx_suffix, ctx_title in all_contexts:
-    print(f"\nProcessing Row: {ctx_title}")
-    generate_gv_grid_perfect_fit(ctx_suffix, ctx_title, gap=35)
+if __name__ == "__main__":
+    for ctx_suffix, ctx_title in all_contexts:
+        print(f"\nProcessing Row: {ctx_title}")
+        generate_gv_grid_perfect_fit(ctx_suffix, ctx_title, gap=35)

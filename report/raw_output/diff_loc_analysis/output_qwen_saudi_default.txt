@@ -1,0 +1,295 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The hospitality robot is setting seating for a corporate dinner and knows of a conflict between the host request and the venue preference."
+    },
+    {
+      "id": "host_company",
+      "type": "human",
+      "desc": "The host company has explicitly requested mixed seating for the corporate dinner."
+    },
+    {
+      "id": "venue",
+      "type": "human",
+      "desc": "The venue and its staff have privately disclosed a local institutional preference for separated seating to the robot."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "The event attendees have seating comfort and preferences that are not yet known."
+    }
+  ],
+  "initial": [
+    {
+      "state": "robot_holds_conflict",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "robot_holds_conflict",
+      "desc": "The robot knows the host request and the venue preference and no human has yet been asked to resolve them.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "apply_host_request"
+          },
+          "next": [
+            {
+              "state": "host_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "apply_venue_policy"
+          },
+          "next": [
+            {
+              "state": "venue_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_host"
+          },
+          "next": [
+            {
+              "state": "host_conflict_presented",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_conflict_presented",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "joint_clarification",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_conflict_presented",
+      "desc": "The venue preference has been presented to the host company and the host company can give a seating instruction.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "choose_host_seating"
+          },
+          "next": [
+            {
+              "state": "host_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "choose_venue_seating"
+          },
+          "next": [
+            {
+              "state": "venue_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_conflict_presented",
+      "desc": "The host request has been presented to the venue and the venue can give a seating instruction.",
+      "terminal": false,
+      "turn": [
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue": "choose_venue_seating"
+          },
+          "next": [
+            {
+              "state": "venue_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue": "choose_host_seating"
+          },
+          "next": [
+            {
+              "state": "host_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_clarification",
+      "desc": "The host company and the venue are simultaneously deciding which seating preference should govern.",
+      "terminal": false,
+      "turn": [
+        "host_company",
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "choose_host_seating",
+            "venue": "choose_host_seating"
+          },
+          "next": [
+            {
+              "state": "host_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "choose_host_seating",
+            "venue": "choose_venue_seating"
+          },
+          "next": [
+            {
+              "state": "opposing_positions_hold",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "choose_venue_seating",
+            "venue": "choose_host_seating"
+          },
+          "next": [
+            {
+              "state": "opposing_positions_hold",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "choose_venue_seating",
+            "venue": "choose_venue_seating"
+          },
+          "next": [
+            {
+              "state": "venue_seating_arranged",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_seating_arranged",
+      "desc": "Host-requested seating has been arranged and attendee seating feedback is still unknown.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "host_seating_feedback_expressed",
+              "p": 0.5
+            },
+            {
+              "state": "host_seating_feedback_not_expressed",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_seating_arranged",
+      "desc": "Venue-preferred seating has been arranged and attendee seating feedback is still unknown.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "venue_seating_feedback_expressed",
+              "p": 0.5
+            },
+            {
+              "state": "venue_seating_feedback_not_expressed",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opposing_positions_hold",
+      "desc": "The host and venue positions remain opposed and the robot's seating interaction stops.",
+      "terminal": true
+    },
+    {
+      "id": "host_seating_feedback_expressed",
+      "desc": "Host-requested seating is in place and attendee seating feedback has been expressed.",
+      "terminal": true
+    },
+    {
+      "id": "host_seating_feedback_not_expressed",
+      "desc": "Host-requested seating is in place and attendee seating feedback has not been expressed.",
+      "terminal": true
+    },
+    {
+      "id": "venue_seating_feedback_expressed",
+      "desc": "Venue-preferred seating is in place and attendee seating feedback has been expressed.",
+      "terminal": true
+    },
+    {
+      "id": "venue_seating_feedback_not_expressed",
+      "desc": "Venue-preferred seating is in place and attendee seating feedback has not been expressed.",
+      "terminal": true
+    }
+  ]
+}

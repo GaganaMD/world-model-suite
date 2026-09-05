@@ -1,0 +1,4618 @@
+[
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "China",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_unclear:ask_parties",
+      "authority_unclear:follow_host_request",
+      "authority_unclear:follow_venue_policy",
+      "authority_unclear:surface_to_host",
+      "authority_unclear:surface_to_venue",
+      "host_review:resolve_mixed",
+      "host_review:resolve_separated",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_separated",
+      "joint_review:resolve_separated",
+      "venue_review:resolve_mixed",
+      "venue_review:resolve_separated"
+    ],
+    "affordance_only_b": [
+      "authority_ambiguity:ask_both_to_resolve",
+      "authority_ambiguity:follow_host_request",
+      "authority_ambiguity:follow_venue_policy",
+      "authority_ambiguity:refer_to_host",
+      "authority_ambiguity:refer_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed_seating",
+      "host_resolution:select_separated_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_separated_seating",
+      "joint_resolution:select_separated_seating",
+      "staff_report:report_separated_policy",
+      "venue_resolution:select_mixed_seating",
+      "venue_resolution:select_separated_seating"
+    ],
+    "terminals_a": [
+      "mixed_selected",
+      "separated_selected"
+    ],
+    "terminals_b": [
+      "mixed_seating",
+      "separated_seating"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "Russia",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_unclear:ask_parties",
+      "authority_unclear:follow_host_request",
+      "authority_unclear:follow_venue_policy",
+      "authority_unclear:surface_to_host",
+      "authority_unclear:surface_to_venue",
+      "host_review:resolve_mixed",
+      "host_review:resolve_separated",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_separated",
+      "joint_review:resolve_separated",
+      "venue_review:resolve_mixed",
+      "venue_review:resolve_separated"
+    ],
+    "affordance_only_b": [
+      "conflict_known:arrange_mixed_seating",
+      "conflict_known:arrange_separated_seating",
+      "conflict_known:seek_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_review:defer_to_venue_policy",
+      "host_review:direct_mixed_seating",
+      "host_review:seek_joint_clarification",
+      "joint_review:accept_host_request",
+      "joint_review:accept_venue_policy",
+      "joint_review:confirm_host_request",
+      "joint_review:confirm_venue_policy",
+      "mixed_directed:arrange_mixed_seating",
+      "separated_directed:arrange_separated_seating",
+      "venue_review:accept_host_request"
+    ],
+    "terminals_a": [
+      "mixed_selected",
+      "separated_selected"
+    ],
+    "terminals_b": [
+      "mixed_set",
+      "separated_set"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "India",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      6,
+      11
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_unclear:ask_parties",
+      "authority_unclear:follow_host_request",
+      "authority_unclear:follow_venue_policy",
+      "authority_unclear:surface_to_host",
+      "authority_unclear:surface_to_venue",
+      "host_review:resolve_mixed",
+      "host_review:resolve_separated",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_separated",
+      "joint_review:resolve_separated",
+      "venue_review:resolve_mixed",
+      "venue_review:resolve_separated"
+    ],
+    "affordance_only_b": [
+      "authority_unclear:arrange_mixed",
+      "authority_unclear:arrange_separated",
+      "authority_unclear:ask_both",
+      "authority_unclear:ask_host",
+      "authority_unclear:ask_venue",
+      "host_considers_separated:accept_separated",
+      "host_considers_separated:confirm_mixed",
+      "host_responds_first:accept_separated",
+      "host_responds_first:confirm_mixed",
+      "host_review:accept_separated",
+      "host_review:confirm_mixed",
+      "mixed_directed:arrange_mixed",
+      "separated_directed:arrange_separated",
+      "venue_considers_mixed:allow_mixed",
+      "venue_considers_mixed:confirm_separated"
+    ],
+    "terminals_a": [
+      "mixed_selected",
+      "separated_selected"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "No location",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_unclear:ask_parties",
+      "authority_unclear:follow_host_request",
+      "authority_unclear:follow_venue_policy",
+      "authority_unclear:surface_to_host",
+      "authority_unclear:surface_to_venue",
+      "host_review:resolve_mixed",
+      "host_review:resolve_separated",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_mixed",
+      "joint_review:resolve_separated",
+      "joint_review:resolve_separated",
+      "venue_review:resolve_mixed",
+      "venue_review:resolve_separated"
+    ],
+    "affordance_only_b": [
+      "authority_conflict:arrange_mixed",
+      "authority_conflict:arrange_separated",
+      "authority_conflict:ask_parties_to_resolve",
+      "authority_conflict:surface_to_host",
+      "authority_conflict:surface_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed",
+      "host_resolution:select_separated",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_separated",
+      "joint_resolution:select_separated",
+      "policy_message:tell_policy",
+      "venue_resolution:select_mixed",
+      "venue_resolution:select_separated"
+    ],
+    "terminals_a": [
+      "mixed_selected",
+      "separated_selected"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "China",
+    "world_b": "Russia",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_ambiguity:ask_both_to_resolve",
+      "authority_ambiguity:follow_host_request",
+      "authority_ambiguity:follow_venue_policy",
+      "authority_ambiguity:refer_to_host",
+      "authority_ambiguity:refer_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed_seating",
+      "host_resolution:select_separated_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_separated_seating",
+      "joint_resolution:select_separated_seating",
+      "staff_report:report_separated_policy",
+      "venue_resolution:select_mixed_seating",
+      "venue_resolution:select_separated_seating"
+    ],
+    "affordance_only_b": [
+      "conflict_known:arrange_mixed_seating",
+      "conflict_known:arrange_separated_seating",
+      "conflict_known:seek_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_review:defer_to_venue_policy",
+      "host_review:direct_mixed_seating",
+      "host_review:seek_joint_clarification",
+      "joint_review:accept_host_request",
+      "joint_review:accept_venue_policy",
+      "joint_review:confirm_host_request",
+      "joint_review:confirm_venue_policy",
+      "mixed_directed:arrange_mixed_seating",
+      "separated_directed:arrange_separated_seating",
+      "venue_review:accept_host_request"
+    ],
+    "terminals_a": [
+      "mixed_seating",
+      "separated_seating"
+    ],
+    "terminals_b": [
+      "mixed_set",
+      "separated_set"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "China",
+    "world_b": "India",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      11
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_ambiguity:ask_both_to_resolve",
+      "authority_ambiguity:follow_host_request",
+      "authority_ambiguity:follow_venue_policy",
+      "authority_ambiguity:refer_to_host",
+      "authority_ambiguity:refer_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed_seating",
+      "host_resolution:select_separated_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_separated_seating",
+      "joint_resolution:select_separated_seating",
+      "staff_report:report_separated_policy",
+      "venue_resolution:select_mixed_seating",
+      "venue_resolution:select_separated_seating"
+    ],
+    "affordance_only_b": [
+      "authority_unclear:arrange_mixed",
+      "authority_unclear:arrange_separated",
+      "authority_unclear:ask_both",
+      "authority_unclear:ask_host",
+      "authority_unclear:ask_venue",
+      "host_considers_separated:accept_separated",
+      "host_considers_separated:confirm_mixed",
+      "host_responds_first:accept_separated",
+      "host_responds_first:confirm_mixed",
+      "host_review:accept_separated",
+      "host_review:confirm_mixed",
+      "mixed_directed:arrange_mixed",
+      "separated_directed:arrange_separated",
+      "venue_considers_mixed:allow_mixed",
+      "venue_considers_mixed:confirm_separated"
+    ],
+    "terminals_a": [
+      "mixed_seating",
+      "separated_seating"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "China",
+    "world_b": "No location",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_ambiguity:ask_both_to_resolve",
+      "authority_ambiguity:follow_host_request",
+      "authority_ambiguity:follow_venue_policy",
+      "authority_ambiguity:refer_to_host",
+      "authority_ambiguity:refer_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed_seating",
+      "host_resolution:select_separated_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_mixed_seating",
+      "joint_resolution:select_separated_seating",
+      "joint_resolution:select_separated_seating",
+      "staff_report:report_separated_policy",
+      "venue_resolution:select_mixed_seating",
+      "venue_resolution:select_separated_seating"
+    ],
+    "affordance_only_b": [
+      "authority_conflict:arrange_mixed",
+      "authority_conflict:arrange_separated",
+      "authority_conflict:ask_parties_to_resolve",
+      "authority_conflict:surface_to_host",
+      "authority_conflict:surface_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed",
+      "host_resolution:select_separated",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_separated",
+      "joint_resolution:select_separated",
+      "policy_message:tell_policy",
+      "venue_resolution:select_mixed",
+      "venue_resolution:select_separated"
+    ],
+    "terminals_a": [
+      "mixed_seating",
+      "separated_seating"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Russia",
+    "world_b": "India",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      11
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict_known:arrange_mixed_seating",
+      "conflict_known:arrange_separated_seating",
+      "conflict_known:seek_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_review:defer_to_venue_policy",
+      "host_review:direct_mixed_seating",
+      "host_review:seek_joint_clarification",
+      "joint_review:accept_host_request",
+      "joint_review:accept_venue_policy",
+      "joint_review:confirm_host_request",
+      "joint_review:confirm_venue_policy",
+      "mixed_directed:arrange_mixed_seating",
+      "separated_directed:arrange_separated_seating",
+      "venue_review:accept_host_request"
+    ],
+    "affordance_only_b": [
+      "authority_unclear:arrange_mixed",
+      "authority_unclear:arrange_separated",
+      "authority_unclear:ask_both",
+      "authority_unclear:ask_host",
+      "authority_unclear:ask_venue",
+      "host_considers_separated:accept_separated",
+      "host_considers_separated:confirm_mixed",
+      "host_responds_first:accept_separated",
+      "host_responds_first:confirm_mixed",
+      "host_review:accept_separated",
+      "host_review:confirm_mixed",
+      "mixed_directed:arrange_mixed",
+      "separated_directed:arrange_separated",
+      "venue_considers_mixed:allow_mixed",
+      "venue_considers_mixed:confirm_separated"
+    ],
+    "terminals_a": [
+      "mixed_set",
+      "separated_set"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "Russia",
+    "world_b": "No location",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict_known:arrange_mixed_seating",
+      "conflict_known:arrange_separated_seating",
+      "conflict_known:seek_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_review:defer_to_venue_policy",
+      "host_review:direct_mixed_seating",
+      "host_review:seek_joint_clarification",
+      "joint_review:accept_host_request",
+      "joint_review:accept_venue_policy",
+      "joint_review:confirm_host_request",
+      "joint_review:confirm_venue_policy",
+      "mixed_directed:arrange_mixed_seating",
+      "separated_directed:arrange_separated_seating",
+      "venue_review:accept_host_request"
+    ],
+    "affordance_only_b": [
+      "authority_conflict:arrange_mixed",
+      "authority_conflict:arrange_separated",
+      "authority_conflict:ask_parties_to_resolve",
+      "authority_conflict:surface_to_host",
+      "authority_conflict:surface_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed",
+      "host_resolution:select_separated",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_separated",
+      "joint_resolution:select_separated",
+      "policy_message:tell_policy",
+      "venue_resolution:select_mixed",
+      "venue_resolution:select_separated"
+    ],
+    "terminals_a": [
+      "mixed_set",
+      "separated_set"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "gpt",
+    "world_a": "India",
+    "world_b": "No location",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      11,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "authority_unclear:arrange_mixed",
+      "authority_unclear:arrange_separated",
+      "authority_unclear:ask_both",
+      "authority_unclear:ask_host",
+      "authority_unclear:ask_venue",
+      "host_considers_separated:accept_separated",
+      "host_considers_separated:confirm_mixed",
+      "host_responds_first:accept_separated",
+      "host_responds_first:confirm_mixed",
+      "host_review:accept_separated",
+      "host_review:confirm_mixed",
+      "mixed_directed:arrange_mixed",
+      "separated_directed:arrange_separated",
+      "venue_considers_mixed:allow_mixed",
+      "venue_considers_mixed:confirm_separated"
+    ],
+    "affordance_only_b": [
+      "authority_conflict:arrange_mixed",
+      "authority_conflict:arrange_separated",
+      "authority_conflict:ask_parties_to_resolve",
+      "authority_conflict:surface_to_host",
+      "authority_conflict:surface_to_venue",
+      "host_request:request_mixed_seating",
+      "host_resolution:select_mixed",
+      "host_resolution:select_separated",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_mixed",
+      "joint_resolution:select_separated",
+      "joint_resolution:select_separated",
+      "policy_message:tell_policy",
+      "venue_resolution:select_mixed",
+      "venue_resolution:select_separated"
+    ],
+    "terminals_a": [
+      "mixed_arranged",
+      "separated_arranged"
+    ],
+    "terminals_b": [
+      "mixed_arranged",
+      "separated_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "China",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict:ask_both_to_resolve",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "both_parties_resolving_conflict:accept_host_request",
+      "both_parties_resolving_conflict:accept_venue_policy",
+      "both_parties_resolving_conflict:insist_on_mixed_seating",
+      "both_parties_resolving_conflict:insist_on_separated_seating",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_seating",
+      "seating_arrangement_undecided:ask_both_to_clarify",
+      "seating_arrangement_undecided:follow_host_request",
+      "seating_arrangement_undecided:follow_venue_policy",
+      "seating_arrangement_undecided:surface_conflict_to_host",
+      "seating_arrangement_undecided:surface_conflict_to_venue",
+      "venue_resolves_conflict:accept_host_request",
+      "venue_resolves_conflict:insist_on_separated_seating"
+    ],
+    "terminals_a": [
+      "host_resolves",
+      "host_seating",
+      "joint_resolution",
+      "venue_resolves",
+      "venue_seating"
+    ],
+    "terminals_b": [
+      "conflict_unresolved",
+      "mixed_seating_arranged",
+      "seating_arrangement_agreed",
+      "separated_seating_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict:ask_both_to_resolve",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "seating_arrangement_unclear:ask_for_clarification",
+      "seating_arrangement_unclear:follow_host_request",
+      "seating_arrangement_unclear:follow_venue_policy",
+      "seating_arrangement_unclear:surface_conflict_to_host",
+      "seating_arrangement_unclear:surface_conflict_to_venue"
+    ],
+    "terminals_a": [
+      "host_resolves",
+      "host_seating",
+      "joint_resolution",
+      "venue_resolves",
+      "venue_seating"
+    ],
+    "terminals_b": [
+      "gender_separated_seating",
+      "host_resolves_conflict",
+      "joint_clarification",
+      "mixed_gender_seating",
+      "venue_resolves_conflict"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict:ask_both_to_resolve",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "gender_separated_seating:accept_seating_arrangement",
+      "gender_separated_seating:object_to_seating_arrangement",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:accept_host_request",
+      "joint_resolution_pending:accept_venue_policy",
+      "joint_resolution_pending:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:insist_on_venue_policy",
+      "mixed_gender_seating:accept_seating_arrangement",
+      "mixed_gender_seating:object_to_seating_arrangement",
+      "seating_arrangement_undefined:ask_both_to_clarify",
+      "seating_arrangement_undefined:follow_host_request",
+      "seating_arrangement_undefined:follow_venue_policy",
+      "seating_arrangement_undefined:surface_conflict_to_host",
+      "seating_arrangement_undefined:surface_conflict_to_venue"
+    ],
+    "terminals_a": [
+      "host_resolves",
+      "host_seating",
+      "joint_resolution",
+      "venue_resolves",
+      "venue_seating"
+    ],
+    "terminals_b": [
+      "conflict_escalates",
+      "event_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict:ask_both_to_resolve"
+    ],
+    "affordance_only_b": [
+      "conflict:ask_for_clarification",
+      "host_resolution:accept_venue_policy",
+      "host_resolution:override_venue_policy",
+      "joint_resolution:accept_mixed_seating",
+      "joint_resolution:accept_separated_seating",
+      "joint_resolution:insist_on_mixed_seating",
+      "joint_resolution:insist_on_separated_seating",
+      "venue_resolution:accommodate_host_request",
+      "venue_resolution:enforce_venue_policy"
+    ],
+    "terminals_a": [
+      "host_resolves",
+      "host_seating",
+      "joint_resolution",
+      "venue_resolves",
+      "venue_seating"
+    ],
+    "terminals_b": [
+      "mixed_seating",
+      "separated_seating"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "China",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_parties_resolving_conflict:accept_host_request",
+      "both_parties_resolving_conflict:accept_venue_policy",
+      "both_parties_resolving_conflict:insist_on_mixed_seating",
+      "both_parties_resolving_conflict:insist_on_separated_seating",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_seating",
+      "seating_arrangement_undecided:ask_both_to_clarify",
+      "seating_arrangement_undecided:follow_host_request",
+      "seating_arrangement_undecided:follow_venue_policy",
+      "seating_arrangement_undecided:surface_conflict_to_host",
+      "seating_arrangement_undecided:surface_conflict_to_venue",
+      "venue_resolves_conflict:accept_host_request",
+      "venue_resolves_conflict:insist_on_separated_seating"
+    ],
+    "affordance_only_b": [
+      "seating_arrangement_unclear:ask_for_clarification",
+      "seating_arrangement_unclear:follow_host_request",
+      "seating_arrangement_unclear:follow_venue_policy",
+      "seating_arrangement_unclear:surface_conflict_to_host",
+      "seating_arrangement_unclear:surface_conflict_to_venue"
+    ],
+    "terminals_a": [
+      "conflict_unresolved",
+      "mixed_seating_arranged",
+      "seating_arrangement_agreed",
+      "separated_seating_arranged"
+    ],
+    "terminals_b": [
+      "gender_separated_seating",
+      "host_resolves_conflict",
+      "joint_clarification",
+      "mixed_gender_seating",
+      "venue_resolves_conflict"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "China",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_parties_resolving_conflict:accept_host_request",
+      "both_parties_resolving_conflict:accept_venue_policy",
+      "both_parties_resolving_conflict:insist_on_mixed_seating",
+      "both_parties_resolving_conflict:insist_on_separated_seating",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_seating",
+      "seating_arrangement_undecided:ask_both_to_clarify",
+      "seating_arrangement_undecided:follow_host_request",
+      "seating_arrangement_undecided:follow_venue_policy",
+      "seating_arrangement_undecided:surface_conflict_to_host",
+      "seating_arrangement_undecided:surface_conflict_to_venue",
+      "venue_resolves_conflict:accept_host_request",
+      "venue_resolves_conflict:insist_on_separated_seating"
+    ],
+    "affordance_only_b": [
+      "gender_separated_seating:accept_seating_arrangement",
+      "gender_separated_seating:object_to_seating_arrangement",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:accept_host_request",
+      "joint_resolution_pending:accept_venue_policy",
+      "joint_resolution_pending:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:insist_on_venue_policy",
+      "mixed_gender_seating:accept_seating_arrangement",
+      "mixed_gender_seating:object_to_seating_arrangement",
+      "seating_arrangement_undefined:ask_both_to_clarify",
+      "seating_arrangement_undefined:follow_host_request",
+      "seating_arrangement_undefined:follow_venue_policy",
+      "seating_arrangement_undefined:surface_conflict_to_host",
+      "seating_arrangement_undefined:surface_conflict_to_venue"
+    ],
+    "terminals_a": [
+      "conflict_unresolved",
+      "mixed_seating_arranged",
+      "seating_arrangement_agreed",
+      "separated_seating_arranged"
+    ],
+    "terminals_b": [
+      "conflict_escalates",
+      "event_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "China",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_parties_resolving_conflict:accept_host_request",
+      "both_parties_resolving_conflict:accept_venue_policy",
+      "both_parties_resolving_conflict:insist_on_mixed_seating",
+      "both_parties_resolving_conflict:insist_on_separated_seating",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_seating",
+      "seating_arrangement_undecided:ask_both_to_clarify",
+      "seating_arrangement_undecided:follow_host_request",
+      "seating_arrangement_undecided:follow_venue_policy",
+      "seating_arrangement_undecided:surface_conflict_to_host",
+      "seating_arrangement_undecided:surface_conflict_to_venue",
+      "venue_resolves_conflict:accept_host_request",
+      "venue_resolves_conflict:insist_on_separated_seating"
+    ],
+    "affordance_only_b": [
+      "conflict:ask_for_clarification",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue",
+      "host_resolution:accept_venue_policy",
+      "host_resolution:override_venue_policy",
+      "joint_resolution:accept_mixed_seating",
+      "joint_resolution:accept_separated_seating",
+      "joint_resolution:insist_on_mixed_seating",
+      "joint_resolution:insist_on_separated_seating",
+      "venue_resolution:accommodate_host_request",
+      "venue_resolution:enforce_venue_policy"
+    ],
+    "terminals_a": [
+      "conflict_unresolved",
+      "mixed_seating_arranged",
+      "seating_arrangement_agreed",
+      "separated_seating_arranged"
+    ],
+    "terminals_b": [
+      "mixed_seating",
+      "separated_seating"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Russia",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "seating_arrangement_unclear:ask_for_clarification",
+      "seating_arrangement_unclear:follow_host_request",
+      "seating_arrangement_unclear:follow_venue_policy",
+      "seating_arrangement_unclear:surface_conflict_to_host",
+      "seating_arrangement_unclear:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "gender_separated_seating:accept_seating_arrangement",
+      "gender_separated_seating:object_to_seating_arrangement",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:accept_host_request",
+      "joint_resolution_pending:accept_venue_policy",
+      "joint_resolution_pending:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:insist_on_venue_policy",
+      "mixed_gender_seating:accept_seating_arrangement",
+      "mixed_gender_seating:object_to_seating_arrangement",
+      "seating_arrangement_undefined:ask_both_to_clarify",
+      "seating_arrangement_undefined:follow_host_request",
+      "seating_arrangement_undefined:follow_venue_policy",
+      "seating_arrangement_undefined:surface_conflict_to_host",
+      "seating_arrangement_undefined:surface_conflict_to_venue"
+    ],
+    "terminals_a": [
+      "gender_separated_seating",
+      "host_resolves_conflict",
+      "joint_clarification",
+      "mixed_gender_seating",
+      "venue_resolves_conflict"
+    ],
+    "terminals_b": [
+      "conflict_escalates",
+      "event_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "Russia",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "seating_arrangement_unclear:ask_for_clarification",
+      "seating_arrangement_unclear:follow_host_request",
+      "seating_arrangement_unclear:follow_venue_policy",
+      "seating_arrangement_unclear:surface_conflict_to_host",
+      "seating_arrangement_unclear:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "conflict:ask_for_clarification",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue",
+      "host_resolution:accept_venue_policy",
+      "host_resolution:override_venue_policy",
+      "joint_resolution:accept_mixed_seating",
+      "joint_resolution:accept_separated_seating",
+      "joint_resolution:insist_on_mixed_seating",
+      "joint_resolution:insist_on_separated_seating",
+      "venue_resolution:accommodate_host_request",
+      "venue_resolution:enforce_venue_policy"
+    ],
+    "terminals_a": [
+      "gender_separated_seating",
+      "host_resolves_conflict",
+      "joint_clarification",
+      "mixed_gender_seating",
+      "venue_resolves_conflict"
+    ],
+    "terminals_b": [
+      "mixed_seating",
+      "separated_seating"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "llama",
+    "world_a": "India",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      6
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "gender_separated_seating:accept_seating_arrangement",
+      "gender_separated_seating:object_to_seating_arrangement",
+      "host_resolves_conflict:accept_venue_policy",
+      "host_resolves_conflict:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:accept_host_request",
+      "joint_resolution_pending:accept_venue_policy",
+      "joint_resolution_pending:insist_on_mixed_gender_seating",
+      "joint_resolution_pending:insist_on_venue_policy",
+      "mixed_gender_seating:accept_seating_arrangement",
+      "mixed_gender_seating:object_to_seating_arrangement",
+      "seating_arrangement_undefined:ask_both_to_clarify",
+      "seating_arrangement_undefined:follow_host_request",
+      "seating_arrangement_undefined:follow_venue_policy",
+      "seating_arrangement_undefined:surface_conflict_to_host",
+      "seating_arrangement_undefined:surface_conflict_to_venue"
+    ],
+    "affordance_only_b": [
+      "conflict:ask_for_clarification",
+      "conflict:follow_host",
+      "conflict:follow_venue",
+      "conflict:surface_conflict_to_host",
+      "conflict:surface_conflict_to_venue",
+      "host_resolution:accept_venue_policy",
+      "host_resolution:override_venue_policy",
+      "joint_resolution:accept_mixed_seating",
+      "joint_resolution:accept_separated_seating",
+      "joint_resolution:insist_on_mixed_seating",
+      "joint_resolution:insist_on_separated_seating",
+      "venue_resolution:accommodate_host_request",
+      "venue_resolution:enforce_venue_policy"
+    ],
+    "terminals_a": [
+      "conflict_escalates",
+      "event_proceeds"
+    ],
+    "terminals_b": [
+      "mixed_seating",
+      "separated_seating"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "China",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      10
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict_pending:arrange_mixed",
+      "conflict_pending:arrange_separated",
+      "conflict_pending:ask_both_to_resolve",
+      "conflict_pending:raise_with_host",
+      "conflict_pending:raise_with_venue",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_other_party",
+      "host_deciding:yield_to_policy",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:hold_position",
+      "joint_negotiation:hold_position",
+      "mandate_mixed:arrange_mixed",
+      "mandate_mixed:arrange_separated",
+      "mandate_separated:arrange_mixed"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_by_seniority",
+      "conflicting_instructions:arrange_mixed_ranks",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "directive_mixed_ranks:arrange_by_seniority",
+      "directive_mixed_ranks:arrange_mixed_ranks",
+      "directive_seniority_order:arrange_by_seniority",
+      "directive_seniority_order:arrange_mixed_ranks",
+      "host_consulted:defer_to_venue",
+      "host_consulted:restate_request",
+      "parties_convened:defer_to_venue",
+      "parties_convened:maintain_policy",
+      "parties_convened:restate_request",
+      "parties_convened:waive_policy"
+    ],
+    "terminals_a": [
+      "event_proceeds",
+      "event_proceeds_after_reseating"
+    ],
+    "terminals_b": [
+      "guests_reseated_themselves",
+      "guests_seated_as_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      7
+    ],
+    "affordance_only_a": [
+      "conflict_pending:arrange_mixed",
+      "conflict_pending:arrange_separated",
+      "conflict_pending:ask_both_to_resolve",
+      "conflict_pending:raise_with_host",
+      "conflict_pending:raise_with_venue",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_other_party",
+      "host_deciding:yield_to_policy",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:hold_position",
+      "joint_negotiation:hold_position",
+      "mandate_mixed:arrange_mixed",
+      "mandate_mixed:arrange_separated",
+      "mandate_separated:arrange_mixed"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_per_host_request",
+      "conflicting_instructions:arrange_per_venue_policy",
+      "conflicting_instructions:ask_both_to_settle",
+      "conflicting_instructions:raise_with_host_representative",
+      "conflicting_instructions:raise_with_venue_side",
+      "host_deciding:adopt_venue_policy",
+      "host_deciding:confirm_own_request",
+      "host_deciding:refer_to_venue_side",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:press_own_position",
+      "joint_deliberation:press_own_position",
+      "seating_presented:hold_arrangement",
+      "seating_presented:revise_arrangement",
+      "seating_presented:seat_themselves_differently"
+    ],
+    "terminals_a": [
+      "event_proceeds",
+      "event_proceeds_after_reseating"
+    ],
+    "terminals_b": [
+      "dinner_underway"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      11
+    ],
+    "n_robot_actions": [
+      5,
+      6
+    ],
+    "affordance_only_a": [
+      "conflict_pending:arrange_mixed",
+      "conflict_pending:arrange_separated",
+      "conflict_pending:ask_both_to_resolve",
+      "conflict_pending:raise_with_host",
+      "conflict_pending:raise_with_venue",
+      "host_deciding:refer_to_other_party",
+      "host_deciding:yield_to_policy",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:hold_position",
+      "joint_negotiation:hold_position",
+      "mandate_mixed:arrange_mixed",
+      "mandate_mixed:arrange_separated",
+      "mandate_separated:arrange_mixed",
+      "mandate_separated:arrange_separated"
+    ],
+    "affordance_only_b": [
+      "conflict_open:arrange_by_seniority_convention",
+      "conflict_open:arrange_mixed_seniority",
+      "conflict_open:ask_both_to_settle",
+      "conflict_open:raise_with_host",
+      "conflict_open:raise_with_venue_staff",
+      "directive_by_convention:arrange_by_seniority_convention",
+      "directive_by_convention:ask_both_to_settle",
+      "directive_mixed:arrange_mixed_seniority",
+      "directive_mixed:ask_both_to_settle",
+      "host_deciding:refer_to_venue",
+      "impasse_unresolved:arrange_by_seniority_convention",
+      "impasse_unresolved:arrange_mixed_seniority",
+      "impasse_unresolved:ask_both_to_settle",
+      "joint_deliberation:accommodate_other",
+      "joint_deliberation:accommodate_other"
+    ],
+    "terminals_a": [
+      "event_proceeds",
+      "event_proceeds_after_reseating"
+    ],
+    "terminals_b": [
+      "dinner_begins"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "No location",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      11,
+      9
+    ],
+    "n_robot_actions": [
+      5,
+      8
+    ],
+    "affordance_only_a": [
+      "conflict_pending:arrange_mixed",
+      "conflict_pending:arrange_separated",
+      "conflict_pending:ask_both_to_resolve",
+      "conflict_pending:raise_with_host",
+      "conflict_pending:raise_with_venue",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_other_party",
+      "host_deciding:yield_to_policy",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:defer_to_other",
+      "joint_negotiation:hold_position",
+      "joint_negotiation:hold_position",
+      "mandate_mixed:arrange_mixed",
+      "mandate_mixed:arrange_separated",
+      "mandate_separated:arrange_mixed"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_mixed",
+      "conflicting_instructions:arrange_separated",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "guest_concern_voiced:leave_arrangement_standing",
+      "guest_concern_voiced:relay_to_both_parties",
+      "host_consulted:ask_to_confer",
+      "host_consulted:restate_request",
+      "host_consulted:yield_to_policy",
+      "joint_consultation:concede",
+      "joint_consultation:concede",
+      "joint_consultation:hold_position",
+      "joint_consultation:hold_position",
+      "seating_per_host_request:take_seats"
+    ],
+    "terminals_a": [
+      "event_proceeds",
+      "event_proceeds_after_reseating"
+    ],
+    "terminals_b": [
+      "dinner_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "China",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      7
+    ],
+    "affordance_only_a": [
+      "conflicting_instructions:arrange_by_seniority",
+      "conflicting_instructions:arrange_mixed_ranks",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "directive_mixed_ranks:arrange_by_seniority",
+      "directive_mixed_ranks:arrange_mixed_ranks",
+      "directive_seniority_order:arrange_by_seniority",
+      "directive_seniority_order:arrange_mixed_ranks",
+      "host_consulted:defer_to_venue",
+      "host_consulted:restate_request",
+      "parties_convened:defer_to_venue",
+      "parties_convened:maintain_policy",
+      "parties_convened:restate_request",
+      "parties_convened:waive_policy"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_per_host_request",
+      "conflicting_instructions:arrange_per_venue_policy",
+      "conflicting_instructions:ask_both_to_settle",
+      "conflicting_instructions:raise_with_host_representative",
+      "conflicting_instructions:raise_with_venue_side",
+      "host_deciding:adopt_venue_policy",
+      "host_deciding:confirm_own_request",
+      "host_deciding:refer_to_venue_side",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:press_own_position",
+      "joint_deliberation:press_own_position",
+      "seating_presented:hold_arrangement",
+      "seating_presented:revise_arrangement",
+      "seating_presented:seat_themselves_differently"
+    ],
+    "terminals_a": [
+      "guests_reseated_themselves",
+      "guests_seated_as_arranged"
+    ],
+    "terminals_b": [
+      "dinner_underway"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "China",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      11
+    ],
+    "n_robot_actions": [
+      5,
+      6
+    ],
+    "affordance_only_a": [
+      "conflicting_instructions:arrange_by_seniority",
+      "conflicting_instructions:arrange_mixed_ranks",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "directive_mixed_ranks:arrange_by_seniority",
+      "directive_mixed_ranks:arrange_mixed_ranks",
+      "directive_seniority_order:arrange_by_seniority",
+      "directive_seniority_order:arrange_mixed_ranks",
+      "host_consulted:defer_to_venue",
+      "host_consulted:restate_request",
+      "parties_convened:defer_to_venue",
+      "parties_convened:maintain_policy",
+      "parties_convened:restate_request",
+      "parties_convened:waive_policy"
+    ],
+    "affordance_only_b": [
+      "conflict_open:arrange_by_seniority_convention",
+      "conflict_open:arrange_mixed_seniority",
+      "conflict_open:ask_both_to_settle",
+      "conflict_open:raise_with_host",
+      "conflict_open:raise_with_venue_staff",
+      "directive_by_convention:arrange_by_seniority_convention",
+      "directive_by_convention:ask_both_to_settle",
+      "directive_mixed:arrange_mixed_seniority",
+      "directive_mixed:ask_both_to_settle",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_venue",
+      "impasse_unresolved:arrange_by_seniority_convention",
+      "impasse_unresolved:arrange_mixed_seniority",
+      "impasse_unresolved:ask_both_to_settle",
+      "joint_deliberation:accommodate_other"
+    ],
+    "terminals_a": [
+      "guests_reseated_themselves",
+      "guests_seated_as_arranged"
+    ],
+    "terminals_b": [
+      "dinner_begins"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "China",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      9
+    ],
+    "n_robot_actions": [
+      5,
+      8
+    ],
+    "affordance_only_a": [
+      "conflicting_instructions:arrange_by_seniority",
+      "conflicting_instructions:arrange_mixed_ranks",
+      "directive_mixed_ranks:arrange_by_seniority",
+      "directive_mixed_ranks:arrange_mixed_ranks",
+      "directive_seniority_order:arrange_by_seniority",
+      "directive_seniority_order:arrange_mixed_ranks",
+      "host_consulted:defer_to_venue",
+      "host_consulted:restate_request",
+      "parties_convened:defer_to_venue",
+      "parties_convened:maintain_policy",
+      "parties_convened:restate_request",
+      "parties_convened:waive_policy",
+      "seating_mixed_ranks_set:reseat_themselves",
+      "seating_mixed_ranks_set:take_assigned_seats",
+      "seating_seniority_order_set:reseat_themselves"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_mixed",
+      "conflicting_instructions:arrange_separated",
+      "guest_concern_voiced:leave_arrangement_standing",
+      "guest_concern_voiced:relay_to_both_parties",
+      "host_consulted:ask_to_confer",
+      "host_consulted:restate_request",
+      "host_consulted:yield_to_policy",
+      "joint_consultation:concede",
+      "joint_consultation:concede",
+      "joint_consultation:hold_position",
+      "joint_consultation:hold_position",
+      "seating_per_host_request:take_seats",
+      "seating_per_host_request:voice_concern",
+      "seating_per_venue_policy:take_seats",
+      "seating_per_venue_policy:voice_concern"
+    ],
+    "terminals_a": [
+      "guests_reseated_themselves",
+      "guests_seated_as_arranged"
+    ],
+    "terminals_b": [
+      "dinner_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Russia",
+    "world_b": "India",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      8,
+      11
+    ],
+    "n_robot_actions": [
+      7,
+      6
+    ],
+    "affordance_only_a": [
+      "conflicting_instructions:arrange_per_host_request",
+      "conflicting_instructions:arrange_per_venue_policy",
+      "conflicting_instructions:ask_both_to_settle",
+      "conflicting_instructions:raise_with_host_representative",
+      "conflicting_instructions:raise_with_venue_side",
+      "host_deciding:adopt_venue_policy",
+      "host_deciding:confirm_own_request",
+      "host_deciding:refer_to_venue_side",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:press_own_position",
+      "joint_deliberation:press_own_position",
+      "seating_presented:hold_arrangement",
+      "seating_presented:revise_arrangement",
+      "seating_presented:seat_themselves_differently"
+    ],
+    "affordance_only_b": [
+      "conflict_open:arrange_by_seniority_convention",
+      "conflict_open:arrange_mixed_seniority",
+      "conflict_open:ask_both_to_settle",
+      "conflict_open:raise_with_host",
+      "conflict_open:raise_with_venue_staff",
+      "directive_by_convention:arrange_by_seniority_convention",
+      "directive_by_convention:ask_both_to_settle",
+      "directive_mixed:arrange_mixed_seniority",
+      "directive_mixed:ask_both_to_settle",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_venue",
+      "impasse_unresolved:arrange_by_seniority_convention",
+      "impasse_unresolved:arrange_mixed_seniority",
+      "impasse_unresolved:ask_both_to_settle",
+      "joint_deliberation:accommodate_other"
+    ],
+    "terminals_a": [
+      "dinner_underway"
+    ],
+    "terminals_b": [
+      "dinner_begins"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "Russia",
+    "world_b": "No location",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      8,
+      9
+    ],
+    "n_robot_actions": [
+      7,
+      8
+    ],
+    "affordance_only_a": [
+      "conflicting_instructions:arrange_per_host_request",
+      "conflicting_instructions:arrange_per_venue_policy",
+      "conflicting_instructions:ask_both_to_settle",
+      "conflicting_instructions:raise_with_host_representative",
+      "conflicting_instructions:raise_with_venue_side",
+      "host_deciding:adopt_venue_policy",
+      "host_deciding:confirm_own_request",
+      "host_deciding:refer_to_venue_side",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:defer_to_other_party",
+      "joint_deliberation:press_own_position",
+      "joint_deliberation:press_own_position",
+      "seating_presented:hold_arrangement",
+      "seating_presented:revise_arrangement",
+      "seating_presented:seat_themselves_differently"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_mixed",
+      "conflicting_instructions:arrange_separated",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "guest_concern_voiced:leave_arrangement_standing",
+      "guest_concern_voiced:relay_to_both_parties",
+      "host_consulted:ask_to_confer",
+      "host_consulted:restate_request",
+      "host_consulted:yield_to_policy",
+      "joint_consultation:concede",
+      "joint_consultation:concede",
+      "joint_consultation:hold_position",
+      "joint_consultation:hold_position",
+      "seating_per_host_request:take_seats"
+    ],
+    "terminals_a": [
+      "dinner_underway"
+    ],
+    "terminals_b": [
+      "dinner_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "claude",
+    "world_a": "India",
+    "world_b": "No location",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      11,
+      9
+    ],
+    "n_robot_actions": [
+      6,
+      8
+    ],
+    "affordance_only_a": [
+      "conflict_open:arrange_by_seniority_convention",
+      "conflict_open:arrange_mixed_seniority",
+      "conflict_open:ask_both_to_settle",
+      "conflict_open:raise_with_host",
+      "conflict_open:raise_with_venue_staff",
+      "directive_by_convention:arrange_by_seniority_convention",
+      "directive_by_convention:ask_both_to_settle",
+      "directive_mixed:arrange_mixed_seniority",
+      "directive_mixed:ask_both_to_settle",
+      "host_deciding:reaffirm_request",
+      "host_deciding:refer_to_venue",
+      "impasse_unresolved:arrange_by_seniority_convention",
+      "impasse_unresolved:arrange_mixed_seniority",
+      "impasse_unresolved:ask_both_to_settle",
+      "joint_deliberation:accommodate_other"
+    ],
+    "affordance_only_b": [
+      "conflicting_instructions:arrange_mixed",
+      "conflicting_instructions:arrange_separated",
+      "conflicting_instructions:convene_both",
+      "conflicting_instructions:raise_with_host",
+      "conflicting_instructions:raise_with_venue",
+      "guest_concern_voiced:leave_arrangement_standing",
+      "guest_concern_voiced:relay_to_both_parties",
+      "host_consulted:ask_to_confer",
+      "host_consulted:restate_request",
+      "host_consulted:yield_to_policy",
+      "joint_consultation:concede",
+      "joint_consultation:concede",
+      "joint_consultation:hold_position",
+      "joint_consultation:hold_position",
+      "seating_per_host_request:take_seats"
+    ],
+    "terminals_a": [
+      "dinner_begins"
+    ],
+    "terminals_b": [
+      "dinner_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "China",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      12
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "host_conflict_presented:choose_host_seating",
+      "host_conflict_presented:choose_venue_seating",
+      "host_seating_arranged:take_seats",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_venue_seating",
+      "joint_clarification:choose_venue_seating",
+      "robot_holds_conflict:apply_host_request",
+      "robot_holds_conflict:apply_venue_policy",
+      "robot_holds_conflict:request_joint_clarification",
+      "robot_holds_conflict:surface_conflict_to_host",
+      "robot_holds_conflict:surface_conflict_to_venue",
+      "venue_conflict_presented:choose_host_seating",
+      "venue_conflict_presented:choose_venue_seating",
+      "venue_seating_arranged:take_seats"
+    ],
+    "affordance_only_b": [
+      "both_consulted:defer_to_host_request",
+      "both_consulted:defer_to_venue_policy",
+      "both_consulted:endorse_host_request",
+      "both_consulted:endorse_venue_policy",
+      "both_consulted:propose_joint_arrangement",
+      "both_consulted:propose_joint_arrangement",
+      "conflict_known:ask_both_to_clarify",
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:surface_conflict_to_host",
+      "conflict_known:surface_conflict_to_venue",
+      "host_consulted:defer_to_venue_policy",
+      "host_consulted:endorse_host_request",
+      "host_consulted:request_joint_clarification",
+      "host_consulted:request_venue_clarification"
+    ],
+    "terminals_a": [
+      "host_seating_feedback_expressed",
+      "host_seating_feedback_not_expressed",
+      "opposing_positions_hold",
+      "venue_seating_feedback_expressed",
+      "venue_seating_feedback_not_expressed"
+    ],
+    "terminals_b": [
+      "authority_ambiguous",
+      "seating_set_host_request",
+      "seating_set_joint_arrangement",
+      "seating_set_venue_policy"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      19
+    ],
+    "n_robot_actions": [
+      5,
+      7
+    ],
+    "affordance_only_a": [
+      "host_conflict_presented:choose_host_seating",
+      "host_conflict_presented:choose_venue_seating",
+      "host_seating_arranged:take_seats",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_venue_seating",
+      "joint_clarification:choose_venue_seating",
+      "robot_holds_conflict:apply_host_request",
+      "robot_holds_conflict:apply_venue_policy",
+      "robot_holds_conflict:request_joint_clarification",
+      "robot_holds_conflict:surface_conflict_to_host",
+      "robot_holds_conflict:surface_conflict_to_venue",
+      "venue_conflict_presented:choose_host_seating",
+      "venue_conflict_presented:choose_venue_seating",
+      "venue_seating_arranged:take_seats"
+    ],
+    "affordance_only_b": [
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:request_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_consulted:confirm_mixed",
+      "host_consulted:confirm_separated",
+      "host_consulted_venue_opposed:confirm_mixed",
+      "host_consulted_venue_opposed:confirm_separated",
+      "joint_clarification:accept_mixed",
+      "joint_clarification:confirm_mixed",
+      "joint_clarification:confirm_separated",
+      "joint_clarification:confirm_separated",
+      "mixed_directed_venue_accepted:set_mixed",
+      "mixed_directed_venue_response:set_mixed"
+    ],
+    "terminals_a": [
+      "host_seating_feedback_expressed",
+      "host_seating_feedback_not_expressed",
+      "opposing_positions_hold",
+      "venue_seating_feedback_expressed",
+      "venue_seating_feedback_not_expressed"
+    ],
+    "terminals_b": [
+      "authority_unresolved",
+      "mixed_event_proceeds",
+      "separated_event_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      14
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "host_conflict_presented:choose_host_seating",
+      "host_conflict_presented:choose_venue_seating",
+      "host_seating_arranged:take_seats",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_venue_seating",
+      "joint_clarification:choose_venue_seating",
+      "robot_holds_conflict:apply_host_request",
+      "robot_holds_conflict:apply_venue_policy",
+      "robot_holds_conflict:request_joint_clarification",
+      "robot_holds_conflict:surface_conflict_to_host",
+      "robot_holds_conflict:surface_conflict_to_venue",
+      "venue_conflict_presented:choose_host_seating",
+      "venue_conflict_presented:choose_venue_seating",
+      "venue_seating_arranged:take_seats"
+    ],
+    "affordance_only_b": [
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_separated_seating",
+      "both_considering:direct_separated_seating",
+      "host_considering:ask_venue_to_clarify",
+      "host_considering:direct_mixed_seating",
+      "host_considering:direct_separated_seating",
+      "seating_conflict_known:arrange_mixed_seating",
+      "seating_conflict_known:arrange_separated_seating",
+      "seating_conflict_known:ask_both_to_clarify",
+      "seating_conflict_known:surface_to_host",
+      "seating_conflict_known:surface_to_venue",
+      "venue_considering:ask_host_to_clarify",
+      "venue_considering:direct_mixed_seating",
+      "venue_considering:direct_separated_seating"
+    ],
+    "terminals_a": [
+      "host_seating_feedback_expressed",
+      "host_seating_feedback_not_expressed",
+      "opposing_positions_hold",
+      "venue_seating_feedback_expressed",
+      "venue_seating_feedback_not_expressed"
+    ],
+    "terminals_b": [
+      "mixed_seating_set",
+      "mixed_seating_set_by_host",
+      "mixed_seating_set_by_joint",
+      "mixed_seating_set_by_venue",
+      "mixed_separated_directives",
+      "separated_mixed_directives",
+      "separated_seating_set",
+      "separated_seating_set_by_host",
+      "separated_seating_set_by_joint",
+      "separated_seating_set_by_venue"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      11,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "host_conflict_presented:choose_host_seating",
+      "host_conflict_presented:choose_venue_seating",
+      "host_seating_arranged:take_seats",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_host_seating",
+      "joint_clarification:choose_venue_seating",
+      "joint_clarification:choose_venue_seating",
+      "robot_holds_conflict:apply_host_request",
+      "robot_holds_conflict:apply_venue_policy",
+      "robot_holds_conflict:request_joint_clarification",
+      "robot_holds_conflict:surface_conflict_to_host",
+      "robot_holds_conflict:surface_conflict_to_venue",
+      "venue_conflict_presented:choose_host_seating",
+      "venue_conflict_presented:choose_venue_seating",
+      "venue_seating_arranged:take_seats"
+    ],
+    "affordance_only_b": [
+      "competing_instructions:ask_both_clarify",
+      "competing_instructions:follow_host_request",
+      "competing_instructions:follow_venue_policy",
+      "competing_instructions:surface_to_host",
+      "competing_instructions:surface_to_venue",
+      "host_resolution:assert_host_request",
+      "host_resolution:defer_to_venue_policy",
+      "joint_resolution:assert_host_request",
+      "joint_resolution:assert_venue_policy",
+      "joint_resolution:defer_to_host_request",
+      "joint_resolution:defer_to_venue_policy",
+      "venue_resolution:assert_venue_policy",
+      "venue_resolution:defer_to_host_request"
+    ],
+    "terminals_a": [
+      "host_seating_feedback_expressed",
+      "host_seating_feedback_not_expressed",
+      "opposing_positions_hold",
+      "venue_seating_feedback_expressed",
+      "venue_seating_feedback_not_expressed"
+    ],
+    "terminals_b": [
+      "authority_conflict",
+      "mutual_deference",
+      "seating_host_request",
+      "seating_venue_policy"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "China",
+    "world_b": "Russia",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      19
+    ],
+    "n_robot_actions": [
+      5,
+      7
+    ],
+    "affordance_only_a": [
+      "both_consulted:defer_to_host_request",
+      "both_consulted:defer_to_venue_policy",
+      "both_consulted:endorse_host_request",
+      "both_consulted:endorse_venue_policy",
+      "both_consulted:propose_joint_arrangement",
+      "both_consulted:propose_joint_arrangement",
+      "conflict_known:ask_both_to_clarify",
+      "conflict_known:surface_conflict_to_host",
+      "conflict_known:surface_conflict_to_venue",
+      "host_consulted:defer_to_venue_policy",
+      "host_consulted:endorse_host_request",
+      "host_consulted:request_joint_clarification",
+      "host_consulted:request_venue_clarification",
+      "host_objects_venue_policy:defer_to_host_request",
+      "host_objects_venue_policy:endorse_venue_policy"
+    ],
+    "affordance_only_b": [
+      "conflict_known:request_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_consulted:confirm_mixed",
+      "host_consulted:confirm_separated",
+      "host_consulted_venue_opposed:confirm_mixed",
+      "host_consulted_venue_opposed:confirm_separated",
+      "joint_clarification:accept_mixed",
+      "joint_clarification:confirm_mixed",
+      "joint_clarification:confirm_separated",
+      "joint_clarification:confirm_separated",
+      "mixed_directed_venue_accepted:set_mixed",
+      "mixed_directed_venue_response:set_mixed",
+      "mixed_objection:request_joint_clarification",
+      "mixed_objection:surface_to_host"
+    ],
+    "terminals_a": [
+      "authority_ambiguous",
+      "seating_set_host_request",
+      "seating_set_joint_arrangement",
+      "seating_set_venue_policy"
+    ],
+    "terminals_b": [
+      "authority_unresolved",
+      "mixed_event_proceeds",
+      "separated_event_proceeds"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "China",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      14
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_consulted:defer_to_host_request",
+      "both_consulted:defer_to_venue_policy",
+      "both_consulted:endorse_host_request",
+      "both_consulted:endorse_venue_policy",
+      "both_consulted:propose_joint_arrangement",
+      "both_consulted:propose_joint_arrangement",
+      "conflict_known:ask_both_to_clarify",
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:surface_conflict_to_host",
+      "conflict_known:surface_conflict_to_venue",
+      "host_consulted:defer_to_venue_policy",
+      "host_consulted:endorse_host_request",
+      "host_consulted:request_joint_clarification",
+      "host_consulted:request_venue_clarification"
+    ],
+    "affordance_only_b": [
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_separated_seating",
+      "both_considering:direct_separated_seating",
+      "host_considering:ask_venue_to_clarify",
+      "host_considering:direct_mixed_seating",
+      "host_considering:direct_separated_seating",
+      "seating_conflict_known:arrange_mixed_seating",
+      "seating_conflict_known:arrange_separated_seating",
+      "seating_conflict_known:ask_both_to_clarify",
+      "seating_conflict_known:surface_to_host",
+      "seating_conflict_known:surface_to_venue",
+      "venue_considering:ask_host_to_clarify",
+      "venue_considering:direct_mixed_seating",
+      "venue_considering:direct_separated_seating"
+    ],
+    "terminals_a": [
+      "authority_ambiguous",
+      "seating_set_host_request",
+      "seating_set_joint_arrangement",
+      "seating_set_venue_policy"
+    ],
+    "terminals_b": [
+      "mixed_seating_set",
+      "mixed_seating_set_by_host",
+      "mixed_seating_set_by_joint",
+      "mixed_seating_set_by_venue",
+      "mixed_separated_directives",
+      "separated_mixed_directives",
+      "separated_seating_set",
+      "separated_seating_set_by_host",
+      "separated_seating_set_by_joint",
+      "separated_seating_set_by_venue"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "China",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_consulted:defer_to_host_request",
+      "both_consulted:defer_to_venue_policy",
+      "both_consulted:endorse_host_request",
+      "both_consulted:endorse_venue_policy",
+      "both_consulted:propose_joint_arrangement",
+      "both_consulted:propose_joint_arrangement",
+      "conflict_known:ask_both_to_clarify",
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:surface_conflict_to_host",
+      "conflict_known:surface_conflict_to_venue",
+      "host_consulted:defer_to_venue_policy",
+      "host_consulted:endorse_host_request",
+      "host_consulted:request_joint_clarification",
+      "host_consulted:request_venue_clarification"
+    ],
+    "affordance_only_b": [
+      "competing_instructions:ask_both_clarify",
+      "competing_instructions:follow_host_request",
+      "competing_instructions:follow_venue_policy",
+      "competing_instructions:surface_to_host",
+      "competing_instructions:surface_to_venue",
+      "host_resolution:assert_host_request",
+      "host_resolution:defer_to_venue_policy",
+      "joint_resolution:assert_host_request",
+      "joint_resolution:assert_venue_policy",
+      "joint_resolution:defer_to_host_request",
+      "joint_resolution:defer_to_venue_policy",
+      "venue_resolution:assert_venue_policy",
+      "venue_resolution:defer_to_host_request"
+    ],
+    "terminals_a": [
+      "authority_ambiguous",
+      "seating_set_host_request",
+      "seating_set_joint_arrangement",
+      "seating_set_venue_policy"
+    ],
+    "terminals_b": [
+      "authority_conflict",
+      "mutual_deference",
+      "seating_host_request",
+      "seating_venue_policy"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Russia",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      19,
+      14
+    ],
+    "n_robot_actions": [
+      7,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:request_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_consulted:confirm_mixed",
+      "host_consulted:confirm_separated",
+      "host_consulted_venue_opposed:confirm_mixed",
+      "host_consulted_venue_opposed:confirm_separated",
+      "joint_clarification:accept_mixed",
+      "joint_clarification:confirm_mixed",
+      "joint_clarification:confirm_separated",
+      "joint_clarification:confirm_separated",
+      "mixed_directed_venue_accepted:set_mixed",
+      "mixed_directed_venue_response:set_mixed"
+    ],
+    "affordance_only_b": [
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_separated_seating",
+      "both_considering:direct_separated_seating",
+      "host_considering:ask_venue_to_clarify",
+      "host_considering:direct_mixed_seating",
+      "host_considering:direct_separated_seating",
+      "seating_conflict_known:arrange_mixed_seating",
+      "seating_conflict_known:arrange_separated_seating",
+      "seating_conflict_known:ask_both_to_clarify",
+      "seating_conflict_known:surface_to_host",
+      "seating_conflict_known:surface_to_venue",
+      "venue_considering:ask_host_to_clarify",
+      "venue_considering:direct_mixed_seating",
+      "venue_considering:direct_separated_seating"
+    ],
+    "terminals_a": [
+      "authority_unresolved",
+      "mixed_event_proceeds",
+      "separated_event_proceeds"
+    ],
+    "terminals_b": [
+      "mixed_seating_set",
+      "mixed_seating_set_by_host",
+      "mixed_seating_set_by_joint",
+      "mixed_seating_set_by_venue",
+      "mixed_separated_directives",
+      "separated_mixed_directives",
+      "separated_seating_set",
+      "separated_seating_set_by_host",
+      "separated_seating_set_by_joint",
+      "separated_seating_set_by_venue"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "Russia",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      19,
+      8
+    ],
+    "n_robot_actions": [
+      7,
+      5
+    ],
+    "affordance_only_a": [
+      "conflict_known:follow_host_request",
+      "conflict_known:follow_venue_policy",
+      "conflict_known:request_joint_clarification",
+      "conflict_known:surface_to_host",
+      "conflict_known:surface_to_venue",
+      "host_consulted:confirm_mixed",
+      "host_consulted:confirm_separated",
+      "host_consulted_venue_opposed:confirm_mixed",
+      "host_consulted_venue_opposed:confirm_separated",
+      "joint_clarification:accept_mixed",
+      "joint_clarification:confirm_mixed",
+      "joint_clarification:confirm_separated",
+      "joint_clarification:confirm_separated",
+      "mixed_directed_venue_accepted:set_mixed",
+      "mixed_directed_venue_response:set_mixed"
+    ],
+    "affordance_only_b": [
+      "competing_instructions:ask_both_clarify",
+      "competing_instructions:follow_host_request",
+      "competing_instructions:follow_venue_policy",
+      "competing_instructions:surface_to_host",
+      "competing_instructions:surface_to_venue",
+      "host_resolution:assert_host_request",
+      "host_resolution:defer_to_venue_policy",
+      "joint_resolution:assert_host_request",
+      "joint_resolution:assert_venue_policy",
+      "joint_resolution:defer_to_host_request",
+      "joint_resolution:defer_to_venue_policy",
+      "venue_resolution:assert_venue_policy",
+      "venue_resolution:defer_to_host_request"
+    ],
+    "terminals_a": [
+      "authority_unresolved",
+      "mixed_event_proceeds",
+      "separated_event_proceeds"
+    ],
+    "terminals_b": [
+      "authority_conflict",
+      "mutual_deference",
+      "seating_host_request",
+      "seating_venue_policy"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "qwen",
+    "world_a": "India",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      14,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_mixed_seating",
+      "both_considering:direct_separated_seating",
+      "both_considering:direct_separated_seating",
+      "host_considering:ask_venue_to_clarify",
+      "host_considering:direct_mixed_seating",
+      "host_considering:direct_separated_seating",
+      "seating_conflict_known:arrange_mixed_seating",
+      "seating_conflict_known:arrange_separated_seating",
+      "seating_conflict_known:ask_both_to_clarify",
+      "seating_conflict_known:surface_to_host",
+      "seating_conflict_known:surface_to_venue",
+      "venue_considering:ask_host_to_clarify",
+      "venue_considering:direct_mixed_seating",
+      "venue_considering:direct_separated_seating"
+    ],
+    "affordance_only_b": [
+      "competing_instructions:ask_both_clarify",
+      "competing_instructions:follow_host_request",
+      "competing_instructions:follow_venue_policy",
+      "competing_instructions:surface_to_host",
+      "competing_instructions:surface_to_venue",
+      "host_resolution:assert_host_request",
+      "host_resolution:defer_to_venue_policy",
+      "joint_resolution:assert_host_request",
+      "joint_resolution:assert_venue_policy",
+      "joint_resolution:defer_to_host_request",
+      "joint_resolution:defer_to_venue_policy",
+      "venue_resolution:assert_venue_policy",
+      "venue_resolution:defer_to_host_request"
+    ],
+    "terminals_a": [
+      "mixed_seating_set",
+      "mixed_seating_set_by_host",
+      "mixed_seating_set_by_joint",
+      "mixed_seating_set_by_venue",
+      "mixed_separated_directives",
+      "separated_mixed_directives",
+      "separated_seating_set",
+      "separated_seating_set_by_host",
+      "separated_seating_set_by_joint",
+      "separated_seating_set_by_venue"
+    ],
+    "terminals_b": [
+      "authority_conflict",
+      "mutual_deference",
+      "seating_host_request",
+      "seating_venue_policy"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "deepseek",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "China",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      7
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_negotiation:accept_separate",
+      "both_negotiation:allow_mixed",
+      "both_negotiation:insist_mixed",
+      "both_negotiation:maintain_separate",
+      "host_decision:accept_separate",
+      "host_decision:insist_mixed",
+      "seating_conflict:surface_to_host",
+      "seating_conflict:surface_to_venue",
+      "venue_decision:allow_mixed",
+      "venue_decision:maintain_separate"
+    ],
+    "affordance_only_b": [
+      "host_consulted:confirm_host_request",
+      "host_consulted:defer_to_venue",
+      "joint_clarification:confirm_host_request",
+      "joint_clarification:confirm_venue_policy",
+      "joint_clarification:defer_to_host",
+      "joint_clarification:defer_to_venue",
+      "seating_conflict:surface_conflict_to_host",
+      "seating_conflict:surface_conflict_to_venue",
+      "venue_consulted:confirm_venue_policy",
+      "venue_consulted:defer_to_host"
+    ],
+    "terminals_a": [
+      "seating_mixed",
+      "seating_separated"
+    ],
+    "terminals_b": [
+      "host_seating_arranged",
+      "unresolved_conflict",
+      "venue_seating_arranged"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "deepseek",
+    "world_a": "Saudi Arabia (original)",
+    "world_b": "India",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      6,
+      7
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "both_negotiation:accept_separate",
+      "both_negotiation:allow_mixed",
+      "both_negotiation:insist_mixed",
+      "both_negotiation:maintain_separate",
+      "host_decision:accept_separate",
+      "host_decision:insist_mixed",
+      "seating_conflict:ask_both_parties",
+      "seating_conflict:follow_host_request",
+      "seating_conflict:follow_venue_policy",
+      "seating_conflict:surface_to_host",
+      "seating_conflict:surface_to_venue",
+      "venue_decision:allow_mixed",
+      "venue_decision:maintain_separate"
+    ],
+    "affordance_only_b": [
+      "conflict_between_host_and_venue:ask_both_parties_to_resolve",
+      "conflict_between_host_and_venue:follow_host_request",
+      "conflict_between_host_and_venue:follow_venue_policy",
+      "conflict_between_host_and_venue:surface_conflict_to_host_representative",
+      "conflict_between_host_and_venue:surface_conflict_to_venue_staff",
+      "host_consulted:accept_venue_policy",
+      "host_consulted:confirm_mixed_gender_request",
+      "host_consulted:request_joint_resolution_with_venue",
+      "joint_resolution:clarify_and_resolve_seating_conflict",
+      "joint_resolution:clarify_and_resolve_seating_conflict",
+      "seating_setup_before_policy_disclosure:privately_tell_robot_venue_policy",
+      "venue_consulted:accept_host_request",
+      "venue_consulted:confirm_venue_policy",
+      "venue_consulted:request_joint_resolution_with_host"
+    ],
+    "terminals_a": [
+      "seating_mixed",
+      "seating_separated"
+    ],
+    "terminals_b": [
+      "gender_separated_seating_implemented",
+      "mixed_gender_seating_implemented"
+    ]
+  },
+  {
+    "case": "C9",
+    "model": "deepseek",
+    "world_a": "China",
+    "world_b": "India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      7,
+      7
+    ],
+    "n_robot_actions": [
+      5,
+      5
+    ],
+    "affordance_only_a": [
+      "host_consulted:confirm_host_request",
+      "host_consulted:defer_to_venue",
+      "joint_clarification:confirm_host_request",
+      "joint_clarification:confirm_venue_policy",
+      "joint_clarification:defer_to_host",
+      "joint_clarification:defer_to_venue",
+      "seating_conflict:ask_both_parties",
+      "seating_conflict:follow_host_request",
+      "seating_conflict:follow_venue_policy",
+      "seating_conflict:surface_conflict_to_host",
+      "seating_conflict:surface_conflict_to_venue",
+      "venue_consulted:defer_to_host"
+    ],
+    "affordance_only_b": [
+      "conflict_between_host_and_venue:ask_both_parties_to_resolve",
+      "conflict_between_host_and_venue:follow_host_request",
+      "conflict_between_host_and_venue:follow_venue_policy",
+      "conflict_between_host_and_venue:surface_conflict_to_host_representative",
+      "conflict_between_host_and_venue:surface_conflict_to_venue_staff",
+      "host_consulted:accept_venue_policy",
+      "host_consulted:confirm_mixed_gender_request",
+      "host_consulted:request_joint_resolution_with_venue",
+      "joint_resolution:clarify_and_resolve_seating_conflict",
+      "joint_resolution:clarify_and_resolve_seating_conflict",
+      "seating_setup_before_policy_disclosure:privately_tell_robot_venue_policy",
+      "venue_consulted:accept_host_request",
+      "venue_consulted:request_joint_resolution_with_host"
+    ],
+    "terminals_a": [
+      "host_seating_arranged",
+      "unresolved_conflict",
+      "venue_seating_arranged"
+    ],
+    "terminals_b": [
+      "gender_separated_seating_implemented",
+      "mixed_gender_seating_implemented"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "USA (original)",
+    "world_b": "Crowded India",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      8,
+      10
+    ],
+    "n_robot_actions": [
+      3,
+      4
+    ],
+    "affordance_only_a": [
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_channel:acknowledge_receipt",
+      "flagged_channel:log_and_escalate",
+      "flagged_no_channel:log_and_escalate",
+      "hr_review:initiate_inquiry",
+      "received_channel:acknowledge_receipt",
+      "received_channel:flag_unverified",
+      "received_no_channel:flag_unverified"
+    ],
+    "affordance_only_b": [
+      "before_inquiry:initiate_inquiry",
+      "flagged_after_acknowledgment:escalate_to_hr",
+      "flagged_with_channel:acknowledge_receipt",
+      "flagged_with_channel:escalate_to_hr",
+      "flagged_without_channel:escalate_to_hr",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "inquiry_started"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "USA (original)",
+    "world_b": "China (mixed religion)",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      10
+    ],
+    "n_robot_actions": [
+      3,
+      5
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_channel:acknowledge_receipt",
+      "flagged_channel:log_and_escalate",
+      "flagged_no_channel:log_and_escalate",
+      "hr_review:initiate_inquiry",
+      "received_channel:acknowledge_receipt",
+      "received_channel:flag_unverified",
+      "received_no_channel:flag_unverified"
+    ],
+    "affordance_only_b": [
+      "acknowledged_unflagged:flag_unverified",
+      "flagged_and_acknowledged:escalate_hr",
+      "flagged_and_acknowledged:initiate_inquiry",
+      "flagged_with_channel:acknowledge_receipt",
+      "flagged_with_channel:escalate_hr",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_without_channel:escalate_hr",
+      "flagged_without_channel:initiate_inquiry",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint",
+      "with_hr_officer:initiate_inquiry"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "inquiry_begun"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "USA (original)",
+    "world_b": "USA (Native American)",
+    "level": "LOW (different state naming/decomposition only)",
+    "n_states": [
+      8,
+      9
+    ],
+    "n_robot_actions": [
+      3,
+      3
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_channel:acknowledge_receipt",
+      "flagged_channel:log_and_escalate",
+      "flagged_no_channel:log_and_escalate",
+      "hr_review:initiate_inquiry",
+      "received_channel:acknowledge_receipt",
+      "received_channel:flag_unverified",
+      "received_no_channel:flag_unverified"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_after_acknowledgment:log_and_escalate",
+      "flagged_with_channel:acknowledge_receipt",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:log_and_escalate",
+      "hr_flagged:initiate_structured_inquiry",
+      "hr_unflagged:flag_unverified",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "inquiry_underway"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "USA (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      3,
+      4
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "flagged_channel:acknowledge_receipt",
+      "flagged_channel:log_and_escalate",
+      "flagged_no_channel:log_and_escalate",
+      "hr_review:initiate_inquiry",
+      "received_channel:acknowledge_receipt",
+      "received_channel:flag_unverified",
+      "received_no_channel:flag_unverified"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_acknowledged:initiate_inquiry",
+      "flagged_with_channel:acknowledge_receipt",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:initiate_inquiry",
+      "flagged_without_channel:log_and_escalate",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "human_hr_review",
+      "structured_inquiry"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "Crowded India",
+    "world_b": "China (mixed religion)",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      10,
+      10
+    ],
+    "n_robot_actions": [
+      4,
+      5
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "before_inquiry:initiate_inquiry",
+      "flagged_after_acknowledgment:escalate_to_hr",
+      "flagged_with_channel:escalate_to_hr",
+      "flagged_without_channel:escalate_to_hr"
+    ],
+    "affordance_only_b": [
+      "acknowledged_unflagged:flag_unverified",
+      "flagged_and_acknowledged:escalate_hr",
+      "flagged_and_acknowledged:initiate_inquiry",
+      "flagged_with_channel:escalate_hr",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_without_channel:escalate_hr",
+      "flagged_without_channel:initiate_inquiry",
+      "with_hr_officer:initiate_inquiry"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "inquiry_begun"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "Crowded India",
+    "world_b": "USA (Native American)",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      10,
+      9
+    ],
+    "n_robot_actions": [
+      4,
+      3
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "before_inquiry:initiate_inquiry",
+      "flagged_after_acknowledgment:escalate_to_hr",
+      "flagged_with_channel:escalate_to_hr",
+      "flagged_without_channel:escalate_to_hr",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_after_acknowledgment:log_and_escalate",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:log_and_escalate",
+      "hr_flagged:initiate_structured_inquiry",
+      "hr_unflagged:flag_unverified",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "inquiry_underway"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "Crowded India",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      8
+    ],
+    "n_robot_actions": [
+      4,
+      4
+    ],
+    "affordance_only_a": [
+      "acknowledged:flag_unverified",
+      "before_inquiry:initiate_inquiry",
+      "flagged_after_acknowledgment:escalate_to_hr",
+      "flagged_with_channel:escalate_to_hr",
+      "flagged_without_channel:escalate_to_hr",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_acknowledged:initiate_inquiry",
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:initiate_inquiry",
+      "flagged_without_channel:log_and_escalate",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_started"
+    ],
+    "terminals_b": [
+      "human_hr_review",
+      "structured_inquiry"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "China (mixed religion)",
+    "world_b": "USA (Native American)",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      10,
+      9
+    ],
+    "n_robot_actions": [
+      5,
+      3
+    ],
+    "affordance_only_a": [
+      "acknowledged_unflagged:flag_unverified",
+      "flagged_and_acknowledged:escalate_hr",
+      "flagged_and_acknowledged:initiate_inquiry",
+      "flagged_with_channel:escalate_hr",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_without_channel:escalate_hr",
+      "flagged_without_channel:initiate_inquiry",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint",
+      "with_hr_officer:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_after_acknowledgment:log_and_escalate",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:log_and_escalate",
+      "hr_flagged:initiate_structured_inquiry",
+      "hr_unflagged:flag_unverified",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_begun"
+    ],
+    "terminals_b": [
+      "inquiry_underway"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "China (mixed religion)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      8
+    ],
+    "n_robot_actions": [
+      5,
+      4
+    ],
+    "affordance_only_a": [
+      "acknowledged_unflagged:flag_unverified",
+      "flagged_and_acknowledged:escalate_hr",
+      "flagged_and_acknowledged:initiate_inquiry",
+      "flagged_with_channel:escalate_hr",
+      "flagged_without_channel:escalate_hr",
+      "logged_with_channel:acknowledge_receipt",
+      "logged_with_channel:flag_unverified",
+      "logged_without_channel:flag_unverified",
+      "received_with_channel:log_complaint",
+      "received_without_channel:log_complaint",
+      "with_hr_officer:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complaint_with_channel:acknowledge_receipt",
+      "complaint_with_channel:flag_unverified",
+      "complaint_with_channel:log_and_escalate",
+      "complaint_without_channel:flag_unverified",
+      "complaint_without_channel:log_and_escalate",
+      "flagged_acknowledged:initiate_inquiry",
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_with_channel:log_and_escalate",
+      "flagged_without_channel:log_and_escalate",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_begun"
+    ],
+    "terminals_b": [
+      "human_hr_review",
+      "structured_inquiry"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "gpt",
+    "world_a": "USA (Native American)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      9,
+      8
+    ],
+    "n_robot_actions": [
+      3,
+      4
+    ],
+    "affordance_only_a": [
+      "flagged_after_acknowledgment:log_and_escalate",
+      "hr_flagged:initiate_structured_inquiry",
+      "hr_unflagged:flag_unverified"
+    ],
+    "affordance_only_b": [
+      "flagged_acknowledged:initiate_inquiry",
+      "flagged_acknowledged:log_and_escalate",
+      "flagged_with_channel:initiate_inquiry",
+      "flagged_without_channel:initiate_inquiry"
+    ],
+    "terminals_a": [
+      "inquiry_underway"
+    ],
+    "terminals_b": [
+      "human_hr_review",
+      "structured_inquiry"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "USA (original)",
+    "world_b": "Crowded India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      5,
+      13
+    ],
+    "n_robot_actions": [
+      4,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "hr_review:initiate_inquiry",
+      "hr_review:request_more_info",
+      "inquiry_process:investigate_claim",
+      "inquiry_process:respond_to_claim"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "evidence_analyzed:take_action",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "inquiry_initiated:gather_evidence",
+      "inquiry_initiated:provide_info",
+      "more_info_provided:initiate_inquiry",
+      "more_info_requested:provide_more_info",
+      "no_evidence:close_complaint",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "terminals_a": [
+      "inquiry_concluded"
+    ],
+    "terminals_b": [
+      "action_taken",
+      "complaint_closed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "USA (original)",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      5,
+      10
+    ],
+    "n_robot_actions": [
+      4,
+      4
+    ],
+    "affordance_only_a": [
+      "hr_review:initiate_inquiry",
+      "hr_review:request_more_info",
+      "inquiry_process:investigate_claim",
+      "inquiry_process:respond_to_claim"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_complaint",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "info_provided:initiate_inquiry",
+      "inquiry_initiated:gather_evidence",
+      "more_info_requested:provide_info",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "terminals_a": [
+      "inquiry_concluded"
+    ],
+    "terminals_b": [
+      "evidence_analyzed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "USA (original)",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      5,
+      16
+    ],
+    "n_robot_actions": [
+      4,
+      2
+    ],
+    "affordance_only_a": [
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "hr_review:initiate_inquiry",
+      "hr_review:request_more_info",
+      "inquiry_process:investigate_claim",
+      "inquiry_process:respond_to_claim"
+    ],
+    "affordance_only_b": [
+      "claim_flagged_unverified:gather_evidence",
+      "complaint_logged:review_complaint",
+      "complaint_received:acknowledge_receipt",
+      "complaint_under_review:flag_unverified",
+      "complaint_under_review:initiate_inquiry",
+      "evidence_analyzed:determine_next_steps",
+      "evidence_gathering:analyze_evidence",
+      "findings_compiled:review_findings",
+      "findings_reviewed:close_complaint",
+      "findings_reviewed:take_corrective_action",
+      "inquiry_initiated:conduct_interviews",
+      "inquiry_initiated:participate_inquiry",
+      "inquiry_initiated:provide_info",
+      "inquiry_underway:compile_findings",
+      "next_steps_determined:implement_next_steps"
+    ],
+    "terminals_a": [
+      "inquiry_concluded"
+    ],
+    "terminals_b": [
+      "complaint_closed",
+      "corrective_action_taken",
+      "progress_monitored"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "USA (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      5,
+      7
+    ],
+    "n_robot_actions": [
+      4,
+      2
+    ],
+    "affordance_only_a": [
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "hr_review:initiate_inquiry",
+      "hr_review:request_more_info",
+      "inquiry_process:investigate_claim",
+      "inquiry_process:respond_to_claim"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_and_escalate",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_and_escalate",
+      "findings_available:no_action",
+      "findings_available:take_action",
+      "hr_notified:dismiss_complaint",
+      "hr_notified:flag_unverified",
+      "inquiry_initiated:investigate"
+    ],
+    "terminals_a": [
+      "inquiry_concluded"
+    ],
+    "terminals_b": [
+      "complaint_dismissed",
+      "resolution_reached"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "Crowded India",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      13,
+      10
+    ],
+    "n_robot_actions": [
+      0,
+      4
+    ],
+    "affordance_only_a": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "evidence_analyzed:take_action",
+      "inquiry_initiated:provide_info",
+      "more_info_provided:initiate_inquiry",
+      "more_info_requested:provide_more_info",
+      "no_evidence:close_complaint"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "info_provided:initiate_inquiry",
+      "more_info_requested:provide_info"
+    ],
+    "terminals_a": [
+      "action_taken",
+      "complaint_closed"
+    ],
+    "terminals_b": [
+      "evidence_analyzed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "Crowded India",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      13,
+      16
+    ],
+    "n_robot_actions": [
+      0,
+      2
+    ],
+    "affordance_only_a": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "evidence_analyzed:take_action",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "inquiry_initiated:gather_evidence",
+      "more_info_provided:initiate_inquiry",
+      "more_info_requested:provide_more_info",
+      "no_evidence:close_complaint",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "claim_flagged_unverified:gather_evidence",
+      "complaint_logged:review_complaint",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_complaint",
+      "complaint_under_review:flag_unverified",
+      "complaint_under_review:initiate_inquiry",
+      "evidence_analyzed:determine_next_steps",
+      "evidence_gathering:analyze_evidence",
+      "findings_compiled:review_findings",
+      "findings_reviewed:close_complaint",
+      "findings_reviewed:take_corrective_action",
+      "inquiry_initiated:conduct_interviews",
+      "inquiry_initiated:participate_inquiry",
+      "inquiry_underway:compile_findings",
+      "next_steps_determined:implement_next_steps"
+    ],
+    "terminals_a": [
+      "action_taken",
+      "complaint_closed"
+    ],
+    "terminals_b": [
+      "complaint_closed",
+      "corrective_action_taken",
+      "progress_monitored"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "Crowded India",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      13,
+      7
+    ],
+    "n_robot_actions": [
+      0,
+      2
+    ],
+    "affordance_only_a": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "evidence_analyzed:take_action",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "inquiry_initiated:gather_evidence",
+      "inquiry_initiated:provide_info",
+      "more_info_provided:initiate_inquiry",
+      "more_info_requested:provide_more_info",
+      "no_evidence:close_complaint",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_and_escalate",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_and_escalate",
+      "findings_available:no_action",
+      "findings_available:take_action",
+      "hr_notified:dismiss_complaint",
+      "hr_notified:flag_unverified",
+      "inquiry_initiated:investigate"
+    ],
+    "terminals_a": [
+      "action_taken",
+      "complaint_closed"
+    ],
+    "terminals_b": [
+      "complaint_dismissed",
+      "resolution_reached"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "China (mixed religion)",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      16
+    ],
+    "n_robot_actions": [
+      4,
+      2
+    ],
+    "affordance_only_a": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "info_provided:initiate_inquiry",
+      "inquiry_initiated:gather_evidence",
+      "more_info_requested:provide_info",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "claim_flagged_unverified:gather_evidence",
+      "complaint_logged:review_complaint",
+      "complaint_received:acknowledge_receipt",
+      "complaint_under_review:flag_unverified",
+      "complaint_under_review:initiate_inquiry",
+      "evidence_analyzed:determine_next_steps",
+      "evidence_gathering:analyze_evidence",
+      "findings_compiled:review_findings",
+      "findings_reviewed:close_complaint",
+      "findings_reviewed:take_corrective_action",
+      "inquiry_initiated:conduct_interviews",
+      "inquiry_initiated:participate_inquiry",
+      "inquiry_initiated:provide_info",
+      "inquiry_underway:compile_findings",
+      "next_steps_determined:implement_next_steps"
+    ],
+    "terminals_a": [
+      "evidence_analyzed"
+    ],
+    "terminals_b": [
+      "complaint_closed",
+      "corrective_action_taken",
+      "progress_monitored"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "China (mixed religion)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      10,
+      7
+    ],
+    "n_robot_actions": [
+      4,
+      2
+    ],
+    "affordance_only_a": [
+      "complainant_acknowledged:log_complaint",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_received:acknowledge_complainant",
+      "complaint_received:log_complaint",
+      "evidence_gathered:analyze_evidence",
+      "hr_notified:initiate_inquiry",
+      "hr_notified:request_more_info",
+      "info_provided:initiate_inquiry",
+      "inquiry_initiated:gather_evidence",
+      "more_info_requested:provide_info",
+      "unverified_flagged:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_and_escalate",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_and_escalate",
+      "findings_available:no_action",
+      "findings_available:take_action",
+      "hr_notified:dismiss_complaint",
+      "hr_notified:flag_unverified",
+      "inquiry_initiated:investigate"
+    ],
+    "terminals_a": [
+      "evidence_analyzed"
+    ],
+    "terminals_b": [
+      "complaint_dismissed",
+      "resolution_reached"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "llama",
+    "world_a": "USA (Native American)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      16,
+      7
+    ],
+    "n_robot_actions": [
+      2,
+      2
+    ],
+    "affordance_only_a": [
+      "claim_flagged_unverified:gather_evidence",
+      "complaint_logged:review_complaint",
+      "complaint_received:log_complaint",
+      "complaint_under_review:flag_unverified",
+      "complaint_under_review:initiate_inquiry",
+      "evidence_analyzed:determine_next_steps",
+      "evidence_gathering:analyze_evidence",
+      "findings_compiled:review_findings",
+      "findings_reviewed:close_complaint",
+      "findings_reviewed:take_corrective_action",
+      "inquiry_initiated:conduct_interviews",
+      "inquiry_initiated:participate_inquiry",
+      "inquiry_initiated:provide_info",
+      "inquiry_underway:compile_findings",
+      "next_steps_determined:implement_next_steps"
+    ],
+    "affordance_only_b": [
+      "complainant_acknowledged:log_and_escalate",
+      "complaint_received:log_and_escalate",
+      "findings_available:no_action",
+      "findings_available:take_action",
+      "hr_notified:dismiss_complaint",
+      "hr_notified:flag_unverified",
+      "inquiry_initiated:investigate"
+    ],
+    "terminals_a": [
+      "complaint_closed",
+      "corrective_action_taken",
+      "progress_monitored"
+    ],
+    "terminals_b": [
+      "complaint_dismissed",
+      "resolution_reached"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "USA (original)",
+    "world_b": "Crowded India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      12
+    ],
+    "n_robot_actions": [
+      9,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_received_unverified:acknowledge_to_complainant",
+      "complaint_received_unverified:close_without_record",
+      "complaint_received_unverified:contact_named_manager",
+      "complaint_received_unverified:log_and_escalate",
+      "inquiry_under_way:act_on_claim_against_manager",
+      "inquiry_under_way:compile_assignment_records",
+      "inquiry_under_way:conclude_inquiry",
+      "inquiry_under_way:continue_inquiry",
+      "inquiry_under_way:cooperate",
+      "inquiry_under_way:flag_as_unverified",
+      "inquiry_under_way:withhold",
+      "manager_informed_of_unverified_claim:act_on_claim_against_manager",
+      "manager_informed_of_unverified_claim:decline_to_respond",
+      "manager_informed_of_unverified_claim:flag_as_unverified",
+      "manager_informed_of_unverified_claim:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "complaint_intake:attempt_acknowledge",
+      "complaint_intake:flag_unverified",
+      "complaint_intake:hold",
+      "complaint_intake:initiate_inquiry",
+      "complaint_intake:log_and_escalate",
+      "corroboration_gathering:review_assignment_records",
+      "corroboration_gathering:share_accounts",
+      "corroboration_gathering:solicit_accounts",
+      "corroboration_gathering:stay_silent",
+      "inquiry_open:contest_anonymity",
+      "inquiry_open:decline_to_respond",
+      "inquiry_open:interview_manager",
+      "inquiry_open:respond_to_allegation",
+      "inquiry_open:review_assignment_records",
+      "manager_notified:contest_anonymity"
+    ],
+    "terminals_a": [
+      "action_taken_on_unverified_claim",
+      "inquiry_findings_before_hr",
+      "matter_dropped"
+    ],
+    "terminals_b": [
+      "complaint_withdrawn",
+      "file_closed",
+      "inquiry_concluded",
+      "referred_for_adjudication"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "USA (original)",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      9
+    ],
+    "n_robot_actions": [
+      9,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_received_unverified:acknowledge_to_complainant",
+      "complaint_received_unverified:close_without_record",
+      "complaint_received_unverified:contact_named_manager",
+      "complaint_received_unverified:log_and_escalate",
+      "inquiry_under_way:act_on_claim_against_manager",
+      "inquiry_under_way:compile_assignment_records",
+      "inquiry_under_way:conclude_inquiry",
+      "inquiry_under_way:continue_inquiry",
+      "inquiry_under_way:cooperate",
+      "inquiry_under_way:flag_as_unverified",
+      "inquiry_under_way:withhold",
+      "manager_informed_of_unverified_claim:act_on_claim_against_manager",
+      "manager_informed_of_unverified_claim:decline_to_respond",
+      "manager_informed_of_unverified_claim:flag_as_unverified",
+      "manager_informed_of_unverified_claim:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "contact_open:log_and_escalate",
+      "contact_open:provide_details",
+      "contact_open:request_details",
+      "contact_open:withhold_details",
+      "contact_unavailable:flag_unverified",
+      "contact_unavailable:log_and_escalate",
+      "contact_unavailable:open_inquiry",
+      "escalated:hold_record",
+      "escalated:open_formal_review",
+      "escalated:return_for_inquiry",
+      "flagged_pending:log_and_escalate",
+      "flagged_pending:open_inquiry",
+      "inquiry_open:corroborate",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_manager"
+    ],
+    "terminals_a": [
+      "action_taken_on_unverified_claim",
+      "inquiry_findings_before_hr",
+      "matter_dropped"
+    ],
+    "terminals_b": [
+      "formal_review_underway",
+      "record_with_officer"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "USA (original)",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      14
+    ],
+    "n_robot_actions": [
+      9,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_received_unverified:acknowledge_to_complainant",
+      "complaint_received_unverified:close_without_record",
+      "complaint_received_unverified:contact_named_manager",
+      "complaint_received_unverified:log_and_escalate",
+      "inquiry_under_way:act_on_claim_against_manager",
+      "inquiry_under_way:compile_assignment_records",
+      "inquiry_under_way:conclude_inquiry",
+      "inquiry_under_way:continue_inquiry",
+      "inquiry_under_way:cooperate",
+      "inquiry_under_way:flag_as_unverified",
+      "inquiry_under_way:withhold",
+      "manager_informed_of_unverified_claim:act_on_claim_against_manager",
+      "manager_informed_of_unverified_claim:decline_to_respond",
+      "manager_informed_of_unverified_claim:flag_as_unverified",
+      "manager_informed_of_unverified_claim:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "awaiting_complainant:provide_detail",
+      "awaiting_complainant:remain_silent",
+      "complaint_intake:acknowledge_receipt",
+      "complaint_intake:log_and_escalate",
+      "complaint_intake:open_inquiry",
+      "corroborated_claim:log_and_escalate",
+      "corroborated_claim:notify_supervisor_of_unverified_claim",
+      "corroborated_claim:request_aggregate_records",
+      "employee_input_stage:come_forward",
+      "employee_input_stage:stay_silent",
+      "inquiry_open:invite_employee_input",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_supervisor_of_unverified_claim",
+      "inquiry_open:request_aggregate_records",
+      "intake_with_account:log_and_escalate"
+    ],
+    "terminals_a": [
+      "action_taken_on_unverified_claim",
+      "inquiry_findings_before_hr",
+      "matter_dropped"
+    ],
+    "terminals_b": [
+      "formal_process_underway",
+      "record_closed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "USA (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      8
+    ],
+    "n_robot_actions": [
+      9,
+      6
+    ],
+    "affordance_only_a": [
+      "complaint_received_unverified:acknowledge_to_complainant",
+      "complaint_received_unverified:close_without_record",
+      "complaint_received_unverified:contact_named_manager",
+      "complaint_received_unverified:log_and_escalate",
+      "inquiry_under_way:act_on_claim_against_manager",
+      "inquiry_under_way:compile_assignment_records",
+      "inquiry_under_way:conclude_inquiry",
+      "inquiry_under_way:continue_inquiry",
+      "inquiry_under_way:cooperate",
+      "inquiry_under_way:flag_as_unverified",
+      "inquiry_under_way:withhold",
+      "manager_informed_of_unverified_claim:act_on_claim_against_manager",
+      "manager_informed_of_unverified_claim:decline_to_respond",
+      "manager_informed_of_unverified_claim:flag_as_unverified",
+      "return_channel_settled:add_detail"
+    ],
+    "affordance_only_b": [
+      "escalated_pending_human_review:close_file",
+      "escalated_pending_human_review:defer_decision",
+      "escalated_pending_human_review:open_structured_inquiry",
+      "manager_informed_of_unverified_claim:close_without_action",
+      "manager_informed_of_unverified_claim:flag_unverified_status",
+      "manager_informed_of_unverified_claim:stay_silent",
+      "record_marked_unverified:acknowledge_receipt",
+      "record_marked_unverified:close_without_action",
+      "record_marked_unverified:log_and_escalate",
+      "record_marked_unverified:notify_manager",
+      "return_channel_probed:close_without_action",
+      "return_channel_probed:flag_unverified_status",
+      "return_channel_probed:log_and_escalate",
+      "return_channel_probed:notify_manager",
+      "return_channel_probed:stay_silent"
+    ],
+    "terminals_a": [
+      "action_taken_on_unverified_claim",
+      "inquiry_findings_before_hr",
+      "matter_dropped"
+    ],
+    "terminals_b": [
+      "claim_left_unexamined",
+      "inquiry_findings_with_human_authority"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "Crowded India",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      9
+    ],
+    "n_robot_actions": [
+      0,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_intake:attempt_acknowledge",
+      "complaint_intake:flag_unverified",
+      "complaint_intake:hold",
+      "complaint_intake:initiate_inquiry",
+      "complaint_intake:log_and_escalate",
+      "corroboration_gathering:review_assignment_records",
+      "corroboration_gathering:share_accounts",
+      "corroboration_gathering:solicit_accounts",
+      "corroboration_gathering:stay_silent",
+      "inquiry_open:contest_anonymity",
+      "inquiry_open:decline_to_respond",
+      "inquiry_open:interview_manager",
+      "inquiry_open:respond_to_allegation",
+      "inquiry_open:review_assignment_records",
+      "manager_notified:contest_anonymity"
+    ],
+    "affordance_only_b": [
+      "contact_open:log_and_escalate",
+      "contact_open:provide_details",
+      "contact_open:request_details",
+      "contact_open:withhold_details",
+      "contact_unavailable:flag_unverified",
+      "contact_unavailable:log_and_escalate",
+      "contact_unavailable:open_inquiry",
+      "escalated:hold_record",
+      "escalated:open_formal_review",
+      "escalated:return_for_inquiry",
+      "flagged_pending:log_and_escalate",
+      "flagged_pending:open_inquiry",
+      "inquiry_open:corroborate",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_manager"
+    ],
+    "terminals_a": [
+      "complaint_withdrawn",
+      "file_closed",
+      "inquiry_concluded",
+      "referred_for_adjudication"
+    ],
+    "terminals_b": [
+      "formal_review_underway",
+      "record_with_officer"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "Crowded India",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      14
+    ],
+    "n_robot_actions": [
+      0,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_intake:attempt_acknowledge",
+      "complaint_intake:flag_unverified",
+      "complaint_intake:hold",
+      "complaint_intake:initiate_inquiry",
+      "corroboration_gathering:review_assignment_records",
+      "corroboration_gathering:share_accounts",
+      "corroboration_gathering:solicit_accounts",
+      "corroboration_gathering:stay_silent",
+      "inquiry_open:contest_anonymity",
+      "inquiry_open:decline_to_respond",
+      "inquiry_open:interview_manager",
+      "inquiry_open:respond_to_allegation",
+      "inquiry_open:review_assignment_records",
+      "manager_notified:contest_anonymity",
+      "manager_notified:decline_to_respond"
+    ],
+    "affordance_only_b": [
+      "awaiting_complainant:provide_detail",
+      "awaiting_complainant:remain_silent",
+      "complaint_intake:acknowledge_receipt",
+      "complaint_intake:open_inquiry",
+      "corroborated_claim:log_and_escalate",
+      "corroborated_claim:notify_supervisor_of_unverified_claim",
+      "corroborated_claim:request_aggregate_records",
+      "employee_input_stage:come_forward",
+      "employee_input_stage:stay_silent",
+      "inquiry_open:invite_employee_input",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_supervisor_of_unverified_claim",
+      "inquiry_open:request_aggregate_records",
+      "intake_with_account:log_and_escalate",
+      "intake_with_account:open_inquiry"
+    ],
+    "terminals_a": [
+      "complaint_withdrawn",
+      "file_closed",
+      "inquiry_concluded",
+      "referred_for_adjudication"
+    ],
+    "terminals_b": [
+      "formal_process_underway",
+      "record_closed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "Crowded India",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      12,
+      8
+    ],
+    "n_robot_actions": [
+      0,
+      6
+    ],
+    "affordance_only_a": [
+      "complaint_intake:attempt_acknowledge",
+      "complaint_intake:flag_unverified",
+      "complaint_intake:hold",
+      "complaint_intake:initiate_inquiry",
+      "complaint_intake:log_and_escalate",
+      "corroboration_gathering:review_assignment_records",
+      "corroboration_gathering:share_accounts",
+      "corroboration_gathering:solicit_accounts",
+      "corroboration_gathering:stay_silent",
+      "inquiry_open:contest_anonymity",
+      "inquiry_open:decline_to_respond",
+      "inquiry_open:interview_manager",
+      "inquiry_open:respond_to_allegation",
+      "inquiry_open:review_assignment_records",
+      "manager_notified:contest_anonymity"
+    ],
+    "affordance_only_b": [
+      "escalated_pending_human_review:close_file",
+      "escalated_pending_human_review:defer_decision",
+      "escalated_pending_human_review:open_structured_inquiry",
+      "manager_informed_of_unverified_claim:close_without_action",
+      "manager_informed_of_unverified_claim:flag_unverified_status",
+      "manager_informed_of_unverified_claim:log_and_escalate",
+      "manager_informed_of_unverified_claim:respond_to_claim",
+      "manager_informed_of_unverified_claim:stay_silent",
+      "record_marked_unverified:acknowledge_receipt",
+      "record_marked_unverified:close_without_action",
+      "record_marked_unverified:log_and_escalate",
+      "record_marked_unverified:notify_manager",
+      "return_channel_probed:close_without_action",
+      "return_channel_probed:flag_unverified_status",
+      "return_channel_probed:log_and_escalate"
+    ],
+    "terminals_a": [
+      "complaint_withdrawn",
+      "file_closed",
+      "inquiry_concluded",
+      "referred_for_adjudication"
+    ],
+    "terminals_b": [
+      "claim_left_unexamined",
+      "inquiry_findings_with_human_authority"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "China (mixed religion)",
+    "world_b": "USA (Native American)",
+    "level": "LOW (different state naming/decomposition only)",
+    "n_states": [
+      9,
+      14
+    ],
+    "n_robot_actions": [
+      0,
+      0
+    ],
+    "affordance_only_a": [
+      "contact_open:log_and_escalate",
+      "contact_open:provide_details",
+      "contact_open:request_details",
+      "contact_open:withhold_details",
+      "contact_unavailable:flag_unverified",
+      "contact_unavailable:log_and_escalate",
+      "contact_unavailable:open_inquiry",
+      "escalated:hold_record",
+      "escalated:open_formal_review",
+      "escalated:return_for_inquiry",
+      "flagged_pending:log_and_escalate",
+      "flagged_pending:open_inquiry",
+      "inquiry_open:corroborate",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_manager"
+    ],
+    "affordance_only_b": [
+      "awaiting_complainant:provide_detail",
+      "awaiting_complainant:remain_silent",
+      "complaint_intake:acknowledge_receipt",
+      "complaint_intake:log_and_escalate",
+      "complaint_intake:open_inquiry",
+      "corroborated_claim:log_and_escalate",
+      "corroborated_claim:notify_supervisor_of_unverified_claim",
+      "corroborated_claim:request_aggregate_records",
+      "employee_input_stage:come_forward",
+      "employee_input_stage:stay_silent",
+      "inquiry_open:invite_employee_input",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_supervisor_of_unverified_claim",
+      "inquiry_open:request_aggregate_records",
+      "intake_with_account:log_and_escalate"
+    ],
+    "terminals_a": [
+      "formal_review_underway",
+      "record_with_officer"
+    ],
+    "terminals_b": [
+      "formal_process_underway",
+      "record_closed"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "China (mixed religion)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      9,
+      8
+    ],
+    "n_robot_actions": [
+      0,
+      6
+    ],
+    "affordance_only_a": [
+      "contact_open:log_and_escalate",
+      "contact_open:provide_details",
+      "contact_open:request_details",
+      "contact_open:withhold_details",
+      "contact_unavailable:flag_unverified",
+      "contact_unavailable:log_and_escalate",
+      "contact_unavailable:open_inquiry",
+      "escalated:hold_record",
+      "escalated:open_formal_review",
+      "escalated:return_for_inquiry",
+      "flagged_pending:log_and_escalate",
+      "flagged_pending:open_inquiry",
+      "inquiry_open:corroborate",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_manager"
+    ],
+    "affordance_only_b": [
+      "escalated_pending_human_review:close_file",
+      "escalated_pending_human_review:defer_decision",
+      "escalated_pending_human_review:open_structured_inquiry",
+      "manager_informed_of_unverified_claim:close_without_action",
+      "manager_informed_of_unverified_claim:flag_unverified_status",
+      "manager_informed_of_unverified_claim:log_and_escalate",
+      "manager_informed_of_unverified_claim:respond_to_claim",
+      "manager_informed_of_unverified_claim:stay_silent",
+      "record_marked_unverified:acknowledge_receipt",
+      "record_marked_unverified:close_without_action",
+      "record_marked_unverified:log_and_escalate",
+      "record_marked_unverified:notify_manager",
+      "return_channel_probed:close_without_action",
+      "return_channel_probed:flag_unverified_status",
+      "return_channel_probed:log_and_escalate"
+    ],
+    "terminals_a": [
+      "formal_review_underway",
+      "record_with_officer"
+    ],
+    "terminals_b": [
+      "claim_left_unexamined",
+      "inquiry_findings_with_human_authority"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "claude",
+    "world_a": "USA (Native American)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      14,
+      8
+    ],
+    "n_robot_actions": [
+      0,
+      6
+    ],
+    "affordance_only_a": [
+      "awaiting_complainant:provide_detail",
+      "awaiting_complainant:remain_silent",
+      "complaint_intake:acknowledge_receipt",
+      "complaint_intake:log_and_escalate",
+      "complaint_intake:open_inquiry",
+      "corroborated_claim:log_and_escalate",
+      "corroborated_claim:notify_supervisor_of_unverified_claim",
+      "corroborated_claim:request_aggregate_records",
+      "employee_input_stage:come_forward",
+      "employee_input_stage:stay_silent",
+      "inquiry_open:invite_employee_input",
+      "inquiry_open:log_and_escalate",
+      "inquiry_open:notify_supervisor_of_unverified_claim",
+      "inquiry_open:request_aggregate_records",
+      "intake_with_account:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "escalated_pending_human_review:close_file",
+      "escalated_pending_human_review:defer_decision",
+      "escalated_pending_human_review:open_structured_inquiry",
+      "manager_informed_of_unverified_claim:close_without_action",
+      "manager_informed_of_unverified_claim:flag_unverified_status",
+      "manager_informed_of_unverified_claim:log_and_escalate",
+      "manager_informed_of_unverified_claim:respond_to_claim",
+      "manager_informed_of_unverified_claim:stay_silent",
+      "record_marked_unverified:acknowledge_receipt",
+      "record_marked_unverified:close_without_action",
+      "record_marked_unverified:log_and_escalate",
+      "record_marked_unverified:notify_manager",
+      "return_channel_probed:close_without_action",
+      "return_channel_probed:flag_unverified_status",
+      "return_channel_probed:log_and_escalate"
+    ],
+    "terminals_a": [
+      "formal_process_underway",
+      "record_closed"
+    ],
+    "terminals_b": [
+      "claim_left_unexamined",
+      "inquiry_findings_with_human_authority"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "USA (original)",
+    "world_b": "Crowded India",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      7,
+      21
+    ],
+    "n_robot_actions": [
+      0,
+      4
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:initiate_inquiry",
+      "complaint_acknowledged:log_and_escalate",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_open_with_channel:acknowledge_receipt",
+      "complaint_open_with_channel:flag_unverified",
+      "complaint_open_with_channel:initiate_inquiry",
+      "complaint_open_with_channel:log_and_escalate",
+      "complaint_open_without_channel:flag_unverified",
+      "complaint_open_without_channel:initiate_inquiry",
+      "complaint_open_without_channel:log_and_escalate",
+      "officer_review:close_complaint",
+      "officer_review:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complaint_acknowledged:flag_unverified",
+      "complaint_acknowledged:log_complaint",
+      "complaint_logged:acknowledge_receipt",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_logged_acknowledged:escalate_to_hr",
+      "complaint_logged_acknowledged:flag_unverified",
+      "complaint_logged_acknowledged_escalated:flag_unverified",
+      "complaint_logged_escalated:flag_unverified",
+      "complaint_logged_no_return_channel:escalate_to_hr",
+      "complaint_logged_no_return_channel:flag_unverified",
+      "complaint_logged_no_return_channel_escalated:flag_unverified",
+      "complaint_logged_unverified:acknowledge_receipt",
+      "complaint_logged_unverified:escalate_to_hr",
+      "complaint_logged_unverified_acknowledged:escalate_to_hr"
+    ],
+    "terminals_a": [
+      "complaint_closed",
+      "inquiry_opened"
+    ],
+    "terminals_b": [
+      "inquiry_initiated",
+      "inquiry_initiated_acknowledged",
+      "inquiry_initiated_no_return_channel"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "USA (original)",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      7,
+      30
+    ],
+    "n_robot_actions": [
+      0,
+      5
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:initiate_inquiry",
+      "complaint_acknowledged:log_and_escalate",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_open_with_channel:acknowledge_receipt",
+      "complaint_open_with_channel:flag_unverified",
+      "complaint_open_with_channel:initiate_inquiry",
+      "complaint_open_with_channel:log_and_escalate",
+      "complaint_open_without_channel:flag_unverified",
+      "complaint_open_without_channel:initiate_inquiry",
+      "complaint_open_without_channel:log_and_escalate",
+      "officer_review:close_complaint",
+      "officer_review:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complainant_response_channel:respond_to_acknowledgment",
+      "complainant_response_flagged_channel:respond_to_acknowledgment",
+      "complaint_flagged_channel:acknowledge_receipt",
+      "complaint_flagged_channel:escalate_to_human_officer",
+      "complaint_flagged_channel:initiate_inquiry",
+      "complaint_flagged_no_channel:escalate_to_human_officer",
+      "complaint_flagged_no_channel:initiate_inquiry",
+      "complaint_logged_channel:acknowledge_receipt",
+      "complaint_logged_channel:escalate_to_human_officer",
+      "complaint_logged_channel:flag_unverified",
+      "complaint_logged_channel:initiate_inquiry",
+      "complaint_logged_no_channel:escalate_to_human_officer",
+      "complaint_logged_no_channel:flag_unverified",
+      "complaint_logged_no_channel:initiate_inquiry",
+      "complaint_open_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "complaint_closed",
+      "inquiry_opened"
+    ],
+    "terminals_b": [
+      "record_documented_material",
+      "record_documented_no_material"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "USA (original)",
+    "world_b": "USA (Native American)",
+    "level": "LOW (different state naming/decomposition only)",
+    "n_states": [
+      7,
+      14
+    ],
+    "n_robot_actions": [
+      0,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:initiate_inquiry",
+      "complaint_acknowledged:log_and_escalate",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_open_with_channel:acknowledge_receipt",
+      "complaint_open_with_channel:flag_unverified",
+      "complaint_open_with_channel:initiate_inquiry",
+      "complaint_open_with_channel:log_and_escalate",
+      "complaint_open_without_channel:flag_unverified",
+      "complaint_open_without_channel:initiate_inquiry",
+      "complaint_open_without_channel:log_and_escalate",
+      "officer_review:close_complaint",
+      "officer_review:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "complaint_escalated_flagged_unverified_channel:initiate_inquiry",
+      "complaint_escalated_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_escalated_unverified_channel:flag_unverified",
+      "complaint_escalated_unverified_no_channel:flag_unverified",
+      "complaint_flagged_unverified_channel:acknowledge_receipt",
+      "complaint_flagged_unverified_channel:escalate_to_hr",
+      "complaint_flagged_unverified_channel:initiate_inquiry",
+      "complaint_flagged_unverified_no_channel:escalate_to_hr",
+      "complaint_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_logged_unverified_channel:acknowledge_receipt",
+      "complaint_logged_unverified_channel:escalate_to_hr",
+      "complaint_logged_unverified_channel:flag_unverified",
+      "complaint_logged_unverified_no_channel:escalate_to_hr",
+      "complaint_logged_unverified_no_channel:flag_unverified",
+      "complaint_received_unverified_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "complaint_closed",
+      "inquiry_opened"
+    ],
+    "terminals_b": [
+      "complaint_acknowledged_flagged_unverified_channel",
+      "complaint_acknowledged_unverified_channel",
+      "inquiry_initiated_unverified_channel",
+      "inquiry_initiated_unverified_no_channel"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "USA (original)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      7,
+      7
+    ],
+    "n_robot_actions": [
+      0,
+      3
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:initiate_inquiry",
+      "complaint_acknowledged:log_and_escalate",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_open_with_channel:acknowledge_receipt",
+      "complaint_open_with_channel:flag_unverified",
+      "complaint_open_with_channel:initiate_inquiry",
+      "complaint_open_with_channel:log_and_escalate",
+      "complaint_open_without_channel:flag_unverified",
+      "complaint_open_without_channel:initiate_inquiry",
+      "complaint_open_without_channel:log_and_escalate",
+      "officer_review:close_complaint",
+      "officer_review:initiate_inquiry"
+    ],
+    "affordance_only_b": [
+      "acknowledged_return:flag_unverified",
+      "acknowledged_return:log_and_escalate",
+      "escalated_flagged:initiate_inquiry",
+      "escalated_unverified:flag_unverified",
+      "flagged_unverified:log_and_escalate",
+      "received_no_return:flag_unverified",
+      "received_no_return:log_and_escalate",
+      "received_return:acknowledge_receipt",
+      "received_return:flag_unverified",
+      "received_return:log_and_escalate"
+    ],
+    "terminals_a": [
+      "complaint_closed",
+      "inquiry_opened"
+    ],
+    "terminals_b": [
+      "inquiry_open"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "Crowded India",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      21,
+      30
+    ],
+    "n_robot_actions": [
+      4,
+      5
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:flag_unverified",
+      "complaint_acknowledged:log_complaint",
+      "complaint_logged:acknowledge_receipt",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_logged_acknowledged:escalate_to_hr",
+      "complaint_logged_acknowledged:flag_unverified",
+      "complaint_logged_acknowledged_escalated:flag_unverified",
+      "complaint_logged_escalated:flag_unverified",
+      "complaint_logged_no_return_channel:escalate_to_hr",
+      "complaint_logged_no_return_channel:flag_unverified",
+      "complaint_logged_no_return_channel_escalated:flag_unverified",
+      "complaint_logged_unverified:acknowledge_receipt",
+      "complaint_logged_unverified:escalate_to_hr",
+      "complaint_logged_unverified_acknowledged:escalate_to_hr"
+    ],
+    "affordance_only_b": [
+      "complainant_response_channel:respond_to_acknowledgment",
+      "complainant_response_flagged_channel:respond_to_acknowledgment",
+      "complaint_flagged_channel:acknowledge_receipt",
+      "complaint_flagged_channel:escalate_to_human_officer",
+      "complaint_flagged_channel:initiate_inquiry",
+      "complaint_flagged_no_channel:escalate_to_human_officer",
+      "complaint_flagged_no_channel:initiate_inquiry",
+      "complaint_logged_channel:acknowledge_receipt",
+      "complaint_logged_channel:escalate_to_human_officer",
+      "complaint_logged_channel:flag_unverified",
+      "complaint_logged_channel:initiate_inquiry",
+      "complaint_logged_no_channel:escalate_to_human_officer",
+      "complaint_logged_no_channel:flag_unverified",
+      "complaint_logged_no_channel:initiate_inquiry",
+      "complaint_open_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "inquiry_initiated",
+      "inquiry_initiated_acknowledged",
+      "inquiry_initiated_no_return_channel"
+    ],
+    "terminals_b": [
+      "record_documented_material",
+      "record_documented_no_material"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "Crowded India",
+    "world_b": "USA (Native American)",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      21,
+      14
+    ],
+    "n_robot_actions": [
+      4,
+      0
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:flag_unverified",
+      "complaint_acknowledged:log_complaint",
+      "complaint_logged:acknowledge_receipt",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_logged_acknowledged:escalate_to_hr",
+      "complaint_logged_acknowledged:flag_unverified",
+      "complaint_logged_acknowledged_escalated:flag_unverified",
+      "complaint_logged_escalated:flag_unverified",
+      "complaint_logged_no_return_channel:escalate_to_hr",
+      "complaint_logged_no_return_channel:flag_unverified",
+      "complaint_logged_no_return_channel_escalated:flag_unverified",
+      "complaint_logged_unverified:acknowledge_receipt",
+      "complaint_logged_unverified:escalate_to_hr",
+      "complaint_logged_unverified_acknowledged:escalate_to_hr"
+    ],
+    "affordance_only_b": [
+      "complaint_escalated_flagged_unverified_channel:initiate_inquiry",
+      "complaint_escalated_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_escalated_unverified_channel:flag_unverified",
+      "complaint_escalated_unverified_no_channel:flag_unverified",
+      "complaint_flagged_unverified_channel:acknowledge_receipt",
+      "complaint_flagged_unverified_channel:escalate_to_hr",
+      "complaint_flagged_unverified_channel:initiate_inquiry",
+      "complaint_flagged_unverified_no_channel:escalate_to_hr",
+      "complaint_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_logged_unverified_channel:acknowledge_receipt",
+      "complaint_logged_unverified_channel:escalate_to_hr",
+      "complaint_logged_unverified_channel:flag_unverified",
+      "complaint_logged_unverified_no_channel:escalate_to_hr",
+      "complaint_logged_unverified_no_channel:flag_unverified",
+      "complaint_received_unverified_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "inquiry_initiated",
+      "inquiry_initiated_acknowledged",
+      "inquiry_initiated_no_return_channel"
+    ],
+    "terminals_b": [
+      "complaint_acknowledged_flagged_unverified_channel",
+      "complaint_acknowledged_unverified_channel",
+      "inquiry_initiated_unverified_channel",
+      "inquiry_initiated_unverified_no_channel"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "Crowded India",
+    "world_b": "No location",
+    "level": "LOW-MEDIUM (renaming / equivalent-structure difference)",
+    "n_states": [
+      21,
+      7
+    ],
+    "n_robot_actions": [
+      4,
+      3
+    ],
+    "affordance_only_a": [
+      "complaint_acknowledged:flag_unverified",
+      "complaint_acknowledged:log_complaint",
+      "complaint_logged:acknowledge_receipt",
+      "complaint_logged:escalate_to_hr",
+      "complaint_logged:flag_unverified",
+      "complaint_logged_acknowledged:escalate_to_hr",
+      "complaint_logged_acknowledged:flag_unverified",
+      "complaint_logged_acknowledged_escalated:flag_unverified",
+      "complaint_logged_escalated:flag_unverified",
+      "complaint_logged_no_return_channel:escalate_to_hr",
+      "complaint_logged_no_return_channel:flag_unverified",
+      "complaint_logged_no_return_channel_escalated:flag_unverified",
+      "complaint_logged_unverified:acknowledge_receipt",
+      "complaint_logged_unverified:escalate_to_hr",
+      "complaint_logged_unverified_acknowledged:escalate_to_hr"
+    ],
+    "affordance_only_b": [
+      "acknowledged_return:flag_unverified",
+      "acknowledged_return:log_and_escalate",
+      "escalated_flagged:initiate_inquiry",
+      "escalated_unverified:flag_unverified",
+      "flagged_unverified:log_and_escalate",
+      "received_no_return:flag_unverified",
+      "received_no_return:log_and_escalate",
+      "received_return:acknowledge_receipt",
+      "received_return:flag_unverified",
+      "received_return:log_and_escalate"
+    ],
+    "terminals_a": [
+      "inquiry_initiated",
+      "inquiry_initiated_acknowledged",
+      "inquiry_initiated_no_return_channel"
+    ],
+    "terminals_b": [
+      "inquiry_open"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "China (mixed religion)",
+    "world_b": "USA (Native American)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      30,
+      14
+    ],
+    "n_robot_actions": [
+      5,
+      0
+    ],
+    "affordance_only_a": [
+      "complainant_response_channel:respond_to_acknowledgment",
+      "complainant_response_flagged_channel:respond_to_acknowledgment",
+      "complaint_flagged_channel:acknowledge_receipt",
+      "complaint_flagged_channel:escalate_to_human_officer",
+      "complaint_flagged_channel:initiate_inquiry",
+      "complaint_flagged_no_channel:escalate_to_human_officer",
+      "complaint_flagged_no_channel:initiate_inquiry",
+      "complaint_logged_channel:acknowledge_receipt",
+      "complaint_logged_channel:escalate_to_human_officer",
+      "complaint_logged_channel:flag_unverified",
+      "complaint_logged_channel:initiate_inquiry",
+      "complaint_logged_no_channel:escalate_to_human_officer",
+      "complaint_logged_no_channel:flag_unverified",
+      "complaint_logged_no_channel:initiate_inquiry",
+      "complaint_open_channel:log_complaint"
+    ],
+    "affordance_only_b": [
+      "complaint_escalated_flagged_unverified_channel:initiate_inquiry",
+      "complaint_escalated_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_escalated_unverified_channel:flag_unverified",
+      "complaint_escalated_unverified_no_channel:flag_unverified",
+      "complaint_flagged_unverified_channel:acknowledge_receipt",
+      "complaint_flagged_unverified_channel:escalate_to_hr",
+      "complaint_flagged_unverified_channel:initiate_inquiry",
+      "complaint_flagged_unverified_no_channel:escalate_to_hr",
+      "complaint_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_logged_unverified_channel:acknowledge_receipt",
+      "complaint_logged_unverified_channel:escalate_to_hr",
+      "complaint_logged_unverified_channel:flag_unverified",
+      "complaint_logged_unverified_no_channel:escalate_to_hr",
+      "complaint_logged_unverified_no_channel:flag_unverified",
+      "complaint_received_unverified_channel:log_complaint"
+    ],
+    "terminals_a": [
+      "record_documented_material",
+      "record_documented_no_material"
+    ],
+    "terminals_b": [
+      "complaint_acknowledged_flagged_unverified_channel",
+      "complaint_acknowledged_unverified_channel",
+      "inquiry_initiated_unverified_channel",
+      "inquiry_initiated_unverified_no_channel"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "China (mixed religion)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      30,
+      7
+    ],
+    "n_robot_actions": [
+      5,
+      3
+    ],
+    "affordance_only_a": [
+      "complainant_response_channel:respond_to_acknowledgment",
+      "complainant_response_flagged_channel:respond_to_acknowledgment",
+      "complaint_flagged_channel:acknowledge_receipt",
+      "complaint_flagged_channel:escalate_to_human_officer",
+      "complaint_flagged_channel:initiate_inquiry",
+      "complaint_flagged_no_channel:escalate_to_human_officer",
+      "complaint_flagged_no_channel:initiate_inquiry",
+      "complaint_logged_channel:acknowledge_receipt",
+      "complaint_logged_channel:escalate_to_human_officer",
+      "complaint_logged_channel:flag_unverified",
+      "complaint_logged_channel:initiate_inquiry",
+      "complaint_logged_no_channel:escalate_to_human_officer",
+      "complaint_logged_no_channel:flag_unverified",
+      "complaint_logged_no_channel:initiate_inquiry",
+      "complaint_open_channel:log_complaint"
+    ],
+    "affordance_only_b": [
+      "acknowledged_return:flag_unverified",
+      "acknowledged_return:log_and_escalate",
+      "escalated_flagged:initiate_inquiry",
+      "escalated_unverified:flag_unverified",
+      "flagged_unverified:log_and_escalate",
+      "received_no_return:flag_unverified",
+      "received_no_return:log_and_escalate",
+      "received_return:acknowledge_receipt",
+      "received_return:flag_unverified",
+      "received_return:log_and_escalate"
+    ],
+    "terminals_a": [
+      "record_documented_material",
+      "record_documented_no_material"
+    ],
+    "terminals_b": [
+      "inquiry_open"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "qwen",
+    "world_a": "USA (Native American)",
+    "world_b": "No location",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      14,
+      7
+    ],
+    "n_robot_actions": [
+      0,
+      3
+    ],
+    "affordance_only_a": [
+      "complaint_escalated_flagged_unverified_channel:initiate_inquiry",
+      "complaint_escalated_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_escalated_unverified_channel:flag_unverified",
+      "complaint_escalated_unverified_no_channel:flag_unverified",
+      "complaint_flagged_unverified_channel:acknowledge_receipt",
+      "complaint_flagged_unverified_channel:escalate_to_hr",
+      "complaint_flagged_unverified_channel:initiate_inquiry",
+      "complaint_flagged_unverified_no_channel:escalate_to_hr",
+      "complaint_flagged_unverified_no_channel:initiate_inquiry",
+      "complaint_logged_unverified_channel:acknowledge_receipt",
+      "complaint_logged_unverified_channel:escalate_to_hr",
+      "complaint_logged_unverified_channel:flag_unverified",
+      "complaint_logged_unverified_no_channel:escalate_to_hr",
+      "complaint_logged_unverified_no_channel:flag_unverified",
+      "complaint_received_unverified_channel:log_complaint"
+    ],
+    "affordance_only_b": [
+      "acknowledged_return:flag_unverified",
+      "acknowledged_return:log_and_escalate",
+      "escalated_flagged:initiate_inquiry",
+      "escalated_unverified:flag_unverified",
+      "flagged_unverified:log_and_escalate",
+      "received_no_return:flag_unverified",
+      "received_no_return:log_and_escalate",
+      "received_return:acknowledge_receipt",
+      "received_return:flag_unverified",
+      "received_return:log_and_escalate"
+    ],
+    "terminals_a": [
+      "complaint_acknowledged_flagged_unverified_channel",
+      "complaint_acknowledged_unverified_channel",
+      "inquiry_initiated_unverified_channel",
+      "inquiry_initiated_unverified_no_channel"
+    ],
+    "terminals_b": [
+      "inquiry_open"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "deepseek",
+    "world_a": "USA (original)",
+    "world_b": "Crowded India",
+    "level": "HIGH (robot affordance set changed)",
+    "n_states": [
+      8,
+      6
+    ],
+    "n_robot_actions": [
+      0,
+      4
+    ],
+    "affordance_only_a": [
+      "complaint_received_no_channel:flag_unverified",
+      "complaint_received_no_channel:log_and_escalate",
+      "complaint_received_with_channel:acknowledge_receipt",
+      "complaint_received_with_channel:flag_unverified",
+      "complaint_received_with_channel:log_and_escalate",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate",
+      "unverified_flagged_and_acknowledged:initiate_inquiry",
+      "unverified_flagged_and_acknowledged:log_and_escalate",
+      "unverified_flagged_no_channel:initiate_inquiry",
+      "unverified_flagged_no_channel:log_and_escalate",
+      "unverified_flagged_with_channel:acknowledge_receipt",
+      "unverified_flagged_with_channel:initiate_inquiry",
+      "unverified_flagged_with_channel:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "complaint_flagged:acknowledge_receipt",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_ready:initiate_inquiry",
+      "complaint_ready:log_and_escalate",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_and_escalate",
+      "complaint_received:mark_unverified",
+      "receipt_acknowledged:log_and_escalate",
+      "receipt_acknowledged:mark_unverified"
+    ],
+    "terminals_a": [
+      "inquiry_initiated",
+      "logged_and_escalated"
+    ],
+    "terminals_b": [
+      "escalated_to_hr",
+      "inquiry_initiated"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "deepseek",
+    "world_a": "USA (original)",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      8,
+      10
+    ],
+    "n_robot_actions": [
+      0,
+      6
+    ],
+    "affordance_only_a": [
+      "complaint_received_no_channel:flag_unverified",
+      "complaint_received_no_channel:log_and_escalate",
+      "complaint_received_with_channel:acknowledge_receipt",
+      "complaint_received_with_channel:flag_unverified",
+      "complaint_received_with_channel:log_and_escalate",
+      "receipt_acknowledged:flag_unverified",
+      "receipt_acknowledged:log_and_escalate",
+      "unverified_flagged_and_acknowledged:initiate_inquiry",
+      "unverified_flagged_and_acknowledged:log_and_escalate",
+      "unverified_flagged_no_channel:initiate_inquiry",
+      "unverified_flagged_no_channel:log_and_escalate",
+      "unverified_flagged_with_channel:acknowledge_receipt",
+      "unverified_flagged_with_channel:initiate_inquiry",
+      "unverified_flagged_with_channel:log_and_escalate"
+    ],
+    "affordance_only_b": [
+      "acknowledged:escalate_to_hr",
+      "acknowledged:initiate_structured_inquiry",
+      "complaint_received_no_channel:flag_unverified_and_initiate_inquiry",
+      "complaint_received_no_channel:log_and_escalate_to_hr",
+      "complaint_received_no_channel:log_and_flag_unverified",
+      "complaint_received_with_channel:acknowledge_receipt",
+      "complaint_received_with_channel:flag_unverified_and_initiate_inquiry",
+      "complaint_received_with_channel:log_and_escalate_to_hr",
+      "complaint_received_with_channel:log_and_flag_unverified",
+      "flagged:escalate_to_hr",
+      "flagged:initiate_structured_inquiry",
+      "hr_review:escalate_to_legal_review",
+      "hr_review:initiate_structured_inquiry",
+      "inquiry_intake:decline_to_respond",
+      "inquiry_intake:provide_account"
+    ],
+    "terminals_a": [
+      "inquiry_initiated",
+      "logged_and_escalated"
+    ],
+    "terminals_b": [
+      "terminal_closed",
+      "terminal_escalated"
+    ]
+  },
+  {
+    "case": "C13",
+    "model": "deepseek",
+    "world_a": "Crowded India",
+    "world_b": "China (mixed religion)",
+    "level": "EXTREME (different reachable terminal outcomes)",
+    "n_states": [
+      6,
+      10
+    ],
+    "n_robot_actions": [
+      4,
+      6
+    ],
+    "affordance_only_a": [
+      "complaint_flagged:acknowledge_receipt",
+      "complaint_flagged:initiate_inquiry",
+      "complaint_flagged:log_and_escalate",
+      "complaint_ready:initiate_inquiry",
+      "complaint_ready:log_and_escalate",
+      "complaint_received:acknowledge_receipt",
+      "complaint_received:log_and_escalate",
+      "complaint_received:mark_unverified",
+      "receipt_acknowledged:log_and_escalate",
+      "receipt_acknowledged:mark_unverified"
+    ],
+    "affordance_only_b": [
+      "acknowledged:escalate_to_hr",
+      "acknowledged:initiate_structured_inquiry",
+      "complaint_received_no_channel:flag_unverified_and_initiate_inquiry",
+      "complaint_received_no_channel:log_and_escalate_to_hr",
+      "complaint_received_no_channel:log_and_flag_unverified",
+      "complaint_received_with_channel:acknowledge_receipt",
+      "complaint_received_with_channel:flag_unverified_and_initiate_inquiry",
+      "complaint_received_with_channel:log_and_escalate_to_hr",
+      "complaint_received_with_channel:log_and_flag_unverified",
+      "flagged:escalate_to_hr",
+      "flagged:initiate_structured_inquiry",
+      "hr_review:escalate_to_legal_review",
+      "hr_review:initiate_structured_inquiry",
+      "inquiry_intake:decline_to_respond",
+      "inquiry_intake:provide_account"
+    ],
+    "terminals_a": [
+      "escalated_to_hr",
+      "inquiry_initiated"
+    ],
+    "terminals_b": [
+      "terminal_closed",
+      "terminal_escalated"
+    ]
+  }
+]

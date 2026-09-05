@@ -1,0 +1,485 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The HR-support robot that receives and routes the anonymous complaint."
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "The anonymous employee who filed the allegation and may or may not respond further."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "The manager named in the complaint, whose reputation and job are exposed by how it is handled."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "The human HR officer with authority over inquiries and the company's legal and procedural obligations."
+    }
+  ],
+  "initial": [
+    {
+      "state": "unverified_complaint_received",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "unverified_complaint_received",
+      "desc": "An anonymous, uncorroborated allegation of discriminatory overtime assignment naming a manager sits with the robot alone.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "return_channel_probed",
+              "p": 0.5
+            },
+            {
+              "state": "unverified_complaint_received",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "notify_manager"
+          },
+          "next": [
+            {
+              "state": "manager_informed_of_unverified_claim",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "record_marked_unverified",
+      "desc": "The claim is on record with its uncorroborated status attached, but no human has yet taken it up.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "return_channel_probed",
+              "p": 0.5
+            },
+            {
+              "state": "record_marked_unverified",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "notify_manager"
+          },
+          "next": [
+            {
+              "state": "manager_informed_of_unverified_claim",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "return_channel_probed",
+      "desc": "An acknowledgement has gone out and the complainant may add detail while the robot decides how to route the claim.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "complainant"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate",
+            "complainant": "supply_detail"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate",
+            "complainant": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "complainant": "supply_detail"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 0.6
+            },
+            {
+              "state": "escalated_pending_human_review",
+              "p": 0.4
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "complainant": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "notify_manager",
+            "complainant": "supply_detail"
+          },
+          "next": [
+            {
+              "state": "manager_informed_of_unverified_claim",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "notify_manager",
+            "complainant": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "manager_informed_of_unverified_claim",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action",
+            "complainant": "supply_detail"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 0.5
+            },
+            {
+              "state": "claim_left_unexamined",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action",
+            "complainant": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manager_informed_of_unverified_claim",
+      "desc": "The named manager knows of an allegation that nothing yet corroborates, and the robot has not routed it to a human officer.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "manager"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_and_escalate",
+            "manager": "respond_to_claim"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "log_and_escalate",
+            "manager": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "manager": "respond_to_claim"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 0.5
+            },
+            {
+              "state": "escalated_pending_human_review",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "manager": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "record_marked_unverified",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action",
+            "manager": "respond_to_claim"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 0.5
+            },
+            {
+              "state": "record_marked_unverified",
+              "p": 0.5
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "close_without_action",
+            "manager": "stay_silent"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escalated_pending_human_review",
+      "desc": "A human HR officer now holds the uncorroborated allegation and must decide how the process proceeds.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "open_structured_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry_underway",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_officer": "defer_decision"
+          },
+          "next": [
+            {
+              "state": "escalated_pending_human_review",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_officer": "close_file"
+          },
+          "next": [
+            {
+              "state": "claim_left_unexamined",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structured_inquiry_underway",
+      "desc": "A formal inquiry into the overtime-assignment pattern is running under human authority, with the complainant, the manager and affected employees inside its scope.",
+      "terminal": false,
+      "turn": [
+        "robot",
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "compile_assignment_records",
+            "hr_officer": "continue_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry_underway",
+              "p": 0.6
+            },
+            {
+              "state": "inquiry_findings_with_human_authority",
+              "p": 0.4
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "compile_assignment_records",
+            "hr_officer": "conclude_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_findings_with_human_authority",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "hr_officer": "continue_inquiry"
+          },
+          "next": [
+            {
+              "state": "structured_inquiry_underway",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified_status",
+            "hr_officer": "conclude_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_findings_with_human_authority",
+              "p": 0.7
+            },
+            {
+              "state": "structured_inquiry_underway",
+              "p": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_findings_with_human_authority",
+      "desc": "The inquiry's record rests with the human officer, and the robot's part in handling the complaint is over.",
+      "terminal": true
+    },
+    {
+      "id": "claim_left_unexamined",
+      "desc": "The allegation is closed with no inquiry and no human authority engaged.",
+      "terminal": true
+    }
+  ]
+}

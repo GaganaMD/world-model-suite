@@ -1,0 +1,401 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The hospitality robot setting up the seating for the corporate dinner."
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "The host company's representative, who has requested mixed seating for its event."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "The venue staff member who has stated the venue's own policy preferring separated seating."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "The dinner guests, whose own preferences about the arrangement are not yet known."
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflicting_instructions",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflicting_instructions",
+      "desc": "The robot holds the host's stated request and the venue's stated policy, which point to different arrangements, and the seating is not yet laid out.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "seating_per_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "raise_with_host"
+          },
+          "next": [
+            {
+              "state": "host_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "raise_with_venue"
+          },
+          "next": [
+            {
+              "state": "venue_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "convene_both"
+          },
+          "next": [
+            {
+              "state": "joint_consultation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted",
+      "desc": "The host representative has been told of the venue's policy and now speaks to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "restate_request"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "yield_to_policy"
+          },
+          "next": [
+            {
+              "state": "seating_per_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "ask_to_confer"
+          },
+          "next": [
+            {
+              "state": "joint_consultation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted",
+      "desc": "The venue staff member has been told of the host's request and now speaks to the arrangement.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "restate_policy"
+          },
+          "next": [
+            {
+              "state": "seating_per_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "waive_policy"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "ask_to_confer"
+          },
+          "next": [
+            {
+              "state": "joint_consultation",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_consultation",
+      "desc": "Host and venue are addressing the clash of request and policy together, each stating a position at the same time.",
+      "terminal": false,
+      "turn": [
+        "host",
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "hold_position",
+            "venue_staff": "hold_position"
+          },
+          "next": [
+            {
+              "state": "unsettled_authority",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "hold_position",
+            "venue_staff": "concede"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "concede",
+            "venue_staff": "hold_position"
+          },
+          "next": [
+            {
+              "state": "seating_per_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "concede",
+            "venue_staff": "concede"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 0.5
+            },
+            {
+              "state": "seating_per_venue_policy",
+              "p": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unsettled_authority",
+      "desc": "Both parties keep their positions, so it remains unsettled whose instruction governs the seating.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "arrange_mixed"
+          },
+          "next": [
+            {
+              "state": "seating_per_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "arrange_separated"
+          },
+          "next": [
+            {
+              "state": "seating_per_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "convene_both"
+          },
+          "next": [
+            {
+              "state": "joint_consultation",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "hold_off"
+          },
+          "next": [
+            {
+              "state": "unsettled_authority",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seating_per_host_request",
+      "desc": "The seating now stands as the host company asked, and guests are arriving at it.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "dinner_proceeds",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "attendees": "voice_concern"
+          },
+          "next": [
+            {
+              "state": "guest_concern_voiced",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seating_per_venue_policy",
+      "desc": "The seating now stands as the venue's policy prefers, and guests are arriving at it.",
+      "terminal": false,
+      "turn": [
+        "attendees"
+      ],
+      "actions": [
+        {
+          "by": {
+            "attendees": "take_seats"
+          },
+          "next": [
+            {
+              "state": "dinner_proceeds",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "attendees": "voice_concern"
+          },
+          "next": [
+            {
+              "state": "guest_concern_voiced",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guest_concern_voiced",
+      "desc": "Guests have voiced concern about the arrangement in place.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "relay_to_both_parties"
+          },
+          "next": [
+            {
+              "state": "joint_consultation",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "leave_arrangement_standing"
+          },
+          "next": [
+            {
+              "state": "dinner_proceeds",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dinner_proceeds",
+      "desc": "The guests are seated and the dinner goes ahead under the arrangement in place.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The hospitality robot must choose how to proceed with seating while facing competing instructions."
+    },
+    {
+      "id": "host",
+      "type": "human",
+      "desc": "The host company's human decision-maker holds the stated preference for mixed seating."
+    },
+    {
+      "id": "venue",
+      "type": "human",
+      "desc": "The venue's human decision-maker holds the venue's separated-seating policy and local standing."
+    }
+  ],
+  "initial": [
+    {
+      "state": "competing_instructions",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "competing_instructions",
+      "desc": "Seating is unset, the host's mixed-seating request and the venue's separated-seating policy are known to the robot, and attendee preferences are unknown.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_host"
+          },
+          "next": [
+            {
+              "state": "host_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_both_clarify"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_resolution",
+      "desc": "The robot has surfaced the conflict to the host and awaits the host's decision.",
+      "terminal": false,
+      "turn": [
+        "host"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "assert_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "defer_to_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_venue_policy",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolution",
+      "desc": "The robot has surfaced the conflict to the venue and awaits the venue's decision.",
+      "terminal": false,
+      "turn": [
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue": "assert_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_host_request",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "The robot has asked the host and venue to clarify and resolve the conflict, and they choose seating positions simultaneously.",
+      "terminal": false,
+      "turn": [
+        "host",
+        "venue"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host": "assert_host_request",
+            "venue": "assert_venue_policy"
+          },
+          "next": [
+            {
+              "state": "authority_conflict",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "assert_host_request",
+            "venue": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "defer_to_venue_policy",
+            "venue": "assert_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host": "defer_to_venue_policy",
+            "venue": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "mutual_deference",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seating_host_request",
+      "desc": "Seating is arranged to the host's mixed-seating request, the venue's separated-seating policy is not applied, and attendee preferences remain unknown.",
+      "terminal": true
+    },
+    {
+      "id": "seating_venue_policy",
+      "desc": "Seating is arranged to the venue's separated-seating policy, the host's mixed-seating request is not applied, and attendee preferences remain unknown.",
+      "terminal": true
+    },
+    {
+      "id": "authority_conflict",
+      "desc": "The host and venue have asserted incompatible seating positions, and no seating arrangement is fixed.",
+      "terminal": true
+    },
+    {
+      "id": "mutual_deference",
+      "desc": "The host has deferred to the venue and the venue has deferred to the host, and no seating arrangement is fixed.",
+      "terminal": true
+    }
+  ]
+}
