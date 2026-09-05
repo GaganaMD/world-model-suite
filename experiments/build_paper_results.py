@@ -349,8 +349,9 @@ def failure_case_figure(rows: list[dict[str, Any]]) -> dict[str, Any]:
         ax.set_title(title, fontsize=9); ax.set_xlim(-.25, 1.65); ax.set_ylim(.08, .92); ax.axis("off")
     fig.suptitle("Mechanically valid but structurally expanded G6 model", fontsize=10)
     fig.tight_layout()
-    for path in (FIGURES / "g6_claude_failure_case.pdf", PAPER_FIGURES / "g6_claude_failure_case.pdf"):
-        fig.savefig(path)
+    for path in (FIGURES / "g6_claude_failure_case.pdf", PAPER_FIGURES / "g6_claude_failure_case.pdf",
+                 PAPER_FIGURES / "g6_claude_failure_case.png"):
+        fig.savefig(path, dpi=300 if path.suffix == ".png" else None)
     plt.close(fig)
     record = {
         "game": "G6", "model": "claude_opus_5", "run": "run_1", "tag": selected["tag"],
