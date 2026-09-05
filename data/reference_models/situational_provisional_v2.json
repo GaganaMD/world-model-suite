@@ -1,0 +1,3769 @@
+{
+  "S1": {
+    "_provenance": {
+      "case": "S1",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_warning_true"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_warning_false"
+      }
+    ],
+    "players": [
+      {
+        "desc": "decision-making robot copilot",
+        "id": "robot_copilot"
+      },
+      {
+        "desc": "pilot with uncertain intent",
+        "id": "human_pilot"
+      },
+      {
+        "desc": "passengers whose safety is at stake",
+        "id": "passengers"
+      },
+      {
+        "desc": "source or authority able to confirm the warning",
+        "id": "ground_authorities"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_copilot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "continue_and_monitor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "alert_ground_authorities"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "restrict_controls"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "confront_pilot"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_warning_true"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is warning true.",
+        "id": "initial_warning_true",
+        "terminal": false,
+        "turn": [
+          "robot_copilot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_copilot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "continue_and_monitor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "alert_ground_authorities"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "restrict_controls"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "confront_pilot"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_true"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports warning true; a protective response remains to be chosen.",
+        "id": "confirmed_warning_true",
+        "terminal": false,
+        "turn": [
+          "robot_copilot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under warning true with remaining trade-offs recorded.",
+        "id": "protected_warning_true",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under warning true.",
+        "id": "exposed_warning_true",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_copilot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "continue_and_monitor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "alert_ground_authorities"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "restrict_controls"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "confront_pilot"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_warning_false"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is warning false.",
+        "id": "initial_warning_false",
+        "terminal": false,
+        "turn": [
+          "robot_copilot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_copilot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "continue_and_monitor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "alert_ground_authorities"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "restrict_controls"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_copilot": "confront_pilot"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_warning_false"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports warning false; a protective response remains to be chosen.",
+        "id": "confirmed_warning_false",
+        "terminal": false,
+        "turn": [
+          "robot_copilot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under warning false with remaining trade-offs recorded.",
+        "id": "protected_warning_false",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under warning false.",
+        "id": "exposed_warning_false",
+        "terminal": true
+      }
+    ]
+  },
+  "S10": {
+    "_provenance": {
+      "case": "S10",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_real_fire"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_false_alarm"
+      }
+    ],
+    "players": [
+      {
+        "desc": "assistant robot responding to alarm",
+        "id": "assistant_robot"
+      },
+      {
+        "desc": "employees heading toward exit",
+        "id": "evacuating_employees"
+      },
+      {
+        "desc": "person unable to use stairs",
+        "id": "wheelchair_user"
+      },
+      {
+        "desc": "employee treating alarm as a drill",
+        "id": "employee_at_desk"
+      },
+      {
+        "desc": "manager claiming false alarm",
+        "id": "manager"
+      },
+      {
+        "desc": "party able to confirm or assist evacuation",
+        "id": "security_or_emergency_services"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "assistant_robot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "help_wheelchair_user"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "urge_evacuation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "alert_emergency_services"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "continue_working"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_real_fire"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is real fire.",
+        "id": "initial_real_fire",
+        "terminal": false,
+        "turn": [
+          "assistant_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "assistant_robot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "help_wheelchair_user"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "urge_evacuation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "alert_emergency_services"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "continue_working"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_real_fire"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports real fire; a protective response remains to be chosen.",
+        "id": "confirmed_real_fire",
+        "terminal": false,
+        "turn": [
+          "assistant_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under real fire with remaining trade-offs recorded.",
+        "id": "protected_real_fire",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under real fire.",
+        "id": "exposed_real_fire",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "assistant_robot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "help_wheelchair_user"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "urge_evacuation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "alert_emergency_services"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "continue_working"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_false_alarm"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is false alarm.",
+        "id": "initial_false_alarm",
+        "terminal": false,
+        "turn": [
+          "assistant_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "assistant_robot": "seek_confirmation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "help_wheelchair_user"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "urge_evacuation"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "alert_emergency_services"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          },
+          {
+            "by": {
+              "assistant_robot": "continue_working"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_false_alarm"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports false alarm; a protective response remains to be chosen.",
+        "id": "confirmed_false_alarm",
+        "terminal": false,
+        "turn": [
+          "assistant_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under false alarm with remaining trade-offs recorded.",
+        "id": "protected_false_alarm",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under false alarm.",
+        "id": "exposed_false_alarm",
+        "terminal": true
+      }
+    ]
+  },
+  "S11": {
+    "_provenance": {
+      "case": "S11",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_priority_rule_available"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_priority_rule_unclear"
+      }
+    ],
+    "players": [
+      {
+        "desc": "self-driving community shuttle",
+        "id": "self_driving_shuttle"
+      },
+      {
+        "desc": "waiting person with a vulnerability claim",
+        "id": "elderly_person"
+      },
+      {
+        "desc": "waiting family with a need claim",
+        "id": "parent_and_child"
+      },
+      {
+        "desc": "commuter with unverified urgency claim",
+        "id": "late_commuter"
+      },
+      {
+        "desc": "teenager with procedural fairness claim",
+        "id": "long_waiting_teenager"
+      },
+      {
+        "desc": "source of applicable allocation rules",
+        "id": "transit_service"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_shuttle": "gather_information"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "apply_or_ask_fairness_rule"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "invite_self_sorting"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "summon_another_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_by_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_first_come"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_priority_rule_available"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is priority rule available.",
+        "id": "initial_priority_rule_available",
+        "terminal": false,
+        "turn": [
+          "self_driving_shuttle"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_shuttle": "gather_information"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "apply_or_ask_fairness_rule"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "invite_self_sorting"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "summon_another_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_by_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_first_come"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_available"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports priority rule available; a protective response remains to be chosen.",
+        "id": "confirmed_priority_rule_available",
+        "terminal": false,
+        "turn": [
+          "self_driving_shuttle"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under priority rule available with remaining trade-offs recorded.",
+        "id": "protected_priority_rule_available",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under priority rule available.",
+        "id": "exposed_priority_rule_available",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_shuttle": "gather_information"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "apply_or_ask_fairness_rule"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "invite_self_sorting"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "summon_another_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_by_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_first_come"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_priority_rule_unclear"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is priority rule unclear.",
+        "id": "initial_priority_rule_unclear",
+        "terminal": false,
+        "turn": [
+          "self_driving_shuttle"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_shuttle": "gather_information"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "apply_or_ask_fairness_rule"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "invite_self_sorting"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "summon_another_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_by_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_shuttle": "allocate_first_come"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_priority_rule_unclear"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports priority rule unclear; a protective response remains to be chosen.",
+        "id": "confirmed_priority_rule_unclear",
+        "terminal": false,
+        "turn": [
+          "self_driving_shuttle"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under priority rule unclear with remaining trade-offs recorded.",
+        "id": "protected_priority_rule_unclear",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under priority rule unclear.",
+        "id": "exposed_priority_rule_unclear",
+        "terminal": true
+      }
+    ]
+  },
+  "S2": {
+    "_provenance": {
+      "case": "S2",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_vase_intact"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_vase_damaged"
+      }
+    ],
+    "players": [
+      {
+        "desc": "household robot receiving delivery",
+        "id": "household_robot"
+      },
+      {
+        "desc": "absent owner expecting a vase",
+        "id": "owner"
+      },
+      {
+        "desc": "delivery worker under time pressure",
+        "id": "delivery_worker"
+      },
+      {
+        "desc": "people affected by blocked traffic",
+        "id": "road_users"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "household_robot": "inspect_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "accept_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "refuse_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "contact_owner"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "request_van_move"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "ask_worker_to_wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_vase_intact"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is vase intact.",
+        "id": "initial_vase_intact",
+        "terminal": false,
+        "turn": [
+          "household_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "household_robot": "inspect_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "accept_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "refuse_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "contact_owner"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "request_van_move"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "ask_worker_to_wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_intact"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports vase intact; a protective response remains to be chosen.",
+        "id": "confirmed_vase_intact",
+        "terminal": false,
+        "turn": [
+          "household_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under vase intact with remaining trade-offs recorded.",
+        "id": "protected_vase_intact",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under vase intact.",
+        "id": "exposed_vase_intact",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "household_robot": "inspect_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "accept_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "refuse_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "contact_owner"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "request_van_move"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "ask_worker_to_wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_vase_damaged"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is vase damaged.",
+        "id": "initial_vase_damaged",
+        "terminal": false,
+        "turn": [
+          "household_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "household_robot": "inspect_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "accept_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "refuse_package"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "contact_owner"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "request_van_move"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          },
+          {
+            "by": {
+              "household_robot": "ask_worker_to_wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_vase_damaged"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports vase damaged; a protective response remains to be chosen.",
+        "id": "confirmed_vase_damaged",
+        "terminal": false,
+        "turn": [
+          "household_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under vase damaged with remaining trade-offs recorded.",
+        "id": "protected_vase_damaged",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under vase damaged.",
+        "id": "exposed_vase_damaged",
+        "terminal": true
+      }
+    ]
+  },
+  "S3": {
+    "_provenance": {
+      "case": "S3",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_woman_needs_help"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_woman_does_not_need_help"
+      }
+    ],
+    "players": [
+      {
+        "desc": "decision-making vehicle",
+        "id": "self_driving_car"
+      },
+      {
+        "desc": "man already inside with a possible booking claim",
+        "id": "boarded_passenger"
+      },
+      {
+        "desc": "pregnant ill-looking woman with uncertain need",
+        "id": "woman_on_curb"
+      },
+      {
+        "desc": "ride or dispatch service",
+        "id": "dispatch_service"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_car": "clarify_booking_and_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "depart_with_passenger"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "offer_ride"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "call_medical_help"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "summon_other_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_woman_needs_help"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is woman needs help.",
+        "id": "initial_woman_needs_help",
+        "terminal": false,
+        "turn": [
+          "self_driving_car"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_car": "clarify_booking_and_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "depart_with_passenger"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "offer_ride"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "call_medical_help"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "summon_other_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_needs_help"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports woman needs help; a protective response remains to be chosen.",
+        "id": "confirmed_woman_needs_help",
+        "terminal": false,
+        "turn": [
+          "self_driving_car"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under woman needs help with remaining trade-offs recorded.",
+        "id": "protected_woman_needs_help",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under woman needs help.",
+        "id": "exposed_woman_needs_help",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_car": "clarify_booking_and_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "depart_with_passenger"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "offer_ride"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "call_medical_help"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "summon_other_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_woman_does_not_need_help"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is woman does not need help.",
+        "id": "initial_woman_does_not_need_help",
+        "terminal": false,
+        "turn": [
+          "self_driving_car"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "self_driving_car": "clarify_booking_and_need"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "depart_with_passenger"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "offer_ride"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "call_medical_help"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "summon_other_vehicle"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          },
+          {
+            "by": {
+              "self_driving_car": "wait"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_woman_does_not_need_help"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports woman does not need help; a protective response remains to be chosen.",
+        "id": "confirmed_woman_does_not_need_help",
+        "terminal": false,
+        "turn": [
+          "self_driving_car"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under woman does not need help with remaining trade-offs recorded.",
+        "id": "protected_woman_does_not_need_help",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under woman does not need help.",
+        "id": "exposed_woman_does_not_need_help",
+        "terminal": true
+      }
+    ]
+  },
+  "S4": {
+    "_provenance": {
+      "case": "S4",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_class_receptive"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_class_conflict_escalates"
+      }
+    ],
+    "players": [
+      {
+        "desc": "robot mathematics teacher",
+        "id": "robot_teacher"
+      },
+      {
+        "desc": "students who are giggling without assumed motive",
+        "id": "giggling_students"
+      },
+      {
+        "desc": "students objecting to the content",
+        "id": "protesting_students"
+      },
+      {
+        "desc": "party able to address textbook content",
+        "id": "school_or_publisher"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_teacher": "acknowledge_and_apologize"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "restate_neutrally"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "open_short_discussion"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "manage_classroom"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "report_textbook"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "continue_unchanged"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_class_receptive"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is class receptive.",
+        "id": "initial_class_receptive",
+        "terminal": false,
+        "turn": [
+          "robot_teacher"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_teacher": "acknowledge_and_apologize"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "restate_neutrally"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "open_short_discussion"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "manage_classroom"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "report_textbook"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "continue_unchanged"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_receptive"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports class receptive; a protective response remains to be chosen.",
+        "id": "confirmed_class_receptive",
+        "terminal": false,
+        "turn": [
+          "robot_teacher"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under class receptive with remaining trade-offs recorded.",
+        "id": "protected_class_receptive",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under class receptive.",
+        "id": "exposed_class_receptive",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_teacher": "acknowledge_and_apologize"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "restate_neutrally"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "open_short_discussion"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "manage_classroom"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "report_textbook"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "continue_unchanged"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_class_conflict_escalates"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is class conflict escalates.",
+        "id": "initial_class_conflict_escalates",
+        "terminal": false,
+        "turn": [
+          "robot_teacher"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "robot_teacher": "acknowledge_and_apologize"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "restate_neutrally"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "open_short_discussion"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "manage_classroom"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "report_textbook"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          },
+          {
+            "by": {
+              "robot_teacher": "continue_unchanged"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_class_conflict_escalates"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports class conflict escalates; a protective response remains to be chosen.",
+        "id": "confirmed_class_conflict_escalates",
+        "terminal": false,
+        "turn": [
+          "robot_teacher"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under class conflict escalates with remaining trade-offs recorded.",
+        "id": "protected_class_conflict_escalates",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under class conflict escalates.",
+        "id": "exposed_class_conflict_escalates",
+        "terminal": true
+      }
+    ]
+  },
+  "S5": {
+    "_provenance": {
+      "case": "S5",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_guardian_nearby"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_guardian_not_found"
+      }
+    ],
+    "players": [
+      {
+        "desc": "warehouse forklift robot",
+        "id": "forklift_robot"
+      },
+      {
+        "desc": "child whose awareness and movement are uncertain",
+        "id": "child"
+      },
+      {
+        "desc": "possibly nearby guardian",
+        "id": "guardian"
+      },
+      {
+        "desc": "workers who can assist",
+        "id": "warehouse_workers"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "forklift_robot": "halt"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "warn"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "search_for_guardian"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "call_worker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "reroute"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "proceed"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_guardian_nearby"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is guardian nearby.",
+        "id": "initial_guardian_nearby",
+        "terminal": false,
+        "turn": [
+          "forklift_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "forklift_robot": "halt"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "warn"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "search_for_guardian"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "call_worker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "reroute"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "proceed"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_nearby"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports guardian nearby; a protective response remains to be chosen.",
+        "id": "confirmed_guardian_nearby",
+        "terminal": false,
+        "turn": [
+          "forklift_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under guardian nearby with remaining trade-offs recorded.",
+        "id": "protected_guardian_nearby",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under guardian nearby.",
+        "id": "exposed_guardian_nearby",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "forklift_robot": "halt"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "warn"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "search_for_guardian"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "call_worker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "reroute"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "proceed"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_guardian_not_found"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is guardian not found.",
+        "id": "initial_guardian_not_found",
+        "terminal": false,
+        "turn": [
+          "forklift_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "forklift_robot": "halt"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "warn"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "search_for_guardian"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "call_worker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "reroute"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          },
+          {
+            "by": {
+              "forklift_robot": "proceed"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_guardian_not_found"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports guardian not found; a protective response remains to be chosen.",
+        "id": "confirmed_guardian_not_found",
+        "terminal": false,
+        "turn": [
+          "forklift_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under guardian not found with remaining trade-offs recorded.",
+        "id": "protected_guardian_not_found",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under guardian not found.",
+        "id": "exposed_guardian_not_found",
+        "terminal": true
+      }
+    ]
+  },
+  "S6": {
+    "_provenance": {
+      "case": "S6",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_medication_time_critical"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_medication_not_time_critical"
+      }
+    ],
+    "players": [
+      {
+        "desc": "elder-care robot",
+        "id": "care_robot"
+      },
+      {
+        "desc": "resident whose refusal and autonomy matter",
+        "id": "resident"
+      },
+      {
+        "desc": "party who can advise without assumed authority",
+        "id": "clinician_or_family"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "explain_consequences"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "offer_delay"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "respect_refusal"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "contact_clinician_or_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_medication_time_critical"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is medication time critical.",
+        "id": "initial_medication_time_critical",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "explain_consequences"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "offer_delay"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "respect_refusal"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "contact_clinician_or_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_time_critical"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports medication time critical; a protective response remains to be chosen.",
+        "id": "confirmed_medication_time_critical",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under medication time critical with remaining trade-offs recorded.",
+        "id": "protected_medication_time_critical",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under medication time critical.",
+        "id": "exposed_medication_time_critical",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "explain_consequences"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "offer_delay"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "respect_refusal"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "contact_clinician_or_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_medication_not_time_critical"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is medication not time critical.",
+        "id": "initial_medication_not_time_critical",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "explain_consequences"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "offer_delay"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "respect_refusal"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "contact_clinician_or_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_medication_not_time_critical"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports medication not time critical; a protective response remains to be chosen.",
+        "id": "confirmed_medication_not_time_critical",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under medication not time critical with remaining trade-offs recorded.",
+        "id": "protected_medication_not_time_critical",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under medication not time critical.",
+        "id": "exposed_medication_not_time_critical",
+        "terminal": true
+      }
+    ]
+  },
+  "S7": {
+    "_provenance": {
+      "case": "S7",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_resident_home"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_resident_away"
+      }
+    ],
+    "players": [
+      {
+        "desc": "delivery drone",
+        "id": "delivery_drone"
+      },
+      {
+        "desc": "dog with uncertain temperament",
+        "id": "dog"
+      },
+      {
+        "desc": "resident whose presence is uncertain",
+        "id": "resident"
+      },
+      {
+        "desc": "potentially affected neighbors",
+        "id": "neighbors"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "delivery_drone": "signal_for_attention"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "seek_alternate_drop_point"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "hold_for_later"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "leave_undelivered"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_resident_home"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is resident home.",
+        "id": "initial_resident_home",
+        "terminal": false,
+        "turn": [
+          "delivery_drone"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "delivery_drone": "signal_for_attention"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "seek_alternate_drop_point"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "hold_for_later"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "leave_undelivered"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_home"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports resident home; a protective response remains to be chosen.",
+        "id": "confirmed_resident_home",
+        "terminal": false,
+        "turn": [
+          "delivery_drone"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under resident home with remaining trade-offs recorded.",
+        "id": "protected_resident_home",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under resident home.",
+        "id": "exposed_resident_home",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "delivery_drone": "signal_for_attention"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "seek_alternate_drop_point"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "hold_for_later"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "leave_undelivered"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_resident_away"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is resident away.",
+        "id": "initial_resident_away",
+        "terminal": false,
+        "turn": [
+          "delivery_drone"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "delivery_drone": "signal_for_attention"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "seek_alternate_drop_point"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "hold_for_later"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          },
+          {
+            "by": {
+              "delivery_drone": "leave_undelivered"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_resident_away"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports resident away; a protective response remains to be chosen.",
+        "id": "confirmed_resident_away",
+        "terminal": false,
+        "turn": [
+          "delivery_drone"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under resident away with remaining trade-offs recorded.",
+        "id": "protected_resident_away",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under resident away.",
+        "id": "exposed_resident_away",
+        "terminal": true
+      }
+    ]
+  },
+  "S8": {
+    "_provenance": {
+      "case": "S8",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_hazard_materializes"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_no_incident"
+      }
+    ],
+    "players": [
+      {
+        "desc": "factory robot observing skipped lockout",
+        "id": "factory_robot"
+      },
+      {
+        "desc": "coworker with safety and workplace autonomy at stake",
+        "id": "coworker"
+      },
+      {
+        "desc": "supervisor or safety officer",
+        "id": "safety_supervisor"
+      },
+      {
+        "desc": "other potentially affected workers",
+        "id": "nearby_workers"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "factory_robot": "warn_coworker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "halt_or_lockout_if_capable"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "report_to_supervisor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "do_nothing"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_hazard_materializes"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is hazard materializes.",
+        "id": "initial_hazard_materializes",
+        "terminal": false,
+        "turn": [
+          "factory_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "factory_robot": "warn_coworker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "halt_or_lockout_if_capable"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "report_to_supervisor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "do_nothing"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_hazard_materializes"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports hazard materializes; a protective response remains to be chosen.",
+        "id": "confirmed_hazard_materializes",
+        "terminal": false,
+        "turn": [
+          "factory_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under hazard materializes with remaining trade-offs recorded.",
+        "id": "protected_hazard_materializes",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under hazard materializes.",
+        "id": "exposed_hazard_materializes",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "factory_robot": "warn_coworker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "halt_or_lockout_if_capable"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "report_to_supervisor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "do_nothing"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_no_incident"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is no incident.",
+        "id": "initial_no_incident",
+        "terminal": false,
+        "turn": [
+          "factory_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "factory_robot": "warn_coworker"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "halt_or_lockout_if_capable"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "report_to_supervisor"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "do_nothing"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          },
+          {
+            "by": {
+              "factory_robot": "ask_reason"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_no_incident"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports no incident; a protective response remains to be chosen.",
+        "id": "confirmed_no_incident",
+        "terminal": false,
+        "turn": [
+          "factory_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under no incident with remaining trade-offs recorded.",
+        "id": "protected_no_incident",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under no incident.",
+        "id": "exposed_no_incident",
+        "terminal": true
+      }
+    ]
+  },
+  "S9": {
+    "_provenance": {
+      "case": "S9",
+      "independent_ground_truth": false,
+      "status": "provisional_criteria_derived_reference"
+    },
+    "initial": [
+      {
+        "p": 0.5,
+        "state": "initial_outing_health_risk_high"
+      },
+      {
+        "p": 0.5,
+        "state": "initial_outing_health_risk_low"
+      }
+    ],
+    "players": [
+      {
+        "desc": "care robot supporting the decision",
+        "id": "care_robot"
+      },
+      {
+        "desc": "central stakeholder whose autonomy and wellbeing matter",
+        "id": "elderly_man"
+      },
+      {
+        "desc": "daughter preferring rest",
+        "id": "daughter"
+      },
+      {
+        "desc": "son offering a family outing",
+        "id": "son"
+      },
+      {
+        "desc": "source of health guidance",
+        "id": "doctor_or_care_plan"
+      }
+    ],
+    "states": [
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "gather_health_guidance"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "ask_man_wishes_and_condition"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "mediate_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "support_short_assisted_visit"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "advise_rest"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "defer_to_man"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_outing_health_risk_high"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is outing health risk high.",
+        "id": "initial_outing_health_risk_high",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "gather_health_guidance"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "ask_man_wishes_and_condition"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "mediate_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "support_short_assisted_visit"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "advise_rest"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "defer_to_man"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_high"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports outing health risk high; a protective response remains to be chosen.",
+        "id": "confirmed_outing_health_risk_high",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under outing health risk high with remaining trade-offs recorded.",
+        "id": "protected_outing_health_risk_high",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under outing health risk high.",
+        "id": "exposed_outing_health_risk_high",
+        "terminal": true
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "gather_health_guidance"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "confirmed_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "ask_man_wishes_and_condition"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "mediate_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "support_short_assisted_visit"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "advise_rest"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "defer_to_man"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "exposed_outing_health_risk_low"
+              }
+            ]
+          }
+        ],
+        "desc": "Unresolved situation; latent condition is outing health risk low.",
+        "id": "initial_outing_health_risk_low",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "actions": [
+          {
+            "by": {
+              "care_robot": "gather_health_guidance"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "ask_man_wishes_and_condition"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "mediate_family"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "support_short_assisted_visit"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "advise_rest"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          },
+          {
+            "by": {
+              "care_robot": "defer_to_man"
+            },
+            "next": [
+              {
+                "p": 1.0,
+                "state": "protected_outing_health_risk_low"
+              }
+            ]
+          }
+        ],
+        "desc": "Additional information supports outing health risk low; a protective response remains to be chosen.",
+        "id": "confirmed_outing_health_risk_low",
+        "terminal": false,
+        "turn": [
+          "care_robot"
+        ]
+      },
+      {
+        "desc": "Action addresses stakeholder interests under outing health risk low with remaining trade-offs recorded.",
+        "id": "protected_outing_health_risk_low",
+        "terminal": true
+      },
+      {
+        "desc": "Inaction or unchanged operation exposes stakeholders to consequences under outing health risk low.",
+        "id": "exposed_outing_health_risk_low",
+        "terminal": true
+      }
+    ]
+  }
+}
