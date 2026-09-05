@@ -1,0 +1,423 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A reception robot that receives a wrapped gift for the team and chooses how to handle it while the client watches."
+    },
+    {
+      "id": "client",
+      "type": "human",
+      "desc": "A visiting client who presents a wrapped gift for the team and observes the immediate handling."
+    },
+    {
+      "id": "team_rep",
+      "type": "human",
+      "desc": "A human colleague or team representative whose response to the gift is part of the workplace exchange."
+    }
+  ],
+  "initial": [
+    {
+      "state": "gift_presented_client_watching",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "gift_presented_client_watching",
+      "desc": "A wrapped gift for the team has been presented, the client is watching, and the robot must choose an immediate handling.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_aside" },
+          "next": [
+            { "state": "client_deferral_comfortable", "p": 0.40 },
+            { "state": "client_immediate_expected", "p": 0.35 },
+            { "state": "client_team_invited", "p": 0.25 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_pass_to_colleague" },
+          "next": [
+            { "state": "colleague_present", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarifying_question" },
+          "next": [
+            { "state": "asked_client_watching", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "client_opening_acknowledged", "p": 0.45 },
+            { "state": "client_opening_team_invited", "p": 0.35 },
+            { "state": "client_opening_comment_requested", "p": 0.20 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_deferral_comfortable",
+      "desc": "The client is comfortable with a live local convention of deferred opening and is responding to the set-aside gift.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "accept_deferral" },
+          "next": [
+            { "state": "terminal_deferred_client_ack", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "invite_team_response" },
+          "next": [
+            { "state": "team_deferred_response", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_immediate_expected",
+      "desc": "The client expects immediate acknowledgment and is responding to the set-aside gift.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "request_immediate_opening" },
+          "next": [
+            { "state": "immediate_request", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_team_invited",
+      "desc": "The client looks to the team within the workplace hierarchy and is responding to the set-aside gift.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "invite_team_response" },
+          "next": [
+            { "state": "team_deferred_response", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_opening_acknowledged",
+      "desc": "The client acknowledges the opened gift and is responding to the exchange.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "acknowledge_opening" },
+          "next": [
+            { "state": "terminal_opened_client_ack", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "invite_team_response" },
+          "next": [
+            { "state": "team_opened_response", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_opening_team_invited",
+      "desc": "The client looks to the team after the opening and is responding to the exchange.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "invite_team_response" },
+          "next": [
+            { "state": "team_opened_response", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client_opening_comment_requested",
+      "desc": "The client asks for a team comment after the opening and is responding to the exchange.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "request_team_comment" },
+          "next": [
+            { "state": "team_opened_comment", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "immediate_request",
+      "desc": "The client has asked for immediate opening, and the robot must choose how to proceed.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "client_opening_acknowledged", "p": 0.60 },
+            { "state": "client_opening_team_invited", "p": 0.25 },
+            { "state": "client_opening_comment_requested", "p": 0.15 }
+          ]
+        },
+        {
+          "by": { "robot": "accept_set_aside" },
+          "next": [
+            { "state": "client_immediate_expected", "p": 0.50 },
+            { "state": "client_deferral_comfortable", "p": 0.30 },
+            { "state": "client_team_invited", "p": 0.20 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asked_client_watching",
+      "desc": "The robot has asked a clarifying question, and the client is choosing an answer.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "answer_immediate" },
+          "next": [
+            { "state": "immediate_request", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "answer_deferred" },
+          "next": [
+            { "state": "deferral_answered", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "answer_either" },
+          "next": [
+            { "state": "either_answered", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "client": "invite_team_response" },
+          "next": [
+            { "state": "team_answered_response", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deferral_answered",
+      "desc": "The client has answered that deferred opening is acceptable, and the robot must handle the gift.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_aside" },
+          "next": [
+            { "state": "client_deferral_comfortable", "p": 0.70 },
+            { "state": "client_team_invited", "p": 0.20 },
+            { "state": "client_immediate_expected", "p": 0.10 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "client_opening_team_invited", "p": 0.40 },
+            { "state": "client_opening_acknowledged", "p": 0.35 },
+            { "state": "client_opening_comment_requested", "p": 0.25 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "either_answered",
+      "desc": "The client has answered that either handling is acceptable, and the robot must handle the gift.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_set_aside" },
+          "next": [
+            { "state": "client_deferral_comfortable", "p": 0.34 },
+            { "state": "client_immediate_expected", "p": 0.33 },
+            { "state": "client_team_invited", "p": 0.33 }
+          ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "client_opening_acknowledged", "p": 0.34 },
+            { "state": "client_opening_team_invited", "p": 0.33 },
+            { "state": "client_opening_comment_requested", "p": 0.33 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team_answered_response",
+      "desc": "The client has invited the team to respond, and the team representative is acting within the workplace hierarchy.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_set_aside" },
+          "next": [
+            { "state": "client_deferral_comfortable", "p": 0.40 },
+            { "state": "client_immediate_expected", "p": 0.35 },
+            { "state": "client_team_invited", "p": 0.25 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "client_opening_team_invited", "p": 0.45 },
+            { "state": "client_opening_acknowledged", "p": 0.35 },
+            { "state": "client_opening_comment_requested", "p": 0.20 }
+          ]
+        },
+        {
+          "by": { "team_rep": "ask_clarifying_question" },
+          "next": [
+            { "state": "asked_client_watching", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_present",
+      "desc": "The robot has passed the gift to a human colleague, and the colleague is deciding how to handle it.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_set_aside" },
+          "next": [
+            { "state": "client_deferral_comfortable", "p": 0.40 },
+            { "state": "client_immediate_expected", "p": 0.35 },
+            { "state": "client_team_invited", "p": 0.25 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "client_opening_acknowledged", "p": 0.45 },
+            { "state": "client_opening_team_invited", "p": 0.35 },
+            { "state": "client_opening_comment_requested", "p": 0.20 }
+          ]
+        },
+        {
+          "by": { "team_rep": "ask_clarifying_question" },
+          "next": [
+            { "state": "asked_client_watching", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "acknowledge_transfer" },
+          "next": [
+            { "state": "terminal_passed_to_team", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team_deferred_response",
+      "desc": "The client has invited the team to respond after a deferred opening, and the team representative is acting.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "accept_set_aside" },
+          "next": [
+            { "state": "terminal_deferred_team_ack", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "open_in_front" },
+          "next": [
+            { "state": "client_opening_team_invited", "p": 0.40 },
+            { "state": "client_opening_acknowledged", "p": 0.35 },
+            { "state": "client_opening_comment_requested", "p": 0.25 }
+          ]
+        },
+        {
+          "by": { "team_rep": "ask_clarifying_question" },
+          "next": [
+            { "state": "asked_client_watching", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team_opened_response",
+      "desc": "The client has invited the team to respond after an opening, and the team representative is acting.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "acknowledge_opening" },
+          "next": [
+            { "state": "terminal_opened_team_ack", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "team_rep": "ask_clarifying_question" },
+          "next": [
+            { "state": "asked_client_watching", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "team_opened_comment",
+      "desc": "The client has requested a team comment after an opening, and the team representative is acting.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "comment_on_opening" },
+          "next": [
+            { "state": "terminal_opened_team_comment", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terminal_deferred_client_ack",
+      "desc": "The gift remains set aside, the client has accepted the deferral, and the immediate exchange has closed.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_deferred_team_ack",
+      "desc": "The gift remains set aside, the team representative has acknowledged the deferral, and the immediate exchange has closed.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_opened_client_ack",
+      "desc": "The gift has been opened in front of the client, the client has acknowledged the opening, and the immediate exchange has closed.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_opened_team_ack",
+      "desc": "The gift has been opened in front of the client, the team representative has acknowledged the opening, and the immediate exchange has closed.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_passed_to_team",
+      "desc": "The gift has been passed to the team representative, the transfer has been acknowledged, and the immediate exchange has closed.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_opened_team_comment",
+      "desc": "The gift has been opened in front of the client, the team representative has commented on the opening, and the immediate exchange has closed.",
+      "terminal": true
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A reception robot at an office that greets visitors." },
+    { "id": "client", "type": "human", "desc": "A visiting client who has brought a wrapped gift for the team." },
+    { "id": "team_rep", "type": "human", "desc": "A member of the team who can receive and respond to the gift." }
+  ],
+  "initial": [
+    { "state": "client_arrives", "p": 1.0 }
+  ],
+  "states": [
+    {
+      "id": "client_arrives",
+      "desc": "A visiting client is at the office reception.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "greet" },
+          "next": [ { "state": "client_greeted", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_greeted",
+      "desc": "The reception robot has greeted the visiting client.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "present_wrapped_gift" },
+          "next": [ { "state": "gift_presented", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_presented",
+      "desc": "A visiting client has presented a wrapped gift for the team and is watching; whether the client expects immediate opening is not known.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_on_behalf_and_set_aside" },
+          "next": [
+            { "state": "set_aside_client_expects_immediate", "p": 0.5 },
+            { "state": "set_aside_client_comfortable_deferred", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "thank_and_pass_to_colleague" },
+          "next": [
+            { "state": "handed_to_colleague_client_expects_immediate", "p": 0.5 },
+            { "state": "handed_to_colleague_client_comfortable_deferred", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "ask_clarifying_question" },
+          "next": [ { "state": "clarifying_question_asked", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_in_front" },
+          "next": [
+            { "state": "opened_client_expects_immediate", "p": 0.5 },
+            { "state": "opened_client_comfortable_deferred", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_aside_client_expects_immediate",
+      "desc": "The gift has been set aside for later opening, and the client expects it to be opened in their presence.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "set_aside_opened_client_expects_immediate", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "set_aside_kept_wrapped_client_expects_immediate", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "set_aside_client_comfortable_deferred",
+      "desc": "The gift has been set aside for later opening, and the client is comfortable with deferred opening, a legitimate convention in the giver's presence.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "set_aside_opened_client_comfortable_deferred", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "set_aside_kept_wrapped_client_comfortable_deferred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "handed_to_colleague_client_expects_immediate",
+      "desc": "The gift has been handed to a human colleague, and the client expects it to be opened in their presence.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "colleague_opened_client_expects_immediate", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "colleague_kept_wrapped_client_expects_immediate", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "handed_to_colleague_client_comfortable_deferred",
+      "desc": "The gift has been handed to a human colleague, and the client is comfortable with deferred opening, a legitimate convention in the giver's presence.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "colleague_opened_client_comfortable_deferred", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "colleague_kept_wrapped_client_comfortable_deferred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "clarifying_question_asked",
+      "desc": "The reception robot has asked whether the gift should be opened now or later.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "say_open_now" },
+          "next": [ { "state": "client_said_open_now", "p": 1.0 } ]
+        },
+        {
+          "by": { "client": "say_defer_opening" },
+          "next": [ { "state": "client_said_defer_opening", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_said_open_now",
+      "desc": "The client has said the gift may be opened now.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "opened_after_client_said_open_now", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "kept_wrapped_after_client_said_open_now", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_said_defer_opening",
+      "desc": "The client has said the gift may be opened later.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "open_gift_now" },
+          "next": [ { "state": "opened_after_client_said_defer_opening", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_rep": "keep_gift_wrapped" },
+          "next": [ { "state": "kept_wrapped_after_client_said_defer_opening", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "opened_client_expects_immediate",
+      "desc": "The gift has been opened in front of the client, who expects immediate opening.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "thank_client_for_gift" },
+          "next": [ { "state": "opened_thanked_client_expects_immediate", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "opened_client_comfortable_deferred",
+      "desc": "The gift has been opened in front of the client, who is comfortable with deferred opening.",
+      "terminal": false,
+      "turn": ["team_rep"],
+      "actions": [
+        {
+          "by": { "team_rep": "thank_client_for_gift" },
+          "next": [ { "state": "opened_thanked_client_comfortable_deferred", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "set_aside_opened_client_expects_immediate",
+      "desc": "The gift, set aside by the robot, has been opened in front of the client, who expected immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_kept_wrapped_client_expects_immediate",
+      "desc": "The gift remains wrapped after being set aside, and the client expected immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_opened_client_comfortable_deferred",
+      "desc": "The gift, set aside by the robot, has been opened in front of the client, who was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "set_aside_kept_wrapped_client_comfortable_deferred",
+      "desc": "The gift remains wrapped after being set aside, and the client was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_opened_client_expects_immediate",
+      "desc": "The gift, handed to a colleague, has been opened in front of the client, who expected immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_kept_wrapped_client_expects_immediate",
+      "desc": "The gift remains wrapped after being handed to a colleague, and the client expected immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_opened_client_comfortable_deferred",
+      "desc": "The gift, handed to a colleague, has been opened in front of the client, who was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "colleague_kept_wrapped_client_comfortable_deferred",
+      "desc": "The gift remains wrapped after being handed to a colleague, and the client was comfortable with deferred opening.",
+      "terminal": true
+    },
+    {
+      "id": "opened_after_client_said_open_now",
+      "desc": "The gift has been opened after the client said it could be opened now.",
+      "terminal": true
+    },
+    {
+      "id": "kept_wrapped_after_client_said_open_now",
+      "desc": "The gift remains wrapped after the client said it could be opened now.",
+      "terminal": true
+    },
+    {
+      "id": "opened_after_client_said_defer_opening",
+      "desc": "The gift has been opened after the client said it could be opened later.",
+      "terminal": true
+    },
+    {
+      "id": "kept_wrapped_after_client_said_defer_opening",
+      "desc": "The gift remains wrapped after the client said it could be opened later.",
+      "terminal": true
+    },
+    {
+      "id": "opened_thanked_client_expects_immediate",
+      "desc": "The team representative has thanked the client after the gift was opened in front of the client, who expected immediate opening.",
+      "terminal": true
+    },
+    {
+      "id": "opened_thanked_client_comfortable_deferred",
+      "desc": "The team representative has thanked the client after the gift was opened in front of the client, who was comfortable with deferred opening.",
+      "terminal": true
+    }
+  ]
+}

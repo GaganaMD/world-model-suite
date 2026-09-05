@@ -1,0 +1,202 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "HR-support robot" },
+    { "id": "complainant", "type": "human", "desc": "Anonymous employee filing complaint" },
+    { "id": "manager", "type": "human", "desc": "Named manager in complaint" },
+    { "id": "hr_officer", "type": "human", "desc": "Human HR officer" },
+    { "id": "company", "type": "human", "desc": "Company and its governance" },
+    { "id": "employees", "type": "human", "desc": "Employees potentially affected by alleged pattern" }
+  ],
+
+  "initial": [
+    { "state": "complaint_received", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "Anonymous complaint about overtime assignment received by robot",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [ { "state": "complaint_logged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [ { "state": "receipt_acknowledged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged",
+      "desc": "Complaint logged by robot, awaiting human HR review",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "review_complaint" },
+          "next": [ { "state": "complaint_under_review", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "Complainant notified that complaint was received, if possible",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "review_complaint" },
+          "next": [ { "state": "complaint_under_review", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_under_review",
+      "desc": "HR officer reviewing complaint for potential disparate impact",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "flag_unverified" },
+          "next": [ { "state": "claim_flagged_unverified", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "claim_flagged_unverified",
+      "desc": "Complaint noted as unverified, requiring further investigation",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "gather_evidence" },
+          "next": [ { "state": "evidence_gathering", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "Structured inquiry process started to investigate complaint",
+      "terminal": false,
+      "turn": ["hr_officer", "manager", "employees"],
+      "actions": [
+        {
+          "by": { "hr_officer": "conduct_interviews", "manager": "provide_info", "employees": "participate_inquiry" },
+          "next": [ { "state": "inquiry_underway", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_gathering",
+      "desc": "Evidence being collected to verify or dismiss the complaint",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "analyze_evidence" },
+          "next": [ { "state": "evidence_analyzed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_underway",
+      "desc": "Inquiry in progress, involving interviews and data collection",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "compile_findings" },
+          "next": [ { "state": "findings_compiled", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "evidence_analyzed",
+      "desc": "Collected evidence analyzed for patterns or discrepancies",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "determine_next_steps" },
+          "next": [ { "state": "next_steps_determined", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "findings_compiled",
+      "desc": "Inquiry findings compiled, ready for review and action",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "review_findings" },
+          "next": [ { "state": "findings_reviewed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "next_steps_determined",
+      "desc": "Next steps in the process determined based on evidence analysis",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "implement_next_steps" },
+          "next": [ { "state": "next_steps_implemented", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "findings_reviewed",
+      "desc": "Findings from the inquiry reviewed, conclusions drawn",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "take_corrective_action" },
+          "next": [ { "state": "corrective_action_taken", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "close_complaint" },
+          "next": [ { "state": "complaint_closed", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "next_steps_implemented",
+      "desc": "Determined next steps implemented, addressing the complaint",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "monitor_progress" },
+          "next": [ { "state": "progress_monitored", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "corrective_action_taken",
+      "desc": "Corrective action taken based on inquiry findings",
+      "terminal": true
+    },
+    {
+      "id": "complaint_closed",
+      "desc": "Complaint closed, either resolved or unfounded",
+      "terminal": true
+    },
+    {
+      "id": "progress_monitored",
+      "desc": "Progress monitored after implementing next steps",
+      "terminal": true
+    }
+  ]
+}
+```

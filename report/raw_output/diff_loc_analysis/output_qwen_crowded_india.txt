@@ -1,0 +1,355 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "HR-support robot that receives and processes an anonymous digital complaint in a crowded urban workplace."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "Human HR officer who carries the company's procedural and employment-law obligations for complaint handling."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "In a crowded urban workplace, the robot holds an anonymous, uncorroborated digital complaint from an employee naming a manager and alleging child-related overtime disparity that may reflect a real pattern.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_unverified", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [
+            { "state": "complaint_acknowledged", "p": 0.5 },
+            { "state": "complaint_no_return_channel", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged",
+      "desc": "The complaint has been logged but remains unflagged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [
+            { "state": "complaint_logged_acknowledged", "p": 0.5 },
+            { "state": "complaint_logged_no_return_channel", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_unverified",
+      "desc": "The complaint has been flagged as unverified but remains unlogged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged_unverified", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [
+            { "state": "complaint_unverified_acknowledged", "p": 0.5 },
+            { "state": "complaint_unverified_no_return_channel", "p": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified",
+      "desc": "The complaint has been logged and flagged as unverified but remains unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [
+            { "state": "complaint_logged_unverified_acknowledged", "p": 0.5 },
+            { "state": "complaint_logged_unverified_no_return_channel", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_unverified_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_acknowledged",
+      "desc": "Receipt has been acknowledged to the anonymous complainant, and the complaint remains unlogged and unflagged.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged_acknowledged", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_unverified_acknowledged", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_no_return_channel",
+      "desc": "No return channel exists for the anonymous complainant, and the complaint remains unlogged and unflagged.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged_no_return_channel", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_unverified_no_return_channel", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_acknowledged",
+      "desc": "The complaint has been logged and receipt acknowledged, but it remains unflagged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified_acknowledged", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_acknowledged_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_no_return_channel",
+      "desc": "The complaint has been logged and no return channel exists, but it remains unflagged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified_no_return_channel", "p": 1.0 }
+          ]
+        },
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_no_return_channel_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_unverified_acknowledged",
+      "desc": "The complaint has been flagged as unverified and receipt acknowledged, but it remains unlogged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged_unverified_acknowledged", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_unverified_no_return_channel",
+      "desc": "The complaint has been flagged as unverified and no return channel exists, but it remains unlogged and unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_complaint" },
+          "next": [
+            { "state": "complaint_logged_unverified_no_return_channel", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_acknowledged",
+      "desc": "The complaint has been logged, flagged as unverified, and receipt acknowledged, but it remains unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_unverified_acknowledged_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_no_return_channel",
+      "desc": "The complaint has been logged, flagged as unverified, and no return channel exists, but it remains unescalated.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [
+            { "state": "complaint_logged_unverified_no_return_channel_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_escalated",
+      "desc": "The logged complaint has been escalated to a human HR officer while remaining unflagged and unacknowledged.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_acknowledged_escalated",
+      "desc": "The logged and acknowledged complaint has been escalated to a human HR officer while remaining unflagged.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified_acknowledged_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_no_return_channel_escalated",
+      "desc": "The logged complaint with no return channel has been escalated to a human HR officer while remaining unflagged.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "flag_unverified" },
+          "next": [
+            { "state": "complaint_logged_unverified_no_return_channel_escalated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_escalated",
+      "desc": "The logged and unverified-flagged complaint has been escalated to a human HR officer and remains unacknowledged.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [
+            { "state": "inquiry_initiated", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_acknowledged_escalated",
+      "desc": "The logged, unverified-flagged, and acknowledged complaint has been escalated to a human HR officer.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [
+            { "state": "inquiry_initiated_acknowledged", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_no_return_channel_escalated",
+      "desc": "The logged and unverified-flagged complaint with no return channel has been escalated to a human HR officer.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_inquiry" },
+          "next": [
+            { "state": "inquiry_initiated_no_return_channel", "p": 1.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "A structured inquiry has been initiated for the unverified complaint under a potential employment-law issue, placing the named manager's reputation and livelihood at stake while involving employees broadly, including those with young children, and the company's procedural obligations.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated_acknowledged",
+      "desc": "A structured inquiry has been initiated for the unverified complaint after receipt was acknowledged to the complainant.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated_no_return_channel",
+      "desc": "A structured inquiry has been initiated for the unverified complaint after no return channel was found.",
+      "terminal": true
+    }
+  ]
+}

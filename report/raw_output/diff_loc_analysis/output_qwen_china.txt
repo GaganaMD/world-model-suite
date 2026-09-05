@@ -1,0 +1,518 @@
+
+
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "Hospitality robot arranging seating and relaying seating instructions."
+    },
+    {
+      "id": "host_company",
+      "type": "human",
+      "desc": "Senior host company representative who stated the event's mixed-gender seating request."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "Venue staff member with institutional standing who conveys the venue's separated seating policy as a local convention."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "Event attendees whose seating comfort is affected but whose preference is not yet expressed."
+    }
+  ],
+  "initial": [
+    {
+      "state": "conflict_known",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "conflict_known",
+      "desc": "The robot knows the host's mixed-gender seating request and the venue's separated seating policy while attendees' preferences remain unexpressed.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host_request"
+          },
+          "next": [
+            {
+              "state": "host_request_applied",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue_policy"
+          },
+          "next": [
+            {
+              "state": "venue_policy_applied",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_host"
+          },
+          "next": [
+            {
+              "state": "host_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "surface_conflict_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_both_to_clarify"
+          },
+          "next": [
+            {
+              "state": "both_consulted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_request_applied",
+      "desc": "The robot has arranged seating according to the host's request and awaits the venue's response.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "endorse_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "object_to_host_request"
+          },
+          "next": [
+            {
+              "state": "venue_objects_host_request",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_objects_host_request",
+      "desc": "The venue has objected to the host-requested seating and awaits the host's decision.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "endorse_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "defer_to_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "request_venue_clarification"
+          },
+          "next": [
+            {
+              "state": "venue_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "both_consulted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_policy_applied",
+      "desc": "The robot has arranged seating according to the venue's policy and awaits the host's response.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "object_to_venue_policy"
+          },
+          "next": [
+            {
+              "state": "host_objects_venue_policy",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_objects_venue_policy",
+      "desc": "The host has objected to the venue-policy seating and awaits the venue's decision.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "request_host_clarification"
+          },
+          "next": [
+            {
+              "state": "host_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "both_consulted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted",
+      "desc": "The robot has surfaced the seating conflict to the host and awaits the host's clarification.",
+      "terminal": false,
+      "turn": [
+        "host_company"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "endorse_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "defer_to_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "request_venue_clarification"
+          },
+          "next": [
+            {
+              "state": "venue_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "both_consulted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted",
+      "desc": "The robot has surfaced the seating conflict to the venue and awaits the venue's clarification.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "request_host_clarification"
+          },
+          "next": [
+            {
+              "state": "host_consulted",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_staff": "request_joint_clarification"
+          },
+          "next": [
+            {
+              "state": "both_consulted",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "both_consulted",
+      "desc": "The robot has asked the host and venue to clarify and resolve the seating conflict directly.",
+      "terminal": false,
+      "turn": [
+        "host_company",
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_company": "endorse_host_request",
+            "venue_staff": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "authority_ambiguous",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "endorse_host_request",
+            "venue_staff": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_host_request",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "endorse_host_request",
+            "venue_staff": "propose_joint_arrangement"
+          },
+          "next": [
+            {
+              "state": "authority_ambiguous",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "defer_to_venue_policy",
+            "venue_staff": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "seating_set_venue_policy",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "defer_to_venue_policy",
+            "venue_staff": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "authority_ambiguous",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "defer_to_venue_policy",
+            "venue_staff": "propose_joint_arrangement"
+          },
+          "next": [
+            {
+              "state": "seating_set_joint_arrangement",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "propose_joint_arrangement",
+            "venue_staff": "endorse_venue_policy"
+          },
+          "next": [
+            {
+              "state": "authority_ambiguous",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "propose_joint_arrangement",
+            "venue_staff": "defer_to_host_request"
+          },
+          "next": [
+            {
+              "state": "seating_set_joint_arrangement",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_company": "propose_joint_arrangement",
+            "venue_staff": "propose_joint_arrangement"
+          },
+          "next": [
+            {
+              "state": "seating_set_joint_arrangement",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seating_set_host_request",
+      "desc": "The seating is set according to the host's mixed-gender request.",
+      "terminal": true
+    },
+    {
+      "id": "seating_set_venue_policy",
+      "desc": "The seating is set according to the venue's separated seating policy.",
+      "terminal": true
+    },
+    {
+      "id": "seating_set_joint_arrangement",
+      "desc": "The seating is set according to an arrangement jointly specified by the host and venue.",
+      "terminal": true
+    },
+    {
+      "id": "authority_ambiguous",
+      "desc": "The seating authority is ambiguous and is left to a human decision-maker.",
+      "terminal": true
+    }
+  ]
+}

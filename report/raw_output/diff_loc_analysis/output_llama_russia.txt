@@ -1,0 +1,69 @@
+```json
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "hospitality robot setting up seating" },
+    { "id": "host_company", "type": "human", "desc": "host company with stated preference for mixed-gender seating" },
+    { "id": "venue_staff", "type": "human", "desc": "venue staff with institutional policy for gender-separated seating" }
+  ],
+
+  "initial": [
+    { "state": "seating_arrangement_unclear", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "seating_arrangement_unclear",
+      "desc": "robot is aware of both host company's request and venue's policy",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "follow_host_request" },
+          "next": [ { "state": "mixed_gender_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_venue_policy" },
+          "next": [ { "state": "gender_separated_seating", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_host" },
+          "next": [ { "state": "host_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_venue" },
+          "next": [ { "state": "venue_resolves_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_for_clarification" },
+          "next": [ { "state": "joint_clarification", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_gender_seating",
+      "desc": "robot sets up mixed-gender seating as per host company's request",
+      "terminal": true
+    },
+    {
+      "id": "gender_separated_seating",
+      "desc": "robot sets up gender-separated seating as per venue's policy",
+      "terminal": true
+    },
+    {
+      "id": "host_resolves_conflict",
+      "desc": "host company resolves the conflict",
+      "terminal": true
+    },
+    {
+      "id": "venue_resolves_conflict",
+      "desc": "venue staff resolves the conflict",
+      "terminal": true
+    },
+    {
+      "id": "joint_clarification",
+      "desc": "host company and venue staff jointly clarify and resolve the conflict",
+      "terminal": true
+    }
+  ]
+}
+```

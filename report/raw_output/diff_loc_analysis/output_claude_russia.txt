@@ -1,0 +1,176 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A hospitality robot preparing the seating for a corporate dinner at a private event venue." },
+    { "id": "host_rep", "type": "human", "desc": "The representative of the host company, which has asked for seating that mixes staff across ranks and departments." },
+    { "id": "venue_staff", "type": "human", "desc": "A member of the venue's staff who privately states the venue's standing policy of seating guests in order of seniority." },
+    { "id": "attendees", "type": "human", "desc": "The dinner guests, whose own seating preferences have not been stated." }
+  ],
+
+  "initial": [
+    { "state": "conflicting_instructions", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflicting_instructions",
+      "desc": "The robot holds the host company's stated seating request alongside the venue's privately stated policy, with the seating not yet laid out.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_per_host_request" },
+          "next": [ { "state": "seating_presented", "p": 0.7 },
+                    { "state": "venue_deciding", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "arrange_per_venue_policy" },
+          "next": [ { "state": "seating_presented", "p": 0.7 },
+                    { "state": "host_deciding", "p": 0.3 } ]
+        },
+        {
+          "by": { "robot": "raise_with_host_representative" },
+          "next": [ { "state": "host_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_venue_side" },
+          "next": [ { "state": "venue_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_deciding",
+      "desc": "The host company's representative has the conflict in front of them and must say what is to govern the seating.",
+      "terminal": false,
+      "turn": ["host_rep"],
+      "actions": [
+        {
+          "by": { "host_rep": "confirm_own_request" },
+          "next": [ { "state": "settled_toward_host_request", "p": 0.7 },
+                    { "state": "conflicting_instructions", "p": 0.3 } ]
+        },
+        {
+          "by": { "host_rep": "adopt_venue_policy" },
+          "next": [ { "state": "settled_toward_venue_policy", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "refer_to_venue_side" },
+          "next": [ { "state": "venue_deciding", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_deciding",
+      "desc": "The venue side has the conflict in front of it and must say whether its seniority-based policy governs this dinner.",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "uphold_policy" },
+          "next": [ { "state": "settled_toward_venue_policy", "p": 0.7 },
+                    { "state": "conflicting_instructions", "p": 0.3 } ]
+        },
+        {
+          "by": { "venue_staff": "waive_policy" },
+          "next": [ { "state": "settled_toward_host_request", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "refer_to_host_representative" },
+          "next": [ { "state": "host_deciding", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_deliberation",
+      "desc": "The host representative and the venue staff address the seating question to each other at the same time.",
+      "terminal": false,
+      "turn": ["host_rep", "venue_staff"],
+      "actions": [
+        {
+          "by": { "host_rep": "press_own_position", "venue_staff": "press_own_position" },
+          "next": [ { "state": "conflicting_instructions", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "press_own_position", "venue_staff": "defer_to_other_party" },
+          "next": [ { "state": "settled_toward_host_request", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_other_party", "venue_staff": "press_own_position" },
+          "next": [ { "state": "settled_toward_venue_policy", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "defer_to_other_party", "venue_staff": "defer_to_other_party" },
+          "next": [ { "state": "settled_toward_host_request", "p": 0.5 },
+                    { "state": "settled_toward_venue_policy", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "settled_toward_host_request",
+      "desc": "The host company's seating request now stands as the operative instruction for the robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_per_host_request" },
+          "next": [ { "state": "seating_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_per_venue_policy" },
+          "next": [ { "state": "seating_presented", "p": 0.6 },
+                    { "state": "host_deciding", "p": 0.4 } ]
+        }
+      ]
+    },
+    {
+      "id": "settled_toward_venue_policy",
+      "desc": "The venue's seniority-based policy now stands as the operative instruction for the robot.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_per_venue_policy" },
+          "next": [ { "state": "seating_presented", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_per_host_request" },
+          "next": [ { "state": "seating_presented", "p": 0.6 },
+                    { "state": "venue_deciding", "p": 0.4 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_presented",
+      "desc": "The seating stands laid out as the robot has set it and the guests are arriving to be seated.",
+      "terminal": false,
+      "turn": ["attendees", "robot"],
+      "actions": [
+        {
+          "by": { "attendees": "take_seats_as_arranged", "robot": "hold_arrangement" },
+          "next": [ { "state": "dinner_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "take_seats_as_arranged", "robot": "revise_arrangement" },
+          "next": [ { "state": "dinner_underway", "p": 0.6 },
+                    { "state": "seating_presented", "p": 0.4 } ]
+        },
+        {
+          "by": { "attendees": "seat_themselves_differently", "robot": "hold_arrangement" },
+          "next": [ { "state": "dinner_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "seat_themselves_differently", "robot": "revise_arrangement" },
+          "next": [ { "state": "seating_presented", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "dinner_underway",
+      "desc": "The guests are seated and the dinner has begun.",
+      "terminal": true
+    }
+  ]
+}

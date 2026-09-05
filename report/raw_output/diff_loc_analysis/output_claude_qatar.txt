@@ -1,0 +1,151 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "The reception robot that receives visitors and must respond to the offered gift on the spot." },
+    { "id": "client", "type": "human", "desc": "The visiting client who presents a wrapped gift for the team and is watching how it is handled." },
+    { "id": "senior_host", "type": "human", "desc": "The senior team member with the standing to receive a gift on the team's behalf." }
+  ],
+
+  "initial": [
+    { "state": "gift_offered", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_offered",
+      "desc": "The client holds out a wrapped gift for the team and the robot must respond while being watched.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_senior_host" },
+          "next": [ { "state": "senior_host_receives_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift" },
+          "next": [ { "state": "opening_invited", "p": 0.5 },
+                    { "state": "opening_deferred", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "opening_invited",
+      "desc": "The client has said aloud that he would like the wrapping taken off in his presence.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_set_aside", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_senior_host" },
+          "next": [ { "state": "senior_host_receives_gift", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "opening_deferred",
+      "desc": "The client has said the team may open the gift in its own time, keeping to the convention of not unwrapping before the giver.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_senior_host" },
+          "next": [ { "state": "senior_host_receives_gift", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_set_aside",
+      "desc": "The wrapped gift has been taken on the team's behalf and placed aside while the client is still present.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "ask_for_opening" },
+          "next": [ { "state": "opening_invited", "p": 1.0 } ]
+        },
+        {
+          "by": { "client": "take_leave" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "senior_host_receives_gift",
+      "desc": "A senior team member now holds the still wrapped gift with the client looking on.",
+      "terminal": false,
+      "turn": ["senior_host", "client"],
+      "actions": [
+        {
+          "by": { "senior_host": "thank_and_defer_opening", "client": "invite_opening" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 0.5 },
+                    { "state": "gift_set_aside", "p": 0.5 } ]
+        },
+        {
+          "by": { "senior_host": "thank_and_defer_opening", "client": "take_leave" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_host": "open_gift", "client": "invite_opening" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_host": "open_gift", "client": "take_leave" },
+          "next": [ { "state": "gift_opened_by_team", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_held_for_team",
+      "desc": "The wrapped gift waits with the team and the client is no longer present.",
+      "terminal": false,
+      "turn": ["senior_host"],
+      "actions": [
+        {
+          "by": { "senior_host": "open_gift" },
+          "next": [ { "state": "gift_opened_by_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "senior_host": "acknowledge_client" },
+          "next": [ { "state": "client_acknowledged_by_team", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "gift_unwrapped_before_client",
+      "desc": "The wrapping has come off with the giver watching.",
+      "terminal": true
+    },
+    {
+      "id": "gift_opened_by_team",
+      "desc": "The team has opened the gift away from the giver.",
+      "terminal": true
+    },
+    {
+      "id": "client_acknowledged_by_team",
+      "desc": "A senior team member has conveyed the team's thanks to the client while the gift stays wrapped.",
+      "terminal": true
+    }
+  ]
+}

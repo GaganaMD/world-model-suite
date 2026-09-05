@@ -1,0 +1,168 @@
+{
+  "players": [
+    {
+      "id": "reception_robot",
+      "type": "robot",
+      "desc": "The robot that greets arriving visitors and must handle what a visitor puts into its hands right away."
+    },
+    {
+      "id": "visiting_client",
+      "type": "human",
+      "desc": "The visiting client who offers a wrapped gift for the team and watches how it is received."
+    },
+    {
+      "id": "team_member",
+      "type": "human",
+      "desc": "A member of the receiving team who can take the gift on the team's behalf."
+    }
+  ],
+
+  "initial": [
+    { "state": "gift_presented", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_presented",
+      "desc": "The client holds out a wrapped gift for the team and waits to see how it is handled.",
+      "terminal": false,
+      "turn": ["reception_robot", "visiting_client"],
+      "actions": [
+        {
+          "by": { "reception_robot": "accept_and_set_aside", "visiting_client": "invite_opening" },
+          "next": [ { "state": "client_asks_for_opening", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "accept_and_set_aside", "visiting_client": "leave_to_team" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "pass_to_team_member", "visiting_client": "invite_opening" },
+          "next": [ { "state": "team_member_holds_gift", "p": 0.6 },
+                    { "state": "gift_awaits_team_member", "p": 0.4 } ]
+        },
+        {
+          "by": { "reception_robot": "pass_to_team_member", "visiting_client": "leave_to_team" },
+          "next": [ { "state": "team_member_holds_gift", "p": 0.6 },
+                    { "state": "gift_awaits_team_member", "p": 0.4 } ]
+        },
+        {
+          "by": { "reception_robot": "ask_about_gift", "visiting_client": "invite_opening" },
+          "next": [ { "state": "client_asks_for_opening", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "ask_about_gift", "visiting_client": "leave_to_team" },
+          "next": [ { "state": "client_leaves_to_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "open_in_front_of_client", "visiting_client": "invite_opening" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "open_in_front_of_client", "visiting_client": "leave_to_team" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "client_asks_for_opening",
+      "desc": "The client has said plainly that they would like the wrapping taken off while they are here.",
+      "terminal": false,
+      "turn": ["reception_robot"],
+      "actions": [
+        {
+          "by": { "reception_robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "pass_to_team_member" },
+          "next": [ { "state": "team_member_holds_gift", "p": 0.6 },
+                    { "state": "gift_awaits_team_member", "p": 0.4 } ]
+        },
+        {
+          "by": { "reception_robot": "open_in_front_of_client" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "client_leaves_to_team",
+      "desc": "The client has said they are content for the team to open the gift on its own time.",
+      "terminal": false,
+      "turn": ["reception_robot"],
+      "actions": [
+        {
+          "by": { "reception_robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "pass_to_team_member" },
+          "next": [ { "state": "team_member_holds_gift", "p": 0.6 },
+                    { "state": "gift_awaits_team_member", "p": 0.4 } ]
+        },
+        {
+          "by": { "reception_robot": "open_in_front_of_client" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "gift_awaits_team_member",
+      "desc": "No colleague has yet taken the gift and the client is still standing there watching.",
+      "terminal": false,
+      "turn": ["reception_robot"],
+      "actions": [
+        {
+          "by": { "reception_robot": "accept_and_set_aside" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "reception_robot": "pass_to_team_member" },
+          "next": [ { "state": "team_member_holds_gift", "p": 0.5 },
+                    { "state": "gift_awaits_team_member", "p": 0.5 } ]
+        },
+        {
+          "by": { "reception_robot": "ask_about_gift" },
+          "next": [ { "state": "client_asks_for_opening", "p": 0.5 },
+                    { "state": "client_leaves_to_team", "p": 0.5 } ]
+        },
+        {
+          "by": { "reception_robot": "open_in_front_of_client" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "team_member_holds_gift",
+      "desc": "A colleague now holds the gift while the client is still present.",
+      "terminal": false,
+      "turn": ["team_member"],
+      "actions": [
+        {
+          "by": { "team_member": "open_with_client_present" },
+          "next": [ { "state": "gift_opened_with_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "team_member": "set_aside_for_team" },
+          "next": [ { "state": "gift_held_for_team", "p": 1.0 } ]
+        }
+      ]
+    },
+
+    {
+      "id": "gift_opened_with_client",
+      "desc": "The wrapping came off in front of the client and the exchange is over.",
+      "terminal": true
+    },
+
+    {
+      "id": "gift_held_for_team",
+      "desc": "The gift was received with thanks and kept wrapped for the team, and the exchange is over.",
+      "terminal": true
+    }
+  ]
+}

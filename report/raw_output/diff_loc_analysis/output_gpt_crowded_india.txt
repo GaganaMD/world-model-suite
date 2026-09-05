@@ -1,0 +1,257 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "The HR-support robot handles the anonymous complaint without treating its allegation as established."
+    },
+    {
+      "id": "complainant",
+      "type": "human",
+      "desc": "The anonymous employee submitted an uncorroborated claim that may reflect a real overtime pattern."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "The named manager has a reputation and livelihood that may be affected by the handling process."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "The human HR officer represents the company and its legal and procedural obligations."
+    },
+    {
+      "id": "employees",
+      "type": "human",
+      "desc": "The employees may be affected by the alleged overtime allocation pattern."
+    }
+  ],
+  "initial": [
+    {
+      "state": "received_with_channel",
+      "p": 0.5
+    },
+    {
+      "state": "received_without_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "received_with_channel",
+      "desc": "An anonymous and unverified overtime complaint has arrived with a usable return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "logged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "received_without_channel",
+      "desc": "An anonymous and unverified overtime complaint has arrived without a usable return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "logged_without_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logged_with_channel",
+      "desc": "The unverified complaint is logged and the complainant can still receive a response.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "acknowledged",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_with_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logged_without_channel",
+      "desc": "The unverified complaint is logged and no response channel is available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_without_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acknowledged",
+      "desc": "Receipt has been acknowledged without affirming the allegation.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "flagged_after_acknowledgment",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_with_channel",
+      "desc": "The complaint is explicitly marked unverified and a return channel remains available.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "flagged_after_acknowledgment",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "before_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_without_channel",
+      "desc": "The complaint is explicitly marked unverified and cannot be acknowledged through a return channel.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "before_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_after_acknowledgment",
+      "desc": "Receipt is acknowledged and the complaint is explicitly marked unverified.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "before_inquiry",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "before_inquiry",
+      "desc": "The HR officer faces an unverified claim of potentially unequal employment impact under applicable law and procedure.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_started",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_started",
+      "desc": "A structured inquiry has begun while the allegation remains unverified.",
+      "terminal": true
+    }
+  ]
+}

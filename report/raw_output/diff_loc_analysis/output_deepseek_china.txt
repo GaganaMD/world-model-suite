@@ -1,0 +1,138 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A hospitality robot setting up seating for a corporate dinner at a private event venue."
+    },
+    {
+      "id": "host_representative",
+      "type": "human",
+      "desc": "Representative of the host company, which has requested mixed-gender seating across tables."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "Member of the venue's staff who communicated the venue's institutional policy preferring gender-separated seating."
+    }
+  ],
+  "initial": [
+    {
+      "state": "seating_conflict",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "seating_conflict",
+      "desc": "The robot faces a legitimate host request for mixed-gender seating and a local venue policy of gender-separated seating; the attendees' preferences are unknown and the authority to choose is ambiguous.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "follow_host_request" },
+          "next": [ { "state": "host_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "follow_venue_policy" },
+          "next": [ { "state": "venue_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_host" },
+          "next": [ { "state": "host_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "surface_conflict_to_venue" },
+          "next": [ { "state": "venue_consulted", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_parties" },
+          "next": [ { "state": "joint_clarification", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_consulted",
+      "desc": "The robot has told the host representative about the venue's gender-separated seating policy and is waiting for the host's decision.",
+      "terminal": false,
+      "turn": ["host_representative"],
+      "actions": [
+        {
+          "by": { "host_representative": "confirm_host_request" },
+          "next": [ { "state": "host_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_representative": "defer_to_venue" },
+          "next": [ { "state": "venue_seating_arranged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_consulted",
+      "desc": "The robot has told the venue staff about the host company's mixed-gender seating request and is waiting for the venue's decision.",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "confirm_venue_policy" },
+          "next": [ { "state": "venue_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "defer_to_host" },
+          "next": [ { "state": "host_seating_arranged", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_clarification",
+      "desc": "The robot has asked the host representative and the venue staff to clarify and resolve the seating conflict directly.",
+      "terminal": false,
+      "turn": ["host_representative", "venue_staff"],
+      "actions": [
+        {
+          "by": {
+            "host_representative": "confirm_host_request",
+            "venue_staff": "confirm_venue_policy"
+          },
+          "next": [ { "state": "unresolved_conflict", "p": 1.0 } ]
+        },
+        {
+          "by": {
+            "host_representative": "confirm_host_request",
+            "venue_staff": "defer_to_host"
+          },
+          "next": [ { "state": "host_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": {
+            "host_representative": "defer_to_venue",
+            "venue_staff": "confirm_venue_policy"
+          },
+          "next": [ { "state": "venue_seating_arranged", "p": 1.0 } ]
+        },
+        {
+          "by": {
+            "host_representative": "defer_to_venue",
+            "venue_staff": "defer_to_host"
+          },
+          "next": [ { "state": "unresolved_conflict", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_seating_arranged",
+      "desc": "The tables are set with mixed-gender seating as the host company requested.",
+      "terminal": true
+    },
+    {
+      "id": "venue_seating_arranged",
+      "desc": "The tables are set with gender-separated seating as the venue's policy prefers.",
+      "terminal": true
+    },
+    {
+      "id": "unresolved_conflict",
+      "desc": "The host representative and the venue staff have not reached an agreement on seating.",
+      "terminal": true
+    }
+  ]
+}

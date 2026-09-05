@@ -1,0 +1,181 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "HR-support robot at a company in a diverse region with multi-religious community values."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "Human HR officer responsible for the company's legal and procedural obligations in handling employment complaints."
+    },
+    {
+      "id": "manager",
+      "type": "human",
+      "desc": "Named manager whose reputation and livelihood could be affected by how the complaint is handled."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received_with_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_received_no_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received_with_channel",
+      "desc": "An anonymous complaint naming the manager has been received through a channel that permits a reply; the claim is unverified and may reflect a real pattern even without corroboration.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate_to_hr" },
+          "next": [ { "state": "hr_review", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_flag_unverified" },
+          "next": [ { "state": "flagged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [ { "state": "acknowledged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_unverified_and_initiate_inquiry" },
+          "next": [ { "state": "inquiry_intake", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_received_no_channel",
+      "desc": "An anonymous complaint naming the manager has been received with no return channel; the claim is unverified and may reflect a real pattern even without corroboration.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate_to_hr" },
+          "next": [ { "state": "hr_review", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_flag_unverified" },
+          "next": [ { "state": "flagged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "flag_unverified_and_initiate_inquiry" },
+          "next": [ { "state": "inquiry_intake", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "flagged",
+      "desc": "The complaint is logged and marked unverified; no action involving the manager has been taken.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [ { "state": "hr_review", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "initiate_structured_inquiry" },
+          "next": [ { "state": "inquiry_intake", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "acknowledged",
+      "desc": "Receipt has been acknowledged to the complainant through the available return channel; the complaint remains unverified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "escalate_to_hr" },
+          "next": [ { "state": "hr_review", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "initiate_structured_inquiry" },
+          "next": [ { "state": "inquiry_intake", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "hr_review",
+      "desc": "A human HR officer is reviewing the complaint as a potential discriminatory overtime-assignment issue under applicable employment law and company policy; the claim remains unverified and the region's multi-religious and diverse community values are part of the context.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "initiate_structured_inquiry" },
+          "next": [ { "state": "inquiry_intake", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "escalate_to_legal_review" },
+          "next": [ { "state": "terminal_escalated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_intake",
+      "desc": "A structured inquiry has been initiated and the manager has been asked to provide an account; the complaint is still unverified.",
+      "terminal": false,
+      "turn": ["manager"],
+      "actions": [
+        {
+          "by": { "manager": "provide_account" },
+          "next": [ { "state": "inquiry_response_with_account", "p": 1.0 } ]
+        },
+        {
+          "by": { "manager": "decline_to_respond" },
+          "next": [ { "state": "inquiry_response_without_account", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_response_with_account",
+      "desc": "The manager has provided an account; the inquiry team considers it alongside the unverified complaint and the potential impact on employees with young children.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "close_inquiry" },
+          "next": [ { "state": "terminal_closed", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "escalate_to_legal_review" },
+          "next": [ { "state": "terminal_escalated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_response_without_account",
+      "desc": "The manager has declined to provide an account; the inquiry team decides next steps with the complaint still unverified.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "close_inquiry" },
+          "next": [ { "state": "terminal_closed", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "escalate_to_legal_review" },
+          "next": [ { "state": "terminal_escalated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "terminal_closed",
+      "desc": "The complaint has been closed after the inquiry; no further action is being taken.",
+      "terminal": true
+    },
+    {
+      "id": "terminal_escalated",
+      "desc": "The matter has been escalated for further legal review under applicable employment law.",
+      "terminal": true
+    }
+  ]
+}

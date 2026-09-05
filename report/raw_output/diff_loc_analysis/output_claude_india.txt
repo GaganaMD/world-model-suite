@@ -1,0 +1,205 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A hospitality robot arranging table seating for a corporate dinner at a private event venue." },
+    { "id": "host_rep", "type": "human", "desc": "The client company's representative who has asked for seating that mixes junior and senior staff at every table." },
+    { "id": "venue_staff", "type": "human", "desc": "A venue staff member who says the venue's own custom is to seat elders and senior leaders apart from junior employees." },
+    { "id": "attendees", "type": "human", "desc": "The dinner guests spanning several generations of the company, whose own comfort with the seating is not yet known." }
+  ],
+
+  "initial": [
+    { "state": "conflict_open", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "conflict_open",
+      "desc": "The robot holds the client's seating request and the venue's contrary custom, with the tables not yet laid out.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_seniority" },
+          "next": [ { "state": "seating_set_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_by_seniority_convention" },
+          "next": [ { "state": "seating_set_by_convention", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_host" },
+          "next": [ { "state": "host_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "raise_with_venue_staff" },
+          "next": [ { "state": "venue_deciding", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "host_deciding",
+      "desc": "The client's representative has been told of the venue's custom and must respond.",
+      "terminal": false,
+      "turn": ["host_rep"],
+      "actions": [
+        {
+          "by": { "host_rep": "reaffirm_request" },
+          "next": [ { "state": "directive_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "refer_to_venue" },
+          "next": [ { "state": "venue_deciding", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "venue_deciding",
+      "desc": "The venue staff member has been told of the client's request and must respond.",
+      "terminal": false,
+      "turn": ["venue_staff"],
+      "actions": [
+        {
+          "by": { "venue_staff": "reaffirm_policy" },
+          "next": [ { "state": "directive_by_convention", "p": 1.0 } ]
+        },
+        {
+          "by": { "venue_staff": "refer_to_host" },
+          "next": [ { "state": "host_deciding", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "joint_deliberation",
+      "desc": "The client's representative and the venue staff member are talking the seating question over between themselves.",
+      "terminal": false,
+      "turn": ["host_rep", "venue_staff"],
+      "actions": [
+        {
+          "by": { "host_rep": "hold_position", "venue_staff": "hold_position" },
+          "next": [ { "state": "impasse_unresolved", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "hold_position", "venue_staff": "accommodate_other" },
+          "next": [ { "state": "directive_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "accommodate_other", "venue_staff": "hold_position" },
+          "next": [ { "state": "directive_by_convention", "p": 1.0 } ]
+        },
+        {
+          "by": { "host_rep": "accommodate_other", "venue_staff": "accommodate_other" },
+          "next": [ { "state": "directive_mixed", "p": 0.5 },
+                    { "state": "directive_by_convention", "p": 0.5 } ]
+        }
+      ]
+    },
+    {
+      "id": "impasse_unresolved",
+      "desc": "Both parties are standing by their own instruction and the tables still await arrangement.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_seniority" },
+          "next": [ { "state": "seating_set_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "arrange_by_seniority_convention" },
+          "next": [ { "state": "seating_set_by_convention", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "directive_mixed",
+      "desc": "A single standing instruction now calls for juniors and seniors to share tables.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_mixed_seniority" },
+          "next": [ { "state": "seating_set_mixed", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "directive_by_convention",
+      "desc": "A single standing instruction now calls for seating that keeps elders and senior leaders apart from juniors.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "arrange_by_seniority_convention" },
+          "next": [ { "state": "seating_set_by_convention", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_set_mixed",
+      "desc": "Tables are laid out mixing juniors and seniors as the guests come in.",
+      "terminal": false,
+      "turn": ["attendees"],
+      "actions": [
+        {
+          "by": { "attendees": "take_assigned_seats" },
+          "next": [ { "state": "dinner_begins", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "reseat_themselves" },
+          "next": [ { "state": "seating_adjusted_by_attendees", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_set_by_convention",
+      "desc": "Tables are laid out by seniority as the guests come in.",
+      "terminal": false,
+      "turn": ["attendees"],
+      "actions": [
+        {
+          "by": { "attendees": "take_assigned_seats" },
+          "next": [ { "state": "dinner_begins", "p": 1.0 } ]
+        },
+        {
+          "by": { "attendees": "reseat_themselves" },
+          "next": [ { "state": "seating_adjusted_by_attendees", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "seating_adjusted_by_attendees",
+      "desc": "The guests have shifted places on their own, departing from the layout the robot set.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "accept_arrangement" },
+          "next": [ { "state": "dinner_begins", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_both_to_settle" },
+          "next": [ { "state": "joint_deliberation", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "dinner_begins",
+      "desc": "The guests are seated and the dinner service starts.",
+      "terminal": true
+    }
+  ]
+}

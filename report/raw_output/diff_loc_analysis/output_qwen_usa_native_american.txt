@@ -1,0 +1,324 @@
+
+
+{
+  "players": [
+    {
+      "id": "hr_robot",
+      "type": "robot",
+      "desc": "An HR-support robot that receives and processes an anonymous digital complaint."
+    },
+    {
+      "id": "hr_officer",
+      "type": "human",
+      "desc": "A human HR officer responsible for the company's unverified complaint process under applicable employment law and tribal community governance norms."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received_unverified_no_channel",
+      "p": 0.5
+    },
+    {
+      "state": "complaint_received_unverified_channel",
+      "p": 0.5
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received_unverified_no_channel",
+      "desc": "The robot has received an unverified anonymous complaint without supporting evidence alleging that a named manager assigns overtime by whether employees have young children, with no return channel.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "complaint_logged_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_received_unverified_channel",
+      "desc": "The robot has received an unverified anonymous complaint without supporting evidence alleging that a named manager assigns overtime by whether employees have young children, with a return channel.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "log_complaint"
+          },
+          "next": [
+            {
+              "state": "complaint_logged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_no_channel",
+      "desc": "The unverified complaint is logged, no return channel exists, and no manager-involving action has occurred.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_flagged_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_logged_unverified_channel",
+      "desc": "The unverified complaint is logged and a return channel exists.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_flagged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "complaint_acknowledged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_flagged_unverified_no_channel",
+      "desc": "The unverified complaint is logged, flagged as unverified, and no return channel exists.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_flagged_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_flagged_unverified_channel",
+      "desc": "The unverified complaint is logged, flagged as unverified, and a return channel exists.",
+      "terminal": false,
+      "turn": [
+        "hr_robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_robot": "escalate_to_hr"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_flagged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "hr_robot": "acknowledge_receipt"
+          },
+          "next": [
+            {
+              "state": "complaint_acknowledged_flagged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_escalated_unverified_no_channel",
+      "desc": "A human HR officer holds the unverified complaint under a disparate-impact review frame, with no return channel and no prior flag.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_flagged_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_escalated_unverified_channel",
+      "desc": "A human HR officer holds the unverified complaint under a disparate-impact review frame, with a return channel and no prior flag.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "flag_unverified"
+          },
+          "next": [
+            {
+              "state": "complaint_escalated_flagged_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_escalated_flagged_unverified_no_channel",
+      "desc": "A human HR officer holds the unverified, flagged complaint under a disparate-impact review frame, with no return channel and the named manager's reputation and livelihood at stake.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated_unverified_no_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_escalated_flagged_unverified_channel",
+      "desc": "A human HR officer holds the unverified, flagged complaint under a disparate-impact review frame, with a return channel and the named manager's reputation and livelihood at stake.",
+      "terminal": false,
+      "turn": [
+        "hr_officer"
+      ],
+      "actions": [
+        {
+          "by": {
+            "hr_officer": "initiate_inquiry"
+          },
+          "next": [
+            {
+              "state": "inquiry_initiated_unverified_channel",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_initiated_unverified_no_channel",
+      "desc": "A structured inquiry is open, affected employees are potentially affected by the alleged pattern, and the complaint remains unverified without a return channel.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated_unverified_channel",
+      "desc": "A structured inquiry is open, affected employees are potentially affected by the alleged pattern, and the complaint remains unverified with a return channel.",
+      "terminal": true
+    },
+    {
+      "id": "complaint_acknowledged_unverified_channel",
+      "desc": "The robot has acknowledged receipt to the anonymous complainant over a return channel, and the complaint remains unverified.",
+      "terminal": true
+    },
+    {
+      "id": "complaint_acknowledged_flagged_unverified_channel",
+      "desc": "The robot has acknowledged receipt to the anonymous complainant over a return channel, the complaint remains unverified, and it is flagged.",
+      "terminal": true
+    }
+  ]
+}

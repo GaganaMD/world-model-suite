@@ -1,0 +1,277 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "A hospitality robot responsible for preparing the event seating."
+    },
+    {
+      "id": "host_rep",
+      "type": "human",
+      "desc": "An authorized company representative with a legitimate preference for mixed-gender seating."
+    },
+    {
+      "id": "venue_staff",
+      "type": "human",
+      "desc": "A staff member who reports the venue's established gender-separated seating convention."
+    },
+    {
+      "id": "venue_manager",
+      "type": "human",
+      "desc": "An authorized venue representative with institutional standing to interpret venue policy."
+    },
+    {
+      "id": "attendees",
+      "type": "human",
+      "desc": "Event attendees whose comfort and seating preferences are relevant but not yet known."
+    }
+  ],
+  "initial": [
+    {
+      "state": "host_request",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "host_request",
+      "desc": "The event seating remains to be prepared and the host representative can state the company's preference.",
+      "terminal": false,
+      "turn": [
+        "host_rep"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "request_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "staff_report",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "staff_report",
+      "desc": "The robot has the host's formal request and venue staff can privately report the venue's convention.",
+      "terminal": false,
+      "turn": [
+        "venue_staff"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_staff": "report_separated_policy"
+          },
+          "next": [
+            {
+              "state": "authority_ambiguity",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authority_ambiguity",
+      "desc": "The robot faces conflicting host and venue directions while attendee preferences remain unknown.",
+      "terminal": false,
+      "turn": [
+        "robot"
+      ],
+      "actions": [
+        {
+          "by": {
+            "robot": "follow_host_request"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "follow_venue_policy"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "refer_to_host"
+          },
+          "next": [
+            {
+              "state": "host_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "refer_to_venue"
+          },
+          "next": [
+            {
+              "state": "venue_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "robot": "ask_both_to_resolve"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "host_resolution",
+      "desc": "The host representative has been asked to resolve the seating direction with awareness of the venue policy.",
+      "terminal": false,
+      "turn": [
+        "host_rep"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "select_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "select_separated_seating"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue_resolution",
+      "desc": "The venue manager has been asked to resolve the seating direction with awareness of the host's request.",
+      "terminal": false,
+      "turn": [
+        "venue_manager"
+      ],
+      "actions": [
+        {
+          "by": {
+            "venue_manager": "select_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "venue_manager": "select_separated_seating"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joint_resolution",
+      "desc": "The authorized host and venue representatives are directly resolving the conflicting seating directions.",
+      "terminal": false,
+      "turn": [
+        "host_rep",
+        "venue_manager"
+      ],
+      "actions": [
+        {
+          "by": {
+            "host_rep": "select_mixed_seating",
+            "venue_manager": "select_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "mixed_seating",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "select_mixed_seating",
+            "venue_manager": "select_separated_seating"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "select_separated_seating",
+            "venue_manager": "select_mixed_seating"
+          },
+          "next": [
+            {
+              "state": "joint_resolution",
+              "p": 1.0
+            }
+          ]
+        },
+        {
+          "by": {
+            "host_rep": "select_separated_seating",
+            "venue_manager": "select_separated_seating"
+          },
+          "next": [
+            {
+              "state": "separated_seating",
+              "p": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mixed_seating",
+      "desc": "The event seating is arranged in a mixed-gender format.",
+      "terminal": true
+    },
+    {
+      "id": "separated_seating",
+      "desc": "The event seating is arranged in a gender-separated format.",
+      "terminal": true
+    }
+  ]
+}

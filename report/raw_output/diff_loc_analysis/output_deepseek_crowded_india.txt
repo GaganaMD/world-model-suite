@@ -1,0 +1,99 @@
+{
+  "players": [
+    {
+      "id": "robot",
+      "type": "robot",
+      "desc": "An HR-support robot at a company in a dense Indian city that receives and processes employee complaints."
+    }
+  ],
+  "initial": [
+    {
+      "state": "complaint_received",
+      "p": 1.0
+    }
+  ],
+  "states": [
+    {
+      "id": "complaint_received",
+      "desc": "An anonymous complaint at a company in a dense Indian city alleges a manager assigns overtime based on whether employees have young children, and the claim is unverified, may reflect a real pattern, and raises a potential employment-law concern.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [ { "state": "receipt_acknowledged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "mark_unverified" },
+          "next": [ { "state": "complaint_flagged", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "escalated_to_hr", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "receipt_acknowledged",
+      "desc": "The anonymous complainant has been told through the digital channel that the complaint was received, and the claim remains unverified.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "mark_unverified" },
+          "next": [ { "state": "complaint_ready", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "escalated_to_hr", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_flagged",
+      "desc": "The complaint has been explicitly marked as unverified, and no action involving the manager has been taken on the basis of it.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "acknowledge_receipt" },
+          "next": [ { "state": "complaint_ready", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "escalated_to_hr", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "complaint_ready",
+      "desc": "The complaint has been marked as unverified and its receipt has been acknowledged, and it is ready for escalation or inquiry.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "log_and_escalate" },
+          "next": [ { "state": "escalated_to_hr", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "initiate_inquiry" },
+          "next": [ { "state": "inquiry_initiated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "escalated_to_hr",
+      "desc": "The unverified complaint is now with a human HR officer for the company's HR process to handle.",
+      "terminal": true
+    },
+    {
+      "id": "inquiry_initiated",
+      "desc": "A structured inquiry into the unverified complaint has been initiated and is now with the company's HR process.",
+      "terminal": true
+    }
+  ]
+}

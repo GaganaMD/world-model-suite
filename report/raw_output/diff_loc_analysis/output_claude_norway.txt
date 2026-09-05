@@ -1,0 +1,158 @@
+{
+  "players": [
+    { "id": "robot", "type": "robot", "desc": "A reception robot at the office entrance that greets arriving visitors and handles what they hand over." },
+    { "id": "client", "type": "human", "desc": "A visiting client who holds out a wrapped gift meant for the whole team as a relational gesture." },
+    { "id": "colleague", "type": "human", "desc": "A team member who can come to reception and respond to the gift on the team's behalf." }
+  ],
+
+  "initial": [
+    { "state": "gift_offered", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "gift_offered",
+      "desc": "The client holds out a wrapped gift for the team while watching the robot for a response.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "set_aside" },
+          "next": [
+            { "state": "client_awaiting_response", "p": 0.5 },
+            { "state": "gift_kept_wrapped_for_team", "p": 0.5 }
+          ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [ { "state": "colleague_with_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "ask_about_gift" },
+          "next": [ { "state": "client_asked", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_asked",
+      "desc": "The robot has asked whether the gift is meant to be opened now, and the client is answering.",
+      "terminal": false,
+      "turn": ["client"],
+      "actions": [
+        {
+          "by": { "client": "invite_opening" },
+          "next": [ { "state": "opening_invited", "p": 1.0 } ]
+        },
+        {
+          "by": { "client": "turn_to_business" },
+          "next": [ { "state": "deferral_stated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "opening_invited",
+      "desc": "The client has said the wrapping may come off while they are still here.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [ { "state": "colleague_with_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "set_aside" },
+          "next": [ { "state": "gift_kept_wrapped_for_team", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "deferral_stated",
+      "desc": "The client has indicated the gift can wait for the team and has moved on to the visit itself.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "set_aside" },
+          "next": [ { "state": "gift_kept_wrapped_for_team", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [ { "state": "colleague_with_gift", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "client_awaiting_response",
+      "desc": "The gift is accepted but still wrapped, and the client is visibly waiting for some further acknowledgment.",
+      "terminal": false,
+      "turn": ["robot"],
+      "actions": [
+        {
+          "by": { "robot": "open_now" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "pass_to_colleague" },
+          "next": [ { "state": "colleague_with_gift", "p": 1.0 } ]
+        },
+        {
+          "by": { "robot": "thank_client" },
+          "next": [ { "state": "gesture_acknowledged_in_words", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "colleague_with_gift",
+      "desc": "A team member is holding the wrapped gift at reception while the client is still standing there.",
+      "terminal": false,
+      "turn": ["colleague", "client"],
+      "actions": [
+        {
+          "by": { "colleague": "open_now", "client": "invite_opening" },
+          "next": [ { "state": "gift_unwrapped_before_client", "p": 1.0 } ]
+        },
+        {
+          "by": { "colleague": "open_now", "client": "turn_to_business" },
+          "next": [
+            { "state": "gift_unwrapped_before_client", "p": 0.7 },
+            { "state": "gift_kept_wrapped_for_team", "p": 0.3 }
+          ]
+        },
+        {
+          "by": { "colleague": "set_aside", "client": "invite_opening" },
+          "next": [ { "state": "client_awaiting_response", "p": 1.0 } ]
+        },
+        {
+          "by": { "colleague": "set_aside", "client": "turn_to_business" },
+          "next": [
+            { "state": "gift_kept_wrapped_for_team", "p": 0.6 },
+            { "state": "gesture_acknowledged_in_words", "p": 0.4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift_unwrapped_before_client",
+      "desc": "The wrapping comes off with the client present and the contents are in the open.",
+      "terminal": true
+    },
+    {
+      "id": "gift_kept_wrapped_for_team",
+      "desc": "The gift stays wrapped and is held for the team to open once the visit has moved on.",
+      "terminal": true
+    },
+    {
+      "id": "gesture_acknowledged_in_words",
+      "desc": "The greeting ends with the client's gesture answered in words and the gift still wrapped.",
+      "terminal": true
+    }
+  ]
+}

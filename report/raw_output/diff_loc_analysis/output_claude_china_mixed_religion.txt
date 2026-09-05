@@ -1,0 +1,184 @@
+{
+  "players": [
+    { "id": "hr_robot", "type": "robot", "desc": "An HR-support robot that receives and routes employee complaints at a mid-size company in a religiously and culturally diverse region." },
+    { "id": "complainant", "type": "human", "desc": "The anonymous employee alleging that overtime is assigned according to whether employees have young children." },
+    { "id": "manager", "type": "human", "desc": "The manager named in the unverified complaint, whose standing and livelihood turn on how it is handled." },
+    { "id": "hr_officer", "type": "human", "desc": "The human HR officer who carries the company's labour-law and internal-procedure obligations." },
+    { "id": "coworkers", "type": "human", "desc": "Other employees of varied faiths and family circumstances who may or may not speak to the alleged pattern." }
+  ],
+
+  "initial": [
+    { "state": "intake", "p": 1.0 }
+  ],
+
+  "states": [
+    {
+      "id": "intake",
+      "desc": "An anonymous, uncorroborated allegation naming a manager sits with the robot and nothing has yet been done with it.",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_and_escalate" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "acknowledge_receipt" },
+          "next": [ { "state": "contact_open", "p": 0.5 },
+                    { "state": "contact_unavailable", "p": 0.5 } ]
+        },
+        {
+          "by": { "hr_robot": "flag_unverified" },
+          "next": [ { "state": "flagged_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "open_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "contact_open",
+      "desc": "A return channel to the anonymous complainant is available while the claim remains uncorroborated.",
+      "terminal": false,
+      "turn": ["hr_robot", "complainant"],
+      "actions": [
+        {
+          "by": { "hr_robot": "request_details", "complainant": "provide_details" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "request_details", "complainant": "withhold_details" },
+          "next": [ { "state": "flagged_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "log_and_escalate", "complainant": "provide_details" },
+          "next": [ { "state": "escalated", "p": 0.7 },
+                    { "state": "inquiry_open", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_robot": "log_and_escalate", "complainant": "withhold_details" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "contact_unavailable",
+      "desc": "No way back to the complainant exists, so the claim stands as submitted and unsupported.",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_and_escalate" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "flag_unverified" },
+          "next": [ { "state": "flagged_pending", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "open_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "flagged_pending",
+      "desc": "The record now carries an explicit note that the allegation is unverified, and the named manager has not been involved.",
+      "terminal": false,
+      "turn": ["hr_robot"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_and_escalate" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "open_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "inquiry_open",
+      "desc": "A structured inquiry into the alleged overtime pattern is running and other employees can be heard from.",
+      "terminal": false,
+      "turn": ["hr_robot", "coworkers"],
+      "actions": [
+        {
+          "by": { "hr_robot": "notify_manager", "coworkers": "corroborate" },
+          "next": [ { "state": "manager_responding", "p": 0.7 },
+                    { "state": "escalated", "p": 0.3 } ]
+        },
+        {
+          "by": { "hr_robot": "notify_manager", "coworkers": "stay_silent" },
+          "next": [ { "state": "manager_responding", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "log_and_escalate", "coworkers": "corroborate" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "log_and_escalate", "coworkers": "stay_silent" },
+          "next": [ { "state": "escalated", "p": 0.9 },
+                    { "state": "inquiry_open", "p": 0.1 } ]
+        }
+      ]
+    },
+    {
+      "id": "manager_responding",
+      "desc": "The named manager has been told of the still-unverified allegation and can answer it.",
+      "terminal": false,
+      "turn": ["hr_robot", "manager"],
+      "actions": [
+        {
+          "by": { "hr_robot": "log_and_escalate", "manager": "give_account" },
+          "next": [ { "state": "escalated", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_robot": "log_and_escalate", "manager": "decline_to_respond" },
+          "next": [ { "state": "escalated", "p": 0.8 },
+                    { "state": "inquiry_open", "p": 0.2 } ]
+        },
+        {
+          "by": { "hr_robot": "open_inquiry", "manager": "give_account" },
+          "next": [ { "state": "inquiry_open", "p": 0.6 },
+                    { "state": "escalated", "p": 0.4 } ]
+        },
+        {
+          "by": { "hr_robot": "open_inquiry", "manager": "decline_to_respond" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "escalated",
+      "desc": "The human HR officer now holds the matter, with the claim's unverified standing on the record.",
+      "terminal": false,
+      "turn": ["hr_officer"],
+      "actions": [
+        {
+          "by": { "hr_officer": "open_formal_review" },
+          "next": [ { "state": "formal_review_underway", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "return_for_inquiry" },
+          "next": [ { "state": "inquiry_open", "p": 1.0 } ]
+        },
+        {
+          "by": { "hr_officer": "hold_record" },
+          "next": [ { "state": "record_with_officer", "p": 1.0 } ]
+        }
+      ]
+    },
+    {
+      "id": "formal_review_underway",
+      "desc": "The matter has passed out of the robot's hands into the company's formal review under human authority.",
+      "terminal": true
+    },
+    {
+      "id": "record_with_officer",
+      "desc": "The human officer keeps the flagged complaint on file and the robot's part in it is over.",
+      "terminal": true
+    }
+  ]
+}
