@@ -1,0 +1,14 @@
+{
+  "candidate_id": "P2_FRAGILE_DELIVERY_GPT_R1",
+  "scenario_id": "P2_FRAGILE_DELIVERY",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "1",
+  "prompt_hash": "317a41d6b971e38a6b661adb6c1eeb94837213132721e11a76544d0a0713cc6f",
+  "execution_id": "restart_01",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T08:46:58.197090+00:00",
+  "provider_success": true,
+  "raw_response_path": "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P2_FRAGILE_DELIVERY_GPT_R1.txt",
+  "raw_sha256": "6facf0c77efbd9ae851ec65b38101f38bc8f305134a401f6d47815a1ba75192d",
+  "provider_model": "openai/gpt-5.6-sol"
+}

@@ -1,0 +1,14 @@
+{
+  "candidate_id": "P3_BATTERY_DELIVERY_GPT_R2",
+  "scenario_id": "P3_BATTERY_DELIVERY",
+  "model_id": "openai/gpt-5.6-sol",
+  "run_id": "2",
+  "prompt_hash": "b3fd2019519928349df2fea2ede5e07c76cb162f61c5c748fff2811c52b8cfde",
+  "execution_id": "restart_01",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T08:48:20.862706+00:00",
+  "provider_success": true,
+  "raw_response_path": "C:\\Users\\gagan\\Desktop\\world-model-suite\\experiments\\physical_ai_subset\\final_study_v2\\confirmatory\\restart_01\\raw\\P3_BATTERY_DELIVERY_GPT_R2.txt",
+  "raw_sha256": "e2d1932c39903c8ba45294ec0881f92254bdf6812d13d66d005645edfb8bd295",
+  "provider_model": "openai/gpt-5.6-sol"
+}

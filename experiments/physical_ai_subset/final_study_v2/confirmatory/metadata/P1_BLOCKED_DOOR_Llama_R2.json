@@ -1,0 +1,12 @@
+{
+  "candidate_id": "P1_BLOCKED_DOOR_Llama_R2",
+  "scenario_id": "P1_BLOCKED_DOOR",
+  "model_id": "meta-llama/llama-3.3-70b-instruct",
+  "run_id": "2",
+  "prompt_hash": "cf5e7a207b7eafc2a66a48cbe146f95d02a8f0f9026868d2cc47a831410d3417",
+  "attempt_number": 1,
+  "timestamp": "2026-09-03T07:59:16.071392+00:00",
+  "provider_success": false,
+  "error_class": "ConnectionError",
+  "error_message": "HTTPSConnectionPool(host='openrouter.ai', port=443): Max retries exceeded with url: /api/v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002B328689150>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))"
+}

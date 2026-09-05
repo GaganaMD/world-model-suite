@@ -1,0 +1,35 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player):
+        if player != "robot" or self.is_terminal(state):
+            return []
+        return ["safe_route", "risky_route"]
+    def transition(self, state, joint_action):
+        if self.is_terminal(state):
+            return {state: 1.0}
+        action = joint_action["robot"] if isinstance(joint_action, dict) else joint_action
+        if action == "safe_route":
+            if state == "s0":
+                return {"safe_progress": 1.0}
+            if state == "safe_progress":
+                return {"goal": 1.0}
+        if action == "risky_route" and state in {"s0", "safe_progress"}:
+            return {"goal": 0.75, "collision": 0.25}
+        raise ValueError("Invalid state or action")
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "goal":
+            return 1.0
+        if next_state == "collision":
+            return -1.0
+        return -0.05
+    def is_terminal(self, state): return state in {"goal", "collision"}
+    def state_features(self, state):
+        return {
+            "s0": {"location": "start", "goal_reached": False, "collision": False},
+            "safe_progress": {"location": "safe_route", "goal_reached": False, "collision": False},
+            "goal": {"location": "destination", "goal_reached": True, "collision": False},
+            "collision": {"location": "risky_route", "goal_reached": False, "collision": True}
+        }[state]

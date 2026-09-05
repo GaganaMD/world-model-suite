@@ -1,0 +1,2 @@
+{"event_type": "WORKER_START", "execution_id": "run_c_inflight_v1", "monotonic_timestamp": 1742394.531, "pid": 37708, "ppid": 35328, "task_id": null, "timestamp": "2026-09-03T09:11:51.152198+00:00"}
+{"event_type": "REQUEST_START", "execution_id": "run_c_inflight_v1", "monotonic_timestamp": 1742394.546, "pid": 37708, "ppid": 35328, "task_id": "task_001", "timestamp": "2026-09-03T09:11:51.158915+00:00"}

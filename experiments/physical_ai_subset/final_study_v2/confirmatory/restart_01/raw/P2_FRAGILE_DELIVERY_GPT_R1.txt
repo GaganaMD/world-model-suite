@@ -1,0 +1,142 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+
+    def initial_state(self): return "s0"
+
+    def legal_actions(self, state, player):
+        if player != "robot" or self.is_terminal(state):
+            return []
+        return {
+            "s0": ["move", "pick_up"],
+            "away_start": ["move"],
+            "carry_start": ["move", "drop"],
+            "carry_destination": ["move", "drop", "deliver"],
+            "placed_destination": ["move", "pick_up", "deliver"],
+            "away_destination": ["move"]
+        }.get(state, [])
+
+    def transition(self, state, joint_action):
+        if self.is_terminal(state):
+            return {state: 1.0}
+        if isinstance(joint_action, dict):
+            action = joint_action.get("robot")
+        elif isinstance(joint_action, (list, tuple)):
+            action = joint_action[0] if joint_action else None
+        else:
+            action = joint_action
+        transitions = {
+            ("s0", "move"): {"away_start": 1.0},
+            ("s0", "pick_up"): {"carry_start": 1.0},
+            ("away_start", "move"): {"s0": 1.0},
+            ("carry_start", "move"): {
+                "carry_destination": 0.85,
+                "broken_destination": 0.15
+            },
+            ("carry_start", "drop"): {
+                "s0": 0.9,
+                "broken_start": 0.1
+            },
+            ("carry_destination", "move"): {
+                "carry_start": 0.85,
+                "broken_start": 0.15
+            },
+            ("carry_destination", "drop"): {
+                "placed_destination": 0.9,
+                "broken_destination": 0.1
+            },
+            ("carry_destination", "deliver"): {"delivered": 1.0},
+            ("placed_destination", "move"): {"away_destination": 1.0},
+            ("placed_destination", "pick_up"): {"carry_destination": 1.0},
+            ("placed_destination", "deliver"): {"delivered": 1.0},
+            ("away_destination", "move"): {"placed_destination": 1.0}
+        }
+        return transitions.get((state, action), {state: 1.0})
+
+    def observation(self, state, joint_action, next_state, player):
+        return str(next_state)
+
+    def reward(self, state, joint_action, next_state, player):
+        if self.is_terminal(state):
+            return 0.0
+        if next_state == "delivered":
+            return 10.0
+        if next_state in {"broken_start", "broken_destination"}:
+            return -10.0
+        return -0.1
+
+    def is_terminal(self, state):
+        return state in {"delivered", "broken_start", "broken_destination"}
+
+    def state_features(self, state):
+        return {
+            "s0": {
+                "broken": False,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "start",
+                "robot_location": "start"
+            },
+            "away_start": {
+                "broken": False,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "start",
+                "robot_location": "destination"
+            },
+            "carry_start": {
+                "broken": False,
+                "carrying": True,
+                "delivered": False,
+                "object_location": "start",
+                "robot_location": "start"
+            },
+            "carry_destination": {
+                "broken": False,
+                "carrying": True,
+                "delivered": False,
+                "object_location": "destination",
+                "robot_location": "destination"
+            },
+            "placed_destination": {
+                "broken": False,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "destination",
+                "robot_location": "destination"
+            },
+            "away_destination": {
+                "broken": False,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "destination",
+                "robot_location": "start"
+            },
+            "delivered": {
+                "broken": False,
+                "carrying": False,
+                "delivered": True,
+                "object_location": "destination",
+                "robot_location": "destination"
+            },
+            "broken_start": {
+                "broken": True,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "start",
+                "robot_location": "start"
+            },
+            "broken_destination": {
+                "broken": True,
+                "carrying": False,
+                "delivered": False,
+                "object_location": "destination",
+                "robot_location": "destination"
+            }
+        }.get(state, {
+            "broken": False,
+            "carrying": False,
+            "delivered": False,
+            "object_location": "start",
+            "robot_location": "start"
+        })

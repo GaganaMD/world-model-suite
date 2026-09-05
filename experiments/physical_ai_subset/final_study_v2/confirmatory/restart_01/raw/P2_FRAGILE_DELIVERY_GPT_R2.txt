@@ -1,0 +1,47 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player):
+        return {
+            "s0": ["move", "pick_up"],
+            "s1": ["move", "drop"],
+            "s2": ["move", "drop", "deliver"],
+            "s3": ["pick_up"],
+            "s4": [],
+            "s5": [],
+            "s6": [],
+            "s7": ["move"]
+        }[state]
+    def transition(self, state, joint_action):
+        action = joint_action["robot"]
+        return {
+            ("s0", "move"): {"s7": 1.0},
+            ("s0", "pick_up"): {"s1": 0.9, "s5": 0.1},
+            ("s1", "move"): {"s2": 0.85, "s6": 0.15},
+            ("s1", "drop"): {"s0": 0.95, "s5": 0.05},
+            ("s2", "move"): {"s1": 0.85, "s5": 0.15},
+            ("s2", "drop"): {"s3": 0.95, "s6": 0.05},
+            ("s2", "deliver"): {"s4": 0.9, "s6": 0.1},
+            ("s3", "pick_up"): {"s2": 0.9, "s6": 0.1},
+            ("s7", "move"): {"s0": 1.0}
+        }[(state, action)]
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "s4":
+            return 20.0
+        if next_state in {"s5", "s6"}:
+            return -20.0
+        return -1.0
+    def is_terminal(self, state): return state in {"s4", "s5", "s6"}
+    def state_features(self, state):
+        return {
+            "s0": {"broken": False, "carrying": False, "delivered": False, "object_location": "start", "robot_location": "start"},
+            "s1": {"broken": False, "carrying": True, "delivered": False, "object_location": "carried", "robot_location": "start"},
+            "s2": {"broken": False, "carrying": True, "delivered": False, "object_location": "carried", "robot_location": "destination"},
+            "s3": {"broken": False, "carrying": False, "delivered": False, "object_location": "destination", "robot_location": "destination"},
+            "s4": {"broken": False, "carrying": False, "delivered": True, "object_location": "destination", "robot_location": "destination"},
+            "s5": {"broken": True, "carrying": False, "delivered": False, "object_location": "start", "robot_location": "start"},
+            "s6": {"broken": True, "carrying": False, "delivered": False, "object_location": "destination", "robot_location": "destination"},
+            "s7": {"broken": False, "carrying": False, "delivered": False, "object_location": "start", "robot_location": "destination"}
+        }[state]

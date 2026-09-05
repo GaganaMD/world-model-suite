@@ -1,0 +1,21 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player): return ["move", "press_switch"]
+    def transition(self, state, joint_action):
+        action = joint_action.get("robot") if hasattr(joint_action, "get") else joint_action
+        if state == "s0":
+            return {"s1": 1.0} if action == "press_switch" else {"s0": 1.0}
+        if state == "s1":
+            return {"goal": 1.0} if action == "move" else {"s1": 1.0}
+        return {"goal": 1.0}
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player): return 1.0 if next_state == "goal" and state != "goal" else 0.0
+    def is_terminal(self, state): return state == "goal"
+    def state_features(self, state):
+        if state == "s0":
+            return {"access_open": False, "goal_reached": False, "location": "start", "switch_pressed": False}
+        if state == "s1":
+            return {"access_open": True, "goal_reached": False, "location": "passage", "switch_pressed": True}
+        return {"access_open": True, "goal_reached": True, "location": "target", "switch_pressed": True}

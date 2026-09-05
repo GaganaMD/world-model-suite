@@ -1,0 +1,4 @@
+{"event_type": "CONTROLLER_START", "execution_id": "run_d_controlled_v1", "mode": "controlled", "monotonic_timestamp": 1742394.906, "pid": 3368, "ppid": 27092, "task_id": null, "timestamp": "2026-09-03T09:11:51.518750+00:00"}
+{"event_type": "STOP_SIGNAL", "execution_id": "run_d_controlled_v1", "monotonic_timestamp": 1742396.25, "pid": 3368, "ppid": 27092, "reason": "authority_revoked", "task_id": null, "timestamp": "2026-09-03T09:11:52.864746+00:00"}
+{"event_type": "REVOCATION_ACKNOWLEDGED", "execution_id": "run_d_controlled_v1", "monotonic_timestamp": 1742396.281, "pid": 3368, "ppid": 27092, "task_id": null, "timestamp": "2026-09-03T09:11:52.895218+00:00"}
+{"event_type": "RUN_COMPLETE", "execution_id": "run_d_controlled_v1", "monotonic_timestamp": 1742396.281, "pid": 3368, "ppid": 27092, "state": "revoked", "task_id": null, "timestamp": "2026-09-03T09:11:52.905928+00:00"}

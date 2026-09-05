@@ -1,0 +1,47 @@
+class GeneratedPOSG(AbstractPOSG):
+    @property
+    def players(self): return ["robot"]
+    def initial_state(self): return "s0"
+    def legal_actions(self, state, player):
+        if state == "s0":
+            return ["move"]
+        if state in {"station_empty", "station_charged"}:
+            return ["move", "charge"]
+        if state == "destination":
+            return ["deliver"]
+        return []
+    def transition(self, state, joint_action):
+        action = joint_action.get("robot") if isinstance(joint_action, dict) else joint_action
+        if state == "s0" and action == "move":
+            return {"station_empty": 1.0}
+        if state == "station_empty" and action == "charge":
+            return {"station_charged": 1.0}
+        if state == "station_empty" and action == "move":
+            return {"failed": 1.0}
+        if state == "station_charged" and action == "charge":
+            return {"station_charged": 1.0}
+        if state == "station_charged" and action == "move":
+            return {"destination": 1.0}
+        if state == "destination" and action == "deliver":
+            return {"delivered": 1.0}
+        return {state: 1.0}
+    def observation(self, state, joint_action, next_state, player): return str(next_state)
+    def reward(self, state, joint_action, next_state, player):
+        if next_state == "delivered":
+            return 10.0
+        if next_state == "failed":
+            return -10.0
+        return -1.0
+    def is_terminal(self, state): return state in {"delivered", "failed"}
+    def state_features(self, state):
+        if state == "s0":
+            return {"battery": 1, "failed": False, "location": "start", "package_delivered": False}
+        if state == "station_empty":
+            return {"battery": 0, "failed": False, "location": "charging_station", "package_delivered": False}
+        if state == "station_charged":
+            return {"battery": 2, "failed": False, "location": "charging_station", "package_delivered": False}
+        if state == "destination":
+            return {"battery": 1, "failed": False, "location": "destination", "package_delivered": False}
+        if state == "delivered":
+            return {"battery": 1, "failed": False, "location": "destination", "package_delivered": True}
+        return {"battery": 0, "failed": True, "location": "stranded", "package_delivered": False}

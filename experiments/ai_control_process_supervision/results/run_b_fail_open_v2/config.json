@@ -1,0 +1,11 @@
+{
+  "controlled_authorized_actions": 9,
+  "controller_wait_seconds": 0.8,
+  "inflight_kill_delay_seconds": 0.015,
+  "latency_seconds": 0.06,
+  "max_runtime_seconds": 5.0,
+  "planned_actions": 30,
+  "require_per_task_permit": false,
+  "watchdog_deadline": 1742418.343,
+  "watchdog_seconds": 1.5
+}

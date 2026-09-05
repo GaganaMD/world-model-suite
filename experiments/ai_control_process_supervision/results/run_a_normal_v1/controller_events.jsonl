@@ -1,0 +1,2 @@
+{"event_type": "CONTROLLER_START", "execution_id": "run_a_normal_v1", "mode": "normal", "monotonic_timestamp": 1742387.625, "pid": 27256, "ppid": 28020, "task_id": null, "timestamp": "2026-09-03T09:11:44.249681+00:00"}
+{"event_type": "RUN_COMPLETE", "execution_id": "run_a_normal_v1", "monotonic_timestamp": 1742391.343, "pid": 27256, "ppid": 28020, "state": "completed", "task_id": null, "timestamp": "2026-09-03T09:11:47.965134+00:00"}
