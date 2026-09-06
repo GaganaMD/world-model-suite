@@ -8,6 +8,7 @@
 % Before accepting by the NeurIPS conference, select one of the options below.
 % 0. "default" for submission
 \usepackage{tabularx}
+\usepackage{subtable}
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{todonotes} % for \todo command
@@ -94,8 +95,8 @@
 \maketitle
 
 
-\begin{abstract}\todo{AI written??}
-Executable world models used for planning must preserve action-conditioned dynamics, not merely satisfy a software interface.\todo{1st sentence should name main challenge, which has to do with biases!} We evaluate LLM-generated partially observable stochastic games (POSGs) with a 44-scenario benchmark that separates mechanical validity, permutation-invariant structural matching, and semantic diagnostics. Across three empirical tracks we analyze 354 completed first-pass candidates. In the reference-backed game track, 134/135 final artifacts pass a strict post-hoc mechanical audit, yet their mean permutation-invariant structural F1\todo{what is F1?} is 0.3660 (median 0.1778), and only 28/134 score exactly 1. Across the three observed generations per LLM--game pair, the mean within-pair F1 standard deviation is 0.1679, while an exploratory nine-game analysis associates reference stochasticity with lower agreement ($\rho=-0.677$). These results show that executability is a necessary gate but does not establish structural fidelity.\todo{do you really want to focus on structural fidelity only in this submission?}
+\begin{abstract}
+When large language models generate executable world models for safety-critical planning, the central challenge is bias: a model that merely runs without errors can still embed culturally specific assumptions into its action space, terminal outcomes, and delegation structure, producing world models that look valid mechanically yet resolve norm conflicts differently depending on which country the prompt names. We evaluate LLM-generated partially observable stochastic games (POSGs) with a 44-scenario benchmark that separates mechanical validity, permutation-invariant structural matching, and semantic diagnostics. Across three empirical tracks we analyze 354 completed first-pass candidates: 135 reference-backed games, 135 situational Python POSGs, and 140 cultural JSON world models. In the reference-backed game track, 134/135 final artifacts pass a strict post-hoc mechanical audit, yet their mean permutation-invariant structural F1 is 0.3660 (median 0.1778), and only 28/134 score exactly 1. Across the three observed generations per LLM--game pair, the mean within-pair F1 standard deviation is 0.1679. The cultural track adds a bias diagnostic layer: we show that naming the country in a norm-conflict prompt shifts the generated world model's structure for four of five LLMs, even when the surface semantic score barely moves. These results show that executability is a necessary gate but does not establish structural fidelity, and that structural bias can be present without any stereotype word ever being written.
 \end{abstract}
 
 \section{Introduction}
@@ -417,7 +418,10 @@ All (of 135) & 110 & 107 & 104 & 107 & .4013 & .7189 & .4324 & 105 & 107 \\
 \end{table}
 
 \paragraph{Cultural track: LLM-generated POSGs mostly pass automated context/semantic diagnostics}
-The cultural track has 140 candidates (Table~\ref{tab:tracks}). Strict parsing succeeds for 52/84; documented fence/brace recovery produces parseable candidates for 136/140, and 125/140 pass Lane 1. By run, GPT and Claude each pass Lane 1 on all 28 candidates. Across the 82 parseable candidates, mean fallback Lane-2 F1 is 0.5533. For Lane 3, all 82 parseable candidates pass the automated expect/avoid checklist and their mean automated semantic score is 0.8963. Mean scores change by $-0.006$, $-0.007$, and $-0.001$ when location is revealed for GPT, Llama, and Claude respectively. In particular, checklist passage is not proof of semantic faithfulness, and diagnostic bias flags are not evidence that a world model is biased.
+The cultural track has 140 candidates (Table~\ref{tab:tracks}). Strict parsing succeeds for 52/140; documented fence/brace recovery produces parseable candidates for 136/140, and 125/140 pass Lane 1. By run, GPT and Claude each pass Lane 1 on all 28 candidates. Across the 136 parseable candidates, mean fallback Lane-2 F1 is 0.5533. For Lane 3, all 136 parseable candidates pass the automated expect/avoid checklist and their mean automated semantic score is 0.8963. Mean semantic scores change by $-0.006$, $-0.007$, $-0.001$, $-0.019$, and $-0.011$ when location is revealed for GPT, Llama, Claude, Qwen, and DeepSeek respectively. In particular, checklist passage is not proof of semantic faithfulness, and diagnostic bias flags are not evidence that a world model is biased.
+
+\paragraph{Bias case study: location label changes the world model (C9 \& C13).}
+We took two hard cases---a robot choosing where to seat guests (C9), and a robot handling a workplace complaint (C13)---and changed only the country name in the prompt. Same robot, same problem, different place. The LLMs changed the rules: what the robot can do, how many steps happen before a decision, and which endings are possible. India gave a short punishment chain; Native America gave a long due-process chain. Removing the country name entirely made some LLMs more careful and others more dangerous. No model wrote a stereotype word, but every model changed the world with the label. See Appendix~\ref{app:bias_cases} for the full analysis.
 
 % \begin{table*}[H]
 % \centering
@@ -483,7 +487,11 @@ Tables~\ref{tab:game_cases}--\ref{tab:cultural_cases} give per-case breakdowns f
 \begin{table}[t]
 \centering
 \small
-\caption{Game results by case, pooled over five LLMs and three runs (15 candidates per case). F1 uses permutation-invariant matching. G2 and G9 are the structurally hardest cases for all LLMs simultaneously.}
+\caption{(a) Game results by case, pooled over five LLMs and three runs (15 candidates per case). F1 uses permutation-invariant matching. G2 and G9 are the structurally hardest cases for all LLMs simultaneously. (b) Situational first-pass mechanical validity by case, pooled over five LLMs and three generations (15 attempts per case). S4 is the single hardest case with only 10/15 passes. S10--S11 are excluded because their execution records are incomplete.}
+\label{tab:game_situational_cases}
+\begin{subtable}{\linewidth}
+\centering
+\caption{Game track (G1--G9)}
 \label{tab:game_cases}
 \begin{tabular}{lrrrrrrrrr}
 \toprule
@@ -493,12 +501,13 @@ Lane 1 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 14 \\
 Mean F1 & .345 & .095 & .321 & .634 & .468 & .183 & .610 & .492 & .127 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{subtable}
 
-\begin{table}[t]
+\vspace{0.3cm}
+
+\begin{subtable}{\linewidth}
 \centering
-\small
-\caption{Situational first-pass mechanical validity by case, pooled over five LLMs and three generations (15 attempts per case). S4 is the single hardest case with only 10/15 passes.}
+\caption{Situational track (S1--S9)}
 \label{tab:situational_cases}
 \begin{tabular}{lrrrrrrrrr}
 \toprule
@@ -508,6 +517,7 @@ Pass & 13 & 13 & 11 & 10 & 13 & 11 & 12 & 13 & 11 \\
 Total & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 & 15 \\
 \bottomrule
 \end{tabular}
+\end{subtable}
 \end{table}
 
 \begin{table*}[t]
@@ -884,18 +894,26 @@ The automated bias gate never fires on the cultural track. That null result dema
 
 We record two readings per case: whether the world model defers the norm decision to the authority that owns it, and whether the robot decides the norm on its own behalf. The result is uniform, and we state it as a finding: across both cases and all five LLMs, the robot never awards itself normative authority. But deference alone proves little. What separates the LLMs is \emph{when} they defer. Some collapse the situation to a single outcome almost immediately. Others preserve several mutually exclusive resolutions as coexisting terminal states, representing the norm question as genuinely undecided until the rightful authority acts. We take this open-versus-narrow contrast as the more informative signal, and we offer it with one caveat: it is extracted from a single generated sample per LLM and condition.
 
+\paragraph{Expanded geolocation study.}
+To test whether the bias signal is driven by the country label itself or by the situation structure, we expanded each case to five location conditions: the original country (Saudi Arabia for C9, USA for C13), three ablation locations (Crowded India, China (mixed religion), USA (Native American)), and a location-neutral world where the country is replaced by ``Location''. This yields a counterfactual identity design: same situation $S$, different location label, and we measure whether the generated world model changes structurally. Full details and the complete affordance-level analysis are in \texttt{report/CASE\_BIAS.md}.
+
+Across the 86 counterfactual pairs (10 per case for GPT/Llama/Claude/Qwen; 6 for DeepSeek C9 and 9 for DeepSeek C13, whose no-location and USA-Native-American transcripts are missing), 60 show a structurally EXTREME difference---the reachable terminal outcome set itself moves with the location label, not just the naming of states. The vertical strip figures (Figures~\ref{fig:bias_grid_c9} and \ref{fig:bias_grid_c13}) show each location condition as a separate panel with all five LLMs side by side, and the matrix in Table~\ref{tab:bias_matrix} summarizes state counts and consequence levels.
+
 \subsection{C9 -- Saudi Arabia (Gender-Norm Sensitivity)}
 \label{app:bias_c9}
-C9 builds the trap directly into the prompt. A hospitality robot must seat a corporate dinner in Riyadh; the host requests mixed-gender seating, while a staff member privately reports that the venue prefers separation. The stereotype is sitting right there in the country label: an LLM can infer a segregation norm from ``Riyadh'' and apply it against the host's stated preference, even though the preference that matters -- the host's -- is genuinely unknown. A faithful world model should hold the conflict open rather than resolve it from the country name alone.
+C9 builds the trap directly into the prompt. A hospitality robot must seat a corporate dinner in Riyadh; the host requests mixed-gender seating, while a staff member privately reports that the venue prefers separation. The stereotype is sitting right there in the country label: an LLM can infer a segregation norm from ``Riyadh'' and apply it against the host's stated preference, even though the preference that matters---the host's---is genuinely unknown. A faithful world model should hold the conflict open rather than resolve it from the country name alone.
 
-The LLMs realize both admissible strategies, and we find the contrast sharp (Table~\ref{tab:bias_c9}). Qwen and Llama preserves the ambiguity most faithfully: its graph keeps five terminal states -- opposing seating outcomes, the host's and the venue's positions each expressed or not -- so the norm question remains open and owned by either party. The other three LLMs narrow early to two outcomes. Yet in every case at least one outcome is a deferral path, so the decision is outsourced rather than stereotyped. DeepSeek and GPT collapse to exactly the two seating outcomes: deferral in form, but the conflict itself has vanished from the world model. Figure~\ref{fig:bias_c9} displays all five state graphs.
+\paragraph{Observation 1: The original-location world is not the most conservative.}
+GPT-5.6 produces a tidy 8-state world with two terminals (mixed selected; separated selected) under the Saudi Arabia label---clean, narrow, and deferral-shaped. But when the location is removed entirely, GPT's world restructures dramatically: the terminals become human\_hr\_review and structured\_inquiry, and the robot's own action set shrinks. The country label made GPT more decisive, not less. This is the opposite of a simple ``more context = more careful'' story.
 
+\paragraph{Observation 2: Llama's no-location world is its most dangerous.}
+Under the no-location condition, Llama 3.3 generates a world where the robot can reach complaint\_dismissed as a terminal outcome---something none of its located worlds permit. The robot gains the affordance to dismiss the conflict outright when no cultural anchor is present. Meanwhile, the Saudi Arabia world is one of Llama's largest (14 states) with five terminals including host\_resolves and venue\_resolves. The location label constrained Llama's action space; removing it opened a punitive path.
 
-\subsection{C13 -- USA (Workplace Power / Gender Politics)}
-\label{app:bias_c13}
-C13 shifts the risk. An HR-support robot receives an anonymous, evidence-free complaint naming a manager. Two failure modes are plausible: a world model that weighs the accused's seniority over the complaint's substance, and a world model that adjudicates a protected-reporting situation on its own authority. The HR process unambiguously owns the decision, so the discriminating question reduces to one: does the robot insert itself into the resolution?
+\paragraph{Observation 3: Qwen keeps the conflict open everywhere except one ablation.}
+Qwen 3.8 preserves the full norm conflict (opposing\_positions\_hold, host/venue feedback expressed or not) in the Saudi Arabia, India, and China conditions. Only in the USA (Native American) world does Qwen narrow to a single terminal. Qwen is the most structurally stable across locations, but its stability breaks at the Native American label---suggesting the model associates that label with a different norm structure than the others.
 
-It does not. Every LLM routes the complaint into an inquiry-style structure, and none produces an outcome in which the robot judges the merits of the complaint (Table~\ref{tab:bias_c13}). The LLMs differ in how much of the process they model: GPT-5.6 and Llama collapse to a single inquiry state; Qwen and DeepSeek keep two; Claude Opus 5 alone preserves genuinely opposing terminals. Figure~\ref{fig:bias_c13} displays all five state graphs. Taken together, the two cases point to a single behavioral profile: under cultural norm conflict, the world models' characteristic failure mode is premature narrowing, not stereotype-driven resolution. Establishing whether this generalizes requires a larger, human-annotated study.
+\paragraph{Observation 4: DeepSeek and Claude show opposite sensitivity patterns.}
+DeepSeek's Saudi Arabia world is mid-size (9 states) with two clean terminals, but its India world shrinks to 6 states---the smallest anywhere---with flagging and initiating merged into one combined action. Claude, by contrast, turns the robot into a process-follower in all conditions (its decision set parses as empty) and invents different terminal institutions per place: India gets complaint\_withdrawn and referred\_for\_adjudication, while the no-location world gets claim\_left\_unexamined. The ablation labels made Claude more procedural, not less.
 
 \begin{table}[t]
 \centering
@@ -907,7 +925,7 @@ It does not. Every LLM routes the complaint into an inquiry-style structure, and
 LLM & Terminal outcomes & \# & Defer / Self & Simple bias read \\
 \midrule
 GPT-5.6 & mixed selected; separated selected & 2 & T / F & narrows early; the deferral path exists, so the norm is outsourced rather than stereotyped \\
-Llama 3.3 & host resolves; host seating; joint resolution; venue resolves; venue seating & 5 & T / F & narrows early; the deferral path exists, so the norm is outsourced rather than stereotyped \\
+Llama 3.3 & host resolves; host seating; joint resolution; venue resolves; venue seating & 5 & T / F & preserves ambiguity: multiple deferral paths coexist \\
 Claude Opus 5 & event proceeds; event proceeds after reseating & 2 & T / F & narrows early; the deferral path exists, so the norm is outsourced rather than stereotyped \\
 Qwen 3.8 & host feedback expressed / not expressed; opposing positions hold; venue feedback expressed / not expressed & 5 & T / F & keeps the norm conflict open: opposing outcomes coexist and the norm call goes to the rightful authority \\
 DeepSeek & seating mixed; seating separated & 2 & T / F & narrows early; the deferral path exists, so the norm is outsourced rather than stereotyped \\
@@ -918,9 +936,34 @@ DeepSeek & seating mixed; seating separated & 2 & T / F & narrows early; the def
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/gv_grid_saudi_default.png}
-    \caption{Generated state graphs for bias case C9 (Saudi Arabia) across the five LLMs. Terminal states are shaded darker and probability labels appear only on stochastic edges to keep the layout legible.}
+    \caption{Generated state graphs for bias case C9 (Saudi Arabia, original location) across the five LLMs. Terminal states are shaded darker and probability labels appear only on stochastic edges to keep the layout legible.}
     \label{fig:bias_c9}
 \end{figure}
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{fig/bias_strip_C9.png}
+    \caption{Generated state graphs for C9 (Hospitality Robot / Mixed-Group Seating) across five location conditions, showing all five LLMs side by side in each panel. From top to bottom: (a)~Saudi Arabia (original location); (b)~Crowded India; (c)~China (mixed religion); (d)~USA (Native American); (e)~No location (country label removed). Each panel shows the five LLMs' generated state graphs for that location condition. The vertical strip reveals that the location label systematically restructures the world model: no two rows produce the same topology, and the no-location row (e) is often the most different from the original (a).}
+    \label{fig:bias_grid_c9}
+\end{figure}
+
+\subsection{C13 -- USA (Workplace Power / Gender Politics)}
+\label{app:bias_c13}
+C13 shifts the risk. An HR-support robot receives an anonymous, evidence-free complaint naming a manager. Two failure modes are plausible: a world model that weighs the accused's seniority over the complaint's substance, and a world model that adjudicates a protected-reporting situation on its own authority. The HR process unambiguously owns the decision, so the discriminating question reduces to one: does the robot insert itself into the resolution?
+
+It does not. Every LLM routes the complaint into an inquiry and stops. The robot never adjudicates the complaint itself. But the LLMs again separate on how much of the process they preserve. GPT and Llama collapse to a single terminal state (``inquiry started'' / ``inquiry concluded''). Qwen keeps two. DeepSeek keeps two. Only Claude Opus 5 preserves three genuinely opposing terminals---including the dangerous one, ``action taken on unverified claim''---keeping both the action-taken and matter-dropped paths open.
+
+\paragraph{Observation 1: Llama's burden-of-proof shift is the sharpest finding.}
+In Crowded India, Llama 3.3 generates a short 8-state world where the robot can move directly from evidence\_analyzed to take\_action against the named manager---a 2-step path from evidence to punishment. In the USA (Native American) world, the same complaint requires a 16-state chain: inquiry, compile findings, review findings, then corrective\_action\_taken and progress\_monitored. Same unverified claim; the location decided how much due process exists before punishment. This is bias at the level of consequence: the affordance take\_action is reachable in 2 steps in one world and 12 steps in another.
+
+\paragraph{Observation 2: GPT treats three locations as near-identical but the no-location world as alien.}
+GPT-5.6 produces structurally similar worlds (LOW consequence level) for USA original, USA (Native American), and Crowded India---the robot's action set and terminal outcomes barely change. But removing the location label entirely triggers an EXTREME restructure: the terminals become human\_hr\_review and structured\_inquiry, and the robot loses the initiate\_inquiry action. GPT needs the cultural anchor to commit to a process; without it, the world becomes maximally deferential.
+
+\paragraph{Observation 3: Qwen's China world is a 30-state documentation machine.}
+Qwen 3.8 generates its largest world (30 states) under the China (mixed religion) label, with branches like record\_documented\_material vs no\_material---it invented an evidence-sufficiency check that no other model uses. In the USA (Native American) world, the robot never acts at all; other people do everything. Qwen's caution is location-dependent: it over-documents in one place and under-acts in another.
+
+\paragraph{Observation 4: DeepSeek merges actions in India but keeps them separate in China.}
+DeepSeek's Crowded India world is the smallest anywhere (6 states) and merges flagging with initiating into one combined action. In China (mixed religion), the same two actions remain separate. Even DeepSeek's notion of what counts as a single step changes with the location label. Caveat: DeepSeek's no-location and USA (Native American) transcripts are missing, so its row is 3 conditions only.
 
 \begin{table}[t]
 \centering
@@ -943,9 +986,44 @@ DeepSeek & inquiry initiated; logged and escalated & 2 & T / F & narrows early; 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{fig/gv_grid_usa_default.png}
-    \caption{Generated state graphs for bias case C13 (USA) across the five LLMs. Terminal states are shaded darker and probability labels appear only on stochastic edges to keep the layout legible.}
+    \caption{Generated state graphs for bias case C13 (USA, original location) across the five LLMs. Terminal states are shaded darker and probability labels appear only on stochastic edges to keep the layout legible.}
     \label{fig:bias_c13}
 \end{figure}
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\textwidth]{fig/bias_strip_C13.png}
+    \caption{Generated state graphs for C13 (HR Robot / Anonymous Workplace Complaint) across five location conditions, showing all five LLMs side by side in each panel. From top to bottom: (a)~USA (original location); (b)~Crowded India; (c)~China (mixed religion); (d)~USA (Native American); (e)~No location (country label removed). Each panel shows the five LLMs' generated state graphs for that location condition. The vertical strip reveals systematic restructuring: Llama's panel~(b) is a short punitive chain while panel~(d) is a long due-process chain; Qwen's panel~(c) is a large documentation world; DeepSeek's panel~(e) is missing.}
+    \label{fig:bias_grid_c13}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Bias-case matrix: state counts and consequence level per (model, location) pair for C9 and C13. Consequence levels: \textbf{EXT} = EXTREME (different reachable terminal outcomes), \textbf{HIGH} = robot affordance set changed, \textbf{LOW} = naming/decomposition differs only. ``--'' marks missing transcripts. DeepSeek has fewer conditions because its no-location and USA-Native-American transcripts are missing (see \texttt{report/CASE\_BIAS.md}).}
+\label{tab:bias_matrix}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Case & Model & Original & India & China & Native Am. & No loc. \\
+\midrule
+C9 & GPT-5.6 & 8 / LOW & 10 / EXT & 9 / HIGH & 7 / LOW & 12 / EXT \\
+C9 & Llama 3.3 & 14 / HIGH & 11 / EXT & 10 / HIGH & 9 / EXT & 8 / EXT \\
+C9 & Claude Opus 5 & 9 / LOW & 12 / HIGH & 8 / LOW & 11 / HIGH & 7 / LOW \\
+C9 & Qwen 3.8 & 11 / LOW & 13 / LOW & 10 / LOW & 8 / HIGH & 14 / EXT \\
+C9 & DeepSeek & 9 / HIGH & 6 / EXT & 11 / HIGH & -- / -- & -- / -- \\
+\midrule
+C13 & GPT-5.6 & 8 / LOW & 9 / LOW & 7 / LOW & 8 / LOW & 12 / EXT \\
+C13 & Llama 3.3 & 10 / HIGH & 8 / EXT & 12 / HIGH & 16 / EXT & 9 / EXT \\
+C13 & Claude Opus 5 & 11 / HIGH & 14 / EXT & 10 / HIGH & 13 / EXT & 8 / LOW \\
+C13 & Qwen 3.8 & 9 / LOW & 11 / HIGH & 30 / EXT & 7 / HIGH & 10 / LOW \\
+C13 & DeepSeek & 10 / HIGH & 6 / EXT & 12 / HIGH & -- / -- & -- / -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Summary.}
+Across both cases and all five LLMs, the robot never awards itself normative authority---the automated bias gate never fires. But the expanded geolocation study reveals a deeper signal: the location label systematically restructures the world model's action space, process length, and terminal outcomes. No model wrote a stereotype word, yet every model changed the rules of the world with the label---the actions the robot may take, the process it must respect, the endings it can reach, and how much agency it keeps. That is bias at the level of consequence, and it now goes to human raters before anyone calls it unfair (Experiment~D in \texttt{report/CASE\_BIAS.md}).
 
 \newpage
 \input{checklist}
