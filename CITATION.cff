@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this repository or build on the paper, please cite the paper below."
+title: "World Model Suite"
+type: software
+authors:
+  - given-names: Souhaila
+    family-names: Djaffal
+  - given-names: Amna
+    family-names: Jamal
+  - given-names: Gagana
+    family-names: Madhugiri Devaraja
+  - given-names: Anidipta
+    family-names: Pal
+  - given-names: Jobst
+    family-names: Heitzig
+repository-code: "https://github.com/GaganaMD/world-model-suite"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning"
+  authors:
+    - given-names: Souhaila
+      family-names: Djaffal
+    - given-names: Amna
+      family-names: Jamal
+    - given-names: Gagana
+      family-names: Madhugiri Devaraja
+    - given-names: Anidipta
+      family-names: Pal
+    - given-names: Jobst
+      family-names: Heitzig
+  year: 2026
+  url: "https://arxiv.org/abs/2611.14419"
+  repository: "https://arxiv.org/abs/2611.14419"
+  identifiers:
+    - type: other
+      value: "arXiv:2611.14419"
+      description: "arXiv identifier (cs.AI)"
+  notes: "Accepted as a poster at NEmo: Neuro-Symbolic Embodied Intelligence, a workshop at NeurIPS 2026 (https://neurips.cc/virtual/2026/161920)."

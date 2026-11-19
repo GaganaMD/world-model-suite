@@ -1,10 +1,22 @@
 # World Model Suite
 
+> **Paper:** [*Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning*](https://arxiv.org/abs/2611.14419)
+> Souhaila Djaffal, Amna Jamal, Gagana Madhugiri Devaraja, Anidipta Pal, Jobst Heitzig
+> arXiv:2611.14419 [cs.AI], 2026
+>
+> Accepted as a poster at [NEmo: Neuro-Symbolic Embodied Intelligence](https://neurips.cc/virtual/2026/161920), a workshop at NeurIPS 2026.
+
 A research suite for generating, validating, and comparing structured world models produced by large language models. It combines a curated scenario bank, JSON and executable Python POSG representations, automated evaluation pipelines, graph-based analysis, preserved experiment artifacts, notebooks, and publication material.
 
 The project asks a practical research question:
 
 > Can a language model turn a natural-language situation into a world model that is executable, structurally valid, behaviorally faithful, and useful for downstream planning?
+
+## Relationship to the paper
+
+The paper asks whether five LLMs can generate formal world models, framed as partially observable stochastic games, from natural-language scenarios. It introduces a 44-scenario benchmark, evaluates generated models for mechanical validity, structural agreement with reference models, and semantic criteria, and finds that executability is necessary but not sufficient for downstream use.
+
+The research contributions, including the benchmark design, evaluation methodology, analysis, and conclusions, belong to the paper's authors listed above. This repository holds the code, scenarios, prompts, and preserved experiment artifacts used for that work. It also contains exploratory, debugging, and follow-up material that is not part of the published paper, for example `experiments/physical_ai_subset/`, `experiments/debug/`, and `experiments/diagnostics/`, along with working notes in `docs/` and earlier drafts in `overleaf/`. Figures in those materials may differ from the paper; for published results, refer to the [arXiv paper](https://arxiv.org/abs/2611.14419).
 
 ## Highlights
 
@@ -237,6 +249,22 @@ python experiments/build_paper_results.py
 ## Status and limitations
 
 This is an active research repository rather than a production world-modeling framework. Current limitations include heterogeneous experiment dependencies, a mixture of notebook and script workflows, reliance on external providers for some studies, finite-horizon approximations in structural comparison, and the need for human judgment in open-ended semantic evaluation.
+
+## Citation
+
+If you use this repository or build on the paper, please cite:
+
+```bibtex
+@misc{djaffal2026evaluating,
+  title         = {Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning},
+  author        = {Djaffal, Souhaila and Jamal, Amna and Madhugiri Devaraja, Gagana and Pal, Anidipta and Heitzig, Jobst},
+  year          = {2026},
+  eprint        = {2611.14419},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url           = {https://arxiv.org/abs/2611.14419}
+}
+```
 
 ## License
 
